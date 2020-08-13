@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="NavigationMenucell" id="KGk-i7-Jjw" customClass="NavigationMenucell" customModule="FaceTek" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xDP-O8-5yK">
+                        <rect key="frame" x="68" y="6" width="202" height="34"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="user.png" translatesAutoresizingMaskIntoConstraints="NO" id="eDS-UQ-jgX">
+                        <rect key="frame" x="25" y="13" width="20" height="15"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="20" id="7a0-2W-tfn"/>
+                            <constraint firstAttribute="height" constant="15" id="zm2-tf-Unt"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="eDS-UQ-jgX" secondAttribute="bottom" constant="15.5" id="6dF-G9-kik"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="xDP-O8-5yK" secondAttribute="trailing" constant="34" id="93C-Ar-n17"/>
+                    <constraint firstItem="eDS-UQ-jgX" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="13" id="LOQ-K4-I7l"/>
+                    <constraint firstItem="eDS-UQ-jgX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="25" id="PR5-yB-tlp"/>
+                    <constraint firstItem="xDP-O8-5yK" firstAttribute="centerY" secondItem="eDS-UQ-jgX" secondAttribute="centerY" constant="2.5" id="h2t-NL-9tE"/>
+                    <constraint firstItem="xDP-O8-5yK" firstAttribute="leading" secondItem="eDS-UQ-jgX" secondAttribute="trailing" constant="23" id="lJK-8B-Rxy"/>
+                    <constraint firstItem="xDP-O8-5yK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-5" id="sPW-1N-eyt"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="NavigationMenuLbl" destination="xDP-O8-5yK" id="ove-Ga-e7P"/>
+                <outlet property="imageview" destination="eDS-UQ-jgX" id="ZTf-WG-Q42"/>
+            </connections>
+            <point key="canvasLocation" x="92.799999999999997" y="48.575712143928037"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="user.png" width="50" height="50"/>
+    </resources>
+</document>

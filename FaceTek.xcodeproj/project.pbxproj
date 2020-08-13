@@ -1,0 +1,1322 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		740D706E243C419C00CF6C2F /* office_in.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D706D243C419B00CF6C2F /* office_in.png */; };
+		740D7070243C41A300CF6C2F /* office_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D706F243C41A200CF6C2F /* office_out.png */; };
+		740D7072243C41AA00CF6C2F /* track_movement.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D7071243C41AA00CF6C2F /* track_movement.png */; };
+		740D7074243C52C300CF6C2F /* attendence_new.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D7073243C52C200CF6C2F /* attendence_new.png */; };
+		740D7076243C5CDE00CF6C2F /* leave_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D7075243C5CDE00CF6C2F /* leave_user.png */; };
+		740D7078243C61CD00CF6C2F /* BottomArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D7077243C61CD00CF6C2F /* BottomArrow.png */; };
+		740D70BB243C8F3200CF6C2F /* OfficeInVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D70BA243C8F3200CF6C2F /* OfficeInVC.swift */; };
+		740D70BD243C90E500CF6C2F /* wifi.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D70BC243C90E400CF6C2F /* wifi.png */; };
+		740D70BF243C9A0700CF6C2F /* OfficeOutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D70BE243C9A0700CF6C2F /* OfficeOutVC.swift */; };
+		740D70C1243CB13E00CF6C2F /* WifiConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D70C0243CB13E00CF6C2F /* WifiConnection.swift */; };
+		740FA3F7247BE0C700E4FC3D /* camera_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FA3F6247BE0C600E4FC3D /* camera_icon.png */; };
+		740FA3FB247BE1FE00E4FC3D /* attendence.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FA3FA247BE1FC00E4FC3D /* attendence.png */; };
+		740FA401247BE45200E4FC3D /* facetek_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FA400247BE45100E4FC3D /* facetek_title.png */; };
+		740FC4E4243D988A00F71B72 /* today.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4E3243D988900F71B72 /* today.png */; };
+		740FC4E6243D988F00F71B72 /* time_date.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4E5243D988F00F71B72 /* time_date.png */; };
+		740FC4E8243DB14B00F71B72 /* leave_states.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4E7243DB14900F71B72 /* leave_states.png */; };
+		740FC4EA243DB15200F71B72 /* upcoming leaves.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4E9243DB15100F71B72 /* upcoming leaves.png */; };
+		740FC4EC243DB3D100F71B72 /* pass.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4EB243DB3D100F71B72 /* pass.png */; };
+		740FC4EE243DB3D700F71B72 /* pending.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4ED243DB3D600F71B72 /* pending.png */; };
+		740FC4F1243DF57400F71B72 /* LeaveNavigationcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740FC4EF243DF57400F71B72 /* LeaveNavigationcell.swift */; };
+		740FC4F2243DF57400F71B72 /* LeaveNavigationcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4F0243DF57400F71B72 /* LeaveNavigationcell.xib */; };
+		741408FF247A39C800ED1391 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 741408FE247A39C400ED1391 /* back.png */; };
+		74140901247A3AFF00ED1391 /* backicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74140900247A3AFE00ED1391 /* backicon.png */; };
+		741778402446EBA20056E9EC /* ff.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 7417783F2446EBA10056E9EC /* ff.jpeg */; };
+		7424A04724AC6AFB000B466F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424A04624AC6AFB000B466F /* AppDelegate.swift */; };
+		7429321524498B5300C59157 /* UIappViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321424498B5200C59157 /* UIappViewController.swift */; };
+		7429321724498B5C00C59157 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321624498B5C00C59157 /* Reachability.swift */; };
+		7429321924498B6600C59157 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321824498B6600C59157 /* Protocols.swift */; };
+		7429321B24498B7000C59157 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321A24498B7000C59157 /* AppManager.swift */; };
+		742A175C24406E3700880818 /* OnboardingPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A175B24406E3700880818 /* OnboardingPager.swift */; };
+		742A175E24406E4700880818 /* StepZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A175D24406E4700880818 /* StepZero.swift */; };
+		742A176024406E5000880818 /* StepOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A175F24406E5000880818 /* StepOne.swift */; };
+		742A176224406E5B00880818 /* StepTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A176124406E5A00880818 /* StepTwo.swift */; };
+		742A176424406E6400880818 /* HelperLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A176324406E6400880818 /* HelperLibrary.swift */; };
+		742A17662440743200880818 /* StepThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A17652440743200880818 /* StepThree.swift */; };
+		74398CDF2462E9F20053DA0F /* WhiteBck.png in Resources */ = {isa = PBXBuildFile; fileRef = 74398CDE2462E9F10053DA0F /* WhiteBck.png */; };
+		74398CE12462EC020053DA0F /* BckArrowicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74398CE02462EC000053DA0F /* BckArrowicon.png */; };
+		7440736A24B74F4700B30039 /* selectmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 7440736924B74F4700B30039 /* selectmode.png */; };
+		7440DAEE2480CEC800263A8F /* map icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 7440DAED2480CEC700263A8F /* map icon.png */; };
+		744125D124D02DA500075CC1 /* PendingLeavesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744125D024D02DA500075CC1 /* PendingLeavesVC.swift */; };
+		744125D424D0311D00075CC1 /* PendingLeavescellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744125D224D0311D00075CC1 /* PendingLeavescellTableViewCell.swift */; };
+		744125D524D0311D00075CC1 /* PendingLeavescellTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744125D324D0311D00075CC1 /* PendingLeavescellTableViewCell.xib */; };
+		744125D824D0328200075CC1 /* PendingHeadercell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744125D624D0328200075CC1 /* PendingHeadercell.swift */; };
+		744125D924D0328200075CC1 /* PendingHeadercell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744125D724D0328200075CC1 /* PendingHeadercell.xib */; };
+		744367BF24D2C98400B4AF4D /* WebKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 744367BE24D2C98400B4AF4D /* WebKit.framework */; };
+		74444F9424D2F8C5005DA8EC /* ManagerLeavecell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74444F9224D2F8C5005DA8EC /* ManagerLeavecell.swift */; };
+		74444F9524D2F8C5005DA8EC /* ManagerLeavecell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74444F9324D2F8C5005DA8EC /* ManagerLeavecell.xib */; };
+		74457A8C24D46830009A0F6B /* LocationPermissionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74457A8B24D46830009A0F6B /* LocationPermissionVC.swift */; };
+		7447221224BF117400CD06BA /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 7447221124BF117400CD06BA /* cancel.png */; };
+		7447702924CF1A2900EFBB2F /* EarlyLeaverscell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7447702724CF1A2900EFBB2F /* EarlyLeaverscell.swift */; };
+		7447702A24CF1A2900EFBB2F /* EarlyLeaverscell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7447702824CF1A2900EFBB2F /* EarlyLeaverscell.xib */; };
+		7448549524AF1C5500F36A99 /* LogOutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448549424AF1C5500F36A99 /* LogOutVC.swift */; };
+		7449F96D24AE284900232D46 /* LogINVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449F96C24AE284900232D46 /* LogINVC.swift */; };
+		744B18B424CEB1B6004FB334 /* no_leves_found.png in Resources */ = {isa = PBXBuildFile; fileRef = 744B18B324CEB1B6004FB334 /* no_leves_found.png */; };
+		744B8C7224CAC0B6004634C0 /* ManagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B8C7124CAC0B6004634C0 /* ManagerVC.swift */; };
+		7451D15024CC62F7006EE244 /* AbsentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */; };
+		7451D15124CC62F7006EE244 /* AbsentHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */; };
+		74520D3524CB1A5A001252ED /* AbsentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3424CB1A5A001252ED /* AbsentVC.swift */; };
+		74520D3724CB1AAA001252ED /* ManagerLeavesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3624CB1AAA001252ED /* ManagerLeavesVC.swift */; };
+		74520D3924CB1ADC001252ED /* LatecomersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3824CB1ADC001252ED /* LatecomersVC.swift */; };
+		74520D3B24CB1AF5001252ED /* EarlyLeaversVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3A24CB1AF5001252ED /* EarlyLeaversVC.swift */; };
+		745D5C55247CCA7B00052FC4 /* mobile.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C54247CCA7A00052FC4 /* mobile.png */; };
+		745D5C57247CCC2F00052FC4 /* leavemanagement.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C56247CCC2C00052FC4 /* leavemanagement.png */; };
+		745D5C5F247CDA9700052FC4 /* Home_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C5E247CDA9600052FC4 /* Home_user.png */; };
+		745D5C69247CDF0A00052FC4 /* Faq.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C68247CDF0900052FC4 /* Faq.png */; };
+		745D5C6B247CE6CD00052FC4 /* facetek.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C6A247CE6CC00052FC4 /* facetek.png */; };
+		745F31B0244ECA9E00B89F08 /* Latecomers1.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F31AF244ECA9E00B89F08 /* Latecomers1.png */; };
+		745F31B2244ECEE400B89F08 /* Absent1.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F31B1244ECEE100B89F08 /* Absent1.png */; };
+		745F31B4244ECEED00B89F08 /* EarlyLeavers.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F31B3244ECEEC00B89F08 /* EarlyLeavers.png */; };
+		745F31B6244ECEF400B89F08 /* Leaves1.png in Resources */ = {isa = PBXBuildFile; fileRef = 745F31B5244ECEF300B89F08 /* Leaves1.png */; };
+		746017A82435BAC600969CA2 /* HamburgerButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746017A72435BAC600969CA2 /* HamburgerButton.swift */; };
+		746017AA2435D2FB00969CA2 /* facetek_change_color.png in Resources */ = {isa = PBXBuildFile; fileRef = 746017A92435D2FA00969CA2 /* facetek_change_color.png */; };
+		746017AE2435D46A00969CA2 /* track.png in Resources */ = {isa = PBXBuildFile; fileRef = 746017AD2435D46A00969CA2 /* track.png */; };
+		746017B12435F37700969CA2 /* NavigationMenucell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746017AF2435F37700969CA2 /* NavigationMenucell.swift */; };
+		746017B22435F37700969CA2 /* NavigationMenucell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746017B02435F37700969CA2 /* NavigationMenucell.xib */; };
+		746017B42435F62800969CA2 /* user.png in Resources */ = {isa = PBXBuildFile; fileRef = 746017B32435F62800969CA2 /* user.png */; };
+		746017B62435F90200969CA2 /* RegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746017B52435F90200969CA2 /* RegistrationVC.swift */; };
+		746017B82435FB3300969CA2 /* back-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 746017B72435FB3300969CA2 /* back-arrow.png */; };
+		746017BA2436022A00969CA2 /* login_screen_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 746017B92436022A00969CA2 /* login_screen_icon.png */; };
+		746716832456E7C300277A14 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746716822456E7C300277A14 /* CalendarVC.swift */; };
+		7467168A2456EBAD00277A14 /* Calendarcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746716882456EBAD00277A14 /* Calendarcell.swift */; };
+		7467168B2456EBAD00277A14 /* Calendarcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746716892456EBAD00277A14 /* Calendarcell.xib */; };
+		7469426724B34B1100C24342 /* hand.png in Resources */ = {isa = PBXBuildFile; fileRef = 7469426624B34B1000C24342 /* hand.png */; };
+		746CEADA24C044410081F830 /* LeaveCancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 746CEAD924C044410081F830 /* LeaveCancel.png */; };
+		746EE171248F9FC8007A1DA8 /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EE170248F9FC8007A1DA8 /* PrivacyPolicyVC.swift */; };
+		746FC13C248280C700445207 /* LeaveDownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 746FC13B248280C700445207 /* LeaveDownArrow.png */; };
+		746FC13E2482817700445207 /* LeavedownArrowimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 746FC13D2482817600445207 /* LeavedownArrowimg.png */; };
+		74795DBA244D9D1000C6F03C /* leaves.png in Resources */ = {isa = PBXBuildFile; fileRef = 74795DB9244D9D1000C6F03C /* leaves.png */; };
+		74795DBC244D9D1900C6F03C /* absent (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 74795DBB244D9D1900C6F03C /* absent (1).png */; };
+		74795DBE244D9D1F00C6F03C /* Early leavers.png in Resources */ = {isa = PBXBuildFile; fileRef = 74795DBD244D9D1E00C6F03C /* Early leavers.png */; };
+		74795DC0244D9D2400C6F03C /* late commers.png in Resources */ = {isa = PBXBuildFile; fileRef = 74795DBF244D9D2400C6F03C /* late commers.png */; };
+		74795DC3244DB98D00C6F03C /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74795DC2244DB98D00C6F03C /* DBHelper.swift */; };
+		74795DC5244DB99500C6F03C /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74795DC4244DB99500C6F03C /* Person.swift */; };
+		747F8D9E243AEB1D00ABBD5E /* FaceRegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F8D9D243AEB1D00ABBD5E /* FaceRegistrationVC.swift */; };
+		747F8DA0243AECDF00ABBD5E /* reg.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8D9F243AECDE00ABBD5E /* reg.png */; };
+		747F8DA2243AF27200ABBD5E /* company-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DA1243AF27100ABBD5E /* company-small.png */; };
+		747F8DA4243AF27800ABBD5E /* idcard-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DA3243AF27700ABBD5E /* idcard-small.png */; };
+		747F8DA6243AF85F00ABBD5E /* CaptureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F8DA5243AF85F00ABBD5E /* CaptureVC.swift */; };
+		747F8DA8243AF94D00ABBD5E /* Captured.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DA7243AF94D00ABBD5E /* Captured.jpeg */; };
+		747F8DAA243B08CA00ABBD5E /* conform.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DA9243B08C900ABBD5E /* conform.png */; };
+		747F8DAC243B368700ABBD5E /* HomeDashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F8DAB243B368700ABBD5E /* HomeDashboardVC.swift */; };
+		747F8DAE243B37EA00ABBD5E /* AttendanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F8DAD243B37EA00ABBD5E /* AttendanceVC.swift */; };
+		747F8DB0243B37FD00ABBD5E /* LeaveVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F8DAF243B37FD00ABBD5E /* LeaveVC.swift */; };
+		747F8DB4243B3AAF00ABBD5E /* notification.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DB3243B3AAF00ABBD5E /* notification.png */; };
+		747F8DB6243B3B5700ABBD5E /* home_bg.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DB5243B3B5700ABBD5E /* home_bg.png */; };
+		747F8DB8243B3D4800ABBD5E /* home-icon_w.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DB7243B3D4800ABBD5E /* home-icon_w.png */; };
+		747F8DBE243B3E8E00ABBD5E /* home-icon_y.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DBD243B3E8D00ABBD5E /* home-icon_y.png */; };
+		747F8DC1243B4B5C00ABBD5E /* AttendanceDashboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F8DBF243B4B5C00ABBD5E /* AttendanceDashboardCell.swift */; };
+		747F8DC2243B4B5C00ABBD5E /* AttendanceDashboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DC0243B4B5C00ABBD5E /* AttendanceDashboardCell.xib */; };
+		747F8DCA243B547F00ABBD5E /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DC9243B547E00ABBD5E /* home_icon.png */; };
+		747F8DCC243B54F700ABBD5E /* leave_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DCB243B54F600ABBD5E /* leave_icon.png */; };
+		747F8DCE243B556C00ABBD5E /* attendence_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DCD243B556B00ABBD5E /* attendence_icon.png */; };
+		748E22EC247B971C0060464F /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E22EB247B971C0060464F /* PageController.swift */; };
+		7497BDAC24CC1E0800EE54D0 /* AbsenttblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7497BDAA24CC1E0800EE54D0 /* AbsenttblCell.swift */; };
+		7497BDAD24CC1E0800EE54D0 /* AbsenttblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7497BDAB24CC1E0800EE54D0 /* AbsenttblCell.xib */; };
+		74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0CB2D24D2C03200866474 /* FaqVC.swift */; };
+		74D998652434621200DFCBEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D998642434621200DFCBEC /* ViewController.swift */; };
+		74D998682434621200DFCBEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D998662434621200DFCBEC /* Main.storyboard */; };
+		74D9986B2434621200DFCBEC /* FaceTek.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74D998692434621200DFCBEC /* FaceTek.xcdatamodeld */; };
+		74D9986D2434621300DFCBEC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 74D9986C2434621300DFCBEC /* Assets.xcassets */; };
+		74D998702434621300DFCBEC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D9986E2434621300DFCBEC /* LaunchScreen.storyboard */; };
+		74D9987B2434621300DFCBEC /* FaceTekTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D9987A2434621300DFCBEC /* FaceTekTests.swift */; };
+		74D998862434621300DFCBEC /* FaceTekUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D998852434621300DFCBEC /* FaceTekUITests.swift */; };
+		74D998942434690E00DFCBEC /* splashScreenLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74D998932434690E00DFCBEC /* splashScreenLogo.png */; };
+		74D9989824347DD400DFCBEC /* facetek-text-with-logo.png in Resources */ = {isa = PBXBuildFile; fileRef = 74D9989724347DD400DFCBEC /* facetek-text-with-logo.png */; };
+		74D9989B2434999500DFCBEC /* DashboardCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D998992434999500DFCBEC /* DashboardCell.swift */; };
+		74D9989C2434999500DFCBEC /* DashboardCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74D9989A2434999500DFCBEC /* DashboardCell.xib */; };
+		74D9989E24349F9D00DFCBEC /* gps.png in Resources */ = {isa = PBXBuildFile; fileRef = 74D9989D24349F9D00DFCBEC /* gps.png */; };
+		74D998A02434A8B800DFCBEC /* qrcode.png in Resources */ = {isa = PBXBuildFile; fileRef = 74D9989F2434A8B800DFCBEC /* qrcode.png */; };
+		74D998A22434A8C200DFCBEC /* proxe.png in Resources */ = {isa = PBXBuildFile; fileRef = 74D998A12434A8C200DFCBEC /* proxe.png */; };
+		74D998A62434C42200DFCBEC /* leave.png in Resources */ = {isa = PBXBuildFile; fileRef = 74D998A52434C42100DFCBEC /* leave.png */; };
+		74E68A7224C832B100A3B009 /* Dropdowncell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74E68A7024C832B100A3B009 /* Dropdowncell.swift */; };
+		74E68A7324C832B100A3B009 /* Dropdowncell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74E68A7124C832B100A3B009 /* Dropdowncell.xib */; };
+		74E68A7524C833EF00A3B009 /* circle.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E68A7424C833EF00A3B009 /* circle.png */; };
+		74E68A8D24C8669400A3B009 /* PendingLeaves.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E68A8C24C8669400A3B009 /* PendingLeaves.png */; };
+		74E68A8F24C8674300A3B009 /* PendingLeaves1.png in Resources */ = {isa = PBXBuildFile; fileRef = 74E68A8E24C8674300A3B009 /* PendingLeaves1.png */; };
+		74F07ABC24B0B7DC000E6924 /* AttendanceDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F07ABB24B0B7DC000E6924 /* AttendanceDB.swift */; };
+		74F07AC024B0BE7E000E6924 /* AttendanceInDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F07ABF24B0BE7E000E6924 /* AttendanceInDB.swift */; };
+		74F5D11A2437393700D6E811 /* face.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F5D1192437393700D6E811 /* face.png */; };
+		74F5D11C24373C6500D6E811 /* attendence-right.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F5D11B24373C6500D6E811 /* attendence-right.png */; };
+		74F5D11E243758A600D6E811 /* InputOTPVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F5D11D243758A600D6E811 /* InputOTPVC.swift */; };
+		74F5D120243758B700D6E811 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F5D11F243758B700D6E811 /* Constants.swift */; };
+		74F5D122243758C800D6E811 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F5D121243758C800D6E811 /* Extensions.swift */; };
+		74F5D124243758D400D6E811 /* SMRippleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74F5D123243758D400D6E811 /* SMRippleView.swift */; };
+		74F5D1262437662000D6E811 /* otp.png in Resources */ = {isa = PBXBuildFile; fileRef = 74F5D1252437662000D6E811 /* otp.png */; };
+		74FA122F24AC687F00A356E7 /* DirectDisplayShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 74FA122D24AC687F00A356E7 /* DirectDisplayShader.fsh */; };
+		74FA123024AC687F00A356E7 /* DirectDisplayShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 74FA122E24AC687F00A356E7 /* DirectDisplayShader.vsh */; };
+		74FA123524AC689800A356E7 /* libfsdk-static_64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FA123324AC689800A356E7 /* libfsdk-static_64.a */; };
+		74FA123624AC689800A356E7 /* libfsdk-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FA123424AC689800A356E7 /* libfsdk-static.a */; };
+		74FA123824AC68BD00A356E7 /* RecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FA123724AC68BD00A356E7 /* RecognitionViewController.swift */; };
+		74FA123A24AC68C800A356E7 /* RecognitionCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FA123924AC68C700A356E7 /* RecognitionCamera.swift */; };
+		74FA123C24AC68D400A356E7 /* RecognitionGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FA123B24AC68D400A356E7 /* RecognitionGLView.swift */; };
+		74FA124024AC690F00A356E7 /* enable_cxx.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 74FA123F24AC690F00A356E7 /* enable_cxx.cpp */; };
+		74FA124324AC698100A356E7 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FA124224AC693E00A356E7 /* libz.tbd */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		74D998772434621300DFCBEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74D998572434621200DFCBEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74D9985E2434621200DFCBEC;
+			remoteInfo = FaceTek;
+		};
+		74D998822434621300DFCBEC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 74D998572434621200DFCBEC /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 74D9985E2434621200DFCBEC;
+			remoteInfo = FaceTek;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		740D706D243C419B00CF6C2F /* office_in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office_in.png; sourceTree = "<group>"; };
+		740D706F243C41A200CF6C2F /* office_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office_out.png; sourceTree = "<group>"; };
+		740D7071243C41AA00CF6C2F /* track_movement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_movement.png; sourceTree = "<group>"; };
+		740D7073243C52C200CF6C2F /* attendence_new.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attendence_new.png; sourceTree = "<group>"; };
+		740D7075243C5CDE00CF6C2F /* leave_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leave_user.png; sourceTree = "<group>"; };
+		740D7077243C61CD00CF6C2F /* BottomArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BottomArrow.png; sourceTree = "<group>"; };
+		740D70BA243C8F3200CF6C2F /* OfficeInVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeInVC.swift; sourceTree = "<group>"; };
+		740D70BC243C90E400CF6C2F /* wifi.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = wifi.png; sourceTree = "<group>"; };
+		740D70BE243C9A0700CF6C2F /* OfficeOutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OfficeOutVC.swift; sourceTree = "<group>"; };
+		740D70C0243CB13E00CF6C2F /* WifiConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConnection.swift; sourceTree = "<group>"; };
+		740FA3F6247BE0C600E4FC3D /* camera_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_icon.png; sourceTree = "<group>"; };
+		740FA3FA247BE1FC00E4FC3D /* attendence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attendence.png; sourceTree = "<group>"; };
+		740FA400247BE45100E4FC3D /* facetek_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facetek_title.png; sourceTree = "<group>"; };
+		740FC4E3243D988900F71B72 /* today.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = today.png; sourceTree = "<group>"; };
+		740FC4E5243D988F00F71B72 /* time_date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_date.png; sourceTree = "<group>"; };
+		740FC4E7243DB14900F71B72 /* leave_states.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leave_states.png; sourceTree = "<group>"; };
+		740FC4E9243DB15100F71B72 /* upcoming leaves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "upcoming leaves.png"; sourceTree = "<group>"; };
+		740FC4EB243DB3D100F71B72 /* pass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pass.png; sourceTree = "<group>"; };
+		740FC4ED243DB3D600F71B72 /* pending.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pending.png; sourceTree = "<group>"; };
+		740FC4EF243DF57400F71B72 /* LeaveNavigationcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveNavigationcell.swift; sourceTree = "<group>"; };
+		740FC4F0243DF57400F71B72 /* LeaveNavigationcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveNavigationcell.xib; sourceTree = "<group>"; };
+		741408FE247A39C400ED1391 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
+		74140900247A3AFE00ED1391 /* backicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backicon.png; sourceTree = "<group>"; };
+		7417783F2446EBA10056E9EC /* ff.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ff.jpeg; path = ../Registration/ff.jpeg; sourceTree = "<group>"; };
+		7424A04624AC6AFB000B466F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		7429321424498B5200C59157 /* UIappViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIappViewController.swift; sourceTree = "<group>"; };
+		7429321624498B5C00C59157 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
+		7429321824498B6600C59157 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		7429321A24498B7000C59157 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
+		742A175B24406E3700880818 /* OnboardingPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPager.swift; sourceTree = "<group>"; };
+		742A175D24406E4700880818 /* StepZero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepZero.swift; sourceTree = "<group>"; };
+		742A175F24406E5000880818 /* StepOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepOne.swift; sourceTree = "<group>"; };
+		742A176124406E5A00880818 /* StepTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepTwo.swift; sourceTree = "<group>"; };
+		742A176324406E6400880818 /* HelperLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperLibrary.swift; sourceTree = "<group>"; };
+		742A17652440743200880818 /* StepThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepThree.swift; sourceTree = "<group>"; };
+		74398CDE2462E9F10053DA0F /* WhiteBck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBck.png; sourceTree = "<group>"; };
+		74398CE02462EC000053DA0F /* BckArrowicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BckArrowicon.png; sourceTree = "<group>"; };
+		7440736924B74F4700B30039 /* selectmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectmode.png; sourceTree = "<group>"; };
+		7440DAED2480CEC700263A8F /* map icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "map icon.png"; sourceTree = "<group>"; };
+		744125D024D02DA500075CC1 /* PendingLeavesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingLeavesVC.swift; sourceTree = "<group>"; };
+		744125D224D0311D00075CC1 /* PendingLeavescellTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingLeavescellTableViewCell.swift; sourceTree = "<group>"; };
+		744125D324D0311D00075CC1 /* PendingLeavescellTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PendingLeavescellTableViewCell.xib; sourceTree = "<group>"; };
+		744125D624D0328200075CC1 /* PendingHeadercell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingHeadercell.swift; sourceTree = "<group>"; };
+		744125D724D0328200075CC1 /* PendingHeadercell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PendingHeadercell.xib; sourceTree = "<group>"; };
+		744367BE24D2C98400B4AF4D /* WebKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WebKit.framework; path = System/Library/Frameworks/WebKit.framework; sourceTree = SDKROOT; };
+		74444F9224D2F8C5005DA8EC /* ManagerLeavecell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerLeavecell.swift; sourceTree = "<group>"; };
+		74444F9324D2F8C5005DA8EC /* ManagerLeavecell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManagerLeavecell.xib; sourceTree = "<group>"; };
+		74457A8B24D46830009A0F6B /* LocationPermissionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionVC.swift; sourceTree = "<group>"; };
+		7447221124BF117400CD06BA /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
+		7447702724CF1A2900EFBB2F /* EarlyLeaverscell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaverscell.swift; sourceTree = "<group>"; };
+		7447702824CF1A2900EFBB2F /* EarlyLeaverscell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarlyLeaverscell.xib; sourceTree = "<group>"; };
+		7448549424AF1C5500F36A99 /* LogOutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutVC.swift; sourceTree = "<group>"; };
+		7449F96C24AE284900232D46 /* LogINVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogINVC.swift; sourceTree = "<group>"; };
+		744B18B324CEB1B6004FB334 /* no_leves_found.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_leves_found.png; sourceTree = "<group>"; };
+		744B8C7124CAC0B6004634C0 /* ManagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerVC.swift; sourceTree = "<group>"; };
+		7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsentHeaderCell.swift; sourceTree = "<group>"; };
+		7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsentHeaderCell.xib; sourceTree = "<group>"; };
+		74520D3424CB1A5A001252ED /* AbsentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsentVC.swift; sourceTree = "<group>"; };
+		74520D3624CB1AAA001252ED /* ManagerLeavesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerLeavesVC.swift; sourceTree = "<group>"; };
+		74520D3824CB1ADC001252ED /* LatecomersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatecomersVC.swift; sourceTree = "<group>"; };
+		74520D3A24CB1AF5001252ED /* EarlyLeaversVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaversVC.swift; sourceTree = "<group>"; };
+		745D5C54247CCA7A00052FC4 /* mobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobile.png; sourceTree = "<group>"; };
+		745D5C56247CCC2C00052FC4 /* leavemanagement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leavemanagement.png; sourceTree = "<group>"; };
+		745D5C5E247CDA9600052FC4 /* Home_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home_user.png; sourceTree = "<group>"; };
+		745D5C68247CDF0900052FC4 /* Faq.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Faq.png; sourceTree = "<group>"; };
+		745D5C6A247CE6CC00052FC4 /* facetek.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facetek.png; sourceTree = "<group>"; };
+		745F31AF244ECA9E00B89F08 /* Latecomers1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Latecomers1.png; sourceTree = "<group>"; };
+		745F31B1244ECEE100B89F08 /* Absent1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Absent1.png; sourceTree = "<group>"; };
+		745F31B3244ECEEC00B89F08 /* EarlyLeavers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = EarlyLeavers.png; sourceTree = "<group>"; };
+		745F31B5244ECEF300B89F08 /* Leaves1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Leaves1.png; sourceTree = "<group>"; };
+		746017A72435BAC600969CA2 /* HamburgerButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HamburgerButton.swift; sourceTree = "<group>"; };
+		746017A92435D2FA00969CA2 /* facetek_change_color.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facetek_change_color.png; sourceTree = "<group>"; };
+		746017AD2435D46A00969CA2 /* track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track.png; sourceTree = "<group>"; };
+		746017AF2435F37700969CA2 /* NavigationMenucell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationMenucell.swift; sourceTree = "<group>"; };
+		746017B02435F37700969CA2 /* NavigationMenucell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavigationMenucell.xib; sourceTree = "<group>"; };
+		746017B32435F62800969CA2 /* user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user.png; sourceTree = "<group>"; };
+		746017B52435F90200969CA2 /* RegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationVC.swift; sourceTree = "<group>"; };
+		746017B72435FB3300969CA2 /* back-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-arrow.png"; sourceTree = "<group>"; };
+		746017B92436022A00969CA2 /* login_screen_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_screen_icon.png; sourceTree = "<group>"; };
+		746716822456E7C300277A14 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
+		746716882456EBAD00277A14 /* Calendarcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendarcell.swift; sourceTree = "<group>"; };
+		746716892456EBAD00277A14 /* Calendarcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Calendarcell.xib; sourceTree = "<group>"; };
+		7469426624B34B1000C24342 /* hand.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hand.png; sourceTree = "<group>"; };
+		746CEAD924C044410081F830 /* LeaveCancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeaveCancel.png; sourceTree = "<group>"; };
+		746EE170248F9FC8007A1DA8 /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
+		746FC13B248280C700445207 /* LeaveDownArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeaveDownArrow.png; sourceTree = "<group>"; };
+		746FC13D2482817600445207 /* LeavedownArrowimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeavedownArrowimg.png; sourceTree = "<group>"; };
+		74795DB9244D9D1000C6F03C /* leaves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaves.png; sourceTree = "<group>"; };
+		74795DBB244D9D1900C6F03C /* absent (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "absent (1).png"; sourceTree = "<group>"; };
+		74795DBD244D9D1E00C6F03C /* Early leavers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Early leavers.png"; sourceTree = "<group>"; };
+		74795DBF244D9D2400C6F03C /* late commers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "late commers.png"; sourceTree = "<group>"; };
+		74795DC2244DB98D00C6F03C /* DBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
+		74795DC4244DB99500C6F03C /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		747F8D9D243AEB1D00ABBD5E /* FaceRegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceRegistrationVC.swift; sourceTree = "<group>"; };
+		747F8D9F243AECDE00ABBD5E /* reg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reg.png; sourceTree = "<group>"; };
+		747F8DA1243AF27100ABBD5E /* company-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "company-small.png"; sourceTree = "<group>"; };
+		747F8DA3243AF27700ABBD5E /* idcard-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "idcard-small.png"; sourceTree = "<group>"; };
+		747F8DA5243AF85F00ABBD5E /* CaptureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVC.swift; sourceTree = "<group>"; };
+		747F8DA7243AF94D00ABBD5E /* Captured.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Captured.jpeg; sourceTree = "<group>"; };
+		747F8DA9243B08C900ABBD5E /* conform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = conform.png; sourceTree = "<group>"; };
+		747F8DAB243B368700ABBD5E /* HomeDashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDashboardVC.swift; sourceTree = "<group>"; };
+		747F8DAD243B37EA00ABBD5E /* AttendanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceVC.swift; sourceTree = "<group>"; };
+		747F8DAF243B37FD00ABBD5E /* LeaveVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveVC.swift; sourceTree = "<group>"; };
+		747F8DB3243B3AAF00ABBD5E /* notification.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = notification.png; sourceTree = "<group>"; };
+		747F8DB5243B3B5700ABBD5E /* home_bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_bg.png; sourceTree = "<group>"; };
+		747F8DB7243B3D4800ABBD5E /* home-icon_w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon_w.png"; sourceTree = "<group>"; };
+		747F8DBD243B3E8D00ABBD5E /* home-icon_y.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home-icon_y.png"; sourceTree = "<group>"; };
+		747F8DBF243B4B5C00ABBD5E /* AttendanceDashboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceDashboardCell.swift; sourceTree = "<group>"; };
+		747F8DC0243B4B5C00ABBD5E /* AttendanceDashboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AttendanceDashboardCell.xib; sourceTree = "<group>"; };
+		747F8DC9243B547E00ABBD5E /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
+		747F8DCB243B54F600ABBD5E /* leave_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leave_icon.png; sourceTree = "<group>"; };
+		747F8DCD243B556B00ABBD5E /* attendence_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attendence_icon.png; sourceTree = "<group>"; };
+		748E22EB247B971C0060464F /* PageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
+		7497BDAA24CC1E0800EE54D0 /* AbsenttblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenttblCell.swift; sourceTree = "<group>"; };
+		7497BDAB24CC1E0800EE54D0 /* AbsenttblCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsenttblCell.xib; sourceTree = "<group>"; };
+		74C0CB2D24D2C03200866474 /* FaqVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqVC.swift; sourceTree = "<group>"; };
+		74D9985F2434621200DFCBEC /* Facetek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Facetek.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74D998642434621200DFCBEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		74D998672434621200DFCBEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		74D9986A2434621200DFCBEC /* FaceTek.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = FaceTek.xcdatamodel; sourceTree = "<group>"; };
+		74D9986C2434621300DFCBEC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		74D9986F2434621300DFCBEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		74D998712434621300DFCBEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74D998762434621300DFCBEC /* FaceTekTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceTekTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74D9987A2434621300DFCBEC /* FaceTekTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTekTests.swift; sourceTree = "<group>"; };
+		74D9987C2434621300DFCBEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74D998812434621300DFCBEC /* FaceTekUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FaceTekUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		74D998852434621300DFCBEC /* FaceTekUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceTekUITests.swift; sourceTree = "<group>"; };
+		74D998872434621300DFCBEC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		74D998932434690E00DFCBEC /* splashScreenLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = splashScreenLogo.png; sourceTree = "<group>"; };
+		74D9989724347DD400DFCBEC /* facetek-text-with-logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "facetek-text-with-logo.png"; sourceTree = "<group>"; };
+		74D998992434999500DFCBEC /* DashboardCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DashboardCell.swift; sourceTree = "<group>"; };
+		74D9989A2434999500DFCBEC /* DashboardCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DashboardCell.xib; sourceTree = "<group>"; };
+		74D9989D24349F9D00DFCBEC /* gps.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = gps.png; sourceTree = "<group>"; };
+		74D9989F2434A8B800DFCBEC /* qrcode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = qrcode.png; sourceTree = "<group>"; };
+		74D998A12434A8C200DFCBEC /* proxe.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = proxe.png; sourceTree = "<group>"; };
+		74D998A52434C42100DFCBEC /* leave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leave.png; sourceTree = "<group>"; };
+		74E68A7024C832B100A3B009 /* Dropdowncell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dropdowncell.swift; sourceTree = "<group>"; };
+		74E68A7124C832B100A3B009 /* Dropdowncell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Dropdowncell.xib; sourceTree = "<group>"; };
+		74E68A7424C833EF00A3B009 /* circle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = circle.png; sourceTree = "<group>"; };
+		74E68A8C24C8669400A3B009 /* PendingLeaves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PendingLeaves.png; sourceTree = "<group>"; };
+		74E68A8E24C8674300A3B009 /* PendingLeaves1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PendingLeaves1.png; sourceTree = "<group>"; };
+		74F07ABB24B0B7DC000E6924 /* AttendanceDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceDB.swift; sourceTree = "<group>"; };
+		74F07ABF24B0BE7E000E6924 /* AttendanceInDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceInDB.swift; sourceTree = "<group>"; };
+		74F5D1192437393700D6E811 /* face.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = face.png; sourceTree = "<group>"; };
+		74F5D11B24373C6500D6E811 /* attendence-right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "attendence-right.png"; sourceTree = "<group>"; };
+		74F5D11D243758A600D6E811 /* InputOTPVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputOTPVC.swift; sourceTree = "<group>"; };
+		74F5D11F243758B700D6E811 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		74F5D121243758C800D6E811 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		74F5D123243758D400D6E811 /* SMRippleView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SMRippleView.swift; sourceTree = "<group>"; };
+		74F5D1252437662000D6E811 /* otp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = otp.png; sourceTree = "<group>"; };
+		74FA122D24AC687F00A356E7 /* DirectDisplayShader.fsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DirectDisplayShader.fsh; sourceTree = "<group>"; };
+		74FA122E24AC687F00A356E7 /* DirectDisplayShader.vsh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; path = DirectDisplayShader.vsh; sourceTree = "<group>"; };
+		74FA123224AC689800A356E7 /* LuxandFaceSDK.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LuxandFaceSDK.h; sourceTree = "<group>"; };
+		74FA123324AC689800A356E7 /* libfsdk-static_64.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libfsdk-static_64.a"; sourceTree = "<group>"; };
+		74FA123424AC689800A356E7 /* libfsdk-static.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = "libfsdk-static.a"; sourceTree = "<group>"; };
+		74FA123724AC68BD00A356E7 /* RecognitionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognitionViewController.swift; sourceTree = "<group>"; };
+		74FA123924AC68C700A356E7 /* RecognitionCamera.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognitionCamera.swift; sourceTree = "<group>"; };
+		74FA123B24AC68D400A356E7 /* RecognitionGLView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecognitionGLView.swift; sourceTree = "<group>"; };
+		74FA123D24AC690E00A356E7 /* FaceTek-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FaceTek-Bridging-Header.h"; sourceTree = "<group>"; };
+		74FA123F24AC690F00A356E7 /* enable_cxx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = enable_cxx.cpp; sourceTree = "<group>"; };
+		74FA124224AC693E00A356E7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		74D9985C2434621200DFCBEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				744367BF24D2C98400B4AF4D /* WebKit.framework in Frameworks */,
+				74FA123524AC689800A356E7 /* libfsdk-static_64.a in Frameworks */,
+				74FA124324AC698100A356E7 /* libz.tbd in Frameworks */,
+				74FA123624AC689800A356E7 /* libfsdk-static.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D998732434621300DFCBEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D9987E2434621300DFCBEC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		740D70B8243C8E7100CF6C2F /* Attendance */ = {
+			isa = PBXGroup;
+			children = (
+				747F8DAD243B37EA00ABBD5E /* AttendanceVC.swift */,
+				747F8DBF243B4B5C00ABBD5E /* AttendanceDashboardCell.swift */,
+				747F8DC0243B4B5C00ABBD5E /* AttendanceDashboardCell.xib */,
+				7429321324498AF600C59157 /* Wifi */,
+				740D70BA243C8F3200CF6C2F /* OfficeInVC.swift */,
+				740D70C0243CB13E00CF6C2F /* WifiConnection.swift */,
+				740D70BE243C9A0700CF6C2F /* OfficeOutVC.swift */,
+				746EE170248F9FC8007A1DA8 /* PrivacyPolicyVC.swift */,
+			);
+			path = Attendance;
+			sourceTree = "<group>";
+		};
+		740D70B9243C8EB700CF6C2F /* Leave */ = {
+			isa = PBXGroup;
+			children = (
+				747F8DAF243B37FD00ABBD5E /* LeaveVC.swift */,
+				740FC4EF243DF57400F71B72 /* LeaveNavigationcell.swift */,
+				740FC4F0243DF57400F71B72 /* LeaveNavigationcell.xib */,
+				746FC13D2482817600445207 /* LeavedownArrowimg.png */,
+				74E68A7024C832B100A3B009 /* Dropdowncell.swift */,
+				74E68A7124C832B100A3B009 /* Dropdowncell.xib */,
+			);
+			path = Leave;
+			sourceTree = "<group>";
+		};
+		7429321324498AF600C59157 /* Wifi */ = {
+			isa = PBXGroup;
+			children = (
+				7429321424498B5200C59157 /* UIappViewController.swift */,
+				7429321624498B5C00C59157 /* Reachability.swift */,
+				7429321824498B6600C59157 /* Protocols.swift */,
+				7429321A24498B7000C59157 /* AppManager.swift */,
+			);
+			path = Wifi;
+			sourceTree = "<group>";
+		};
+		744B8C7024CAC063004634C0 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				744B8C7124CAC0B6004634C0 /* ManagerVC.swift */,
+				74520D3424CB1A5A001252ED /* AbsentVC.swift */,
+				7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */,
+				7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */,
+				7497BDAA24CC1E0800EE54D0 /* AbsenttblCell.swift */,
+				7497BDAB24CC1E0800EE54D0 /* AbsenttblCell.xib */,
+				74520D3624CB1AAA001252ED /* ManagerLeavesVC.swift */,
+				74444F9224D2F8C5005DA8EC /* ManagerLeavecell.swift */,
+				74444F9324D2F8C5005DA8EC /* ManagerLeavecell.xib */,
+				74520D3824CB1ADC001252ED /* LatecomersVC.swift */,
+				74520D3A24CB1AF5001252ED /* EarlyLeaversVC.swift */,
+				7447702724CF1A2900EFBB2F /* EarlyLeaverscell.swift */,
+				7447702824CF1A2900EFBB2F /* EarlyLeaverscell.xib */,
+				744125D024D02DA500075CC1 /* PendingLeavesVC.swift */,
+				744125D224D0311D00075CC1 /* PendingLeavescellTableViewCell.swift */,
+				744125D324D0311D00075CC1 /* PendingLeavescellTableViewCell.xib */,
+				744125D624D0328200075CC1 /* PendingHeadercell.swift */,
+				744125D724D0328200075CC1 /* PendingHeadercell.xib */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		74795DB8244D9CF600C6F03C /* ManagerDashboard-Icons */ = {
+			isa = PBXGroup;
+			children = (
+				745F31AF244ECA9E00B89F08 /* Latecomers1.png */,
+				74795DB9244D9D1000C6F03C /* leaves.png */,
+				745F31B5244ECEF300B89F08 /* Leaves1.png */,
+				74795DBB244D9D1900C6F03C /* absent (1).png */,
+				745F31B3244ECEEC00B89F08 /* EarlyLeavers.png */,
+				745F31B1244ECEE100B89F08 /* Absent1.png */,
+				74795DBD244D9D1E00C6F03C /* Early leavers.png */,
+				74795DBF244D9D2400C6F03C /* late commers.png */,
+			);
+			path = "ManagerDashboard-Icons";
+			sourceTree = "<group>";
+		};
+		74795DC1244DB98000C6F03C /* DBFiles */ = {
+			isa = PBXGroup;
+			children = (
+				74795DC2244DB98D00C6F03C /* DBHelper.swift */,
+				74795DC4244DB99500C6F03C /* Person.swift */,
+				74F07ABB24B0B7DC000E6924 /* AttendanceDB.swift */,
+				74F07ABF24B0BE7E000E6924 /* AttendanceInDB.swift */,
+			);
+			path = DBFiles;
+			sourceTree = "<group>";
+		};
+		747F8D99243AEA1700ABBD5E /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				748E22EB247B971C0060464F /* PageController.swift */,
+				742A175B24406E3700880818 /* OnboardingPager.swift */,
+				742A175D24406E4700880818 /* StepZero.swift */,
+				742A175F24406E5000880818 /* StepOne.swift */,
+				742A176124406E5A00880818 /* StepTwo.swift */,
+				742A17652440743200880818 /* StepThree.swift */,
+				742A176324406E6400880818 /* HelperLibrary.swift */,
+				74D998642434621200DFCBEC /* ViewController.swift */,
+				746017A72435BAC600969CA2 /* HamburgerButton.swift */,
+				74D998992434999500DFCBEC /* DashboardCell.swift */,
+				746017AF2435F37700969CA2 /* NavigationMenucell.swift */,
+				746017B02435F37700969CA2 /* NavigationMenucell.xib */,
+				74D9989A2434999500DFCBEC /* DashboardCell.xib */,
+				74457A8B24D46830009A0F6B /* LocationPermissionVC.swift */,
+			);
+			path = Dashboard;
+			sourceTree = "<group>";
+		};
+		747F8D9A243AEA4C00ABBD5E /* Registration */ = {
+			isa = PBXGroup;
+			children = (
+				746017B52435F90200969CA2 /* RegistrationVC.swift */,
+				74F5D11D243758A600D6E811 /* InputOTPVC.swift */,
+				74F5D11F243758B700D6E811 /* Constants.swift */,
+				74F5D121243758C800D6E811 /* Extensions.swift */,
+				74F5D123243758D400D6E811 /* SMRippleView.swift */,
+			);
+			path = Registration;
+			sourceTree = "<group>";
+		};
+		747F8D9B243AEA8300ABBD5E /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				74E68A7424C833EF00A3B009 /* circle.png */,
+				744B18B324CEB1B6004FB334 /* no_leves_found.png */,
+				74E68A8C24C8669400A3B009 /* PendingLeaves.png */,
+				74E68A8E24C8674300A3B009 /* PendingLeaves1.png */,
+				7447221124BF117400CD06BA /* cancel.png */,
+				746CEAD924C044410081F830 /* LeaveCancel.png */,
+				746FC13B248280C700445207 /* LeaveDownArrow.png */,
+				7469426624B34B1000C24342 /* hand.png */,
+				7440DAED2480CEC700263A8F /* map icon.png */,
+				745D5C6A247CE6CC00052FC4 /* facetek.png */,
+				745D5C68247CDF0900052FC4 /* Faq.png */,
+				745D5C5E247CDA9600052FC4 /* Home_user.png */,
+				745D5C56247CCC2C00052FC4 /* leavemanagement.png */,
+				745D5C54247CCA7A00052FC4 /* mobile.png */,
+				740FA400247BE45100E4FC3D /* facetek_title.png */,
+				740FA3FA247BE1FC00E4FC3D /* attendence.png */,
+				740FA3F6247BE0C600E4FC3D /* camera_icon.png */,
+				74398CE02462EC000053DA0F /* BckArrowicon.png */,
+				74398CDE2462E9F10053DA0F /* WhiteBck.png */,
+				7417783F2446EBA10056E9EC /* ff.jpeg */,
+				740FC4ED243DB3D600F71B72 /* pending.png */,
+				740FC4EB243DB3D100F71B72 /* pass.png */,
+				740FC4E9243DB15100F71B72 /* upcoming leaves.png */,
+				740FC4E7243DB14900F71B72 /* leave_states.png */,
+				740FC4E5243D988F00F71B72 /* time_date.png */,
+				740FC4E3243D988900F71B72 /* today.png */,
+				740D70BC243C90E400CF6C2F /* wifi.png */,
+				740D7077243C61CD00CF6C2F /* BottomArrow.png */,
+				740D7075243C5CDE00CF6C2F /* leave_user.png */,
+				740D7073243C52C200CF6C2F /* attendence_new.png */,
+				740D706D243C419B00CF6C2F /* office_in.png */,
+				740D706F243C41A200CF6C2F /* office_out.png */,
+				740D7071243C41AA00CF6C2F /* track_movement.png */,
+				747F8DCD243B556B00ABBD5E /* attendence_icon.png */,
+				747F8DCB243B54F600ABBD5E /* leave_icon.png */,
+				747F8DC9243B547E00ABBD5E /* home_icon.png */,
+				747F8DBD243B3E8D00ABBD5E /* home-icon_y.png */,
+				747F8DB7243B3D4800ABBD5E /* home-icon_w.png */,
+				747F8DB3243B3AAF00ABBD5E /* notification.png */,
+				747F8DB5243B3B5700ABBD5E /* home_bg.png */,
+				747F8DA9243B08C900ABBD5E /* conform.png */,
+				747F8DA7243AF94D00ABBD5E /* Captured.jpeg */,
+				747F8DA3243AF27700ABBD5E /* idcard-small.png */,
+				747F8DA1243AF27100ABBD5E /* company-small.png */,
+				747F8D9F243AECDE00ABBD5E /* reg.png */,
+				74F5D11B24373C6500D6E811 /* attendence-right.png */,
+				74F5D1252437662000D6E811 /* otp.png */,
+				746017B92436022A00969CA2 /* login_screen_icon.png */,
+				74F5D1192437393700D6E811 /* face.png */,
+				746017B72435FB3300969CA2 /* back-arrow.png */,
+				7440736924B74F4700B30039 /* selectmode.png */,
+				746017B32435F62800969CA2 /* user.png */,
+				746017AD2435D46A00969CA2 /* track.png */,
+				746017A92435D2FA00969CA2 /* facetek_change_color.png */,
+				74D998A52434C42100DFCBEC /* leave.png */,
+				74D9989D24349F9D00DFCBEC /* gps.png */,
+				74140900247A3AFE00ED1391 /* backicon.png */,
+				741408FE247A39C400ED1391 /* back.png */,
+				74D9989F2434A8B800DFCBEC /* qrcode.png */,
+				74D998A12434A8C200DFCBEC /* proxe.png */,
+				74D998932434690E00DFCBEC /* splashScreenLogo.png */,
+				74D9989724347DD400DFCBEC /* facetek-text-with-logo.png */,
+				74795DB8244D9CF600C6F03C /* ManagerDashboard-Icons */,
+			);
+			path = Images;
+			sourceTree = "<group>";
+		};
+		747F8D9C243AEAF100ABBD5E /* FaceRegistration */ = {
+			isa = PBXGroup;
+			children = (
+				747F8D9D243AEB1D00ABBD5E /* FaceRegistrationVC.swift */,
+				747F8DA5243AF85F00ABBD5E /* CaptureVC.swift */,
+				747F8DAB243B368700ABBD5E /* HomeDashboardVC.swift */,
+				746716822456E7C300277A14 /* CalendarVC.swift */,
+				746716882456EBAD00277A14 /* Calendarcell.swift */,
+				746716892456EBAD00277A14 /* Calendarcell.xib */,
+				74C0CB2D24D2C03200866474 /* FaqVC.swift */,
+			);
+			path = FaceRegistration;
+			sourceTree = "<group>";
+		};
+		74D998562434621200DFCBEC = {
+			isa = PBXGroup;
+			children = (
+				74D998612434621200DFCBEC /* FaceTek */,
+				74D998792434621300DFCBEC /* FaceTekTests */,
+				74D998842434621300DFCBEC /* FaceTekUITests */,
+				74D998602434621200DFCBEC /* Products */,
+				74FA124124AC693D00A356E7 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		74D998602434621200DFCBEC /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				74D9985F2434621200DFCBEC /* Facetek.app */,
+				74D998762434621300DFCBEC /* FaceTekTests.xctest */,
+				74D998812434621300DFCBEC /* FaceTekUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		74D998612434621200DFCBEC /* FaceTek */ = {
+			isa = PBXGroup;
+			children = (
+				7449F96C24AE284900232D46 /* LogINVC.swift */,
+				74FA123124AC689800A356E7 /* FaceSDK */,
+				74FA122C24AC687F00A356E7 /* Shaders */,
+				7424A04624AC6AFB000B466F /* AppDelegate.swift */,
+				7448549424AF1C5500F36A99 /* LogOutVC.swift */,
+				74FA123724AC68BD00A356E7 /* RecognitionViewController.swift */,
+				74FA123924AC68C700A356E7 /* RecognitionCamera.swift */,
+				74FA123B24AC68D400A356E7 /* RecognitionGLView.swift */,
+				74795DC1244DB98000C6F03C /* DBFiles */,
+				747F8D99243AEA1700ABBD5E /* Dashboard */,
+				744B8C7024CAC063004634C0 /* Manager */,
+				747F8D9A243AEA4C00ABBD5E /* Registration */,
+				747F8D9C243AEAF100ABBD5E /* FaceRegistration */,
+				740D70B8243C8E7100CF6C2F /* Attendance */,
+				740D70B9243C8EB700CF6C2F /* Leave */,
+				74D998662434621200DFCBEC /* Main.storyboard */,
+				74D9986C2434621300DFCBEC /* Assets.xcassets */,
+				747F8D9B243AEA8300ABBD5E /* Images */,
+				74D9986E2434621300DFCBEC /* LaunchScreen.storyboard */,
+				74D998712434621300DFCBEC /* Info.plist */,
+				74FA123F24AC690F00A356E7 /* enable_cxx.cpp */,
+				74FA123D24AC690E00A356E7 /* FaceTek-Bridging-Header.h */,
+				74D998692434621200DFCBEC /* FaceTek.xcdatamodeld */,
+			);
+			path = FaceTek;
+			sourceTree = "<group>";
+		};
+		74D998792434621300DFCBEC /* FaceTekTests */ = {
+			isa = PBXGroup;
+			children = (
+				74D9987A2434621300DFCBEC /* FaceTekTests.swift */,
+				74D9987C2434621300DFCBEC /* Info.plist */,
+			);
+			path = FaceTekTests;
+			sourceTree = "<group>";
+		};
+		74D998842434621300DFCBEC /* FaceTekUITests */ = {
+			isa = PBXGroup;
+			children = (
+				74D998852434621300DFCBEC /* FaceTekUITests.swift */,
+				74D998872434621300DFCBEC /* Info.plist */,
+			);
+			path = FaceTekUITests;
+			sourceTree = "<group>";
+		};
+		74FA122C24AC687F00A356E7 /* Shaders */ = {
+			isa = PBXGroup;
+			children = (
+				74FA122D24AC687F00A356E7 /* DirectDisplayShader.fsh */,
+				74FA122E24AC687F00A356E7 /* DirectDisplayShader.vsh */,
+			);
+			path = Shaders;
+			sourceTree = "<group>";
+		};
+		74FA123124AC689800A356E7 /* FaceSDK */ = {
+			isa = PBXGroup;
+			children = (
+				74FA123224AC689800A356E7 /* LuxandFaceSDK.h */,
+				74FA123324AC689800A356E7 /* libfsdk-static_64.a */,
+				74FA123424AC689800A356E7 /* libfsdk-static.a */,
+			);
+			path = FaceSDK;
+			sourceTree = "<group>";
+		};
+		74FA124124AC693D00A356E7 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				744367BE24D2C98400B4AF4D /* WebKit.framework */,
+				74FA124224AC693E00A356E7 /* libz.tbd */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		74D9985E2434621200DFCBEC /* FaceTek */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74D9988A2434621300DFCBEC /* Build configuration list for PBXNativeTarget "FaceTek" */;
+			buildPhases = (
+				74D9985B2434621200DFCBEC /* Sources */,
+				74D9985C2434621200DFCBEC /* Frameworks */,
+				74D9985D2434621200DFCBEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = FaceTek;
+			productName = FaceTek;
+			productReference = 74D9985F2434621200DFCBEC /* Facetek.app */;
+			productType = "com.apple.product-type.application";
+		};
+		74D998752434621300DFCBEC /* FaceTekTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74D9988D2434621300DFCBEC /* Build configuration list for PBXNativeTarget "FaceTekTests" */;
+			buildPhases = (
+				74D998722434621300DFCBEC /* Sources */,
+				74D998732434621300DFCBEC /* Frameworks */,
+				74D998742434621300DFCBEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74D998782434621300DFCBEC /* PBXTargetDependency */,
+			);
+			name = FaceTekTests;
+			productName = FaceTekTests;
+			productReference = 74D998762434621300DFCBEC /* FaceTekTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		74D998802434621300DFCBEC /* FaceTekUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 74D998902434621300DFCBEC /* Build configuration list for PBXNativeTarget "FaceTekUITests" */;
+			buildPhases = (
+				74D9987D2434621300DFCBEC /* Sources */,
+				74D9987E2434621300DFCBEC /* Frameworks */,
+				74D9987F2434621300DFCBEC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				74D998832434621300DFCBEC /* PBXTargetDependency */,
+			);
+			name = FaceTekUITests;
+			productName = FaceTekUITests;
+			productReference = 74D998812434621300DFCBEC /* FaceTekUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		74D998572434621200DFCBEC /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1010;
+				LastUpgradeCheck = 1010;
+				ORGANIZATIONNAME = "sureshbabu bandaru";
+				TargetAttributes = {
+					74D9985E2434621200DFCBEC = {
+						CreatedOnToolsVersion = 10.1;
+						LastSwiftMigration = 1140;
+					};
+					74D998752434621300DFCBEC = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 74D9985E2434621200DFCBEC;
+					};
+					74D998802434621300DFCBEC = {
+						CreatedOnToolsVersion = 10.1;
+						TestTargetID = 74D9985E2434621200DFCBEC;
+					};
+				};
+			};
+			buildConfigurationList = 74D9985A2434621200DFCBEC /* Build configuration list for PBXProject "FaceTek" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 74D998562434621200DFCBEC;
+			productRefGroup = 74D998602434621200DFCBEC /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				74D9985E2434621200DFCBEC /* FaceTek */,
+				74D998752434621300DFCBEC /* FaceTekTests */,
+				74D998802434621300DFCBEC /* FaceTekUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		74D9985D2434621200DFCBEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74D998702434621300DFCBEC /* LaunchScreen.storyboard in Resources */,
+				7497BDAD24CC1E0800EE54D0 /* AbsenttblCell.xib in Resources */,
+				74F5D11C24373C6500D6E811 /* attendence-right.png in Resources */,
+				74D9986D2434621300DFCBEC /* Assets.xcassets in Resources */,
+				747F8DCE243B556C00ABBD5E /* attendence_icon.png in Resources */,
+				740D7078243C61CD00CF6C2F /* BottomArrow.png in Resources */,
+				74140901247A3AFF00ED1391 /* backicon.png in Resources */,
+				740FA401247BE45200E4FC3D /* facetek_title.png in Resources */,
+				747F8DA2243AF27200ABBD5E /* company-small.png in Resources */,
+				747F8DAA243B08CA00ABBD5E /* conform.png in Resources */,
+				74F5D11A2437393700D6E811 /* face.png in Resources */,
+				746FC13E2482817700445207 /* LeavedownArrowimg.png in Resources */,
+				740FC4EA243DB15200F71B72 /* upcoming leaves.png in Resources */,
+				746017B22435F37700969CA2 /* NavigationMenucell.xib in Resources */,
+				746017AE2435D46A00969CA2 /* track.png in Resources */,
+				74E68A8F24C8674300A3B009 /* PendingLeaves1.png in Resources */,
+				740FC4EC243DB3D100F71B72 /* pass.png in Resources */,
+				74D998682434621200DFCBEC /* Main.storyboard in Resources */,
+				74E68A7524C833EF00A3B009 /* circle.png in Resources */,
+				747F8DA4243AF27800ABBD5E /* idcard-small.png in Resources */,
+				747F8DA8243AF94D00ABBD5E /* Captured.jpeg in Resources */,
+				740D7076243C5CDE00CF6C2F /* leave_user.png in Resources */,
+				74398CDF2462E9F20053DA0F /* WhiteBck.png in Resources */,
+				740D7074243C52C300CF6C2F /* attendence_new.png in Resources */,
+				747F8DC2243B4B5C00ABBD5E /* AttendanceDashboardCell.xib in Resources */,
+				746017AA2435D2FB00969CA2 /* facetek_change_color.png in Resources */,
+				745D5C57247CCC2F00052FC4 /* leavemanagement.png in Resources */,
+				7467168B2456EBAD00277A14 /* Calendarcell.xib in Resources */,
+				74D998A02434A8B800DFCBEC /* qrcode.png in Resources */,
+				7469426724B34B1100C24342 /* hand.png in Resources */,
+				740D7070243C41A300CF6C2F /* office_out.png in Resources */,
+				740D7072243C41AA00CF6C2F /* track_movement.png in Resources */,
+				744125D924D0328200075CC1 /* PendingHeadercell.xib in Resources */,
+				747F8DB6243B3B5700ABBD5E /* home_bg.png in Resources */,
+				74D998942434690E00DFCBEC /* splashScreenLogo.png in Resources */,
+				7447702A24CF1A2900EFBB2F /* EarlyLeaverscell.xib in Resources */,
+				74FA122F24AC687F00A356E7 /* DirectDisplayShader.fsh in Resources */,
+				747F8DCA243B547F00ABBD5E /* home_icon.png in Resources */,
+				744125D524D0311D00075CC1 /* PendingLeavescellTableViewCell.xib in Resources */,
+				745F31B4244ECEED00B89F08 /* EarlyLeavers.png in Resources */,
+				74D998A62434C42200DFCBEC /* leave.png in Resources */,
+				74D998A22434A8C200DFCBEC /* proxe.png in Resources */,
+				745F31B2244ECEE400B89F08 /* Absent1.png in Resources */,
+				74398CE12462EC020053DA0F /* BckArrowicon.png in Resources */,
+				74795DBA244D9D1000C6F03C /* leaves.png in Resources */,
+				746017B82435FB3300969CA2 /* back-arrow.png in Resources */,
+				74E68A8D24C8669400A3B009 /* PendingLeaves.png in Resources */,
+				740D70BD243C90E500CF6C2F /* wifi.png in Resources */,
+				7451D15124CC62F7006EE244 /* AbsentHeaderCell.xib in Resources */,
+				745F31B0244ECA9E00B89F08 /* Latecomers1.png in Resources */,
+				746CEADA24C044410081F830 /* LeaveCancel.png in Resources */,
+				74795DBE244D9D1F00C6F03C /* Early leavers.png in Resources */,
+				74F5D1262437662000D6E811 /* otp.png in Resources */,
+				7440DAEE2480CEC800263A8F /* map icon.png in Resources */,
+				74D9989C2434999500DFCBEC /* DashboardCell.xib in Resources */,
+				740FC4E8243DB14B00F71B72 /* leave_states.png in Resources */,
+				747F8DCC243B54F700ABBD5E /* leave_icon.png in Resources */,
+				747F8DA0243AECDF00ABBD5E /* reg.png in Resources */,
+				744B18B424CEB1B6004FB334 /* no_leves_found.png in Resources */,
+				74795DC0244D9D2400C6F03C /* late commers.png in Resources */,
+				740FA3FB247BE1FE00E4FC3D /* attendence.png in Resources */,
+				746017B42435F62800969CA2 /* user.png in Resources */,
+				740FC4EE243DB3D700F71B72 /* pending.png in Resources */,
+				746017BA2436022A00969CA2 /* login_screen_icon.png in Resources */,
+				747F8DB4243B3AAF00ABBD5E /* notification.png in Resources */,
+				740FC4F2243DF57400F71B72 /* LeaveNavigationcell.xib in Resources */,
+				745D5C69247CDF0A00052FC4 /* Faq.png in Resources */,
+				745D5C55247CCA7B00052FC4 /* mobile.png in Resources */,
+				740FA3F7247BE0C700E4FC3D /* camera_icon.png in Resources */,
+				74444F9524D2F8C5005DA8EC /* ManagerLeavecell.xib in Resources */,
+				747F8DBE243B3E8E00ABBD5E /* home-icon_y.png in Resources */,
+				74FA123024AC687F00A356E7 /* DirectDisplayShader.vsh in Resources */,
+				74795DBC244D9D1900C6F03C /* absent (1).png in Resources */,
+				74D9989824347DD400DFCBEC /* facetek-text-with-logo.png in Resources */,
+				745F31B6244ECEF400B89F08 /* Leaves1.png in Resources */,
+				74D9989E24349F9D00DFCBEC /* gps.png in Resources */,
+				740FC4E6243D988F00F71B72 /* time_date.png in Resources */,
+				740D706E243C419C00CF6C2F /* office_in.png in Resources */,
+				7447221224BF117400CD06BA /* cancel.png in Resources */,
+				741408FF247A39C800ED1391 /* back.png in Resources */,
+				745D5C6B247CE6CD00052FC4 /* facetek.png in Resources */,
+				7440736A24B74F4700B30039 /* selectmode.png in Resources */,
+				745D5C5F247CDA9700052FC4 /* Home_user.png in Resources */,
+				741778402446EBA20056E9EC /* ff.jpeg in Resources */,
+				747F8DB8243B3D4800ABBD5E /* home-icon_w.png in Resources */,
+				740FC4E4243D988A00F71B72 /* today.png in Resources */,
+				74E68A7324C832B100A3B009 /* Dropdowncell.xib in Resources */,
+				746FC13C248280C700445207 /* LeaveDownArrow.png in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D998742434621300DFCBEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D9987F2434621300DFCBEC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		74D9985B2434621200DFCBEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74D9989B2434999500DFCBEC /* DashboardCell.swift in Sources */,
+				74444F9424D2F8C5005DA8EC /* ManagerLeavecell.swift in Sources */,
+				74FA123C24AC68D400A356E7 /* RecognitionGLView.swift in Sources */,
+				74E68A7224C832B100A3B009 /* Dropdowncell.swift in Sources */,
+				746017B12435F37700969CA2 /* NavigationMenucell.swift in Sources */,
+				74FA123824AC68BD00A356E7 /* RecognitionViewController.swift in Sources */,
+				74D998652434621200DFCBEC /* ViewController.swift in Sources */,
+				747F8DA6243AF85F00ABBD5E /* CaptureVC.swift in Sources */,
+				7449F96D24AE284900232D46 /* LogINVC.swift in Sources */,
+				740D70BF243C9A0700CF6C2F /* OfficeOutVC.swift in Sources */,
+				747F8DAC243B368700ABBD5E /* HomeDashboardVC.swift in Sources */,
+				746017B62435F90200969CA2 /* RegistrationVC.swift in Sources */,
+				7429321724498B5C00C59157 /* Reachability.swift in Sources */,
+				742A175E24406E4700880818 /* StepZero.swift in Sources */,
+				746EE171248F9FC8007A1DA8 /* PrivacyPolicyVC.swift in Sources */,
+				742A175C24406E3700880818 /* OnboardingPager.swift in Sources */,
+				74F5D120243758B700D6E811 /* Constants.swift in Sources */,
+				747F8D9E243AEB1D00ABBD5E /* FaceRegistrationVC.swift in Sources */,
+				74520D3924CB1ADC001252ED /* LatecomersVC.swift in Sources */,
+				740D70BB243C8F3200CF6C2F /* OfficeInVC.swift in Sources */,
+				746716832456E7C300277A14 /* CalendarVC.swift in Sources */,
+				742A176424406E6400880818 /* HelperLibrary.swift in Sources */,
+				74520D3724CB1AAA001252ED /* ManagerLeavesVC.swift in Sources */,
+				74795DC5244DB99500C6F03C /* Person.swift in Sources */,
+				7448549524AF1C5500F36A99 /* LogOutVC.swift in Sources */,
+				748E22EC247B971C0060464F /* PageController.swift in Sources */,
+				7467168A2456EBAD00277A14 /* Calendarcell.swift in Sources */,
+				74F07ABC24B0B7DC000E6924 /* AttendanceDB.swift in Sources */,
+				74457A8C24D46830009A0F6B /* LocationPermissionVC.swift in Sources */,
+				74795DC3244DB98D00C6F03C /* DBHelper.swift in Sources */,
+				74FA124024AC690F00A356E7 /* enable_cxx.cpp in Sources */,
+				7429321924498B6600C59157 /* Protocols.swift in Sources */,
+				74F5D11E243758A600D6E811 /* InputOTPVC.swift in Sources */,
+				74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */,
+				744125D424D0311D00075CC1 /* PendingLeavescellTableViewCell.swift in Sources */,
+				742A176024406E5000880818 /* StepOne.swift in Sources */,
+				744125D124D02DA500075CC1 /* PendingLeavesVC.swift in Sources */,
+				744125D824D0328200075CC1 /* PendingHeadercell.swift in Sources */,
+				742A176224406E5B00880818 /* StepTwo.swift in Sources */,
+				742A17662440743200880818 /* StepThree.swift in Sources */,
+				7447702924CF1A2900EFBB2F /* EarlyLeaverscell.swift in Sources */,
+				74F5D124243758D400D6E811 /* SMRippleView.swift in Sources */,
+				7429321B24498B7000C59157 /* AppManager.swift in Sources */,
+				7424A04724AC6AFB000B466F /* AppDelegate.swift in Sources */,
+				74F07AC024B0BE7E000E6924 /* AttendanceInDB.swift in Sources */,
+				74D9986B2434621200DFCBEC /* FaceTek.xcdatamodeld in Sources */,
+				7451D15024CC62F7006EE244 /* AbsentHeaderCell.swift in Sources */,
+				740D70C1243CB13E00CF6C2F /* WifiConnection.swift in Sources */,
+				74520D3B24CB1AF5001252ED /* EarlyLeaversVC.swift in Sources */,
+				74F5D122243758C800D6E811 /* Extensions.swift in Sources */,
+				7429321524498B5300C59157 /* UIappViewController.swift in Sources */,
+				747F8DC1243B4B5C00ABBD5E /* AttendanceDashboardCell.swift in Sources */,
+				747F8DAE243B37EA00ABBD5E /* AttendanceVC.swift in Sources */,
+				7497BDAC24CC1E0800EE54D0 /* AbsenttblCell.swift in Sources */,
+				744B8C7224CAC0B6004634C0 /* ManagerVC.swift in Sources */,
+				747F8DB0243B37FD00ABBD5E /* LeaveVC.swift in Sources */,
+				74FA123A24AC68C800A356E7 /* RecognitionCamera.swift in Sources */,
+				740FC4F1243DF57400F71B72 /* LeaveNavigationcell.swift in Sources */,
+				746017A82435BAC600969CA2 /* HamburgerButton.swift in Sources */,
+				74520D3524CB1A5A001252ED /* AbsentVC.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D998722434621300DFCBEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74D9987B2434621300DFCBEC /* FaceTekTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		74D9987D2434621300DFCBEC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				74D998862434621300DFCBEC /* FaceTekUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		74D998782434621300DFCBEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74D9985E2434621200DFCBEC /* FaceTek */;
+			targetProxy = 74D998772434621300DFCBEC /* PBXContainerItemProxy */;
+		};
+		74D998832434621300DFCBEC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 74D9985E2434621200DFCBEC /* FaceTek */;
+			targetProxy = 74D998822434621300DFCBEC /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		74D998662434621200DFCBEC /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74D998672434621200DFCBEC /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		74D9986E2434621300DFCBEC /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				74D9986F2434621300DFCBEC /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		74D998882434621300DFCBEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		74D998892434621300DFCBEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		74D9988B2434621300DFCBEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.19;
+				DEVELOPMENT_TEAM = KNZ823FRWW;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = FaceTek/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FaceTek/FaceSDK",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Lng.FaceTekupload1;
+				PRODUCT_NAME = Facetek;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "FaceTek/FaceTek-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		74D9988C2434621300DFCBEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1.0.19;
+				DEVELOPMENT_TEAM = KNZ823FRWW;
+				ENABLE_BITCODE = NO;
+				INFOPLIST_FILE = FaceTek/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/FaceTek/FaceSDK",
+				);
+				MARKETING_VERSION = 1.2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Lng.FaceTekupload1;
+				PRODUCT_NAME = Facetek;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "FaceTek/FaceTek-Bridging-Header.h";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		74D9988E2434621300DFCBEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FaceTekTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Lng.FaceTekTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaceTek.app/FaceTek";
+			};
+			name = Debug;
+		};
+		74D9988F2434621300DFCBEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FaceTekTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Lng.FaceTekTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/FaceTek.app/FaceTek";
+			};
+			name = Release;
+		};
+		74D998912434621300DFCBEC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FaceTekUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Lng.FaceTekUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FaceTek;
+			};
+			name = Debug;
+		};
+		74D998922434621300DFCBEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = FaceTekUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = Lng.FaceTekUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = FaceTek;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		74D9985A2434621200DFCBEC /* Build configuration list for PBXProject "FaceTek" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74D998882434621300DFCBEC /* Debug */,
+				74D998892434621300DFCBEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74D9988A2434621300DFCBEC /* Build configuration list for PBXNativeTarget "FaceTek" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74D9988B2434621300DFCBEC /* Debug */,
+				74D9988C2434621300DFCBEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74D9988D2434621300DFCBEC /* Build configuration list for PBXNativeTarget "FaceTekTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74D9988E2434621300DFCBEC /* Debug */,
+				74D9988F2434621300DFCBEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		74D998902434621300DFCBEC /* Build configuration list for PBXNativeTarget "FaceTekUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				74D998912434621300DFCBEC /* Debug */,
+				74D998922434621300DFCBEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		74D998692434621200DFCBEC /* FaceTek.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				74D9986A2434621200DFCBEC /* FaceTek.xcdatamodel */,
+			);
+			currentVersion = 74D9986A2434621200DFCBEC /* FaceTek.xcdatamodel */;
+			path = FaceTek.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 74D998572434621200DFCBEC /* Project object */;
+}

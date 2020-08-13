@@ -1,0 +1,8 @@
+build
+/build/
+/build/*
+/FaceTek.xcodeproj/project.xcworkspace
+FaceTek.xcodeproj/xcuserdata/
+FaceTek.xcodeproj/xcuserdata/*
+/FaceTek/FaceSDK/
+/FaceTek/FaceSDK/*
