@@ -634,8 +634,14 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		nameDataLock.lock()
 		for i in 0..<MAX_FACES {
 			if ((names[i] as! String) != "") {
-				nameLabels[i].string = names[i]
+				nameLabels[i].string = "" //names[i]
 				nameLabels[i].foregroundColor = UIColor.blue.cgColor
+				
+				//stop camera feed
+				processingImage = false
+				
+				//show alert
+				faceMathchedAlert()
 			} else {
 				nameLabels[i].string = "Face doesn't matched"
 				nameLabels[i].foregroundColor = UIColor.green.cgColor
@@ -670,15 +676,17 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		//Attendance Process
 		//CurrentDateSignIn()
 		
-		let alert = UIAlertController.init(title: "Face Matched", message: "Your face has been matched", preferredStyle: .alert)
-		
-		let okAction = UIAlertAction.init(title: "OK", style: .default) { (alertAction) in
-			//Call attendance service
-		}
-		alert.addAction(okAction)
-		
-		self.present(alert, animated: true) {
-			//some code
+		DispatchQueue.main.async {
+			let alert = UIAlertController.init(title: "Face Matched", message: "Your face has been matched", preferredStyle: .alert)
+			
+			let okAction = UIAlertAction.init(title: "OK", style: .default) { (alertAction) in
+				//Call attendance service
+			}
+			alert.addAction(okAction)
+			
+			self.present(alert, animated: true) {
+				//some code
+			}
 		}
 	}
 	
@@ -1207,29 +1215,6 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		
 		
 		//Updatedetails()
-	}
-	
-	
-	func FaceMacthAlert()
-	{
-		
-		if (presentFacename == Facename) {
-			print("Face Match")
-			DispatchQueue.main.async {
-				
-			}
-		}
-		else
-		{
-			DispatchQueue.main.async {
-				
-				print("Face does not match")
-				let alert = UIAlertController(title: "Face does not match", message: "Message", preferredStyle: UIAlertController.Style.alert)
-				alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
-				self.present(alert, animated: true, completion: nil)
-			}
-		}
-		
 	}
 	
 }
