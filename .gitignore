@@ -6,3 +6,7 @@ FaceTek.xcodeproj/xcuserdata/
 FaceTek.xcodeproj/xcuserdata/*
 /FaceTek/FaceSDK/
 /FaceTek/FaceSDK/*
+.DS_Store
+.DS_Store/*
+/.DS_Store/
+/.DS_Store/*
