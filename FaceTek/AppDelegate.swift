@@ -71,9 +71,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //				self.window?.makeKeyAndVisible()
                 
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
+                let ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController")
                 //self.present(tabBarController, animated:true, completion:nil)
-                self.window?.rootViewController = tabBarController
+                self.window?.rootViewController = ViewController
                 self.window?.makeKeyAndVisible()
                 
                 
