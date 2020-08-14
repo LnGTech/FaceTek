@@ -15,6 +15,8 @@ import GLKit
 import OpenGLES.ES2
 import CoreLocation
 
+//changed code
+
 
 class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate {
     struct DetectFaceParams {
