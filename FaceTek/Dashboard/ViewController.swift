@@ -103,7 +103,7 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         {
             
             UIView.transition(with: menu, duration: 0.1, options: .beginFromCurrentState, animations: {
-                self.menu.frame = CGRect(x: 0, y: 70, width: 300, height: 700
+                self.menu.frame = CGRect(x: 0, y: 85, width: 300, height: 800
                 )
                 self.isMenuVisible = false;
                 self.menu.isHidden = false
@@ -194,8 +194,8 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         if indexPath.row == 0 {
             let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
             let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationVC
-			self.navigationController?.pushViewController(RegistrationVC, animated: true)
-            //self.present(RegistrationVC, animated:true, completion:nil)
+			//self.navigationController?.pushViewController(RegistrationVC, animated: true)
+            self.present(RegistrationVC, animated:true, completion:nil)
      
 //        let storyBoard = UIStoryboard(name: "Main", bundle:nil)
 //        let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationVC
