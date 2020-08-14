@@ -165,7 +165,7 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
             faceTouchedLock.unlock()
 			
 			//update to server
-			updatedetails()
+			//updatedetails()
         }
     }
 
@@ -198,7 +198,7 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
             faceTouched = true
 			storedFaceID()
 			DispatchQueue.main.async {
-				self.updatedetails()
+				//self.updatedetails()
 			}
             
 //            let alert = UIAlertView(title: "", message: "Enter person's name", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Ok")
