@@ -3687,7 +3687,7 @@
         <!--Home-->
         <scene sceneID="aAa-Iz-xnT">
             <objects>
-                <viewController storyboardIdentifier="HomeDashboardVC" id="p0x-k6-tDy" customClass="HomeDashboardVC" customModule="FaceTek" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeDashboardVC" id="p0x-k6-tDy" customClass="HomeDashboardVC" customModule="Facetek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BNs-Uc-ZNE">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -4392,7 +4392,9 @@
                         <outlet property="Leavesview" destination="lj1-Mz-vsU" id="ywH-58-OYL"/>
                         <outlet property="ManagerView" destination="kgU-Zf-MAp" id="ITC-BI-azp"/>
                         <outlet property="MobilenumberLbl" destination="m6E-KU-GGP" id="rkO-yZ-Jee"/>
+                        <outlet property="OfficeInBtn" destination="32X-Oz-NyB" id="MwZ-sr-BhE"/>
                         <outlet property="OfficeInLbl" destination="5Bd-Ce-ogg" id="ZeD-jm-KOc"/>
+                        <outlet property="OfficeOutBtn" destination="MKu-we-wD2" id="ark-V7-ORI"/>
                         <outlet property="OfficeOutLbl" destination="hsE-WU-c6s" id="xbX-OB-a5U"/>
                         <outlet property="PendingLeavesview" destination="83M-d7-gOh" id="m5m-pN-lPa"/>
                         <outlet property="UserNameLbl" destination="hGE-dT-tRV" id="jyt-bF-Cgf"/>
