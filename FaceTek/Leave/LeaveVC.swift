@@ -213,6 +213,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.view.endEditing(true)
         isMenuVisible = false;
+        self.button.showsMenu = !self.button.showsMenu
+
         self.toggleComparision()
     }
     
