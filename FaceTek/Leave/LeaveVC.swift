@@ -8,7 +8,7 @@
 
 import UIKit
 
-class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate,UITextFieldDelegate {
+class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate, UITextViewDelegate {
     
     var RetrivedcustId = Int()
     var RetrivedempId = Int()
@@ -57,6 +57,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     override func viewDidLoad() {
         super.viewDidLoad()
         
+                NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+                NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+
         DropdownBackview.isHidden = true
         LeavesLbl.isHidden = true
         customActivityIndicatory(self.view, startAnimate: false)
@@ -126,10 +129,10 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         //print("RetrivedMobileNumber-----",RetrivedMobileNumber)
         MobilenumberLbl.text = RetrivedMobileNumber
         
-        Employeenamestr = defaults.string(forKey: "employeeName")!
+        Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
         UserNameLbl.text = Employeenamestr
         
-        brNamestr = defaults.string(forKey: "brName")!
+        brNamestr = defaults.string(forKey: "brName") ?? ""
                print("brNamestr-----",brNamestr)
                CompanyNameLbl.text = brNamestr
         self.button = HamburgerButton(frame: CGRect(x: 5, y: 20, width: 45, height: 45))
@@ -644,26 +647,26 @@ self.present(UITabBarController, animated:true, completion:nil)
 //
 //
 
-        func textFieldDidBeginEditing(_ textField: UITextField) {
-              animateViewMoving(up: true, moveValue: 100)
-          }
-
-          func textFieldDidEndEditing(_ textField: UITextField) {
-              animateViewMoving(up: false, moveValue: 100)
-          }
-          func animateViewMoving (up:Bool, moveValue :CGFloat){
-              let movementDuration:TimeInterval = 0.10
-              let movement:CGFloat = ( up ? -moveValue : moveValue)
-              UIView.beginAnimations( "animateView", context: nil)
-              UIView.setAnimationBeginsFromCurrentState(true)
-              UIView.setAnimationDuration(movementDuration )
-              self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
-              UIView.commitAnimations()
-          }
-       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-           LeaveTypetxt.resignFirstResponder()
-           return true
-        }
+//        func textFieldDidBeginEditing(_ textField: UITextField) {
+//              animateViewMoving(up: true, moveValue: 100)
+//          }
+//
+//          func textFieldDidEndEditing(_ textField: UITextField) {
+//              animateViewMoving(up: false, moveValue: 100)
+//          }
+//          func animateViewMoving (up:Bool, moveValue :CGFloat){
+//              let movementDuration:TimeInterval = 0.10
+//              let movement:CGFloat = ( up ? -moveValue : moveValue)
+//              UIView.beginAnimations( "animateView", context: nil)
+//              UIView.setAnimationBeginsFromCurrentState(true)
+//              UIView.setAnimationDuration(movementDuration )
+//              self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
+//              UIView.commitAnimations()
+//          }
+//       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+//           LeaveTypetxt.resignFirstResponder()
+//           return true
+//        }
     
     func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {
           let mainContainer: UIView = UIView(frame: viewContainer.frame)
@@ -697,5 +700,21 @@ self.present(UITabBarController, animated:true, completion:nil)
                   }
              return activityIndicatorView
     }
+    @objc func keyboardWillShow(notification: Notification) {
+    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+    print("notification: Keyboard will show")
+    if self.view.frame.origin.y == 0{
+    self.view.frame.origin.y -= keyboardSize.height
+    }
+    }
+    }
     
+    @objc func keyboardWillHide(notification: Notification) {
+    if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+    if self.view.frame.origin.y != 0 {
+    self.view.frame.origin.y += keyboardSize.height
+    }
+    }
+    }
+     
 }

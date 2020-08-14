@@ -302,9 +302,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
         print("RetrivedMobileNumber-----",RetrivedMobileNumber)
         MobilenumberLbl.text = RetrivedMobileNumber
-        Employeenamestr = defaults.string(forKey: "employeeName")!
+        Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
         UserNameLbl.text = Employeenamestr
-        brNamestr = defaults.string(forKey: "brName")!
+        brNamestr = defaults.string(forKey: "brName") ?? ""
         print("brNamestr-----",brNamestr)
         CompanyNameLbl.text = brNamestr
         self.button = HamburgerButton(frame: CGRect(x: 5, y: 20, width: 45, height: 45))
@@ -624,15 +624,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                 print("empIsSupervisor_Manager ------------",empIsSupervisor_Manager as Any)
 
                 
-                
-                
-                
-                
-                
                 let ItemsDict = responseJSON["empAttendanceStatus"] as! NSDictionary
-                
-                
-                
                 
                 //Employee Upcoming Leaves and Office In ,Office Out
                 let empLeaveData = responseJSON["empLeaveData"]! as! NSDictionary
