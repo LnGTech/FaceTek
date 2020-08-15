@@ -103,8 +103,8 @@ class FaceRegistrationVC: UIViewController {
 
         let objRecVC = RecognitionViewController(screen:  UIScreen.main)
         objRecVC.modalPresentationStyle = .fullScreen
-		//self.navigationController?.pushViewController(objRecVC, animated:true)
-		self.present(objRecVC, animated: true, completion: nil)
+		self.navigationController?.pushViewController(objRecVC, animated:true)
+		//self.present(objRecVC, animated: true, completion: nil)
     
     
     

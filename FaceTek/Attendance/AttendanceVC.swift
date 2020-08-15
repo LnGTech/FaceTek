@@ -609,6 +609,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 				return
 			}
 			if error != nil {
+				//error
 			} else {
 				do {
 					//let data = json.data(using: .utf8)!
@@ -616,7 +617,6 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 					print("Json Data -----------",jsonDict)
 					DispatchQueue.main.async {
 						self.currentDatestr = (jsonDict["currentDate"] as? String)!
-						print("currentDatestr in -------",self.currentDatestr)
 						let dateFormatter = DateFormatter()
 						let tempLocale = dateFormatter.locale // save locale temporarily
 						dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
@@ -625,22 +625,19 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 						dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm a"///this is what you want to convert format
 						dateFormatter.locale = tempLocale // reset the locale
 						let IntimedateString = dateFormatter.string(from: Intimedate)
-						print("luxan Intime EXACT_DATE : \(IntimedateString)")
-						print("between 9 AM and 6 PM Signin")
-						let storyBoard = UIStoryboard(name: "Main", bundle:nil)
-						
 						
 						UserDefaults.standard.set(self.currentDatestr, forKey: "SignIncurrentDate")
-						
 						UserDefaults.standard.set(IntimedateString, forKey: "SignIntimedate")
-						let LoginINobjRecVC = LogINVC(screen:  UIScreen.main)
-						LoginINobjRecVC.modalPresentationStyle = .fullScreen
 						UserDefaults.standard.set(self.Facename, forKey: "Facename")
-						self.present(LoginINobjRecVC, animated: true, completion: nil)
+						UserDefaults.standard.synchronize()
+						
+						let loginvc = LogINVC.init(screen: UIScreen.main)
+						self.navigationController?.pushViewController(loginvc, animated: true)
+						//loginvc.modalPresentationStyle = .fullScreen
+						//self.present(loginvc, animated: true, completion: nil)
 						
 					}
 					
-				} catch {
 				}
 			}
 		}

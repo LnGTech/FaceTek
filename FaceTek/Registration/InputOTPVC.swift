@@ -121,8 +121,8 @@ print("Mobile empPresistedFaceId-----",empPresistedFaceId)
         
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let FaceRegistrationVC = storyBoard.instantiateViewController(withIdentifier: "FaceRegistrationVC") as! FaceRegistrationVC
-        //self.navigationController?.pushViewController(FaceRegistrationVC, animated:true)
-        self.present(FaceRegistrationVC, animated:true, completion:nil)
+        self.navigationController?.pushViewController(FaceRegistrationVC, animated:true)
+        //self.present(FaceRegistrationVC, animated:true, completion:nil)
 
 //        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 //

@@ -250,7 +250,7 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
         let primaryView: UIView = UIView(frame: mainScreenFrame!)
         view = primaryView
         
-        glView = RecognitionGLView(frame: CGRect(x: 0.0, y: 0.0, width: 200.0, height: 200.0))
+        glView = RecognitionGLView(frame: mainScreenFrame!)
         //glView should be re-initialized in (void)drawFrame with proper size
         
         view.addSubview(glView!)
@@ -325,6 +325,7 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
             let width = Double(applicationFrame.width) * (Double(video_width!) * 1.0 / Double(video_height!))
             glView = RecognitionGLView(frame: CGRect(x: 0.0, y: 0.0, width: width, height: Double(applicationFrame.width)))
         }
+		glView?.center = view.center
         view.addSubview(glView!)
         
         if (loadShaders(vertexShaderName: "DirectDisplayShader", fragmentShaderName: "DirectDisplayShader", programPointer: &directDisplayProgram)) {
@@ -947,18 +948,8 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 	}
 
 	@objc func buttonAction(_ sender:UIButton!) {
-		
-//		let viewController = navigationController?.viewControllers[0] as? ViewController
-//		viewController?.showTabBar = true
-//		self.navigationController?.popToRootViewController(animated: true)
-		
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-        //self.navigationController?.pushViewController(UITabBarController, animated: true)
-        self.present(UITabBarController, animated:true, completion:nil)
-        
-        
-        
+		let viewController = navigationController?.viewControllers[0] as? ViewController
+		viewController?.showTabBar = true
+		self.navigationController?.popToRootViewController(animated: true)
 	}
 }

@@ -72,8 +72,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController")
-                //self.present(tabBarController, animated:true, completion:nil)
-                self.window?.rootViewController = ViewController
+                let navVC = UINavigationController.init(rootViewController: ViewController)
+				navVC.navigationBar.isHidden = true
+                self.window?.rootViewController = navVC
                 self.window?.makeKeyAndVisible()
                 
                 

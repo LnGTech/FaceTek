@@ -392,7 +392,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 		let primaryView: UIView = UIView(frame: mainScreenFrame!)
 		view = primaryView
 		
-		glView = RecognitionGLView(frame: CGRect(x: 0.0, y: 0.0, width: 200.0, height: 200.0))
+		glView = RecognitionGLView(frame: mainScreenFrame!)
 		//glView should be re-initialized in (void)drawFrame with proper size
 		
 		view.addSubview(glView!)
@@ -467,6 +467,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 			let width = Double(applicationFrame.width) * (Double(video_width!) * 1.0 / Double(video_height!))
 			glView = RecognitionGLView(frame: CGRect(x: 0.0, y: 0.0, width: width, height: Double(applicationFrame.width)))
 		}
+		glView?.center = view.center
 		view.addSubview(glView!)
 		
 		if (loadShaders(vertexShaderName: "DirectDisplayShader", fragmentShaderName: "DirectDisplayShader", programPointer: &directDisplayProgram)) {
