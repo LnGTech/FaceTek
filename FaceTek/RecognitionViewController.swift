@@ -525,21 +525,6 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
     }
 	
 	override func viewDidDisappear(_ animated: Bool) {
-		var i = 0
-        while (self.processingImage == true) {
-            i += 1
-            if (i > 20) {
-                break
-            }
-            Thread.sleep(forTimeInterval:0.1)
-        }
-		
-		let fileSaveResult = FSDK_SaveTrackerMemoryToFile(tracker, (templatePath as NSString).utf8String)
-		if fileSaveResult == FSDKE_IO_ERROR {
-			print("Tracker file has not saved")
-		} else if fileSaveResult == FSDKE_OK {
-			print("Tracker file has saved successfully")
-		}
 		super.viewDidDisappear(animated)
 	}
     
@@ -948,8 +933,31 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 	}
 
 	@objc func buttonAction(_ sender:UIButton!) {
+		//save tracker file
+		saveFile()
+		
+		//then go to dahsboard
 		let viewController = navigationController?.viewControllers[0] as? ViewController
 		viewController?.showTabBar = true
 		self.navigationController?.popToRootViewController(animated: true)
 	}
+	
+	private func saveFile() {
+		var i = 0
+        while (self.processingImage == true) {
+            i += 1
+            if (i > 20) {
+                break
+            }
+            Thread.sleep(forTimeInterval:0.1)
+        }
+		
+		let fileSaveResult = FSDK_SaveTrackerMemoryToFile(tracker, (templatePath as NSString).utf8String)
+		if fileSaveResult == FSDKE_IO_ERROR {
+			print("Tracker file has not saved")
+		} else if fileSaveResult == FSDKE_OK {
+			print("Tracker file has saved successfully")
+		}
+	}
+
 }

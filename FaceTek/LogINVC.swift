@@ -634,14 +634,8 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		nameDataLock.lock()
 		for i in 0..<MAX_FACES {
 			if ((names[i] as! String) != "") {
-				nameLabels[i].string = "" //names[i]
+				nameLabels[i].string = names[i]
 				nameLabels[i].foregroundColor = UIColor.blue.cgColor
-				
-				//stop camera feed
-				//processingImage = false
-				
-				//show alert
-				faceMathchedAlert()
 			} else {
 				nameLabels[i].string = "Face doesn't matched"
 				nameLabels[i].foregroundColor = UIColor.green.cgColor
@@ -680,7 +674,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 			let alert = UIAlertController.init(title: "Face Matched", message: "Your face has been matched", preferredStyle: .alert)
 			
 			let okAction = UIAlertAction.init(title: "OK", style: .default) { (alertAction) in
-				//Call attendance service
+				self.navigationController?.popViewController(animated: true)
 			}
 			alert.addAction(okAction)
 			
@@ -696,6 +690,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		// Do any additional setup after loading the view, typically from a nib.
+		view.backgroundColor = .white
 	}
 	
 	override func didReceiveMemoryWarning() {
@@ -1194,27 +1189,11 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 			
 		}
 		task.resume()
-		
 	}
 	
 	
-	@objc func buttonAction(_ sender:UIButton!)
-	{
-		print("Button tapped")
-		
-		//        let storyBoard = UIStoryboard(name: "Main", bundle:nil)
-		//                                                           let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-		//                                                           self.navigationController?.pushViewController(UITabBarController, animated:false)
-		//
-		
-		
-		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-		
-		let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-		self.present(UITabBarController, animated:true, completion:nil)
-		
-		
-		//Updatedetails()
+	@objc func buttonAction(_ sender:UIButton!) {
+		self.navigationController?.popViewController(animated: true)
 	}
 	
 }
