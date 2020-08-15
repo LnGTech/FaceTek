@@ -638,7 +638,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 				nameLabels[i].foregroundColor = UIColor.blue.cgColor
 				
 				//stop camera feed
-				processingImage = false
+				//processingImage = false
 				
 				//show alert
 				faceMathchedAlert()
