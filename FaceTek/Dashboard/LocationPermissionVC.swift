@@ -10,8 +10,15 @@ import UIKit
 
 class LocationPermissionVC: UIViewController {
 
+    @IBOutlet weak var Allowbtnn: UIButton!
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        Allowbtnn.layer.cornerRadius = 10
+        Allowbtnn.clipsToBounds = true
 
         // Do any additional setup after loading the view.
     }
