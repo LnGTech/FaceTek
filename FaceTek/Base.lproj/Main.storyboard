@@ -4491,7 +4491,7 @@
                                         </constraints>
                                     </view>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="w4A-2d-KHr">
-                                        <rect key="frame" x="0.0" y="170" width="260" height="328"/>
+                                        <rect key="frame" x="0.0" y="170" width="260" height="308"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="260" id="YSg-sE-eK0"/>
@@ -4502,10 +4502,10 @@
                                         </connections>
                                     </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="SH0-Yq-VyW">
-                                        <rect key="frame" x="0.0" y="498" width="260" height="50"/>
+                                        <rect key="frame" x="0.0" y="478" width="260" height="70"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="E-201 , 2nd floor , Sunrise Chambers , 22 , Ulsoor Road." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="NNE-DM-vc7">
-                                                <rect key="frame" x="8" y="0.0" width="187" height="50"/>
+                                                <rect key="frame" x="8" y="0.0" width="187" height="44"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="187" id="6QM-P5-9tG"/>
@@ -4513,14 +4513,26 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" © Powered by LNG Technologies Pvt Ltd" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a4u-no-i1I">
+                                                <rect key="frame" x="8" y="42" width="244" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="BTb-vC-77K"/>
+                                                </constraints>
+                                                <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="0Vi-Nz-WoC"/>
+                                            <constraint firstAttribute="height" constant="70" id="0Vi-Nz-WoC"/>
                                             <constraint firstAttribute="width" constant="260" id="53V-kP-gzk"/>
-                                            <constraint firstAttribute="bottom" secondItem="NNE-DM-vc7" secondAttribute="bottom" id="88W-Ld-dlO"/>
+                                            <constraint firstAttribute="bottom" secondItem="a4u-no-i1I" secondAttribute="bottom" constant="8" id="850-67-Hns"/>
+                                            <constraint firstAttribute="bottom" secondItem="NNE-DM-vc7" secondAttribute="bottom" constant="26" id="88W-Ld-dlO"/>
+                                            <constraint firstItem="a4u-no-i1I" firstAttribute="leading" secondItem="SH0-Yq-VyW" secondAttribute="leading" constant="8" id="FkI-UQ-n1x"/>
                                             <constraint firstItem="NNE-DM-vc7" firstAttribute="top" secondItem="SH0-Yq-VyW" secondAttribute="top" id="H2Z-rT-3M7"/>
                                             <constraint firstItem="NNE-DM-vc7" firstAttribute="leading" secondItem="SH0-Yq-VyW" secondAttribute="leading" constant="8" id="h6U-Wz-7QK"/>
+                                            <constraint firstAttribute="trailing" secondItem="a4u-no-i1I" secondAttribute="trailing" constant="8" id="xp5-rH-ck4"/>
                                         </constraints>
                                     </view>
                                 </subviews>
