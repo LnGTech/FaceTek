@@ -25,10 +25,15 @@ class LocationPermissionVC: UIViewController {
     
     @IBAction func AllowBtn(_ sender: Any) {
         
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//                   let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationVC
+//                   self.present(RegistrationVC, animated:true, completion:nil)
+        
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                   
-                   let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationVC
-                   self.present(RegistrationVC, animated:true, completion:nil)
+        let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationVC
+        self.navigationController?.pushViewController(RegistrationVC, animated: true)
+        
     }
     
     /*

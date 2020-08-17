@@ -231,15 +231,16 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
                 
              case CLAuthorizationStatus.denied:
                 print("deined")
-    //             let vc = UIStoryboard.init(name: "Main", bundle: Bundle.main).instantiateViewController(withIdentifier: "secondVCViewController") as? secondVCViewController
-    //            self.navigationController?.pushViewController(vc!, animated: true)
-    //
-    //
+               
                 
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                           
-        let LocationPermissionVC = storyBoard.instantiateViewController(withIdentifier: "LocationPermissionVC") as! LocationPermissionVC
-                                      self.present(LocationPermissionVC, animated:true, completion:nil)
+                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let LocationPermissionVC = storyBoard.instantiateViewController(withIdentifier: "LocationPermissionVC") as! LocationPermissionVC
+                self.navigationController?.pushViewController(LocationPermissionVC, animated: true)
+                
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//        let LocationPermissionVC = storyBoard.instantiateViewController(withIdentifier: "LocationPermissionVC") as! LocationPermissionVC
+//                                      self.present(LocationPermissionVC, animated:true, completion:nil)
                        
              case CLAuthorizationStatus.notDetermined:
                 print("not denied")

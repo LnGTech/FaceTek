@@ -782,16 +782,10 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		CancelBtnButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 		
-		
-		
-		
 		CancelBtnButton.setTitleColor(UIColor.white, for: .normal)
 		
 		// Set button action
 		CancelBtnButton.addTarget(self, action: #selector(self.CancelLeaveBtn(_:)), for: .touchUpInside)
-		
-		
-		
 		
 		
 		customView.isHidden = false

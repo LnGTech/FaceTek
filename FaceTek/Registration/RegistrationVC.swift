@@ -169,8 +169,10 @@ class RegistrationVC: UIViewController,UITextFieldDelegate {
 //        let def = UserDefaults.standard
 //        def.set(true, forKey: "empPresistedFaceId") // save true flag to UserDefaults
 //        def.synchronize()
-//        
+//
+        
         self.navigationController?.pushViewController(InputOTPVC, animated:true)
+        
 
     }
     
