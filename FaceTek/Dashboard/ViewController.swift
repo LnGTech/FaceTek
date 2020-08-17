@@ -231,8 +231,6 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
                 
              case CLAuthorizationStatus.denied:
                 print("deined")
-               
-                
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let LocationPermissionVC = storyBoard.instantiateViewController(withIdentifier: "LocationPermissionVC") as! LocationPermissionVC
                 self.navigationController?.pushViewController(LocationPermissionVC, animated: true)
