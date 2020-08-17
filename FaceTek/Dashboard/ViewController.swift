@@ -59,9 +59,11 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
         BackView.isHidden = false
         print("Praise Ths lord, ------")
         
-        self.button = HamburgerButton(frame: CGRect(x: 0, y: 12, width: 45, height: 45))
+		//Hamburger button
+        self.button = HamburgerButton(frame: CGRect(x: 0, y: 30, width: 45, height: 45))
         self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
         self.view.addSubview(button)
+		
         NavigationMenuTbl.register(UINib(nibName: "NavigationMenucell", bundle: nil), forCellReuseIdentifier: "NavigationMenucell")
 
         LeavemanagementView.layer.borderWidth = 1
@@ -90,42 +92,38 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
     }
     //Menu code
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-        isMenuVisible = false;
-        self.button.showsMenu = !self.button.showsMenu
-
-        self.toggleComparision()
+//        self.view.endEditing(true)
+//        isMenuVisible = false;
+//        self.button.showsMenu = !self.button.showsMenu
+//        self.toggleComparision()
     }
+	
+	@IBAction func closeMenu(_ sender: Any) {
+		toggle(sender as AnyObject)
+	}
     
     func toggleComparision()
     {
         if (isMenuVisible)
         {
-            
-            UIView.transition(with: menu, duration: 0.1, options: .beginFromCurrentState, animations: {
-                self.menu.frame = CGRect(x: 0, y: 85, width: 300, height: 800
-                )
+            UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+				var frame = self.menu.frame
+				frame.origin.x = 0
+                self.menu.frame = frame
                 self.isMenuVisible = false;
                 self.menu.isHidden = false
-                
-                
             })
-        }
-        else
-        {
-            
-            UIView.animate(withDuration: 0.6,
-                           delay: 0.1,
-                           options: UIView.AnimationOptions.beginFromCurrentState,
-                           animations: { () -> Void in
-                            self.menu.frame = CGRect(x: -self.view.frame.size.width, y: 70, width: 300, height: 700)
-                            //self.menu.isHidden = true
-            }, completion: { (finished) -> Void in
-                self.isMenuVisible = true;
-                self.menu.isHidden = true
-            })
-            
-            
+        } else {
+			UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+				var frame = self.menu.frame
+				frame.origin.x = -self.view.frame.size.width
+				self.menu.frame = frame
+			}) { (finished) in
+				if finished {
+					self.isMenuVisible = true
+					self.menu.isHidden = true
+				}
+			}
         }
     }
     
