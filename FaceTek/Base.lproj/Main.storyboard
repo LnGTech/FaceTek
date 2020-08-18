@@ -4259,8 +4259,8 @@
                                 <viewLayoutGuide key="contentLayoutGuide" id="spY-HH-eR8"/>
                                 <viewLayoutGuide key="frameLayoutGuide" id="LCt-ia-dnE"/>
                             </scrollView>
-                            <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="BzZ-fY-g4c">
-                                <rect key="frame" x="-500" y="70" width="375" height="548"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BzZ-fY-g4c">
+                                <rect key="frame" x="0.0" y="70" width="375" height="548"/>
                                 <subviews>
                                     <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a7T-xt-GeB">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="548"/>
