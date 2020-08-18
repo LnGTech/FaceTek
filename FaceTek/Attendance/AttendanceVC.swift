@@ -108,10 +108,9 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		menu.layer.shadowPath = shadowPath.cgPath
 		
 		MovementoutDrpTbl.isHidden = true
-		ContactUsView.isHidden = true
+		//ContactUsView.isHidden = true
 		isMenuVisible = true
 		menu.isHidden = true
-		ContactUsView.isHidden = true
 		AttendanceNavigationtbl.register(UINib(nibName: "LeaveNavigationcell", bundle: nil), forCellReuseIdentifier: "LeaveNavigationcell")
 		
 		//programatical Tableview code

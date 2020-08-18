@@ -140,9 +140,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         brNamestr = defaults.string(forKey: "brName") ?? ""
                print("brNamestr-----",brNamestr)
                CompanyNameLbl.text = brNamestr
-        self.button = HamburgerButton(frame: CGRect(x: 5, y: 20, width: 45, height: 45))
+        self.button = HamburgerButton(frame: CGRect(x: 0, y: 30, width: 45, height: 45))
         self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
-        
         self.view.addSubview(button)
         
         FromView.layer.borderWidth = 1
