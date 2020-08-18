@@ -89,6 +89,12 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        //Status Bar color change
+        let statusBar =  UIView()
+        statusBar.frame = UIApplication.shared.statusBarFrame
+        //statusBar.backgroundColor = UIColor.red
+        statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
+        UIApplication.shared.keyWindow?.addSubview(statusBar)
 		
 		customActivityIndicatory(self.view, startAnimate: false)
 		EmergencyTimeoutview.isHidden = true
@@ -139,7 +145,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		brNamestr = defaults.string(forKey: "brName") ?? ""
 		print("brNamestr-----",brNamestr)
 		CompanyNameLbl.text = brNamestr
-		self.button = HamburgerButton(frame: CGRect(x: 5, y: 20, width: 45, height: 45))
+		self.button = HamburgerButton(frame: CGRect(x: 5, y: 30, width: 45, height: 45))
 		self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
 		
 		self.view.addSubview(button)
@@ -150,55 +156,51 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	}
 	
 	override var preferredStatusBarStyle : UIStatusBarStyle  {
-		return .lightContent
-	}
-	
-	@objc func toggle(_ sender: AnyObject!) {
-		
-		self.toggleComparision()
-		menu.isHidden = false
-		
-		self.button.showsMenu = !self.button.showsMenu
-	}
-	//Menu code
-	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		self.view.endEditing(true)
-		isMenuVisible = false;
-		self.button.showsMenu = !self.button.showsMenu
-		
-		self.toggleComparision()
-	}
-	
-	func toggleComparision()
-	{
-		if (isMenuVisible)
-		{
-			
-			UIView.transition(with: menu, duration: 0.6, options: .beginFromCurrentState, animations: {
-                self.menu.frame = CGRect(x: 0, y: 70.5, width: 300, height: 810)
-				self.isMenuVisible = false;
-				self.menu.isHidden = false
-				self.tabBarController?.tabBar.isHidden = true
-				
-				
-			})
-		}
-		else
-		{
-			
-			UIView.animate(withDuration: 0.6,
-						   delay: 0.1,
-						   options: UIView.AnimationOptions.beginFromCurrentState,
-						   animations: { () -> Void in
-							self.menu.frame = CGRect(x: -self.view.frame.size.width, y: 70, width: 300, height: 700)
-							//self.menu.isHidden = true
-			}, completion: { (finished) -> Void in
-				self.isMenuVisible = true;
-				self.menu.isHidden = true
-				self.tabBarController?.tabBar.isHidden = false
-			})
-		}
-	}
+            return .lightContent
+        }
+        
+        @objc func toggle(_ sender: AnyObject!) {
+            self.toggleComparision()
+            menu.isHidden = false
+            self.button.showsMenu = !self.button.showsMenu
+        }
+        //Menu code
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        self.view.endEditing(true)
+    //        isMenuVisible = false;
+    //        self.button.showsMenu = !self.button.showsMenu
+    //        self.toggleComparision()
+        }
+        
+        @IBAction func closeMenu(_ sender: Any) {
+            toggle(sender as AnyObject)
+        }
+        
+        func toggleComparision()
+        {
+            if (isMenuVisible)
+            {
+                UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+                    var frame = self.menu.frame
+                    frame.origin.x = 0
+                    self.menu.frame = frame
+                    self.isMenuVisible = false;
+                    self.menu.isHidden = false
+                })
+            } else {
+                UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+                    var frame = self.menu.frame
+                    frame.origin.x = -self.view.frame.size.width
+                    self.menu.frame = frame
+                }) { (finished) in
+                    if finished {
+                        self.isMenuVisible = true
+                        self.menu.isHidden = true
+                    }
+                }
+            }
+        }
+        
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return self.DashboardArray.count

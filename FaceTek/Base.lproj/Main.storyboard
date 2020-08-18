@@ -1041,9 +1041,12 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KPH-5q-qLk">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="70"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Attendance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPJ-Sr-xZO">
-                                        <rect key="frame" x="60" y="30" width="122" height="35"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendance" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tPJ-Sr-xZO">
+                                        <rect key="frame" x="60" y="20" width="122" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="OU7-Dz-me3"/>
+                                            <constraint firstAttribute="width" constant="122" id="aOW-zH-jnt"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -1051,6 +1054,8 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.1215686275" green="0.3921568627" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstItem="tPJ-Sr-xZO" firstAttribute="leading" secondItem="KPH-5q-qLk" secondAttribute="leading" constant="60" id="KPx-x3-ZdD"/>
+                                    <constraint firstItem="tPJ-Sr-xZO" firstAttribute="top" secondItem="KPH-5q-qLk" secondAttribute="top" constant="20" id="WRd-ya-bQ2"/>
                                     <constraint firstAttribute="height" constant="70" id="XPz-Ux-TV2"/>
                                 </constraints>
                             </view>
@@ -1182,6 +1187,7 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ywh-Zn-nI2" secondAttribute="trailing" constant="116" id="1rd-IF-DKq"/>
                                             <constraint firstItem="ywh-Zn-nI2" firstAttribute="leading" secondItem="wUI-5x-bBH" secondAttribute="leading" id="M0V-Rs-Zxq"/>
@@ -1190,6 +1196,9 @@
                                             <constraint firstAttribute="trailing" secondItem="fGg-9K-TWY" secondAttribute="trailing" constant="116" id="hio-5L-TKl"/>
                                             <constraint firstAttribute="bottom" secondItem="ywh-Zn-nI2" secondAttribute="bottom" constant="37" id="yoK-JU-QHG"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="ENl-lG-9Xb" appends="YES" id="t4q-Vz-kdM"/>
+                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DzA-ZC-sc1">
                                         <rect key="frame" x="0.0" y="0.0" width="259" height="175"/>
@@ -1388,7 +1397,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gzj-Ex-Bgz"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Attendance" id="RqU-OY-fnO"/>
+                    <tabBarItem key="tabBarItem" title="Attendance" image="attendence_icon.png" id="RqU-OY-fnO"/>
                     <navigationItem key="navigationItem" id="78n-i2-NhB"/>
                     <connections>
                         <outlet property="AttendanceNavigationtbl" destination="2y9-EJ-HK9" id="N7c-eh-grQ"/>
@@ -1406,6 +1415,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fqo-Gj-VYt" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ENl-lG-9Xb">
+                    <connections>
+                        <action selector="closeMenu:" destination="qEO-oC-5QZ" id="Ycm-rP-CeS"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4984.8000000000002" y="60.719640179910051"/>
         </scene>
@@ -4757,6 +4771,7 @@
         <image name="LeavedownArrowimg.png" width="29" height="29"/>
         <image name="Leaves1.png" width="200" height="200"/>
         <image name="attendence-right.png" width="72" height="66.480003356933594"/>
+        <image name="attendence_icon.png" width="29" height="29"/>
         <image name="attendence_new.png" width="120" height="120"/>
         <image name="back-icon.png" width="128" height="128"/>
         <image name="backicon.png" width="512" height="512"/>

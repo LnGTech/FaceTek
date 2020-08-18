@@ -56,10 +56,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     let TodatePicker = UIDatePicker()
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let statusBar =  UIView()
+        //Status Bar color change
+       let statusBar =  UIView()
         statusBar.frame = UIApplication.shared.statusBarFrame
-        statusBar.backgroundColor = UIColor.red
+        //statusBar.backgroundColor = UIColor.red
+        statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
         UIApplication.shared.keyWindow?.addSubview(statusBar)
         
                 NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
