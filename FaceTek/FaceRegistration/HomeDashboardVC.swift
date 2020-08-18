@@ -10,6 +10,10 @@ import UIKit
 
 class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 	
+	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var stackView: UIStackView!
+	
+	@IBOutlet weak var hamburgerView: UIView!
 	@IBOutlet weak var CompanyNameLbl: UILabel!
 	@IBOutlet weak var UserNameLbl: UILabel!
 	@IBOutlet weak var MobilenumberLbl: UILabel!
@@ -105,6 +109,10 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	var HomeDashboardNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	
 	
+	override func viewDidLayoutSubviews() {
+		super.viewDidLayoutSubviews()
+		scrollView.contentSize = CGSize(width: stackView.frame.width, height: stackView.frame.height)
+	}
 	
 	
 	override func viewDidLoad() {
@@ -249,9 +257,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		brNamestr = defaults.string(forKey: "brName") ?? ""
 		print("brNamestr-----",brNamestr)
 		CompanyNameLbl.text = brNamestr
-		self.button = HamburgerButton(frame: CGRect(x: 5, y: 20, width: 45, height: 45))
+		self.button = HamburgerButton(frame: CGRect(x: 0, y: 0, width: 46, height: 46))
 		self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
-		self.view.addSubview(button)
+		self.hamburgerView.addSubview(button)
 		EmployeeDashboardDetails()
 		
 		//image circle code
