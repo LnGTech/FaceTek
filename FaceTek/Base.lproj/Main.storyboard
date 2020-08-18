@@ -4550,6 +4550,7 @@
                                             </label>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <gestureRecognizers/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="bSN-Kj-DrW" secondAttribute="bottom" constant="-3" id="1Ro-OG-48k"/>
                                             <constraint firstItem="nyO-u0-ToZ" firstAttribute="leading" secondItem="Bv5-fN-6ll" secondAttribute="leading" id="2L5-kh-g9g"/>
@@ -4558,6 +4559,9 @@
                                             <constraint firstAttribute="trailing" secondItem="nyO-u0-ToZ" secondAttribute="trailing" constant="115" id="od8-tn-XW1"/>
                                             <constraint firstItem="bSN-Kj-DrW" firstAttribute="leading" secondItem="Bv5-fN-6ll" secondAttribute="leading" id="yKz-zk-Nfw"/>
                                         </constraints>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="xzO-q0-Wyo" appends="YES" id="RFy-9m-0wM"/>
+                                        </connections>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pBz-py-srm">
                                         <rect key="frame" x="0.0" y="1" width="260" height="169"/>
@@ -4699,6 +4703,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="j7D-5m-sj2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="xzO-q0-Wyo">
+                    <connections>
+                        <action selector="closeMenu:" destination="ccR-4f-cW7" id="Li5-Lz-dpJ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="4452" y="672"/>
         </scene>

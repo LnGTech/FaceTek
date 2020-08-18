@@ -57,6 +57,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let statusBar =  UIView()
+        statusBar.frame = UIApplication.shared.statusBarFrame
+        statusBar.backgroundColor = UIColor.red
+        UIApplication.shared.keyWindow?.addSubview(statusBar)
+        
                 NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
                 NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 
@@ -201,56 +206,54 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         }
     }
     
+    
+    
     override var preferredStatusBarStyle : UIStatusBarStyle  {
-        return .lightContent
-    }
-    
-    @objc func toggle(_ sender: AnyObject!) {
-        self.toggleComparision()
-        menu.isHidden = false
-        self.button.showsMenu = !self.button.showsMenu
-    }
-    //Menu code
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        self.view.endEditing(true)
-        isMenuVisible = false;
-        self.button.showsMenu = !self.button.showsMenu
-
-        self.toggleComparision()
-    }
-    
-    func toggleComparision()
-    {
-        if (isMenuVisible)
-        {
-            
-            UIView.transition(with: menu, duration: 0.6, options: .beginFromCurrentState, animations: {
-                self.menu.frame = CGRect(x: 0, y: 70.5, width: 300, height: 810)
-                self.isMenuVisible = false;
-                self.menu.isHidden = false
-                self.tabBarController?.tabBar.isHidden = true
-
-            })
+            return .lightContent
         }
-        else
-        {
-            
-    UIView.animate(withDuration: 0.6,
-                           delay: 0.1,
-                           options: UIView.AnimationOptions.beginFromCurrentState,
-                           animations: { () -> Void in
-                            self.menu.frame = CGRect(x: -self.view.frame.size.width, y: 70, width: 300, height: 700)
-                            //self.menu.isHidden = true
-            }, completion: { (finished) -> Void in
-                self.isMenuVisible = true;
-                self.menu.isHidden = true
-                self.tabBarController?.tabBar.isHidden = false
-
-            })
-            
+        
+        @objc func toggle(_ sender: AnyObject!) {
+            self.toggleComparision()
+            menu.isHidden = false
+            self.button.showsMenu = !self.button.showsMenu
         }
-    }
-    
+        //Menu code
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        self.view.endEditing(true)
+    //        isMenuVisible = false;
+    //        self.button.showsMenu = !self.button.showsMenu
+    //        self.toggleComparision()
+        }
+        
+        @IBAction func closeMenu(_ sender: Any) {
+            toggle(sender as AnyObject)
+        }
+        
+        func toggleComparision()
+        {
+            if (isMenuVisible)
+            {
+                UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+                    var frame = self.menu.frame
+                    frame.origin.x = 0
+                    self.menu.frame = frame
+                    self.isMenuVisible = false;
+                    self.menu.isHidden = false
+                })
+            } else {
+                UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+                    var frame = self.menu.frame
+                    frame.origin.x = -self.view.frame.size.width
+                    self.menu.frame = frame
+                }) { (finished) in
+                    if finished {
+                        self.isMenuVisible = true
+                        self.menu.isHidden = true
+                    }
+                }
+            }
+        }
+        
     
     @IBAction func FromBtnclk(_ sender: UIButton) {
         FromDatesetDatePicker()

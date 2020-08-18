@@ -15,16 +15,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     var recognitionViewController: RecognitionViewController?
 
-//abc.....
-    //fdgfgdgdggdgdgfg
-	
-	//Manjunath
-    
-    //suresh Bandaru
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-		var res: Int32 = FSDK_ActivateLibrary(("b7m7wdOIT2vkmcvu12eJLBfk8/AEh1/yvKQcBlJGC/Xo+xLXTMCWNgrQyFymEncTzrJpDI9r+D4Usr53ZtI3fujgnIVbNbZsQ+1n3U+72C1NV0HvWH+TO1PA4IbhCnLu9JgkHidDVDgauLGtzWqjS+jls7LMSNNquMKuCn7hw8k=" as NSString).utf8String)
+		
+        //Status bar
+        let statusBar =  UIView()
+        statusBar.frame = UIApplication.shared.statusBarFrame
+        statusBar.backgroundColor = UIColor.red
+        UIApplication.shared.keyWindow?.addSubview(statusBar)
+        
+        var res: Int32 = FSDK_ActivateLibrary(("b7m7wdOIT2vkmcvu12eJLBfk8/AEh1/yvKQcBlJGC/Xo+xLXTMCWNgrQyFymEncTzrJpDI9r+D4Usr53ZtI3fujgnIVbNbZsQ+1n3U+72C1NV0HvWH+TO1PA4IbhCnLu9JgkHidDVDgauLGtzWqjS+jls7LMSNNquMKuCn7hw8k=" as NSString).utf8String)
 		
 		NSLog("activation result: %d", res);
 		if (res != FSDKE_OK) {
@@ -63,18 +64,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			print("nsuserdefault----",name)
 			if (name == "Coding Explorer" && is_authenticated == nil) {
 				//new user
-//				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//                let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
-//                //self.present(tabBarController, animated:true, completion:nil)
-//                self.window?.rootViewController = tabBarController
-//                self.window?.makeKeyAndVisible()
-                
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController")
-                let navVC = UINavigationController.init(rootViewController: ViewController)
-				navVC.navigationBar.isHidden = true
-                self.window?.rootViewController = navVC
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
+                //self.present(tabBarController, animated:true, completion:nil)
+                self.window?.rootViewController = tabBarController
                 self.window?.makeKeyAndVisible()
+                
+//                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//                let ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController")
+//                let navVC = UINavigationController.init(rootViewController: ViewController)
+//				navVC.navigationBar.isHidden = true
+//                self.window?.rootViewController = navVC
+//                self.window?.makeKeyAndVisible()
 //
                 
 			} else if (name == "Coding Explorer" && is_authenticated != nil) {
