@@ -633,9 +633,9 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 						UserDefaults.standard.synchronize()
 						
 						let loginvc = LogINVC.init(screen: UIScreen.main)
-						self.navigationController?.pushViewController(loginvc, animated: true)
-						//loginvc.modalPresentationStyle = .fullScreen
-						//self.present(loginvc, animated: true, completion: nil)
+						//self.navigationController?.pushViewController(loginvc, animated: true)
+						loginvc.modalPresentationStyle = .fullScreen
+						self.present(loginvc, animated: true, completion: nil)
 						
 					}
 					
