@@ -65,7 +65,9 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	@IBOutlet weak var MobilenumberLbl: UILabel!
 	@IBOutlet weak var menu: UIView!
 	@IBOutlet weak var ContactUsView: UIView!
-	var isMenuVisible:Bool!
+    
+    @IBOutlet weak var ContactTextView: UITextView!
+    var isMenuVisible:Bool!
 	@IBOutlet weak var AttendanceNavigationtbl: UITableView!
 	// var AttendanceNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	
@@ -115,6 +117,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		MovementoutDrpTbl.isHidden = true
 		//ContactUsView.isHidden = true
+        ContactTextView.isHidden = true
 		isMenuVisible = true
 		menu.isHidden = true
 		AttendanceNavigationtbl.register(UINib(nibName: "LeaveNavigationcell", bundle: nil), forCellReuseIdentifier: "LeaveNavigationcell")
@@ -333,10 +336,10 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 			}
 			else if indexPath.item == 2 {
 				
-				if ContactUsView.isHidden {
-					ContactUsView.isHidden = false
+				if ContactTextView.isHidden {
+					ContactTextView.isHidden = false
 				} else {
-					ContactUsView.isHidden = true
+					ContactTextView.isHidden = true
 				}
 			}
 		}

@@ -117,6 +117,12 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        //Status Bar color
+        let statusBar =  UIView()
+               statusBar.frame = UIApplication.shared.statusBarFrame
+               //statusBar.backgroundColor = UIColor.red
+               statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
+               UIApplication.shared.keyWindow?.addSubview(statusBar)
 		
 		UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial", size:14)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
 		
@@ -232,12 +238,12 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		isMenuVisible = true
 		menu.isHidden = true
-		ContactUsView.isHidden = true
+//		ContactUsView.isHidden = true
 		ContactusText.isHidden = true
-		
+//
 		OfficeOutLbl.layer.cornerRadius = 5
 		OfficeOutLbl.layer.borderWidth = 2
-		OfficeOutLbl.layer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+		//OfficeOutLbl.layer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 		
 		
 		
@@ -441,65 +447,50 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	}
 	
 	override var preferredStatusBarStyle : UIStatusBarStyle  {
-		return .lightContent
-	}
-	
-	
-	
-	
-	
-	@objc func toggle(_ sender: AnyObject!) {
-		
-		self.toggleComparision()
-		menu.isHidden = false
-		
-		self.button.showsMenu = !self.button.showsMenu
-	}
-	//Menu code
-	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-		self.view.endEditing(true)
-		isMenuVisible = false;
-		self.button.showsMenu = !self.button.showsMenu
-		
-		self.toggleComparision()
-	}
-	
-	func toggleComparision()
-	{
-		if (isMenuVisible)
-		{
-			
-			UIView.transition(with: menu, duration: 0.6, options: .beginFromCurrentState, animations: {
-                self.menu.frame = CGRect(x: 0, y: 70.5, width: 300, height: 810)
-				self.isMenuVisible = false;
-				self.menu.isHidden = false
-				
-				self.tabBarController?.tabBar.isHidden = true
-				
-				
-			})
-		}
-		else
-		{
-			
-			UIView.animate(withDuration: 0.6,
-						   delay: 0.1,
-						   options: UIView.AnimationOptions.beginFromCurrentState,
-						   animations: { () -> Void in
-							self.menu.frame = CGRect(x: -self.view.frame.size.width, y: 70, width: 300, height: 700)
-							self.menu.isHidden = true
-			}, completion: { (finished) -> Void in
-				self.isMenuVisible = true;
-				self.menu.isHidden = true
-				
-				self.tabBarController?.tabBar.isHidden = false
-				
-				
-			})
-			
-			
-		}
-	}
+            return .lightContent
+        }
+        
+        @objc func toggle(_ sender: AnyObject!) {
+            self.toggleComparision()
+            menu.isHidden = false
+            self.button.showsMenu = !self.button.showsMenu
+        }
+        //Menu code
+        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+    //        self.view.endEditing(true)
+    //        isMenuVisible = false;
+    //        self.button.showsMenu = !self.button.showsMenu
+    //        self.toggleComparision()
+        }
+        
+        @IBAction func closeMenu(_ sender: Any) {
+            toggle(sender as AnyObject)
+        }
+        
+        func toggleComparision()
+        {
+            if (isMenuVisible)
+            {
+                UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+                    var frame = self.menu.frame
+                    frame.origin.x = 0
+                    self.menu.frame = frame
+                    self.isMenuVisible = false;
+                    self.menu.isHidden = false
+                })
+            } else {
+                UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+                    var frame = self.menu.frame
+                    frame.origin.x = -self.view.frame.size.width
+                    self.menu.frame = frame
+                }) { (finished) in
+                    if finished {
+                        self.isMenuVisible = true
+                        self.menu.isHidden = true
+                    }
+                }
+            }
+        }
 	
 	
 	func EmployeeDashboardDetails()
@@ -664,8 +655,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 					if (self.empAttndInDateTime == "NA") {
 						self.OfficeInLbl.text = self.empAttndInDateTime
 						self.OfficeInLbl.layer.cornerRadius = 5
-						self.OfficeInLbl.layer.borderWidth = 2
-						self.OfficeInLbl.layer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+						self.OfficeInLbl.layer.borderWidth = 0
+						//self.OfficeInLbl.layer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 						self.OfficeInLbl.textColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 						self.OfficeInLbl.text = "Pending"
 						self.OfficeInBtn.setImage(UIImage(named: "pending.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -692,8 +683,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 					if (self.empAttndOutDateTime == "NA") {
 						self.OfficeOutLbl.text = self.empAttndOutDateTime
 						self.OfficeOutLbl.layer.cornerRadius = 5
-						self.OfficeOutLbl.layer.borderWidth = 2
-						self.OfficeOutLbl.layer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+						self.OfficeOutLbl.layer.borderWidth = 0
+						//self.OfficeOutLbl.layer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 						self.OfficeOutLbl.textColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 						self.OfficeOutLbl.text = "Pending"
 						self.OfficeOutBtn.setImage(UIImage(named: "pending.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -968,11 +959,11 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		}
 		else if indexPath.item == 2 {
 			
-			if ContactUsView.isHidden {
-				ContactUsView.isHidden = false
+			if ContactusText.isHidden {
+				//ContactUsView.isHidden = false
 				ContactusText.isHidden = false
 			} else {
-				ContactUsView.isHidden = true
+				//ContactUsView.isHidden = true
 				ContactusText.isHidden = true
 			}
 			
