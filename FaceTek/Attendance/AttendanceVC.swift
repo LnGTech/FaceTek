@@ -1153,35 +1153,35 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 						self.customView.layer.shadowPath = shadowPath.cgPath
 						self.customView.center = self.view.center
 						self.view.addSubview(self.customView)
-						self.customSubView.frame = CGRect.init(x: 37, y: 197, width: 301, height: 135)
+						self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 301, height: 135)
 						self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-						self.view.addSubview(self.customSubView)
+						self.customView.addSubview(self.customSubView)
 						//image
 						var imageView : UIImageView
-						imageView  = UIImageView(frame:CGRect(x: 135, y: 205, width: 100, height: 100));
+						imageView  = UIImageView(frame:CGRect(x: 100, y: 10, width: 100, height: 100));
 						imageView.image = UIImage(named:"conform.png")
-						self.view.addSubview(imageView)
-						let label = UILabel(frame: CGRect(x: 135, y: 300, width: 200, height: 21))
+						self.customView.addSubview(imageView)
+						let label = UILabel(frame: CGRect(x: 100, y: 100, width: 200, height: 21))
 						label.text = "Thank you!"
 						label.textColor = UIColor.white
 						label.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
-						self.view.addSubview(label)
-						let label1 = UILabel(frame: CGRect(x: 95, y: 350, width: 400, height: 21))
+						self.customView.addSubview(label)
+						let label1 = UILabel(frame: CGRect(x: 70, y: 150, width: 400, height: 21))
 						label1.text = "Movement IN updated"
 						label1.textColor = UIColor.darkGray
 						label1.shadowColor = UIColor.gray
 						label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-						self.view.addSubview(label1)
+						self.customView.addSubview(label1)
 						
-						let label2 = UILabel(frame: CGRect(x: 135, y: 370, width: 400, height: 21))
+						let label2 = UILabel(frame: CGRect(x: 100, y: 170, width: 400, height: 21))
 						label2.text = "successfully "
 						label2.textColor = UIColor.darkGray
 						label2.shadowColor = UIColor.gray
 						label2.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
-						self.view.addSubview(label2)
+						self.customView.addSubview(label2)
 						let myButton = UIButton(type: .system)
 						// Position Button
-						myButton.frame = CGRect(x: 135, y: 405, width: 100, height: 50)
+						myButton.frame = CGRect(x: 100, y: 200, width: 100, height: 50)
 						// Set text on button
 						myButton.setTitle("OK", for: .normal)
 						myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
@@ -1189,7 +1189,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 						
 						// Set button action
 						myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
-						self.view.addSubview(myButton)
+						self.customView.addSubview(myButton)
 						self.customView.isHidden = false
 						self.customSubView.isHidden = false
 						self.VisitTextField.isHidden = false

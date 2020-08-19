@@ -883,7 +883,7 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 						self.customView.backgroundColor = UIColor.white     //give color to the view
 						self.customView.center = self.view.center
 						self.view.addSubview(self.customView)
-						self.customSubView.frame = CGRect.init(x: 32, y: 203, width: 311, height: 140)
+						self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 311, height: 140)
 						//customSubView.backgroundColor = UIColor.yellow     //give color to the view
 						self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 						let shadowPath = UIBezierPath(rect: self.customView.bounds)
@@ -892,14 +892,14 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 						self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
 						self.customView.layer.shadowOpacity = 0.8
 						self.customView.layer.shadowPath = shadowPath.cgPath
-						self.view.addSubview(self.customSubView)
+						self.customView.addSubview(self.customSubView)
 						//image
 						var imageView : UIImageView
-						imageView  = UIImageView(frame:CGRect(x: 140, y: 210, width: 100, height: 100));
+						imageView  = UIImageView(frame:CGRect(x: 100, y: 10, width: 100, height: 100));
 						imageView.image = UIImage(named:"conform.png")
-						self.view.addSubview(imageView)
+						self.customView.addSubview(imageView)
 						//lable
-						let label = UILabel(frame: CGRect(x: 135, y: 300, width: 200, height: 21))
+						let label = UILabel(frame: CGRect(x: 100, y: 100, width: 200, height: 21))
 						//label.center = CGPoint(x: 160, y: 285)
 						//label.textAlignment = .center
 						label.text = "Thank you!"
@@ -907,8 +907,8 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 						label.font = UIFont.boldSystemFont(ofSize: 22.0)
 						label.textColor = UIColor.white
 						
-						self.view.addSubview(label)
-						let label1 = UILabel(frame: CGRect(x: 60, y: 360, width: 400, height: 21))
+						self.customView.addSubview(label)
+						let label1 = UILabel(frame: CGRect(x: 30, y: 150, width: 400, height: 21))
 						//label.center = CGPoint(x: 160, y: 285)
 						//label.textAlignment = .center
 						label1.text = "You have successfully Registered"
@@ -916,10 +916,10 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 						label1.textColor = UIColor.darkGray
 						label1.shadowColor = UIColor.gray
 						label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-						self.view.addSubview(label1)
+						self.customView.addSubview(label1)
 						let myButton = UIButton(type: .system)
 						// Position Button
-						myButton.frame = CGRect(x: 135, y: 400, width: 100, height: 50)
+						myButton.frame = CGRect(x: 100, y: 180, width: 100, height: 50)
 						// Set text on button
 						myButton.setTitle("OK", for: .normal)
 						myButton.setTitle("Pressed + Hold", for: .highlighted)
@@ -927,7 +927,7 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 						myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 						// Set button action
 						myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
-						self.view.addSubview(myButton)
+						self.customView.addSubview(myButton)
 					}
 				}
 			}

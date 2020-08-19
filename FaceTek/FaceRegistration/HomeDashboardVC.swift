@@ -727,28 +727,28 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		
 		
-		label = UILabel(frame: CGRect(x: 60, y: 220, width: 350, height: 21))
+		label = UILabel(frame: CGRect(x: 50, y: 30, width: 350, height: 21))
 		//label.center = CGPoint(x: 160, y: 285)
 		//label.textAlignment = .center
 		label.text = "Do you want to cancel your leave?"
 		
 		label.textColor = UIColor.white
 		label.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-		self.view.addSubview(label)
+		self.customView.addSubview(label)
 		
 		
 		
 		//var imageView : UIImageView
-		imageview  = UIImageView(frame:CGRect(x: 150, y: 260, width: 60, height: 60));
+		imageview  = UIImageView(frame:CGRect(x: 150, y: 60, width: 60, height: 60));
 		imageview.image = UIImage(named:"selectmode.png")
-		self.view.addSubview(imageview)
+		self.customView.addSubview(imageview)
 		
 		
 		
 		ProceedButton = UIButton(type: .system)
 		
 		// Position Button
-		ProceedButton.frame = CGRect(x: 50, y: 340, width: 275, height: 55)
+        ProceedButton.frame = CGRect(x: 37.5, y: 135, width: 275, height: 55)
 		// Set text on button
 		ProceedButton.setTitle("PROCEED", for: .normal)
 		//myButton.setTitle("Pressed + Hold", for: .highlighted)
@@ -766,14 +766,14 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		// Set button action
 		ProceedButton.addTarget(self, action: #selector(self.LeaveProceedBtn(_:)), for: .touchUpInside)
 		
-		self.view.addSubview(ProceedButton)
+		self.customView.addSubview(ProceedButton)
 		
         
 
 		CancelBtnButton = UIButton(type: .system)
 		
 		// Position Button
-		CancelBtnButton.frame = CGRect(x: 50, y: 410, width: 275, height: 55)
+        CancelBtnButton.frame = CGRect(x: 37.5, y: 200, width: 275, height: 55)
 		// Set text on button
 		CancelBtnButton.setTitle("CANCEL", for: .normal)
 		//myButton.setTitle("Pressed + Hold", for: .highlighted)
@@ -794,7 +794,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		label.isHidden = false
 		
 		
-		self.view.addSubview(CancelBtnButton)
+		self.customView.addSubview(CancelBtnButton)
 	}
 	
 	@objc func LeaveProceedBtn(_ sender:UIButton!)
