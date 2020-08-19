@@ -20,9 +20,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
 		
         //Status bar
+        
         let statusBar =  UIView()
         statusBar.frame = UIApplication.shared.statusBarFrame
-        statusBar.backgroundColor = UIColor.red
+        //statusBar.backgroundColor = UIColor.red
+        statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
         UIApplication.shared.keyWindow?.addSubview(statusBar)
         
         var res: Int32 = FSDK_ActivateLibrary(("b7m7wdOIT2vkmcvu12eJLBfk8/AEh1/yvKQcBlJGC/Xo+xLXTMCWNgrQyFymEncTzrJpDI9r+D4Usr53ZtI3fujgnIVbNbZsQ+1n3U+72C1NV0HvWH+TO1PA4IbhCnLu9JgkHidDVDgauLGtzWqjS+jls7LMSNNquMKuCn7hw8k=" as NSString).utf8String)

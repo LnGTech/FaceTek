@@ -119,11 +119,10 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		super.viewDidLoad()
         //Status Bar color
         let statusBar =  UIView()
-               statusBar.frame = UIApplication.shared.statusBarFrame
-               //statusBar.backgroundColor = UIColor.red
-               statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
-               UIApplication.shared.keyWindow?.addSubview(statusBar)
-		
+        statusBar.frame = UIApplication.shared.statusBarFrame
+        //statusBar.backgroundColor = UIColor.red
+        statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
+        UIApplication.shared.keyWindow?.addSubview(statusBar)
 		UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial", size:14)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
 		
 		
