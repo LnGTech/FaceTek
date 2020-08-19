@@ -94,12 +94,12 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	override func viewDidLoad() {
 		super.viewDidLoad()
         //Status Bar color change
-        let statusBar =  UIView()
-        statusBar.frame = UIApplication.shared.statusBarFrame
-        //statusBar.backgroundColor = UIColor.red
-        statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
-        UIApplication.shared.keyWindow?.addSubview(statusBar)
-		
+//        let statusBar =  UIView()
+//        statusBar.frame = UIApplication.shared.statusBarFrame
+//        //statusBar.backgroundColor = UIColor.red
+//        statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
+//        UIApplication.shared.keyWindow?.addSubview(statusBar)
+//		
 		customActivityIndicatory(self.view, startAnimate: false)
 		EmergencyTimeoutview.isHidden = true
 		menu.backgroundColor = .white
@@ -373,7 +373,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeSummary")!
 		
 		//create the session object
 		let session = URLSession.shared
@@ -541,7 +541,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeSummary")!
 		
 		//create the session object
 		let session = URLSession.shared
@@ -654,7 +654,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	func EmployeeSignOut_Checking()
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeSummary")!
 		//create the session object
 		let session = URLSession.shared
 		//now create the URLRequest object using the url object
@@ -841,7 +841,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeSummary")!
 		
 		//create the session object
 		let session = URLSession.shared

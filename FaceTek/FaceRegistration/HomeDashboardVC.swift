@@ -516,8 +516,10 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
 		
+        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeSummary")!
+
 		
 		
 		
@@ -1018,16 +1020,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		return activityIndicatorView
 	}
 	
-	
-	
-	/*
-	// MARK: - Navigation
-	
-	// In a storyboard-based application, you will often want to do a little preparation before navigation
-	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-	// Get the new view controller using segue.destination.
-	// Pass the selected object to the new view controller.
-	}
-	*/
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setNeedsStatusBarAppearanceUpdate()
+    }
 	
 }
