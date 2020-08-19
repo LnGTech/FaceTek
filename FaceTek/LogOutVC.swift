@@ -1097,53 +1097,98 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 						self.AttendanceMarkedstr = responseJSON["message"] as? NSString as! String
 						print("Sign OutAttendanceMarkedstr-------",self.AttendanceMarkedstr)
 						
-						self.customView.frame = CGRect.init(x: 0, y: 0, width: 320, height: 240)
-						self.customView.backgroundColor = UIColor.white     //give color to the view
-						self.customView.center = self.view.center
-						self.view.addSubview(self.customView)
-						self.customSubView.frame = CGRect.init(x: 27, y: 210, width: 321, height: 110)
-						self.customSubView.backgroundColor = UIColor.white
-						let shadowPath = UIBezierPath(rect: self.customView.bounds)
-						self.customView.layer.masksToBounds = false
-						self.customView.layer.shadowColor = UIColor.darkGray.cgColor
-						self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-						self.customView.layer.shadowOpacity = 0.8
-						self.customView.layer.shadowPath = shadowPath.cgPath
-						self.view.addSubview(self.customSubView)
-						//image
-						var imageView : UIImageView
-						imageView  = UIImageView(frame:CGRect(x: 145, y: 235, width: 90, height: 80));
-						imageView.image = UIImage(named:"attendence-right.png")
-						self.view.addSubview(imageView)
-						//lable
-						let label = UILabel(frame: CGRect(x: 50, y: 330, width: 400, height: 21))
-						//label.center = CGPoint(x: 160, y: 285)
-						//label.textAlignment = .center
-						label.text = "Attendance Marked Successfully"
-						label.textColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
-						label.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
-						self.view.addSubview(label)
-						let label1 = UILabel(frame: CGRect(x: 100, y: 360, width: 400, height: 21))
-						label1.text = self.RetrivedOuttimeString
-						label1.textColor = UIColor.darkGray
-						label1.shadowColor = UIColor.gray
-						label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-						
-						self.view.addSubview(label1)
-						let myButton = UIButton(type: .system)
-						// Position Button
-						myButton.frame = CGRect(x: 38, y: 395, width: 300, height: 45)
-						// Set text on button
-						myButton.setTitle("OK", for: .normal)
-						myButton.setTitle("Pressed + Hold", for: .highlighted)
-						
-						myButton.setTitleColor(UIColor.white, for: .normal)
-						
-						myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-						
-						// Set button action
-						myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
-						self.view.addSubview(myButton)
+//						self.customView.frame = CGRect.init(x: 0, y: 0, width: 320, height: 240)
+//						self.customView.backgroundColor = UIColor.white     //give color to the view
+//						self.customView.center = self.view.center
+//						self.view.addSubview(self.customView)
+//						self.customSubView.frame = CGRect.init(x: 27, y: 210, width: 321, height: 110)
+//						self.customSubView.backgroundColor = UIColor.white
+//						let shadowPath = UIBezierPath(rect: self.customView.bounds)
+//						self.customView.layer.masksToBounds = false
+//						self.customView.layer.shadowColor = UIColor.darkGray.cgColor
+//						self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+//						self.customView.layer.shadowOpacity = 0.8
+//						self.customView.layer.shadowPath = shadowPath.cgPath
+//						self.view.addSubview(self.customSubView)
+//						//image
+//						var imageView : UIImageView
+//						imageView  = UIImageView(frame:CGRect(x: 145, y: 235, width: 90, height: 80));
+//						imageView.image = UIImage(named:"attendence-right.png")
+//						self.view.addSubview(imageView)
+//						//lable
+//						let label = UILabel(frame: CGRect(x: 50, y: 330, width: 400, height: 21))
+//						//label.center = CGPoint(x: 160, y: 285)
+//						//label.textAlignment = .center
+//						label.text = "Attendance Marked Successfully"
+//						label.textColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
+//						label.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
+//						self.view.addSubview(label)
+//						let label1 = UILabel(frame: CGRect(x: 100, y: 360, width: 400, height: 21))
+//						label1.text = self.RetrivedOuttimeString
+//						label1.textColor = UIColor.darkGray
+//						label1.shadowColor = UIColor.gray
+//						label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+//
+//						self.view.addSubview(label1)
+//						let myButton = UIButton(type: .system)
+//						// Position Button
+//						myButton.frame = CGRect(x: 38, y: 395, width: 300, height: 45)
+//						// Set text on button
+//						myButton.setTitle("OK", for: .normal)
+//						myButton.setTitle("Pressed + Hold", for: .highlighted)
+//
+//						myButton.setTitleColor(UIColor.white, for: .normal)
+//
+//						myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+//
+//						// Set button action
+//						myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
+//						self.view.addSubview(myButton)
+                        self.customView.frame = CGRect.init(x: 0, y: 0, width: 320, height: 240)
+                        self.customView.backgroundColor = UIColor.white
+                        self.customView.center = self.view.center
+                        self.view.addSubview(self.customView)
+
+                        self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 321, height: 110)
+                                                           
+                        self.customSubView.backgroundColor = UIColor.white
+                        let shadowPath = UIBezierPath(rect: self.customView.bounds)
+                        self.customView.layer.masksToBounds = false
+                        self.customView.layer.shadowColor = UIColor.darkGray.cgColor
+                        self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+                        self.customView.layer.shadowOpacity = 0.8
+                        self.customView.layer.shadowPath = shadowPath.cgPath
+                        self.customView.addSubview(self.customSubView)
+                                                                   //image
+                        var imageView : UIImageView
+                        imageView  = UIImageView(frame:CGRect(x: 110, y: 15, width: 90, height: 80));
+                        imageView.image = UIImage(named:"attendence-right.png")
+                        self.customView.addSubview(imageView)
+                                                           
+                        //lable
+                        let label = UILabel(frame: CGRect(x: 25, y: 115, width: 400, height: 21))
+                        label.text = "Attendance Marked Successfully"
+                        label.textColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
+                        label.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
+                        self.customView.addSubview(label)
+                        let label1 = UILabel(frame: CGRect(x: 75, y: 145, width: 400, height: 21))
+                        label1.text = self.RetrivedOuttimeString
+                        label1.textColor = UIColor.darkGray
+                        label1.shadowColor = UIColor.gray
+                        label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+                        self.customView.addSubview(label1)
+                        let myButton = UIButton(type: .system)
+                                                                   // Position Button
+                        myButton.frame = CGRect(x: 10, y: 175, width: 300, height: 45)
+                                                                   // Set text on button
+                        myButton.setTitle("OK", for: .normal)
+                        myButton.setTitle("Pressed + Hold", for: .highlighted)
+                        myButton.setTitleColor(UIColor.white, for: .normal)
+                        myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+                                                           
+                                                                   // Set button action
+                        myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
+                        self.customView.addSubview(myButton)
 						
 					}
 					else

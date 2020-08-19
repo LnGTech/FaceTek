@@ -1158,7 +1158,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 						self.customView.addSubview(self.customSubView)
 						//image
 						var imageView : UIImageView
-						imageView  = UIImageView(frame:CGRect(x: 100, y: 10, width: 100, height: 100));
+						imageView  = UIImageView(frame:CGRect(x: 135, y: 20, width: 100, height: 100));
 						imageView.image = UIImage(named:"conform.png")
 						self.customView.addSubview(imageView)
 						let label = UILabel(frame: CGRect(x: 100, y: 100, width: 200, height: 21))
