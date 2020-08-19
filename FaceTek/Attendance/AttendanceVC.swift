@@ -33,6 +33,8 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	var customView = UIView()
 	var customSubView = UIView()
 	
+    @IBOutlet weak var hamburgerView: UIView!
+
 	@IBOutlet weak var EmergencyTimeoutview: UIView!
 	@IBOutlet weak var Attentionview: UIView!
 	@IBOutlet weak var Permitedview: UIView!
@@ -148,10 +150,10 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		brNamestr = defaults.string(forKey: "brName") ?? ""
 		print("brNamestr-----",brNamestr)
 		CompanyNameLbl.text = brNamestr
-		self.button = HamburgerButton(frame: CGRect(x: 5, y: 30, width: 45, height: 45))
+		self.button = HamburgerButton(frame: CGRect(x: 0, y: 0, width: 46, height: 46))
 		self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
 		
-		self.view.addSubview(button)
+		self.hamburgerView.addSubview(button)
 		
 		//----------------------------
 		BeconeMethodaAPI()

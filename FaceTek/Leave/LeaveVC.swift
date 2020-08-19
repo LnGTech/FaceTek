@@ -40,6 +40,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
    // var LeaveNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
     var LeaveNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
     var isMenuVisible:Bool!
+    @IBOutlet weak var hamburgerView: UIView!
+
     @IBOutlet weak var menu: UIView!
     @IBOutlet weak var ContactUsView: UIView!
     @IBOutlet weak var RemarkTextview: UITextView!
@@ -141,9 +143,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         brNamestr = defaults.string(forKey: "brName") ?? ""
                print("brNamestr-----",brNamestr)
                CompanyNameLbl.text = brNamestr
-        self.button = HamburgerButton(frame: CGRect(x: 0, y: 30, width: 45, height: 45))
+        self.button = HamburgerButton(frame: CGRect(x: 0, y: 0, width: 46, height: 46))
         self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
-        self.view.addSubview(button)
+        self.hamburgerView.addSubview(button)
         
         FromView.layer.borderWidth = 1
         FromView.layer.borderColor = UIColor.darkGray.cgColor
