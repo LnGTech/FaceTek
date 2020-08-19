@@ -94,12 +94,14 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	override func viewDidLoad() {
 		super.viewDidLoad()
         //Status Bar color change
-//        let statusBar =  UIView()
-//        statusBar.frame = UIApplication.shared.statusBarFrame
-//        //statusBar.backgroundColor = UIColor.red
-//        statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
-//        UIApplication.shared.keyWindow?.addSubview(statusBar)
-//		
+        let statusBar =  UIView()
+        statusBar.frame = UIApplication.shared.statusBarFrame
+        //statusBar.backgroundColor = UIColor.red
+        statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
+        UIApplication.shared.keyWindow?.addSubview(statusBar)
+		
+        
+        
 		customActivityIndicatory(self.view, startAnimate: false)
 		EmergencyTimeoutview.isHidden = true
 		menu.backgroundColor = .white
@@ -160,9 +162,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		
 	}
 	
-	override var preferredStatusBarStyle : UIStatusBarStyle  {
-            return .lightContent
-        }
+	
         
         @objc func toggle(_ sender: AnyObject!) {
             self.toggleComparision()
@@ -1509,6 +1509,9 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		return activityIndicatorView
 	}
 	
+    override var preferredStatusBarStyle : UIStatusBarStyle  {
+        return .lightContent
+    }
 }
 
 
