@@ -125,13 +125,12 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		isMenuVisible = true
 		menu.isHidden = true
 		AttendanceNavigationtbl.register(UINib(nibName: "LeaveNavigationcell", bundle: nil), forCellReuseIdentifier: "LeaveNavigationcell")
-		
 		//programatical Tableview code
 		
 		let screenSize: CGRect = UIScreen.main.bounds
 		let screenWidth = screenSize.width
 		let screenHeight = screenSize.height
-		MovementoutDrpTbl.frame = CGRect(x: 55, y: 565, width: 300, height: 250);
+		MovementoutDrpTbl.frame = CGRect(x: 55, y: 450, width: 300, height: 250);
 		MovementoutDrpTbl.dataSource = self
 		MovementoutDrpTbl.delegate = self
 		MovementoutDrpTbl.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
