@@ -995,7 +995,10 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
                 nameLabels[i].string = names[i]
                 nameLabels[i].foregroundColor = UIColor.blue.cgColor
                 CurrentDateSignIn()
-               
+                print("Face Matched")
+                faceMathchedAlert()
+                
+
             } else {
                 nameLabels[i].string = "Face doesn't matched"
                 nameLabels[i].foregroundColor = UIColor.green.cgColor

@@ -1248,33 +1248,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 	}
 	
 	
-	func FaceMacthAlert()
-	{
-		
-		if (presentFacename == Facename) {
-			print("Face Match")
-			DispatchQueue.main.async {
-				
-				
-				//self.CurrentDateSignOut()
-				
-				let alert = UIAlertController(title: "Face Match", message: "Message", preferredStyle: UIAlertController.Style.alert)
-				alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
-				self.present(alert, animated: true, completion: nil)
-			}
-		}
-		else
-		{
-			DispatchQueue.main.async {
-				
-				print("Face does not match")
-				let alert = UIAlertController(title: "Face does not match", message: "Message", preferredStyle: UIAlertController.Style.alert)
-				alert.addAction(UIAlertAction(title: "Click", style: UIAlertAction.Style.default, handler: nil))
-				self.present(alert, animated: true, completion: nil)
-			}
-		}
-		
-	}
+	
 	
 	
 }
