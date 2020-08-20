@@ -733,7 +733,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		
 		
-		label = UILabel(frame: CGRect(x: 50, y: 30, width: 350, height: 21))
+		label = UILabel(frame: CGRect(x: 50, y: 50, width: 350, height: 21))
 		//label.center = CGPoint(x: 160, y: 285)
 		//label.textAlignment = .center
 		label.text = "Do you want to cancel your leave?"
@@ -745,7 +745,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		
 		//var imageView : UIImageView
-		imageview  = UIImageView(frame:CGRect(x: 150, y: 60, width: 60, height: 60));
+		imageview  = UIImageView(frame:CGRect(x: 150, y: 90, width: 60, height: 60));
 		imageview.image = UIImage(named:"selectmode.png")
 		self.customView.addSubview(imageview)
 		
@@ -754,7 +754,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		ProceedButton = UIButton(type: .system)
 		
 		// Position Button
-        ProceedButton.frame = CGRect(x: 37.5, y: 135, width: 275, height: 55)
+        ProceedButton.frame = CGRect(x: 37.5, y: 170, width: 275, height: 55)
 		// Set text on button
 		ProceedButton.setTitle("PROCEED", for: .normal)
 		//myButton.setTitle("Pressed + Hold", for: .highlighted)
@@ -779,7 +779,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		CancelBtnButton = UIButton(type: .system)
 		
 		// Position Button
-        CancelBtnButton.frame = CGRect(x: 37.5, y: 200, width: 275, height: 55)
+        CancelBtnButton.frame = CGRect(x: 37.5, y: 240, width: 275, height: 55)
 		// Set text on button
 		CancelBtnButton.setTitle("CANCEL", for: .normal)
 		//myButton.setTitle("Pressed + Hold", for: .highlighted)

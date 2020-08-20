@@ -131,7 +131,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		let screenSize: CGRect = UIScreen.main.bounds
 		let screenWidth = screenSize.width
 		let screenHeight = screenSize.height
-		MovementoutDrpTbl.frame = CGRect(x: 30, y: 450, width: 300, height: 250);
+		MovementoutDrpTbl.frame = CGRect(x: 55, y: 565, width: 300, height: 250);
 		MovementoutDrpTbl.dataSource = self
 		MovementoutDrpTbl.delegate = self
 		MovementoutDrpTbl.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
@@ -1233,12 +1233,12 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		//give color to
 		self.customView.center = self.view.center
 		self.view.addSubview(self.customView)
-		self.customSubView.frame = CGRect.init(x: 38, y: 300, width: 300, height: 55)
+		self.customSubView.frame = CGRect.init(x: 20, y: 70, width: 300, height: 55)
 		self.customSubView.layer.cornerRadius = 3.0
 		self.customSubView.layer.masksToBounds = true
 		self.customSubView.backgroundColor = UIColor.white
-		self.view.addSubview(self.customSubView)
-		VisitTextField = UITextField(frame: CGRect(x: 50, y: 303, width: 200, height: 50))
+		self.customView.addSubview(self.customSubView)
+		VisitTextField = UITextField(frame: CGRect(x: 25, y: 72, width: 200, height: 50))
 		VisitTextField.placeholder = "Enter Place Of Visit"
 		VisitTextField.layer.borderWidth = 1
 		VisitTextField.layer.borderColor = UIColor.clear.cgColor
@@ -1248,17 +1248,17 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		VisitTextField.clearButtonMode = UITextField.ViewMode.whileEditing;
 		VisitTextField.contentVerticalAlignment = UIControl.ContentVerticalAlignment.center
 		
-		self.view.addSubview(VisitTextField)
+		self.customView.addSubview(VisitTextField)
 		//lable
-		label = UILabel(frame: CGRect(x: 135, y: 260, width: 200, height: 21))
+		label = UILabel(frame: CGRect(x: 100, y: 30, width: 200, height: 21))
 		label.text = "Movement"
 		label.textColor = UIColor.white
 		label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
-		self.view.addSubview(label)
+		self.customView.addSubview(label)
 		DrpdownBtn = UIButton(type: .system)
 		let image = UIImage(named: "hand.png")! as UIImage
 		// Position Button
-		DrpdownBtn.frame = CGRect(x: 290, y: 313, width: 45, height: 40)
+		DrpdownBtn.frame = CGRect(x: 270, y: 75, width: 45, height: 40)
 		DrpdownBtn .setBackgroundImage(image, for: UIControl.State.normal)
 		// Set text on button
 		//DrpdownBtn.setTitle("SUBMIT", for: .normal)
@@ -1266,10 +1266,10 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		DrpdownBtn.setTitleColor(UIColor.white, for: UIControl.State.normal)
 		// Set button action
 		DrpdownBtn.addTarget(self, action: #selector(self.DrpdownBtnAction(_:)), for: .touchUpInside)
-		self.view.addSubview(DrpdownBtn)
+		self.customView.addSubview(DrpdownBtn)
 		submitButton = UIButton(type: .system)
 		// Position Button
-		submitButton.frame = CGRect(x: 195, y: 380, width: 125, height: 40)
+		submitButton.frame = CGRect(x: 175, y: 150, width: 125, height: 40)
 		// Set text on button
 		submitButton.setTitle("SUBMIT", for: .normal)
 		submitButton.setTitle("Pressed + Hold", for: .highlighted)
@@ -1278,10 +1278,10 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		// Set button action
 		submitButton.addTarget(self, action: #selector(self.SubmitBtnAction(_:)), for: .touchUpInside)
-		self.view.addSubview(submitButton)
+		self.customView.addSubview(submitButton)
 		CancelBtnButton = UIButton(type: .system)
 		// Position Button
-		CancelBtnButton.frame = CGRect(x: 58, y: 380, width: 125, height: 40)
+		CancelBtnButton.frame = CGRect(x: 40, y: 150, width: 125, height: 40)
 		// Set text on button
 		CancelBtnButton.setTitle("CANCEL", for: .normal)
 		CancelBtnButton.setTitle("Pressed + Hold", for: .highlighted)
@@ -1292,7 +1292,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		// Set button action
 		CancelBtnButton.addTarget(self, action: #selector(self.CancelAction(_:)), for: .touchUpInside)
-		self.view.addSubview(CancelBtnButton)
+		self.customView.addSubview(CancelBtnButton)
 		customView.isHidden = false
 		customSubView.isHidden = false
 		VisitTextField.isHidden = false

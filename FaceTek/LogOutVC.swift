@@ -976,7 +976,6 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 		} else {
 			y2 = y1 + x2 - x1
 		}
-        CurrentDateSignOut()
         
         nameDataLock.lock()
         for i in 0..<MAX_FACES {
