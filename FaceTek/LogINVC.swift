@@ -636,6 +636,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 			if ((names[i] as! String) != "") {
 				nameLabels[i].string = names[i]
 				nameLabels[i].foregroundColor = UIColor.blue.cgColor
+               
 			} else {
 				nameLabels[i].string = "Face doesn't matched"
 				nameLabels[i].foregroundColor = UIColor.green.cgColor
@@ -987,7 +988,21 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		} else {
 			y2 = y1 + x2 - x1
 		}
-        CurrentDateSignIn()
+        //CurrentDateSignIn()
+        nameDataLock.lock()
+        for i in 0..<MAX_FACES {
+            if ((names[i] as! String) != "") {
+                nameLabels[i].string = names[i]
+                nameLabels[i].foregroundColor = UIColor.blue.cgColor
+                CurrentDateSignIn()
+               
+            } else {
+                nameLabels[i].string = "Face doesn't matched"
+                nameLabels[i].foregroundColor = UIColor.green.cgColor
+            }
+        }
+        nameDataLock.unlock()
+        
 		return FaceRectangle(x1: x1, x2: x2, y1: y1, y2: y2)
 	}
 	
