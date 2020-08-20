@@ -130,11 +130,11 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		let screenSize: CGRect = UIScreen.main.bounds
 		let screenWidth = screenSize.width
 		let screenHeight = screenSize.height
-		MovementoutDrpTbl.frame = CGRect(x: 55, y: 450, width: 300, height: 250);
+		MovementoutDrpTbl.frame = CGRect(x: 50, y: 120, width: 300, height: 200);
 		MovementoutDrpTbl.dataSource = self
 		MovementoutDrpTbl.delegate = self
 		MovementoutDrpTbl.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
-		self.view.addSubview(MovementoutDrpTbl)
+		self.customView.addSubview(MovementoutDrpTbl)
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		print("RetrivedcustId----",RetrivedcustId)
