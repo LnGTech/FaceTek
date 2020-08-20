@@ -1233,12 +1233,12 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		//give color to
 		self.customView.center = self.view.center
 		self.view.addSubview(self.customView)
-		self.customSubView.frame = CGRect.init(x: 20, y: 70, width: 300, height: 55)
+		self.customSubView.frame = CGRect.init(x: 20, y: 85, width: 300, height: 55)
 		self.customSubView.layer.cornerRadius = 3.0
 		self.customSubView.layer.masksToBounds = true
 		self.customSubView.backgroundColor = UIColor.white
 		self.customView.addSubview(self.customSubView)
-		VisitTextField = UITextField(frame: CGRect(x: 25, y: 72, width: 200, height: 50))
+		VisitTextField = UITextField(frame: CGRect(x: 25, y: 87, width: 200, height: 50))
 		VisitTextField.placeholder = "Enter Place Of Visit"
 		VisitTextField.layer.borderWidth = 1
 		VisitTextField.layer.borderColor = UIColor.clear.cgColor
@@ -1250,7 +1250,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		self.customView.addSubview(VisitTextField)
 		//lable
-		label = UILabel(frame: CGRect(x: 100, y: 30, width: 200, height: 21))
+		label = UILabel(frame: CGRect(x: 110, y: 40, width: 200, height: 21))
 		label.text = "Movement"
 		label.textColor = UIColor.white
 		label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
@@ -1258,7 +1258,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		DrpdownBtn = UIButton(type: .system)
 		let image = UIImage(named: "hand.png")! as UIImage
 		// Position Button
-		DrpdownBtn.frame = CGRect(x: 270, y: 75, width: 45, height: 40)
+		DrpdownBtn.frame = CGRect(x: 270, y: 90, width: 45, height: 40)
 		DrpdownBtn .setBackgroundImage(image, for: UIControl.State.normal)
 		// Set text on button
 		//DrpdownBtn.setTitle("SUBMIT", for: .normal)
@@ -1269,7 +1269,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		self.customView.addSubview(DrpdownBtn)
 		submitButton = UIButton(type: .system)
 		// Position Button
-		submitButton.frame = CGRect(x: 175, y: 150, width: 125, height: 40)
+		submitButton.frame = CGRect(x: 175, y: 165, width: 125, height: 40)
 		// Set text on button
 		submitButton.setTitle("SUBMIT", for: .normal)
 		submitButton.setTitle("Pressed + Hold", for: .highlighted)
@@ -1281,7 +1281,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		self.customView.addSubview(submitButton)
 		CancelBtnButton = UIButton(type: .system)
 		// Position Button
-		CancelBtnButton.frame = CGRect(x: 40, y: 150, width: 125, height: 40)
+		CancelBtnButton.frame = CGRect(x: 40, y: 165, width: 125, height: 40)
 		// Set text on button
 		CancelBtnButton.setTitle("CANCEL", for: .normal)
 		CancelBtnButton.setTitle("Pressed + Hold", for: .highlighted)

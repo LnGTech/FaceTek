@@ -58,6 +58,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     let TodatePicker = UIDatePicker()
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         //Status Bar color change
        let statusBar =  UIView()
         statusBar.frame = UIApplication.shared.statusBarFrame
@@ -561,46 +562,9 @@ self.customActivityIndicatory(self.view, startAnimate: true)
             {
             let code = responseJSON["code"]! as! NSInteger
             let message = responseJSON["message"]! as! NSString
-            self.customView.frame = CGRect.init(x: 0, y: 0, width: 230, height: 300)
-            self.customView.backgroundColor = UIColor.white     //give color to the view
-            self.customView.center = self.view.center
-            self.view.addSubview(self.customView)
-            self.customSubView.frame = CGRect.init(x: 70, y: 183, width: 233, height: 150)
-            self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-            let shadowPath = UIBezierPath(rect: self.customView.bounds)
-            self.customView.layer.masksToBounds = false
-            self.customView.layer.shadowColor = UIColor.darkGray.cgColor
-            self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-            self.customView.layer.shadowOpacity = 0.8
-            self.customView.layer.shadowPath = shadowPath.cgPath
-            self.view.addSubview(self.customSubView)
-                                                                                                                                        //image
-            var imageView : UIImageView
-            imageView  = UIImageView(frame:CGRect(x: 140, y: 210, width: 100, height: 100));
-            imageView.image = UIImage(named:"conform.png")
-            self.view.addSubview(imageView)
-                let label = UILabel(frame: CGRect(x: 135, y: 300, width: 200, height: 21));                                        label.text = "Thank you!"
-                label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
-            label.font = UIFont.boldSystemFont(ofSize: 22.0)
-            label.textColor = UIColor.white
-            self.view.addSubview(label)
-            let label1 = UILabel(frame: CGRect(x: 90, y: 360, width: 400, height: 21))
-            label1.text = "Leave Applied Successfully"
-            label1.textColor = UIColor.darkGray
-            label1.shadowColor = UIColor.gray
-            label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-            self.view.addSubview(label1)
-            let myButton = UIButton(type: .system)
-            myButton.frame = CGRect(x: 135, y: 400, width: 100, height: 50)
-                                                                                                                                           // Set text on button
-            myButton.setTitle("OK", for: .normal)
-            myButton.setTitle("Pressed + Hold", for: .highlighted)
-            myButton.setTitleColor(UIColor.white, for: .normal)
+                //Leave PopUp method calling
+                self.LeavePopUp()
 
-            myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-           myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
-                self.view.addSubview(myButton)
-                                                                          
                                     }
                                     else
                                    {
@@ -718,6 +682,51 @@ self.present(UITabBarController, animated:true, completion:nil)
     self.view.frame.origin.y += keyboardSize.height
     }
     }
+    }
+    
+    func LeavePopUp()
+    {
+        
+        self.customView.frame = CGRect.init(x: 0, y: 0, width: 230, height: 300)
+                    self.customView.backgroundColor = UIColor.white     //give color to the view
+                    self.customView.center = self.view.center
+                    self.view.addSubview(self.customView)
+                    self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
+                    self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+                    let shadowPath = UIBezierPath(rect: self.customView.bounds)
+                    self.customView.layer.masksToBounds = false
+                    self.customView.layer.shadowColor = UIColor.darkGray.cgColor
+                    self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+                    self.customView.layer.shadowOpacity = 0.8
+                    self.customView.layer.shadowPath = shadowPath.cgPath
+                    self.customView.addSubview(self.customSubView)
+                                                                                                                                                //image
+                    var imageView : UIImageView
+                    imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
+                    imageView.image = UIImage(named:"conform.png")
+                    self.customView.addSubview(imageView)
+                        let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));                                        label.text = "Thank you!"
+                        label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
+                    label.font = UIFont.boldSystemFont(ofSize: 22.0)
+                    label.textColor = UIColor.white
+                    self.customView.addSubview(label)
+                    let label1 = UILabel(frame: CGRect(x: 20, y: 175, width: 400, height: 21))
+                    label1.text = "Leave Applied Successfully"
+                    label1.textColor = UIColor.darkGray
+                    label1.shadowColor = UIColor.gray
+                    label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+                    self.customView.addSubview(label1)
+                    let myButton = UIButton(type: .system)
+                    myButton.frame = CGRect(x: 70, y: 210, width: 100, height: 50)
+                                                                                                                                                   // Set text on button
+                    myButton.setTitle("OK", for: .normal)
+                    myButton.setTitle("Pressed + Hold", for: .highlighted)
+                    myButton.setTitleColor(UIColor.white, for: .normal)
+        
+                    myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+                   myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
+                        self.customView.addSubview(myButton)
+        
     }
      
 }
