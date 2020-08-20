@@ -93,18 +93,10 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        //Status Bar color change
-        let statusBar =  UIView()
-        statusBar.frame = UIApplication.shared.statusBarFrame
-        //statusBar.backgroundColor = UIColor.red
-        statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
-        UIApplication.shared.keyWindow?.addSubview(statusBar)
-		
-        
-        
+     
 		customActivityIndicatory(self.view, startAnimate: false)
 		EmergencyTimeoutview.isHidden = true
-		menu.backgroundColor = .white
+		
 		menu.layer.shadowOffset = .zero
 		menu.layer.shadowColor = UIColor.gray.cgColor
 		menu.layer.shadowRadius = 0
@@ -588,7 +580,9 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 					}
 					else
 					{
-						var alert = UIAlertController(title: "SignIn", message: "Attendance IN is already  marked for the day" as! String, preferredStyle: UIAlertController.Style.alert)
+						let alert = UIAlertController(title: "SignIn",
+													  message: "Attendance IN is already marked for the day",
+													  preferredStyle: UIAlertController.Style.alert)
 						alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
 						self.present(alert, animated: true, completion: nil)
 						print("Failure---")
@@ -1508,9 +1502,6 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		return activityIndicatorView
 	}
 	
-    override var preferredStatusBarStyle : UIStatusBarStyle  {
-        return .lightContent
-    }
 }
 
 

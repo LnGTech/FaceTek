@@ -83,10 +83,6 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
 		}
 	}
     
-    override var preferredStatusBarStyle : UIStatusBarStyle  {
-        return .lightContent
-    }
-    
     @objc func toggle(_ sender: AnyObject!) {
         self.toggleComparision()
         menu.isHidden = false

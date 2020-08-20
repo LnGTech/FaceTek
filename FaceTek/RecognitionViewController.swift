@@ -911,7 +911,7 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 						let label1 = UILabel(frame: CGRect(x: 30, y: 150, width: 400, height: 21))
 						//label.center = CGPoint(x: 160, y: 285)
 						//label.textAlignment = .center
-						label1.text = "You have successfully Registered"
+						label1.text = "You have successfully registered"
 						//label1.textColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 						label1.textColor = UIColor.darkGray
 						label1.shadowColor = UIColor.gray

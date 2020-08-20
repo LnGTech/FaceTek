@@ -104,6 +104,8 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 	var tracker: HTracker = 0
 	var templatePath: String = String()
 	
+	private var isAlreadySignedIn = false
+	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
@@ -221,7 +223,6 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		
 		if (idOfTouchedFace >= 0) {
 			faceTouched = true
-			faceMathchedAlert()
 			
 			//            let alert = UIAlertView(title: "", message: "Enter person's name", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Ok")
 			//            alert.alertViewStyle = UIAlertViewStyle.plainTextInput
@@ -636,7 +637,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 			if ((names[i] as! String) != "") {
 				nameLabels[i].string = names[i]
 				nameLabels[i].foregroundColor = UIColor.blue.cgColor
-               
+				
 			} else {
 				nameLabels[i].string = "Face doesn't matched"
 				nameLabels[i].foregroundColor = UIColor.green.cgColor
@@ -669,20 +670,20 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		
 		
 		//Attendance Process
-		//CurrentDateSignIn()
+		CurrentDateSignIn()
 		
-		DispatchQueue.main.async {
-			let alert = UIAlertController.init(title: "Face Matched", message: "Your face has been matched", preferredStyle: .alert)
-			
-			let okAction = UIAlertAction.init(title: "OK", style: .default) { (alertAction) in
-				self.navigationController?.popViewController(animated: true)
-			}
-			alert.addAction(okAction)
-			
-			self.present(alert, animated: true) {
-				//some code
-			}
-		}
+		//		DispatchQueue.main.async {
+		//			let alert = UIAlertController.init(title: "Face Matched", message: "Your face has been matched", preferredStyle: .alert)
+		//
+		//			let okAction = UIAlertAction.init(title: "OK", style: .default) { (alertAction) in
+		//				self.navigationController?.popViewController(animated: true)
+		//			}
+		//			alert.addAction(okAction)
+		//
+		//			self.present(alert, animated: true) {
+		//				//some code
+		//			}
+		//		}
 	}
 	
 	func cameraHasConnected() {
@@ -988,24 +989,20 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		} else {
 			y2 = y1 + x2 - x1
 		}
-        //CurrentDateSignIn()
-        nameDataLock.lock()
-        for i in 0..<MAX_FACES {
-            if ((names[i] as! String) != "") {
-                nameLabels[i].string = names[i]
-                nameLabels[i].foregroundColor = UIColor.blue.cgColor
-                CurrentDateSignIn()
-                print("Face Matched")
-                faceMathchedAlert()
-                
-
-            } else {
-                nameLabels[i].string = "Face doesn't matched"
-                nameLabels[i].foregroundColor = UIColor.green.cgColor
-            }
-        }
-        nameDataLock.unlock()
-        
+		
+		nameDataLock.lock()
+		for i in 0..<MAX_FACES {
+			if ((names[i] as! String) != "") {
+				nameLabels[i].string = names[i]
+				nameLabels[i].foregroundColor = UIColor.blue.cgColor
+				faceMathchedAlert()
+			} else {
+				nameLabels[i].string = "Face doesn't matched"
+				nameLabels[i].foregroundColor = UIColor.green.cgColor
+			}
+		}
+		nameDataLock.unlock()
+		
 		return FaceRectangle(x1: x1, x2: x2, y1: y1, y2: y2)
 	}
 	
@@ -1088,10 +1085,13 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 	
 	
 	
-	func CurrentDateSignIn()
-	{
+	func CurrentDateSignIn() {
 		
+		if isAlreadySignedIn {
+			return
+		}
 		
+		isAlreadySignedIn = true
 		
 		let defaults = UserDefaults.standard
 		
@@ -1147,58 +1147,58 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 						self.AttendanceMarkedstr = responseJSON["message"] as? NSString as! String
 						print("Sign InAttendanceMarkedstr-------",self.AttendanceMarkedstr)
 						
-self.customView.frame = CGRect.init(x: 0, y: 0, width: 320, height: 240)
-self.customView.backgroundColor = UIColor.white
-self.customView.center = self.view.center
-self.view.addSubview(self.customView)
-
-self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 321, height: 110)
-                                   
-self.customSubView.backgroundColor = UIColor.white
-let shadowPath = UIBezierPath(rect: self.customView.bounds)
-self.customView.layer.masksToBounds = false
-self.customView.layer.shadowColor = UIColor.darkGray.cgColor
-self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-self.customView.layer.shadowOpacity = 0.8
-self.customView.layer.shadowPath = shadowPath.cgPath
-self.customView.addSubview(self.customSubView)
-                                           //image
-var imageView : UIImageView
-imageView  = UIImageView(frame:CGRect(x: 110, y: 15, width: 90, height: 80));
-imageView.image = UIImage(named:"attendence-right.png")
-self.customView.addSubview(imageView)
-                                   
-//lable
-let label = UILabel(frame: CGRect(x: 25, y: 115, width: 400, height: 21))
-label.text = "Attendance Marked Successfully"
-label.textColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
-label.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
-self.customView.addSubview(label)
-let label1 = UILabel(frame: CGRect(x: 75, y: 145, width: 400, height: 21))
-label1.text = self.RetrivedIntimeString
-label1.textColor = UIColor.darkGray
-label1.shadowColor = UIColor.gray
-label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-self.customView.addSubview(label1)
-let myButton = UIButton(type: .system)
-                                           // Position Button
-myButton.frame = CGRect(x: 10, y: 175, width: 300, height: 45)
-                                           // Set text on button
-myButton.setTitle("OK", for: .normal)
-myButton.setTitle("Pressed + Hold", for: .highlighted)
-myButton.setTitleColor(UIColor.white, for: .normal)
-myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-                                   
-                                           // Set button action
-myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
-self.customView.addSubview(myButton)
+						self.customView.frame = CGRect.init(x: 0, y: 0, width: 320, height: 240)
+						self.customView.backgroundColor = UIColor.white
+						self.customView.center = self.view.center
+						self.view.addSubview(self.customView)
 						
-}else
-{
-print("failure")
+						self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 321, height: 110)
 						
-self.AttendanceMarkedstr = responseJSON["message"] as? NSString as! String
-    print("AttendanceMarkedstr-------",self.AttendanceMarkedstr)
+						self.customSubView.backgroundColor = UIColor.white
+						let shadowPath = UIBezierPath(rect: self.customView.bounds)
+						self.customView.layer.masksToBounds = false
+						self.customView.layer.shadowColor = UIColor.darkGray.cgColor
+						self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+						self.customView.layer.shadowOpacity = 0.8
+						self.customView.layer.shadowPath = shadowPath.cgPath
+						self.customView.addSubview(self.customSubView)
+						//image
+						var imageView : UIImageView
+						imageView  = UIImageView(frame:CGRect(x: 110, y: 15, width: 90, height: 80));
+						imageView.image = UIImage(named:"attendence-right.png")
+						self.customView.addSubview(imageView)
+						
+						//lable
+						let label = UILabel(frame: CGRect(x: 25, y: 115, width: 400, height: 21))
+						label.text = "Attendance Marked Successfully"
+						label.textColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
+						label.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
+						self.customView.addSubview(label)
+						let label1 = UILabel(frame: CGRect(x: 75, y: 145, width: 400, height: 21))
+						label1.text = self.RetrivedIntimeString
+						label1.textColor = UIColor.darkGray
+						label1.shadowColor = UIColor.gray
+						label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+						self.customView.addSubview(label1)
+						let myButton = UIButton(type: .system)
+						// Position Button
+						myButton.frame = CGRect(x: 10, y: 175, width: 300, height: 45)
+						// Set text on button
+						myButton.setTitle("OK", for: .normal)
+						myButton.setTitle("Pressed + Hold", for: .highlighted)
+						myButton.setTitleColor(UIColor.white, for: .normal)
+						myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+						
+						// Set button action
+						myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
+						self.customView.addSubview(myButton)
+						
+					}else
+					{
+						print("failure")
+						
+						self.AttendanceMarkedstr = (responseJSON["message"] as? String)!
+						print("AttendanceMarkedstr-------",self.AttendanceMarkedstr)
 						
 					}
 					
@@ -1212,12 +1212,12 @@ self.AttendanceMarkedstr = responseJSON["message"] as? NSString as! String
 	
 	
 	@objc func buttonAction(_ sender:UIButton!) {
-//		self.navigationController?.popViewController(animated: true)
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        
-        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-        self.present(UITabBarController, animated:true, completion:nil)
+		//		self.navigationController?.popViewController(animated: true)
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+		
+		let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+		self.present(UITabBarController, animated:true, completion:nil)
 	}
-    
+	
 }
 

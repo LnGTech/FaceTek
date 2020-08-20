@@ -117,16 +117,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        //Status Bar color
-        
-      
-
-        let statusBar =  UIView()
-        statusBar.frame = UIApplication.shared.statusBarFrame
-        //statusBar.backgroundColor = UIColor.red
-        statusBar.backgroundColor = #colorLiteral(red: 0.1215686275, green: 0.3921568627, blue: 0.6666666667, alpha: 1)
-        UIApplication.shared.keyWindow?.addSubview(statusBar)
-        
+		
 		UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial", size:14)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
 		
 		
@@ -150,14 +141,11 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		defaults.set(self.RetrivedempId, forKey: "RetrivedFaceid")
 		
-		menu.backgroundColor = .white
-		
 		menu.layer.shadowOffset = .zero
 		menu.layer.shadowColor = UIColor.gray.cgColor
 		menu.layer.shadowRadius = 0
 		menu.layer.shadowOpacity = 1
 		menu.layer.shadowPath = UIBezierPath(rect: menu.bounds).cgPath
-		
 		
 		let shadowPath = UIBezierPath(rect: view.bounds)
 		menu.layer.masksToBounds = false
@@ -165,9 +153,6 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		menu.layer.shadowOffset = CGSize(width: 0, height: 0.5)
 		menu.layer.shadowOpacity = 0.2
 		menu.layer.shadowPath = shadowPath.cgPath
-		
-		
-		
 		
 		//Manager view screen design
 		
@@ -241,9 +226,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		isMenuVisible = true
 		menu.isHidden = true
-//		ContactUsView.isHidden = true
+		//		ContactUsView.isHidden = true
 		ContactusText.isHidden = true
-//
+		//
 		OfficeOutLbl.layer.cornerRadius = 5
 		OfficeOutLbl.layer.borderWidth = 2
 		//OfficeOutLbl.layer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
@@ -449,51 +434,47 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 	}
 	
-	override var preferredStatusBarStyle : UIStatusBarStyle  {
-            return .lightContent
-        }
-        
-        @objc func toggle(_ sender: AnyObject!) {
-            self.toggleComparision()
-            menu.isHidden = false
-            self.button.showsMenu = !self.button.showsMenu
-        }
-        //Menu code
-        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //        self.view.endEditing(true)
-    //        isMenuVisible = false;
-    //        self.button.showsMenu = !self.button.showsMenu
-    //        self.toggleComparision()
-        }
-        
-        @IBAction func closeMenu(_ sender: Any) {
-            toggle(sender as AnyObject)
-        }
-        
-        func toggleComparision()
-        {
-            if (isMenuVisible)
-            {
-                UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
-                    var frame = self.menu.frame
-                    frame.origin.x = 0
-                    self.menu.frame = frame
-                    self.isMenuVisible = false;
-                    self.menu.isHidden = false
-                })
-            } else {
-                UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
-                    var frame = self.menu.frame
-                    frame.origin.x = -self.view.frame.size.width
-                    self.menu.frame = frame
-                }) { (finished) in
-                    if finished {
-                        self.isMenuVisible = true
-                        self.menu.isHidden = true
-                    }
-                }
-            }
-        }
+	@objc func toggle(_ sender: AnyObject!) {
+		self.toggleComparision()
+		menu.isHidden = false
+		self.button.showsMenu = !self.button.showsMenu
+	}
+	//Menu code
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		//        self.view.endEditing(true)
+		//        isMenuVisible = false;
+		//        self.button.showsMenu = !self.button.showsMenu
+		//        self.toggleComparision()
+	}
+	
+	@IBAction func closeMenu(_ sender: Any) {
+		toggle(sender as AnyObject)
+	}
+	
+	func toggleComparision()
+	{
+		if (isMenuVisible)
+		{
+			UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+				var frame = self.menu.frame
+				frame.origin.x = 0
+				self.menu.frame = frame
+				self.isMenuVisible = false;
+				self.menu.isHidden = false
+			})
+		} else {
+			UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+				var frame = self.menu.frame
+				frame.origin.x = -self.view.frame.size.width
+				self.menu.frame = frame
+			}) { (finished) in
+				if finished {
+					self.isMenuVisible = true
+					self.menu.isHidden = true
+				}
+			}
+		}
+	}
 	
 	
 	func EmployeeDashboardDetails()
@@ -522,8 +503,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
 		
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
-
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
 		
 		
 		
@@ -754,7 +735,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		ProceedButton = UIButton(type: .system)
 		
 		// Position Button
-        ProceedButton.frame = CGRect(x: 37.5, y: 170, width: 275, height: 55)
+		ProceedButton.frame = CGRect(x: 37.5, y: 170, width: 275, height: 55)
 		// Set text on button
 		ProceedButton.setTitle("PROCEED", for: .normal)
 		//myButton.setTitle("Pressed + Hold", for: .highlighted)
@@ -774,12 +755,12 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		self.customView.addSubview(ProceedButton)
 		
-        
-
+		
+		
 		CancelBtnButton = UIButton(type: .system)
 		
 		// Position Button
-        CancelBtnButton.frame = CGRect(x: 37.5, y: 240, width: 275, height: 55)
+		CancelBtnButton.frame = CGRect(x: 37.5, y: 240, width: 275, height: 55)
 		// Set text on button
 		CancelBtnButton.setTitle("CANCEL", for: .normal)
 		//myButton.setTitle("Pressed + Hold", for: .highlighted)
@@ -1024,9 +1005,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		return activityIndicatorView
 	}
 	
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setNeedsStatusBarAppearanceUpdate()
-    }
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		setNeedsStatusBarAppearanceUpdate()
+	}
 	
 }
