@@ -30,8 +30,8 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 		var y1: Int32
 		var y2: Int32
 	}
-	
-	
+    private var isAlreadySignedIn = false
+
 	var customView = UIView()
 	var customSubView = UIView()
 	var persistedFaceId = String()
@@ -659,19 +659,19 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 	}
 	
 	private func faceMathchedAlert() {
-		//CurrentDateSignOut()
+		CurrentDateSignOut()
 		
-		
-		let alert = UIAlertController.init(title: "Face Matched", message: "Your face has been matched", preferredStyle: .alert)
-		
-		let okAction = UIAlertAction.init(title: "OK", style: .default) { (alertAction) in
-			//Call attendance service
-		}
-		alert.addAction(okAction)
-		
-		self.present(alert, animated: true) {
-			//some code
-		}
+//
+//		let alert = UIAlertController.init(title: "Face Matched", message: "Your face has been matched", preferredStyle: .alert)
+//
+//		let okAction = UIAlertAction.init(title: "OK", style: .default) { (alertAction) in
+//			//Call attendance service
+//		}
+//		alert.addAction(okAction)
+//
+//		self.present(alert, animated: true) {
+//			//some code
+//		}
 	}
 	
 	func cameraHasConnected() {
@@ -981,7 +981,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
             if ((names[i] as! String) != "") {
                 nameLabels[i].string = names[i]
                 nameLabels[i].foregroundColor = UIColor.blue.cgColor
-                CurrentDateSignOut()
+                faceMathchedAlert()
             } else {
                 nameLabels[i].string = "Face doesn't matched"
                 nameLabels[i].foregroundColor = UIColor.green.cgColor
@@ -1050,7 +1050,9 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 	
 	func CurrentDateSignOut()
 	{
-		
+		if isAlreadySignedIn {
+            return
+        }
 		let defaults = UserDefaults.standard
 		
 		RetrivedLatlongempId = defaults.integer(forKey: "empId")
