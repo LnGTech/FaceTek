@@ -978,10 +978,7 @@ func checkCameraAccess() {
             if success {
                 print("Permission granted, proceed")
             } else {
-                
-                
                 self.presentCameraSettings()
-                
                 print("Permission denied")
             }
         }
