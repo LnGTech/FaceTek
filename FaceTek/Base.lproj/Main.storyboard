@@ -988,7 +988,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uON-5f-W3x">
-                                        <rect key="frame" x="8" y="25" width="15" height="25"/>
+                                        <rect key="frame" x="13" y="25" width="15" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="7BC-UB-19q"/>
                                             <constraint firstAttribute="width" constant="15" id="dek-qy-N2l"/>
@@ -1004,9 +1004,9 @@
                                     <constraint firstItem="uON-5f-W3x" firstAttribute="top" secondItem="ijj-ra-kbM" secondAttribute="top" constant="25" id="5eS-3l-5E6"/>
                                     <constraint firstAttribute="bottom" secondItem="uON-5f-W3x" secondAttribute="bottom" constant="10" id="87U-ZH-Iyt"/>
                                     <constraint firstItem="Sgq-OM-aEN" firstAttribute="bottom" secondItem="uON-5f-W3x" secondAttribute="bottom" id="DUY-1a-HNW"/>
-                                    <constraint firstItem="Sgq-OM-aEN" firstAttribute="leading" secondItem="uON-5f-W3x" secondAttribute="trailing" constant="48" id="Jgj-5H-luO"/>
+                                    <constraint firstItem="Sgq-OM-aEN" firstAttribute="leading" secondItem="uON-5f-W3x" secondAttribute="trailing" constant="43" id="Jgj-5H-luO"/>
                                     <constraint firstItem="Sgq-OM-aEN" firstAttribute="top" secondItem="ijj-ra-kbM" secondAttribute="top" constant="25" id="NAx-K3-aXI"/>
-                                    <constraint firstItem="uON-5f-W3x" firstAttribute="leading" secondItem="ijj-ra-kbM" secondAttribute="leading" constant="8" id="VOe-gq-783"/>
+                                    <constraint firstItem="uON-5f-W3x" firstAttribute="leading" secondItem="ijj-ra-kbM" secondAttribute="leading" constant="13" id="VOe-gq-783"/>
                                     <constraint firstAttribute="height" constant="60" id="xgK-k7-Gyl"/>
                                 </constraints>
                             </view>
@@ -3540,7 +3540,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5sf-ah-2uM">
-                                        <rect key="frame" x="8" y="25" width="15" height="25"/>
+                                        <rect key="frame" x="13" y="25" width="15" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="25" id="6CK-di-Ix0"/>
                                             <constraint firstAttribute="width" constant="15" id="IcN-6R-L2M"/>
@@ -3553,11 +3553,11 @@
                                 </subviews>
                                 <color key="backgroundColor" red="0.054901960780000002" green="0.29803921570000003" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstItem="OCt-Y9-eRn" firstAttribute="leading" secondItem="5sf-ah-2uM" secondAttribute="trailing" constant="48" id="CtM-gL-hzR"/>
+                                    <constraint firstItem="OCt-Y9-eRn" firstAttribute="leading" secondItem="5sf-ah-2uM" secondAttribute="trailing" constant="43" id="CtM-gL-hzR"/>
                                     <constraint firstItem="OCt-Y9-eRn" firstAttribute="top" secondItem="esm-RR-vwb" secondAttribute="top" constant="25" id="I88-h6-bYp"/>
                                     <constraint firstAttribute="height" constant="61" id="OZs-CL-xSU"/>
                                     <constraint firstItem="OCt-Y9-eRn" firstAttribute="bottom" secondItem="5sf-ah-2uM" secondAttribute="bottom" id="V7d-ag-1Mt"/>
-                                    <constraint firstItem="5sf-ah-2uM" firstAttribute="leading" secondItem="esm-RR-vwb" secondAttribute="leading" constant="8" id="cwN-2J-5gn"/>
+                                    <constraint firstItem="5sf-ah-2uM" firstAttribute="leading" secondItem="esm-RR-vwb" secondAttribute="leading" constant="13" id="cwN-2J-5gn"/>
                                     <constraint firstAttribute="bottom" secondItem="5sf-ah-2uM" secondAttribute="bottom" constant="11" id="otS-xq-IE0"/>
                                     <constraint firstItem="5sf-ah-2uM" firstAttribute="top" secondItem="esm-RR-vwb" secondAttribute="top" constant="25" id="rzR-4t-yoH"/>
                                 </constraints>
