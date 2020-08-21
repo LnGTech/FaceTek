@@ -964,47 +964,47 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 	}
 	
 	//Camera Permission code
-	func checkCameraAccess() {
-		switch AVCaptureDevice.authorizationStatus(for: .video) {
-		case .denied:
-			print("Denied, request permission from settings")
-			presentCameraSettings()
-		case .restricted:
-			print("Restricted, device owner must approve")
-		case .authorized:
-			print("Authorized, proceed")
-		case .notDetermined:
-			AVCaptureDevice.requestAccess(for: .video) { success in
-				if success {
-					print("Permission granted, proceed")
-				} else {
-					
-					
-					self.presentCameraSettings()
-					
-					print("Permission denied")
-				}
-			}
-		}
-	}
+func checkCameraAccess() {
+    switch AVCaptureDevice.authorizationStatus(for: .video) {
+    case .denied:
+        print("Denied, request permission from settings")
+        presentCameraSettings()
+    case .restricted:
+        print("Restricted, device owner must approve")
+    case .authorized:
+        print("Authorized, proceed")
+    case .notDetermined:
+        AVCaptureDevice.requestAccess(for: .video) { success in
+            if success {
+                print("Permission granted, proceed")
+            } else {
+                
+                
+                self.presentCameraSettings()
+                
+                print("Permission denied")
+            }
+        }
+    }
+}
 	
 	func presentCameraSettings() {
 		DispatchQueue.main.async {
 			
-			let alertController = UIAlertController(title: "Error",
-													message: "Camera access is denied",
-													preferredStyle: .alert)
-			alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
-			alertController.addAction(UIAlertAction(title: "Settings", style: .cancel) { _ in
-				if let url = URL(string: UIApplication.openSettingsURLString) {
-					UIApplication.shared.open(url, options: [:], completionHandler: { _ in
-						// Handle
-					})
-				}
-			})
-			
-			self.present(alertController, animated: true)
-		}
-	}
+        let alertController = UIAlertController(title: "Error",
+                                                message: "Camera access is denied",
+                                                preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
+        alertController.addAction(UIAlertAction(title: "Settings", style: .cancel) { _ in
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+                    // Handle
+                })
+            }
+        })
+        
+        self.present(alertController, animated: true)
+    }
+}
 	
 }

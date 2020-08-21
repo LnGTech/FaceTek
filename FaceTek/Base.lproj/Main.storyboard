@@ -1449,7 +1449,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4984.8000000000002" y="60.719640179910051"/>
+            <point key="canvasLocation" x="4798" y="61"/>
         </scene>
         <!--Office InVC-->
         <scene sceneID="sMU-ZB-S5W">
@@ -1560,7 +1560,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="jUF-8X-p4u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3740" y="89"/>
+            <point key="canvasLocation" x="3695" y="89"/>
         </scene>
         <!--Office OutVC-->
         <scene sceneID="jRD-JL-apS">
@@ -3569,9 +3569,8 @@
                                     <constraint firstAttribute="width" constant="375" id="07t-IX-JmE"/>
                                     <constraint firstAttribute="height" constant="606" id="lBg-Bn-gSK"/>
                                 </constraints>
-                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
                                 <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="30"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
                         </subviews>
@@ -3728,7 +3727,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbY-Rs-4vN">
                                 <rect key="frame" x="8" y="341" width="358" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select Leave Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCd-8a-lqh">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Select Leave Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCd-8a-lqh">
                                         <rect key="frame" x="0.0" y="8" width="358" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
@@ -4008,7 +4007,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4445.6000000000004" y="771.36431784107947"/>
+            <point key="canvasLocation" x="4798" y="787"/>
         </scene>
         <!--Home-->
         <scene sceneID="Sbr-RY-vHj">
