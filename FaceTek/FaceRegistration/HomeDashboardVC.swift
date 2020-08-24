@@ -106,7 +106,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	
 	//    var HomeDashboardNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
-	var HomeDashboardNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
+	var HomeDashboardNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
 	
 	override func viewDidLayoutSubviews() {
@@ -935,7 +935,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 			
 			
 			
-		} else if indexPath.item == 1 {
+		} else if indexPath.item == 6 {
 			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 			
 			let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
@@ -943,7 +943,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 			
 			
 		}
-		else if indexPath.item == 2 {
+		else if indexPath.item == 7 {
 			
 			if ContactusText.isHidden {
 				//ContactUsView.isHidden = false

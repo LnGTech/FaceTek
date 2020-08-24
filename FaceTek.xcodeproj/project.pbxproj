@@ -36,12 +36,7 @@
 		7429321724498B5C00C59157 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321624498B5C00C59157 /* Reachability.swift */; };
 		7429321924498B6600C59157 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321824498B6600C59157 /* Protocols.swift */; };
 		7429321B24498B7000C59157 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321A24498B7000C59157 /* AppManager.swift */; };
-		742A175C24406E3700880818 /* OnboardingPager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A175B24406E3700880818 /* OnboardingPager.swift */; };
-		742A175E24406E4700880818 /* StepZero.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A175D24406E4700880818 /* StepZero.swift */; };
-		742A176024406E5000880818 /* StepOne.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A175F24406E5000880818 /* StepOne.swift */; };
-		742A176224406E5B00880818 /* StepTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A176124406E5A00880818 /* StepTwo.swift */; };
 		742A176424406E6400880818 /* HelperLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A176324406E6400880818 /* HelperLibrary.swift */; };
-		742A17662440743200880818 /* StepThree.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A17652440743200880818 /* StepThree.swift */; };
 		74398CDF2462E9F20053DA0F /* WhiteBck.png in Resources */ = {isa = PBXBuildFile; fileRef = 74398CDE2462E9F10053DA0F /* WhiteBck.png */; };
 		74398CE12462EC020053DA0F /* BckArrowicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74398CE02462EC000053DA0F /* BckArrowicon.png */; };
 		7440736A24B74F4700B30039 /* selectmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 7440736924B74F4700B30039 /* selectmode.png */; };
@@ -211,12 +206,7 @@
 		7429321624498B5C00C59157 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		7429321824498B6600C59157 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		7429321A24498B7000C59157 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
-		742A175B24406E3700880818 /* OnboardingPager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnboardingPager.swift; sourceTree = "<group>"; };
-		742A175D24406E4700880818 /* StepZero.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepZero.swift; sourceTree = "<group>"; };
-		742A175F24406E5000880818 /* StepOne.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepOne.swift; sourceTree = "<group>"; };
-		742A176124406E5A00880818 /* StepTwo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StepTwo.swift; sourceTree = "<group>"; };
 		742A176324406E6400880818 /* HelperLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperLibrary.swift; sourceTree = "<group>"; };
-		742A17652440743200880818 /* StepThree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepThree.swift; sourceTree = "<group>"; };
 		74398CDE2462E9F10053DA0F /* WhiteBck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBck.png; sourceTree = "<group>"; };
 		74398CE02462EC000053DA0F /* BckArrowicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BckArrowicon.png; sourceTree = "<group>"; };
 		7440736924B74F4700B30039 /* selectmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectmode.png; sourceTree = "<group>"; };
@@ -470,11 +460,6 @@
 			isa = PBXGroup;
 			children = (
 				748E22EB247B971C0060464F /* PageController.swift */,
-				742A175B24406E3700880818 /* OnboardingPager.swift */,
-				742A175D24406E4700880818 /* StepZero.swift */,
-				742A175F24406E5000880818 /* StepOne.swift */,
-				742A176124406E5A00880818 /* StepTwo.swift */,
-				742A17652440743200880818 /* StepThree.swift */,
 				742A176324406E6400880818 /* HelperLibrary.swift */,
 				74D998642434621200DFCBEC /* ViewController.swift */,
 				746017A72435BAC600969CA2 /* HamburgerButton.swift */,
@@ -912,9 +897,7 @@
 				747F8DAC243B368700ABBD5E /* HomeDashboardVC.swift in Sources */,
 				746017B62435F90200969CA2 /* RegistrationVC.swift in Sources */,
 				7429321724498B5C00C59157 /* Reachability.swift in Sources */,
-				742A175E24406E4700880818 /* StepZero.swift in Sources */,
 				746EE171248F9FC8007A1DA8 /* PrivacyPolicyVC.swift in Sources */,
-				742A175C24406E3700880818 /* OnboardingPager.swift in Sources */,
 				74F5D120243758B700D6E811 /* Constants.swift in Sources */,
 				747F8D9E243AEB1D00ABBD5E /* FaceRegistrationVC.swift in Sources */,
 				74520D3924CB1ADC001252ED /* LatecomersVC.swift in Sources */,
@@ -934,11 +917,8 @@
 				74F5D11E243758A600D6E811 /* InputOTPVC.swift in Sources */,
 				74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */,
 				744125D424D0311D00075CC1 /* PendingLeavescellTableViewCell.swift in Sources */,
-				742A176024406E5000880818 /* StepOne.swift in Sources */,
 				744125D124D02DA500075CC1 /* PendingLeavesVC.swift in Sources */,
 				744125D824D0328200075CC1 /* PendingHeadercell.swift in Sources */,
-				742A176224406E5B00880818 /* StepTwo.swift in Sources */,
-				742A17662440743200880818 /* StepThree.swift in Sources */,
 				7447702924CF1A2900EFBB2F /* EarlyLeaverscell.swift in Sources */,
 				74F5D124243758D400D6E811 /* SMRippleView.swift in Sources */,
 				7429321B24498B7000C59157 /* AppManager.swift in Sources */,

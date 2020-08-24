@@ -73,7 +73,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	@IBOutlet weak var AttendanceNavigationtbl: UITableView!
 	// var AttendanceNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	
-	var AttendanceNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
+    var AttendanceNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
 	var MovementoutDrpTbl: UITableView  =   UITableView()
 	//var MovementOutDrpArray: [String] = ["One", "Two", "Three"]
@@ -321,13 +321,13 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 				let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
 				self.present(CalendarVC, animated:true, completion:nil)
 				
-			} else if indexPath.item == 1 {
+			} else if indexPath.item == 6 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 				let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
 				self.present(FaqVC, animated:true, completion:nil)
 				
 			}
-			else if indexPath.item == 2 {
+			else if indexPath.item == 7 {
 				
 				if ContactTextView.isHidden {
 					ContactTextView.isHidden = false
