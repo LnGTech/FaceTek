@@ -771,12 +771,14 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 							dateFormatter.dateFormat = "HH:mm:ss"
 							
 							let date = dateFormatter.date(from: dateAsString)
-							dateFormatter.dateFormat = "hh:mm:ssa"
+							dateFormatter.dateFormat = "hh:mma"
 							let Date12 = dateFormatter.string(from: date!)
 							print("12 hour formatted Date:",Date12)
 							var PermissionFirststr = "OUT is not permitted till"
 							var PermissionSecondstr = Date12
-							self.OutPermissionLbl.text = "OUT is not permitted till" + PermissionSecondstr
+							
+                            self.OutPermissionLbl.text = "\("OUT is not permitted till")  -  \(PermissionSecondstr)"
+
 							let shadowPath = UIBezierPath(rect: self.view.bounds)
 							self.EmergencyTimeoutview.layer.masksToBounds = false
 							self.EmergencyTimeoutview.layer.shadowColor = UIColor.darkGray.cgColor
