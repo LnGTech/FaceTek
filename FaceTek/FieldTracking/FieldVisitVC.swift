@@ -9,13 +9,14 @@
 import UIKit
 import GoogleMaps
 
-class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
+class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate {
 @IBOutlet weak var mapView: GMSMapView!
 @IBOutlet weak var Fieldvisitoutbtn: UIButton!
 @IBOutlet weak var FieldvisitBckview: UIView!
 @IBOutlet weak var Cancelbtn: UIButton!
 @IBOutlet weak var Submitbrn: UIButton!
     
+    @IBOutlet weak var VisitPuposetxtfld: UITextField!
     @IBOutlet weak var Adresstxtview: UITextView!
     var address: String = ""
 var LattitudestrData: String = ""
@@ -27,6 +28,8 @@ var RetrivedempId = Int()
 var locationManager = CLLocationManager()
 override func viewDidLoad() {
     super.viewDidLoad()
+    self.VisitPuposetxtfld.delegate = self
+
     FieldvisitBckview.isHidden = true
     let defaults = UserDefaults.standard
     RetrivedcustId = defaults.integer(forKey: "custId")
@@ -181,6 +184,14 @@ task.resume()
     Adresstxtview.text = address
 }
 
+    @IBAction func Cancelbtnclk(_ sender: Any) {
+        FieldvisitBckview.isHidden = true
+    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
+    {
+        VisitPuposetxtfld.resignFirstResponder()
+        return true;
+    }
 }
 
 
