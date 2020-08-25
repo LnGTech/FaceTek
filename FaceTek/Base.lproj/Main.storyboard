@@ -3622,11 +3622,11 @@
                                     <constraint firstAttribute="height" constant="35" id="tNj-pn-9WN"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                <state key="normal" title="FIELD VISIT-OUT">
+                                <state key="normal" title="FIELD VISIT-IN">
                                     <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8lq-0n-iyX">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8lq-0n-iyX" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="58" width="375" height="609"/>
                                 <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
@@ -3644,6 +3644,10 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="HzQ-89-aCB"/>
                     </view>
+                    <connections>
+                        <outlet property="Fieldvisitoutbtn" destination="VMs-aT-W6I" id="6BU-H3-0RP"/>
+                        <outlet property="mapView" destination="8lq-0n-iyX" id="pLb-W2-0aO"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsU-y9-gHr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

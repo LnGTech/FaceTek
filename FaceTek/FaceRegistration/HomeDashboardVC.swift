@@ -98,9 +98,6 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	@IBOutlet weak var LeaveStatusBtn: UIButton!
 	
-	
-	
-	
 	var RetrivedcustId = Int()
 	var RetrivedempId = Int()
 	
