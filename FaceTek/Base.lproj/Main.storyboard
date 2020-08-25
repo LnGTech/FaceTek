@@ -3601,13 +3601,53 @@
                     <view key="view" contentMode="scaleToFill" id="X4y-Ll-pXI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VMs-aT-W6I">
+                                <rect key="frame" x="12" y="15" width="170" height="35"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="FcT-gS-Ke7"/>
+                                    <constraint firstAttribute="height" constant="35" id="QeB-yE-0UX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="FIELD VISIT-OUT">
+                                    <color key="titleColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KqN-hj-9Xl">
+                                <rect key="frame" x="194" y="15" width="170" height="35"/>
+                                <color key="backgroundColor" systemColor="systemGray4Color" red="0.81960784310000001" green="0.81960784310000001" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="170" id="pci-N1-m0j"/>
+                                    <constraint firstAttribute="height" constant="35" id="tNj-pn-9WN"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <state key="normal" title="FIELD VISIT-OUT">
+                                    <color key="titleColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8lq-0n-iyX">
+                                <rect key="frame" x="0.0" y="58" width="375" height="609"/>
+                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8lq-0n-iyX" firstAttribute="trailing" secondItem="HzQ-89-aCB" secondAttribute="trailing" id="40F-1q-nMf"/>
+                            <constraint firstItem="KqN-hj-9Xl" firstAttribute="top" secondItem="HzQ-89-aCB" secondAttribute="top" constant="15" id="ChK-v3-zSn"/>
+                            <constraint firstItem="VMs-aT-W6I" firstAttribute="top" secondItem="HzQ-89-aCB" secondAttribute="top" constant="15" id="EyB-Zu-EDg"/>
+                            <constraint firstItem="8lq-0n-iyX" firstAttribute="bottom" secondItem="HzQ-89-aCB" secondAttribute="bottom" id="P60-Dc-LVF"/>
+                            <constraint firstItem="VMs-aT-W6I" firstAttribute="leading" secondItem="HzQ-89-aCB" secondAttribute="leading" constant="12" id="SyL-lS-kDJ"/>
+                            <constraint firstItem="8lq-0n-iyX" firstAttribute="leading" secondItem="HzQ-89-aCB" secondAttribute="leading" id="UAa-dX-kiM"/>
+                            <constraint firstItem="8lq-0n-iyX" firstAttribute="top" secondItem="VMs-aT-W6I" secondAttribute="bottom" constant="8" id="oW4-rr-bja"/>
+                            <constraint firstItem="HzQ-89-aCB" firstAttribute="trailing" secondItem="KqN-hj-9Xl" secondAttribute="trailing" constant="11" id="yV1-qR-qa9"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="HzQ-89-aCB"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GsU-y9-gHr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6456" y="-595"/>
+            <point key="canvasLocation" x="6455.1999999999998" y="-595.05247376311854"/>
         </scene>
         <!--Leave-->
         <scene sceneID="0JX-47-dkF">
