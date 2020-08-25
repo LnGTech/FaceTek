@@ -13,6 +13,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var Fieldvisitoutbtn: UIButton!
         var address: String = ""
+    var Langitudeestr: String = ""
+    
+    var Latitudestr:Float = 0.0
+
     var empAttndInDateTime : String = ""
     var empAttndOutDateTime : String = ""
     var RetrivedcustId = Int()
@@ -42,17 +46,28 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
              mapView.settings.myLocationButton = true // show current location button
             let lat = (newLocation?.coordinate.latitude)! // get current location latitude
             let long = (newLocation?.coordinate.longitude)! //get current location longitude
-        var Latitudestr = String(newLocation!.coordinate.latitude)
+        Latitudestr = Float((newLocation?.coordinate.latitude)!)
 print("Latitudestr..",Latitudestr)
+        Langitudeestr = String(newLocation!.coordinate.latitude)
+
            
     }
     
     
     func getAddress(handler: @escaping (String) -> Void)
     {
+        //convert lat and long values double
+        let lat = Double(Latitudestr)
+        print("Facetek lat value",lat as Any)
+        
+        let Long = Double(Langitudeestr)
+        print("Facetek LongitudestrData value",Long as Any)
+
         var address: String = ""
         let geoCoder = CLGeocoder()
         let location = CLLocation(latitude: 12.93254753, longitude: 77.60804704)
+        //let location = CLLocation(latitude: lat!, longitude: Long!)
+
         //selectedLat and selectedLon are double values set by the app in a previous process
         
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
