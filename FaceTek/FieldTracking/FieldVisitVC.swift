@@ -13,9 +13,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var Fieldvisitoutbtn: UIButton!
         var address: String = ""
-    var Langitudeestr: String = ""
-    
-    var Latitudestr:Float = 0.0
+    var LattitudestrData: String = ""
+    var LongitudestrData: String = ""
 
     var empAttndInDateTime : String = ""
     var empAttndOutDateTime : String = ""
@@ -32,7 +31,14 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     print("RetrivedempId----",RetrivedempId)
         Fieldvisit_OUT()
         
-
+        locationManager.requestWhenInUseAuthorization()
+        var currentLoc: CLLocation!
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == .authorizedAlways) {
+            currentLoc = locationManager.location
+            LattitudestrData = String(currentLoc.coordinate.latitude)
+            LongitudestrData = String(currentLoc.coordinate.longitude)
+        }
                 getAddress { (address) in
                     print("Location------",address)
                 }
@@ -40,73 +46,59 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
         // Do any additional setup after loading the view.
     }
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-             let newLocation = locations.last // find your device location
-            print("newLocation",newLocation)
-             mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 20.0) // show your device location on map
-             mapView.settings.myLocationButton = true // show current location button
-            let lat = (newLocation?.coordinate.latitude)! // get current location latitude
-            let long = (newLocation?.coordinate.longitude)! //get current location longitude
-        Latitudestr = Float((newLocation?.coordinate.latitude)!)
-print("Latitudestr..",Latitudestr)
-        Langitudeestr = String(newLocation!.coordinate.latitude)
-
-           
+        let newLocation = locations.last // find your device location
+        mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 16) // show your device location on map
+        mapView.settings.myLocationButton = true // show current location button
+       let lat = (newLocation?.coordinate.latitude)! // get current location latitude
+       let long = (newLocation?.coordinate.longitude)!
     }
     
     
     func getAddress(handler: @escaping (String) -> Void)
     {
-        //convert lat and long values double
-        let lat = Double(Latitudestr)
-        print("Facetek lat value",lat as Any)
-        
-        let Long = Double(Langitudeestr)
-        print("Facetek LongitudestrData value",Long as Any)
 
-        var address: String = ""
+        let Locationlatitude = (LattitudestrData as NSString).doubleValue
+        let Locationlongitude = (LongitudestrData as NSString).doubleValue
         let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: 12.93254753, longitude: 77.60804704)
-        //let location = CLLocation(latitude: lat!, longitude: Long!)
-
-        //selectedLat and selectedLon are double values set by the app in a previous process
-        
+        let location = CLLocation(latitude: Locationlatitude, longitude: Locationlongitude)
         geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             
             // Place details
             var placeMark: CLPlacemark?
             placeMark = placemarks?[0]
             
-            // Address dictionary
-            //print(placeMark.addressDictionary ?? "")
             
             // Location name
-            if let locationName = placeMark?.addressDictionary?["Name"] as? String {
-                address += locationName + ", "
-            }
+                if let locationName = placeMark?.addressDictionary?["Name"] as? String {
+                    self.address += locationName + ", "
+                }
+           
+                // Street address
+                if let street = placeMark?.addressDictionary?["Thoroughfare"] as? String {
+                    self.address += street + ", "
+                }
             
-            // Street address
-            if let street = placeMark?.addressDictionary?["Thoroughfare"] as? String {
-                address += street + ", "
-            }
             
-            // City
-            if let city = placeMark?.addressDictionary?["City"] as? String {
-                address += city + ", "
-            }
-            
-            // Zip code
-            if let zip = placeMark?.addressDictionary?["ZIP"] as? String {
-                address += zip + ", "
-            }
-            
-            // Country
-            if let country = placeMark?.addressDictionary?["Country"] as? String {
-                address += country
-            }
-            
-           // Passing address back
-           handler(address)
-        })
+                
+                // City
+                if let city = placeMark?.addressDictionary?["City"] as? String {
+                    self.address += city + ", "
+                }
+                
+                // Zip code
+                if let zip = placeMark?.addressDictionary?["ZIP"] as? String {
+                    self.address += zip + ", "
+                }
+                
+                // Country
+                if let country = placeMark?.addressDictionary?["Country"] as? String {
+                    self.address += country
+                }
+                
+               // Passing address back
+            handler(self.address)
+            })
+        
     }
 
     //Field-visit OUT Enable and Disable
