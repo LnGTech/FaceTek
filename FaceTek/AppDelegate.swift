@@ -13,7 +13,6 @@ import CoreData
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     
-    //suresh bandaru location
     var window: UIWindow?
     var recognitionViewController: RecognitionViewController?
 

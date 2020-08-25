@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0CF3B39C9FA8A8229E533A03 /* Pods_FaceTek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7308095E4B0798A51C2F4F4F /* Pods_FaceTek.framework */; };
 		740D706E243C419C00CF6C2F /* office_in.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D706D243C419B00CF6C2F /* office_in.png */; };
 		740D7070243C41A300CF6C2F /* office_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D706F243C41A200CF6C2F /* office_out.png */; };
 		740D7072243C41AA00CF6C2F /* track_movement.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D7071243C41AA00CF6C2F /* track_movement.png */; };
@@ -178,6 +179,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		716E0CFC4B944DDD7A14F1C8 /* Pods-FaceTek.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceTek.debug.xcconfig"; path = "Target Support Files/Pods-FaceTek/Pods-FaceTek.debug.xcconfig"; sourceTree = "<group>"; };
+		7308095E4B0798A51C2F4F4F /* Pods_FaceTek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceTek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		740D706D243C419B00CF6C2F /* office_in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office_in.png; sourceTree = "<group>"; };
 		740D706F243C41A200CF6C2F /* office_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office_out.png; sourceTree = "<group>"; };
 		740D7071243C41AA00CF6C2F /* track_movement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_movement.png; sourceTree = "<group>"; };
@@ -337,6 +340,7 @@
 		74FA123D24AC690E00A356E7 /* FaceTek-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "FaceTek-Bridging-Header.h"; sourceTree = "<group>"; };
 		74FA123F24AC690F00A356E7 /* enable_cxx.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = enable_cxx.cpp; sourceTree = "<group>"; };
 		74FA124224AC693E00A356E7 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		92749F79893050B90249ABCC /* Pods-FaceTek.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceTek.release.xcconfig"; path = "Target Support Files/Pods-FaceTek/Pods-FaceTek.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -348,6 +352,7 @@
 				74FA123524AC689800A356E7 /* libfsdk-static_64.a in Frameworks */,
 				74FA124324AC698100A356E7 /* libz.tbd in Frameworks */,
 				74FA123624AC689800A356E7 /* libfsdk-static.a in Frameworks */,
+				0CF3B39C9FA8A8229E533A03 /* Pods_FaceTek.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -586,6 +591,7 @@
 				74D998842434621300DFCBEC /* FaceTekUITests */,
 				74D998602434621200DFCBEC /* Products */,
 				74FA124124AC693D00A356E7 /* Frameworks */,
+				AD706C1CF5AB73E110765D6B /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -673,8 +679,19 @@
 			children = (
 				744367BE24D2C98400B4AF4D /* WebKit.framework */,
 				74FA124224AC693E00A356E7 /* libz.tbd */,
+				7308095E4B0798A51C2F4F4F /* Pods_FaceTek.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AD706C1CF5AB73E110765D6B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				716E0CFC4B944DDD7A14F1C8 /* Pods-FaceTek.debug.xcconfig */,
+				92749F79893050B90249ABCC /* Pods-FaceTek.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -684,9 +701,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 74D9988A2434621300DFCBEC /* Build configuration list for PBXNativeTarget "FaceTek" */;
 			buildPhases = (
+				8E591B0A64DC9A9F3A28FE01 /* [CP] Check Pods Manifest.lock */,
 				74D9985B2434621200DFCBEC /* Sources */,
 				74D9985C2434621200DFCBEC /* Frameworks */,
 				74D9985D2434621200DFCBEC /* Resources */,
+				3BAFDDD402D7565490B27FBF /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -889,6 +908,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3BAFDDD402D7565490B27FBF /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FaceTek/Pods-FaceTek-resources-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Copy Pods Resources";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FaceTek/Pods-FaceTek-resources-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FaceTek/Pods-FaceTek-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E591B0A64DC9A9F3A28FE01 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-FaceTek-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		74D9985B2434621200DFCBEC /* Sources */ = {
@@ -1123,6 +1184,7 @@
 		};
 		74D9988B2434621300DFCBEC /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 716E0CFC4B944DDD7A14F1C8 /* Pods-FaceTek.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
@@ -1154,6 +1216,7 @@
 		};
 		74D9988C2434621300DFCBEC /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92749F79893050B90249ABCC /* Pods-FaceTek.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;

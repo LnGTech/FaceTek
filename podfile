@@ -1,0 +1,6 @@
+use_frameworks!
+target 'FaceTek' do
+    pod 'GoogleMaps'
+  pod 'GooglePlaces'
+
+end
