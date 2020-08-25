@@ -12,9 +12,7 @@ import GoogleMaps
 class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
     @IBOutlet weak var mapView: GMSMapView!
     @IBOutlet weak var Fieldvisitoutbtn: UIButton!
-    var lat = String()
-    var long = String()
-    var address: String = ""
+        var address: String = ""
     var empAttndInDateTime : String = ""
     var empAttndOutDateTime : String = ""
     var RetrivedcustId = Int()
@@ -29,6 +27,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     RetrivedempId = defaults.integer(forKey: "empId")
     print("RetrivedempId----",RetrivedempId)
         Fieldvisit_OUT()
+        
+
+                getAddress { (address) in
+                    print("Location------",address)
+                }
 
         // Do any additional setup after loading the view.
     }
@@ -37,14 +40,23 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
             print("newLocation",newLocation)
              mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 20.0) // show your device location on map
              mapView.settings.myLocationButton = true // show current location button
-            let lat1 = (newLocation?.coordinate.latitude)! // get current location latitude
+            let lat = (newLocation?.coordinate.latitude)! // get current location latitude
             let long = (newLocation?.coordinate.longitude)! //get current location longitude
-
-            let geoCoder = CLGeocoder()
-            let location = CLLocation(latitude: lat1, longitude: long)
-            print("latlanvalues------",location)
+        var Latitudestr = String(newLocation!.coordinate.latitude)
+print("Latitudestr..",Latitudestr)
+           
+    }
+    
+    
+    func getAddress(handler: @escaping (String) -> Void)
+    {
+        var address: String = ""
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: 12.93254753, longitude: 77.60804704)
+        //selectedLat and selectedLon are double values set by the app in a previous process
+        
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             
-            geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
             // Place details
             var placeMark: CLPlacemark?
             placeMark = placemarks?[0]
@@ -53,43 +65,35 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
             //print(placeMark.addressDictionary ?? "")
             
             // Location name
-                if let locationName = placeMark?.addressDictionary?["Name"] as? NSString
-            {
-                print(locationName)
+            if let locationName = placeMark?.addressDictionary?["Name"] as? String {
+                address += locationName + ", "
             }
-
+            
             // Street address
-                if let street = placeMark?.addressDictionary?["Thoroughfare"] as? NSString
-            {
-                print(street)
+            if let street = placeMark?.addressDictionary?["Thoroughfare"] as? String {
+                address += street + ", "
             }
-
+            
             // City
-                if let city = placeMark?.addressDictionary?["City"] as? NSString
-            {
-                print(city)
+            if let city = placeMark?.addressDictionary?["City"] as? String {
+                address += city + ", "
             }
-
+            
             // Zip code
-                if let zip = placeMark?.addressDictionary?["ZIP"] as? NSString
-            {
-                print(zip)
+            if let zip = placeMark?.addressDictionary?["ZIP"] as? String {
+                address += zip + ", "
             }
-
+            
             // Country
-                if let country = placeMark?.addressDictionary?["Country"] as? NSString
-            {
-                print(country)
+            if let country = placeMark?.addressDictionary?["Country"] as? String {
+                address += country
             }
             
-            
-    //        getAddress { (address) in
-    //            print("Location------",address)
-    //        }
-            
+           // Passing address back
+           handler(address)
         })
     }
-    
+
     //Field-visit OUT Enable and Disable
     func Fieldvisit_OUT()
     {
@@ -125,39 +129,29 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
             self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
             self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
             if (self.empAttndInDateTime == "NA") {
-                self.Fieldvisitoutbtn.setTitleColor(.yellow, for: .normal)
+                self.Fieldvisitoutbtn.setTitleColor(.darkGray, for: .normal)
             } else {
-                self.Fieldvisitoutbtn.setTitleColor(.red, for: .normal)
-                self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
+            self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
+            self.locationManager.requestAlwaysAuthorization()
+            if CLLocationManager.locationServicesEnabled(){
+            self.locationManager.delegate = self
+            self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+            self.locationManager.distanceFilter = 500
+            self.locationManager.requestWhenInUseAuthorization()
+            self.locationManager.requestAlwaysAuthorization()
+            self.locationManager.startUpdatingLocation()
             }
-            
+            self.mapView.settings.myLocationButton = true
+            self.mapView.settings.zoomGestures = true
+            self.mapView.animate(toViewingAngle: 45)
+            self.mapView.delegate = self
+            }
         }
-                            
-        }
-                
-        }
-            task.resume()
-            
-        }
-    @objc func pressButton(button: UIButton) {
-        NSLog("pressed!")
-        locationManager.requestAlwaysAuthorization()
-        if CLLocationManager.locationServicesEnabled(){
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-        locationManager.distanceFilter = 500
-        locationManager.requestWhenInUseAuthorization()
-        locationManager.requestAlwaysAuthorization()
-        locationManager.startUpdatingLocation()
-                }
-        mapView.settings.myLocationButton = true
-        mapView.settings.zoomGestures = true
-        mapView.animate(toViewingAngle: 45)
-        mapView.delegate = self
     }
-
-        
-    }
+}
+task.resume()
+}
+}
     
 
     
