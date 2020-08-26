@@ -3673,7 +3673,7 @@
                                                             <constraint firstAttribute="height" constant="20" id="0zC-VG-arb"/>
                                                             <constraint firstAttribute="width" constant="20" id="eYi-ED-ZzS"/>
                                                         </constraints>
-                                                        <state key="normal" title="Button" backgroundImage="BottomArrow.png"/>
+                                                        <state key="normal" backgroundImage="BottomArrow.png"/>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -3725,6 +3725,22 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R3X-qp-agR">
+                                                <rect key="frame" x="14" y="131" width="324" height="243"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Places" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QHK-0o-aVS">
+                                                        <rect key="frame" x="44" y="23" width="100" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                                        <nil key="textColor"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="243" id="dVG-aS-SWr"/>
+                                                </constraints>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
@@ -3736,13 +3752,16 @@
                                             <constraint firstAttribute="trailing" secondItem="upk-39-zIv" secondAttribute="trailing" constant="14" id="Ea3-Je-aLP"/>
                                             <constraint firstAttribute="trailing" secondItem="Kke-74-XX8" secondAttribute="trailing" constant="14" id="Jqb-Hn-hgc"/>
                                             <constraint firstAttribute="trailing" secondItem="hw9-4Q-oum" secondAttribute="trailing" constant="14" id="Qjd-XU-uhZ"/>
+                                            <constraint firstAttribute="trailing" secondItem="R3X-qp-agR" secondAttribute="trailing" constant="14" id="VD1-qq-ZTY"/>
                                             <constraint firstItem="Yig-CM-KpB" firstAttribute="top" secondItem="GMf-CW-pVP" secondAttribute="bottom" constant="13" id="WZx-ne-fTf"/>
                                             <constraint firstAttribute="trailing" secondItem="Yig-CM-KpB" secondAttribute="trailing" constant="14" id="WbM-t8-vUX"/>
+                                            <constraint firstItem="R3X-qp-agR" firstAttribute="top" secondItem="upk-39-zIv" secondAttribute="bottom" constant="57" id="bMG-D3-cxG"/>
                                             <constraint firstItem="Kke-74-XX8" firstAttribute="leading" secondItem="cdP-2e-TnE" secondAttribute="leading" constant="14" id="c3D-3t-Wmv"/>
                                             <constraint firstItem="Yig-CM-KpB" firstAttribute="leading" secondItem="cdP-2e-TnE" secondAttribute="leading" constant="14" id="gd8-fJ-QC0"/>
                                             <constraint firstItem="9Ef-7V-Dcv" firstAttribute="top" secondItem="Kke-74-XX8" secondAttribute="bottom" constant="8" id="oBX-bC-edJ"/>
                                             <constraint firstAttribute="height" constant="503" id="oEg-CX-ifb"/>
                                             <constraint firstItem="hw9-4Q-oum" firstAttribute="leading" secondItem="cdP-2e-TnE" secondAttribute="leading" constant="14" id="rsE-Ad-8gs"/>
+                                            <constraint firstItem="R3X-qp-agR" firstAttribute="leading" secondItem="cdP-2e-TnE" secondAttribute="leading" constant="14" id="rxQ-oX-BFI"/>
                                             <constraint firstItem="GMf-CW-pVP" firstAttribute="top" secondItem="hw9-4Q-oum" secondAttribute="bottom" constant="18" id="sb7-Dn-ywa"/>
                                             <constraint firstItem="upk-39-zIv" firstAttribute="top" secondItem="cdP-2e-TnE" secondAttribute="top" constant="39" id="sxN-Nz-tKH"/>
                                             <constraint firstAttribute="trailing" secondItem="GMf-CW-pVP" secondAttribute="trailing" constant="14" id="vHg-uC-9zF"/>
@@ -3815,8 +3834,10 @@
                     <connections>
                         <outlet property="Adresstxtview" destination="9Ef-7V-Dcv" id="4ne-hU-g26"/>
                         <outlet property="Cancelbtn" destination="8ya-AR-Mzo" id="x7g-aa-wp7"/>
+                        <outlet property="DrpDownview" destination="R3X-qp-agR" id="WXk-wf-wuZ"/>
                         <outlet property="FieldvisitBckview" destination="IKi-KG-WXg" id="A7d-fM-72o"/>
                         <outlet property="Fieldvisitoutbtn" destination="VMs-aT-W6I" id="6BU-H3-0RP"/>
+                        <outlet property="Selectplacelbl" destination="NoD-2f-GUq" id="SFG-Yy-d0D"/>
                         <outlet property="Submitbrn" destination="GY1-1e-Xnx" id="3az-vp-YNR"/>
                         <outlet property="VisitPuposetxtfld" destination="Yig-CM-KpB" id="l9f-z8-Hci"/>
                         <outlet property="mapView" destination="8lq-0n-iyX" id="pLb-W2-0aO"/>

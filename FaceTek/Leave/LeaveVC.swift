@@ -408,22 +408,16 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	}
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		
-		
 		var count:Int?
-		
 		if tableView == self.LeaveNavigationtbl {
 			count = LeaveNavigationMenuArray.count
 		}
-			
 			//if tableView == self.Dropdowntbl {
-			
 		else
 		{
 			count =  LeavetypeDropdownArray.count
 		}
 		return count!
-		
 	}
 	
 	// create a cell for each table view row
@@ -590,47 +584,6 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		
 	}
 	
-	
-	//
-	//   func textFieldDidBeginEditing(_ textField: UITextField) {
-	//       animateViewMoving(up: true, moveValue: 100)
-	//   }
-	//
-	//   func textFieldDidEndEditing(_ textField: UITextField) {
-	//       animateViewMoving(up: false, moveValue: 100)
-	//   }
-	//   func animateViewMoving (up:Bool, moveValue :CGFloat){
-	//       let movementDuration:TimeInterval = 0.3
-	//       let movement:CGFloat = ( up ? -moveValue : moveValue)
-	//       UIView.beginAnimations( "animateView", context: nil)
-	//       UIView.setAnimationBeginsFromCurrentState(true)
-	//       UIView.setAnimationDuration(movementDuration )
-	//       self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
-	//       UIView.commitAnimations()
-	//   }
-	//
-	//
-	
-	//        func textFieldDidBeginEditing(_ textField: UITextField) {
-	//              animateViewMoving(up: true, moveValue: 100)
-	//          }
-	//
-	//          func textFieldDidEndEditing(_ textField: UITextField) {
-	//              animateViewMoving(up: false, moveValue: 100)
-	//          }
-	//          func animateViewMoving (up:Bool, moveValue :CGFloat){
-	//              let movementDuration:TimeInterval = 0.10
-	//              let movement:CGFloat = ( up ? -moveValue : moveValue)
-	//              UIView.beginAnimations( "animateView", context: nil)
-	//              UIView.setAnimationBeginsFromCurrentState(true)
-	//              UIView.setAnimationDuration(movementDuration )
-	//              self.view.frame = self.view.frame.offsetBy(dx: 0, dy: movement)
-	//              UIView.commitAnimations()
-	//          }
-	//       func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-	//           LeaveTypetxt.resignFirstResponder()
-	//           return true
-	//        }
 	
 	func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {
 		let mainContainer: UIView = UIView(frame: viewContainer.frame)

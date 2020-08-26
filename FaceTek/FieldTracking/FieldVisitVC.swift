@@ -16,8 +16,12 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 @IBOutlet weak var Cancelbtn: UIButton!
 @IBOutlet weak var Submitbrn: UIButton!
     
+    @IBOutlet weak var Selectplacelbl: UILabel!
     @IBOutlet weak var VisitPuposetxtfld: UITextField!
     @IBOutlet weak var Adresstxtview: UITextView!
+    
+    @IBOutlet weak var DrpDownview: UIView!
+    
     var address: String = ""
 var LattitudestrData: String = ""
 var LongitudestrData: String = ""
@@ -29,14 +33,17 @@ var locationManager = CLLocationManager()
 override func viewDidLoad() {
     super.viewDidLoad()
     self.VisitPuposetxtfld.delegate = self
-
     FieldvisitBckview.isHidden = true
+    DrpDownview.isHidden = true
     let defaults = UserDefaults.standard
     RetrivedcustId = defaults.integer(forKey: "custId")
     print("RetrivedcustId----",RetrivedcustId)
     RetrivedempId = defaults.integer(forKey: "empId")
     print("RetrivedempId----",RetrivedempId)
+    //Fieldvisit-Enable-Disable method
     Fieldvisit_OUT()
+    //Select Dropdown method
+    selectPlaceDrpdown()
     
     locationManager.requestWhenInUseAuthorization()
     var currentLoc: CLLocation!
@@ -68,8 +75,20 @@ override func viewDidLoad() {
     Submitbrn.layer.borderWidth = 1
     Submitbrn.layer.borderColor = UIColor.clear.cgColor
     
+    //select place lable guesture
+    let tap = UITapGestureRecognizer(target: self, action: #selector(FieldVisitVC.tapFunction))
+    Selectplacelbl.isUserInteractionEnabled = true
+    Selectplacelbl.addGestureRecognizer(tap)
+
+    
     // Do any additional setup after loading the view.
 }
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+
+        print("tap working")
+        DrpDownview.isHidden = false
+
+    }
 func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
     let newLocation = locations.last // find your device location
     mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 16) // show your device location on map
@@ -183,6 +202,51 @@ func Fieldvisit_OUT()
 }
 task.resume()
 }
+    
+    func selectPlaceDrpdown()
+    {
+        let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
+        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getVisitClientPlaceDDList")!
+        let session = URLSession.shared
+        var request = URLRequest(url: url as URL)
+            request.httpMethod = "POST" //set http method as POST
+                
+        do {
+        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+                    print(error.localizedDescription)
+        }
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        guard let data = data, error == nil else {
+        print(error?.localizedDescription ?? "No data")
+        return
+        }
+        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+        if let responseJSON = responseJSON as? [String: Any] {
+        print("Visit select places ---- Json Response",responseJSON)
+                        
+        let ItemsDict = responseJSON["clientPlaceScheduleList"] as? [String:Any]
+            print("clientPlaceScheduleList",ItemsDict)
+            DispatchQueue.main.async
+            {
+        let SelectPlaceArray = responseJSON["clientPlaceScheduleList"] as! NSArray
+        print("Select Place Array values----",SelectPlaceArray)
+        for SelectPlaceDic in SelectPlaceArray as! [[String:Any]]
+                {
+        var MainDict:NSMutableDictionary = NSMutableDictionary()
+        var SelectPlacestr = ""
+                    SelectPlacestr = (SelectPlaceDic["visitClientPlace"] as? String)!
+        print("visitClientPlace-------",SelectPlacestr)
+        MainDict.setObject(SelectPlacestr, forKey: "visitClientPlace" as NSCopying)
+                }
+            }
+        }
+        }
+        task.resume()
+    }
+    
 @objc func pressButton(button: UIButton) {
     NSLog("pressed!")
     FieldvisitBckview.isHidden = false
