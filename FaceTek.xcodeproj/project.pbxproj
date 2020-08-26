@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -58,6 +58,8 @@
 		7449F96D24AE284900232D46 /* LogINVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449F96C24AE284900232D46 /* LogINVC.swift */; };
 		744B18B424CEB1B6004FB334 /* no_leves_found.png in Resources */ = {isa = PBXBuildFile; fileRef = 744B18B324CEB1B6004FB334 /* no_leves_found.png */; };
 		744B8C7224CAC0B6004634C0 /* ManagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B8C7124CAC0B6004634C0 /* ManagerVC.swift */; };
+		744D49F824F63946001075E8 /* SelectplaceDrpdwncell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744D49F624F63946001075E8 /* SelectplaceDrpdwncell.swift */; };
+		744D49F924F63946001075E8 /* SelectplaceDrpdwncell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744D49F724F63946001075E8 /* SelectplaceDrpdwncell.xib */; };
 		7451D15024CC62F7006EE244 /* AbsentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */; };
 		7451D15124CC62F7006EE244 /* AbsentHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */; };
 		74520D3524CB1A5A001252ED /* AbsentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3424CB1A5A001252ED /* AbsentVC.swift */; };
@@ -231,6 +233,8 @@
 		7449F96C24AE284900232D46 /* LogINVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogINVC.swift; sourceTree = "<group>"; };
 		744B18B324CEB1B6004FB334 /* no_leves_found.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_leves_found.png; sourceTree = "<group>"; };
 		744B8C7124CAC0B6004634C0 /* ManagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerVC.swift; sourceTree = "<group>"; };
+		744D49F624F63946001075E8 /* SelectplaceDrpdwncell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectplaceDrpdwncell.swift; sourceTree = "<group>"; };
+		744D49F724F63946001075E8 /* SelectplaceDrpdwncell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectplaceDrpdwncell.xib; sourceTree = "<group>"; };
 		7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsentHeaderCell.swift; sourceTree = "<group>"; };
 		7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsentHeaderCell.xib; sourceTree = "<group>"; };
 		74520D3424CB1A5A001252ED /* AbsentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsentVC.swift; sourceTree = "<group>"; };
@@ -440,6 +444,8 @@
 			isa = PBXGroup;
 			children = (
 				745FE48E24F3A7EA00A40776 /* FieldVisitVC.swift */,
+				744D49F624F63946001075E8 /* SelectplaceDrpdwncell.swift */,
+				744D49F724F63946001075E8 /* SelectplaceDrpdwncell.xib */,
 			);
 			path = FieldTracking;
 			sourceTree = "<group>";
@@ -690,7 +696,6 @@
 				716E0CFC4B944DDD7A14F1C8 /* Pods-FaceTek.debug.xcconfig */,
 				92749F79893050B90249ABCC /* Pods-FaceTek.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -825,6 +830,7 @@
 				740D7076243C5CDE00CF6C2F /* leave_user.png in Resources */,
 				74398CDF2462E9F20053DA0F /* WhiteBck.png in Resources */,
 				740D7074243C52C300CF6C2F /* attendence_new.png in Resources */,
+				744D49F924F63946001075E8 /* SelectplaceDrpdwncell.xib in Resources */,
 				747F8DC2243B4B5C00ABBD5E /* AttendanceDashboardCell.xib in Resources */,
 				746017AA2435D2FB00969CA2 /* facetek_change_color.png in Resources */,
 				745D5C57247CCC2F00052FC4 /* leavemanagement.png in Resources */,
@@ -1008,6 +1014,7 @@
 				745FE48F24F3A7EA00A40776 /* FieldVisitVC.swift in Sources */,
 				744B8C7224CAC0B6004634C0 /* ManagerVC.swift in Sources */,
 				747F8DB0243B37FD00ABBD5E /* LeaveVC.swift in Sources */,
+				744D49F824F63946001075E8 /* SelectplaceDrpdwncell.swift in Sources */,
 				74FA123A24AC68C800A356E7 /* RecognitionCamera.swift in Sources */,
 				740FC4F1243DF57400F71B72 /* LeaveNavigationcell.swift in Sources */,
 				746017A82435BAC600969CA2 /* HamburgerButton.swift in Sources */,

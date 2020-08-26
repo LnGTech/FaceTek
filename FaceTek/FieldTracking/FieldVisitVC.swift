@@ -9,29 +9,30 @@
 import UIKit
 import GoogleMaps
 
-class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate {
+class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource {
 @IBOutlet weak var mapView: GMSMapView!
 @IBOutlet weak var Fieldvisitoutbtn: UIButton!
 @IBOutlet weak var FieldvisitBckview: UIView!
 @IBOutlet weak var Cancelbtn: UIButton!
 @IBOutlet weak var Submitbrn: UIButton!
-    
-    @IBOutlet weak var Selectplacelbl: UILabel!
-    @IBOutlet weak var VisitPuposetxtfld: UITextField!
-    @IBOutlet weak var Adresstxtview: UITextView!
-    
-    @IBOutlet weak var DrpDownview: UIView!
-    
-    var address: String = ""
+@IBOutlet weak var Selectplacelbl: UILabel!
+@IBOutlet weak var VisitPuposetxtfld: UITextField!
+@IBOutlet weak var Adresstxtview: UITextView!
+@IBOutlet weak var DrpDownview: UIView!
+@IBOutlet weak var SelectPlaceDrptble: UITableView!
+var address: String = ""
 var LattitudestrData: String = ""
 var LongitudestrData: String = ""
 var empAttndInDateTime : String = ""
 var empAttndOutDateTime : String = ""
 var RetrivedcustId = Int()
 var RetrivedempId = Int()
+var SelectPlaceArray:NSMutableArray = NSMutableArray()
 var locationManager = CLLocationManager()
+
 override func viewDidLoad() {
     super.viewDidLoad()
+    SelectPlaceDrptble.register(UINib(nibName: "SelectplaceDrpdwncell", bundle: nil), forCellReuseIdentifier: "SelectplaceDrpdwncell")
     self.VisitPuposetxtfld.delegate = self
     FieldvisitBckview.isHidden = true
     DrpDownview.isHidden = true
@@ -240,12 +241,54 @@ task.resume()
                     SelectPlacestr = (SelectPlaceDic["visitClientPlace"] as? String)!
         print("visitClientPlace-------",SelectPlacestr)
         MainDict.setObject(SelectPlacestr, forKey: "visitClientPlace" as NSCopying)
+                    self.SelectPlaceArray.add(MainDict)
+
                 }
+                self.SelectPlaceDrptble.reloadData()
             }
         }
         }
         task.resume()
     }
+    
+    //tableview Delegate methods
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.SelectPlaceArray.count
+    }
+    
+    // create a cell for each table view row
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let drpcell = tableView.dequeueReusableCell(withIdentifier: "SelectplaceDrpdwncell", for: indexPath) as! SelectplaceDrpdwncell
+        var responseDict = self.SelectPlaceArray[indexPath.row] as! NSMutableDictionary
+        var maindata = SelectPlaceArray[indexPath.row]
+        print("Selectplacestr data",responseDict)
+        print("Selectplacestr Type Array",SelectPlaceArray)
+        var Selectplacestr : String?
+        Selectplacestr = responseDict["visitClientPlace"] as? String
+        print("Selectplacestr",Selectplacestr)
+        drpcell.selectPlacedrpLbl!.text = Selectplacestr
+        return drpcell
+
+    }
+    
+    // method to run when table view cell is tapped
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let drpcell = tableView.dequeueReusableCell(withIdentifier: "SelectplaceDrpdwncell", for: indexPath) as! SelectplaceDrpdwncell
+               var responseDict = self.SelectPlaceArray[indexPath.row] as! NSMutableDictionary
+               var maindata = SelectPlaceArray[indexPath.row]
+               print("Selectplacestr data",responseDict)
+               print("Selectplacestr Type Array",SelectPlaceArray)
+               var Selectplacestr : String?
+               Selectplacestr = responseDict["visitClientPlace"] as? String
+               print("Selectplacestr",Selectplacestr)
+               drpcell.selectPlacedrpLbl!.text = Selectplacestr
+        Selectplacelbl.text = Selectplacestr
+        DrpDownview.isHidden = true
+        
+        
+    }
+    
     
 @objc func pressButton(button: UIButton) {
     NSLog("pressed!")
