@@ -27,6 +27,8 @@ var empAttndInDateTime : String = ""
 var empAttndOutDateTime : String = ""
 var RetrivedcustId = Int()
 var RetrivedempId = Int()
+    var customView = UIView()
+    var customSubView = UIView()
 var SelectPlaceArray:NSMutableArray = NSMutableArray()
 var locationManager = CLLocationManager()
 
@@ -45,6 +47,8 @@ override func viewDidLoad() {
     Fieldvisit_OUT()
     //Select Dropdown method
     selectPlaceDrpdown()
+    //Fieldvisit-form submit method
+    FieldvisitFormsubmitAPI()
     
     
     //Shadow color code
@@ -96,8 +100,6 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
     let location = CLLocation(latitude: lat, longitude: long)
     print("location lat long values----",location)
     geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-        
-        
         let pm = placemarks! as [CLPlacemark]
 
                 if pm.count > 0 {
@@ -245,6 +247,64 @@ task.resume()
         task.resume()
     }
     
+    func FieldvisitFormsubmitAPI()
+    {
+        let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong":"12.9835582,77.5983963","outFromAddress":"Marathalli","toClientNamePlace":"SilkBoard","visitPurpose":"ClientMetting","prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
+       
+        
+        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
+        let session = URLSession.shared
+        var request = URLRequest(url: url as URL)
+            request.httpMethod = "POST" //set http method as POST
+                
+        do {
+        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+                    print(error.localizedDescription)
+        }
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        guard let data = data, error == nil else {
+        print(error?.localizedDescription ?? "No data")
+        return
+        }
+        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+        if let responseJSON = responseJSON as? [String: Any] {
+        print(" Field Visi submit form ---- Json Response",responseJSON)
+        
+            DispatchQueue.main.async
+                {
+                    let statusDic = responseJSON["status"]! as! NSDictionary
+                    print("statusDic---",statusDic)
+                                    let code = statusDic["code"] as! NSInteger
+                    print("code-----",code as Any)
+//                    let code = responseJSON["code"]! as! NSInteger
+//                    print("code---",code)
+                    if(code == 200)
+                    {
+                       
+                        let message = statusDic["message"] as! NSString
+                        print("message--",message)
+                        //Leave PopUp method calling
+                        self.FieldvisitOUT_PopUp()
+                    }
+                    else
+                    {
+                        let message = responseJSON["message"]! as! NSString
+                        let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                        self.present(alert, animated: true, completion: nil)
+                    }
+
+            }
+            
+        }
+        }
+        task.resume()
+        
+    }
+    
     //tableview Delegate methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.SelectPlaceArray.count
@@ -297,6 +357,58 @@ task.resume()
     {
         VisitPuposetxtfld.resignFirstResponder()
         return true;
+    }
+    func FieldvisitOUT_PopUp()
+    {
+        
+        self.customView.frame = CGRect.init(x: 0, y: 0, width: 230, height: 300)
+        self.customView.backgroundColor = UIColor.white     //give color to the view
+        self.customView.center = self.view.center
+        self.view.addSubview(self.customView)
+        self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
+        self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+        let shadowPath = UIBezierPath(rect: self.customView.bounds)
+        self.customView.layer.masksToBounds = false
+        self.customView.layer.shadowColor = UIColor.darkGray.cgColor
+        self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+        self.customView.layer.shadowOpacity = 0.8
+        self.customView.layer.shadowPath = shadowPath.cgPath
+        self.customView.addSubview(self.customSubView)
+        //image
+        var imageView : UIImageView
+        imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
+        imageView.image = UIImage(named:"conform.png")
+        self.customView.addSubview(imageView)
+        let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));
+        label.text = "Thank you!"
+        label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
+        label.font = UIFont.boldSystemFont(ofSize: 22.0)
+        label.textColor = UIColor.white
+        self.customView.addSubview(label)
+        let label1 = UILabel(frame: CGRect(x: 20, y: 175, width: 400, height: 21))
+        label1.text = "Successfully Inserted"
+        label1.textColor = UIColor.darkGray
+        label1.shadowColor = UIColor.gray
+        label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+        self.customView.addSubview(label1)
+        let myButton = UIButton(type: .system)
+        myButton.frame = CGRect(x: 70, y: 210, width: 100, height: 50)
+        // Set text on button
+        myButton.setTitle("OK", for: .normal)
+        myButton.setTitle("Pressed + Hold", for: .highlighted)
+        myButton.setTitleColor(UIColor.white, for: .normal)
+        
+        myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+        myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
+        self.customView.addSubview(myButton)
+        
+    }
+    @objc func buttonAction(_ sender:UIButton!)
+    {
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+        self.present(UITabBarController, animated:true, completion:nil)
+        
     }
 }
 

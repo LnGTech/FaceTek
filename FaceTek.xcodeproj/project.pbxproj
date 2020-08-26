@@ -611,10 +611,10 @@
 		74D998612434621200DFCBEC /* FaceTek */ = {
 			isa = PBXGroup;
 			children = (
-				7449F96C24AE284900232D46 /* LogINVC.swift */,
 				74FA123124AC689800A356E7 /* FaceSDK */,
 				74FA122C24AC687F00A356E7 /* Shaders */,
 				7424A04624AC6AFB000B466F /* AppDelegate.swift */,
+				7449F96C24AE284900232D46 /* LogINVC.swift */,
 				7448549424AF1C5500F36A99 /* LogOutVC.swift */,
 				74FA123724AC68BD00A356E7 /* RecognitionViewController.swift */,
 				74FA123924AC68C700A356E7 /* RecognitionCamera.swift */,
