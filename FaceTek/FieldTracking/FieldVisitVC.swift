@@ -76,6 +76,11 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
     mapView.settings.myLocationButton = true // show current location button
    let lat = (newLocation?.coordinate.latitude)! // get current location latitude
    let long = (newLocation?.coordinate.longitude)!
+    
+    let marker = GMSMarker()
+    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
+    marker.title = address
+    marker.map = self.mapView
 }
 
 
