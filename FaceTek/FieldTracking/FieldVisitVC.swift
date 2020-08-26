@@ -102,12 +102,12 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
 
                 if pm.count > 0 {
                     let pm = placemarks![0]
-                    print(pm.country)
-                    print(pm.locality)
-                    print(pm.subLocality)
-                    print(pm.thoroughfare)
-                    print(pm.postalCode)
-                    print(pm.subThoroughfare)
+                    print(pm.country as Any)
+                    print(pm.locality as Any)
+                    print(pm.subLocality as Any)
+                    print(pm.thoroughfare as Any)
+                    print(pm.postalCode as Any)
+                    print(pm.subThoroughfare as Any)
                     if pm.subLocality != nil {
                         self.addressString = self.addressString + pm.subLocality! + ", "
                     }
@@ -245,9 +245,9 @@ task.resume()
     func FieldvisitFormsubmitAPI()
     {
         let latlanstr = latstr + ", " + longstr
-        print("latlongvalues---",latlanstr)
+        print("suresh latlongvalues---",latlanstr)
 
-        let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong":"12.9835582,77.5983963","outFromAddress":"Marathalli","toClientNamePlace":"SilkBoard","visitPurpose":"ClientMetting","prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
+        let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":"Marathalli","toClientNamePlace":"SilkBoard","visitPurpose":"ClientMetting","prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
        
         
         let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
