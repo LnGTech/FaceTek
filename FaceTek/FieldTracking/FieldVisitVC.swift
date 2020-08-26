@@ -25,6 +25,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 var addressString : String = ""
 var empAttndInDateTime : String = ""
 var empAttndOutDateTime : String = ""
+    var latstr : String = ""
+    var longstr : String = ""
+
+
 var RetrivedcustId = Int()
 var RetrivedempId = Int()
     var customView = UIView()
@@ -47,8 +51,6 @@ override func viewDidLoad() {
     Fieldvisit_OUT()
     //Select Dropdown method
     selectPlaceDrpdown()
-    //Fieldvisit-form submit method
-    FieldvisitFormsubmitAPI()
     
     
     //Shadow color code
@@ -90,12 +92,8 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
     mapView.settings.myLocationButton = true // show current location button
    let lat = (newLocation?.coordinate.latitude)! // get current location latitude
    let long = (newLocation?.coordinate.longitude)!
-    var latstr = String(lat)
-    var longstr = String(long)
-    let result = latstr + ", " + longstr
-
-    print("latlongvalues---",result)
-    
+    latstr = String(lat)
+    longstr = String(long)
     let geoCoder = CLGeocoder()
     let location = CLLocation(latitude: lat, longitude: long)
     print("location lat long values----",location)
@@ -132,9 +130,6 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
                     marker.map = self.mapView
                     print("address location",self.addressString)
               }
-        
-            
-    
 })
     }
 
@@ -249,6 +244,9 @@ task.resume()
     
     func FieldvisitFormsubmitAPI()
     {
+        let latlanstr = latstr + ", " + longstr
+        print("latlongvalues---",latlanstr)
+
         let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong":"12.9835582,77.5983963","outFromAddress":"Marathalli","toClientNamePlace":"SilkBoard","visitPurpose":"ClientMetting","prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
        
         
@@ -410,6 +408,11 @@ task.resume()
         self.present(UITabBarController, animated:true, completion:nil)
         
     }
+    
+    @IBAction func FieldvisitOUT_Submitbtnclk(_ sender: Any) {
+        FieldvisitFormsubmitAPI()
+    }
+    
 }
 
 

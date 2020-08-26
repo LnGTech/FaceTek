@@ -3750,7 +3750,7 @@
                                                         </connections>
                                                     </tableView>
                                                 </subviews>
-                                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstItem="QHK-0o-aVS" firstAttribute="top" secondItem="R3X-qp-agR" secondAttribute="top" constant="18" id="1lT-a0-6UQ"/>
                                                     <constraint firstItem="0la-SC-OKF" firstAttribute="leading" secondItem="R3X-qp-agR" secondAttribute="leading" id="Gym-Bs-zxL"/>
@@ -3812,6 +3812,9 @@
                                         <state key="normal" title="Submit">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="FieldvisitOUT_Submitbtnclk:" destination="iPY-GP-swF" eventType="touchUpInside" id="Y2y-lc-NxH"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

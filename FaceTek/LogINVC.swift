@@ -127,7 +127,6 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 			names.add(String())
 			IDs.append(-1)
 		}
-		
 		// Load tracker memory
 		let homeDir = NSHomeDirectory()
 		let filePath = "Documents/Memory70.dat"
@@ -141,11 +140,9 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		}
 		resetTrackerParameters()
 	}
-	
 	override func viewWillAppear(_ animated: Bool) {
 		UIApplication.shared.isIdleTimerDisabled = true
 	}
-	
 	@objc
 	func clearAction(sender: UIBarButtonItem) {
 		let alert = UIAlertView(title: "", message: "Are you sure to clear the memory?", delegate: self, cancelButtonTitle: "Cancel", otherButtonTitles: "Ok")
