@@ -31,7 +31,6 @@
 		740FC4F2243DF57400F71B72 /* LeaveNavigationcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4F0243DF57400F71B72 /* LeaveNavigationcell.xib */; };
 		741408FF247A39C800ED1391 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 741408FE247A39C400ED1391 /* back.png */; };
 		74140901247A3AFF00ED1391 /* backicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74140900247A3AFE00ED1391 /* backicon.png */; };
-		741778402446EBA20056E9EC /* ff.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 7417783F2446EBA10056E9EC /* ff.jpeg */; };
 		7424A04724AC6AFB000B466F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424A04624AC6AFB000B466F /* AppDelegate.swift */; };
 		7429321524498B5300C59157 /* UIappViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321424498B5200C59157 /* UIappViewController.swift */; };
 		7429321724498B5C00C59157 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321624498B5C00C59157 /* Reachability.swift */; };
@@ -206,7 +205,6 @@
 		740FC4F0243DF57400F71B72 /* LeaveNavigationcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveNavigationcell.xib; sourceTree = "<group>"; };
 		741408FE247A39C400ED1391 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		74140900247A3AFE00ED1391 /* backicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backicon.png; sourceTree = "<group>"; };
-		7417783F2446EBA10056E9EC /* ff.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = ff.jpeg; path = ../Registration/ff.jpeg; sourceTree = "<group>"; };
 		7424A04624AC6AFB000B466F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7429321424498B5200C59157 /* UIappViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIappViewController.swift; sourceTree = "<group>"; };
 		7429321624498B5C00C59157 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -527,7 +525,6 @@
 				740FA3F6247BE0C600E4FC3D /* camera_icon.png */,
 				74398CE02462EC000053DA0F /* BckArrowicon.png */,
 				74398CDE2462E9F10053DA0F /* WhiteBck.png */,
-				7417783F2446EBA10056E9EC /* ff.jpeg */,
 				740FC4ED243DB3D600F71B72 /* pending.png */,
 				740FC4EB243DB3D100F71B72 /* pass.png */,
 				740FC4E9243DB15100F71B72 /* upcoming leaves.png */,
@@ -891,7 +888,6 @@
 				7440736A24B74F4700B30039 /* selectmode.png in Resources */,
 				745D5C5F247CDA9700052FC4 /* Home_user.png in Resources */,
 				7463BA8524EA4B2700EABA48 /* no_location_found.png in Resources */,
-				741778402446EBA20056E9EC /* ff.jpeg in Resources */,
 				747F8DB8243B3D4800ABBD5E /* home-icon_w.png in Resources */,
 				740FC4E4243D988A00F71B72 /* today.png in Resources */,
 				74E68A7324C832B100A3B009 /* Dropdowncell.xib in Resources */,

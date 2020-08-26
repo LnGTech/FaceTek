@@ -8,6 +8,8 @@
 
 import UIKit
 import GoogleMaps
+import CoreLocation
+
 
 class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource {
 @IBOutlet weak var mapView: GMSMapView!
@@ -20,9 +22,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 @IBOutlet weak var Adresstxtview: UITextView!
 @IBOutlet weak var DrpDownview: UIView!
 @IBOutlet weak var SelectPlaceDrptble: UITableView!
-var address: String = ""
-var LattitudestrData: String = ""
-var LongitudestrData: String = ""
+var addressString : String = ""
 var empAttndInDateTime : String = ""
 var empAttndOutDateTime : String = ""
 var RetrivedcustId = Int()
@@ -46,17 +46,7 @@ override func viewDidLoad() {
     //Select Dropdown method
     selectPlaceDrpdown()
     
-    locationManager.requestWhenInUseAuthorization()
-    var currentLoc: CLLocation!
-    if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-        CLLocationManager.authorizationStatus() == .authorizedAlways) {
-        currentLoc = locationManager.location
-        LattitudestrData = String(currentLoc.coordinate.latitude)
-        LongitudestrData = String(currentLoc.coordinate.longitude)
-    }
-            getAddress { (address) in
-                print("Location------",address)
-            }
+    
     //Shadow color code
     FieldvisitBckview.layer.shadowColor = UIColor.black.cgColor
     FieldvisitBckview.layer.shadowOpacity = 0.8
@@ -96,52 +86,56 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
     mapView.settings.myLocationButton = true // show current location button
    let lat = (newLocation?.coordinate.latitude)! // get current location latitude
    let long = (newLocation?.coordinate.longitude)!
+    var latstr = String(lat)
+    var longstr = String(long)
+    let result = latstr + ", " + longstr
+
+    print("latlongvalues---",result)
     
-    let marker = GMSMarker()
-    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
-    marker.title = address
-    marker.map = self.mapView
-}
-
-
-func getAddress(handler: @escaping (String) -> Void)
-{
-
-    let Locationlatitude = (LattitudestrData as NSString).doubleValue
-    let Locationlongitude = (LongitudestrData as NSString).doubleValue
     let geoCoder = CLGeocoder()
-    let location = CLLocation(latitude: Locationlatitude, longitude: Locationlongitude)
+    let location = CLLocation(latitude: lat, longitude: long)
+    print("location lat long values----",location)
     geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
         
-        // Place details
-        var placeMark: CLPlacemark?
-        placeMark = placemarks?[0]
-        // Location name
-            if let locationName = placeMark?.addressDictionary?["Name"] as? String {
-                self.address += locationName + ", "
-            }
-            // Street address
-            if let street = placeMark?.addressDictionary?["Thoroughfare"] as? String {
-                self.address += street + ", "
-            }
-            // City
-            if let city = placeMark?.addressDictionary?["City"] as? String {
-                self.address += city + ", "
-            }
-            // Zip code
-            if let zip = placeMark?.addressDictionary?["ZIP"] as? String {
-                self.address += zip + ", "
-            }
-            // Country
-            if let country = placeMark?.addressDictionary?["Country"] as? String {
-                self.address += country
-            }
+        
+        let pm = placemarks! as [CLPlacemark]
+
+                if pm.count > 0 {
+                    let pm = placemarks![0]
+                    print(pm.country)
+                    print(pm.locality)
+                    print(pm.subLocality)
+                    print(pm.thoroughfare)
+                    print(pm.postalCode)
+                    print(pm.subThoroughfare)
+                    if pm.subLocality != nil {
+                        self.addressString = self.addressString + pm.subLocality! + ", "
+                    }
+                    if pm.thoroughfare != nil {
+                        self.addressString = self.addressString + pm.thoroughfare! + ", "
+                    }
+                    if pm.locality != nil {
+                        self.addressString = self.addressString + pm.locality! + ", "
+                    }
+                    if pm.country != nil {
+                        self.addressString = self.addressString + pm.country! + ", "
+                    }
+                    if pm.postalCode != nil {
+                        self.addressString = self.addressString + pm.postalCode! + " "
+                    }
+
+                    let marker = GMSMarker()
+                    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
+                    marker.title = self.addressString
+                    marker.map = self.mapView
+                    print("address location",self.addressString)
+              }
+        
             
-           // Passing address back
-        handler(self.address)
-        })
     
-}
+})
+    }
+
 
 //Field-visit OUT Enable and Disable
 func Fieldvisit_OUT()
@@ -293,7 +287,7 @@ task.resume()
 @objc func pressButton(button: UIButton) {
     NSLog("pressed!")
     FieldvisitBckview.isHidden = false
-    Adresstxtview.text = address
+    Adresstxtview.text = addressString
 }
 
     @IBAction func Cancelbtnclk(_ sender: Any) {
