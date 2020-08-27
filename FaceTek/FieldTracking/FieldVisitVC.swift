@@ -383,14 +383,14 @@ task.resume()
         label.font = UIFont.boldSystemFont(ofSize: 22.0)
         label.textColor = UIColor.white
         self.customView.addSubview(label)
-        let label1 = UILabel(frame: CGRect(x: 20, y: 175, width: 400, height: 21))
-        label1.text = "Successfully Inserted"
+        let label1 = UILabel(frame: CGRect(x: 55, y: 175, width: 400, height: 21))
+        label1.text = "Visit Out Started"
         label1.textColor = UIColor.darkGray
         label1.shadowColor = UIColor.gray
         label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
         self.customView.addSubview(label1)
         let myButton = UIButton(type: .system)
-        myButton.frame = CGRect(x: 70, y: 210, width: 100, height: 50)
+        myButton.frame = CGRect(x: 65, y: 210, width: 100, height: 50)
         // Set text on button
         myButton.setTitle("OK", for: .normal)
         myButton.setTitle("Pressed + Hold", for: .highlighted)
@@ -403,9 +403,11 @@ task.resume()
     }
     @objc func buttonAction(_ sender:UIButton!)
     {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-        self.present(UITabBarController, animated:true, completion:nil)
+        FieldvisitBckview.isHidden = true
+        customView.isHidden = true
+//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+//        self.present(UITabBarController, animated:true, completion:nil)
         
     }
     
