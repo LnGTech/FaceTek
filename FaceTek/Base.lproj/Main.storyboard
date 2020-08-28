@@ -3858,6 +3858,7 @@
                         <outlet property="Cancelbtn" destination="8ya-AR-Mzo" id="x7g-aa-wp7"/>
                         <outlet property="DrpDownview" destination="R3X-qp-agR" id="WXk-wf-wuZ"/>
                         <outlet property="FieldvisitBckview" destination="IKi-KG-WXg" id="A7d-fM-72o"/>
+                        <outlet property="Fieldvisitinbtn" destination="KqN-hj-9Xl" id="6Oh-zK-p33"/>
                         <outlet property="Fieldvisitoutbtn" destination="VMs-aT-W6I" id="6BU-H3-0RP"/>
                         <outlet property="SelectPlaceDrptble" destination="0la-SC-OKF" id="eY3-if-eyr"/>
                         <outlet property="Selectplacelbl" destination="NoD-2f-GUq" id="SFG-Yy-d0D"/>

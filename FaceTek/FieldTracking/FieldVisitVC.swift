@@ -14,7 +14,9 @@ import CoreLocation
 class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource {
 @IBOutlet weak var mapView: GMSMapView!
 @IBOutlet weak var Fieldvisitoutbtn: UIButton!
-@IBOutlet weak var FieldvisitBckview: UIView!
+    
+    @IBOutlet weak var Fieldvisitinbtn: UIButton!
+    @IBOutlet weak var FieldvisitBckview: UIView!
 @IBOutlet weak var Cancelbtn: UIButton!
 @IBOutlet weak var Submitbrn: UIButton!
 @IBOutlet weak var Selectplacelbl: UILabel!
@@ -38,6 +40,12 @@ var locationManager = CLLocationManager()
 
 override func viewDidLoad() {
     super.viewDidLoad()
+    //Field visit - IN and OUT button text color code
+    self.Fieldvisitinbtn.setTitleColor(.lightGray, for: .normal)
+    self.Fieldvisitinbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+    self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
+    self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+    
     SelectPlaceDrptble.register(UINib(nibName: "SelectplaceDrpdwncell", bundle: nil), forCellReuseIdentifier: "SelectplaceDrpdwncell")
     self.VisitPuposetxtfld.delegate = self
     FieldvisitBckview.isHidden = true
@@ -77,7 +85,6 @@ override func viewDidLoad() {
     Selectplacelbl.isUserInteractionEnabled = true
     Selectplacelbl.addGestureRecognizer(tap)
 
-    
     // Do any additional setup after loading the view.
 }
     @objc func tapFunction(sender:UITapGestureRecognizer) {
@@ -92,44 +99,43 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
     mapView.settings.myLocationButton = true // show current location button
    let lat = (newLocation?.coordinate.latitude)! // get current location latitude
    let long = (newLocation?.coordinate.longitude)!
-    latstr = String(lat)
-    longstr = String(long)
-    let geoCoder = CLGeocoder()
-    let location = CLLocation(latitude: lat, longitude: long)
-    print("location lat long values----",location)
+   latstr = String(lat)
+   longstr = String(long)
+   let geoCoder = CLGeocoder()
+   let location = CLLocation(latitude: lat, longitude: long)
     geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-        let pm = placemarks! as [CLPlacemark]
+    let pm = placemarks! as [CLPlacemark]
 
-                if pm.count > 0 {
-                    let pm = placemarks![0]
-                    print(pm.country as Any)
-                    print(pm.locality as Any)
-                    print(pm.subLocality as Any)
-                    print(pm.thoroughfare as Any)
-                    print(pm.postalCode as Any)
-                    print(pm.subThoroughfare as Any)
-                    if pm.subLocality != nil {
-                        self.addressString = self.addressString + pm.subLocality! + ", "
-                    }
-                    if pm.thoroughfare != nil {
-                        self.addressString = self.addressString + pm.thoroughfare! + ", "
-                    }
-                    if pm.locality != nil {
-                        self.addressString = self.addressString + pm.locality! + ", "
-                    }
-                    if pm.country != nil {
-                        self.addressString = self.addressString + pm.country! + ", "
-                    }
-                    if pm.postalCode != nil {
-                        self.addressString = self.addressString + pm.postalCode! + " "
-                    }
+    if pm.count > 0 {
+    let pm = placemarks![0]
+    print(pm.country as Any)
+    print(pm.locality as Any)
+    print(pm.subLocality as Any)
+    print(pm.thoroughfare as Any)
+    print(pm.postalCode as Any)
+    print(pm.subThoroughfare as Any)
+    if pm.subLocality != nil {
+    self.addressString = self.addressString + pm.subLocality! + ", "
+    }
+    if pm.thoroughfare != nil {
+    self.addressString = self.addressString + pm.thoroughfare! + ", "
+    }
+    if pm.locality != nil {
+    self.addressString = self.addressString + pm.locality! + ", "
+    }
+    if pm.country != nil {
+    self.addressString = self.addressString + pm.country! + ", "
+    }
+    if pm.postalCode != nil {
+    self.addressString = self.addressString + pm.postalCode! + " "
+    }
 
-                    let marker = GMSMarker()
-                    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
-                    marker.title = self.addressString
-                    marker.map = self.mapView
-                    print("address location",self.addressString)
-              }
+    let marker = GMSMarker()
+    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
+    marker.title = self.addressString
+    marker.map = self.mapView
+    print("address location",self.addressString)
+}
 })
     }
 
@@ -138,11 +144,10 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
 func Fieldvisit_OUT()
 {
         
-   let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
+  let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
   let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
         //create the session object
     let session = URLSession.shared
-        
         //now create the URLRequest object using the url object
     var request = URLRequest(url: url as URL)
         request.httpMethod = "POST" //set http method as POST
@@ -169,9 +174,13 @@ func Fieldvisit_OUT()
         self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
         self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
         if (self.empAttndInDateTime == "NA") {
-            self.Fieldvisitoutbtn.setTitleColor(.darkGray, for: .normal)
+            self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
+            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+
         } else {
         self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
+        self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+
         self.locationManager.requestAlwaysAuthorization()
         if CLLocationManager.locationServicesEnabled(){
         self.locationManager.delegate = self
@@ -181,7 +190,7 @@ func Fieldvisit_OUT()
         self.locationManager.requestAlwaysAuthorization()
         self.locationManager.startUpdatingLocation()
             //UIbutton Action
-            self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
+        self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
 
         }
         self.mapView.settings.myLocationButton = true
@@ -189,6 +198,20 @@ func Fieldvisit_OUT()
         self.mapView.animate(toViewingAngle: 45)
         self.mapView.delegate = self
         }
+        
+        if (self.empAttndOutDateTime == "NA" && self.empAttndOutDateTime == "NA") {
+            self.Fieldvisitoutbtn.setTitleColor(.darkGray, for: .normal)
+            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        } else {
+            self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
+                   self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+            
+            
+            self.Fieldvisitoutbtn.isEnabled = false
+        
+        }
+        
+        
     }
 }
 }
@@ -248,7 +271,6 @@ task.resume()
         print("suresh latlongvalues---",latlanstr)
 
         let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":"Marathalli","toClientNamePlace":"SilkBoard","visitPurpose":"ClientMetting","prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
-       
         
         let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
         let session = URLSession.shared
@@ -273,26 +295,22 @@ task.resume()
         
             DispatchQueue.main.async
                 {
-                    let statusDic = responseJSON["status"]! as! NSDictionary
-                    print("statusDic---",statusDic)
-                                    let code = statusDic["code"] as! NSInteger
-                    print("code-----",code as Any)
-//                    let code = responseJSON["code"]! as! NSInteger
-//                    print("code---",code)
-                    if(code == 200)
-                    {
+        let statusDic = responseJSON["status"]! as! NSDictionary
+        print("statusDic---",statusDic)
+        let code = statusDic["code"] as! NSInteger
+        if(code == 200)
+        {
                        
-                        let message = statusDic["message"] as! NSString
-                        print("message--",message)
+        let message = statusDic["message"] as! NSString
                         //Leave PopUp method calling
-                        self.FieldvisitOUT_PopUp()
-                    }
-                    else
-                    {
-                        let message = responseJSON["message"]! as! NSString
-                        let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-                        self.present(alert, animated: true, completion: nil)
+        self.FieldvisitOUT_PopUp()
+        }
+        else
+        {
+        let message = responseJSON["message"]! as! NSString
+        let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
                     }
 
             }
@@ -327,14 +345,11 @@ task.resume()
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let drpcell = tableView.dequeueReusableCell(withIdentifier: "SelectplaceDrpdwncell", for: indexPath) as! SelectplaceDrpdwncell
-               var responseDict = self.SelectPlaceArray[indexPath.row] as! NSMutableDictionary
-               var maindata = SelectPlaceArray[indexPath.row]
-               print("Selectplacestr data",responseDict)
-               print("Selectplacestr Type Array",SelectPlaceArray)
-               var Selectplacestr : String?
-               Selectplacestr = responseDict["visitClientPlace"] as? String
-               print("Selectplacestr",Selectplacestr)
-               drpcell.selectPlacedrpLbl!.text = Selectplacestr
+        var responseDict = self.SelectPlaceArray[indexPath.row] as! NSMutableDictionary
+        var maindata = SelectPlaceArray[indexPath.row]
+        var Selectplacestr : String?
+        Selectplacestr = responseDict["visitClientPlace"] as? String
+        drpcell.selectPlacedrpLbl!.text = Selectplacestr
         Selectplacelbl.text = Selectplacestr
         DrpDownview.isHidden = true
         
@@ -409,6 +424,11 @@ task.resume()
 //        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
 //        self.present(UITabBarController, animated:true, completion:nil)
         
+    }
+    @objc func Fieldvisitinbtnclick(_ sender:UIButton!)
+    {
+        self.Fieldvisitoutbtn.setTitleColor(.darkGray, for: .normal)
+
     }
     
     @IBAction func FieldvisitOUT_Submitbtnclk(_ sender: Any) {
