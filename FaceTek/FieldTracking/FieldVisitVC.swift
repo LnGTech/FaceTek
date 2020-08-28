@@ -40,6 +40,8 @@ var locationManager = CLLocationManager()
 
 override func viewDidLoad() {
     super.viewDidLoad()
+    
+    
     //Field visit - IN and OUT button text color code
     self.Fieldvisitinbtn.setTitleColor(.lightGray, for: .normal)
     self.Fieldvisitinbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
@@ -84,9 +86,28 @@ override func viewDidLoad() {
     let tap = UITapGestureRecognizer(target: self, action: #selector(FieldVisitVC.tapFunction))
     Selectplacelbl.isUserInteractionEnabled = true
     Selectplacelbl.addGestureRecognizer(tap)
+    
+    
+    //visit Purpose textfield validation
+    VisitPuposetxtfld.addTarget(self, action: #selector(actionTextFieldIsEditingChanged), for: UIControl.Event.editingChanged)
+    Submitbrn.isEnabled = false
+    Submitbrn.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.6487585616, blue: 0.06666666667, alpha: 0.2948148545)
 
-    // Do any additional setup after loading the view.
 }
+    
+    @objc func actionTextFieldIsEditingChanged(sender: UITextField) {
+        if sender.text!.isEmpty {
+         // textfield is empty
+            print("textfield is empty")
+       } else {
+            print("text field is not empty")
+            Submitbrn.isEnabled = true
+            Submitbrn.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.7098039216, blue: 0.2670965325, alpha: 1)
+
+         // text field is not empty
+       }
+    }
+    
     @objc func tapFunction(sender:UITapGestureRecognizer) {
 
         print("tap working")
@@ -178,8 +199,6 @@ func Fieldvisit_OUT()
             self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 
         } else {
-        self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
-        self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
 
         self.locationManager.requestAlwaysAuthorization()
         if CLLocationManager.locationServicesEnabled(){
@@ -191,6 +210,9 @@ func Fieldvisit_OUT()
         self.locationManager.startUpdatingLocation()
             //UIbutton Action
         self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
+            self.Fieldvisitoutbtn.setTitleColor(.red, for: .normal)
+            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+
 
         }
         self.mapView.settings.myLocationButton = true
@@ -199,19 +221,14 @@ func Fieldvisit_OUT()
         self.mapView.delegate = self
         }
         
-        if (self.empAttndOutDateTime == "NA" && self.empAttndOutDateTime == "NA") {
-            self.Fieldvisitoutbtn.setTitleColor(.darkGray, for: .normal)
-            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        if (self.empAttndOutDateTime == "NA") {
+            self.Fieldvisitoutbtn.setTitleColor(.red, for: .normal)
+            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
         } else {
-            self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
-                   self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-            
-            
+        self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
+        self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
             self.Fieldvisitoutbtn.isEnabled = false
-        
         }
-        
-        
     }
 }
 }
@@ -371,6 +388,8 @@ task.resume()
         VisitPuposetxtfld.resignFirstResponder()
         return true;
     }
+    
+    
     func FieldvisitOUT_PopUp()
     {
         
@@ -433,6 +452,8 @@ task.resume()
     
     @IBAction func FieldvisitOUT_Submitbtnclk(_ sender: Any) {
         FieldvisitFormsubmitAPI()
+        Fieldvisitinbtn.backgroundColor = UIColor.red
+        
     }
     
 }

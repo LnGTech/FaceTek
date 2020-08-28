@@ -3804,7 +3804,7 @@
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GY1-1e-Xnx">
                                         <rect key="frame" x="190" y="582" width="135" height="40"/>
-                                        <color key="backgroundColor" red="0.9108545184135437" green="0.70984095335006714" blue="0.34733980894088745" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.90980392156862744" green="0.70980392156862748" blue="0.066666666666666666" alpha="0.58684717465753422" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="135" id="AwG-yu-Cuy"/>
                                         </constraints>
