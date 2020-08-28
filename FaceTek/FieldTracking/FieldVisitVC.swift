@@ -15,7 +15,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 @IBOutlet weak var mapView: GMSMapView!
 @IBOutlet weak var Fieldvisitoutbtn: UIButton!
     
-    @IBOutlet weak var Fieldvisitinbtn: UIButton!
+    @IBOutlet weak var FieldVisitInbtn: UIButton!
     @IBOutlet weak var FieldvisitBckview: UIView!
 @IBOutlet weak var Cancelbtn: UIButton!
 @IBOutlet weak var Submitbrn: UIButton!
@@ -42,9 +42,10 @@ override func viewDidLoad() {
     super.viewDidLoad()
     
     
+    
     //Field visit - IN and OUT button text color code
-    self.Fieldvisitinbtn.setTitleColor(.lightGray, for: .normal)
-    self.Fieldvisitinbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+    self.FieldVisitInbtn.setTitleColor(.lightGray, for: .normal)
+    self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
     self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
     
@@ -92,6 +93,9 @@ override func viewDidLoad() {
     VisitPuposetxtfld.addTarget(self, action: #selector(actionTextFieldIsEditingChanged), for: UIControl.Event.editingChanged)
     Submitbrn.isEnabled = false
     Submitbrn.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.6487585616, blue: 0.06666666667, alpha: 0.2948148545)
+    
+    //Field visit IN disable
+    FieldVisitInbtn.isEnabled = false
 
 }
     
@@ -151,11 +155,11 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
     self.addressString = self.addressString + pm.postalCode! + " "
     }
 
-    let marker = GMSMarker()
-    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
-    marker.title = self.addressString
-    marker.map = self.mapView
-    print("address location",self.addressString)
+//    let marker = GMSMarker()
+//    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
+//    marker.title = self.addressString
+//    marker.map = self.mapView
+//    print("address location",self.addressString)
 }
 })
     }
@@ -444,7 +448,9 @@ task.resume()
 //        self.present(UITabBarController, animated:true, completion:nil)
         
     }
-    @objc func Fieldvisitinbtnclick(_ sender:UIButton!)
+    
+    
+    @objc func FieldVisitInbtnclick(_ sender:UIButton!)
     {
         self.Fieldvisitoutbtn.setTitleColor(.darkGray, for: .normal)
 
@@ -452,10 +458,65 @@ task.resume()
     
     @IBAction func FieldvisitOUT_Submitbtnclk(_ sender: Any) {
         FieldvisitFormsubmitAPI()
-        Fieldvisitinbtn.backgroundColor = UIColor.red
+        //FieldVisitInbtn.backgroundColor = UIColor.red
+        self.FieldVisitInbtn.setTitleColor(.black, for: .normal)
+        FieldVisitInbtn.isEnabled = true
+
+        let marker = GMSMarker()
+        let convertedlat = Double(latstr)
+        let convertedlong = Double(longstr)
+        let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
+        marker.position = newPosition
+        marker.title = self.addressString
+        marker.map = self.mapView
+        print("address location",self.addressString)
         
+               
     }
-    
+    @objc func pressINButton(button: UIButton) {
+        NSLog("pressed!")
+        
+        self.customView.frame = CGRect.init(x: 0, y: 0, width: 230, height: 300)
+        self.customView.backgroundColor = UIColor.white     //give color to the view
+        self.customView.center = self.view.center
+        self.view.addSubview(self.customView)
+        self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
+        self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+        let shadowPath = UIBezierPath(rect: self.customView.bounds)
+        self.customView.layer.masksToBounds = false
+        self.customView.layer.shadowColor = UIColor.darkGray.cgColor
+        self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+        self.customView.layer.shadowOpacity = 0.8
+        self.customView.layer.shadowPath = shadowPath.cgPath
+        self.customView.addSubview(self.customSubView)
+        //image
+        var imageView : UIImageView
+        imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
+        imageView.image = UIImage(named:"conform.png")
+        self.customView.addSubview(imageView)
+        let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));
+        label.text = "Thank you!"
+        label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
+        label.font = UIFont.boldSystemFont(ofSize: 22.0)
+        label.textColor = UIColor.white
+        self.customView.addSubview(label)
+        let label1 = UILabel(frame: CGRect(x: 55, y: 175, width: 400, height: 21))
+        label1.text = "Visit Out Started"
+        label1.textColor = UIColor.darkGray
+        label1.shadowColor = UIColor.gray
+        label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+        self.customView.addSubview(label1)
+        let myButton = UIButton(type: .system)
+        myButton.frame = CGRect(x: 65, y: 210, width: 100, height: 50)
+        // Set text on button
+        myButton.setTitle("OK", for: .normal)
+        myButton.setTitle("Pressed + Hold", for: .highlighted)
+        myButton.setTitleColor(UIColor.white, for: .normal)
+        
+        myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+        myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
+        self.customView.addSubview(myButton)    }
+   
 }
 
 
