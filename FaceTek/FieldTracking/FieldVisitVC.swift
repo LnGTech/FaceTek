@@ -41,14 +41,16 @@ var locationManager = CLLocationManager()
 override func viewDidLoad() {
     super.viewDidLoad()
     
+     
     
-    
-    //Field visit - IN and OUT button text color code
-    self.FieldVisitInbtn.setTitleColor(.lightGray, for: .normal)
-    self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-    self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
-    self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-    
+//
+//
+//    //Field visit - IN and OUT button text color code
+//    self.FieldVisitInbtn.setTitleColor(.lightGray, for: .normal)
+//    self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+//    self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
+//    self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+//
     SelectPlaceDrptble.register(UINib(nibName: "SelectplaceDrpdwncell", bundle: nil), forCellReuseIdentifier: "SelectplaceDrpdwncell")
     self.VisitPuposetxtfld.delegate = self
     FieldvisitBckview.isHidden = true
@@ -199,8 +201,8 @@ func Fieldvisit_OUT()
         self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
         self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
         if (self.empAttndInDateTime == "NA") {
-            self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
-            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+//            self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
+//            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 
         } else {
 
@@ -215,7 +217,7 @@ func Fieldvisit_OUT()
             //UIbutton Action
         self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
             self.Fieldvisitoutbtn.setTitleColor(.red, for: .normal)
-            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            //self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 
 
         }
@@ -226,11 +228,10 @@ func Fieldvisit_OUT()
         }
         
         if (self.empAttndOutDateTime == "NA") {
-            self.Fieldvisitoutbtn.setTitleColor(.red, for: .normal)
-            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 18)
+            
         } else {
-        self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
-        self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+        self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+//        self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
             self.Fieldvisitoutbtn.isEnabled = false
         }
     }
@@ -461,6 +462,7 @@ task.resume()
         //FieldVisitInbtn.backgroundColor = UIColor.red
         self.FieldVisitInbtn.setTitleColor(.black, for: .normal)
         FieldVisitInbtn.isEnabled = true
+        self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
 
         let marker = GMSMarker()
         let convertedlat = Double(latstr)
@@ -474,38 +476,41 @@ task.resume()
                
     }
     @objc func pressINButton(button: UIButton) {
-        NSLog("pressed!")
         
-        self.customView.frame = CGRect.init(x: 0, y: 0, width: 230, height: 300)
-        self.customView.backgroundColor = UIColor.white     //give color to the view
-        self.customView.center = self.view.center
-        self.view.addSubview(self.customView)
-        self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
-        self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-        let shadowPath = UIBezierPath(rect: self.customView.bounds)
-        self.customView.layer.masksToBounds = false
-        self.customView.layer.shadowColor = UIColor.darkGray.cgColor
-        self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-        self.customView.layer.shadowOpacity = 0.8
-        self.customView.layer.shadowPath = shadowPath.cgPath
-        self.customView.addSubview(self.customSubView)
+        var customView1 = UIView()
+        var customSubView1 = UIView()
+
+
+        customView1.frame = CGRect.init(x: 50, y: 50, width: 230, height: 300)
+        customView1.backgroundColor = UIColor.white     //give color to the view
+        customView1.center = view.center
+        view.addSubview(customView1)
+        customSubView1.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
+        customSubView1.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+        let shadowPath = UIBezierPath(rect: customView1.bounds)
+        customView1.layer.masksToBounds = false
+        customView1.layer.shadowColor = UIColor.darkGray.cgColor
+        customView1.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+        customView1.layer.shadowOpacity = 0.8
+        customView1.layer.shadowPath = shadowPath.cgPath
+        customView1.addSubview(customSubView1)
         //image
         var imageView : UIImageView
         imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
         imageView.image = UIImage(named:"conform.png")
-        self.customView.addSubview(imageView)
+        customView1.addSubview(imageView)
         let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));
         label.text = "Thank you!"
         label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
         label.font = UIFont.boldSystemFont(ofSize: 22.0)
         label.textColor = UIColor.white
-        self.customView.addSubview(label)
+        customView1.addSubview(label)
         let label1 = UILabel(frame: CGRect(x: 55, y: 175, width: 400, height: 21))
-        label1.text = "Visit Out Started"
+        label1.text = "Visit In Updated"
         label1.textColor = UIColor.darkGray
         label1.shadowColor = UIColor.gray
         label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-        self.customView.addSubview(label1)
+        customView1.addSubview(label1)
         let myButton = UIButton(type: .system)
         myButton.frame = CGRect(x: 65, y: 210, width: 100, height: 50)
         // Set text on button
@@ -515,7 +520,9 @@ task.resume()
         
         myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
         myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
-        self.customView.addSubview(myButton)    }
+        customView1.addSubview(myButton)
+        
+    }
    
 }
 
