@@ -33,8 +33,14 @@ var empAttndOutDateTime : String = ""
 
 var RetrivedcustId = Int()
 var RetrivedempId = Int()
+    //FieldvisitOUT views
     var customView = UIView()
     var customSubView = UIView()
+    
+    //FieldVisit IN Views
+    var customView1 = UIView()
+    var customSubView1 = UIView()
+
 var SelectPlaceArray:NSMutableArray = NSMutableArray()
 var locationManager = CLLocationManager()
 
@@ -46,11 +52,9 @@ override func viewDidLoad() {
 //
 //
 //    //Field visit - IN and OUT button text color code
-//    self.FieldVisitInbtn.setTitleColor(.lightGray, for: .normal)
-//    self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-//    self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
-//    self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-//
+self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+    
+self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
     SelectPlaceDrptble.register(UINib(nibName: "SelectplaceDrpdwncell", bundle: nil), forCellReuseIdentifier: "SelectplaceDrpdwncell")
     self.VisitPuposetxtfld.delegate = self
     FieldvisitBckview.isHidden = true
@@ -216,8 +220,8 @@ func Fieldvisit_OUT()
         self.locationManager.startUpdatingLocation()
             //UIbutton Action
         self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
-            self.Fieldvisitoutbtn.setTitleColor(.red, for: .normal)
-            //self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+            self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
+            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
 
 
         }
@@ -231,7 +235,8 @@ func Fieldvisit_OUT()
             
         } else {
         self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-//        self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+            
+        self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
             self.Fieldvisitoutbtn.isEnabled = false
         }
     }
@@ -461,25 +466,29 @@ task.resume()
         FieldvisitFormsubmitAPI()
         //FieldVisitInbtn.backgroundColor = UIColor.red
         self.FieldVisitInbtn.setTitleColor(.black, for: .normal)
+        self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
         FieldVisitInbtn.isEnabled = true
+        Fieldvisitoutbtn.isEnabled = false
+        self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+        self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+
+        
         self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
 
-        let marker = GMSMarker()
-        let convertedlat = Double(latstr)
-        let convertedlong = Double(longstr)
-        let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
-        marker.position = newPosition
-        marker.title = self.addressString
-        marker.map = self.mapView
-        print("address location",self.addressString)
+//        let marker = GMSMarker()
+//        let convertedlat = Double(latstr)
+//        let convertedlong = Double(longstr)
+//        let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
+//        marker.position = newPosition
+//        marker.title = self.addressString
+//        marker.map = self.mapView
+//        print("address location",self.addressString)
         
                
     }
     @objc func pressINButton(button: UIButton) {
         
-        var customView1 = UIView()
-        var customSubView1 = UIView()
-
+        
 
         customView1.frame = CGRect.init(x: 50, y: 50, width: 230, height: 300)
         customView1.backgroundColor = UIColor.white     //give color to the view
@@ -519,9 +528,30 @@ task.resume()
         myButton.setTitleColor(UIColor.white, for: .normal)
         
         myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-        myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
+        myButton.addTarget(self, action: #selector(self.FieldVisitIN(_:)), for: .touchUpInside)
         customView1.addSubview(myButton)
         
+    }
+    @objc func FieldVisitIN(_ sender:UIButton!)
+    {
+        customView1.isHidden = true
+        FieldVisitInbtn.isEnabled = false
+        Fieldvisitoutbtn.isEnabled = true
+        self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+        self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        
+        self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
+        self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        
+
+                let marker = GMSMarker()
+                let convertedlat = Double(latstr)
+                let convertedlong = Double(longstr)
+                let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
+                marker.position = newPosition
+                marker.title = self.addressString
+                marker.map = self.mapView
+                print("address location",self.addressString)
     }
    
 }
