@@ -55,6 +55,9 @@ override func viewDidLoad() {
 self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
     
 self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+    self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+        
+    self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
     SelectPlaceDrptble.register(UINib(nibName: "SelectplaceDrpdwncell", bundle: nil), forCellReuseIdentifier: "SelectplaceDrpdwncell")
     self.VisitPuposetxtfld.delegate = self
     FieldvisitBckview.isHidden = true
