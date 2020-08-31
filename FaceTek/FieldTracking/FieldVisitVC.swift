@@ -30,8 +30,12 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 var addressString : String = ""
 var empAttndInDateTime : String = ""
 var empAttndOutDateTime : String = ""
-    var latstr : String = ""
-    var longstr : String = ""
+var latstr : String = ""
+var longstr : String = ""
+var empVisitId = Int()
+var timer = Timer()
+
+
 
 
 var RetrivedcustId = Int()
@@ -50,20 +54,13 @@ var locationManager = CLLocationManager()
 override func viewDidLoad() {
     super.viewDidLoad()
     
-     
     
-//
-//
 //    //Field visit - IN and OUT button text color code
-self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-    
-self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-    self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-        
-    self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-    
-    self.SelectPlaceViewconstriant?.constant = 0
-
+   self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+   self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+   self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+   self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+   self.SelectPlaceViewconstriant?.constant = 0
     
     SelectPlaceDrptble.register(UINib(nibName: "SelectplaceDrpdwncell", bundle: nil), forCellReuseIdentifier: "SelectplaceDrpdwncell")
     self.VisitPuposetxtfld.delegate = self
@@ -109,7 +106,6 @@ self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
     VisitPuposetxtfld.addTarget(self, action: #selector(actionTextFieldIsEditingChanged), for: UIControl.Event.editingChanged)
     Submitbrn.isEnabled = false
     Submitbrn.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.6487585616, blue: 0.06666666667, alpha: 0.2948148545)
-    
     //Field visit IN disable
     FieldVisitInbtn.isEnabled = false
 
@@ -130,10 +126,8 @@ self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
-
         print("tap working")
         DrpDownview.isHidden = false
-        
 
     }
 func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -232,8 +226,8 @@ func Fieldvisit_OUT()
         self.locationManager.startUpdatingLocation()
             //UIbutton Action
         self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
-            self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
-            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+        self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
+        self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
 
 
         }
@@ -307,7 +301,6 @@ task.resume()
     func FieldvisitFormsubmitAPI()
     {
         let latlanstr = latstr + ", " + longstr
-        print("suresh latlongvalues---",latlanstr)
 
         let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":"Marathalli","toClientNamePlace":"SilkBoard","visitPurpose":"ClientMetting","prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
         
@@ -330,35 +323,102 @@ task.resume()
         }
         let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
         if let responseJSON = responseJSON as? [String: Any] {
-        print(" Field Visi submit form ---- Json Response",responseJSON)
-        
-            DispatchQueue.main.async
-                {
-        let statusDic = responseJSON["status"]! as! NSDictionary
-        print("statusDic---",statusDic)
-        let code = statusDic["code"] as! NSInteger
-        if(code == 200)
-        {
-                       
-        let message = statusDic["message"] as! NSString
-                        //Leave PopUp method calling
-        self.FieldvisitOUT_PopUp()
-        }
-        else
-        {
-        let message = responseJSON["message"]! as! NSString
-        let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-        self.present(alert, animated: true, completion: nil)
-                    }
+        self.empVisitId = Int()
+        self.empVisitId = (responseJSON["empVisitId"] as? NSInteger)!
+            print("empVisitId",self.empVisitId)
+            
+            
+            
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+               
+                self.scheduledTimerWithTimeInterval()
 
-            }
+                DispatchQueue.main.async {
+                    
+                    let statusDic = responseJSON["status"]! as! NSDictionary
+                    let code = statusDic["code"] as! NSInteger
+                    if(code == 200)
+                    {
+                    let message = statusDic["message"] as! NSString
+                        print("message ...",message)
+                                    //Leave PopUp method calling
+                    self.FieldvisitOUT_PopUp()
+                    }
+                    else
+                    {
+                    let message = responseJSON["message"]! as! NSString
+                    let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
+                                }
+                        }                    // only back on the main thread, may you access UI:
+                }
             
         }
         }
         task.resume()
         
     }
+    
+    func scheduledTimerWithTimeInterval(){
+        // Scheduling timer to Call the function "updateCounting" with the interval of 1 seconds
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
+    }
+
+    @objc func insertTrackFieldVisit_updateCounting(){
+        let parameters = [["custId": 74 ,"empId": 358,"empVisitId": "342","trackDateTime": "2020-08-31T13:37:06","trackLatLong": "15.4107691,74.9562076","trackAddress":"Salakinkoppa, Haliyal Road, Dharwad, SH 28, Karnataka 580007, India","trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
+                
+                let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
+                
+                //create the session object
+                let session = URLSession.shared
+                
+                //now create the URLRequest object using the url object
+                var request = URLRequest(url: url as URL)
+                request.httpMethod = "POST" //set http method as POST
+                
+                do {
+                    request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+                
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.addValue("application/json", forHTTPHeaderField: "Accept")
+                
+                //create dataTask using the ses
+                //request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+                
+                
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard let data = data, error == nil else {
+                        print(error?.localizedDescription ?? "No data")
+                        return
+                    }
+                    
+                    
+                    let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                    if let responseJSON = responseJSON as? [String: Any] {
+                        print("insertTrackFieldVisit In Json Response",responseJSON)
+                        
+                        
+                        DispatchQueue.main.async
+                            {
+                                
+                        }
+                        
+                        
+                    }
+                    
+                    
+                }
+                task.resume()
+
+    }
+    
+    
+    
     
     //tableview Delegate methods
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -558,16 +618,14 @@ task.resume()
         
         self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
         self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-        
-
-                let marker = GMSMarker()
-                let convertedlat = Double(latstr)
-                let convertedlong = Double(longstr)
-                let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
-                marker.position = newPosition
-                marker.title = self.addressString
-                marker.map = self.mapView
-                print("address location",self.addressString)
+        let marker = GMSMarker()
+        let convertedlat = Double(latstr)
+        let convertedlong = Double(longstr)
+        let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
+        marker.position = newPosition
+        marker.title = self.addressString
+        marker.map = self.mapView
+        print("address location",self.addressString)
     }
    
 }
