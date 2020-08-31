@@ -23,6 +23,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 @IBOutlet weak var VisitPuposetxtfld: UITextField!
 @IBOutlet weak var Adresstxtview: UITextView!
 @IBOutlet weak var DrpDownview: UIView!
+    
+    @IBOutlet weak var SelectPlaceViewconstriant: NSLayoutConstraint!
+    
 @IBOutlet weak var SelectPlaceDrptble: UITableView!
 var addressString : String = ""
 var empAttndInDateTime : String = ""
@@ -58,6 +61,10 @@ self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
     self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
         
     self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+    
+    self.SelectPlaceViewconstriant?.constant = 0
+
+    
     SelectPlaceDrptble.register(UINib(nibName: "SelectplaceDrpdwncell", bundle: nil), forCellReuseIdentifier: "SelectplaceDrpdwncell")
     self.VisitPuposetxtfld.delegate = self
     FieldvisitBckview.isHidden = true
@@ -108,6 +115,7 @@ self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
 
 }
     
+    
     @objc func actionTextFieldIsEditingChanged(sender: UITextField) {
         if sender.text!.isEmpty {
          // textfield is empty
@@ -125,6 +133,7 @@ self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
 
         print("tap working")
         DrpDownview.isHidden = false
+        
 
     }
 func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -382,10 +391,14 @@ task.resume()
         drpcell.selectPlacedrpLbl!.text = Selectplacestr
         Selectplacelbl.text = Selectplacestr
         DrpDownview.isHidden = true
-        
+
+        UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+            self.SelectPlaceViewconstriant?.constant = 45
+            self.view.layoutIfNeeded()
+        }, completion: nil)
         
     }
-    
+
     
 @objc func pressButton(button: UIButton) {
     NSLog("pressed!")

@@ -3660,7 +3660,6 @@
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Select Place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoD-2f-GUq">
                                                         <rect key="frame" x="0.0" y="8" width="324" height="40"/>
-                                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <nil key="highlightedColor"/>
@@ -3673,7 +3672,7 @@
                                                         <state key="normal" backgroundImage="BottomArrow.png"/>
                                                     </button>
                                                 </subviews>
-                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="vhb-UV-loJ" secondAttribute="trailing" constant="13" id="NEs-kX-Lcq"/>
                                                     <constraint firstItem="NoD-2f-GUq" firstAttribute="leading" secondItem="hw9-4Q-oum" secondAttribute="leading" id="P1r-dY-rA2"/>
@@ -3786,7 +3785,7 @@
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cjw-ab-2gF">
+                                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="cjw-ab-2gF">
                                                         <rect key="frame" x="8" y="49" width="308" height="156"/>
                                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                         <connections>
@@ -3913,6 +3912,7 @@
                         <outlet property="FieldvisitBckview" destination="IKi-KG-WXg" id="A7d-fM-72o"/>
                         <outlet property="Fieldvisitoutbtn" destination="VMs-aT-W6I" id="6BU-H3-0RP"/>
                         <outlet property="SelectPlaceDrptble" destination="cjw-ab-2gF" id="3hl-Rr-qZg"/>
+                        <outlet property="SelectPlaceViewconstriant" destination="yZE-s8-4NP" id="FPf-bY-87T"/>
                         <outlet property="Selectplacelbl" destination="NoD-2f-GUq" id="SFG-Yy-d0D"/>
                         <outlet property="Submitbrn" destination="GY1-1e-Xnx" id="3az-vp-YNR"/>
                         <outlet property="VisitPuposetxtfld" destination="Yig-CM-KpB" id="l9f-z8-Hci"/>
