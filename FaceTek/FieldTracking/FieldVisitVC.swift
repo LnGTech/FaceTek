@@ -155,7 +155,6 @@ self.addressString = self.addressString + pm.country! + ", "
 if pm.postalCode != nil {
 self.addressString = self.addressString + pm.postalCode! + " "
 }
-
 //    let marker = GMSMarker()
 //    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
 //    marker.title = self.addressString
@@ -281,7 +280,7 @@ task.resume()
 func FieldvisitFormsubmitAPI()
 {
 let latlanstr = latstr + ", " + longstr
-let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":"Marathalli","toClientNamePlace":"SilkBoard","visitPurpose":"ClientMetting","prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
+let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":"Allagadda","toClientNamePlace":"koilakuntla","visitPurpose":"ClientMetting","prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
     
 let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
 let session = URLSession.shared
@@ -300,11 +299,13 @@ print(error?.localizedDescription ?? "No data")
 return
 }
 let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+    
+    print("insertFieldVisitOutDetailsWithScheduleId",responseJSON)
 if let responseJSON = responseJSON as? [String: Any] {
 self.empVisitId = Int()
 self.empVisitId = (responseJSON["empVisitId"] as? NSInteger)!
         
-DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
 self.scheduledTimerWithTimeInterval()
 DispatchQueue.main.async {
 let statusDic = responseJSON["status"]! as! NSDictionary
@@ -332,10 +333,19 @@ self.present(alert, animated: true, completion: nil)
 }
 
 func scheduledTimerWithTimeInterval(){
-timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
+    
+    
+timer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
 }
 @objc func insertTrackFieldVisit_updateCounting(){
-let parameters = [["custId": 74 ,"empId": 358,"empVisitId": "342","trackDateTime": "2020-08-31T13:37:06","trackLatLong": "15.4107691,74.9562076","trackAddress":"Salakinkoppa, Haliyal Road, Dharwad, SH 28, Karnataka 580007, India","trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
+    let latlanstr = latstr + ", " + longstr
+    let formatter = DateFormatter()
+    //2016-12-08 03:37:22 +0000
+    formatter.dateFormat = "yyyy-MM-dd"
+    let now = Date()
+    let CurrentdateString = formatter.string(from:now)
+
+let parameters = [["custId": 74 ,"empId": 358,"empVisitId": "427","trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
             
 let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
             //create the session object
@@ -355,6 +365,8 @@ print(error?.localizedDescription ?? "No data")
 return
 }
 let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+    
+    print("insertTrackFieldVisit---",responseJSON)
 if let responseJSON = responseJSON as? [String: Any] {
 DispatchQueue.main.async
                         {
@@ -369,6 +381,9 @@ DispatchQueue.main.async
 task.resume()
 
 }
+ 
+
+    
 
 //tableview Delegate methods
 func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
