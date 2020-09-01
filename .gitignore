@@ -10,3 +10,13 @@ FaceTek.xcodeproj/xcuserdata/*
 .DS_Store/*
 /.DS_Store/
 /.DS_Store/*
+Pods
+Pods/*
+/Pods
+/Pods/*
+FaceTek.xcworkspace
+FaceTek.xcworkspace/*
+/FaceTek.xcworkspace
+/FaceTek.xcworkspace/*
+Podfile.lock
+/Podfile.lock
