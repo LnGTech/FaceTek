@@ -342,13 +342,12 @@ timer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selecto
     let formatter = DateFormatter()
     //2016-12-08 03:37:22 +0000
     //formatter.dateFormat = "yyyy-MM-dd"
-    formatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
-
+    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
     let now = Date()
     let CurrentdateString = formatter.string(from:now)
     print("CurrentdateString",CurrentdateString)
 
-let parameters = [["custId": 74 ,"empId": 358,"empVisitId": "427","trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
+let parameters = [["custId": 74 ,"empId": 358,"empVisitId": "420","trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
             
 let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
             //create the session object
@@ -502,46 +501,97 @@ self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button
            
 }
 @objc func pressINButton(button: UIButton) {
+    let latlanstr = latstr + ", " + longstr
+    let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": 420 as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":"5"] as [String : Any]
+        
+    let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
+    let session = URLSession.shared
+    var request = URLRequest(url: url as URL)
+    request.httpMethod = "POST" //set http method as POST
+    do {
+    request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+    } catch let error {
+    print(error.localizedDescription)
+    }
+    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+    request.addValue("application/json", forHTTPHeaderField: "Accept")
+    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+    guard let data = data, error == nil else {
+    print(error?.localizedDescription ?? "No data")
+    return
+    }
+    let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+        
+        print("update Response---",responseJSON)
+    if let responseJSON = responseJSON as? [String: Any] {
+        
+    DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+    self.scheduledTimerWithTimeInterval()
+    DispatchQueue.main.async {
+    let statusDic = responseJSON["status"]! as! NSDictionary
+    let code = statusDic["code"] as! NSInteger
+    if(code == 200)
+    {
+    let message = statusDic["message"] as! NSString
+    //Leave PopUp method calling
+
+        self.customView1.frame = CGRect.init(x: 50, y: 50, width: 230, height: 300)
+        self.customView1.backgroundColor = UIColor.white
+        self.customView1.center = self.view.center
+        self.view.addSubview(self.customView1)
+        self.customSubView1.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
+        self.customSubView1.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+        let shadowPath = UIBezierPath(rect: self.customView1.bounds)
+        self.customView1.layer.masksToBounds = false
+        self.customView1.layer.shadowColor = UIColor.darkGray.cgColor
+        self.customView1.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+        self.customView1.layer.shadowOpacity = 0.8
+        self.customView1.layer.shadowPath = shadowPath.cgPath
+        self.customView1.addSubview(self.customSubView1)
+            //image
+        var imageView : UIImageView
+        imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
+        imageView.image = UIImage(named:"conform.png")
+        self.customView1.addSubview(imageView)
+        let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));
+        label.text = "Thank you!"
+        label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
+        label.font = UIFont.boldSystemFont(ofSize: 22.0)
+        label.textColor = UIColor.white
+        self.customView1.addSubview(label)
+        let label1 = UILabel(frame: CGRect(x: 55, y: 175, width: 400, height: 21))
+        label1.text = "\("Visit In") \(message)"
+
+
+        label1.textColor = UIColor.darkGray
+        label1.shadowColor = UIColor.gray
+        label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+        self.customView1.addSubview(label1)
+        let myButton = UIButton(type: .system)
+        myButton.frame = CGRect(x: 65, y: 210, width: 100, height: 50)
+            // Set text on button
+        myButton.setTitle("OK", for: .normal)
+        myButton.setTitle("Pressed + Hold", for: .highlighted)
+        myButton.setTitleColor(UIColor.white, for: .normal)
+        myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+        myButton.addTarget(self, action: #selector(self.FieldVisitIN(_:)), for: .touchUpInside)
+        self.customView1.addSubview(myButton)
+            
+    }
+    else
+    {
+    let message = responseJSON["message"]! as! NSString
+    let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
+    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+    self.present(alert, animated: true, completion: nil)
+                            }
+                    }
+            }
+            
+        }
+        }
+        task.resume()
     
-customView1.frame = CGRect.init(x: 50, y: 50, width: 230, height: 300)
-customView1.backgroundColor = UIColor.white
-customView1.center = view.center
-view.addSubview(customView1)
-customSubView1.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
-customSubView1.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-let shadowPath = UIBezierPath(rect: customView1.bounds)
-customView1.layer.masksToBounds = false
-customView1.layer.shadowColor = UIColor.darkGray.cgColor
-customView1.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-customView1.layer.shadowOpacity = 0.8
-customView1.layer.shadowPath = shadowPath.cgPath
-customView1.addSubview(customSubView1)
-    //image
-var imageView : UIImageView
-imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
-imageView.image = UIImage(named:"conform.png")
-customView1.addSubview(imageView)
-let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));
-label.text = "Thank you!"
-label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
-label.font = UIFont.boldSystemFont(ofSize: 22.0)
-label.textColor = UIColor.white
-customView1.addSubview(label)
-let label1 = UILabel(frame: CGRect(x: 55, y: 175, width: 400, height: 21))
-label1.text = "Visit In Updated"
-label1.textColor = UIColor.darkGray
-label1.shadowColor = UIColor.gray
-label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-customView1.addSubview(label1)
-let myButton = UIButton(type: .system)
-myButton.frame = CGRect(x: 65, y: 210, width: 100, height: 50)
-    // Set text on button
-myButton.setTitle("OK", for: .normal)
-myButton.setTitle("Pressed + Hold", for: .highlighted)
-myButton.setTitleColor(UIColor.white, for: .normal)
-myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-myButton.addTarget(self, action: #selector(self.FieldVisitIN(_:)), for: .touchUpInside)
-customView1.addSubview(myButton)
     
 }
 @objc func FieldVisitIN(_ sender:UIButton!)

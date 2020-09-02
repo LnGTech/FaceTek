@@ -344,10 +344,7 @@ func VerifiedRegisterscreedn()
     }
     
     @IBAction func CancelBtn(_ sender: Any) {
-        
     self.navigationController?.popViewController(animated: true)
-
-
     }
 //
 //
@@ -374,18 +371,13 @@ func VerifiedRegisterscreedn()
           let mainContainer: UIView = UIView(frame: viewContainer.frame)
           mainContainer.center = viewContainer.center
           mainContainer.backgroundColor = UIColor.init(netHex: 0xFFFFFF)
-        
-        
           mainContainer.alpha = 0.5
           mainContainer.tag = 789456123
           mainContainer.isUserInteractionEnabled = false
-      
           let viewBackgroundLoading: UIView = UIView(frame: CGRect(x:0,y: 0,width: 80,height: 80))
           viewBackgroundLoading.center = viewContainer.center
          // viewBackgroundLoading.backgroundColor = UIColor.init(netHex: 0x444444)
-          
         viewBackgroundLoading.backgroundColor = UIColor.darkGray
-        
         viewBackgroundLoading.alpha = 0.5
           viewBackgroundLoading.clipsToBounds = true
           viewBackgroundLoading.layer.cornerRadius = 15
