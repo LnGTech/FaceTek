@@ -12,6 +12,13 @@ import CoreLocation
 
 
 class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource {
+    
+    struct TrackAddress {
+        let TrackAdressname: String
+        let TrackAdresslong: CLLocationDegrees
+        let TrackAdresslat: CLLocationDegrees
+    }
+    
 @IBOutlet weak var mapView: GMSMapView!
 @IBOutlet weak var Fieldvisitoutbtn: UIButton!
 @IBOutlet weak var FieldVisitInbtn: UIButton!
@@ -47,7 +54,6 @@ override func viewDidLoad() {
 super.viewDidLoad()
 
     
-    Trackdetails()
 
 //    //Field visit - IN and OUT button text color code
 self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
@@ -609,14 +615,7 @@ self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.333
 self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
 self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
 self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-let marker = GMSMarker()
-let convertedlat = Double(latstr)
-let convertedlong = Double(longstr)
-let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
-marker.position = newPosition
-marker.title = self.addressString
-marker.map = self.mapView
-print("address location",self.addressString)
+Trackdetails()
 }
     
     func Trackdetails()
@@ -666,8 +665,48 @@ MainDict.setObject(Field_trackstr, forKey: "toClientNamePlace" as NSCopying)
     
     self.TrackempVisitId = (Field_trackDic["empVisitId"] as? NSInteger)!
     print("TrackempVisitId----",self.TrackempVisitId)
-    let fieldVisitTrackDetails = Field_trackDic["fieldVisitTrackDetails"] as! NSArray
-    print("fieldVisitTrackDetails--",fieldVisitTrackDetails)
+    let fieldVisitTrackDetailsArray = Field_trackDic["fieldVisitTrackDetails"] as! NSArray
+    print("fieldVisitTrackDetails--",fieldVisitTrackDetailsArray)
+    
+    
+    for fieldVisitTrackDetailsDic in fieldVisitTrackDetailsArray as! [[String:Any]]
+    {
+
+    
+    
+    let trackEmpVisitId = (fieldVisitTrackDetailsDic["trackEmpVisitId"] as? NSInteger)!
+    
+    if (self.TrackempVisitId == 438)
+    {
+        
+        
+        var TrackAddressArray:NSMutableArray = NSMutableArray()
+
+        let trackAddress = (fieldVisitTrackDetailsDic["trackAddress"] as? NSString)!
+        MainDict.setObject(trackAddress, forKey: "trackAddress" as NSCopying)
+        TrackAddressArray.add(MainDict)
+        print("TrackAddressArray--",TrackAddressArray)
+
+print("trackAddress...",trackAddress)
+        
+        
+        for data in TrackAddressArray{
+            let marker = GMSMarker()
+            let convertedlat = Double(self.latstr)
+            let convertedlong = Double(self.longstr)
+            let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
+            marker.position = newPosition
+            marker.title = trackAddress as String
+            marker.map = self.mapView
+            print("address location",self.addressString)        }
+        
+        
+        
+        
+        
+    }
+
+    }
     
 }
              
