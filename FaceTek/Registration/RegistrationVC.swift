@@ -160,7 +160,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate {
         UserDefaults.standard.set(self.brName, forKey: "brName")
         UserDefaults.standard.set(self.empPresistedFaceId, forKey: "empPresistedFaceId")
         UserDefaults.standard.set(self.MobilenumTxt.text, forKey: "Mobilenum")
-        self.customActivityIndicatory(self.view, startAnimate: true)
+        self.customActivityIndicatory(self.view, startAnimate: false)
         print("face else RetrivedFacestr-------",self.RetrivedFacestr)
         UserDefaults.standard.set(self.RetrivedFacestr, forKey: "Facestr")
         
@@ -339,14 +339,14 @@ func VerifiedRegisterscreedn()
     
     
     @IBAction func BckBtn(_ sender: Any) {
-        //navigationController?.popViewController(animated: true)
-        self.presentingViewController?.dismiss(animated: false, completion: nil)
+        navigationController?.popViewController(animated: true)
+        //self.presentingViewController?.dismiss(animated: false, completion: nil)
     }
     
     @IBAction func CancelBtn(_ sender: Any) {
-      
         
-          self.presentingViewController?.dismiss(animated: false, completion: nil)
+    self.navigationController?.popViewController(animated: true)
+
 
     }
 //

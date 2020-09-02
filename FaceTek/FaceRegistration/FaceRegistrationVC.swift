@@ -119,9 +119,9 @@ class FaceRegistrationVC: UIViewController {
     
     @IBAction func cancel(_ sender: Any) {
     
-         self.presentingViewController?.dismiss(animated: false, completion: nil)
+         //self.presentingViewController?.dismiss(animated: false, completion: nil)
         
-        //self.navigationController?.popViewController(animated: true)
+        self.navigationController?.popViewController(animated: true)
 
 
     }
