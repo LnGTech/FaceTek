@@ -341,9 +341,12 @@ timer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selecto
     let latlanstr = latstr + ", " + longstr
     let formatter = DateFormatter()
     //2016-12-08 03:37:22 +0000
-    formatter.dateFormat = "yyyy-MM-dd"
+    //formatter.dateFormat = "yyyy-MM-dd"
+    formatter.dateFormat = "dd/MM/yyyy HH:mm:ss"
+
     let now = Date()
     let CurrentdateString = formatter.string(from:now)
+    print("CurrentdateString",CurrentdateString)
 
 let parameters = [["custId": 74 ,"empId": 358,"empVisitId": "427","trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
             
