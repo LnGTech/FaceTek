@@ -31,6 +31,7 @@ var empAttndOutDateTime : String = ""
 var latstr : String = ""
 var longstr : String = ""
 var empVisitId = Int()
+var TrackempVisitId = Int()
 var timer = Timer()
 var RetrivedcustId = Int()
 var RetrivedempId = Int()
@@ -45,6 +46,8 @@ var locationManager = CLLocationManager()
 override func viewDidLoad() {
 super.viewDidLoad()
 
+    
+    Trackdetails()
 
 //    //Field visit - IN and OUT button text color code
 self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
@@ -191,7 +194,6 @@ return
 }
 let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 if let responseJSON = responseJSON as? [String: Any] {
-print("Employee ---- Json Response",responseJSON)
             
 let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
 DispatchQueue.main.async
@@ -235,7 +237,7 @@ self.Fieldvisitoutbtn.isEnabled = false
 }
 task.resume()
 }
-
+//Dropdown API for Field-Visit form
 func selectPlaceDrpdown()
 {
 let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
@@ -276,7 +278,7 @@ self.SelectPlaceArray.add(MainDict)
     }
 task.resume()
 }
-
+//Field visit - OUT form submit
 func FieldvisitFormsubmitAPI()
 {
 let latlanstr = latstr + ", " + longstr
@@ -337,6 +339,8 @@ func scheduledTimerWithTimeInterval(){
     
 timer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
 }
+    
+    //Background calling API
 @objc func insertTrackFieldVisit_updateCounting(){
     let latlanstr = latstr + ", " + longstr
     let formatter = DateFormatter()
@@ -500,6 +504,8 @@ self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
 self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
            
 }
+    
+//Field-Visit In update API
 @objc func pressINButton(button: UIButton) {
     let latlanstr = latstr + ", " + longstr
     let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": 420 as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":"5"] as [String : Any]
@@ -612,8 +618,71 @@ marker.title = self.addressString
 marker.map = self.mapView
 print("address location",self.addressString)
 }
+    
+    func Trackdetails()
+    {
+        let defaults = UserDefaults.standard
+        RetrivedcustId = defaults.integer(forKey: "custId")
+        RetrivedempId = defaults.integer(forKey: "empId")
+        let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": "2020-09-02" as Any] as [String : Any]
+        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetails")!
+            //create the session object
+        let session = URLSession.shared
+            //now create the URLRequest object using the url object
+        var request = URLRequest(url: url as URL)
+            request.httpMethod = "POST" //set http method as POST
+            
+        do {
+        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+                print(error.localizedDescription)
+        }
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+        guard let data = data, error == nil else {
+        print(error?.localizedDescription ?? "No data")
+        return
+        }
+        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+        if let responseJSON = responseJSON as? [String: Any] {
+                
+            print("fieldTrackDic responseJSON",responseJSON)
 
+            
+        DispatchQueue.main.async
+            {
+                
+                let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
+                
+                
+for Field_trackDic in fieldTrackArray as! [[String:Any]]
+{
+var MainDict:NSMutableDictionary = NSMutableDictionary()
+var Field_trackstr = ""
+Field_trackstr = (Field_trackDic["toClientNamePlace"] as? String)!
+MainDict.setObject(Field_trackstr, forKey: "toClientNamePlace" as NSCopying)
+    print(" Field_trackstr",Field_trackstr)
+    
+    self.TrackempVisitId = (Field_trackDic["empVisitId"] as? NSInteger)!
+    print("TrackempVisitId----",self.TrackempVisitId)
+    let fieldVisitTrackDetails = Field_trackDic["fieldVisitTrackDetails"] as! NSArray
+    print("fieldVisitTrackDetails--",fieldVisitTrackDetails)
+    
 }
+             
+                
+
+
+            }
+        }
+        }
+        task.resume()
+        }
+    }
+    
+
+
 
 
 
