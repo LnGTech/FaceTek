@@ -30,6 +30,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	var Todatestr = String()
 	var Fromdatestr = String()
 	var brNamestr = String()
+    private var isAlreadyLoaddropdowndata = false
+
 	@IBOutlet weak var CompanyNameLbl: UILabel!
 	@IBOutlet weak var UserNameLbl: UILabel!
 	@IBOutlet weak var MobilenumberLbl: UILabel!
@@ -60,6 +62,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+        
+
+        
+
+        
 		NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
 		NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
 		
@@ -345,7 +352,13 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	
 	func APIDropdowntabledata()
 	{
-		
+		if isAlreadyLoaddropdowndata {
+            return
+        }
+        
+        
+        
+        isAlreadyLoaddropdowndata = true
 		print("calling API Dropdown data")
 		let parameters = [
 			"custId": RetrivedcustId] as [String : Any]
@@ -395,11 +408,15 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 						
 						MainDict.setObject(self.custLeaveId, forKey: "custLeaveId" as NSCopying)
 						self.LeavetypeDropdownArray.add(MainDict)
-					}
-					self.Dropdowntbl.reloadData()
+                        self.Dropdowntbl.reloadData()
+
+                        
+                    }
 					self.customActivityIndicatory(self.view, startAnimate: false)
+
 					
 				}
+
 			}
 			
 		}
@@ -584,6 +601,10 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		
 	}
 	
+    private func textFieldDidBeginEditing(textField: UITextField) {
+        Fromtxt.text = ""
+        
+    }
 	
 	func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {
 		let mainContainer: UIView = UIView(frame: viewContainer.frame)

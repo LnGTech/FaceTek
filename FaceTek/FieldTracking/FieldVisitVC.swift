@@ -698,27 +698,19 @@ print("trackAddress...",trackAddress)
             marker.position = newPosition
             marker.title = trackAddress as String
             marker.map = self.mapView
-            print("address location",self.addressString)        }
-        
-        
-        
-        
-        
+            print("address location",self.addressString)
+            
+        }
     }
-
-    }
+}
+}
+}
+}
+}
+task.resume()
+}
     
 }
-             
-                
-
-
-            }
-        }
-        }
-        task.resume()
-        }
-    }
     
 
 
