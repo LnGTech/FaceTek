@@ -31,6 +31,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	var Fromdatestr = String()
 	var brNamestr = String()
     private var isAlreadyLoaddropdowndata = false
+    private var cleardata = false
+
+    
 
 	@IBOutlet weak var CompanyNameLbl: UILabel!
 	@IBOutlet weak var UserNameLbl: UILabel!
@@ -62,9 +65,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-        
 
-        
 
         
 		NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -700,5 +701,26 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		self.customView.addSubview(myButton)
 		
 	}
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if cleardata {
+            LeaveTypetxt.text = "Select Type"
+            
+            Fromtxt.text = nil
+            Fromtxt.placeholder = "From"
+            Totxt.text = nil
+            Totxt.placeholder = "To"
+
+            return
+        }
+        cleardata = true
+
+        
+        LeaveTypetxt.text = "select Type"
+        Fromtxt.text = ""
+
+
+    }
 	
 }
