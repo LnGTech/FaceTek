@@ -53,7 +53,6 @@ var locationManager = CLLocationManager()
 override func viewDidLoad() {
 super.viewDidLoad()
 
-    
 
 //    //Field visit - IN and OUT button text color code
 self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
@@ -288,7 +287,7 @@ task.resume()
 func FieldvisitFormsubmitAPI()
 {
 let latlanstr = latstr + ", " + longstr
-let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":"Allagadda","toClientNamePlace":"koilakuntla","visitPurpose":"ClientMetting","prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
+let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": "12.9174,77.5993" as Any,"outFromAddress":"Bannerghatta Main Rd, Phase 3, Jayanagara 9th Block, Jayanagar, Bengaluru, Karnataka 560069","toClientNamePlace":"Jayadeva","visitPurpose":"ClientMetting","prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
     
 let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
 let session = URLSession.shared
@@ -357,7 +356,7 @@ timer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selecto
     let CurrentdateString = formatter.string(from:now)
     print("CurrentdateString",CurrentdateString)
 
-let parameters = [["custId": 74 ,"empId": 358,"empVisitId": "420","trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
+let parameters = [["custId": 74 ,"empId": 358,"empVisitId": "465","trackDateTime": CurrentdateString,"trackLatLong":"12.9174,77.5993", "trackAddress":"Bannerghatta Main Rd, Phase 3, Jayanagara 9th Block, Jayanagar, Bengaluru, Karnataka 560069", "trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
             
 let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
             //create the session object
@@ -513,9 +512,10 @@ self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button
     
 //Field-Visit In update API
 @objc func pressINButton(button: UIButton) {
+    
+    
     let latlanstr = latstr + ", " + longstr
-    let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": 420 as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":"5"] as [String : Any]
-        
+    let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": 465 as Any,"inLatLong": "12.9177,77.6238" as Any,"inAddress":"Silk Board Flyover, Madiwala, Stage 2, Bommanahalli, Bengaluru, Karnataka 560034" as Any,"kmTravelled":"5"] as [String : Any]
     let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
     let session = URLSession.shared
     var request = URLRequest(url: url as URL)
@@ -623,7 +623,7 @@ Trackdetails()
         let defaults = UserDefaults.standard
         RetrivedcustId = defaults.integer(forKey: "custId")
         RetrivedempId = defaults.integer(forKey: "empId")
-        let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": "2020-09-02" as Any] as [String : Any]
+        let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": "2020-09-03" as Any] as [String : Any]
         let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetails")!
             //create the session object
         let session = URLSession.shared
@@ -668,51 +668,25 @@ MainDict.setObject(Field_trackstr, forKey: "toClientNamePlace" as NSCopying)
     let fieldVisitTrackDetailsArray = Field_trackDic["fieldVisitTrackDetails"] as! NSArray
     print("fieldVisitTrackDetails--",fieldVisitTrackDetailsArray)
     
-    
-    for fieldVisitTrackDetailsDic in fieldVisitTrackDetailsArray as! [[String:Any]]
-    {
-
-    
-    
-    let trackEmpVisitId = (fieldVisitTrackDetailsDic["trackEmpVisitId"] as? NSInteger)!
-    
-    if (self.TrackempVisitId == 438)
-    {
-        
-        
-        var TrackAddressArray:NSMutableArray = NSMutableArray()
-
-        let trackAddress = (fieldVisitTrackDetailsDic["trackAddress"] as? NSString)!
-        MainDict.setObject(trackAddress, forKey: "trackAddress" as NSCopying)
-        TrackAddressArray.add(MainDict)
-        print("TrackAddressArray--",TrackAddressArray)
-
-print("trackAddress...",trackAddress)
-        
-        
-        for data in TrackAddressArray{
-            let marker = GMSMarker()
-            let convertedlat = Double(self.latstr)
-            let convertedlong = Double(self.longstr)
-            let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
-            marker.position = newPosition
-            marker.title = trackAddress as String
-            marker.map = self.mapView
-            print("address location",self.addressString)
+    let marker = GMSMarker()
+               let convertedlat = Double(self.latstr)
+               let convertedlong = Double(self.longstr)
+               let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
+               marker.position = newPosition
+    marker.title = self.addressString as String
+               marker.map = self.mapView
+               
+               print("address location",self.addressString)
+            
             
         }
     }
-}
-}
-}
-}
+            }
+
 }
 task.resume()
 }
-    
 }
-    
-
 
 
 
