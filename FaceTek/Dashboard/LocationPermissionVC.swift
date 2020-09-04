@@ -28,41 +28,47 @@ class LocationPermissionVC: UIViewController, CLLocationManagerDelegate {
 		if locationManager == nil {
 			locationManager = CLLocationManager()
 			locationManager?.delegate = self
+			locationManager?.requestAlwaysAuthorization()
+		} else {
+			showLocationAlert()
 		}
-		locationManager?.requestWhenInUseAuthorization()
 	}
 	
 	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-		if status == .authorizedWhenInUse {
-			goToMainScreen()
-		} else if status == .authorizedAlways {
+		if status == .authorizedWhenInUse || status == .authorizedAlways {
 			goToMainScreen()
 		} else {
 			DispatchQueue.main.async {
-				let alert = UIAlertController.init(title: "Location access is mandatory",message: "Please allow location permission to proceed further",preferredStyle: .alert)
-				let okAction = UIAlertAction.init(title: "OK", style: .default) { (alertAction) in
-					//some code
-				}
-				alert.addAction(okAction)
-				alert.addAction(UIAlertAction(title: "Settings", style: .cancel) { _ in
-					if let url = URL(string: UIApplication.openSettingsURLString) {
-						UIApplication.shared.open(url, options: [:], completionHandler: { _ in
-							// Handle
-						})
-					}
-				})
-				
-				self.present(alert, animated: true) {
-					//some code
-				}
+				self.showLocationAlert()
 			}
 		}
 	}
+	
 	private func goToMainScreen() {
 		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 		let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationVC
 		self.navigationController?.pushViewController(RegistrationVC, animated: true)
 	}
 	
+	private func showLocationAlert() {
+		let alert = UIAlertController.init(title: "Location access is mandatory",
+										   message: "Please allow location permission to proceed further",
+										   preferredStyle: .alert)
+		let okAction = UIAlertAction.init(title: "OK", style: .default) { (alertAction) in
+			//some code
+		}
+		alert.addAction(okAction)
+		alert.addAction(UIAlertAction(title: "Settings", style: .cancel) { _ in
+			if let url = URL(string: UIApplication.openSettingsURLString) {
+				UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+					// Handle
+				})
+			}
+		})
+		
+		self.present(alert, animated: true) {
+			//some code
+		}
+	}
 	
 }

@@ -54,7 +54,6 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
 		LeavemanagementView.isHidden = false
 		collectionview.isHidden = false
 		BackView.isHidden = false
-		print("Praise Ths lord, ------")
 		
 		//Hamburger button
 		self.button = HamburgerButton(frame: CGRect(x: 0, y: 0, width: 46, height: 46))
@@ -65,8 +64,6 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
 		
 		LeavemanagementView.layer.borderWidth = 1
 		LeavemanagementView.layer.borderColor = UIColor.blue.cgColor
-		
-		
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -205,14 +202,12 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
 	// authorization status
 	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 		switch status {
-		case CLAuthorizationStatus.restricted:
-			print("restricted")
-		case CLAuthorizationStatus.denied:
+		case .authorizedWhenInUse, .authorizedAlways:
+			print("restricted") //we have got the location access
+		case .denied, .notDetermined, .restricted:
 			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 			let LocationPermissionVC = storyBoard.instantiateViewController(withIdentifier: "LocationPermissionVC") as! LocationPermissionVC
 			self.navigationController?.pushViewController(LocationPermissionVC, animated: true)
-		case CLAuthorizationStatus.notDetermined:
-			print("not denied")
 		default:
 			print("location accessed")
 		}
