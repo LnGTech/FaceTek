@@ -16,7 +16,10 @@ import SwiftyJSON
 
 class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource {
 	
-	
+    private var isAlreadyLoaddropdowndata = false
+
+    @IBOutlet weak var PopUpView: UIView!
+    
 	@IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var Fieldvisitoutbtn: UIButton!
 	@IBOutlet weak var FieldVisitInbtn: UIButton!
@@ -51,6 +54,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+        //GoogleMapPolyline()
+        self.PopUpView.isHidden = true
+
 		
 		
 		//    //Field visit - IN and OUT button text color code
@@ -128,7 +134,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	}
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let newLocation = locations.last // find your device location
-		mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 16) // show your device location on map
+		mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 12) // show your device location on map
 		mapView.settings.myLocationButton = true // show current location button
 		let lat = (newLocation?.coordinate.latitude)! // get current location latitude
 		let long = (newLocation?.coordinate.longitude)!
@@ -320,7 +326,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						{
 							let message = statusDic["message"] as! NSString
 							//Leave PopUp method calling
-							self.FieldvisitOUT_PopUp()
+							
+                            //self.PopUpView.isHidden = false
+                            //self.FieldvisitOUT_PopUp()
 						}
 						else
 						{
@@ -355,7 +363,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let CurrentdateString = formatter.string(from:now)
 		print("CurrentdateString",CurrentdateString)
 		
-		let parameters = [["custId": 74 ,"empId": 358,"empVisitId": "420","trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
+		let parameters = [["custId": 74 ,"empId": 353,"empVisitId": "420","trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
 		
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
 		//create the session object
@@ -428,6 +436,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	}
 	@objc func pressButton(button: UIButton) {
 		NSLog("pressed!")
+        PopUpView.isHidden = true
 		FieldvisitBckview.isHidden = false
 		Adresstxtview.text = addressString
 	}
@@ -439,58 +448,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		VisitPuposetxtfld.resignFirstResponder()
 		return true;
 	}
-	func FieldvisitOUT_PopUp()
-	{
-		self.customView.frame = CGRect.init(x: 0, y: 0, width: 230, height: 300)
-		self.customView.backgroundColor = UIColor.white     //give color to the view
-		self.customView.center = self.view.center
-		self.view.addSubview(self.customView)
-		self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
-		self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-		let shadowPath = UIBezierPath(rect: self.customView.bounds)
-		self.customView.layer.masksToBounds = false
-		self.customView.layer.shadowColor = UIColor.darkGray.cgColor
-		self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-		self.customView.layer.shadowOpacity = 0.8
-		self.customView.layer.shadowPath = shadowPath.cgPath
-		self.customView.addSubview(self.customSubView)
-		//image
-		var imageView : UIImageView
-		imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
-		imageView.image = UIImage(named:"conform.png")
-		self.customView.addSubview(imageView)
-		let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));
-		label.text = "Thank you!"
-		label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
-		label.font = UIFont.boldSystemFont(ofSize: 22.0)
-		label.textColor = UIColor.white
-		self.customView.addSubview(label)
-		let label1 = UILabel(frame: CGRect(x: 55, y: 175, width: 400, height: 21))
-		label1.text = "Visit Out Started"
-		label1.textColor = UIColor.darkGray
-		label1.shadowColor = UIColor.gray
-		label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-		self.customView.addSubview(label1)
-		let myButton = UIButton(type: .system)
-		myButton.frame = CGRect(x: 65, y: 210, width: 100, height: 50)
-		// Set text on button
-		myButton.setTitle("OK", for: .normal)
-		myButton.setTitle("Pressed + Hold", for: .highlighted)
-		myButton.setTitleColor(UIColor.white, for: .normal)
-		myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-		myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
-		self.customView.addSubview(myButton)
-		
-	}
-	@objc func buttonAction(_ sender:UIButton!)
-	{
-		FieldvisitBckview.isHidden = true
-		customView.isHidden = true
-		//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-		//        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-		//        self.present(UITabBarController, animated:true, completion:nil)
-		
-	}
+
 	
 	@objc func FieldVisitInbtnclick(_ sender:UIButton!)
 	{
@@ -498,7 +456,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
 	}
 	@IBAction func FieldvisitOUT_Submitbtnclk(_ sender: Any) {
+        
+        
 		FieldvisitFormsubmitAPI()
+        self.PopUpView.isHidden = false
+
 		self.FieldVisitInbtn.setTitleColor(.black, for: .normal)
 		self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
 		FieldVisitInbtn.isEnabled = true
@@ -508,7 +470,18 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
 		
 	}
+    
+    
+    
+    
+    @IBAction func OkBtnclk(_ sender: Any) {
+        
+        FieldvisitBckview.isHidden = true
+        customView.isHidden = true
+
+    }
 	
+    
 	//Field-Visit In update API
 	@objc func pressINButton(button: UIButton) {
 		let latlanstr = latstr + ", " + longstr
@@ -613,7 +586,17 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
 		self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
 		self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-		Trackdetails()
+
+                let marker = GMSMarker()
+                let convertedlat = Double(latstr)
+                let convertedlong = Double(longstr)
+                let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
+                marker.position = newPosition
+                marker.title = self.addressString
+                marker.map = self.mapView
+                print("address location",self.addressString)
+        
+		//Trackdetails()
 	}
 	
 	func Trackdetails()
@@ -653,7 +636,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						
                         self.GoogleMapPolyline()
                         
-                        
 						let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
 						
 						
@@ -666,16 +648,16 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 							print(" Field_trackstr",Field_trackstr)
                             
                             
-                            var outFromAddress = ""
-                            outFromAddress = (Field_trackDic["outFromAddress"] as? String)!
-                            MainDict.setObject(outFromAddress, forKey: "outFromAddress" as NSCopying)
-        print(" outFromAddress....",outFromAddress)
+                            var OriginAddress = ""
+                            OriginAddress = (Field_trackDic["outFromAddress"] as? String)!
+                            MainDict.setObject(OriginAddress, forKey: "outFromAddress" as NSCopying)
+        print(" OriginAddress....",OriginAddress)
                             
                             
-                            var inAddress = ""
-    inAddress = (Field_trackDic["inAddress"] as? String)!
-    MainDict.setObject(inAddress, forKey: "inAddress" as NSCopying)
-        print(" inAddress.....",inAddress)
+                            var DestinationAddress = ""
+    DestinationAddress = (Field_trackDic["inAddress"] as? String)!
+    MainDict.setObject(DestinationAddress, forKey: "inAddress" as NSCopying)
+        print(" DestinationAddress.....",DestinationAddress)
 							
     self.TrackempVisitId = (Field_trackDic["empVisitId"] as? NSInteger)!
     print("TrackempVisitId----",self.TrackempVisitId)
@@ -693,28 +675,12 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
         GMSServices.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
             GMSPlacesClient.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
             
-            
-            // Create a GMSCameraPosition that tells the map to display the
-           
-            let camera = GMSCameraPosition.camera(withLatitude: 12.9569,
-                                                  longitude: 77.7011,
-                                                  zoom: 12.0,
-                                                  bearing: 5,
-                                                  viewingAngle: 5)
-            //Setting the googleView
-            self.mapView.camera = camera
-            self.mapView.delegate = self
-            self.mapView.isMyLocationEnabled = true
-            self.mapView.settings.myLocationButton = true
-            self.mapView.settings.compassButton = true
-            self.mapView.settings.zoomGestures = true
-            self.mapView.animate(to: camera)
-            self.view.addSubview(self.mapView)
-            
-            //Setting the start and end location
+        
             let origin = "\(12.9569),\(77.7011)"
+        print("origin values----",origin)
             let destination = "\(12.9255),\(77.5468)"
-            
+            print("destination values----",origin)
+
             
             let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
             
