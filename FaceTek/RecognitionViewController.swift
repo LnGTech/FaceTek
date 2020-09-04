@@ -934,7 +934,8 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 	@objc func buttonAction(_ sender:UIButton!) {
 		//save tracker file
 		saveFile()
-		
+		//Field visit
+        
 		//then go to dahsboard
 		let count = (self.navigationController?.viewControllers.count)!
 		for i:Int in 0...count {
