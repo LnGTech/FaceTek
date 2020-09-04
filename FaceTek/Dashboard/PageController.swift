@@ -187,8 +187,8 @@ class PageController: UIViewController, UIScrollViewDelegate {
 	
 	private func goToMainView() {
 		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-		let ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController") as! ViewController
-		let navVC = UINavigationController.init(rootViewController: ViewController)
+		let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationVC
+		let navVC = UINavigationController.init(rootViewController: RegistrationVC)
 		
 		navVC.modalPresentationStyle = .fullScreen
 		navVC.navigationBar.isHidden = true

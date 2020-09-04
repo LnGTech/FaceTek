@@ -359,7 +359,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1047.2" y="88.605697151424295"/>
+            <point key="canvasLocation" x="1068" y="-616"/>
         </scene>
         <!--Log into Saavn-->
         <scene sceneID="Ibl-Wr-Grn">
@@ -2190,7 +2190,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y7z-YI-fim" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-578" y="90"/>
+            <point key="canvasLocation" x="102" y="98"/>
         </scene>
         <!--Page Controller-->
         <scene sceneID="LTw-dY-aT6">
@@ -2232,7 +2232,6 @@
                                 </state>
                                 <connections>
                                     <action selector="SkipBtn:" destination="TTq-Lz-KRz" eventType="touchUpInside" id="YLH-0T-0YQ"/>
-                                    <segue destination="BYZ-38-t0r" kind="show" id="awE-rE-2br"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -2248,7 +2247,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gIP-6D-hOK" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="282.60869565217394" y="88.858695652173921"/>
+            <point key="canvasLocation" x="953" y="98"/>
         </scene>
         <!--Privacy PolicyVC-->
         <scene sceneID="9PZ-Ey-3VP">

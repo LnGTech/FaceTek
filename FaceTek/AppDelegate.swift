@@ -63,8 +63,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			if (name == "Coding Explorer" && is_authenticated == nil) {
 				//new user
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController")
-                let navVC = UINavigationController.init(rootViewController: ViewController)
+                let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC")
+                let navVC = UINavigationController.init(rootViewController: RegistrationVC)
 				navVC.navigationBar.isHidden = true
                 self.window?.rootViewController = navVC
                 self.window?.makeKeyAndVisible()
