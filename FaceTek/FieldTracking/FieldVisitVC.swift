@@ -9,15 +9,13 @@
 import UIKit
 import GoogleMaps
 import CoreLocation
+import GooglePlaces
+import Alamofire
+import SwiftyJSON
 
 
 class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource {
 	
-	struct TrackAddress {
-		let TrackAdressname: String
-		let TrackAdresslong: CLLocationDegrees
-		let TrackAdresslat: CLLocationDegrees
-	}
 	
 	@IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var Fieldvisitoutbtn: UIButton!
@@ -623,8 +621,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		RetrivedempId = defaults.integer(forKey: "empId")
-		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": "2020-09-02" as Any] as [String : Any]
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetails")!
+        
+		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": "2020-09-03" as Any] as [String : Any]
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 		//create the session object
 		let session = URLSession.shared
 		//now create the URLRequest object using the url object
@@ -652,6 +651,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 				DispatchQueue.main.async
 					{
 						
+                        self.GoogleMapPolyline()
+                        
+                        
 						let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
 						
 						
@@ -662,53 +664,124 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 							Field_trackstr = (Field_trackDic["toClientNamePlace"] as? String)!
 							MainDict.setObject(Field_trackstr, forKey: "toClientNamePlace" as NSCopying)
 							print(" Field_trackstr",Field_trackstr)
+                            
+                            
+                            var outFromAddress = ""
+                            outFromAddress = (Field_trackDic["outFromAddress"] as? String)!
+                            MainDict.setObject(outFromAddress, forKey: "outFromAddress" as NSCopying)
+        print(" outFromAddress....",outFromAddress)
+                            
+                            
+                            var inAddress = ""
+    inAddress = (Field_trackDic["inAddress"] as? String)!
+    MainDict.setObject(inAddress, forKey: "inAddress" as NSCopying)
+        print(" inAddress.....",inAddress)
 							
-							self.TrackempVisitId = (Field_trackDic["empVisitId"] as? NSInteger)!
-							print("TrackempVisitId----",self.TrackempVisitId)
-							let fieldVisitTrackDetailsArray = Field_trackDic["fieldVisitTrackDetails"] as! NSArray
-							print("fieldVisitTrackDetails--",fieldVisitTrackDetailsArray)
-							
-							
-							for fieldVisitTrackDetailsDic in fieldVisitTrackDetailsArray as! [[String:Any]]
-							{
-								
-								
-								
-								let trackEmpVisitId = (fieldVisitTrackDetailsDic["trackEmpVisitId"] as? NSInteger)!
-								
-								if (self.TrackempVisitId == 438)
-								{
-									
-									
-									var TrackAddressArray:NSMutableArray = NSMutableArray()
-									
-									let trackAddress = (fieldVisitTrackDetailsDic["trackAddress"] as? NSString)!
-									MainDict.setObject(trackAddress, forKey: "trackAddress" as NSCopying)
-									TrackAddressArray.add(MainDict)
-									print("TrackAddressArray--",TrackAddressArray)
-									
-									print("trackAddress...",trackAddress)
-									
-									
-									for data in TrackAddressArray{
-										let marker = GMSMarker()
-										let convertedlat = Double(self.latstr)
-										let convertedlong = Double(self.longstr)
-										let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
-										marker.position = newPosition
-										marker.title = trackAddress as String
-										marker.map = self.mapView
-										print("address location",self.addressString)
-										
-									}
-								}
-							}
+    self.TrackempVisitId = (Field_trackDic["empVisitId"] as? NSInteger)!
+    print("TrackempVisitId----",self.TrackempVisitId)
+    let fieldVisitTrackDetailsArray = Field_trackDic["fieldVisitTrackDetails"] as! NSArray
+    print("fieldVisitTrackDetails--",fieldVisitTrackDetailsArray)
 						}
 				}
 			}
 		}
 		task.resume()
 	}
+    
+    func GoogleMapPolyline()
+    {
+        GMSServices.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
+            GMSPlacesClient.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
+            
+            
+            // Create a GMSCameraPosition that tells the map to display the
+           
+            let camera = GMSCameraPosition.camera(withLatitude: 12.9569,
+                                                  longitude: 77.7011,
+                                                  zoom: 12.0,
+                                                  bearing: 5,
+                                                  viewingAngle: 5)
+            //Setting the googleView
+            self.mapView.camera = camera
+            self.mapView.delegate = self
+            self.mapView.isMyLocationEnabled = true
+            self.mapView.settings.myLocationButton = true
+            self.mapView.settings.compassButton = true
+            self.mapView.settings.zoomGestures = true
+            self.mapView.animate(to: camera)
+            self.view.addSubview(self.mapView)
+            
+            //Setting the start and end location
+            let origin = "\(12.9569),\(77.7011)"
+            let destination = "\(12.9255),\(77.5468)"
+            
+            
+            let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
+            
+            //Rrequesting Alamofire and SwiftyJSON
+            Alamofire.request(url).responseJSON { response in
+                print(response.request as Any)  // original URL request
+                print(response.response as Any) // HTTP URL response
+                print(response.data as Any)     // server data
+                print(response.result)   // result of response serialization
+                
+                //let json = JSON(data: response.data!)
+               
+               let json = JSON(response.data)
+                let routes = json["routes"].arrayValue
+                
+                for route in routes
+                {
+                    let routeOverviewPolyline = route["overview_polyline"].dictionary
+                    let points = routeOverviewPolyline?["points"]?.stringValue
+                    let path = GMSPath.init(fromEncodedPath: points!)
+                    let polyline = GMSPolyline.init(path: path)
+                    polyline.strokeColor = UIColor.red
+                    polyline.strokeWidth = 5
+                    polyline.map = self.mapView
+                }
+            }
+           
+           let marker = GMSMarker()
+            marker.position = CLLocationCoordinate2D(latitude: 12.9569, longitude: 77.7011)
+            marker.title = "Marathalli"
+            marker.snippet = "India"
+           marker.map = mapView
+            
+            //28.643091, 77.218280
+            let marker1 = GMSMarker()
+            marker1.position = CLLocationCoordinate2D(latitude: 12.9255, longitude: 77.5468)
+            marker1.title = "Banasankari"
+           
+            marker1.snippet = "India"
+            marker1.map = mapView
+        draw()
+        
+    }
+    
+    func draw() {
+            let path = GMSMutablePath()
+            path.addLatitude(12.9569, longitude:77.7011) //Mobiloitte
+            path.addLatitude(12.9255, longitude:77.5468) // New
+    
+            let dottedPolyline  = GMSPolyline(path: path)
+            dottedPolyline.map = self.mapView
+            dottedPolyline.strokeWidth = 3.0
+            let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.green), GMSStrokeStyle.solidColor(UIColor.clear)]
+            let lengths: [Any] = [10, 5]
+            //dottedPolyline?.spans = GMSStyleSpans(dottedPolyline?.path!, styles as! [GMSStrokeStyle], lengths as! [NSNumber], kGMSLengthRhumb)
+
+            
+            
+            
+            let polyline = GMSPolyline(path: path)
+            polyline.strokeColor = .blue
+            polyline.strokeWidth = 3.0
+            polyline.map = self.mapView
+    
+    
+        }
+
 	
 }
 
