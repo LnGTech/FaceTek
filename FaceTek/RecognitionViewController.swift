@@ -940,9 +940,15 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 		saveFile()
 		
 		//then go to dahsboard
-		let viewController = navigationController?.viewControllers[0] as? ViewController
-		viewController?.showTabBar = true
-		self.navigationController?.popToRootViewController(animated: true)
+		let count = (self.navigationController?.viewControllers.count)!
+		for i:Int in 0...count {
+			let vc = self.navigationController?.viewControllers[i]
+			if (vc?.isKind(of: ViewController.self))! {
+				(vc as! ViewController).showTabBar = true
+				self.navigationController?.popToViewController(vc!, animated: true)
+				break
+			}
+		}
 	}
 	
 	private func saveFile() {

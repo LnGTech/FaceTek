@@ -62,20 +62,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			print("nsuserdefault----",name)
 			if (name == "Coding Explorer" && is_authenticated == nil) {
 				//new user
-//				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//                let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
-//                //self.present(tabBarController, animated:true, completion:nil)
-//                self.window?.rootViewController = tabBarController
-//                self.window?.makeKeyAndVisible()
-                
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let ViewController = storyBoard.instantiateViewController(withIdentifier: "ViewController")
                 let navVC = UINavigationController.init(rootViewController: ViewController)
 				navVC.navigationBar.isHidden = true
                 self.window?.rootViewController = navVC
                 self.window?.makeKeyAndVisible()
-
-                
 			} else if (name == "Coding Explorer" && is_authenticated != nil) {
 				//already registered user
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

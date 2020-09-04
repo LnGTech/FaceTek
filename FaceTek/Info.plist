@@ -23,13 +23,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>To recognize faces from camera in real time</string>
+	<string>We need camera access to track facial features of a user to register, login and logout functionalities</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Description</string>
-	<key>NSLocationAlwaysUsageDescription</key>
-	<string>Description</string>
+	<string>We need location access to monitor user location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Description</string>
+	<string>We need location access to monitor user location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Library</string>
 	<key>UILaunchStoryboardName</key>

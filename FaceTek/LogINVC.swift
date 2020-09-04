@@ -928,7 +928,12 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		
 		// Passing frame to FaceSDK, reading face coordinates and names
 		var count: Int64 = 0
-		FSDK_FeedFrame(tracker, 0, derotatedImage, &count, &IDs, Int64(IDs.count * Int64.bitWidth/8))
+		res = FSDK_FeedFrame(tracker, 0, derotatedImage, &count, &IDs, Int64(IDs.count * Int64.bitWidth/8))
+		if (res != FSDKE_OK) {
+			print("FSDK_FeedFrame failed with \(res)")
+			processingImage = false
+			return
+		}
 		
 		faceDataLock.lock()
 		for i in 0..<MAX_FACES {
