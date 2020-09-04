@@ -708,6 +708,7 @@
 				74D9985C2434621200DFCBEC /* Frameworks */,
 				74D9985D2434621200DFCBEC /* Resources */,
 				3BAFDDD402D7565490B27FBF /* [CP] Copy Pods Resources */,
+				174137DEC2932FAD9F08615D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -912,6 +913,23 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		174137DEC2932FAD9F08615D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FaceTek/Pods-FaceTek-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FaceTek/Pods-FaceTek-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FaceTek/Pods-FaceTek-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		3BAFDDD402D7565490B27FBF /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
