@@ -940,8 +940,8 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 		let count = (self.navigationController?.viewControllers.count)!
 		for i:Int in 0...count {
 			let vc = self.navigationController?.viewControllers[i]
-			if (vc?.isKind(of: ViewController.self))! {
-				(vc as! ViewController).showTabBar = true
+			if (vc?.isKind(of: RegistrationVC.self))! {
+				(vc as! RegistrationVC).showTabBar = true
 				self.navigationController?.popToViewController(vc!, animated: true)
 				break
 			}
