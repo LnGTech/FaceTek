@@ -519,7 +519,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 			custLeaveNamestr = responseDict["custLeaveName"] as? String
 			print("custLeaveNamestr",custLeaveNamestr)
 			//cell.textLabel!.text = custLeaveNamestr
-			LeaveTypetxt.text = custLeaveNamestr
+            
+            LeaveTypetxt.text = "" + " " + custLeaveNamestr!
+
 			self.custLeaveId = (responseDict["custLeaveId"] as? NSInteger)!
 			print("Selected Customer Id",custLeaveId)
 			Dropdowntbl.isHidden = true
@@ -705,20 +707,32 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if cleardata {
-            LeaveTypetxt.text = "Select Type"
+            LeaveTypetxt.text = "  Select Type"
             
             Fromtxt.text = nil
             Fromtxt.placeholder = "From"
             Totxt.text = nil
             Totxt.placeholder = "To"
+            RemarkTextview.text = nil
+                RemarkTextview.text = "Reason"
+                RemarkTextview.textColor = UIColor.lightGray
+                RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+            
 
             return
         }
         cleardata = true
 
         
-        LeaveTypetxt.text = "select Type"
+        LeaveTypetxt.text = "  select Type"
         Fromtxt.text = ""
+        
+        
+            RemarkTextview.text = nil
+            RemarkTextview.text = "Reason"
+            RemarkTextview.textColor = UIColor.lightGray
+            RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+        
 
 
     }
