@@ -30,11 +30,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	var Todatestr = String()
 	var Fromdatestr = String()
 	var brNamestr = String()
-    private var isAlreadyLoaddropdowndata = false
-    private var cleardata = false
-
-    
-
+	private var isAlreadyLoaddropdowndata = false
+	private var cleardata = false
+	
+	
+	
 	@IBOutlet weak var CompanyNameLbl: UILabel!
 	@IBOutlet weak var UserNameLbl: UILabel!
 	@IBOutlet weak var MobilenumberLbl: UILabel!
@@ -43,8 +43,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	@IBOutlet weak var LeaveTypeview: UIView!
 	@IBOutlet weak var LeaveNavigationtbl: UITableView!
 	// var LeaveNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
-    var LeaveNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
-
+	var LeaveNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+	
 	var isMenuVisible:Bool!
 	@IBOutlet weak var hamburgerView: UIView!
 	
@@ -62,14 +62,12 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	
 	let FromdatePicker = UIDatePicker()
 	let TodatePicker = UIDatePicker()
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-
-
-        
-		NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
-		NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 		
 		DropdownBackview.isHidden = true
 		LeavesLbl.isHidden = true
@@ -354,12 +352,12 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	func APIDropdowntabledata()
 	{
 		if isAlreadyLoaddropdowndata {
-            return
-        }
-        
-        
-        
-        isAlreadyLoaddropdowndata = true
+			return
+		}
+		
+		
+		
+		isAlreadyLoaddropdowndata = true
 		print("calling API Dropdown data")
 		let parameters = [
 			"custId": RetrivedcustId] as [String : Any]
@@ -409,15 +407,15 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 						
 						MainDict.setObject(self.custLeaveId, forKey: "custLeaveId" as NSCopying)
 						self.LeavetypeDropdownArray.add(MainDict)
-                        self.Dropdowntbl.reloadData()
-
-                        
-                    }
+						self.Dropdowntbl.reloadData()
+						
+						
+					}
 					self.customActivityIndicatory(self.view, startAnimate: false)
-
+					
 					
 				}
-
+				
 			}
 			
 		}
@@ -480,15 +478,15 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 				self.present(CalendarVC, animated:true, completion:nil)
 				
 			}
-            else if indexPath.item == 2 {
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                
-                let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
-                self.present(FieldVisitVC, animated:true, completion:nil)
-                
-                
-            }
-            else if indexPath.item == 6 {
+			else if indexPath.item == 2 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				
+				let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
+				self.present(FieldVisitVC, animated:true, completion:nil)
+				
+				
+			}
+			else if indexPath.item == 6 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 				let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
 				self.present(FaqVC, animated:true, completion:nil)
@@ -519,9 +517,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 			custLeaveNamestr = responseDict["custLeaveName"] as? String
 			print("custLeaveNamestr",custLeaveNamestr)
 			//cell.textLabel!.text = custLeaveNamestr
-            
-            LeaveTypetxt.text = "" + " " + custLeaveNamestr!
-
+			
+			LeaveTypetxt.text = "" + " " + custLeaveNamestr!
+			
 			self.custLeaveId = (responseDict["custLeaveId"] as? NSInteger)!
 			print("Selected Customer Id",custLeaveId)
 			Dropdowntbl.isHidden = true
@@ -604,10 +602,10 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		
 	}
 	
-    private func textFieldDidBeginEditing(textField: UITextField) {
-        Fromtxt.text = ""
-        
-    }
+	private func textFieldDidBeginEditing(textField: UITextField) {
+		Fromtxt.text = ""
+		
+	}
 	
 	func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {
 		let mainContainer: UIView = UIView(frame: viewContainer.frame)
@@ -624,8 +622,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		viewBackgroundLoading.layer.cornerRadius = 15
 		let activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
 		activityIndicatorView.frame = CGRect(x:0.0,y: 0.0,width: 40.0, height: 40.0)
-		activityIndicatorView.style =
-			UIActivityIndicatorView.Style.whiteLarge
+		activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
 		activityIndicatorView.center = CGPoint(x: viewBackgroundLoading.frame.size.width / 2, y: viewBackgroundLoading.frame.size.height / 2)
 		if startAnimate!{
 			viewBackgroundLoading.addSubview(activityIndicatorView)
@@ -642,7 +639,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		return activityIndicatorView
 	}
 	@objc func keyboardWillShow(notification: Notification) {
-		if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+		
+		if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
 			print("notification: Keyboard will show")
 			if self.view.frame.origin.y == 0{
 				self.view.frame.origin.y -= keyboardSize.height
@@ -651,7 +649,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	}
 	
 	@objc func keyboardWillHide(notification: Notification) {
-		if let keyboardSize = (notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+		if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
 			if self.view.frame.origin.y != 0 {
 				self.view.frame.origin.y += keyboardSize.height
 			}
@@ -703,38 +701,38 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		self.customView.addSubview(myButton)
 		
 	}
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if cleardata {
-            LeaveTypetxt.text = "  Select Type"
-            
-            Fromtxt.text = nil
-            Fromtxt.placeholder = "From"
-            Totxt.text = nil
-            Totxt.placeholder = "To"
-            RemarkTextview.text = nil
-                RemarkTextview.text = "Reason"
-                RemarkTextview.textColor = UIColor.lightGray
-                RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
-            
-
-            return
-        }
-        cleardata = true
-
-        
-        LeaveTypetxt.text = "  select Type"
-        Fromtxt.text = ""
-        
-        
-            RemarkTextview.text = nil
-            RemarkTextview.text = "Reason"
-            RemarkTextview.textColor = UIColor.lightGray
-            RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
-        
-
-
-    }
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		if cleardata {
+			LeaveTypetxt.text = "  Select Type"
+			
+			Fromtxt.text = nil
+			Fromtxt.placeholder = "From"
+			Totxt.text = nil
+			Totxt.placeholder = "To"
+			RemarkTextview.text = nil
+			RemarkTextview.text = "Reason"
+			RemarkTextview.textColor = UIColor.lightGray
+			RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+			
+			
+			return
+		}
+		cleardata = true
+		
+		
+		LeaveTypetxt.text = "  select Type"
+		Fromtxt.text = ""
+		
+		
+		RemarkTextview.text = nil
+		RemarkTextview.text = "Reason"
+		RemarkTextview.textColor = UIColor.lightGray
+		RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+		
+		
+		
+	}
 	
 }

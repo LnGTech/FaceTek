@@ -993,8 +993,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		let activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
 		activityIndicatorView.frame = CGRect(x:0.0,y: 0.0,width: 40.0, height: 40.0)
-		activityIndicatorView.style =
-			UIActivityIndicatorView.Style.whiteLarge
+		activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
 		activityIndicatorView.center = CGPoint(x: viewBackgroundLoading.frame.size.width / 2, y: viewBackgroundLoading.frame.size.height / 2)
 		if startAnimate!{
 			viewBackgroundLoading.addSubview(activityIndicatorView)

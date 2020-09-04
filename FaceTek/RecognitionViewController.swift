@@ -164,8 +164,6 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 			enteredNameLock.unlock()
 			faceTouchedLock.unlock()
 			
-			//update to server
-			//updatedetails()
 		}
 	}
 	
@@ -195,9 +193,9 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 		faceDataLock.unlock()
 		
 		if (idOfTouchedFace >= 0) {
-			faceTouched = true
 			storedFaceID()
-			DispatchQueue.main.async {
+			DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+				self.faceTouched = true
 				self.updatedetails()
 			}
 			
@@ -289,9 +287,9 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 			trackingRects[i].anchorPoint = CGPoint(x: 0, y: 0) //for position to be the top-left corner
 			nameLabels[i].fontSize = 20
 			nameLabels[i].frame = CGRect(x: 10.0, y: 10.0, width: 200.0, height: 40.0)
-			nameLabels[i].string = "Click here to Register face"
+			nameLabels[i].string = "Click here to register"
 			nameLabels[i].foregroundColor = UIColor.green.cgColor
-			nameLabels[i].alignmentMode = .center
+			nameLabels[i].alignmentMode = kCAAlignmentCenter
 			trackingRects[i].addSublayer(nameLabels[i])
 			
 			// Disable animations for move and resize (otherwise trackingRect will jump)
@@ -350,7 +348,7 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 		//        view.addSubview(toolbar!)
 		//        toolbar?.isHidden = false
 		
-		view.sendSubviewToBack(glView!)
+		view.sendSubview(toBack: glView!)
 	}
 	
 	func processNewCameraFrame(cameraFrame: CVImageBuffer) {
@@ -492,7 +490,7 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 				nameLabels[i].string = names[i]
 				nameLabels[i].foregroundColor = UIColor.blue.cgColor
 			} else {
-				nameLabels[i].string = "Click here to Register face"
+				nameLabels[i].string = "Click here to register"
 				nameLabels[i].foregroundColor = UIColor.green.cgColor
 			}
 		}
@@ -659,8 +657,6 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 		}
 		return true
 	}
-	
-	
 	
 	// Face detection and recognition
 	
@@ -970,44 +966,44 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 	}
 	
 	//Camera Permission code
-func checkCameraAccess() {
-    switch AVCaptureDevice.authorizationStatus(for: .video) {
-    case .denied:
-        print("Denied, request permission from settings")
-        presentCameraSettings()
-    case .restricted:
-        print("Restricted, device owner must approve")
-    case .authorized:
-        print("Authorized, proceed")
-    case .notDetermined:
-        AVCaptureDevice.requestAccess(for: .video) { success in
-            if success {
-                print("Permission granted, proceed")
-            } else {
-                self.presentCameraSettings()
-                print("Permission denied")
-            }
-        }
-    }
-}
+	func checkCameraAccess() {
+		switch AVCaptureDevice.authorizationStatus(for: .video) {
+		case .denied:
+			print("Denied, request permission from settings")
+			presentCameraSettings()
+		case .restricted:
+			print("Restricted, device owner must approve")
+		case .authorized:
+			print("Authorized, proceed")
+		case .notDetermined:
+			AVCaptureDevice.requestAccess(for: .video) { success in
+				if success {
+					print("Permission granted, proceed")
+				} else {
+					self.presentCameraSettings()
+					print("Permission denied")
+				}
+			}
+		}
+	}
 	
 	func presentCameraSettings() {
 		DispatchQueue.main.async {
 			
-        let alertController = UIAlertController(title: "Error",
-                                                message: "Camera access is denied",
-                                                preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
-        alertController.addAction(UIAlertAction(title: "Settings", style: .cancel) { _ in
-            if let url = URL(string: UIApplication.openSettingsURLString) {
-                UIApplication.shared.open(url, options: [:], completionHandler: { _ in
-                    // Handle
-                })
-            }
-        })
-        
-        self.present(alertController, animated: true)
-    }
-}
+			let alertController = UIAlertController(title: "Error",
+													message: "Camera access is denied",
+													preferredStyle: .alert)
+			alertController.addAction(UIAlertAction(title: "Cancel", style: .default))
+			alertController.addAction(UIAlertAction(title: "Settings", style: .cancel) { _ in
+				if let url = URL(string: UIApplicationOpenSettingsURLString) {
+					UIApplication.shared.open(url, options: [:], completionHandler: { _ in
+						// Handle
+					})
+				}
+			})
+			
+			self.present(alertController, animated: true)
+		}
+	}
 	
 }

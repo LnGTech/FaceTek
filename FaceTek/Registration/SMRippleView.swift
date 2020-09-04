@@ -102,7 +102,7 @@ final class SMRippleView: UIView {
         let animation = CAAnimationGroup()
         animation.animations = [scaleAnimation, alphaAnimation]
         animation.duration = self.animationDuration
-        animation.timingFunction = CAMediaTimingFunction(name: CAMediaTimingFunctionName.easeOut)
+        animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
         return animation
     }
     

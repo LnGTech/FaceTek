@@ -135,7 +135,10 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		} else {
 			templatePath = "\(homeDir)/\(filePath)"
 		}
-		if (FSDKE_OK != FSDK_LoadTrackerMemoryFromFile(&tracker, (templatePath as NSString).utf8String)) {
+		
+		let res = FSDK_LoadTrackerMemoryFromFile(&tracker, (templatePath as NSString).utf8String)
+		if (FSDKE_OK != res) {
+			print("FSDK_LoadTrackerMemoryFromFile failed with \(res), so calling FSDK_CreateTracker")
 			FSDK_CreateTracker(&tracker)
 		}
 		resetTrackerParameters()
@@ -251,8 +254,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		
 		let defaults = UserDefaults.standard
 		
-		Facename = defaults.string(forKey: "Facename")!
-		print("Office In Facename----",Facename)
+		Facename = "xxxxx"
 		
 		RetrivedLuxandIntimestr =  UserDefaults.standard.string(forKey:"LuxandIntime") ?? ""
 		
@@ -433,7 +435,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 			nameLabels[i].frame = CGRect(x: 10.0, y: 10.0, width: 200.0, height: 40.0)
 			nameLabels[i].string = "Face doesn't matched"
 			nameLabels[i].foregroundColor = UIColor.green.cgColor
-			nameLabels[i].alignmentMode = .center
+			nameLabels[i].alignmentMode = kCAAlignmentCenter
 			trackingRects[i].addSublayer(nameLabels[i])
 			
 			// Disable animations for move and resize (otherwise trackingRect will jump)
@@ -492,7 +494,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		//        view.addSubview(toolbar!)
 		//        toolbar?.isHidden = false
 		
-		view.sendSubviewToBack(glView!)
+		view.sendSubview(toBack: glView!)
 	}
 	
 	func processNewCameraFrame(cameraFrame: CVImageBuffer) {
@@ -868,9 +870,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		
 		var image: HImage = 0
 		var res = FSDK_LoadImageFromBuffer(&image, args.buffer, width, height, scanline, FSDK_IMAGE_COLOR_32BIT)
-		
 		args.buffer.deallocate(capacity: Int(args.scanline * args.height))
-		
 		if (res != FSDKE_OK) {
 			print("FSDK_LoadImageFromBuffer failed with \(res)")
 			processingImage = false
@@ -880,6 +880,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		var derotatedImage: HImage = 0
 		res = FSDK_CreateEmptyImage(&derotatedImage)
 		if (res != FSDKE_OK) {
+			print("FSDK_CreateEmptyImage failed with \(res), returning")
 			FSDK_FreeImage(image)
 			processingImage = false
 			return
@@ -895,6 +896,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 			res = FSDK_RotateImage90(image, 2, derotatedImage)
 		}
 		if (res != FSDKE_OK) {
+			print("FSDK_RotateImage90 failed with \(res), returning")
 			FSDK_FreeImage(image)
 			FSDK_FreeImage(derotatedImage)
 			processingImage = false
@@ -903,6 +905,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		
 		res = FSDK_MirrorImage_uchar(derotatedImage, 1)
 		if (res != FSDKE_OK) {
+			print("FSDK_MirrorImage_uchar failed with \(res), returning")
 			FSDK_FreeImage(image)
 			FSDK_FreeImage(derotatedImage)
 			processingImage = false
@@ -930,7 +933,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		var count: Int64 = 0
 		res = FSDK_FeedFrame(tracker, 0, derotatedImage, &count, &IDs, Int64(IDs.count * Int64.bitWidth/8))
 		if (res != FSDKE_OK) {
-			print("FSDK_FeedFrame failed with \(res)")
+			print("FSDK_FeedFrame failed with \(res), returning")
 			processingImage = false
 			return
 		}
@@ -945,7 +948,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		for i in 0..<Int(count) {
 			nameDataLock.lock()
 			let allNames = UnsafeMutablePointer<Int8>.allocate(capacity: MAX_NAME_LEN+1)
-			allNames.initialize(to: 0, count: MAX_NAME_LEN+1)
+			allNames.initialize(repeating: 0, count: MAX_NAME_LEN+1)
 			FSDK_GetAllNames(tracker, IDs[i], allNames, Int64(MAX_NAME_LEN))
 			names.replaceObject(at: i, with: String.init(cString: allNames))
 			allNames.deallocate(capacity: MAX_NAME_LEN+1)

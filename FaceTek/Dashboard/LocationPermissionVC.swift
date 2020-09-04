@@ -59,7 +59,7 @@ class LocationPermissionVC: UIViewController, CLLocationManagerDelegate {
 		}
 		alert.addAction(okAction)
 		alert.addAction(UIAlertAction(title: "Settings", style: .cancel) { _ in
-			if let url = URL(string: UIApplication.openSettingsURLString) {
+			if let url = URL(string: UIApplicationOpenSettingsURLString) {
 				UIApplication.shared.open(url, options: [:], completionHandler: { _ in
 					// Handle
 				})

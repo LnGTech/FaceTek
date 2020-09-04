@@ -225,21 +225,15 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
 		if indexPath.item == 0 {
 			AttendanceIntime()
-			//EmployeeSignInChecking()
 		}
 		else if indexPath.item == 1 {
-			//AttendanceOutime()
 			AttendanceOutime()
-			
 		}
 		else if indexPath.item == 2{
 			MovementIn()
-			print("Movement In button")
 		}
 		else if indexPath.item == 3{
-			
 			MovementOut()
-			print("Movement out button")
 		}
 		
 	}
@@ -462,47 +456,26 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		
 	}
 	
-	
-	
-	func AttendanceIntime()
-	{
+	func AttendanceIntime() {
 		
-		manager.delegate = self
-		var isempBeacon: Bool = true
-		if(isempBeacon == true)
-		{
-			
-			if(AppManager.sharedInstance.isReachability)
-			{
-				
-				//API Response will coming-------
-				print("network available......")
-				//self.networkStatusLabel.text = "Network Available"
-				//call API from here.
-				BeconeMethodaAPI()
-				EmployeeSignInChecking()
-				//CurrentDateAttendanceMarIn()
-				
-				
-				//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				//
-				//            let AttendanceMarkIn = storyBoard.instantiateViewController(withIdentifier: "AttendanceMarkIn") as! AttendanceMarkIn
-				//            self.present(AttendanceMarkIn, animated:true, completion:nil)
-				
-			} else {
-				DispatchQueue.main.async {
-					//Response null code will execute
-					
-					//self.networkStatusLabel.text = "Network Unavailable"
-					print("Makesure connect with wifi Network Unavailable")
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
-					self.present(OfficeInVC, animated:true, completion:nil)
-					//Show Alert
-				}
-			}
-			print("Internet code")
-		}
+		let loginvc = LogINVC.init(screen: UIScreen.main)
+		loginvc.modalPresentationStyle = .fullScreen
+		self.present(loginvc, animated: true, completion: nil)
+		
+//		manager.delegate = self
+//		let isempBeacon: Bool = true
+//		if(isempBeacon == true) {
+//			if(AppManager.sharedInstance.isReachability) {
+//				BeconeMethodaAPI()
+//				EmployeeSignInChecking()
+//			} else {
+//				DispatchQueue.main.async {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//					let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
+//					self.present(OfficeInVC, animated:true, completion:nil)
+//				}
+//			}
+//		}
 	}
 	
 	
@@ -1495,8 +1468,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		let activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
 		activityIndicatorView.frame = CGRect(x:0.0,y: 0.0,width: 40.0, height: 40.0)
-		activityIndicatorView.style =
-			UIActivityIndicatorView.Style.whiteLarge
+		activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
 		activityIndicatorView.center = CGPoint(x: viewBackgroundLoading.frame.size.width / 2, y: viewBackgroundLoading.frame.size.height / 2)
 		if startAnimate!{
 			viewBackgroundLoading.addSubview(activityIndicatorView)

@@ -430,7 +430,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 			nameLabels[i].frame = CGRect(x: 10.0, y: 10.0, width: 200.0, height: 40.0)
 			nameLabels[i].string = "Face doesn't matched"
 			nameLabels[i].foregroundColor = UIColor.green.cgColor
-			nameLabels[i].alignmentMode = .center
+			nameLabels[i].alignmentMode = kCAAlignmentCenter
 			trackingRects[i].addSublayer(nameLabels[i])
 			
 			// Disable animations for move and resize (otherwise trackingRect will jump)
@@ -489,7 +489,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 		//        view.addSubview(toolbar!)
 		//        toolbar?.isHidden = false
 		
-		view.sendSubviewToBack(glView!)
+		view.sendSubview(toBack: glView!)
 	}
 	
 	func processNewCameraFrame(cameraFrame: CVImageBuffer) {

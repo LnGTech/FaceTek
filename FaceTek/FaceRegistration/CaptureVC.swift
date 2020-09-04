@@ -649,8 +649,7 @@ import AudioToolbox
         public func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
             
             var requestHandlerOptions: [VNImageOption: AnyObject] = [:]
-            
-            let cameraIntrinsicData = CMGetAttachment(sampleBuffer, key: kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, attachmentModeOut: nil)
+            let cameraIntrinsicData = CMGetAttachment(sampleBuffer, kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, nil)
             if cameraIntrinsicData != nil {
                 requestHandlerOptions[VNImageOption.cameraIntrinsics] = cameraIntrinsicData
             }

@@ -373,9 +373,9 @@ extension InputOTPVC : UITextFieldDelegate{
 		
 		let activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
 		activityIndicatorView.frame = CGRect(x:0.0,y: 0.0,width: 40.0, height: 40.0)
-		activityIndicatorView.style =
-			UIActivityIndicatorView.Style.whiteLarge
-		activityIndicatorView.center = CGPoint(x: viewBackgroundLoading.frame.size.width / 2, y: viewBackgroundLoading.frame.size.height / 2)
+		activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.white
+		activityIndicatorView.center = CGPoint(x: viewBackgroundLoading.frame.size.width / 2,
+											   y: viewBackgroundLoading.frame.size.height / 2)
 		if startAnimate!{
 			viewBackgroundLoading.addSubview(activityIndicatorView)
 			mainContainer.addSubview(viewBackgroundLoading)
