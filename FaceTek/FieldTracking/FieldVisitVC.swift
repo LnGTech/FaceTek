@@ -216,13 +216,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 							
 						} else {
 							
-							self.locationManager.requestAlwaysAuthorization()
 							if CLLocationManager.locationServicesEnabled(){
 								self.locationManager.delegate = self
 								self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
 								self.locationManager.distanceFilter = 500
 								self.locationManager.requestWhenInUseAuthorization()
-								self.locationManager.requestAlwaysAuthorization()
 								self.locationManager.startUpdatingLocation()
 								//UIbutton Action
 								self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)

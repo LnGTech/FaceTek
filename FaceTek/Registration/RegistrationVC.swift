@@ -25,10 +25,10 @@ extension UIViewController {
 
 class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDelegate {
 	
-    var showTabBar = false;
-    var manager:CLLocationManager!
-
-
+	var showTabBar = false;
+	var manager:CLLocationManager!
+	
+	
 	@IBOutlet weak var Bckview: UIView!
 	@IBOutlet weak var Popupview: UIView!
 	@IBOutlet weak var PopUpNameLbl: UILabel!
@@ -62,11 +62,11 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
 	var persons:[Person] = []
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        checkUsersLocationServicesAuthorization()
-        
-        let defaults = UserDefaults.standard
-        defaults.set("Coding Explorer", forKey: "userNameKey")
-        
+		checkUsersLocationServicesAuthorization()
+		
+		let defaults = UserDefaults.standard
+		defaults.set("Coding Explorer", forKey: "userNameKey")
+		
 		
 		customActivityIndicatory(self.view, startAnimate: false)
 		hideKeyboardWhenTappedAround()
@@ -111,19 +111,19 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
 		
 		// Do any additional setup after loading the view.
 	}
-    
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if showTabBar {
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
-            self.present(tabBarController, animated:true, completion:nil)
-        }
-    }
-    
-    
-    
+	
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		if showTabBar {
+			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+			let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
+			self.present(tabBarController, animated:true, completion:nil)
+		}
+	}
+	
+	
+	
 	
 	@objc override func dismissKeyboard() {
 		//Causes the view (or one of its embedded text fields) to resign the first responder status.
@@ -423,35 +423,35 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
 		return activityIndicatorView
 	}
 	
-    
-    //Location Permisstion's code
-    func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
-        print("locations = \(locations)")
-        //gpsResult.text = "success"
-    }
-    
-    // authorization status
-    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
-        switch status {
-        case .authorizedWhenInUse, .authorizedAlways:
-            print("restricted") //we have got the location access
-        case .denied, .notDetermined, .restricted:
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            let LocationPermissionVC = storyBoard.instantiateViewController(withIdentifier: "LocationPermissionVC") as! LocationPermissionVC
-            self.navigationController?.pushViewController(LocationPermissionVC, animated: true)
-        default:
-            print("location accessed")
-        }
-    }
-    
-    func checkUsersLocationServicesAuthorization(){
-        if manager == nil {
-            manager = CLLocationManager()
-            manager.delegate = self
-        }
-        manager.requestAlwaysAuthorization()
-    }
-
+	
+	//Location Permisstion's code
+	func locationManager(manager:CLLocationManager, didUpdateLocations locations:[AnyObject]) {
+		print("locations = \(locations)")
+		//gpsResult.text = "success"
+	}
+	
+	// authorization status
+	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+		switch status {
+		case .authorizedWhenInUse, .authorizedAlways:
+			print("restricted") //we have got the location access
+		case .denied, .notDetermined, .restricted:
+			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+			let LocationPermissionVC = storyBoard.instantiateViewController(withIdentifier: "LocationPermissionVC") as! LocationPermissionVC
+			self.navigationController?.pushViewController(LocationPermissionVC, animated: true)
+		default:
+			print("location accessed")
+		}
+	}
+	
+	func checkUsersLocationServicesAuthorization(){
+		if manager == nil {
+			manager = CLLocationManager()
+			manager.delegate = self
+		}
+		manager.requestWhenInUseAuthorization()
+	}
+	
 	
 	
 	

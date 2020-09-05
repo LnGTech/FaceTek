@@ -218,6 +218,6 @@ class ViewController: UIViewController,UICollectionViewDelegate,UICollectionView
 			manager = CLLocationManager()
 			manager.delegate = self
 		}
-		manager.requestAlwaysAuthorization()
+		manager.requestWhenInUseAuthorization()
 	}
 }

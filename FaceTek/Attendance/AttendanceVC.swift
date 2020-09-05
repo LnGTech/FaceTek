@@ -457,25 +457,20 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	}
 	
 	func AttendanceIntime() {
-		
-		let loginvc = LogINVC.init(screen: UIScreen.main)
-		loginvc.modalPresentationStyle = .fullScreen
-		self.present(loginvc, animated: true, completion: nil)
-		
-//		manager.delegate = self
-//		let isempBeacon: Bool = true
-//		if(isempBeacon == true) {
-//			if(AppManager.sharedInstance.isReachability) {
-//				BeconeMethodaAPI()
-//				EmployeeSignInChecking()
-//			} else {
-//				DispatchQueue.main.async {
-//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//					let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
-//					self.present(OfficeInVC, animated:true, completion:nil)
-//				}
-//			}
-//		}
+		manager.delegate = self
+		let isempBeacon: Bool = true
+		if(isempBeacon == true) {
+			if(AppManager.sharedInstance.isReachability) {
+				BeconeMethodaAPI()
+				EmployeeSignInChecking()
+			} else {
+				DispatchQueue.main.async {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+					let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
+					self.present(OfficeInVC, animated:true, completion:nil)
+				}
+			}
+		}
 	}
 	
 	

@@ -28,7 +28,7 @@ class LocationPermissionVC: UIViewController, CLLocationManagerDelegate {
 		if locationManager == nil {
 			locationManager = CLLocationManager()
 			locationManager?.delegate = self
-			locationManager?.requestAlwaysAuthorization()
+			locationManager?.requestWhenInUseAuthorization()
 		} else {
 			showLocationAlert()
 		}
@@ -36,18 +36,12 @@ class LocationPermissionVC: UIViewController, CLLocationManagerDelegate {
 	
 	func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
 		if status == .authorizedWhenInUse || status == .authorizedAlways {
-			goToMainScreen()
+			self.navigationController?.popViewController(animated: true)
 		} else {
 			DispatchQueue.main.async {
 				self.showLocationAlert()
 			}
 		}
-	}
-	
-	private func goToMainScreen() {
-		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-		let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationVC
-		self.navigationController?.pushViewController(RegistrationVC, animated: true)
 	}
 	
 	private func showLocationAlert() {
