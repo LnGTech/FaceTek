@@ -13,8 +13,7 @@ import GoogleMaps
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 //updates
-    //changes
-    
+//suresh bandaru
     var window: UIWindow?
     var recognitionViewController: RecognitionViewController?
 
