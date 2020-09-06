@@ -4727,11 +4727,11 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZAO-Fj-ON0">
-                                                                <rect key="frame" x="305" y="20" width="30" height="30"/>
+                                                                <rect key="frame" x="305" y="20" width="25" height="25"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="30" id="SNP-dD-IpB"/>
-                                                                    <constraint firstAttribute="height" constant="30" id="u1a-KX-9qx"/>
+                                                                    <constraint firstAttribute="width" constant="25" id="SNP-dD-IpB"/>
+                                                                    <constraint firstAttribute="height" constant="25" id="u1a-KX-9qx"/>
                                                                 </constraints>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="N/A" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IPS-U6-Ra3">
@@ -4747,7 +4747,7 @@
                                                         </subviews>
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="ZAO-Fj-ON0" secondAttribute="trailing" constant="24" id="0We-v6-9xS"/>
+                                                            <constraint firstAttribute="trailing" secondItem="ZAO-Fj-ON0" secondAttribute="trailing" constant="29" id="0We-v6-9xS"/>
                                                             <constraint firstItem="ZAO-Fj-ON0" firstAttribute="top" secondItem="PyV-Xx-iW7" secondAttribute="top" constant="20" id="1bl-LO-DgH"/>
                                                             <constraint firstItem="dG4-Jo-ISu" firstAttribute="top" secondItem="PyV-Xx-iW7" secondAttribute="top" constant="8" id="1dw-UW-b03"/>
                                                             <constraint firstItem="ZAO-Fj-ON0" firstAttribute="leading" secondItem="T52-51-oOa" secondAttribute="trailing" constant="54" id="2Su-jy-hEy"/>
@@ -5296,7 +5296,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="4366" y="-591"/>
+            <point key="canvasLocation" x="4365.6000000000004" y="-591.45427286356824"/>
         </scene>
     </scenes>
     <resources>

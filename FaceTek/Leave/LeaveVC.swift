@@ -523,11 +523,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             print("custLeaveNamestr",custLeaveNamestr)
             //cell.textLabel!.text = custLeaveNamestr
             
-            //LeaveTypetxt.text = "" + " " + custLeaveNamestr!
+            LeaveTypetxt.text = "" + " " + custLeaveNamestr!
             
             drpcell.DropdownLbl!.text = custLeaveNamestr
 
-            LeaveTypetxt.text = custLeaveNamestr!
+            //LeaveTypetxt.text = custLeaveNamestr!
 
             self.custLeaveId = (responseDict["custLeaveId"] as? NSInteger)!
             print("Selected Customer Id",custLeaveId)

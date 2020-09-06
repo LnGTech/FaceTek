@@ -671,7 +671,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 					}
 					else
 					{
-						var alert = UIAlertController(title: "SignOut", message: "Attendance OUT is already  marked for the day" as! String, preferredStyle: UIAlertController.Style.alert)
+						var alert = UIAlertController(title: "SignOut", message: "Attendance OUT is already marked for the day" as! String, preferredStyle: UIAlertController.Style.alert)
 						alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
 						self.present(alert, animated: true, completion: nil)
 						print("Failure---")
