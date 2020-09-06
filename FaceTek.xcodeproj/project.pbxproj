@@ -53,6 +53,8 @@
 		7447221224BF117400CD06BA /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 7447221124BF117400CD06BA /* cancel.png */; };
 		7447702924CF1A2900EFBB2F /* EarlyLeaverscell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7447702724CF1A2900EFBB2F /* EarlyLeaverscell.swift */; };
 		7447702A24CF1A2900EFBB2F /* EarlyLeaverscell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7447702824CF1A2900EFBB2F /* EarlyLeaverscell.xib */; };
+		7447B3F22504F4A4001C54BC /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7447B3F12504F4A4001C54BC /* SwiftyJSON.framework */; };
+		7447B3F32504F4A4001C54BC /* SwiftyJSON.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 7447B3F12504F4A4001C54BC /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		7448549524AF1C5500F36A99 /* LogOutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448549424AF1C5500F36A99 /* LogOutVC.swift */; };
 		7449F96D24AE284900232D46 /* LogINVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449F96C24AE284900232D46 /* LogINVC.swift */; };
 		744B18B424CEB1B6004FB334 /* no_leves_found.png in Resources */ = {isa = PBXBuildFile; fileRef = 744B18B324CEB1B6004FB334 /* no_leves_found.png */; };
@@ -179,6 +181,20 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		7447B3F42504F4A5001C54BC /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				7447B3F32504F4A4001C54BC /* SwiftyJSON.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		716E0CFC4B944DDD7A14F1C8 /* Pods-FaceTek.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FaceTek.debug.xcconfig"; path = "Target Support Files/Pods-FaceTek/Pods-FaceTek.debug.xcconfig"; sourceTree = "<group>"; };
 		7308095E4B0798A51C2F4F4F /* Pods_FaceTek.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FaceTek.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,6 +243,7 @@
 		7447221124BF117400CD06BA /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		7447702724CF1A2900EFBB2F /* EarlyLeaverscell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaverscell.swift; sourceTree = "<group>"; };
 		7447702824CF1A2900EFBB2F /* EarlyLeaverscell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarlyLeaverscell.xib; sourceTree = "<group>"; };
+		7447B3F12504F4A4001C54BC /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7448549424AF1C5500F36A99 /* LogOutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutVC.swift; sourceTree = "<group>"; };
 		7449F96C24AE284900232D46 /* LogINVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogINVC.swift; sourceTree = "<group>"; };
 		744B18B324CEB1B6004FB334 /* no_leves_found.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_leves_found.png; sourceTree = "<group>"; };
@@ -352,6 +369,7 @@
 			files = (
 				744367BF24D2C98400B4AF4D /* WebKit.framework in Frameworks */,
 				74FA123524AC689800A356E7 /* libfsdk-static_64.a in Frameworks */,
+				7447B3F22504F4A4001C54BC /* SwiftyJSON.framework in Frameworks */,
 				74FA124324AC698100A356E7 /* libz.tbd in Frameworks */,
 				74FA123624AC689800A356E7 /* libfsdk-static.a in Frameworks */,
 				0CF3B39C9FA8A8229E533A03 /* Pods_FaceTek.framework in Frameworks */,
@@ -680,6 +698,7 @@
 		74FA124124AC693D00A356E7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7447B3F12504F4A4001C54BC /* SwiftyJSON.framework */,
 				744367BE24D2C98400B4AF4D /* WebKit.framework */,
 				74FA124224AC693E00A356E7 /* libz.tbd */,
 				7308095E4B0798A51C2F4F4F /* Pods_FaceTek.framework */,
@@ -709,6 +728,7 @@
 				74D9985D2434621200DFCBEC /* Resources */,
 				3BAFDDD402D7565490B27FBF /* [CP] Copy Pods Resources */,
 				174137DEC2932FAD9F08615D /* [CP] Embed Pods Frameworks */,
+				7447B3F42504F4A5001C54BC /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
