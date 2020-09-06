@@ -456,8 +456,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         {
             
             let drpcell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell", for: indexPath) as! Dropdowncell
-            var responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
-            var maindata = LeavetypeDropdownArray[indexPath.row]
+            let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
+            _ = LeavetypeDropdownArray[indexPath.row]
             print("Retrived data",responseDict)
             self.LeavetypeDropdownArray.add(MainDict)
             print("Leave Type Array",LeavetypeDropdownArray)
