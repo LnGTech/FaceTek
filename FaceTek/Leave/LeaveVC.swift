@@ -173,6 +173,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		print("tap working")
 		
 		if Dropdowntbl.isHidden {
+            
 			Dropdowntbl.isHidden = false
 			DropdownBackview.isHidden = false
 			LeavesLbl.isHidden = false
@@ -518,8 +519,12 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 			print("custLeaveNamestr",custLeaveNamestr)
 			//cell.textLabel!.text = custLeaveNamestr
 			
-			LeaveTypetxt.text = "" + " " + custLeaveNamestr!
+			//LeaveTypetxt.text = "" + " " + custLeaveNamestr!
 			
+            drpcell.DropdownLbl!.text = custLeaveNamestr
+
+            LeaveTypetxt.text = custLeaveNamestr!
+
 			self.custLeaveId = (responseDict["custLeaveId"] as? NSInteger)!
 			print("Selected Customer Id",custLeaveId)
 			Dropdowntbl.isHidden = true
@@ -695,44 +700,40 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		myButton.setTitle("OK", for: .normal)
 		myButton.setTitle("Pressed + Hold", for: .highlighted)
 		myButton.setTitleColor(UIColor.white, for: .normal)
-		
 		myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 		myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
 		self.customView.addSubview(myButton)
 		
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		if cleardata {
-			LeaveTypetxt.text = "  Select Type"
-			
-			Fromtxt.text = nil
-			Fromtxt.placeholder = "From"
-			Totxt.text = nil
-			Totxt.placeholder = "To"
-			RemarkTextview.text = nil
-			RemarkTextview.text = "Reason"
-			RemarkTextview.textColor = UIColor.lightGray
-			RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
-			
-			
-			return
-		}
-		cleardata = true
-		
-		
-		LeaveTypetxt.text = "  select Type"
-		Fromtxt.text = ""
-		
-		
-		RemarkTextview.text = nil
-		RemarkTextview.text = "Reason"
-		RemarkTextview.textColor = UIColor.lightGray
-		RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
-		
-		
-		
-	}
+//	override func viewWillAppear(_ animated: Bool) {
+//		super.viewWillAppear(animated)
+//		if cleardata {
+//			//LeaveTypetxt.text = " Select Type"
+//			Fromtxt.text = nil
+//			Fromtxt.placeholder = "From"
+//			Totxt.text = nil
+//			Totxt.placeholder = "To"
+//			RemarkTextview.text = nil
+//			RemarkTextview.text = "Reason"
+//			RemarkTextview.textColor = UIColor.lightGray
+//			RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+//			return
+//		}
+//		cleardata = true
+//
+//
+////		LeaveTypetxt.text = " select Type"
+////		Fromtxt.text = ""
+////
+//
+//		RemarkTextview.text = nil
+//		RemarkTextview.text = "Reason"
+//		RemarkTextview.textColor = UIColor.lightGray
+//		RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+//
+//
+//
+//	}
 	
 }

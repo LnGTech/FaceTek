@@ -366,7 +366,9 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
 	}
 	
 	@IBAction func CancelBtn(_ sender: Any) {
-		self.navigationController?.popViewController(animated: true)
+		//self.navigationController?.popViewController(animated: true)
+        
+        Popupview.isHidden = true
 	}
 	//
 	//

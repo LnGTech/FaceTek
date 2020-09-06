@@ -256,19 +256,6 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 		
 		view.addSubview(glView!)
 		
-		// Set up the toolbar at the bottom of the screen
-		//        toolbar = UIToolbar()
-		//        toolbar?.barStyle = UIBarStyle.blackTranslucent;
-		//        let clearItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.trash, target: self, action: #selector(clearAction))
-		//        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil)
-		//        let helpItem = UIBarButtonItem(title: "?", style: UIBarButtonItemStyle.plain, target: self, action: #selector(helpAction))
-		//        toolbar?.items = [clearItem, flexibleSpace, helpItem]
-		//        toolbar?.sizeToFit()
-		//        let toolbarHeight = toolbar?.frame.size.height
-		//        let mainViewBounds = view.bounds
-		//        toolbar?.frame = CGRect(x: mainViewBounds.minX, y: mainViewBounds.minY + mainViewBounds.height - toolbarHeight!, width: mainViewBounds.width, height: toolbarHeight!)
-		//        view.addSubview(toolbar!)
-		
 		
 		if (loadShaders(vertexShaderName: "DirectDisplayShader", fragmentShaderName: "DirectDisplayShader", programPointer: &directDisplayProgram)) {
 			print("Shaders loaded")
@@ -340,13 +327,6 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 			glView?.layer.actions = ["sublayer":NSNull()]
 			glView?.layer.addSublayer(trackingRects[i])
 		}
-		
-		// Toolbar re-alignment
-		//        let toolbarHeight = toolbar?.frame.size.height
-		//        let mainViewBounds = view.bounds
-		//        toolbar?.frame = CGRect(x: mainViewBounds.minX, y: mainViewBounds.minY + mainViewBounds.height - toolbarHeight!, width: mainViewBounds.width, height: toolbarHeight!)
-		//        view.addSubview(toolbar!)
-		//        toolbar?.isHidden = false
 		
 		view.sendSubview(toBack: glView!)
 	}
@@ -918,7 +898,6 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 						myButton.frame = CGRect(x: 100, y: 180, width: 100, height: 50)
 						// Set text on button
 						myButton.setTitle("OK", for: .normal)
-						myButton.setTitle("Pressed + Hold", for: .highlighted)
 						myButton.setTitleColor(UIColor.white, for: .normal)
 						myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 						// Set button action
