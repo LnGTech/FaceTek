@@ -705,6 +705,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		self.customView.addSubview(myButton)
 		
 	}
+    
+    //Code changed in LeaveVC
 	
 //	override func viewWillAppear(_ animated: Bool) {
 //		super.viewWillAppear(animated)
