@@ -4380,6 +4380,7 @@
                     <connections>
                         <outlet property="CompanyNameLbl" destination="nCU-0Y-3qa" id="JgL-MP-zdA"/>
                         <outlet property="ContactUsView" destination="cYy-Yb-i4V" id="qHh-SQ-a1N"/>
+                        <outlet property="ContactUsadrstextview" destination="cYy-Yb-i4V" id="VFc-bg-xlZ"/>
                         <outlet property="DropdownBackview" destination="KbG-u2-G5q" id="jaX-40-qMb"/>
                         <outlet property="Dropdowntbl" destination="qY2-3d-y2V" id="TT4-mg-B8v"/>
                         <outlet property="FromBtn" destination="VCh-9z-KiW" id="zZf-qj-m2G"/>

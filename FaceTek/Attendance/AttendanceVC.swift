@@ -94,6 +94,10 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	override func viewDidLoad() {
 		super.viewDidLoad()
      
+        ContactTextView.isEditable = false
+
+        
+        
 		customActivityIndicatory(self.view, startAnimate: false)
 		EmergencyTimeoutview.isHidden = true
 		

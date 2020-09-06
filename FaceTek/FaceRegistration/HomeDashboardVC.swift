@@ -115,6 +115,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+        ContactusText.isEditable = false
+
+        
 		UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial", size:14)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
 		
 		
