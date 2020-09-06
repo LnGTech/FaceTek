@@ -706,6 +706,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		
 	}
     
+    //sdfsdfsfdsfdsfds
+    //sdfsdfsfsd
+    
+    //Leave vc 
+    
     //Code changed in LeaveVC
 	
 //	override func viewWillAppear(_ animated: Bool) {
