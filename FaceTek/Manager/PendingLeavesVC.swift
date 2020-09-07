@@ -19,10 +19,29 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     @IBOutlet weak var Noleavesview: UIView!
     @IBOutlet weak var NoLeavesfoundview: UIImageView!
     @IBOutlet weak var Pendingtble: UITableView!
+    
+    @IBOutlet weak var PendingLeaves_AcceptView: UIView!
+    @IBOutlet weak var PendingLeaves_RejectView: UIView!
+    
+    //RejectView
+    
+    
+    @IBOutlet weak var RejectviewCancel: UIView!
+    
+    @IBOutlet weak var RejectviewReject: UIView!
     var marLeavesData = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        PendingLeaves_AcceptView.isHidden = true
+        PendingLeaves_RejectView.isHidden = true
+        
+        let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.CancelAction(sender:)))
+        self.RejectviewCancel.addGestureRecognizer(gesture)
+
+        
+        
         
         Noleavesview.isHidden = true
                let defaults = UserDefaults.standard
@@ -39,6 +58,10 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         // Do any additional setup after loading the view.
     }
     
+    @objc func CancelAction(sender : UITapGestureRecognizer) {
+        // Do what you want
+        PendingLeaves_RejectView.isHidden = true
+    }
     func PendingLeavesAPI(){
         print("Leave Proceed------")
         let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any] as [String : Any]
@@ -157,9 +180,13 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         PendingLeavescellTableViewCell.LeaveTypeLbl.text = dicShiftDetails?.value(forKey: "leaveType") as? String
         
         //click on Reject
-        let tap = UITapGestureRecognizer(target: self, action: #selector(PendingLeavesVC.RejecttapFunction))
+        let Rejecttap = UITapGestureRecognizer(target: self, action: #selector(PendingLeavesVC.RejecttapFunction))
         PendingLeavescellTableViewCell.RejctLbl.isUserInteractionEnabled = true
-        PendingLeavescellTableViewCell.RejctLbl.addGestureRecognizer(tap)
+        PendingLeavescellTableViewCell.RejctLbl.addGestureRecognizer(Rejecttap)
+        
+        let Accepttap = UITapGestureRecognizer(target: self, action: #selector(PendingLeavesVC.AccepttapFunction))
+        PendingLeavescellTableViewCell.AcceptLbl.isUserInteractionEnabled = true
+        PendingLeavescellTableViewCell.AcceptLbl.addGestureRecognizer(Accepttap)
         
         
         
@@ -188,7 +215,17 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     
     @objc
     func RejecttapFunction(sender:UITapGestureRecognizer) {
+        PendingLeaves_RejectView.isHidden = false
         print("RejecttapFunction tap working")
+
+        
+    }
+    @objc
+    func AccepttapFunction(sender:UITapGestureRecognizer) {
+        PendingLeaves_AcceptView.isHidden = false
+        print("AccepttapFunction tap working")
+
+        
     }
     
     
@@ -198,6 +235,14 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 
     }
     
+    @IBAction func PendingCancelBtn_Acceptview(_ sender: Any) {
+        PendingLeaves_AcceptView.isHidden = true
+        
+    }
     
-
+    @IBAction func ProceedBtn_Aceeptview(_ sender: Any) {
+    }
+    
+    
+    
 }
