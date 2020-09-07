@@ -17,7 +17,7 @@ import CoreLocation
 //changed code
 
 
-class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate {
+class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,CLLocationManagerDelegate {
     struct DetectFaceParams {
         var buffer: UnsafeMutablePointer<UInt8>
         var width: Int32
@@ -33,6 +33,12 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
         var y2: Int32
     }
     
+    
+    var addressString : String = ""
+  
+    var latstr : String = ""
+    var longstr : String = ""
+
     
     
     var customView = UIView()
@@ -252,6 +258,21 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
     
     override func loadView() {
         
+
+        
+        if (CLLocationManager.locationServicesEnabled())
+        {
+            locationManager = CLLocationManager()
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+            print("addressString...",addressString)
+
+            
+
+        }
+        
         let defaults = UserDefaults.standard
         
         Facename = "xxxxx"
@@ -381,7 +402,11 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
             
             LongitudestrData = String(currentLoc.coordinate.longitude)
             print("curent longitude string value",LongitudestrData)
-            empAttendanceInLatLongstr = "\(LattitudestrData) \(LongitudestrData)"
+            //empAttendanceInLatLongstr = "\(LattitudestrData) \(LongitudestrData)"
+            
+            empAttendanceInLatLongstr = LattitudestrData + ", " + LongitudestrData
+
+            
             print("empAttendanceInLatLongstr-----",empAttendanceInLatLongstr)
             
         }
@@ -451,6 +476,61 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
         camera = RecognitionCamera(position: AVCaptureDevice.Position.front);
         camera?.delegate = self
     }
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
+    {
+
+        let location = locations.last! as CLLocation
+
+        /* you can use these values*/
+        let lat = location.coordinate.latitude
+        let long = location.coordinate.longitude
+        
+        latstr = String(lat)
+        print("lat...",latstr)
+
+        longstr = String(long)
+        print("long...",longstr)
+
+        let geoCoder = CLGeocoder()
+        _ = CLLocation(latitude: lat, longitude: long)
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            let pm = placemarks! as [CLPlacemark]
+            
+            if pm.count > 0 {
+                let pm = placemarks![0]
+                print(pm.country as Any)
+                print(pm.locality as Any)
+                print(pm.subLocality as Any)
+                print(pm.thoroughfare as Any)
+                print(pm.postalCode as Any)
+                print(pm.subThoroughfare as Any)
+                if pm.subLocality != nil {
+                    self.addressString = self.addressString + pm.subLocality! + ", "
+                }
+                if pm.thoroughfare != nil {
+                    self.addressString = self.addressString + pm.thoroughfare! + ", "
+                }
+                if pm.locality != nil {
+                    self.addressString = self.addressString + pm.locality! + ", "
+                }
+                if pm.country != nil {
+                    self.addressString = self.addressString + pm.country! + ", "
+                }
+                if pm.postalCode != nil {
+                    self.addressString = self.addressString + pm.postalCode! + " "
+                }
+                //    let marker = GMSMarker()
+                //    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
+                //    marker.title = self.addressString
+                //    marker.map = self.mapView
+                //    print("address location",self.addressString)
+            }
+        })
+
+    }
+
+    
     
     func screenSizeOrientationIndependent() -> CGSize {
         let screenSize = UIScreen.main.bounds.size
@@ -1102,11 +1182,13 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
         RetrivedLatlongempId = defaults.integer(forKey: "empId")
         print("RetrivedLatlongempId----",RetrivedLatlongempId)
         
+        
+        
         //let parameters = [["refEmpId": RetrivedempId,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": RetrivedcurrentdateString,"empAttendanceInConfidence": "98.232","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
         
         
         print("Latlon values in Login----------",RetrivedempId)
-        let parameters = [["refEmpId": RetrivedLatlongempId ,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": "","empAttendanceInConfidence":"98.233","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
+        let parameters = [["refEmpId": RetrivedLatlongempId ,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": "","empAttendanceInConfidence":"0","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
         
         let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN")!
         
