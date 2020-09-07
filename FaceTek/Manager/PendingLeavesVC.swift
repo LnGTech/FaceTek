@@ -155,6 +155,15 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                PendingLeavescellTableViewCell.ToLbl.text = dicShiftDetails?.value(forKey: "empLeaveTo") as? String
         PendingLeavescellTableViewCell.RemarksLbl.text = dicShiftDetails?.value(forKey: "empLeaveRemarks") as? String
         PendingLeavescellTableViewCell.LeaveTypeLbl.text = dicShiftDetails?.value(forKey: "leaveType") as? String
+        
+        //click on Reject
+        let tap = UITapGestureRecognizer(target: self, action: #selector(PendingLeavesVC.RejecttapFunction))
+        PendingLeavescellTableViewCell.RejctLbl.isUserInteractionEnabled = true
+        PendingLeavescellTableViewCell.RejctLbl.addGestureRecognizer(tap)
+        
+        
+        
+        
 //           }
            return PendingLeavescellTableViewCell
        }
@@ -166,12 +175,23 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         }else{
             mdic.setValue("yes", forKey: "open")
         }
+        
+        
+        
+        
         marLeavesData.replaceObject(at: sender.tag, with: mdic)
         let ip = IndexPath(row: 1, section: sender.tag)
         Pendingtble.reloadData()
 //        Pendingtble.reloadRows(at: [ip], with: .fade)
     }
 
+    
+    @objc
+    func RejecttapFunction(sender:UITapGestureRecognizer) {
+        print("RejecttapFunction tap working")
+    }
+    
+    
     @IBAction func PendingLeavesCancelBtn(_ sender: Any) {
         
         self.presentingViewController?.dismiss(animated: false, completion: nil)
