@@ -199,6 +199,7 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                 print("empLeaveId....",empLeaveId)
                     
                     ConvertEmpLeaveId = String(empLeaveId)
+                    print("ConvertEmpLeaveId..",ConvertEmpLeaveId)
                 
                 //Iteger to string convertion
                  Convertdaycount = String(Counttemp)
@@ -301,7 +302,12 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         // Do what you want
      print("Retrived empLeaveId",ConvertEmpLeaveId)
         
-        let parameters = ["empLeaveId": Convertdaycount as Any,"empId": RetrivedempId as Any,"empLeaveRejectionRemarks":RejectRemarkTextview.text as Any] as [String : Any]
+        let defaults = UserDefaults.standard
+               RetrivedempId = defaults.integer(forKey: "empId")
+               print("RejectedRetrivedempId----",RetrivedempId)
+        
+        
+        let parameters = ["empLeaveId": ConvertEmpLeaveId as Any,"empId": RetrivedempId as Any,"empLeaveRejectionRemarks":RejectRemarkTextview.text as Any] as [String : Any]
                
                 let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/reject")!
         
@@ -347,6 +353,48 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     }
     
     @IBAction func ProceedBtn_Aceeptview(_ sender: Any) {
+        print("Approved empLeaveId",ConvertEmpLeaveId)
+               
+               let defaults = UserDefaults.standard
+                      RetrivedempId = defaults.integer(forKey: "empId")
+                      print(" Approved RejectedRetrivedempId----",RetrivedempId)
+               
+        let parameters = ["empLeaveId": ConvertEmpLeaveId as Any,"empId": RetrivedempId as Any] as [String : Any]
+               
+                let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/approve")!
+        
+                //http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
+                //create the session object
+                let session = URLSession.shared
+                //now create the URLRequest object using the url object
+                var request = URLRequest(url: url as URL)
+                request.httpMethod = "POST" //set http method as POST
+                do {
+                    request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.addValue("application/json", forHTTPHeaderField: "Accept")
+                //create dataTask using the ses
+                //request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard let data = data, error == nil else {
+                        print(error?.localizedDescription ?? "No data")
+                        return
+                    }
+                    let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                    if let responseJSON = responseJSON as? [String: Any] {
+                        print("Approved  Leaves Json Response",responseJSON)
+                        DispatchQueue.main.async
+                            {
+                                
+                        }
+                    }
+                }
+                task.resume()
+        
+        
     }
     
 }

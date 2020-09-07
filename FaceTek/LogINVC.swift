@@ -14,6 +14,8 @@ import AVKit
 import GLKit
 import OpenGLES.ES2
 import CoreLocation
+import GoogleMaps
+import GooglePlaces
 //changed code
 
 
@@ -33,6 +35,10 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		var y2: Int32
 	}
 	
+    
+    var addressString : String = ""
+    var latstr : String = ""
+    var longstr : String = ""
 	
 	
 	var customView = UIView()
@@ -1100,8 +1106,12 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		//let parameters = [["refEmpId": RetrivedempId,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": RetrivedcurrentdateString,"empAttendanceInConfidence": "98.232","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
 		
 		
-		print("Latlon values in Login----------",RetrivedempId)
-		let parameters = [["refEmpId": RetrivedLatlongempId ,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": "","empAttendanceInConfidence": "","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
+        let latlanstr = latstr + ", " + longstr
+        print("IN lattitude and longitude values",latlanstr)
+        print("Location Address",addressString)
+
+        
+		let parameters = [["refEmpId": RetrivedLatlongempId ,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": "","empAttendanceInConfidence": "","empAttendanceInLatLong":latlanstr,"empAttendanceInLocation":addressString] as [String : Any]]
 		
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN")!
 		
@@ -1218,5 +1228,53 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		self.present(UITabBarController, animated:true, completion:nil)
 	}
 	
+    
+    
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        let newLocation = locations.last // find your device location
+//        mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 12) // show your device location on map
+//        mapView.settings.myLocationButton = true // show current location button
+        let lat = (newLocation?.coordinate.latitude)! // get current location latitude
+        let long = (newLocation?.coordinate.longitude)!
+        latstr = String(lat)
+        longstr = String(long)
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: lat, longitude: long)
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            let pm = placemarks! as [CLPlacemark]
+            
+            if pm.count > 0 {
+                let pm = placemarks![0]
+                print(pm.country as Any)
+                print(pm.locality as Any)
+                print(pm.subLocality as Any)
+                print(pm.thoroughfare as Any)
+                print(pm.postalCode as Any)
+                print(pm.subThoroughfare as Any)
+                if pm.subLocality != nil {
+                    self.addressString = self.addressString + pm.subLocality! + ", "
+                }
+                if pm.thoroughfare != nil {
+                    self.addressString = self.addressString + pm.thoroughfare! + ", "
+                }
+                if pm.locality != nil {
+                    self.addressString = self.addressString + pm.locality! + ", "
+                }
+                if pm.country != nil {
+                    self.addressString = self.addressString + pm.country! + ", "
+                }
+                if pm.postalCode != nil {
+                    self.addressString = self.addressString + pm.postalCode! + " "
+                }
+                //    let marker = GMSMarker()
+                //    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
+                //    marker.title = self.addressString
+                //    marker.map = self.mapView
+                //    print("address location",self.addressString)
+            }
+        })
+    }
+    
+    
 }
 
