@@ -3505,7 +3505,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yd8-Bx-EpN">
                                         <rect key="frame" x="118" y="52" width="100" height="30"/>
-                                        <color key="backgroundColor" red="1" green="0.59215686270000001" blue="0.0078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="pRf-Lh-hq5"/>
                                             <constraint firstAttribute="width" constant="100" id="x6A-Nh-p1n"/>
@@ -3527,7 +3527,7 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="Aw8-mq-Dsw" secondAttribute="trailing" constant="15" id="4lR-n0-24a"/>
                                     <constraint firstItem="yd8-Bx-EpN" firstAttribute="top" secondItem="Gbi-ND-1hE" secondAttribute="bottom" constant="14" id="JXq-qx-fFg"/>
@@ -3563,7 +3563,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nul-7p-qkP">
                                         <rect key="frame" x="100" y="182" width="120" height="40"/>
                                         <subviews>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attendance-marked" translatesAutoresizingMaskIntoConstraints="NO" id="UQg-k7-0aj">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeaveCancel.png" translatesAutoresizingMaskIntoConstraints="NO" id="UQg-k7-0aj">
                                                 <rect key="frame" x="7" y="8" width="25" height="25"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="25" id="D3B-ez-Q9n"/>
@@ -3623,7 +3623,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemIndigoColor" red="0.34509803919999998" green="0.33725490200000002" blue="0.83921568629999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="0Rj-Ux-Yh5" firstAttribute="leading" secondItem="f0z-FS-AAG" secondAttribute="leading" constant="9" id="26C-Hx-XVR"/>
                                     <constraint firstItem="DUG-tu-XpL" firstAttribute="leading" secondItem="nul-7p-qkP" secondAttribute="trailing" constant="5" id="DEj-zS-G8E"/>
@@ -3666,6 +3666,7 @@
                         <outlet property="PendingLeaves_AcceptView" destination="U6Z-kE-ZnZ" id="Dx3-KN-YfC"/>
                         <outlet property="PendingLeaves_RejectView" destination="f0z-FS-AAG" id="c50-F9-br1"/>
                         <outlet property="Pendingtble" destination="n4W-Nz-KwG" id="OjW-qm-2Zu"/>
+                        <outlet property="RejectRemarkTextview" destination="0Rj-Ux-Yh5" id="MNY-yY-hD2"/>
                         <outlet property="RejectviewCancel" destination="nul-7p-qkP" id="i6W-cf-bwh"/>
                         <outlet property="RejectviewReject" destination="DUG-tu-XpL" id="m2M-bm-DWI"/>
                     </connections>

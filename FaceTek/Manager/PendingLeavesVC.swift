@@ -12,6 +12,14 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     var RetrivedcustId = Int()
        var RetrivedempId = Int()
     var empLeaveDaysCount = Int()
+    var empLeaveId = Int()
+    var Convertdaycount = ""
+    var ConvertEmpLeaveId = ""
+
+    
+    
+
+    
 
     
     var mDictAttendanceData = NSMutableDictionary()
@@ -29,6 +37,11 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     @IBOutlet weak var RejectviewCancel: UIView!
     
     @IBOutlet weak var RejectviewReject: UIView!
+    
+    @IBOutlet weak var RejectRemarkTextview: UITextView!
+    
+    
+    
     var marLeavesData = NSMutableArray()
     
     override func viewDidLoad() {
@@ -40,7 +53,8 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.CancelAction(sender:)))
         self.RejectviewCancel.addGestureRecognizer(gesture)
 
-        
+        let Rejctgesture = UITapGestureRecognizer(target: self, action:  #selector(self.RejectAction(sender:)))
+        self.RejectviewReject.addGestureRecognizer(Rejctgesture)
         
         
         Noleavesview.isHidden = true
@@ -62,6 +76,8 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         // Do what you want
         PendingLeaves_RejectView.isHidden = true
     }
+    
+    
     func PendingLeavesAPI(){
         print("Leave Proceed------")
         let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any] as [String : Any]
@@ -97,7 +113,14 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         print("LeavePendingCode-----",LeavePendingCode as Any)
                      if (LeavePendingCode == 200)
                     {
+                        
+                        let empnamestr = statusDic["empName"] as? String
+                        print("suresh empname",empnamestr as Any)
+                        
                          self.Pendingtble.isHidden = false
+                        
+                       
+                        
                      }
                     else
                     {
@@ -141,8 +164,13 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         if let temp = dict?.value(forKey: "empName") as? String{
             if let Counttemp = dict?.value(forKey: "empLeaveDaysCount") as? NSInteger{
                 print("Counttemp....",Counttemp)
+                if let empLeaveId = dict?.value(forKey: "empLeaveId") as? NSInteger{
+                print("empLeaveId....",empLeaveId)
+                    
+                    ConvertEmpLeaveId = String(empLeaveId)
+                
                 //Iteger to string convertion
-                let Convertdaycount = String(Counttemp)
+                 Convertdaycount = String(Counttemp)
                 
                 var Daycount = "\(Convertdaycount) \("day")"
             headerCell.empNameLbl.text = temp
@@ -155,6 +183,7 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             headerCell.img.layer.cornerRadius = headerCell.img.frame.width/2
             headerCell.img.clipsToBounds = true
 
+        }
         }
         }
         
@@ -235,6 +264,52 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 
     }
     
+   
+    
+    @objc func RejectAction(sender : UITapGestureRecognizer) {
+        // Do what you want
+     print("Retrived empLeaveId",ConvertEmpLeaveId)
+        
+        let parameters = ["empLeaveId": Convertdaycount as Any,"empId": RetrivedempId as Any,"empLeaveRejectionRemarks":RejectRemarkTextview.text as Any] as [String : Any]
+               
+                let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/reject")!
+        
+                //http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
+                //create the session object
+                let session = URLSession.shared
+                //now create the URLRequest object using the url object
+                var request = URLRequest(url: url as URL)
+                request.httpMethod = "POST" //set http method as POST
+                do {
+                    request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+                } catch let error {
+                    print(error.localizedDescription)
+                }
+                request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                request.addValue("application/json", forHTTPHeaderField: "Accept")
+                //create dataTask using the ses
+                //request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+                let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                    guard let data = data, error == nil else {
+                        print(error?.localizedDescription ?? "No data")
+                        return
+                    }
+                    let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                    if let responseJSON = responseJSON as? [String: Any] {
+                        print("Reject Leaves Json Response",responseJSON)
+                        DispatchQueue.main.async
+                            {
+                                
+                        }
+                    }
+                }
+                task.resume()
+            }
+        
+        
+
+    
+    
     @IBAction func PendingCancelBtn_Acceptview(_ sender: Any) {
         PendingLeaves_AcceptView.isHidden = true
         
@@ -243,6 +318,6 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     @IBAction func ProceedBtn_Aceeptview(_ sender: Any) {
     }
     
-    
-    
 }
+    
+

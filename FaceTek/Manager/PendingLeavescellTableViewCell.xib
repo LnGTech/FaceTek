@@ -113,7 +113,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hZE-Mp-XZW">
                                 <rect key="frame" x="169" y="98" width="80" height="25"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="attendence-right.png" translatesAutoresizingMaskIntoConstraints="NO" id="qjv-dj-jlT">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="LeaveCancel.png" translatesAutoresizingMaskIntoConstraints="NO" id="qjv-dj-jlT">
                                         <rect key="frame" x="3" y="3" width="18" height="18"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="18" id="mR2-TB-8w7"/>
@@ -193,6 +193,7 @@
         </tableViewCell>
     </objects>
     <resources>
+        <image name="LeaveCancel.png" width="36" height="36"/>
         <image name="attendence-right.png" width="72" height="66.480003356933594"/>
     </resources>
 </document>
