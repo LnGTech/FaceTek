@@ -20,7 +20,7 @@
 		740D70C1243CB13E00CF6C2F /* WifiConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 740D70C0243CB13E00CF6C2F /* WifiConnection.swift */; };
 		740FA3F7247BE0C700E4FC3D /* camera_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FA3F6247BE0C600E4FC3D /* camera_icon.png */; };
 		740FA3FB247BE1FE00E4FC3D /* attendence.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FA3FA247BE1FC00E4FC3D /* attendence.png */; };
-		740FA401247BE45200E4FC3D /* facetek_titleNew.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FA400247BE45100E4FC3D /* facetek_titleNew.png */; };
+		740FA401247BE45200E4FC3D /* facetek_title2.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FA400247BE45100E4FC3D /* facetek_title2.png */; };
 		740FC4E4243D988A00F71B72 /* today.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4E3243D988900F71B72 /* today.png */; };
 		740FC4E6243D988F00F71B72 /* time_date.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4E5243D988F00F71B72 /* time_date.png */; };
 		740FC4E8243DB14B00F71B72 /* leave_states.png in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4E7243DB14900F71B72 /* leave_states.png */; };
@@ -192,7 +192,7 @@
 		740D70C0243CB13E00CF6C2F /* WifiConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WifiConnection.swift; sourceTree = "<group>"; };
 		740FA3F6247BE0C600E4FC3D /* camera_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = camera_icon.png; sourceTree = "<group>"; };
 		740FA3FA247BE1FC00E4FC3D /* attendence.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attendence.png; sourceTree = "<group>"; };
-		740FA400247BE45100E4FC3D /* facetek_titleNew.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facetek_titleNew.png; sourceTree = "<group>"; };
+		740FA400247BE45100E4FC3D /* facetek_title2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facetek_title2.png; sourceTree = "<group>"; };
 		740FC4E3243D988900F71B72 /* today.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = today.png; sourceTree = "<group>"; };
 		740FC4E5243D988F00F71B72 /* time_date.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = time_date.png; sourceTree = "<group>"; };
 		740FC4E7243DB14900F71B72 /* leave_states.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leave_states.png; sourceTree = "<group>"; };
@@ -521,7 +521,7 @@
 				745D5C5E247CDA9600052FC4 /* Home_user.png */,
 				745D5C56247CCC2C00052FC4 /* leavemanagement.png */,
 				745D5C54247CCA7A00052FC4 /* mobile.png */,
-				740FA400247BE45100E4FC3D /* facetek_titleNew.png */,
+				740FA400247BE45100E4FC3D /* facetek_title2.png */,
 				740FA3FA247BE1FC00E4FC3D /* attendence.png */,
 				740FA3F6247BE0C600E4FC3D /* camera_icon.png */,
 				74398CE02462EC000053DA0F /* BckArrowicon.png */,
@@ -813,7 +813,7 @@
 				747F8DCE243B556C00ABBD5E /* attendence_icon.png in Resources */,
 				740D7078243C61CD00CF6C2F /* BottomArrow.png in Resources */,
 				74140901247A3AFF00ED1391 /* backicon.png in Resources */,
-				740FA401247BE45200E4FC3D /* facetek_titleNew.png in Resources */,
+				740FA401247BE45200E4FC3D /* facetek_title2.png in Resources */,
 				747F8DA2243AF27200ABBD5E /* company-small.png in Resources */,
 				747F8DAA243B08CA00ABBD5E /* conform.png in Resources */,
 				74F5D11A2437393700D6E811 /* face.png in Resources */,
