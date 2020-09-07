@@ -251,6 +251,8 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 	
 	override func loadView() {
 		
+    //Stored values in Locally Using NSUserDefaulds Database
+
 		let defaults = UserDefaults.standard
 		Employeenamestr = defaults.string(forKey: "employeeName")!
 		print("Employeenamestr----",Employeenamestr)

@@ -252,12 +252,11 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 	
 	override func loadView() {
 		
+        //Stored values in Locally Using NSUserDefaulds Database
+
 		let defaults = UserDefaults.standard
-		
-		Facename = "xxxxx"
-		
+		Facename = ""
 		RetrivedLuxandIntimestr =  UserDefaults.standard.string(forKey:"LuxandIntime") ?? ""
-		
 		print("RetrivedLuxandIntimestr----",RetrivedLuxandIntimestr)
 		Employeenamestr = defaults.string(forKey: "employeeName")!
 		print("Employeenamestr----",Employeenamestr)
@@ -265,16 +264,12 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate 
 		print("RetrivedIntimeString-----",RetrivedIntimeString)
 		RetrivedcurrentdateString = UserDefaults.standard.string(forKey:"SignIncurrentDate") ?? ""
 		print("RetrivedcurrentdateString----",RetrivedcurrentdateString)
-		
 		//Emp Current Date
-		
 		//Local Values is Storing....
-		
 		//id
 		defaults.set(1, forKey: "rowid")
 		let savedInteger = defaults.integer(forKey: "rowid")
 		print("savedInteger-----",savedInteger)
-		
 		
 		//refEmpId
 		RetrivedempId = defaults.integer(forKey: "empId")

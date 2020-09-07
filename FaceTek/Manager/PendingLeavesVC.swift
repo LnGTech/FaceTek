@@ -8,7 +8,7 @@
 
 import UIKit
 
-class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate {
     var RetrivedcustId = Int()
        var RetrivedempId = Int()
     var empLeaveDaysCount = Int()
@@ -50,6 +50,13 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         PendingLeaves_AcceptView.isHidden = true
         PendingLeaves_RejectView.isHidden = true
         
+        //Remarks Textview Placeholder
+        RejectRemarkTextview.text = "Enter Remarks"
+        RejectRemarkTextview.textColor = UIColor.lightGray
+        RejectRemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+        RejectRemarkTextview.returnKeyType = .done
+        RejectRemarkTextview.delegate = self
+        
         let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.CancelAction(sender:)))
         self.RejectviewCancel.addGestureRecognizer(gesture)
 
@@ -77,6 +84,30 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         PendingLeaves_RejectView.isHidden = true
     }
     
+    
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if RejectRemarkTextview.text == "Enter Remarks" {
+            RejectRemarkTextview.text = ""
+            RejectRemarkTextview.textColor = UIColor.black
+            RejectRemarkTextview.font = UIFont(name: "verdana", size: 18.0)
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            RejectRemarkTextview.resignFirstResponder()
+        }
+        return true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if RejectRemarkTextview.text == "" {
+            RejectRemarkTextview.text = "Enter Remarks"
+            RejectRemarkTextview.textColor = UIColor.lightGray
+            RejectRemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+        }
+    }
     
     func PendingLeavesAPI(){
         print("Leave Proceed------")

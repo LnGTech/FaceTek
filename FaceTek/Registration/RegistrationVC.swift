@@ -174,6 +174,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let InputOTPVC = storyBoard.instantiateViewController(withIdentifier: "InputOTPVC") as! InputOTPVC
+        //Stored values in Locally Using NSUserDefaulds Database
         
         UserDefaults.standard.set(self.custId, forKey: "custId")
         UserDefaults.standard.set(self.empId, forKey: "empId")
