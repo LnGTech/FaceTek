@@ -11,6 +11,8 @@ import UIKit
 class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     var RetrivedcustId = Int()
        var RetrivedempId = Int()
+    var empLeaveDaysCount = Int()
+
     
     var mDictAttendanceData = NSMutableDictionary()
 
@@ -114,10 +116,16 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         let headerCell = tableView.dequeueReusableCell(withIdentifier: "PendingHeadercell") as! PendingHeadercell
         let dict = marLeavesData.object(at: section) as? NSDictionary
         if let temp = dict?.value(forKey: "empName") as? String{
+            if let Counttemp = dict?.value(forKey: "empLeaveDaysCount") as? NSInteger{
+                print("Counttemp....",Counttemp)
+                //Iteger to string convertion
+                let Convertdaycount = String(Counttemp)
+                
+                var Daycount = "\(Convertdaycount) \("day")"
             headerCell.empNameLbl.text = temp
+                headerCell.CountLbl.text = Daycount
             headerCell.Btnclk.addTarget(self, action: #selector(self.pressButton(sender:)), for: .touchUpInside)
             headerCell.Btnclk.tag = section
-            
             headerCell.img.layer.borderWidth = 1
             headerCell.img.layer.masksToBounds = false
             headerCell.img.layer.borderColor = UIColor.clear.cgColor
@@ -125,9 +133,11 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             headerCell.img.clipsToBounds = true
 
         }
+        }
         
         return headerCell
     }
+    
        func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
            return 40
        }

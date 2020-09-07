@@ -18,6 +18,10 @@ class PendingLeavescellTableViewCell: UITableViewCell {
     
     @IBOutlet weak var LeaveTypeLbl: UILabel!
     
+    
+    @IBOutlet weak var RejctLbl: UILabel!
+    
+    @IBOutlet weak var AcceptLbl: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
