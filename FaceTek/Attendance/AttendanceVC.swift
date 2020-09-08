@@ -131,7 +131,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		let screenSize: CGRect = UIScreen.main.bounds
 		let screenWidth = screenSize.width
 		let screenHeight = screenSize.height
-		MovementoutDrpTbl.frame = CGRect(x: 50, y: 120, width: 300, height: 200);
+		MovementoutDrpTbl.frame = CGRect(x: 30, y: 20, width: 300, height: 150);
 		MovementoutDrpTbl.dataSource = self
 		MovementoutDrpTbl.delegate = self
 		MovementoutDrpTbl.register(UITableViewCell.self, forCellReuseIdentifier: "myCell")
@@ -426,6 +426,9 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 			cell.textLabel!.text = VisitPlaceListstr
 			VisitTextField.text = VisitPlaceListstr
 			MovementoutDrpTbl.isHidden = true
+            customSubView.isHidden = false
+            DrpdownBtn.isHidden = false
+            VisitTextField.isHidden = false
 		}
 	}
 	
@@ -1458,6 +1461,10 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	@objc func DrpdownBtnAction(_ sender:UIButton!)
 	{
+        
+        customSubView.isHidden = true
+        DrpdownBtn.isHidden = true
+        VisitTextField.isHidden = true
 		MovementoutDrpTbl.isHidden = false
 		
 		print("Hellow--------")
