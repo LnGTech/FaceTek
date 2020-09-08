@@ -232,6 +232,7 @@
 		744B8C7124CAC0B6004634C0 /* ManagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerVC.swift; sourceTree = "<group>"; };
 		744D49F624F63946001075E8 /* SelectplaceDrpdwncell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectplaceDrpdwncell.swift; sourceTree = "<group>"; };
 		744D49F724F63946001075E8 /* SelectplaceDrpdwncell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectplaceDrpdwncell.xib; sourceTree = "<group>"; };
+		745163352507DC6200269C72 /* Facetek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Facetek.entitlements; sourceTree = "<group>"; };
 		7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsentHeaderCell.swift; sourceTree = "<group>"; };
 		7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsentHeaderCell.xib; sourceTree = "<group>"; };
 		74520D3424CB1A5A001252ED /* AbsentVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsentVC.swift; sourceTree = "<group>"; };
@@ -612,6 +613,7 @@
 		74D998612434621200DFCBEC /* FaceTek */ = {
 			isa = PBXGroup;
 			children = (
+				745163352507DC6200269C72 /* Facetek.entitlements */,
 				74FA123124AC689800A356E7 /* FaceSDK */,
 				74FA122C24AC687F00A356E7 /* Shaders */,
 				7424A04624AC6AFB000B466F /* AppDelegate.swift */,
@@ -1211,6 +1213,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FaceTek/Facetek.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.19;
@@ -1244,6 +1247,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = FaceTek/Facetek.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1.0.19;

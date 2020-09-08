@@ -183,17 +183,11 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
             VerifiedRegisterscreedn()
         }
         
-        
-        
-        
-        
-        
     }
     
     
     
     @IBAction func ConfirmBtnclk(_ sender: Any) {
-        
         let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         let InputOTPVC = storyBoard.instantiateViewController(withIdentifier: "InputOTPVC") as! InputOTPVC
         //Stored values in Locally Using NSUserDefaulds Database
