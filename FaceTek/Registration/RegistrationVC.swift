@@ -99,7 +99,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         Popupview.layer.shadowOffset = CGSize(width: 0, height: 1.0)
         Popupview.layer.shadowOpacity = 0.2
         Popupview.layer.shadowRadius = 4.0
-        NoteLbl.text = "NOTE :- Make sure the name and the";
+        NoteLbl.text = "NOTE : Make sure the name and the";
         NoteLbl2.text = "Mobile number are correct"
         Popupview.isHidden = true
         CancelBtn.layer.borderWidth = 1
@@ -368,7 +368,11 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
     
     @IBAction func CancelBtn(_ sender: Any) {
         //self.navigationController?.popViewController(animated: true)
+        //self.presentingViewController?.dismiss(animated: false, completion: nil)
+
         
+        //navigationController?.popViewController(animated: true)
+
         Popupview.isHidden = true
     }
     //

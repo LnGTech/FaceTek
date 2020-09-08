@@ -631,7 +631,7 @@ MovementOUT_Update()		}
 					}
 					else
 					{
-						let alert = UIAlertController(title: "SignIn",
+						let alert = UIAlertController(title: "Office IN",
 													  message: "Attendance IN is already marked for the day",
 													  preferredStyle: UIAlertController.Style.alert)
 						alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
@@ -746,7 +746,8 @@ MovementOUT_Update()		}
 					}
 					else
 					{
-						var alert = UIAlertController(title: "SignOut", message: "Attendance OUT is already marked for the day" as! String, preferredStyle: UIAlertController.Style.alert)
+						var alert = UIAlertController(title: "Office OUT", message:
+                            "Attendance OUT is already marked for the day" as! String, preferredStyle: UIAlertController.Style.alert)
 						alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
 						self.present(alert, animated: true, completion: nil)
 						print("Failure---")
@@ -1088,7 +1089,7 @@ MovementOUT_Update()		}
                             if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
                                 
                                 let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
-                                                                                         alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                                                                                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                                                                          self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
 
                                 self.MovementIn()
@@ -1097,7 +1098,7 @@ MovementOUT_Update()		}
                             else
                             {
                                 let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
-                                                                                                                        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                                                                                                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                                                                                                         self.present(alert, animated: true, completion: nil)
                                 
                             }
@@ -1169,7 +1170,7 @@ MovementOUT_Update()		}
                                     if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
                                         
                                         let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
-                                                                                                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                                                                                                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                                                                                  self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
 
                                         self.MovementOut()
@@ -1178,7 +1179,7 @@ MovementOUT_Update()		}
                                     else
                                     {
                                         let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
-                                                                                                                                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                                                                                                                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
                                                                                                                                 self.present(alert, animated: true, completion: nil)
                                         
                                     }
@@ -1380,8 +1381,11 @@ MovementOUT_Update()		}
 		let parameters = ["refEmpId": RetrivedempId as Any,
 						  "empMovementDate": EmpAttendancedateString as Any,"empMovementMode":  "G" as Any,"empMovementDatetime":  currentDatestr as Any,"empMovementLatLong":  empAttendanceInLatLongstr as Any,"empMovementType":  "IN" as Any,"empPlaceOfVisit":  "" as Any] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
+		//let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
 		
+        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
+        
+        //http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create
 		//create the session object
 		let session = URLSession.shared
 		//now create the URLRequest object using the url object
@@ -1616,8 +1620,10 @@ MovementOUT_Update()		}
 		
 		print("Hellow--------")
 		let parameters = [
-			"refEmpId": "123"] as [String : Any]
-		let url: NSURL = NSURL(string: "http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/movement/getEmpPlaceOfVisitListByEmpId")!
+			"refEmpId": RetrivedempId] as [String : Any]
+		let url: NSURL = NSURL(string: "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/getEmpPlaceOfVisitListByEmpId")!
+        
+        //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
 		//create the session object
 		let session = URLSession.shared
 		
@@ -1642,6 +1648,7 @@ MovementOUT_Update()		}
 			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 			if let responseJSON = responseJSON as? [String: Any] {
 				print("Json Response",responseJSON)
+                
 				let Inmatedict = responseJSON["empPlaceVisitList"] as! NSArray
 				print("Array values----",Inmatedict)
 				for VisitsubDictionary in Inmatedict as! [[String:Any]]
@@ -1697,11 +1704,8 @@ MovementOUT_Update()		}
 						  "empMovementDate": EmpAttendancedateString as Any,"empMovementMode":  "G" as Any,"empMovementDatetime":  currentDatestr as Any,"empMovementLatLong":  empAttendanceInLatLongstr as Any,"empMovementType":  "OUT" as Any,"empPlaceOfVisit":  VisitTextField.text as Any] as [String : Any]
         
         
-        
-        
-        
-        
-		let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
+        //http://122.166.152.106:8080
 		
 		//create the session object
 		let session = URLSession.shared

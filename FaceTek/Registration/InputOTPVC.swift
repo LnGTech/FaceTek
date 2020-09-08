@@ -262,7 +262,7 @@ class InputOTPVC: UIViewController {
 		{
 			print("Login Failure")
 			
-			var alert = UIAlertController(title: "Failure", message: "Plase Enter pin number", preferredStyle: UIAlertController.Style.alert)
+			var alert = UIAlertController(title: "Failure", message: "Incorrect OTP", preferredStyle: UIAlertController.Style.alert)
 			alert.addAction(UIAlertAction(title: "Okay!!", style: UIAlertAction.Style.default, handler: nil))
 			self.present(alert, animated: true, completion: nil)
 			
