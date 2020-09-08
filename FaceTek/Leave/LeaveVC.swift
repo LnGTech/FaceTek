@@ -18,6 +18,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     var validation = ()
 
     
+    @IBOutlet weak var SelectLeaveTypeTxtfield: UITextField!
     @IBOutlet weak var LeavesLbl: UILabel!
     @IBOutlet weak var DropdownBackview: UIView!
     //private var Drpdowntbl: UITableView!
@@ -113,8 +114,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         
         
         let tap = UITapGestureRecognizer(target: self, action: #selector(LeaveVC.tapFunction))
-        LeaveTypetxt.isUserInteractionEnabled = true
-        LeaveTypetxt.addGestureRecognizer(tap)
+        SelectLeaveTypeTxtfield.isUserInteractionEnabled = true
+        SelectLeaveTypeTxtfield.addGestureRecognizer(tap)
         
         isMenuVisible = true
         menu.isHidden = true
@@ -525,7 +526,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             print("custLeaveNamestr",custLeaveNamestr)
             //cell.textLabel!.text = custLeaveNamestr
             
-            LeaveTypetxt.text = "" + " " + custLeaveNamestr!
+            SelectLeaveTypeTxtfield.text = "" + " " + custLeaveNamestr!
             
             drpcell.DropdownLbl!.text = custLeaveNamestr
 
@@ -548,91 +549,81 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     @IBAction func SubmitBtnclk(_ sender: Any) {
         
-        var valid: Bool = true
-        if ((Fromtxt.text?.isEmpty) != nil){
+        let Fromtxt = self.Fromtxt.text
+        let Totxt = self.Totxt.text
+        let Leaveselect = self.SelectLeaveTypeTxtfield.text
+        let Remark = self.RemarkTextview.text
+
+         
+
+        if (Fromtxt == "" || Totxt == "" || SelectLeaveTypeTxtfield.text == "" ){
+               let alert = UIAlertController(title: "Error", message: "Fill up  all mandatory fields", preferredStyle: UIAlertController.Style.alert)
+               alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+               self.present(alert, animated: true, completion: nil)
+               return
+           }
+           else {
+            
+
+                    let parameters = ["empId": RetrivedempId as Any,"custLeaveId": custLeaveId as Any,"empLeaveFrom": Fromdatestr as Any,"empLeaveTo": Todatestr as Any,"empLeaveRemarks":RemarkTextview.text as Any] as [String : Any]
+                    let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/apply")!
+            
+                    self.customActivityIndicatory(self.view, startAnimate: true)
+                    //create the session object
+                    let session = URLSession.shared
+                    //now create the URLRequest object using the url object
+                    var request = URLRequest(url: url as URL)
+                    request.httpMethod = "POST" //set http method as POST
+            
+                    do {
+                        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+                    } catch let error {
+                        print(error.localizedDescription)
+                    }
+            
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.addValue("application/json", forHTTPHeaderField: "Accept")
+                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                        guard let data = data, error == nil else {
+                            print(error?.localizedDescription ?? "No data")
+                            return
+                        }
+            
+            
+                        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                        if let responseJSON = responseJSON as? [String: Any] {
+                            print("Json Response",responseJSON)
+                            DispatchQueue.main.async {
+                                let code = responseJSON["code"]! as! NSInteger
+                                print("code---",code)
+                                if(code == 200)
+                                {
+                                    let code = responseJSON["code"]! as! NSInteger
+                                    let message = responseJSON["message"]! as! NSString
+                                    //Leave PopUp method calling
+                                    self.LeavePopUp()
+            
+                                }
+                                else
+                                {
+                                    let message = responseJSON["message"]! as! NSString
+                                    let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
+                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                                    self.present(alert, animated: true, completion: nil)
+                                }
+                                self.customActivityIndicatory(self.view, startAnimate: false)
+            
+                            }
+                        }
+            
+            
+                    }
+                    task.resume()
            
-            let alert = UIAlertController(title: "Alert", message: "Fill up all mandatory fields", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            valid = false
-        }
-        if ((Totxt.text?.isEmpty) != nil){
-            let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            valid = false
-            valid = false
-        }
-        if ((LeaveTypetxt.text?.isEmpty) != nil){
-          let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            valid = false
-        }
-        if ((RemarkTextview.text?.isEmpty) != nil){
-          let alert = UIAlertController(title: "Alert", message: "Message", preferredStyle: UIAlertControllerStyle.alert)
-            alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            valid = false
-        }
-        
-    
+
+           }
         
         
-//        let parameters = ["empId": RetrivedempId as Any,"custLeaveId": custLeaveId as Any,"empLeaveFrom": Fromdatestr as Any,"empLeaveTo": Todatestr as Any,"empLeaveRemarks":RemarkTextview.text as Any] as [String : Any]
-//        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/apply")!
-//
-//        self.customActivityIndicatory(self.view, startAnimate: true)
-//        //create the session object
-//        let session = URLSession.shared
-//        //now create the URLRequest object using the url object
-//        var request = URLRequest(url: url as URL)
-//        request.httpMethod = "POST" //set http method as POST
-//
-//        do {
-//            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-//        } catch let error {
-//            print(error.localizedDescription)
-//        }
-//
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-//            guard let data = data, error == nil else {
-//                print(error?.localizedDescription ?? "No data")
-//                return
-//            }
-//
-//
-//            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-//            if let responseJSON = responseJSON as? [String: Any] {
-//                print("Json Response",responseJSON)
-//                DispatchQueue.main.async {
-//                    let code = responseJSON["code"]! as! NSInteger
-//                    print("code---",code)
-//                    if(code == 200)
-//                    {
-//                        let code = responseJSON["code"]! as! NSInteger
-//                        let message = responseJSON["message"]! as! NSString
-//                        //Leave PopUp method calling
-//                        self.LeavePopUp()
-//
-//                    }
-//                    else
-//                    {
-//                        let message = responseJSON["message"]! as! NSString
-//                        let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
-//                        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-//                        self.present(alert, animated: true, completion: nil)
-//                    }
-//                    self.customActivityIndicatory(self.view, startAnimate: false)
-//
-//                }
-//            }
-//
-//
-//        }
-//        task.resume()
         
     }
     

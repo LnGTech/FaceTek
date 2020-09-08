@@ -164,7 +164,29 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
     
     @IBAction func BerifyBtnclk(_ sender: Any) {
         
-        VerifiedRegisterscreedn()
+        
+        if (CustmercodeTxt.text == ""){
+               let alert = UIAlertController(title: "Error", message: "Please Enter Custmer code", preferredStyle: UIAlertController.Style.alert)
+               alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+               self.present(alert, animated: true, completion: nil)
+               return
+           }
+            if (MobilenumTxt.text == ""){
+                   let alert = UIAlertController(title: "Error", message: "Please Enter 10 digit mobile number", preferredStyle: UIAlertController.Style.alert)
+                   alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                   self.present(alert, animated: true, completion: nil)
+                   return
+               }
+
+           else {
+            
+            VerifiedRegisterscreedn()
+        }
+        
+        
+        
+        
+        
         
     }
     

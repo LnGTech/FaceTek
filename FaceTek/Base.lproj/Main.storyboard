@@ -2562,7 +2562,7 @@
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Tz-zf-j6W">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mobile:-" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Tz-zf-j6W">
                                         <rect key="frame" x="19" y="200" width="70" height="22"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -4292,12 +4292,20 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gbY-Rs-4vN">
                                 <rect key="frame" x="8" y="341" width="358" height="60"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Select Leave Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCd-8a-lqh">
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="   Select Leave Type" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TCd-8a-lqh">
                                         <rect key="frame" x="0.0" y="8" width="358" height="52"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Leave Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LWk-Y4-04x">
+                                        <rect key="frame" x="0.0" y="0.0" width="358" height="52"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="52" id="O4D-Ae-9CU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CoG-QP-jIk">
                                         <rect key="frame" x="330" y="20" width="20" height="20"/>
                                         <constraints>
@@ -4324,8 +4332,11 @@
                                     <constraint firstItem="TCd-8a-lqh" firstAttribute="leading" secondItem="gbY-Rs-4vN" secondAttribute="leading" id="1ME-ws-eZB"/>
                                     <constraint firstAttribute="bottom" secondItem="TCd-8a-lqh" secondAttribute="bottom" id="Iej-j0-j55"/>
                                     <constraint firstItem="TCd-8a-lqh" firstAttribute="top" secondItem="KbG-u2-G5q" secondAttribute="bottom" constant="20" id="Ksy-AG-DB9"/>
+                                    <constraint firstAttribute="trailing" secondItem="LWk-Y4-04x" secondAttribute="trailing" id="PL4-cK-HqE"/>
                                     <constraint firstAttribute="trailing" secondItem="KbG-u2-G5q" secondAttribute="trailing" constant="14" id="SVX-hU-dQt"/>
+                                    <constraint firstItem="LWk-Y4-04x" firstAttribute="leading" secondItem="gbY-Rs-4vN" secondAttribute="leading" id="cB6-dJ-hWz"/>
                                     <constraint firstAttribute="trailing" secondItem="TCd-8a-lqh" secondAttribute="trailing" id="dzz-eG-rFP"/>
+                                    <constraint firstItem="LWk-Y4-04x" firstAttribute="top" secondItem="KbG-u2-G5q" secondAttribute="bottom" constant="12" id="eXb-Cx-Cf9"/>
                                     <constraint firstAttribute="height" constant="60" id="gQW-eF-CSr"/>
                                     <constraint firstItem="KbG-u2-G5q" firstAttribute="top" secondItem="gbY-Rs-4vN" secondAttribute="top" constant="-162" id="o4b-ZB-ifD"/>
                                     <constraint firstItem="KbG-u2-G5q" firstAttribute="leading" secondItem="gbY-Rs-4vN" secondAttribute="leading" constant="18" id="zBx-eg-mRy"/>
@@ -4558,6 +4569,7 @@
                         <outlet property="LeavesLbl" destination="zs2-Oh-wrM" id="1wg-ym-Amm"/>
                         <outlet property="MobilenumberLbl" destination="gd5-TF-9nh" id="wtc-tA-LRh"/>
                         <outlet property="RemarkTextview" destination="4re-hu-ZAc" id="hMW-mJ-vDH"/>
+                        <outlet property="SelectLeaveTypeTxtfield" destination="LWk-Y4-04x" id="ChM-Qw-XHl"/>
                         <outlet property="ToBtn" destination="VCh-9z-KiW" id="76Q-7K-n91"/>
                         <outlet property="Totxt" destination="gGM-u5-JWb" id="Kpj-Ti-iYm"/>
                         <outlet property="Toview" destination="PG4-ER-C2R" id="vg7-4B-xed"/>

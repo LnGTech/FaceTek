@@ -1619,6 +1619,13 @@ MovementOUT_Update()		}
 		MovementoutDrpTbl.isHidden = false
 		
 		print("Hellow--------")
+        
+        print("RetrivedcustId----",RetrivedcustId)
+        let defaults = UserDefaults.standard
+
+        RetrivedempId = defaults.integer(forKey: "empId")
+        print("Movement dropdown RetrivedempId----",RetrivedempId)
+        
 		let parameters = [
 			"refEmpId": RetrivedempId] as [String : Any]
 		let url: NSURL = NSURL(string: "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/getEmpPlaceOfVisitListByEmpId")!
