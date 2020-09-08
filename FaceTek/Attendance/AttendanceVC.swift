@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 	
@@ -14,7 +15,11 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	var MainDict:NSMutableDictionary = NSMutableDictionary()
 	
-	
+    var locationManager = CLLocationManager()
+    var LattitudestrData = String()
+    var LongitudestrData = String()
+    var empAttendanceInLatLongstr = String()
+    var address: String = ""
 	var RetrivedcustId = Int()
 	var RetrivedempId = Int()
 	var ConvertShiftstartTime = Int()
@@ -151,9 +156,71 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
 		
 		self.hamburgerView.addSubview(button)
+        
+        
+        
+        
+        //Latlong method
+        locationManager.requestWhenInUseAuthorization()
+        var currentLoc: CLLocation!
+        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == .authorizedAlways) {
+            currentLoc = locationManager.location
+            LattitudestrData = String(currentLoc.coordinate.latitude)
+            print("curent Latitude string value",LattitudestrData)
+            
+            LongitudestrData = String(currentLoc.coordinate.longitude)
+            print("curent longitude string value",LongitudestrData)
+            //empAttendanceInLatLongstr = "\(LattitudestrData) \(LongitudestrData)"
+            
+            empAttendanceInLatLongstr = LattitudestrData + ", " + LongitudestrData
+
+            
+           
+            
+        }
+        
+        getAddress { (address) in
+            print(" Attendance Location------",address)
+        }
+        
+        
+        
+        
+        
 		
 		//----------------------------
 		BeconeMethodaAPI()
+        
+        let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+        let url = NSURL(string: urlstring)
+        
+        let URL:NSURL = NSURL(string: urlstring)!
+        //let request: NSURLRequest = NSURLRequest(url: URL as URL)
+        var request = URLRequest(url: URL as URL)
+        request.httpMethod = "GET"
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                return
+            }
+            if error != nil {
+                //error
+            } else {
+                do {
+                    //let data = json.data(using: .utf8)!
+                    let jsonDict = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
+                    print("Json Data -----------",jsonDict)
+                    DispatchQueue.main.async {
+                        self.currentDatestr = (jsonDict["currentDate"] as? String)!
+                        //
+                    }
+                    
+                }
+            }
+        }
+        task.resume()
+        
+        
 		
 	}
 	
@@ -597,6 +664,8 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 					print("Json Data -----------",jsonDict)
 					DispatchQueue.main.async {
 						self.currentDatestr = (jsonDict["currentDate"] as? String)!
+                        
+                       
 						let dateFormatter = DateFormatter()
 						let tempLocale = dateFormatter.locale // save locale temporarily
 						dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
@@ -605,6 +674,9 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 						dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm a"///this is what you want to convert format
 						dateFormatter.locale = tempLocale // reset the locale
 						let IntimedateString = dateFormatter.string(from: Intimedate)
+                        
+                        
+                        print("current date time",IntimedateString)
 						
 						UserDefaults.standard.set(self.currentDatestr, forKey: "SignIncurrentDate")
 						UserDefaults.standard.set(IntimedateString, forKey: "SignIntimedate")
@@ -707,6 +779,8 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 					//let data = json.data(using: .utf8)!
 					let jsonDict = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
 					print("Json Data -----------",jsonDict)
+                    
+                    
 					
 					DispatchQueue.main.async {
 						self.currentDatestr = (jsonDict["currentDate"] as? String)!
@@ -1065,19 +1139,96 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	}
 	
 	
+    func getAddress(handler: @escaping (String) -> Void)
+    {
+        
+        
+        let Locationlatitude = (LattitudestrData as NSString).doubleValue
+        
+        let Locationlongitude = (LongitudestrData as NSString).doubleValue
+        let geoCoder = CLGeocoder()
+        let location = CLLocation(latitude: Locationlatitude, longitude: Locationlongitude)
+        
+        
+        print("latlanvalues------",location)
+        
+        //selectedLat and selectedLon are double values set by the app in a previous process
+        
+        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+            
+            // Place details
+            var placeMark: CLPlacemark?
+            placeMark = placemarks?[0]
+            
+            // Address dictionary
+            //print(placeMark.addressDictionary ?? "")
+            
+            // Location name
+            if let locationName = placeMark?.addressDictionary?["Name"] as? String {
+                self.address += locationName + ", "
+            }
+            
+            // Street address
+            if let street = placeMark?.addressDictionary?["Thoroughfare"] as? String {
+                self.address += street + ", "
+            }
+            
+            // City
+            if let city = placeMark?.addressDictionary?["City"] as? String {
+                self.address += city + ", "
+            }
+            
+            // Zip code
+            if let zip = placeMark?.addressDictionary?["ZIP"] as? String {
+                self.address += zip + ", "
+            }
+            
+            // Country
+            if let country = placeMark?.addressDictionary?["Country"] as? String {
+                self.address += country
+            }
+            
+            // Passing address back
+            handler(self.address)
+        })
+    }
+    
+    
+    
+    
+    
+    
+    @objc func callback() {
+        print("done--------")
+        
+        //Updatedetails()
+        
+    }
+
+    
+    
 	
 	
 	func MovementIn_API()
 	{
+        var EmpAttendancedateString = ""
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        EmpAttendancedateString = formatter.string(from: date)
+        print("EmpAttendancedate----",EmpAttendancedateString)
+        
+         print("For movement currentDate",self.currentDatestr)
+
 		print("Movement In")
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
-		print("RetrivedcustId----",RetrivedcustId)
+		print(" Movement InRetrivedcustId----",RetrivedcustId)
 		RetrivedempId = defaults.integer(forKey: "empId")
-		print("RetrivedempId----",RetrivedempId)
+		print("Movement In RetrivedempId----",RetrivedempId)
 		
-		let parameters = ["refEmpId": 123 as Any,
-						  "empMovementDate": "2020-04-03" as Any,"empMovementMode":  "G" as Any,"empMovementDatetime":  "2020-04-03T15:52:48" as Any,"empMovementLatLong":  "122366.5525" as Any,"empMovementType":  "IN" as Any,"empPlaceOfVisit":  "Koilakuntal" as Any] as [String : Any]
+		let parameters = ["refEmpId": RetrivedempId as Any,
+						  "empMovementDate": EmpAttendancedateString as Any,"empMovementMode":  "G" as Any,"empMovementDatetime":  currentDatestr as Any,"empMovementLatLong":  empAttendanceInLatLongstr as Any,"empMovementType":  "IN" as Any,"empPlaceOfVisit":  "" as Any] as [String : Any]
 		
 		let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
 		
@@ -1369,6 +1520,16 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		RetrivedempId = defaults.integer(forKey: "empId")
 		print("RetrivedempId----",RetrivedempId)
 		
+        var EmpAttendancedateString = ""
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd"
+        EmpAttendancedateString = formatter.string(from: date)
+        print("EmpAttendancedate----",EmpAttendancedateString)
+
+
+        
+        print(" attendance empAttendanceInLatLongstr-----",empAttendanceInLatLongstr)
 		
 		//        "refEmpId":123,
 		//        "empMovementDate":"2020-04-03",
@@ -1379,7 +1540,13 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		//         "empPlaceOfVisit":"kkl"
 		
 		let parameters = ["refEmpId": RetrivedempId as Any,
-						  "empMovementDate": "2020-04-03" as Any,"empMovementMode":  "G" as Any,"empMovementDatetime":  "2020-04-03T15:52:48" as Any,"empMovementLatLong":  "122366.5525" as Any,"empMovementType":  "IN" as Any,"empPlaceOfVisit":  VisitTextField.text as Any] as [String : Any]
+						  "empMovementDate": EmpAttendancedateString as Any,"empMovementMode":  "G" as Any,"empMovementDatetime":  currentDatestr as Any,"empMovementLatLong":  empAttendanceInLatLongstr as Any,"empMovementType":  "OUT" as Any,"empPlaceOfVisit":  VisitTextField.text as Any] as [String : Any]
+        
+        
+        
+        
+        
+        
 		let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
 		
 		//create the session object
