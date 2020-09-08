@@ -301,11 +301,11 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 			AttendanceOutime()
 		}
 		else if indexPath.item == 2{
-			MovementIn()
+			//MovementIn()
+            MovementInUpdate()
 		}
 		else if indexPath.item == 3{
-			MovementOut()
-		}
+MovementOUT_Update()		}
 		
 	}
 	
@@ -1050,6 +1050,153 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	}
 	
 	//MovementIn
+    
+    func MovementInUpdate()
+    
+        {
+            
+            let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
+            let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+            //create the session object
+            let session = URLSession.shared
+            //now create the URLRequest object using the url object
+            var request = URLRequest(url: url as URL)
+            request.httpMethod = "POST" //set http method as POST
+            
+            do {
+                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+            } catch let error {
+                print(error.localizedDescription)
+            }
+            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+            request.addValue("application/json", forHTTPHeaderField: "Accept")
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard let data = data, error == nil else {
+                    print(error?.localizedDescription ?? "No data")
+                    return
+                }
+                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                if let responseJSON = responseJSON as? [String: Any] {
+                    
+                    let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
+                    DispatchQueue.main.async
+                        {
+                            self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
+                            self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
+                           
+                            
+                            if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
+                                
+                                let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+                                                                                         alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                                                                                         self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
+
+                                self.MovementIn()
+                                
+                            }
+                            else
+                            {
+                                let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+                                                                                                                        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                                                                                                                        self.present(alert, animated: true, completion: nil)
+                                
+                            }
+                            
+                            
+                            
+                            
+                            
+                            
+//                            if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime != "NA" ) {
+//
+//                                self.MovementIn()
+//                            } else
+//                            {
+//                                let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+//                                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+//                                self.present(alert, animated: true, completion: nil)
+//                            }
+//
+                            
+                            
+                            
+//                            if (self.empAttndOutDateTime == "NA") {
+//
+//                            } else {
+//
+//                                let alert = UIAlertController(title: "Alert", message: "after Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+//                                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+//                                self.present(alert, animated: true, completion: nil)
+//
+//                            }
+                    }
+                }
+            }
+            task.resume()
+        }
+        
+        
+    func MovementOUT_Update()
+    {
+                    let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
+                    let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+                    //create the session object
+                    let session = URLSession.shared
+                    //now create the URLRequest object using the url object
+                    var request = URLRequest(url: url as URL)
+                    request.httpMethod = "POST" //set http method as POST
+                    
+                    do {
+                        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+                    } catch let error {
+                        print(error.localizedDescription)
+                    }
+                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+                    request.addValue("application/json", forHTTPHeaderField: "Accept")
+                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                        guard let data = data, error == nil else {
+                            print(error?.localizedDescription ?? "No data")
+                            return
+                        }
+                        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+                        if let responseJSON = responseJSON as? [String: Any] {
+                            
+                            let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
+                            DispatchQueue.main.async
+                                {
+                                    self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
+                                    self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
+                                    if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
+                                        
+                                        let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+                                                                                                 alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                                                                                                 self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
+
+                                        self.MovementOut()
+                                        
+                                    }
+                                    else
+                                    {
+                                        let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+                                                                                                                                alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+                                                                                                                                self.present(alert, animated: true, completion: nil)
+                                        
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    
+                            }
+                        }
+                    }
+                    task.resume()
+
+        
+        
+    }
+    
+    
 	func MovementIn() {
 		
 		manager.delegate = self
