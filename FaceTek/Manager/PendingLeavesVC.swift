@@ -334,9 +334,12 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                     let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
                     if let responseJSON = responseJSON as? [String: Any] {
                         print("Reject Leaves Json Response",responseJSON)
-                        DispatchQueue.main.async
-                            {
-                                
+                        
+                        DispatchQueue.main.async {
+
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+                        self.present(UITabBarController, animated:true, completion:nil);                        
                         }
                     }
                 }
@@ -386,9 +389,20 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                     let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
                     if let responseJSON = responseJSON as? [String: Any] {
                         print("Approved  Leaves Json Response",responseJSON)
+                        
+//                        let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+//                        let HomeDashboardVC = storyBoard.instantiateViewController(withIdentifier: "HomeDashboardVC") as! HomeDashboardVC
+//                        self.navigationController?.pushViewController(HomeDashboardVC, animated:true)
+//
                         DispatchQueue.main.async
-                            {
-                                
+                        {
+                           
+                        
+                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+                        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+                        self.present(UITabBarController, animated:true, completion:nil)
+                        
+                         
                         }
                     }
                 }
