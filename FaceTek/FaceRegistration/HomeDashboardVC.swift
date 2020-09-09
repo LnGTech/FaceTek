@@ -230,7 +230,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		ContactusText.isHidden = true
 		//
 		OfficeOutLbl.layer.cornerRadius = 5
-		OfficeOutLbl.layer.borderWidth = 2
+		OfficeOutLbl.layer.borderWidth = 0
 		//OfficeOutLbl.layer.borderColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 		
 		
@@ -696,7 +696,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 							let OuttimedateString = OuttimedateFormatter.string(from: Outtimedate!)
 							self.OfficeOutLbl.text = OuttimedateString
 							self.OfficeOutLbl.layer.cornerRadius = 5
-							self.OfficeOutLbl.layer.borderWidth = 2
+							self.OfficeOutLbl.layer.borderWidth = 0
 							self.OfficeOutLbl.layer.borderColor = UIColor.clear.cgColor
 							self.OfficeOutLbl.textColor = UIColor.darkGray
 							self.OfficeOutBtn.setImage(UIImage(named: "pass.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -1076,22 +1076,15 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                         
                         print("brNamestr-----",self.brNamestr)
                         self.CompanyNameLbl.text = self.RefreshbrName
-                        
                 }
             }    }
         task.resume()
         
     }
-    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
         setNeedsStatusBarAppearanceUpdate()
-
-
         if FrefeshAttendanceScreen {
-            
-            
             startLoadingSpinner()
                    timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
             return
