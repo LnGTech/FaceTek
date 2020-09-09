@@ -89,19 +89,12 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	@IBOutlet weak var EarlyLeaversLbl: UILabel!
 	
 	@IBOutlet weak var EarlyLeaversimg: UIImageView!
-	
 	@IBOutlet weak var LeaveApplicationPendingLbl: UILabel!
-	
 	
 	@IBOutlet weak var LeavePendingimg: UIImageView!
 	
-	
-	
 	@IBOutlet weak var OfficeInBtn: UIButton!
-	
-	
 	@IBOutlet weak var OfficeOutBtn: UIButton!
-	
 	
 	@IBOutlet weak var LeaveStatusBtn: UIButton!
 	
