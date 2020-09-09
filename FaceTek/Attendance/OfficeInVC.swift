@@ -17,8 +17,6 @@ class OfficeInVC: UIViewController {
 	//OR
 	let hotspotConfig = NEHotspotConfiguration(ssid: "mounika", passphrase: "12345678", isWEP: false)//Secured connections
 	
-	var reachability:Reachability?
-	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		if(AppManager.sharedInstance.isReachability)

@@ -9,7 +9,7 @@
 import UIKit
 import CoreLocation
 
-class ViewController: UIViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate {
+class ViewController: UIappViewController,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate {
 	
 	var showTabBar = false;
 	let reuseIdentifier = "DashboardCell" // also

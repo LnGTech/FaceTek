@@ -8,23 +8,53 @@
 
 import UIKit
 
-class UIappViewController: UIViewController,AppManagerDelegate {
-	var manager:AppManager = AppManager.sharedInstance
-
+class UIappViewController: UIViewController, ReachabilityObserverDelegate{
+	
+	fileprivate var internetConnectionViewController : UIViewController? = nil
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		manager.delegate = self
 	}
+	
 	override func didReceiveMemoryWarning() {
 		super.didReceiveMemoryWarning()
 	}
-	func reachabilityStatusChangeHandler(_ reachability: Reachability) {
-		if reachability.isReachable() {
-			print("isReachable")
+	
+	//MARK: Lifecycle
+	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		try? addReachabilityObserver()
+	}
+	
+	deinit {
+		removeReachabilityObserver()
+	}
+	
+	//MARK: Reachability
+	
+	func reachabilityChanged(_ isReachable: Bool) {
+		if !isReachable {
+			goToInternetConnectionScreen()
 		} else {
-			print("notReachable")
+			dismissInternetConnectionScreen()
+		}
+	}
+	
+	private func goToInternetConnectionScreen() {
+		if internetConnectionViewController == nil {
+			let storyboard = UIStoryboard.init(name: "InternetConnection", bundle: nil)
+			internetConnectionViewController = storyboard.instantiateInitialViewController()
+		}
+		
+		let appDelegate = UIApplication.shared.delegate as? AppDelegate
+		appDelegate?.window?.addSubview((internetConnectionViewController?.view)!)
+	}
+	
+	private func dismissInternetConnectionScreen() {
+		if (internetConnectionViewController != nil) {
+			internetConnectionViewController?.view.removeFromSuperview()
+			internetConnectionViewController = nil
 		}
 	}
 }
-
-

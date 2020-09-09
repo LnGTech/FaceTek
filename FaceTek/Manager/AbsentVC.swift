@@ -17,7 +17,6 @@ class AbsentVC: UIViewController ,UITextFieldDelegate,UITableViewDelegate,UITabl
     let Datepicker = UIDatePicker()
     @IBOutlet weak var Absenttbl: UITableView!
     var tablecell = AbsenttblCell()
-    var reachability:Reachability?
     let data = [["SWIFT", "BALENO", "ALTO", "CIAZ"], ["SWIFT", "BALENO", "ALTO", "CIAZ"]]
     //    let data1 = [["SWIFT", "BALENO", "ALTO", "CIAZ"]]
     //let brand: Array<String> = ["MARUTHI"]

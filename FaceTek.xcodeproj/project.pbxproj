@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		272A19662509212C0036A431 /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A19652509212C0036A431 /* InternetConnection.swift */; };
+		27C15748250908DA008A4B0E /* InternetConnection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C15747250908DA008A4B0E /* InternetConnection.storyboard */; };
 		441CB81EC64E93C9F09F4678 /* Pods_FaceTek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E0F6F10C2DF4F3018A06F56 /* Pods_FaceTek.framework */; };
 		740D706E243C419C00CF6C2F /* office_in.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D706D243C419B00CF6C2F /* office_in.png */; };
 		740D7070243C41A300CF6C2F /* office_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D706F243C41A200CF6C2F /* office_out.png */; };
@@ -33,7 +35,6 @@
 		74140901247A3AFF00ED1391 /* backicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74140900247A3AFE00ED1391 /* backicon.png */; };
 		7424A04724AC6AFB000B466F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424A04624AC6AFB000B466F /* AppDelegate.swift */; };
 		7429321524498B5300C59157 /* UIappViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321424498B5200C59157 /* UIappViewController.swift */; };
-		7429321724498B5C00C59157 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321624498B5C00C59157 /* Reachability.swift */; };
 		7429321924498B6600C59157 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321824498B6600C59157 /* Protocols.swift */; };
 		7429321B24498B7000C59157 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321A24498B7000C59157 /* AppManager.swift */; };
 		742A176424406E6400880818 /* HelperLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A176324406E6400880818 /* HelperLibrary.swift */; };
@@ -180,6 +181,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		272A19652509212C0036A431 /* InternetConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
+		27C15747250908DA008A4B0E /* InternetConnection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InternetConnection.storyboard; sourceTree = "<group>"; };
 		740D706D243C419B00CF6C2F /* office_in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office_in.png; sourceTree = "<group>"; };
 		740D706F243C41A200CF6C2F /* office_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office_out.png; sourceTree = "<group>"; };
 		740D7071243C41AA00CF6C2F /* track_movement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_movement.png; sourceTree = "<group>"; };
@@ -411,6 +414,8 @@
 				7429321624498B5C00C59157 /* Reachability.swift */,
 				7429321824498B6600C59157 /* Protocols.swift */,
 				7429321A24498B7000C59157 /* AppManager.swift */,
+				27C15747250908DA008A4B0E /* InternetConnection.storyboard */,
+				272A19652509212C0036A431 /* InternetConnection.swift */,
 			);
 			path = Wifi;
 			sourceTree = "<group>";
@@ -853,6 +858,7 @@
 				74D998A22434A8C200DFCBEC /* proxe.png in Resources */,
 				745F31B2244ECEE400B89F08 /* Absent1.png in Resources */,
 				74398CE12462EC020053DA0F /* BckArrowicon.png in Resources */,
+				27C15748250908DA008A4B0E /* InternetConnection.storyboard in Resources */,
 				74795DBA244D9D1000C6F03C /* leaves.png in Resources */,
 				746017B82435FB3300969CA2 /* back-arrow.png in Resources */,
 				74E68A8D24C8669400A3B009 /* PendingLeaves.png in Resources */,
@@ -992,7 +998,7 @@
 				740D70BF243C9A0700CF6C2F /* OfficeOutVC.swift in Sources */,
 				747F8DAC243B368700ABBD5E /* HomeDashboardVC.swift in Sources */,
 				746017B62435F90200969CA2 /* RegistrationVC.swift in Sources */,
-				7429321724498B5C00C59157 /* Reachability.swift in Sources */,
+				272A19662509212C0036A431 /* InternetConnection.swift in Sources */,
 				746EE171248F9FC8007A1DA8 /* PrivacyPolicyVC.swift in Sources */,
 				74F5D120243758B700D6E811 /* Constants.swift in Sources */,
 				747F8D9E243AEB1D00ABBD5E /* FaceRegistrationVC.swift in Sources */,

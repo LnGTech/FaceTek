@@ -12,18 +12,18 @@ import SystemConfiguration.CaptiveNetwork
 
 
 
-class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
+class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	
 	let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
-    var timer = Timer()
+	var timer = Timer()
 	
 	var MainDict:NSMutableDictionary = NSMutableDictionary()
 	
-    var locationManager = CLLocationManager()
-    var LattitudestrData = String()
-    var LongitudestrData = String()
-    var empAttendanceInLatLongstr = String()
-    var address: String = ""
+	var locationManager = CLLocationManager()
+	var LattitudestrData = String()
+	var LongitudestrData = String()
+	var empAttendanceInLatLongstr = String()
+	var address: String = ""
 	var RetrivedcustId = Int()
 	var RetrivedempId = Int()
 	var ConvertShiftstartTime = Int()
@@ -33,18 +33,18 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	var empAttndOutDateTime : String = ""
 	var currentDatestr : String = ""
 	var RetrivedMobileNumber : String = ""
-    var RetrivedCustmercode : String = ""
-    var RefreshemployeeNam : String = ""
-    var RefreshbrName : String = ""
-    private var FrefeshAttendanceScreen = false
-
+	var RetrivedCustmercode : String = ""
+	var RefreshemployeeNam : String = ""
+	var RefreshbrName : String = ""
+	private var FrefeshAttendanceScreen = false
+	
 	var Employeenamestr : String = ""
 	var brNamestr : String = ""
 	var Facename : String = ""
 	var VisitTextField = UITextField()
 	var customView = UIView()
 	var customSubView = UIView()
-    @IBOutlet weak var hamburgerView: UIView!
+	@IBOutlet weak var hamburgerView: UIView!
 	@IBOutlet weak var EmergencyTimeoutview: UIView!
 	@IBOutlet weak var Attentionview: UIView!
 	@IBOutlet weak var Permitedview: UIView!
@@ -67,8 +67,6 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	//
 	//var IntimedateString = String.self
 	
-	
-	var reachability:Reachability?
 	var shiftStartTime = String()
 	var shiftEndTime = String()
 	var outPermissibleTime = String()
@@ -77,13 +75,13 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	@IBOutlet weak var MobilenumberLbl: UILabel!
 	@IBOutlet weak var menu: UIView!
 	@IBOutlet weak var ContactUsView: UIView!
-    
-    @IBOutlet weak var ContactTextView: UITextView!
-    var isMenuVisible:Bool!
+	
+	@IBOutlet weak var ContactTextView: UITextView!
+	var isMenuVisible:Bool!
 	@IBOutlet weak var AttendanceNavigationtbl: UITableView!
 	// var AttendanceNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	
-    var AttendanceNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+	var AttendanceNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
 	var MovementoutDrpTbl: UITableView  =   UITableView()
 	//var MovementOutDrpArray: [String] = ["One", "Two", "Three"]
@@ -103,13 +101,13 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        
-        startLoadingSpinner()
-               timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
-                 
-        RefreshLoadingData()
-        
-        ContactTextView.isEditable = false
+		
+		startLoadingSpinner()
+		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
+		
+		RefreshLoadingData()
+		
+		ContactTextView.isEditable = false
 		customActivityIndicatory(self.view, startAnimate: false)
 		EmergencyTimeoutview.isHidden = true
 		menu.layer.shadowOffset = .zero
@@ -126,7 +124,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		MovementoutDrpTbl.isHidden = true
 		//ContactUsView.isHidden = true
-        ContactTextView.isHidden = true
+		ContactTextView.isHidden = true
 		isMenuVisible = true
 		menu.isHidden = true
 		AttendanceNavigationtbl.register(UINib(nibName: "LeaveNavigationcell", bundle: nil), forCellReuseIdentifier: "LeaveNavigationcell")
@@ -152,129 +150,129 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		//        print("RetrivedMobileNumber-----",RetrivedMobileNumber)
 		MobilenumberLbl.text = RetrivedMobileNumber
 		//Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
-//		UserNameLbl.text = Employeenamestr
-//		brNamestr = defaults.string(forKey: "brName") ?? ""
-//		print("brNamestr-----",brNamestr)
-//		CompanyNameLbl.text = brNamestr
+		//		UserNameLbl.text = Employeenamestr
+		//		brNamestr = defaults.string(forKey: "brName") ?? ""
+		//		print("brNamestr-----",brNamestr)
+		//		CompanyNameLbl.text = brNamestr
 		self.button = HamburgerButton(frame: CGRect(x: 0, y: 0, width: 46, height: 46))
 		self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
 		
 		self.hamburgerView.addSubview(button)
-        
-        
-        
-        
-        //Latlong method
-        locationManager.requestWhenInUseAuthorization()
-        var currentLoc: CLLocation!
-        if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-            CLLocationManager.authorizationStatus() == .authorizedAlways) {
-            currentLoc = locationManager.location
-            LattitudestrData = String(currentLoc.coordinate.latitude)
-            print("curent Latitude string value",LattitudestrData)
-            
-            LongitudestrData = String(currentLoc.coordinate.longitude)
-            print("curent longitude string value",LongitudestrData)
-            //empAttendanceInLatLongstr = "\(LattitudestrData) \(LongitudestrData)"
-            
-            empAttendanceInLatLongstr = LattitudestrData + ", " + LongitudestrData
-
-            
-        }
-        
-        getAddress { (address) in
-            print(" Attendance Location------",address)
-        }
-        
-        
-        
-        
-        
+		
+		
+		
+		
+		//Latlong method
+		locationManager.requestWhenInUseAuthorization()
+		var currentLoc: CLLocation!
+		if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+			CLLocationManager.authorizationStatus() == .authorizedAlways) {
+			currentLoc = locationManager.location
+			LattitudestrData = String(currentLoc.coordinate.latitude)
+			print("curent Latitude string value",LattitudestrData)
+			
+			LongitudestrData = String(currentLoc.coordinate.longitude)
+			print("curent longitude string value",LongitudestrData)
+			//empAttendanceInLatLongstr = "\(LattitudestrData) \(LongitudestrData)"
+			
+			empAttendanceInLatLongstr = LattitudestrData + ", " + LongitudestrData
+			
+			
+		}
+		
+		getAddress { (address) in
+			print(" Attendance Location------",address)
+		}
+		
+		
+		
+		
+		
 		
 		//----------------------------
 		BeconeMethodaAPI()
-        
-        let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
-        let url = NSURL(string: urlstring)
-        
-        let URL:NSURL = NSURL(string: urlstring)!
-        //let request: NSURLRequest = NSURLRequest(url: URL as URL)
-        var request = URLRequest(url: URL as URL)
-        request.httpMethod = "GET"
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                return
-            }
-            if error != nil {
-                //error
-            } else {
-                do {
-                    //let data = json.data(using: .utf8)!
-                    let jsonDict = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
-                    print("Json Data -----------",jsonDict)
-                    DispatchQueue.main.async {
-                        self.currentDatestr = (jsonDict["currentDate"] as? String)!
-                        //
-                    }
-                    
-                }
-            }
-        }
-        task.resume()
-        
-        
+		
+		let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+		let url = NSURL(string: urlstring)
+		
+		let URL:NSURL = NSURL(string: urlstring)!
+		//let request: NSURLRequest = NSURLRequest(url: URL as URL)
+		var request = URLRequest(url: URL as URL)
+		request.httpMethod = "GET"
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			guard let data = data, error == nil else {
+				return
+			}
+			if error != nil {
+				//error
+			} else {
+				do {
+					//let data = json.data(using: .utf8)!
+					let jsonDict = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
+					print("Json Data -----------",jsonDict)
+					DispatchQueue.main.async {
+						self.currentDatestr = (jsonDict["currentDate"] as? String)!
+						//
+					}
+					
+				}
+			}
+		}
+		task.resume()
+		
+		
 		
 	}
 	
-    //Beconlist
-    
-    
-    
-    
+	//Beconlist
 	
-        
-        @objc func toggle(_ sender: AnyObject!) {
-            self.toggleComparision()
-            menu.isHidden = false
-            self.button.showsMenu = !self.button.showsMenu
-        }
-        //Menu code
-        override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-    //        self.view.endEditing(true)
-    //        isMenuVisible = false;
-    //        self.button.showsMenu = !self.button.showsMenu
-    //        self.toggleComparision()
-        }
-        
-        @IBAction func closeMenu(_ sender: Any) {
-            toggle(sender as AnyObject)
-        }
-        
-        func toggleComparision()
-        {
-            if (isMenuVisible)
-            {
-                UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
-                    var frame = self.menu.frame
-                    frame.origin.x = 0
-                    self.menu.frame = frame
-                    self.isMenuVisible = false;
-                    self.menu.isHidden = false
-                })
-            } else {
-                UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
-                    var frame = self.menu.frame
-                    frame.origin.x = -self.view.frame.size.width
-                    self.menu.frame = frame
-                }) { (finished) in
-                    if finished {
-                        self.isMenuVisible = true
-                        self.menu.isHidden = true
-                    }
-                }
-            }
-        }
-        
+	
+	
+	
+	
+	
+	@objc func toggle(_ sender: AnyObject!) {
+		self.toggleComparision()
+		menu.isHidden = false
+		self.button.showsMenu = !self.button.showsMenu
+	}
+	//Menu code
+	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+		//        self.view.endEditing(true)
+		//        isMenuVisible = false;
+		//        self.button.showsMenu = !self.button.showsMenu
+		//        self.toggleComparision()
+	}
+	
+	@IBAction func closeMenu(_ sender: Any) {
+		toggle(sender as AnyObject)
+	}
+	
+	func toggleComparision()
+	{
+		if (isMenuVisible)
+		{
+			UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+				var frame = self.menu.frame
+				frame.origin.x = 0
+				self.menu.frame = frame
+				self.isMenuVisible = false;
+				self.menu.isHidden = false
+			})
+		} else {
+			UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+				var frame = self.menu.frame
+				frame.origin.x = -self.view.frame.size.width
+				self.menu.frame = frame
+			}) { (finished) in
+				if finished {
+					self.isMenuVisible = true
+					self.menu.isHidden = true
+				}
+			}
+		}
+	}
+	
 	
 	func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		return self.DashboardArray.count
@@ -302,17 +300,17 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath){
 		if indexPath.item == 0 {
-         BeaconListAttendance_IN()
-        }
+			BeaconListAttendance_IN()
+		}
 		else if indexPath.item == 1 {
 			BeaconListAttendance_OUT()
 		}
 		else if indexPath.item == 2{
 			//MovementIn()
-            MovementInUpdate()
+			MovementInUpdate()
 		}
 		else if indexPath.item == 3{
-MovementOUT_Update()		}
+			MovementOUT_Update()		}
 		
 	}
 	
@@ -394,15 +392,15 @@ MovementOUT_Update()		}
 				self.present(CalendarVC, animated:true, completion:nil)
 				
 			}
-                else if indexPath.item == 2 {
-                    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                    
-                    let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
-                    self.present(FieldVisitVC, animated:true, completion:nil)
-                    
-                    
-                }
-            else if indexPath.item == 6 {
+			else if indexPath.item == 2 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				
+				let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
+				self.present(FieldVisitVC, animated:true, completion:nil)
+				
+				
+			}
+			else if indexPath.item == 6 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 				let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
 				self.present(FaqVC, animated:true, completion:nil)
@@ -433,9 +431,9 @@ MovementOUT_Update()		}
 			cell.textLabel!.text = VisitPlaceListstr
 			VisitTextField.text = VisitPlaceListstr
 			MovementoutDrpTbl.isHidden = true
-            customSubView.isHidden = false
-            DrpdownBtn.isHidden = false
-            VisitTextField.isHidden = false
+			customSubView.isHidden = false
+			DrpdownBtn.isHidden = false
+			VisitTextField.isHidden = false
 		}
 	}
 	
@@ -536,237 +534,236 @@ MovementOUT_Update()		}
 		task.resume()
 		
 	}
-    
-    
-    //Beaconlist
-    func BeaconListAttendance_IN()
-    {
-        let defaults = UserDefaults.standard
-        RetrivedcustId = defaults.integer(forKey: "custId")
-        print("Beacon list RetrivedcustId----",RetrivedcustId)
-        RetrivedempId = defaults.integer(forKey: "empId")
-        print("Beacon list RetrivedempId----",RetrivedempId)
-    let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-    
-    let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
-    
-    //create the session object
-    let session = URLSession.shared
-    
-    //now create the URLRequest object using the url object
-    var request = URLRequest(url: url as URL)
-    request.httpMethod = "POST" //set http method as POST
-    
-    do {
-        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-    } catch let error {
-        print(error.localizedDescription)
-    }
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.addValue("application/json", forHTTPHeaderField: "Accept")
-    //create dataTask using the ses
-    //request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
-    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-        guard let data = data, error == nil else {
-            print(error?.localizedDescription ?? "No data")
-            return
-        }
-        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-        if let responseJSON = responseJSON as? [String: Any] {
-            DispatchQueue.main.async
-                {
-                    
-                 let statusDic = responseJSON["status"]! as! NSDictionary
-                 print("Beacon status------",statusDic)
-                    let code = (statusDic["code"] as? NSInteger)!
-                    print("Beacon status------",code)
-                    self.AttendanceIntime()
-                    
-                    let defaults = UserDefaults.standard
-                    UserDefaults.standard.set("GeneralMode", forKey: "Mode")
-
-                    
-                    if(code == 200)
-                        
-                    {
-                            let ssid = self.fetchSSIDInfo()
-                        print("SSID----: \(ssid)")
-                        let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
-                        print("empBeacons...",ItemsDict)
-                                    
-                        if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
-                            
-                            print("null values printed.....")
-
-                        self.AttendanceIntime()
-
-                        
-                    }
-                    else
-                    {
-
-                              print("Normal values...")
-                          let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
-                          print("beaconMapDtolist---",beaconMapDtolistArray)
-                          for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
-                          {
-                          var MainDict:NSMutableDictionary = NSMutableDictionary()
-                          var beaconCode = ""
-                          beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
-                          print(" beaconCode--",beaconCode)
-                          if (beaconCode == ssid)
-                          {
-                          self.AttendanceIntime()
-                              
-                              }
-                          else
-                          {
-                            
-                        let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
-                          alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                          self.present(alert, animated: true, completion: nil)
-                            }
-                                      }
-                                      
-                                      }
-                              }
-                          }
-                        
-                    }
-
-                    
-    }
-    task.resume()
-    }
-    
-    
-    
-    //Beaconlist AttendanceOUT
-    
-    func BeaconListAttendance_OUT()
-    {
-        let defaults = UserDefaults.standard
-            RetrivedcustId = defaults.integer(forKey: "custId")
-            print("Beacon list RetrivedcustId----",RetrivedcustId)
-            RetrivedempId = defaults.integer(forKey: "empId")
-            print("Beacon list RetrivedempId----",RetrivedempId)
-        let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-        
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
-        
-        //create the session object
-        let session = URLSession.shared
-        
-        //now create the URLRequest object using the url object
-        var request = URLRequest(url: url as URL)
-        request.httpMethod = "POST" //set http method as POST
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        //create dataTask using the ses
-        //request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                DispatchQueue.main.async
-                    {
-                        
-                     let statusDic = responseJSON["status"]! as! NSDictionary
-                     print("Beacon status------",statusDic)
-                        let code = (statusDic["code"] as? NSInteger)!
-                        print("Beacon status------",code)
-
-                        
-                        self.AttendanceOutime()
-                        let defaults = UserDefaults.standard
-                        //UserDefaults.standard.set("GeneralMode", forKey: "Mode")
-
-
-                        
-                        if(code == 200)
-                            
-                        {
-               
-                                let ssid = self.fetchSSIDInfo()
-                            print("SSID----: \(ssid)")
-                            let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
-                            print("empBeacons...",ItemsDict)
-                                        
-                            if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
-                                
-                                print("null values printed.....")
-
-                            self.AttendanceOutime()
-
-                            
-                        }
-                        else
-                        {
-
-                                  print("Normal values...")
-                              let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
-                              print("beaconMapDtolist---",beaconMapDtolistArray)
-                              for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
-                              {
-                              var MainDict:NSMutableDictionary = NSMutableDictionary()
-                              var beaconCode = ""
-                              beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
-                              print(" beaconCode--",beaconCode)
-                              if (beaconCode == ssid)
-                              {
-                              self.AttendanceOutime()
-                                UserDefaults.standard.set("BeaconeMode", forKey: "Mode")
-
-                                  
-                                  }
-                              else
-                              {
-                                
-                            let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
-                              alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                              self.present(alert, animated: true, completion: nil)
-                                }
-                                          }
-                                          
-                                          }
-                                  }
-                              }
-                            
-                        }
-
-                        
-        }
-        task.resume()
-    }
-        
-    func fetchSSIDInfo() -> String? {
-        var ssid: String?
-        if let interfaces = CNCopySupportedInterfaces() as NSArray? {
-            for interface in interfaces {
-                if let interfaceInfo = CNCopyCurrentNetworkInfo(interface as! CFString) as NSDictionary? {
-                    ssid = interfaceInfo[kCNNetworkInfoKeySSID as String] as? String
-                    break
-                }
-            }
-        }
-        return ssid
-    }
-    
-    
-    
-    
+	
+	
+	//Beaconlist
+	func BeaconListAttendance_IN()
+	{
+		let defaults = UserDefaults.standard
+		RetrivedcustId = defaults.integer(forKey: "custId")
+		print("Beacon list RetrivedcustId----",RetrivedcustId)
+		RetrivedempId = defaults.integer(forKey: "empId")
+		print("Beacon list RetrivedempId----",RetrivedempId)
+		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
+		
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
+		//create the session object
+		let session = URLSession.shared
+		
+		//now create the URLRequest object using the url object
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST" //set http method as POST
+		
+		do {
+			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+		} catch let error {
+			print(error.localizedDescription)
+		}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		//create dataTask using the ses
+		//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			guard let data = data, error == nil else {
+				print(error?.localizedDescription ?? "No data")
+				return
+			}
+			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+			if let responseJSON = responseJSON as? [String: Any] {
+				DispatchQueue.main.async
+					{
+						
+						let statusDic = responseJSON["status"]! as! NSDictionary
+						print("Beacon status------",statusDic)
+						let code = (statusDic["code"] as? NSInteger)!
+						print("Beacon status------",code)
+						self.AttendanceIntime()
+						
+						let defaults = UserDefaults.standard
+						UserDefaults.standard.set("GeneralMode", forKey: "Mode")
+						
+						
+						if(code == 200)
+							
+						{
+							let ssid = self.fetchSSIDInfo()
+							print("SSID----: \(ssid)")
+							let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
+							print("empBeacons...",ItemsDict)
+							
+							if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
+								
+								print("null values printed.....")
+								
+								self.AttendanceIntime()
+								
+								
+							}
+							else
+							{
+								
+								print("Normal values...")
+								let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
+								print("beaconMapDtolist---",beaconMapDtolistArray)
+								for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
+								{
+									var MainDict:NSMutableDictionary = NSMutableDictionary()
+									var beaconCode = ""
+									beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
+									print(" beaconCode--",beaconCode)
+									if (beaconCode == ssid)
+									{
+										self.AttendanceIntime()
+										
+									}
+									else
+									{
+										
+										let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
+										alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+										self.present(alert, animated: true, completion: nil)
+									}
+								}
+								
+							}
+						}
+				}
+				
+			}
+			
+			
+		}
+		task.resume()
+	}
+	
+	
+	
+	//Beaconlist AttendanceOUT
+	
+	func BeaconListAttendance_OUT()
+	{
+		let defaults = UserDefaults.standard
+		RetrivedcustId = defaults.integer(forKey: "custId")
+		print("Beacon list RetrivedcustId----",RetrivedcustId)
+		RetrivedempId = defaults.integer(forKey: "empId")
+		print("Beacon list RetrivedempId----",RetrivedempId)
+		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
+		
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
+		//create the session object
+		let session = URLSession.shared
+		
+		//now create the URLRequest object using the url object
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST" //set http method as POST
+		
+		do {
+			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+		} catch let error {
+			print(error.localizedDescription)
+		}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		//create dataTask using the ses
+		//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			guard let data = data, error == nil else {
+				print(error?.localizedDescription ?? "No data")
+				return
+			}
+			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+			if let responseJSON = responseJSON as? [String: Any] {
+				DispatchQueue.main.async
+					{
+						
+						let statusDic = responseJSON["status"]! as! NSDictionary
+						print("Beacon status------",statusDic)
+						let code = (statusDic["code"] as? NSInteger)!
+						print("Beacon status------",code)
+						
+						
+						self.AttendanceOutime()
+						let defaults = UserDefaults.standard
+						//UserDefaults.standard.set("GeneralMode", forKey: "Mode")
+						
+						
+						
+						if(code == 200)
+							
+						{
+							
+							let ssid = self.fetchSSIDInfo()
+							print("SSID----: \(ssid)")
+							let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
+							print("empBeacons...",ItemsDict)
+							
+							if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
+								
+								print("null values printed.....")
+								
+								self.AttendanceOutime()
+								
+								
+							}
+							else
+							{
+								
+								print("Normal values...")
+								let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
+								print("beaconMapDtolist---",beaconMapDtolistArray)
+								for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
+								{
+									var MainDict:NSMutableDictionary = NSMutableDictionary()
+									var beaconCode = ""
+									beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
+									print(" beaconCode--",beaconCode)
+									if (beaconCode == ssid)
+									{
+										self.AttendanceOutime()
+										UserDefaults.standard.set("BeaconeMode", forKey: "Mode")
+										
+										
+									}
+									else
+									{
+										
+										let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
+										alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+										self.present(alert, animated: true, completion: nil)
+									}
+								}
+								
+							}
+						}
+				}
+				
+			}
+			
+			
+		}
+		task.resume()
+	}
+	
+	func fetchSSIDInfo() -> String? {
+		var ssid: String?
+		if let interfaces = CNCopySupportedInterfaces() as NSArray? {
+			for interface in interfaces {
+				if let interfaceInfo = CNCopyCurrentNetworkInfo(interface as! CFString) as NSDictionary? {
+					ssid = interfaceInfo[kCNNetworkInfoKeySSID as String] as? String
+					break
+				}
+			}
+		}
+		return ssid
+	}
+	
+	
+	
+	
 	
 	func AttendanceIntime() {
-		manager.delegate = self
 		let isempBeacon: Bool = true
 		if(isempBeacon == true) {
 			if(AppManager.sharedInstance.isReachability) {
@@ -783,9 +780,7 @@ MovementOUT_Update()		}
 	}
 	
 	
-	func AttendanceOutime()
-	{
-		manager.delegate = self
+	func AttendanceOutime() {
 		var isempBeacon: Bool = true
 		if(isempBeacon == true)
 		{
@@ -902,8 +897,8 @@ MovementOUT_Update()		}
 					print("Json Data -----------",jsonDict)
 					DispatchQueue.main.async {
 						self.currentDatestr = (jsonDict["currentDate"] as? String)!
-                        
-                       
+						
+						
 						let dateFormatter = DateFormatter()
 						let tempLocale = dateFormatter.locale // save locale temporarily
 						dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
@@ -912,9 +907,9 @@ MovementOUT_Update()		}
 						dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm a"///this is what you want to convert format
 						dateFormatter.locale = tempLocale // reset the locale
 						let IntimedateString = dateFormatter.string(from: Intimedate)
-                        
-                        
-                        print("current date time",IntimedateString)
+						
+						
+						print("current date time",IntimedateString)
 						
 						UserDefaults.standard.set(self.currentDatestr, forKey: "SignIncurrentDate")
 						UserDefaults.standard.set(IntimedateString, forKey: "SignIntimedate")
@@ -982,7 +977,7 @@ MovementOUT_Update()		}
 					else
 					{
 						var alert = UIAlertController(title: "Office OUT", message:
-                            "Attendance OUT is already marked for the day" as! String, preferredStyle: UIAlertController.Style.alert)
+							"Attendance OUT is already marked for the day" as! String, preferredStyle: UIAlertController.Style.alert)
 						alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
 						self.present(alert, animated: true, completion: nil)
 						print("Failure---")
@@ -1018,8 +1013,8 @@ MovementOUT_Update()		}
 					//let data = json.data(using: .utf8)!
 					let jsonDict = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
 					print("Json Data -----------",jsonDict)
-                    
-                    
+					
+					
 					
 					DispatchQueue.main.async {
 						self.currentDatestr = (jsonDict["currentDate"] as? String)!
@@ -1071,8 +1066,8 @@ MovementOUT_Update()		}
 							var PermissionFirststr = "OUT is not permitted till"
 							var PermissionSecondstr = Date12
 							
-                            self.OutPermissionLbl.text = "\("OUT is not permitted till")  -  \(PermissionSecondstr)"
-
+							self.OutPermissionLbl.text = "\("OUT is not permitted till")  -  \(PermissionSecondstr)"
+							
 							let shadowPath = UIBezierPath(rect: self.view.bounds)
 							self.EmergencyTimeoutview.layer.masksToBounds = false
 							self.EmergencyTimeoutview.layer.shadowColor = UIColor.darkGray.cgColor
@@ -1092,9 +1087,7 @@ MovementOUT_Update()		}
 		
 	}
 	
-	func EmergencyExitOutime()
-	{
-		manager.delegate = self
+	func EmergencyExitOutime() {
 		var isempBeacon: Bool = true
 		if(isempBeacon == true)
 		{
@@ -1282,130 +1275,127 @@ MovementOUT_Update()		}
 	
 	
 	//MovementIn
-    
-    func MovementInUpdate()
-    
-        {
-            
-            let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-            let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
-            //create the session object
-            let session = URLSession.shared
-            //now create the URLRequest object using the url object
-            var request = URLRequest(url: url as URL)
-            request.httpMethod = "POST" //set http method as POST
-            
-            do {
-                request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-            } catch let error {
-                print(error.localizedDescription)
-            }
-            request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard let data = data, error == nil else {
-                    print(error?.localizedDescription ?? "No data")
-                    return
-                }
-                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let responseJSON = responseJSON as? [String: Any] {
-                    
-                    let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
-                    DispatchQueue.main.async
-                        {
-                            self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
-                            self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
-                           
-                            
-                            if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
-                                
-                                let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
-                                                                                         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                                                                         self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
-
-                                self.MovementIn()
-                                
-                            }
-                            else
-                            {
-                                let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
-                                                                                                                        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                                                                                                        self.present(alert, animated: true, completion: nil)
-                                
-                            }
-                           
-                    }
-                }
-            }
-            task.resume()
-        }
-        
-        
-    func MovementOUT_Update()
-    {
-                    let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-                    let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
-                    //create the session object
-                    let session = URLSession.shared
-                    //now create the URLRequest object using the url object
-                    var request = URLRequest(url: url as URL)
-                    request.httpMethod = "POST" //set http method as POST
-                    
-                    do {
-                        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-                    } catch let error {
-                        print(error.localizedDescription)
-                    }
-                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                    request.addValue("application/json", forHTTPHeaderField: "Accept")
-                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                        guard let data = data, error == nil else {
-                            print(error?.localizedDescription ?? "No data")
-                            return
-                        }
-                        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                        if let responseJSON = responseJSON as? [String: Any] {
-                            
-                            let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
-                            DispatchQueue.main.async
-                                {
-                                    self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
-                                    self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
-                                    if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
-                                        
-                                        let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
-                                                                                                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                                                                                 self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
-
-                                        self.MovementOut()
-                                        
-                                    }
-                                    else
-                                    {
-                                        let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
-                                                                                                                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                                                                                                                self.present(alert, animated: true, completion: nil)
-                                        
-                                    }
-                                    
-                                    
-                                    
-                                    
-                                    
-                            }
-                        }
-                    }
-                    task.resume()
-
-        
-        
-    }
-    
-    
+	
+	func MovementInUpdate()
+		
+	{
+		
+		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//create the session object
+		let session = URLSession.shared
+		//now create the URLRequest object using the url object
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST" //set http method as POST
+		
+		do {
+			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+		} catch let error {
+			print(error.localizedDescription)
+		}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			guard let data = data, error == nil else {
+				print(error?.localizedDescription ?? "No data")
+				return
+			}
+			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+			if let responseJSON = responseJSON as? [String: Any] {
+				
+				let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
+				DispatchQueue.main.async
+					{
+						self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
+						self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
+						
+						
+						if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
+							
+							let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+							alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+							self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
+							
+							self.MovementIn()
+							
+						}
+						else
+						{
+							let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+							alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+							self.present(alert, animated: true, completion: nil)
+							
+						}
+						
+				}
+			}
+		}
+		task.resume()
+	}
+	
+	
+	func MovementOUT_Update()
+	{
+		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//create the session object
+		let session = URLSession.shared
+		//now create the URLRequest object using the url object
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST" //set http method as POST
+		
+		do {
+			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+		} catch let error {
+			print(error.localizedDescription)
+		}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			guard let data = data, error == nil else {
+				print(error?.localizedDescription ?? "No data")
+				return
+			}
+			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+			if let responseJSON = responseJSON as? [String: Any] {
+				
+				let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
+				DispatchQueue.main.async
+					{
+						self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
+						self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
+						if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
+							
+							let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+							alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+							self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
+							
+							self.MovementOut()
+							
+						}
+						else
+						{
+							let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+							alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+							self.present(alert, animated: true, completion: nil)
+							
+						}
+						
+						
+						
+						
+						
+				}
+			}
+		}
+		task.resume()
+		
+		
+		
+	}
+	
+	
 	func MovementIn() {
-		
-		manager.delegate = self
-		
 		var isempBeacon: Bool = true
 		if(isempBeacon == true)
 		{
@@ -1447,12 +1437,7 @@ MovementOUT_Update()		}
 	
 	
 	
-	func MovementOut()
-	{
-		
-		print("Movement Out-------------")
-		manager.delegate = self
-		
+	func MovementOut() {
 		var isempBeacon: Bool = true
 		if(isempBeacon == true)
 		{
@@ -1494,87 +1479,87 @@ MovementOUT_Update()		}
 	}
 	
 	
-    func getAddress(handler: @escaping (String) -> Void)
-    {
-        
-        
-        let Locationlatitude = (LattitudestrData as NSString).doubleValue
-        
-        let Locationlongitude = (LongitudestrData as NSString).doubleValue
-        let geoCoder = CLGeocoder()
-        let location = CLLocation(latitude: Locationlatitude, longitude: Locationlongitude)
-        
-        
-        print("latlanvalues------",location)
-        
-        //selectedLat and selectedLon are double values set by the app in a previous process
-        
-        geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-            
-            // Place details
-            var placeMark: CLPlacemark?
-            placeMark = placemarks?[0]
-            
-            // Address dictionary
-            //print(placeMark.addressDictionary ?? "")
-            
-            // Location name
-            if let locationName = placeMark?.addressDictionary?["Name"] as? String {
-                self.address += locationName + ", "
-            }
-            
-            // Street address
-            if let street = placeMark?.addressDictionary?["Thoroughfare"] as? String {
-                self.address += street + ", "
-            }
-            
-            // City
-            if let city = placeMark?.addressDictionary?["City"] as? String {
-                self.address += city + ", "
-            }
-            
-            // Zip code
-            if let zip = placeMark?.addressDictionary?["ZIP"] as? String {
-                self.address += zip + ", "
-            }
-            
-            // Country
-            if let country = placeMark?.addressDictionary?["Country"] as? String {
-                self.address += country
-            }
-            
-            // Passing address back
-            handler(self.address)
-        })
-    }
-    
-    
-    
-    
-    
-    
-    @objc func callback() {
-        print("done--------")
-        
-        //Updatedetails()
-        
-    }
-
-    
-    
+	func getAddress(handler: @escaping (String) -> Void)
+	{
+		
+		
+		let Locationlatitude = (LattitudestrData as NSString).doubleValue
+		
+		let Locationlongitude = (LongitudestrData as NSString).doubleValue
+		let geoCoder = CLGeocoder()
+		let location = CLLocation(latitude: Locationlatitude, longitude: Locationlongitude)
+		
+		
+		print("latlanvalues------",location)
+		
+		//selectedLat and selectedLon are double values set by the app in a previous process
+		
+		geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+			
+			// Place details
+			var placeMark: CLPlacemark?
+			placeMark = placemarks?[0]
+			
+			// Address dictionary
+			//print(placeMark.addressDictionary ?? "")
+			
+			// Location name
+			if let locationName = placeMark?.addressDictionary?["Name"] as? String {
+				self.address += locationName + ", "
+			}
+			
+			// Street address
+			if let street = placeMark?.addressDictionary?["Thoroughfare"] as? String {
+				self.address += street + ", "
+			}
+			
+			// City
+			if let city = placeMark?.addressDictionary?["City"] as? String {
+				self.address += city + ", "
+			}
+			
+			// Zip code
+			if let zip = placeMark?.addressDictionary?["ZIP"] as? String {
+				self.address += zip + ", "
+			}
+			
+			// Country
+			if let country = placeMark?.addressDictionary?["Country"] as? String {
+				self.address += country
+			}
+			
+			// Passing address back
+			handler(self.address)
+		})
+	}
+	
+	
+	
+	
+	
+	
+	@objc func callback() {
+		print("done--------")
+		
+		//Updatedetails()
+		
+	}
+	
+	
+	
 	
 	
 	func MovementIn_API()
 	{
-        var EmpAttendancedateString = ""
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        EmpAttendancedateString = formatter.string(from: date)
-        print("EmpAttendancedate----",EmpAttendancedateString)
-        
-         print("For movement currentDate",self.currentDatestr)
-
+		var EmpAttendancedateString = ""
+		let date = Date()
+		let formatter = DateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd"
+		EmpAttendancedateString = formatter.string(from: date)
+		print("EmpAttendancedate----",EmpAttendancedateString)
+		
+		print("For movement currentDate",self.currentDatestr)
+		
 		print("Movement In")
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
@@ -1587,9 +1572,9 @@ MovementOUT_Update()		}
 		
 		//let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
 		
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
-        
-        //http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
+		
+		//http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create
 		//create the session object
 		let session = URLSession.shared
 		//now create the URLRequest object using the url object
@@ -1816,25 +1801,25 @@ MovementOUT_Update()		}
 	
 	@objc func DrpdownBtnAction(_ sender:UIButton!)
 	{
-        
-        customSubView.isHidden = true
-        DrpdownBtn.isHidden = true
-        VisitTextField.isHidden = true
+		
+		customSubView.isHidden = true
+		DrpdownBtn.isHidden = true
+		VisitTextField.isHidden = true
 		MovementoutDrpTbl.isHidden = false
 		
 		print("Hellow--------")
-        
-        print("RetrivedcustId----",RetrivedcustId)
-        let defaults = UserDefaults.standard
-
-        RetrivedempId = defaults.integer(forKey: "empId")
-        print("Movement dropdown RetrivedempId----",RetrivedempId)
-        
+		
+		print("RetrivedcustId----",RetrivedcustId)
+		let defaults = UserDefaults.standard
+		
+		RetrivedempId = defaults.integer(forKey: "empId")
+		print("Movement dropdown RetrivedempId----",RetrivedempId)
+		
 		let parameters = [
 			"refEmpId": RetrivedempId] as [String : Any]
 		let url: NSURL = NSURL(string: "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/getEmpPlaceOfVisitListByEmpId")!
-        
-        //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
+		
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
 		//create the session object
 		let session = URLSession.shared
 		
@@ -1859,7 +1844,7 @@ MovementOUT_Update()		}
 			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 			if let responseJSON = responseJSON as? [String: Any] {
 				print("Json Response",responseJSON)
-                
+				
 				let Inmatedict = responseJSON["empPlaceVisitList"] as! NSArray
 				print("Array values----",Inmatedict)
 				for VisitsubDictionary in Inmatedict as! [[String:Any]]
@@ -1892,16 +1877,16 @@ MovementOUT_Update()		}
 		RetrivedempId = defaults.integer(forKey: "empId")
 		print("RetrivedempId----",RetrivedempId)
 		
-        var EmpAttendancedateString = ""
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd"
-        EmpAttendancedateString = formatter.string(from: date)
-        print("EmpAttendancedate----",EmpAttendancedateString)
-
-
-        
-        print(" attendance empAttendanceInLatLongstr-----",empAttendanceInLatLongstr)
+		var EmpAttendancedateString = ""
+		let date = Date()
+		let formatter = DateFormatter()
+		formatter.dateFormat = "yyyy-MM-dd"
+		EmpAttendancedateString = formatter.string(from: date)
+		print("EmpAttendancedate----",EmpAttendancedateString)
+		
+		
+		
+		print(" attendance empAttendanceInLatLongstr-----",empAttendanceInLatLongstr)
 		
 		//        "refEmpId":123,
 		//        "empMovementDate":"2020-04-03",
@@ -1913,10 +1898,10 @@ MovementOUT_Update()		}
 		
 		let parameters = ["refEmpId": RetrivedempId as Any,
 						  "empMovementDate": EmpAttendancedateString as Any,"empMovementMode":  "G" as Any,"empMovementDatetime":  currentDatestr as Any,"empMovementLatLong":  empAttendanceInLatLongstr as Any,"empMovementType":  "OUT" as Any,"empPlaceOfVisit":  VisitTextField.text as Any] as [String : Any]
-        
-        
+		
+		
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
-        //http://122.166.152.106:8080
+		//http://122.166.152.106:8080
 		
 		//create the session object
 		let session = URLSession.shared
@@ -2019,101 +2004,101 @@ MovementOUT_Update()		}
 		}
 		return activityIndicatorView
 	}
-    
-    
-    func RefreshLoadingData()
-    {
-        
-        RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
-        print("RetrivedMobileNumber-----",RetrivedMobileNumber)
-        RetrivedCustmercode = UserDefaults.standard.string(forKey: "Custmercode") ?? ""
-        print("RetrivedCustmercode-----",RetrivedCustmercode)
-        
-        
-        let parameters = ["custCode":RetrivedCustmercode as Any,
-                          "empMobile":RetrivedMobileNumber as Any] as [String : Any]
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
-        
-        self.customActivityIndicatory(self.view, startAnimate: true)
-        
-        //create the session object
-        let session = URLSession.shared
-        //now create the URLRequest object using the url object
-        var request = URLRequest(url: url as URL)
-        request.httpMethod = "POST" //set http method as POST
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print("Refresh Json Response",responseJSON)
-                
-                DispatchQueue.main.async
-                    {
-                        let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
-                        self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
-                        print("Refresh employeeName",self.RefreshemployeeNam)
-                        
-                        self.RefreshbrName = (ItemsDict["brName"] as? String)!
-                        print("Refresh brName",self.RefreshbrName)
-                        self.UserNameLbl.text = self.RefreshemployeeNam
-                        
-                        print("brNamestr-----",self.brNamestr)
-                        self.CompanyNameLbl.text = self.RefreshbrName
-                        
-                }
-            }    }
-        task.resume()
-        
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        
-        self.navigationController?.setNavigationBarHidden(true, animated: animated)
-
-        if FrefeshAttendanceScreen {
-            
-            
-            startLoadingSpinner()
-                   timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
-            return
-        }
-        FrefeshAttendanceScreen = true
-
-    }
 	
-    
-    func startLoadingSpinner(){
-        activityIndicator.frame = self.view.frame
-        activityIndicator.center = self.view.center
-        activityIndicator.backgroundColor = .clear
-        activityIndicator.alpha = 0.8
-        activityIndicator.color = .gray
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
-        activityIndicator.hidesWhenStopped = true
-        self.view.addSubview(activityIndicator)
-    }
-    @objc func stopLoadingSpinner() {
-        self.activityIndicator.stopAnimating()
-    }
-
-    
+	
+	func RefreshLoadingData()
+	{
+		
+		RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
+		print("RetrivedMobileNumber-----",RetrivedMobileNumber)
+		RetrivedCustmercode = UserDefaults.standard.string(forKey: "Custmercode") ?? ""
+		print("RetrivedCustmercode-----",RetrivedCustmercode)
+		
+		
+		let parameters = ["custCode":RetrivedCustmercode as Any,
+						  "empMobile":RetrivedMobileNumber as Any] as [String : Any]
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
+		
+		self.customActivityIndicatory(self.view, startAnimate: true)
+		
+		//create the session object
+		let session = URLSession.shared
+		//now create the URLRequest object using the url object
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST" //set http method as POST
+		
+		do {
+			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+		} catch let error {
+			print(error.localizedDescription)
+		}
+		
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			guard let data = data, error == nil else {
+				print(error?.localizedDescription ?? "No data")
+				return
+			}
+			
+			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+			if let responseJSON = responseJSON as? [String: Any] {
+				print("Refresh Json Response",responseJSON)
+				
+				DispatchQueue.main.async
+					{
+						let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
+						self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
+						print("Refresh employeeName",self.RefreshemployeeNam)
+						
+						self.RefreshbrName = (ItemsDict["brName"] as? String)!
+						print("Refresh brName",self.RefreshbrName)
+						self.UserNameLbl.text = self.RefreshemployeeNam
+						
+						print("brNamestr-----",self.brNamestr)
+						self.CompanyNameLbl.text = self.RefreshbrName
+						
+				}
+			}    }
+		task.resume()
+		
+	}
+	
+	override func viewWillAppear(_ animated: Bool) {
+		super.viewWillAppear(animated)
+		
+		
+		self.navigationController?.setNavigationBarHidden(true, animated: animated)
+		
+		if FrefeshAttendanceScreen {
+			
+			
+			startLoadingSpinner()
+			timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
+			return
+		}
+		FrefeshAttendanceScreen = true
+		
+	}
+	
+	
+	func startLoadingSpinner(){
+		activityIndicator.frame = self.view.frame
+		activityIndicator.center = self.view.center
+		activityIndicator.backgroundColor = .clear
+		activityIndicator.alpha = 0.8
+		activityIndicator.color = .gray
+		activityIndicator.isHidden = false
+		activityIndicator.startAnimating()
+		activityIndicator.hidesWhenStopped = true
+		self.view.addSubview(activityIndicator)
+	}
+	@objc func stopLoadingSpinner() {
+		self.activityIndicator.stopAnimating()
+	}
+	
+	
 }
 
 
