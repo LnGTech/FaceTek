@@ -624,7 +624,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 							self.LeavePendingLbl.layer.borderWidth = 1
 							self.LeavePendingLbl.layer.borderColor = #colorLiteral(red: 0.1368455306, green: 0.5300007931, blue: 0.2386429882, alpha: 1)
 							self.LeavePendingLbl.textColor = #colorLiteral(red: 0.1368455306, green: 0.5300007931, blue: 0.2386429882, alpha: 1)
-							self.LeavePendingLbl.text = "Approval"
+							self.LeavePendingLbl.text = "Approved"
 							self.LeaveStatusBtn.isHidden = true
 						} else if (LeaveRejected == empLeaveStatus)
 						{

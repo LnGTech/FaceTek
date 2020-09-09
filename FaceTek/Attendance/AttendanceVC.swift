@@ -573,48 +573,60 @@ MovementOUT_Update()		}
             DispatchQueue.main.async
                 {
                     
-                    
-                    let ssid = self.getAllWiFiNameList()
-                    print("SSID----: \(ssid)")
-                                               let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
-                     print("empBeacons...",ItemsDict)
-                    
-                    
-                    
-                    
-                    if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
-                     print("null values printed.....")
+                 let statusDic = responseJSON["status"]! as! NSDictionary
+                 print("Beacon status------",statusDic)
+                    let code = (statusDic["code"] as? NSInteger)!
+                    print("Beacon status------",code)
+                    self.AttendanceIntime()
+                    if(code == 200)
+                        
+                    {
+                            let ssid = self.fetchSSIDInfo()
+                        print("SSID----: \(ssid)")
+                        let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
+                        print("empBeacons...",ItemsDict)
+                                    
+                        if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
+                            
+                            print("null values printed.....")
+
                         self.AttendanceIntime()
 
-                                                    }
-                        else
-                        {
-                    print("Normal values printed....")
+                        
+                    }
+                    else
+                    {
+
+                              print("Normal values...")
+                          let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
+                          print("beaconMapDtolist---",beaconMapDtolistArray)
+                          for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
+                          {
+                          var MainDict:NSMutableDictionary = NSMutableDictionary()
+                          var beaconCode = ""
+                          beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
+                          print(" beaconCode--",beaconCode)
+                          if (beaconCode == ssid)
+                          {
+                          self.AttendanceIntime()
+                              
+                              }
+                          else
+                          {
                             
-                            let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
-                                               print("beaconMapDtolist---",beaconMapDtolistArray)
-                                               for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
-                                               {
-                                                   var MainDict:NSMutableDictionary = NSMutableDictionary()
-                                                   var beaconCode = ""
-                                                   beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
-                                                   print(" beaconCode--",beaconCode)
-                                                   
-                                                   if (beaconCode == ssid)
-                                                   {
-                                                       self.AttendanceIntime()
-                                                   }
-                                                   else
-                                                   {
-                                                       let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
-                                                       alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                                       self.present(alert, animated: true, completion: nil)
-                                                   }
+                        let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
+                          alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                          self.present(alert, animated: true, completion: nil)
+                            }
+                                      }
+                                      
+                                      }
+                              }
+                          }
+                        
                     }
+
                     
-                    }
-            }
-        }
     }
     task.resume()
     }
@@ -626,101 +638,117 @@ MovementOUT_Update()		}
     func BeaconListAttendance_OUT()
     {
         let defaults = UserDefaults.standard
-        RetrivedcustId = defaults.integer(forKey: "custId")
-        print("Beacon list RetrivedcustId----",RetrivedcustId)
-        RetrivedempId = defaults.integer(forKey: "empId")
-        print("Beacon list RetrivedempId----",RetrivedempId)
-    let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-    
-    let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
-    
-    //create the session object
-    let session = URLSession.shared
-    
-    //now create the URLRequest object using the url object
-    var request = URLRequest(url: url as URL)
-    request.httpMethod = "POST" //set http method as POST
-    
-    do {
-        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-    } catch let error {
-        print(error.localizedDescription)
-    }
-    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-    request.addValue("application/json", forHTTPHeaderField: "Accept")
-    //create dataTask using the ses
-    //request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
-    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-        guard let data = data, error == nil else {
-            print(error?.localizedDescription ?? "No data")
-            return
+            RetrivedcustId = defaults.integer(forKey: "custId")
+            print("Beacon list RetrivedcustId----",RetrivedcustId)
+            RetrivedempId = defaults.integer(forKey: "empId")
+            print("Beacon list RetrivedempId----",RetrivedempId)
+        let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
+        
+        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+        
+        //create the session object
+        let session = URLSession.shared
+        
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url as URL)
+        request.httpMethod = "POST" //set http method as POST
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
         }
-        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-        if let responseJSON = responseJSON as? [String: Any] {
-            DispatchQueue.main.async
-                {
-                    
-                    
-                    let ssid = self.getAllWiFiNameList()
-                    print("SSID----: \(ssid)")
-                                               let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
-                     print("empBeacons...",ItemsDict)
-                    
-                    
-                    
-                    
-                    if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
-                     print("null values printed.....")
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        //create dataTask using the ses
+        //request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                DispatchQueue.main.async
+                    {
+                        
+                     let statusDic = responseJSON["status"]! as! NSDictionary
+                     print("Beacon status------",statusDic)
+                        let code = (statusDic["code"] as? NSInteger)!
+                        print("Beacon status------",code)
+
+                        
                         self.AttendanceOutime()
 
-                                                    }
+                        
+                        if(code == 200)
+                            
+                        {
+               
+                                let ssid = self.fetchSSIDInfo()
+                            print("SSID----: \(ssid)")
+                            let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
+                            print("empBeacons...",ItemsDict)
+                                        
+                            if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
+                                
+                                print("null values printed.....")
+
+                            self.AttendanceOutime()
+
+                            
+                        }
                         else
                         {
-                    print("Normal values printed....")
+
+                                  print("Normal values...")
+                              let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
+                              print("beaconMapDtolist---",beaconMapDtolistArray)
+                              for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
+                              {
+                              var MainDict:NSMutableDictionary = NSMutableDictionary()
+                              var beaconCode = ""
+                              beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
+                              print(" beaconCode--",beaconCode)
+                              if (beaconCode == ssid)
+                              {
+                              self.AttendanceOutime()
+                                  
+                                  }
+                              else
+                              {
+                                
+                            let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
+                              alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                              self.present(alert, animated: true, completion: nil)
+                                }
+                                          }
+                                          
+                                          }
+                                  }
+                              }
                             
-                            let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
-                                               print("beaconMapDtolist---",beaconMapDtolistArray)
-                                               for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
-                                               {
-                                                   var MainDict:NSMutableDictionary = NSMutableDictionary()
-                                                   var beaconCode = ""
-                                                   beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
-                                                   print(" beaconCode--",beaconCode)
-                                                   
-                                                   if (beaconCode == ssid)
-                                                   {
-                                                       self.AttendanceOutime()
-                                                   }
-                                                   else
-                                                   {
-                                                       let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
-                                                       alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-                                                       self.present(alert, animated: true, completion: nil)
-                                                   }
-                    }
-                    
-                    }
+                        }
+
+                        
+        }
+        task.resume()
+    }
+        
+    func fetchSSIDInfo() -> String? {
+        var ssid: String?
+        if let interfaces = CNCopySupportedInterfaces() as NSArray? {
+            for interface in interfaces {
+                if let interfaceInfo = CNCopyCurrentNetworkInfo(interface as! CFString) as NSDictionary? {
+                    ssid = interfaceInfo[kCNNetworkInfoKeySSID as String] as? String
+                    break
+                }
             }
         }
+        return ssid
     }
-    task.resume()
-    }
     
     
-    
-    
-     func getAllWiFiNameList() -> String? {
-               var ssid: String?
-               if let interfaces = CNCopySupportedInterfaces() as NSArray? {
-               for interface in interfaces {
-               if let interfaceInfo = CNCopyCurrentNetworkInfo(interface as! CFString) as NSDictionary? {
-                           ssid = interfaceInfo[kCNNetworkInfoKeySSID as String] as? String
-                           break
-                       }
-                   }
-               }
-               return ssid
-           }
     
     
 	

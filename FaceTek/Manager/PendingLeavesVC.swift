@@ -338,7 +338,7 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                         DispatchQueue.main.async {
                             
                             self.PendingLeavesAPI()
-                                                       self.PendingLeaves_AcceptView.isHidden = true
+                        self.PendingLeaves_RejectView.isHidden = true
 
                             let alert = UIAlertController(title: "Alert", message: "Leave Rejected", preferredStyle: UIAlertControllerStyle.alert)
                                 alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
