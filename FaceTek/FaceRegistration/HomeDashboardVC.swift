@@ -101,7 +101,6 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	var RetrivedcustId = Int()
 	var RetrivedempId = Int()
 	
-	
 	//    var HomeDashboardNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	var HomeDashboardNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
@@ -119,15 +118,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         //Loading Mobile number and company name
         RefreshLoadingData()
         
-        
-		
         ContactusText.isEditable = false
-
-        
 		UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial", size:14)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
-		
-		
-		
 		
 		LeaveStatusBtn.isHidden = true
 		//        self.LeaveStatusBtn.setImage(UIImage(named: "cancel.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -143,10 +135,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 			
 		}
 		
-		
-		
 		defaults.set(self.RetrivedempId, forKey: "RetrivedFaceid")
-		
 		menu.layer.shadowOffset = .zero
 		menu.layer.shadowColor = UIColor.gray.cgColor
 		menu.layer.shadowRadius = 0

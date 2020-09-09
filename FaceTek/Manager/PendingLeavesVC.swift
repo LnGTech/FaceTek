@@ -336,10 +336,15 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                         print("Reject Leaves Json Response",responseJSON)
                         
                         DispatchQueue.main.async {
+                            
+                            self.PendingLeavesAPI()
+                                                       self.PendingLeaves_AcceptView.isHidden = true
 
-                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-                        self.present(UITabBarController, animated:true, completion:nil);                        
+                            let alert = UIAlertController(title: "Alert", message: "Leave Rejected", preferredStyle: UIAlertControllerStyle.alert)
+                                alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+                                self.present(alert, animated: true, completion: nil)
+                            
+                                        
                         }
                     }
                 }
@@ -397,10 +402,11 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                         DispatchQueue.main.async
                         {
                            
-                        
-                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-                        self.present(UITabBarController, animated:true, completion:nil)
+                            self.PendingLeavesAPI()
+                            self.PendingLeaves_AcceptView.isHidden = true
+//                        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//                        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+//                        self.present(UITabBarController, animated:true, completion:nil)
                         
                          
                         }
