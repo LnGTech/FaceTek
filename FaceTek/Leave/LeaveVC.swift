@@ -35,8 +35,10 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     var brNamestr = String()
     private var isAlreadyLoaddropdowndata = false
     private var cleardata = false
-    
-    
+    var RefreshemployeeNam : String = ""
+    var RefreshbrName : String = ""
+    var RetrivedCustmercode : String = ""
+
     
     @IBOutlet weak var CompanyNameLbl: UILabel!
     @IBOutlet weak var UserNameLbl: UILabel!
@@ -69,6 +71,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        RefreshLoadingData()
         
         ContactUsadrstextview.isEditable = false
 
@@ -145,11 +149,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         //print("RetrivedMobileNumber-----",RetrivedMobileNumber)
         MobilenumberLbl.text = RetrivedMobileNumber
         
-        Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
-        UserNameLbl.text = Employeenamestr
-        
-        brNamestr = defaults.string(forKey: "brName") ?? ""
-        print("brNamestr-----",brNamestr)
+//        Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
+//        UserNameLbl.text = Employeenamestr
+//
+//        brNamestr = defaults.string(forKey: "brName") ?? ""
+       // print("brNamestr-----",brNamestr)
         CompanyNameLbl.text = brNamestr
         self.button = HamburgerButton(frame: CGRect(x: 0, y: 0, width: 46, height: 46))
         self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
@@ -554,14 +558,26 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         let Leaveselect = self.SelectLeaveTypeTxtfield.text
         let Remark = self.RemarkTextview.text
 
-         
+         if (Fromtxt == "")
+         {
 
-        if (Fromtxt == "" || Totxt == "" || SelectLeaveTypeTxtfield.text == "" ){
+       // if (Fromtxt == "" || Totxt == "" || SelectLeaveTypeTxtfield.text == "" ){
                let alert = UIAlertController(title: "Error", message: "Fill up  all mandatory fields", preferredStyle: UIAlertController.Style.alert)
                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
                self.present(alert, animated: true, completion: nil)
                return
            }
+         else if (SelectLeaveTypeTxtfield.text == "")
+         {
+            
+            let alert = UIAlertController(title: "Error", message: "Select Leave Type", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            return
+
+         }
+
+    
            else {
             
 
@@ -764,5 +780,64 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 
 
     }
+    func RefreshLoadingData()
+    {
+        
+        RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
+        print("RetrivedMobileNumber-----",RetrivedMobileNumber)
+        RetrivedCustmercode = UserDefaults.standard.string(forKey: "Custmercode") ?? ""
+        print("RetrivedCustmercode-----",RetrivedCustmercode)
+        
+        
+        let parameters = ["custCode":RetrivedCustmercode as Any,
+                          "empMobile":RetrivedMobileNumber as Any] as [String : Any]
+        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
+        
+        self.customActivityIndicatory(self.view, startAnimate: true)
+        
+        //create the session object
+        let session = URLSession.shared
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url as URL)
+        request.httpMethod = "POST" //set http method as POST
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                print("Refresh Json Response",responseJSON)
+                
+                DispatchQueue.main.async
+                    {
+                        let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
+                        self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
+                        print("Refresh employeeName",self.RefreshemployeeNam)
+                        
+                        self.RefreshbrName = (ItemsDict["brName"] as? String)!
+                        print("Refresh brName",self.RefreshbrName)
+                        self.UserNameLbl.text = self.RefreshemployeeNam
+                        
+                        print("brNamestr-----",self.brNamestr)
+                        self.CompanyNameLbl.text = self.RefreshbrName
+                        
+                }
+            }    }
+        task.resume()
+        
+    }
+    
     
 }

@@ -32,6 +32,10 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	var empAttndOutDateTime : String = ""
 	var currentDatestr : String = ""
 	var RetrivedMobileNumber : String = ""
+    var RetrivedCustmercode : String = ""
+    var RefreshemployeeNam : String = ""
+    var RefreshbrName : String = ""
+
 	var Employeenamestr : String = ""
 	var brNamestr : String = ""
 	var Facename : String = ""
@@ -100,7 +104,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
         
         
                  
-        
+        RefreshLoadingData()
         
         ContactTextView.isEditable = false
 		customActivityIndicatory(self.view, startAnimate: false)
@@ -144,11 +148,11 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 		//        RetrivedMobileNumber = defaults.string(forKey: "Mobilenum")!
 		//        print("RetrivedMobileNumber-----",RetrivedMobileNumber)
 		MobilenumberLbl.text = RetrivedMobileNumber
-		Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
-		UserNameLbl.text = Employeenamestr
-		brNamestr = defaults.string(forKey: "brName") ?? ""
-		print("brNamestr-----",brNamestr)
-		CompanyNameLbl.text = brNamestr
+		//Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
+//		UserNameLbl.text = Employeenamestr
+//		brNamestr = defaults.string(forKey: "brName") ?? ""
+//		print("brNamestr-----",brNamestr)
+//		CompanyNameLbl.text = brNamestr
 		self.button = HamburgerButton(frame: CGRect(x: 0, y: 0, width: 46, height: 46))
 		self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
 		
@@ -1978,6 +1982,67 @@ MovementOUT_Update()		}
 		}
 		return activityIndicatorView
 	}
+    
+    
+    func RefreshLoadingData()
+    {
+        
+        RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
+        print("RetrivedMobileNumber-----",RetrivedMobileNumber)
+        RetrivedCustmercode = UserDefaults.standard.string(forKey: "Custmercode") ?? ""
+        print("RetrivedCustmercode-----",RetrivedCustmercode)
+        
+        
+        let parameters = ["custCode":RetrivedCustmercode as Any,
+                          "empMobile":RetrivedMobileNumber as Any] as [String : Any]
+        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
+        
+        self.customActivityIndicatory(self.view, startAnimate: true)
+        
+        //create the session object
+        let session = URLSession.shared
+        //now create the URLRequest object using the url object
+        var request = URLRequest(url: url as URL)
+        request.httpMethod = "POST" //set http method as POST
+        
+        do {
+            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+        } catch let error {
+            print(error.localizedDescription)
+        }
+        
+        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard let data = data, error == nil else {
+                print(error?.localizedDescription ?? "No data")
+                return
+            }
+            
+            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+            if let responseJSON = responseJSON as? [String: Any] {
+                print("Refresh Json Response",responseJSON)
+                
+                DispatchQueue.main.async
+                    {
+                        let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
+                        self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
+                        print("Refresh employeeName",self.RefreshemployeeNam)
+                        
+                        self.RefreshbrName = (ItemsDict["brName"] as? String)!
+                        print("Refresh brName",self.RefreshbrName)
+                        self.UserNameLbl.text = self.RefreshemployeeNam
+                        
+                        print("brNamestr-----",self.brNamestr)
+                        self.CompanyNameLbl.text = self.RefreshbrName
+                        
+                }
+            }    }
+        task.resume()
+        
+    }
+    
 	
 }
 

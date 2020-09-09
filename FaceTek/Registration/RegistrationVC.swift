@@ -199,6 +199,7 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         UserDefaults.standard.set(self.brName, forKey: "brName")
         UserDefaults.standard.set(self.empPresistedFaceId, forKey: "empPresistedFaceId")
         UserDefaults.standard.set(self.MobilenumTxt.text, forKey: "Mobilenum")
+        UserDefaults.standard.set(self.CustmercodeTxt.text, forKey: "Custmercode")
         self.customActivityIndicatory(self.view, startAnimate: false)
         print("face else RetrivedFacestr-------",self.RetrivedFacestr)
         UserDefaults.standard.set(self.RetrivedFacestr, forKey: "Facestr")
@@ -335,6 +336,8 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
                             UserDefaults.standard.set(self.brName, forKey: "brName")
                             
                             UserDefaults.standard.set(self.MobilenumTxt.text, forKey: "Mobilenum")
+                            UserDefaults.standard.set(self.CustmercodeTxt.text, forKey: "Custmercode")
+                            
                             
                             //                        let def = UserDefaults.standard
                             //                        def.set(true, forKey: "empPresistedFaceId") // save true flag to UserDefaults
