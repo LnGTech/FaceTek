@@ -14,7 +14,8 @@ import SystemConfiguration.CaptiveNetwork
 
 class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSource,UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout {
 	
-	
+	let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    var timer = Timer()
 	
 	var MainDict:NSMutableDictionary = NSMutableDictionary()
 	
@@ -35,6 +36,7 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
     var RetrivedCustmercode : String = ""
     var RefreshemployeeNam : String = ""
     var RefreshbrName : String = ""
+    private var FrefeshAttendanceScreen = false
 
 	var Employeenamestr : String = ""
 	var brNamestr : String = ""
@@ -102,7 +104,8 @@ class AttendanceVC: UIappViewController,UITableViewDelegate,UITableViewDataSourc
 	override func viewDidLoad() {
 		super.viewDidLoad()
         
-        
+        startLoadingSpinner()
+               timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
                  
         RefreshLoadingData()
         
@@ -578,6 +581,11 @@ MovementOUT_Update()		}
                     let code = (statusDic["code"] as? NSInteger)!
                     print("Beacon status------",code)
                     self.AttendanceIntime()
+                    
+                    let defaults = UserDefaults.standard
+                    UserDefaults.standard.set("GeneralMode", forKey: "Mode")
+
+                    
                     if(code == 200)
                         
                     {
@@ -679,6 +687,9 @@ MovementOUT_Update()		}
 
                         
                         self.AttendanceOutime()
+                        let defaults = UserDefaults.standard
+                        //UserDefaults.standard.set("GeneralMode", forKey: "Mode")
+
 
                         
                         if(code == 200)
@@ -713,6 +724,8 @@ MovementOUT_Update()		}
                               if (beaconCode == ssid)
                               {
                               self.AttendanceOutime()
+                                UserDefaults.standard.set("BeaconeMode", forKey: "Mode")
+
                                   
                                   }
                               else
@@ -1266,11 +1279,7 @@ MovementOUT_Update()		}
 		EmergencyTimeoutview.isHidden = true
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		// Hide the navigation bar on the this view controller
-		self.navigationController?.setNavigationBarHidden(true, animated: animated)
-	}
+	
 	
 	//MovementIn
     
@@ -2071,7 +2080,40 @@ MovementOUT_Update()		}
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
+
+        if FrefeshAttendanceScreen {
+            
+            
+            startLoadingSpinner()
+                   timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
+            return
+        }
+        FrefeshAttendanceScreen = true
+
+    }
 	
+    
+    func startLoadingSpinner(){
+        activityIndicator.frame = self.view.frame
+        activityIndicator.center = self.view.center
+        activityIndicator.backgroundColor = .clear
+        activityIndicator.alpha = 0.8
+        activityIndicator.color = .gray
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+    }
+    @objc func stopLoadingSpinner() {
+        self.activityIndicator.stopAnimating()
+    }
+
+    
 }
 
 

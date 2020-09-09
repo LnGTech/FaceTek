@@ -38,6 +38,8 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
   
     var latstr : String = ""
     var longstr : String = ""
+    var ConfidanceMode : String = ""
+
 
     
     
@@ -278,6 +280,11 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
         Facename = "xxxxx"
         
         RetrivedLuxandIntimestr =  UserDefaults.standard.string(forKey:"LuxandIntime") ?? ""
+        
+       // UserDefaults.standard.set("GeneralMode", forKey: "Mode")
+
+                ConfidanceMode = defaults.string(forKey: "Mode") ?? ""
+        print("ConfidanceMode-----",self.ConfidanceMode)
         
         print("RetrivedLuxandIntimestr----",RetrivedLuxandIntimestr)
         Employeenamestr = defaults.string(forKey: "employeeName")!
@@ -1188,7 +1195,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
         
         
         print("Latlon values in Login----------",RetrivedempId)
-        let parameters = [["refEmpId": RetrivedLatlongempId ,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "B","empAttendanceInDatetime": "","empAttendanceInConfidence":"0","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
+        let parameters = [["refEmpId": RetrivedLatlongempId ,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": "","empAttendanceInConfidence":"0","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
         
         let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN")!
         

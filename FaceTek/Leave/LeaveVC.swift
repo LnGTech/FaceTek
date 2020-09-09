@@ -17,7 +17,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     var customSubView = UIView()
     var validation = ()
 
-    
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    var timer = Timer()
+
     @IBOutlet weak var SelectLeaveTypeTxtfield: UITextField!
     @IBOutlet weak var LeavesLbl: UILabel!
     @IBOutlet weak var DropdownBackview: UIView!
@@ -71,6 +73,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        startLoadingSpinner()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
+
+        
         
         RefreshLoadingData()
         
@@ -763,22 +770,17 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             RemarkTextview.text = "Reason"
             RemarkTextview.textColor = UIColor.lightGray
             RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+            
+            startLoadingSpinner()
+                   timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
             return
         }
         cleardata = true
-
-
-//        LeaveTypetxt.text = " select Type"
-//        Fromtxt.text = ""
-//
 
         RemarkTextview.text = nil
         RemarkTextview.text = "Reason"
         RemarkTextview.textColor = UIColor.lightGray
         RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
-
-
-
     }
     func RefreshLoadingData()
     {
@@ -838,6 +840,22 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         task.resume()
         
     }
+    
+    func startLoadingSpinner(){
+        activityIndicator.frame = self.view.frame
+        activityIndicator.center = self.view.center
+        activityIndicator.backgroundColor = .clear
+        activityIndicator.alpha = 0.8
+        activityIndicator.color = .gray
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+    }
+    @objc func stopLoadingSpinner() {
+        self.activityIndicator.stopAnimating()
+    }
+    
     
     
 }

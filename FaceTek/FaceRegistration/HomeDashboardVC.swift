@@ -10,6 +10,9 @@ import UIKit
 
 class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 	
+    let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
+    var timer = Timer()
+    
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var stackView: UIStackView!
 	
@@ -41,7 +44,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	@IBOutlet weak var ContactUsView: UIView!
 	@IBOutlet weak var ContactusText: UITextView!
 	@IBOutlet weak var HomeDashboatdtbl: UITableView!
-	
+    private var FrefeshAttendanceScreen = false
+
 	var isMenuVisible:Bool!
 	var IntimedateString : String = ""
 	var empAttndInDateTime : String = ""
@@ -113,7 +117,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-        
+        startLoadingSpinner()
+        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
         
         //Loading Mobile number and company name
         RefreshLoadingData()
@@ -1017,10 +1022,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		return activityIndicatorView
 	}
 	
-	override func viewWillAppear(_ animated: Bool) {
-		super.viewWillAppear(animated)
-		setNeedsStatusBarAppearanceUpdate()
-	}
+	
     
     func RefreshLoadingData()
     {
@@ -1081,6 +1083,39 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        setNeedsStatusBarAppearanceUpdate()
+
+
+        if FrefeshAttendanceScreen {
+            
+            
+            startLoadingSpinner()
+                   timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
+            return
+        }
+        FrefeshAttendanceScreen = true
+
+    }
+    
+    
+    func startLoadingSpinner(){
+        activityIndicator.frame = self.view.frame
+        activityIndicator.center = self.view.center
+        activityIndicator.backgroundColor = .clear
+        activityIndicator.alpha = 0.8
+        activityIndicator.color = .gray
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
+        activityIndicator.hidesWhenStopped = true
+        self.view.addSubview(activityIndicator)
+    }
+    @objc func stopLoadingSpinner() {
+        self.activityIndicator.stopAnimating()
+    }
+
     
 	
 }
