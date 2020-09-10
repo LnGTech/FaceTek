@@ -53,6 +53,7 @@
 		7447221224BF117400CD06BA /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 7447221124BF117400CD06BA /* cancel.png */; };
 		7447702924CF1A2900EFBB2F /* EarlyLeaverscell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7447702724CF1A2900EFBB2F /* EarlyLeaverscell.swift */; };
 		7447702A24CF1A2900EFBB2F /* EarlyLeaverscell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7447702824CF1A2900EFBB2F /* EarlyLeaverscell.xib */; };
+		744774D1250A3484008266D4 /* Baseurl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744774D0250A3484008266D4 /* Baseurl.swift */; };
 		7448549524AF1C5500F36A99 /* LogOutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448549424AF1C5500F36A99 /* LogOutVC.swift */; };
 		7449F96D24AE284900232D46 /* LogINVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449F96C24AE284900232D46 /* LogINVC.swift */; };
 		744B18B424CEB1B6004FB334 /* no_leves_found.png in Resources */ = {isa = PBXBuildFile; fileRef = 744B18B324CEB1B6004FB334 /* no_leves_found.png */; };
@@ -226,6 +227,7 @@
 		7447221124BF117400CD06BA /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
 		7447702724CF1A2900EFBB2F /* EarlyLeaverscell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaverscell.swift; sourceTree = "<group>"; };
 		7447702824CF1A2900EFBB2F /* EarlyLeaverscell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarlyLeaverscell.xib; sourceTree = "<group>"; };
+		744774D0250A3484008266D4 /* Baseurl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baseurl.swift; sourceTree = "<group>"; };
 		7447B3F12504F4A4001C54BC /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7448549424AF1C5500F36A99 /* LogOutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutVC.swift; sourceTree = "<group>"; };
 		7449F96C24AE284900232D46 /* LogINVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogINVC.swift; sourceTree = "<group>"; };
@@ -619,6 +621,7 @@
 				74FA123124AC689800A356E7 /* FaceSDK */,
 				74FA122C24AC687F00A356E7 /* Shaders */,
 				7424A04624AC6AFB000B466F /* AppDelegate.swift */,
+				744774D0250A3484008266D4 /* Baseurl.swift */,
 				7449F96C24AE284900232D46 /* LogINVC.swift */,
 				7448549424AF1C5500F36A99 /* LogOutVC.swift */,
 				74FA123724AC68BD00A356E7 /* RecognitionViewController.swift */,
@@ -1020,6 +1023,7 @@
 				7447702924CF1A2900EFBB2F /* EarlyLeaverscell.swift in Sources */,
 				74F5D124243758D400D6E811 /* SMRippleView.swift in Sources */,
 				7429321B24498B7000C59157 /* AppManager.swift in Sources */,
+				744774D1250A3484008266D4 /* Baseurl.swift in Sources */,
 				7424A04724AC6AFB000B466F /* AppDelegate.swift in Sources */,
 				74F07AC024B0BE7E000E6924 /* AttendanceInDB.swift in Sources */,
 				74D9986B2434621200DFCBEC /* FaceTek.xcdatamodeld in Sources */,

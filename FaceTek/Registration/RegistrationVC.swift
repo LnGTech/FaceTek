@@ -222,7 +222,20 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         
         let parameters = ["custCode":CustmercodeTxt.text as Any,
                           "empMobile":MobilenumTxt.text as Any] as [String : Any]
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
+        
+		Baseurl.shared().baseURL
+		print("Base url point",Baseurl.shared().baseURL)
+
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile"
+		var RegesterAPI = "\(StartPoint)\(Endpoint)"
+		print("Register API ",RegesterAPI)
+		
+		let url: NSURL = NSURL(string:RegesterAPI)!
+		print("url----",url)
+		
+		
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
         
         self.customActivityIndicatory(self.view, startAnimate: true)
         
