@@ -821,8 +821,14 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
                           "empAndriodVersion": "9" as Any,
                           "employeePic":"base64 converted String" as Any]
         
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/updateEmpAppStatus")!
+        //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/updateEmpAppStatus")!
         
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/setup/updateEmpAppStatus"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		
+		
         //now create the URLRequest object using the url object
         var request = URLRequest(url: url as URL)
         request.httpMethod = "POST" //set http method as POST

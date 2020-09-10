@@ -1197,7 +1197,12 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
         print("Latlon values in Login----------",RetrivedempId)
         let parameters = [["refEmpId": RetrivedLatlongempId ,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": "","empAttendanceInConfidence":"0","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
         
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN")!
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		
+        //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN")!
         
         //create the session object
         let session = URLSession.shared

@@ -137,7 +137,12 @@ class LatecomersVC: UIViewController,UITextFieldDelegate,UITableViewDelegate,UIT
         //create the url with URL
         //let url = URL(string: "https://www.webliststore.biz/app_api/api/authenticate_user")! //change the url
         //let url: NSURL = NSURL(string:"http://122.166.152.106:8081/attnd-api-gateway-service/api/customer/employee/setup/updateEmpAppStatus ")!
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/getlateComersDetails")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/setup/getlateComersDetails"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+        //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/getlateComersDetails")!
         //http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
         //create the session object
         let session = URLSession.shared

@@ -162,7 +162,14 @@ class ManagerLeavesVC: UIViewController,UITextFieldDelegate,UITableViewDelegate,
         //        "empAndriodVersion":"9",
         //        "employeePic":" base64 converted String "
         let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any, "dates": ConvertedCurrentDatestr as Any] as [String : Any]
-         let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/getAppLeaveEmployeeDetails")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/setup/getAppLeaveEmployeeDetails"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		
+		
+         //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/getAppLeaveEmployeeDetails")!
         //http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
         //create the session object
         let session = URLSession.shared

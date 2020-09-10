@@ -380,8 +380,16 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         print("calling API Dropdown data")
         let parameters = [
             "custId": RetrivedcustId] as [String : Any]
-        let url: NSURL = NSURL(string: "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getLeaveListByCustId")!
+        //let url: NSURL = NSURL(string: "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getLeaveListByCustId")!
         
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint1 = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getLeaveListByCustId"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint1)")!
+
+		
+		
         
         //http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
         customActivityIndicatory(self.view, startAnimate: true)
@@ -589,8 +597,15 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             
 
                     let parameters = ["empId": RetrivedempId as Any,"custLeaveId": custLeaveId as Any,"empLeaveFrom": Fromdatestr as Any,"empLeaveTo": Todatestr as Any,"empLeaveRemarks":RemarkTextview.text as Any] as [String : Any]
-                    let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/apply")!
+                    //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/apply")!
             
+			var StartPoint = Baseurl.shared().baseURL
+			var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/apply"
+			
+			let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
+			
+			
+			
                     self.customActivityIndicatory(self.view, startAnimate: true)
                     //create the session object
                     let session = URLSession.shared
@@ -793,7 +808,14 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         
         let parameters = ["custCode":RetrivedCustmercode as Any,
                           "empMobile":RetrivedMobileNumber as Any] as [String : Any]
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint3 = "/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint3)")!
+		
+		
+        //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
         
         self.customActivityIndicatory(self.view, startAnimate: true)
         

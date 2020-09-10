@@ -1073,8 +1073,14 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
         
         let parameters = [["refEmpId": RetrivedLatlongempId ,"empAttendanceDate": EmpAttendancedateString,"empAttendanceOutMode": "G","empAttendanceOutDatetime": "","empAttendanceOutConfidence": "0","empAttendanceOutLatLong":empAttendanceInLatLongstr,"empAttendanceOutLocation":address] as [String : Any]]
         
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkOUT")!
-        
+       // let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkOUT")!
+        var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkOUT"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		
+		
+		
         //create the session object
         let session = URLSession.shared
         

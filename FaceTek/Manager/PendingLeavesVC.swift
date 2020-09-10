@@ -113,7 +113,11 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         print("Leave Proceed------")
         let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any] as [String : Any]
        
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getEmpPendingLeaveByCustIdAndEmpId")!
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint1 = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getEmpPendingLeaveByCustIdAndEmpId"
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint1)")!
+		
+        //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getEmpPendingLeaveByCustIdAndEmpId")!
         //http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
         //create the session object
         let session = URLSession.shared
@@ -309,7 +313,16 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         
         let parameters = ["empLeaveId": ConvertEmpLeaveId as Any,"empId": RetrivedempId as Any,"empLeaveRejectionRemarks":RejectRemarkTextview.text as Any] as [String : Any]
                
-                let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/reject")!
+		
+		
+		
+		
+                //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/reject")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/reject"
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
+		
         
                 //http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
                 //create the session object
@@ -369,7 +382,12 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                
         let parameters = ["empLeaveId": ConvertEmpLeaveId as Any,"empId": RetrivedempId as Any] as [String : Any]
                
-                let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/approve")!
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint3 = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/approve"
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint3)")!
+		
+		
+                //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/approve")!
         
                 //http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
                 //create the session object
