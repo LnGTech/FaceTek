@@ -10,10 +10,7 @@ import UIKit
 import CoreLocation
 import SystemConfiguration.CaptiveNetwork
 
-
-
 class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-	
 	let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 	var timer = Timer()
 	
@@ -764,49 +761,63 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	
 	
 	func AttendanceIntime() {
-		let isempBeacon: Bool = true
-		if(isempBeacon == true) {
-			if(AppManager.sharedInstance.isReachability) {
-				BeconeMethodaAPI()
-				EmployeeSignInChecking()
-			} else {
-				DispatchQueue.main.async {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
-					self.present(OfficeInVC, animated:true, completion:nil)
-				}
-			}
+		let isInternet: Bool = true
+		if(isInternet == true) {
+			
+			BeconeMethodaAPI()
+			EmployeeSignInChecking()
 		}
+		else
+		{
+					DispatchQueue.main.async {
+						print("Office IN Internet Unavailable")
+						
+			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+			let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
+			self.present(OfficeInVC, animated:true, completion:nil)
+					}
+
+		}
+			
+			
+//			if(AppManager.sharedInstance.isReachability) {
+//				BeconeMethodaAPI()
+//				EmployeeSignInChecking()
+//			} else {
+//				DispatchQueue.main.async {
+//					print("Office IN Internet Unavailable")
+//
+//		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//		let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
+//		self.present(OfficeInVC, animated:true, completion:nil)
+//				}
+//			}
+//		}
 	}
 	
 	
 	func AttendanceOutime() {
-		var isempBeacon: Bool = true
-		if(isempBeacon == true)
-		{
-			if(AppManager.sharedInstance.isReachability)
-			{
-				
-				EmployeeSignOut_Checking()
-				BeconeMethodaAPI()
-				
-			} else {
-				DispatchQueue.main.async {
-					
-					//Response null code will execute
-					
-					//self.networkStatusLabel.text = "Network Unavailable"
-					print("Makesure connect with wifi Network Unavailable")
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
-					self.present(OfficeInVC, animated:true, completion:nil)
-					//Show Alert
-				}
-			}
+		
+		let isInternet: Bool = true
+		if(isInternet == true) {
 			
-			print("Internet code")
+			EmployeeSignOut_Checking()
+			BeconeMethodaAPI()
+		}
+		else
+		{
+					DispatchQueue.main.async {
+						print("Office IN Internet Unavailable")
+						
+			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+			let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
+			self.present(OfficeInVC, animated:true, completion:nil)
+					}
+
 		}
 	}
+		
+		
 	
 	
 	func EmployeeSignInChecking()
@@ -1088,35 +1099,25 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	}
 	
 	func EmergencyExitOutime() {
-		var isempBeacon: Bool = true
-		if(isempBeacon == true)
+		var isInternet: Bool = true
+		if(isInternet == true)
 		{
 			
-			if(AppManager.sharedInstance.isReachability)
-			{
-				
-				//API Response will coming-------
-				print("network available......")
-				
-				EmergencyOuttime_Checking()
-				BeconeMethodaAPI()
-				
-			} else {
-				DispatchQueue.main.async {
-					
-					//Response null code will execute
-					
-					print("Makesure connect with wifi Network Unavailable")
-					
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
-					self.present(OfficeInVC, animated:true, completion:nil)
-					//Show Alert
-				}
-			}
-			
-			print("Internet code")
+			EmergencyOuttime_Checking()
+			BeconeMethodaAPI()
 		}
+		
+		else
+		{
+			print("Makesure connect with wifi Network Unavailable")
+			
+			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+			let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
+			self.present(OfficeInVC, animated:true, completion:nil)
+			//Show Alert
+			
+		}
+			
 	}
 	
 	func EmergencyOuttime_Checking()
@@ -1396,86 +1397,20 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	
 	
 	func MovementIn() {
-		var isempBeacon: Bool = true
-		if(isempBeacon == true)
-		{
-			
-			if(AppManager.sharedInstance.isReachability)
-			{
-				
-				//API Response will coming-------
-				print("network available......")
-				//self.networkStatusLabel.text = "Network Available"
-				//call API from here.
-				BeconeMethodaAPI()
-				MovementIn_API()
-				//EmployeeSignInChecking()
-				//CurrentDateAttendanceMarIn()
-				
-				
-				//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				//
-				//            let AttendanceMarkIn = storyBoard.instantiateViewController(withIdentifier: "AttendanceMarkIn") as! AttendanceMarkIn
-				//            self.present(AttendanceMarkIn, animated:true, completion:nil)
-				
-			} else {
-				DispatchQueue.main.async {
-					
-					//Response null code will execute
-					
-					//self.networkStatusLabel.text = "Network Unavailable"
-					print("Makesure connect with wifi Network Unavailable")
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
-					self.present(OfficeInVC, animated:true, completion:nil)
-					//Show Alert
-				}
-			}
-			print("Internet code")
-		}
+		
+		BeconeMethodaAPI()
+		MovementIn_API()
+		
 	}
 	
 	
 	
 	func MovementOut() {
-		var isempBeacon: Bool = true
-		if(isempBeacon == true)
-		{
-			if(AppManager.sharedInstance.isReachability)
-			{
-				
-				//API Response will coming-------
-				print("network available......")
-				//self.networkStatusLabel.text = "Network Available"
-				//call API from here.
-				
-				
-				//                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				//
-				//                let AttendanceOutVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceOutVC") as! AttendanceOutVC
-				//                self.present(AttendanceOutVC, animated:true, completion:nil)
-				
-				//EmployeeSignOut_Checking()
-				BeconeMethodaAPI()
-				MovementOut_API()
-				
-			} else {
-				DispatchQueue.main.async {
-					//Response null code will execute
-					
-					//self.networkStatusLabel.text = "Network Unavailable"
-					print("Makesure connect with wifi Network Unavailable")
-					
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					
-					let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
-					self.present(OfficeInVC, animated:true, completion:nil)
-					//Show Alert
-				}
-			}
+		
+		BeconeMethodaAPI()
+		MovementOut_API()
+		
 			
-			print("Internet code")
-		}
 	}
 	
 	
