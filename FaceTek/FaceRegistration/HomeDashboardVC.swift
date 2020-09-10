@@ -505,14 +505,10 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		//let url: NSURL = NSURL(string:"http://122.166.152.106:8081/attnd-api-gateway-service/api/customer/employee/setup/updateEmpAppStatus ")!
 		
 		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
 		
-		//        let url: NSURL = NSURL(string:"http://122.166.152.106:8081/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeSummary")!
-		
-		
-		
-		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
-		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
 		
 		
 		
@@ -813,7 +809,12 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/cancel")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint1 = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/cancel"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint1)")!
+		
 		
 		
 		//http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
@@ -1035,7 +1036,12 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         
         let parameters = ["custCode":RetrivedCustmercode as Any,
                           "empMobile":RetrivedMobileNumber as Any] as [String : Any]
-        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint2 = "/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
+		
         
         self.customActivityIndicatory(self.view, startAnimate: true)
         

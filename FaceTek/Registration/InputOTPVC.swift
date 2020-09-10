@@ -145,7 +145,14 @@ class InputOTPVC: UIViewController {
 		RetrivedempId = defaults.integer(forKey: "empId")
 		print("RetrivedempId----",RetrivedempId)
 		let parameters = ["refCustId": RetrivedcustId as Any,
-						  "empId":  RetrivedempId as Any] as [String : Any];        let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/generateOtp")!
+						  "empId":  RetrivedempId as Any] as [String : Any];
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/setup/generateOtp"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		
+		
 		customActivityIndicatory(self.view, startAnimate: true)
 		
 		//create the session object

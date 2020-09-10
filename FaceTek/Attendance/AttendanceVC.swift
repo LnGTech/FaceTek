@@ -189,7 +189,14 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		//----------------------------
 		BeconeMethodaAPI()
 		
-		let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+		
+		//let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		
+		
+		let urlstring = "\(StartPoint)\(Endpoint1)"
+		print("First",urlstring)
 		let url = NSURL(string: urlstring)
 		
 		let URL:NSURL = NSURL(string: urlstring)!
@@ -443,7 +450,12 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
+		
 		
 		//create the session object
 		let session = URLSession.shared
@@ -543,7 +555,14 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		print("Beacon list RetrivedempId----",RetrivedempId)
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint2 = "106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
+
+		
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
 		
 		//create the session object
 		let session = URLSession.shared
@@ -647,7 +666,14 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		print("Beacon list RetrivedempId----",RetrivedempId)
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint3 = "attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint3)")!
+		
+		
 		
 		//create the session object
 		let session = URLSession.shared
@@ -824,7 +850,12 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint4 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint4)")!
+		
 		
 		//create the session object
 		let session = URLSession.shared
@@ -888,7 +919,14 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	func SpecificTimeRange_SignIn()
 		
 	{
-		let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+		
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint5 = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+		
+		//let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		let urlstring = "\(StartPoint)\(Endpoint5)"
+		//let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
 		let url = NSURL(string: urlstring)
 		
 		let URL:NSURL = NSURL(string: urlstring)!
@@ -944,7 +982,14 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	func EmployeeSignOut_Checking()
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint6 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint6)")!
+		
+		
 		//create the session object
 		let session = URLSession.shared
 		//now create the URLRequest object using the url object
@@ -1007,8 +1052,16 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 	{
 		
-		let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+		//let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint7 = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+		
+		//let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		let urlstring = "\(StartPoint)\(Endpoint7)"
+		
 		let url = NSURL(string: urlstring)
+		
 		let URL:NSURL = NSURL(string: urlstring)!
 		//let request: NSURLRequest = NSURLRequest(url: URL as URL)
 		var request = URLRequest(url: URL as URL)
@@ -1124,7 +1177,13 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint8 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint8)")!
 		
 		//create the session object
 		let session = URLSession.shared
@@ -1193,7 +1252,16 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 	{
 		
-		let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+		//let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint9 = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+		
+		//let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		let urlstring = "\(StartPoint)\(Endpoint9)"
+		
+		
+		
 		let url = NSURL(string: urlstring)
 		
 		let URL:NSURL = NSURL(string: urlstring)!
@@ -1282,7 +1350,14 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	{
 		
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint10 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint10)")!
+		
+		
 		//create the session object
 		let session = URLSession.shared
 		//now create the URLRequest object using the url object
@@ -1338,7 +1413,15 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	func MovementOUT_Update()
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint11 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint11)")!
+		
+		
 		//create the session object
 		let session = URLSession.shared
 		//now create the URLRequest object using the url object
@@ -1507,7 +1590,13 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		//let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint12 = "/attnd-api-gateway-service/api/customer/employee/movement/create"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint12)")!
+		
+		
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
 		
 		//http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create
 		//create the session object
@@ -1752,7 +1841,16 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		let parameters = [
 			"refEmpId": RetrivedempId] as [String : Any]
-		let url: NSURL = NSURL(string: "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/getEmpPlaceOfVisitListByEmpId")!
+		
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint13 = "/attnd-api-gateway-service/api/customer/employee/movement/getEmpPlaceOfVisitListByEmpId"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint13)")!
+		
+		
+		
+		//let url: NSURL = NSURL(string: "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/getEmpPlaceOfVisitListByEmpId")!
 		
 		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
 		//create the session object
@@ -1835,7 +1933,14 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 						  "empMovementDate": EmpAttendancedateString as Any,"empMovementMode":  "G" as Any,"empMovementDatetime":  currentDatestr as Any,"empMovementLatLong":  empAttendanceInLatLongstr as Any,"empMovementType":  "OUT" as Any,"empPlaceOfVisit":  VisitTextField.text as Any] as [String : Any]
 		
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint14 = "/attnd-api-gateway-service/api/customer/employee/movement/create"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint14)")!
+		
+
+		
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
 		//http://122.166.152.106:8080
 		
 		//create the session object
@@ -1952,7 +2057,16 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		let parameters = ["custCode":RetrivedCustmercode as Any,
 						  "empMobile":RetrivedMobileNumber as Any] as [String : Any]
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint15 = "/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint15)")!
+		
+
+		
+		
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
 		
 		self.customActivityIndicatory(self.view, startAnimate: true)
 		
