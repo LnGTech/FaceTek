@@ -781,8 +781,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
             //dottedPolyline?.spans = GMSStyleSpans(dottedPolyline?.path!, styles as! [GMSStrokeStyle], lengths as! [NSNumber], kGMSLengthRhumb)
 
             
-            
-            
             let polyline = GMSPolyline(path: path)
             polyline.strokeColor = .blue
             polyline.strokeWidth = 3.0
@@ -790,8 +788,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     
     
         }
-
-	
 }
 
 
