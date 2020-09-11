@@ -552,8 +552,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 							self.FieldVisitInbtn.isEnabled = true
                  self.PopUpView.isHidden = false
                  self.FieldvisitStatusLbl.text = "Visit IN Updated"
-							print("Visit IN Updated")
-							print("Am working field visit")
+							print("working On GoogleMap")
 
 						}
 						else
