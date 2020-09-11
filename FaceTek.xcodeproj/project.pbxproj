@@ -66,6 +66,7 @@
 		74520D3724CB1AAA001252ED /* ManagerLeavesVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3624CB1AAA001252ED /* ManagerLeavesVC.swift */; };
 		74520D3924CB1ADC001252ED /* LatecomersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3824CB1ADC001252ED /* LatecomersVC.swift */; };
 		74520D3B24CB1AF5001252ED /* EarlyLeaversVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3A24CB1AF5001252ED /* EarlyLeaversVC.swift */; };
+		7455252E250A79B800D18C3F /* facetek_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 7455252D250A79B800D18C3F /* facetek_title.png */; };
 		745D5C55247CCA7B00052FC4 /* mobile.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C54247CCA7A00052FC4 /* mobile.png */; };
 		745D5C57247CCC2F00052FC4 /* leavemanagement.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C56247CCC2C00052FC4 /* leavemanagement.png */; };
 		745D5C5F247CDA9700052FC4 /* Home_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C5E247CDA9600052FC4 /* Home_user.png */; };
@@ -242,6 +243,7 @@
 		74520D3624CB1AAA001252ED /* ManagerLeavesVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerLeavesVC.swift; sourceTree = "<group>"; };
 		74520D3824CB1ADC001252ED /* LatecomersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatecomersVC.swift; sourceTree = "<group>"; };
 		74520D3A24CB1AF5001252ED /* EarlyLeaversVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaversVC.swift; sourceTree = "<group>"; };
+		7455252D250A79B800D18C3F /* facetek_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facetek_title.png; sourceTree = "<group>"; };
 		745D5C54247CCA7A00052FC4 /* mobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobile.png; sourceTree = "<group>"; };
 		745D5C56247CCC2C00052FC4 /* leavemanagement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leavemanagement.png; sourceTree = "<group>"; };
 		745D5C5E247CDA9600052FC4 /* Home_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home_user.png; sourceTree = "<group>"; };
@@ -424,6 +426,7 @@
 			isa = PBXGroup;
 			children = (
 				744B8C7124CAC0B6004634C0 /* ManagerVC.swift */,
+				7455252D250A79B800D18C3F /* facetek_title.png */,
 				74520D3424CB1A5A001252ED /* AbsentVC.swift */,
 				7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */,
 				7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */,
@@ -877,6 +880,7 @@
 				740FA3FB247BE1FE00E4FC3D /* attendence.png in Resources */,
 				746017B42435F62800969CA2 /* user.png in Resources */,
 				740FC4EE243DB3D700F71B72 /* pending.png in Resources */,
+				7455252E250A79B800D18C3F /* facetek_title.png in Resources */,
 				746017BA2436022A00969CA2 /* login_screen_icon.png in Resources */,
 				747F8DB4243B3AAF00ABBD5E /* notification.png in Resources */,
 				740FC4F2243DF57400F71B72 /* LeaveNavigationcell.xib in Resources */,
@@ -1222,12 +1226,12 @@
 				CODE_SIGN_ENTITLEMENTS = FaceTek/Facetek.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.19;
+				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEVELOPMENT_TEAM = 6Q74B5B8Q2;
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = FaceTek/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1236,8 +1240,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FaceTek/FaceSDK",
 				);
-				MARKETING_VERSION = 1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Lng.FaceTek;
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = Lng.FaceTekupload;
 				PRODUCT_NAME = Facetek;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FaceTek/FaceTek-Bridging-Header.h";
@@ -1256,12 +1260,12 @@
 				CODE_SIGN_ENTITLEMENTS = FaceTek/Facetek.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.19;
+				CURRENT_PROJECT_VERSION = 1.0.28;
 				DEVELOPMENT_TEAM = 6Q74B5B8Q2;
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = FaceTek/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1270,8 +1274,8 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FaceTek/FaceSDK",
 				);
-				MARKETING_VERSION = 1.2;
-				PRODUCT_BUNDLE_IDENTIFIER = com.Lng.FaceTek;
+				MARKETING_VERSION = 1.3;
+				PRODUCT_BUNDLE_IDENTIFIER = Lng.FaceTekupload;
 				PRODUCT_NAME = Facetek;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "FaceTek/FaceTek-Bridging-Header.h";

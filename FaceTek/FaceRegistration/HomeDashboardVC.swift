@@ -105,8 +105,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	var RetrivedcustId = Int()
 	var RetrivedempId = Int()
 	
-	//    var HomeDashboardNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
-	var HomeDashboardNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+	    var HomeDashboardNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
+	//var HomeDashboardNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
 	
 	override func viewDidLayoutSubviews() {
@@ -946,15 +946,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 			
 			
 		}
-        else if indexPath.item == 2 {
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-            
-            let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
-            self.present(FieldVisitVC, animated:true, completion:nil)
-            
-            
-        }
-        else if indexPath.item == 6 {
+        
+        else if indexPath.item == 1 {
 			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 			
 			let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
@@ -962,7 +955,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 			
 			
 		}
-		else if indexPath.item == 7 {
+		else if indexPath.item == 2 {
 			
 			if ContactusText.isHidden {
 				//ContactUsView.isHidden = false

@@ -14,6 +14,10 @@ import Foundation
 enum API {
 
     static let baseURL = URL(string: "http://122.166.152.106:8080")!
+	
+	   // static let baseURL = URL(string: "http://52.183.137.54:8080")!
+
+	
     
 }
 

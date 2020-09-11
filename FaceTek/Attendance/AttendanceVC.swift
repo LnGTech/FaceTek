@@ -76,9 +76,9 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	@IBOutlet weak var ContactTextView: UITextView!
 	var isMenuVisible:Bool!
 	@IBOutlet weak var AttendanceNavigationtbl: UITableView!
-	// var AttendanceNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
+	 var AttendanceNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	
-	var AttendanceNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+	//var AttendanceNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
 	var MovementoutDrpTbl: UITableView  =   UITableView()
 	//var MovementOutDrpArray: [String] = ["One", "Two", "Three"]
@@ -396,21 +396,14 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 				self.present(CalendarVC, animated:true, completion:nil)
 				
 			}
-			else if indexPath.item == 2 {
-				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				
-				let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
-				self.present(FieldVisitVC, animated:true, completion:nil)
-				
-				
-			}
-			else if indexPath.item == 6 {
+			
+			else if indexPath.item == 1 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 				let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
 				self.present(FaqVC, animated:true, completion:nil)
 				
 			}
-			else if indexPath.item == 7 {
+			else if indexPath.item == 2 {
 				
 				if ContactTextView.isHidden {
 					ContactTextView.isHidden = false
@@ -557,7 +550,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		
 		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint2 = "106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
 
@@ -669,7 +662,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
 		
 		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint3 = "attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		var Endpoint3 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint3)")!
 		
