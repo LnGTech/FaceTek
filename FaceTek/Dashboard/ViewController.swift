@@ -204,7 +204,7 @@ class ViewController: UIappViewController,UICollectionViewDelegate,UICollectionV
 		switch status {
 		case .authorizedWhenInUse, .authorizedAlways:
 			print("restricted") //we have got the location access
-		case .denied, .notDetermined, .restricted:
+		case .denied, .restricted:
 			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 			let LocationPermissionVC = storyBoard.instantiateViewController(withIdentifier: "LocationPermissionVC") as! LocationPermissionVC
 			self.navigationController?.pushViewController(LocationPermissionVC, animated: true)
