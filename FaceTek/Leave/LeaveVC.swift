@@ -49,8 +49,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     @IBOutlet weak var Toview: UIView!
     @IBOutlet weak var LeaveTypeview: UIView!
     @IBOutlet weak var LeaveNavigationtbl: UITableView!
-     var LeaveNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
-    //var LeaveNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+     //var LeaveNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
+    var LeaveNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
     
     var isMenuVisible:Bool!
     @IBOutlet weak var hamburgerView: UIView!
@@ -505,15 +505,24 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
                 self.present(CalendarVC, animated:true, completion:nil)
                 
             }
+				
+				else if indexPath.item == 2 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+					
+					let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
+					self.present(FieldVisitVC, animated:true, completion:nil)
+					
+					
+				}
             
-            else if indexPath.item == 1 {
+            else if indexPath.item == 6 {
                 let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
                 let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
                 self.present(FaqVC, animated:true, completion:nil)
                 
                 
             }
-            else if indexPath.item == 2 {
+            else if indexPath.item == 7 {
                 
                 if ContactUsView.isHidden {
                     ContactUsView.isHidden = false
