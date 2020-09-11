@@ -4000,7 +4000,7 @@
                                                             <constraint firstAttribute="height" constant="125" id="vth-C4-uMg"/>
                                                         </constraints>
                                                     </view>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Visit Out Started" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I23-mn-4EW">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I23-mn-4EW">
                                                         <rect key="frame" x="0.0" y="153" width="192" height="21"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                                         <nil key="textColor"/>
@@ -4145,6 +4145,7 @@
                         <outlet property="DrpDownview" destination="vRs-Jl-fnW" id="aBn-Du-3cP"/>
                         <outlet property="FieldVisitInbtn" destination="KqN-hj-9Xl" id="xfR-80-8AA"/>
                         <outlet property="FieldvisitBckview" destination="IKi-KG-WXg" id="A7d-fM-72o"/>
+                        <outlet property="FieldvisitStatusLbl" destination="I23-mn-4EW" id="LZw-38-9Ul"/>
                         <outlet property="Fieldvisitoutbtn" destination="VMs-aT-W6I" id="6BU-H3-0RP"/>
                         <outlet property="PopUpView" destination="Fd8-w7-C8N" id="uuY-Wh-Cm6"/>
                         <outlet property="SelectPlaceDrptble" destination="cjw-ab-2gF" id="3hl-Rr-qZg"/>
