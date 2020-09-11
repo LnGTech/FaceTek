@@ -553,6 +553,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
                  self.PopUpView.isHidden = false
                  self.FieldvisitStatusLbl.text = "Visit IN Updated"
 							print("Visit IN Updated")
+							print("Am working field visit")
 
 						}
 						else
