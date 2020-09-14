@@ -777,7 +777,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if cleardata {
+        
+		if cleardata {
             //LeaveTypetxt.text = " Select Type"
             Fromtxt.text = nil
             Fromtxt.placeholder = "From"
