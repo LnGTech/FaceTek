@@ -680,7 +680,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		var OriginAddress = ""
 		OriginAddress = (Field_trackDic["outFromAddress"] as? String)!
                             
-	var LanlongArray:NSMutableArray = NSMutableArray()
+			let LanlongArray:NSMutableArray = NSMutableArray()
 
 	var DestinationAddress = ""
     DestinationAddress = (Field_trackDic["inAddress"] as? String)!
@@ -691,42 +691,66 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			MainDict.setObject(DestinationInLatlong, forKey: "inLatLong" as NSCopying)
 			print(" DestinationInLatlong.....",DestinationInLatlong)
 			
-			
-						
 			LanlongArray.add(MainDict)
 			print("LanlongArray----",LanlongArray)
-			
-			
 
 			
-	let marker = GMSMarker()
+			//let coordinates = "[[39.86475483576405,-75.53281903266907], [39.864688955564304,-75.53292632102966], [39.86455719497505,-75.53300142288208], [39.86440072894666,-75.5330228805542], [39.8642689678039,-75.53295850753784], [39.863305456757146,-75.53223967552185], [39.86303369478483,-75.53266882896423]]"
+			// Remove the brackets and spaces
+			let clean = DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
+			// Split the comma separated strings into an array
+			let values = clean.components(separatedBy: ",")
+			var coords = [CLLocation]()
+			for i in stride(from: 0, to: values.count, by: 2) {
+				// Pull out each pair and convert to Doubles
+				if let lat = Double(values[i]),
+					let long = Double(values[i+1]) {
+					let coord = CLLocation(latitude: lat, longitude: long)
+					coords.append(coord)
+					
+					print("Lats......",lat)
+					print("Longs......",long)
+					let marker = GMSMarker()
+							//let convertedlat = Double(self.latstr)
+							//let convertedlong = Double(self.longstr)
+					let newPosition = CLLocationCoordinate2D(latitude: lat, longitude: long)
+							marker.position = newPosition
+							marker.title = DestinationAddress
+							marker.map = self.mapView
+					
+					
 
+					print("Latlongs...",coord)
+					print("Latlong...",coords.append(coord))
+				}
+			}
+			
+			
 	
-	let pins = DestinationInLatlong.components(separatedBy: ",")//first step is splitting the fetched array to pins array
-			print("pins....",pins)
-
-			
-			
-			
-			
-		var LocationsArray = [CLLocationCoordinate2D]()
-		for location in pins {
-		if(location.contains(","))
-		{
-			
-	   let coordinates = location.components(separatedBy: ",")
-		let lattitudeValue = Double(coordinates[0]) ?? 0.0
-		let longitudeValue = Double( coordinates[1]) ?? 0.0
-		print("latArray",lattitudeValue)
-			print("longArray",longitudeValue)
-
-	LocationsArray.append(CLLocationCoordinate2D(latitude: lattitudeValue
-					,longitude: longitudeValue))
-			
-			print("LocationsArray...",LocationsArray)
-
-					}
-			
+//	let pins = DestinationInLatlong.components(separatedBy: ",")//first step is splitting the fetched array to pins array
+//			print("pins....",pins)
+//
+//		var LocationsArray = [CLLocationCoordinate2D]()
+//		for location in pins {
+//
+//
+//	   let coordinates = location.components(separatedBy: ",")
+//
+//			let lattitudeValue = Double(coordinates[0]) ?? 0.0
+//			let longitudeValue = Double( coordinates[1]
+//
+//
+//		print("latArray",lattitudeValue)
+//			print("longArray",longitudeValue)
+//
+//	LocationsArray.append(CLLocationCoordinate2D(latitude: lattitudeValue
+//					,longitude: longitudeValue))
+//
+//			print("LocationsArray...",LocationsArray)
+//
+//
+//			}
+//
 							
 							
 //
@@ -747,7 +771,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     print("TrackempVisitId----",self.TrackempVisitId)
     let fieldVisitTrackDetailsArray = Field_trackDic["fieldVisitTrackDetails"] as! NSArray
     print("fieldVisitTrackDetails--",fieldVisitTrackDetailsArray)
-						}
+						
 				}
 			}
 		}
