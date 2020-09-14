@@ -585,52 +585,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 							
 							self.FieldVisitIn_PopupView.isHidden = false
 							
-							
-//							let message = statusDic["message"] as! NSString
-//							//Leave PopUp method calling
-//
-//							self.customView1.frame = CGRect.init(x: 50, y: 50, width: 230, height: 300)
-//							self.customView1.backgroundColor = UIColor.white
-//							self.customView1.center = self.view.center
-//							self.view.addSubview(self.customView1)
-//							self.customSubView1.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
-//							self.customSubView1.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-//							let shadowPath = UIBezierPath(rect: self.customView1.bounds)
-//							self.customView1.layer.masksToBounds = false
-//							self.customView1.layer.shadowColor = UIColor.darkGray.cgColor
-//							self.customView1.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-//							self.customView1.layer.shadowOpacity = 0.8
-//							self.customView1.layer.shadowPath = shadowPath.cgPath
-//							self.customView1.addSubview(self.customSubView1)
-//							//image
-//							var imageView : UIImageView
-//							imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
-//							imageView.image = UIImage(named:"conform.png")
-//							self.customView1.addSubview(imageView)
-//							let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));
-//							label.text = "Thank you!"
-//							label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
-//							label.font = UIFont.boldSystemFont(ofSize: 22.0)
-//							label.textColor = UIColor.white
-//							self.customView1.addSubview(label)
-//							let label1 = UILabel(frame: CGRect(x: 55, y: 175, width: 400, height: 21))
-//							label1.text = "\("Visit In") \(message)"
-//
-//
-//							label1.textColor = UIColor.darkGray
-//							label1.shadowColor = UIColor.gray
-//							label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-//							self.customView1.addSubview(label1)
-//							let myButton = UIButton(type: .system)
-//							myButton.frame = CGRect(x: 65, y: 210, width: 100, height: 50)
-//							// Set text on button
-//							myButton.setTitle("OK", for: .normal)
-//							myButton.setTitle("Pressed + Hold", for: .highlighted)
-//							myButton.setTitleColor(UIColor.white, for: .normal)
-//							myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-//							myButton.addTarget(self, action: #selector(self.FieldVisitIN(_:)), for: .touchUpInside)
-//							self.customView1.addSubview(myButton)
-							
+														
 						}
 						else
 						{
@@ -659,29 +614,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
 		self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
 
-                let marker = GMSMarker()
-                let convertedlat = Double(latstr)
-                let convertedlong = Double(longstr)
-                let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
-                marker.position = newPosition
-                marker.title = self.addressString
-                marker.map = self.mapView
-                print("address location",self.addressString)
-        
-		
-	}
-	
-	
-	//@objc func FieldVisitIN(_ sender:UIButton!)
-//	{
-//		customView1.isHidden = true
-//		FieldVisitInbtn.isEnabled = false
-//		Fieldvisitoutbtn.isEnabled = true
-//		self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-//		self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-//		self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
-//		self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-//
 //                let marker = GMSMarker()
 //                let convertedlat = Double(latstr)
 //                let convertedlong = Double(longstr)
@@ -691,8 +623,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 //                marker.map = self.mapView
 //                print("address location",self.addressString)
 //
-//		//Trackdetails()
-//	}
+		
+		Trackdetails()
+		
+	}
+	
 	
 	func Trackdetails()
 	{
@@ -734,25 +669,79 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
 						
 						
-						for Field_trackDic in fieldTrackArray as! [[String:Any]]
-						{
-							var MainDict:NSMutableDictionary = NSMutableDictionary()
-							var Field_trackstr = ""
-							Field_trackstr = (Field_trackDic["toClientNamePlace"] as? String)!
-							MainDict.setObject(Field_trackstr, forKey: "toClientNamePlace" as NSCopying)
-							print(" Field_trackstr",Field_trackstr)
+		for Field_trackDic in fieldTrackArray as! [[String:Any]]
+		{
+		var MainDict:NSMutableDictionary = NSMutableDictionary()
+		var Field_trackstr = ""
+		Field_trackstr = (Field_trackDic["toClientNamePlace"] as? String)!
+		
                             
                             
-                            var OriginAddress = ""
-                            OriginAddress = (Field_trackDic["outFromAddress"] as? String)!
-                            MainDict.setObject(OriginAddress, forKey: "outFromAddress" as NSCopying)
-        print(" OriginAddress....",OriginAddress)
+		var OriginAddress = ""
+		OriginAddress = (Field_trackDic["outFromAddress"] as? String)!
                             
-                            
-                            var DestinationAddress = ""
+	var LanlongArray:NSMutableArray = NSMutableArray()
+
+	var DestinationAddress = ""
     DestinationAddress = (Field_trackDic["inAddress"] as? String)!
-    MainDict.setObject(DestinationAddress, forKey: "inAddress" as NSCopying)
         print(" DestinationAddress.....",DestinationAddress)
+						
+			var DestinationInLatlong = ""
+			DestinationInLatlong = (Field_trackDic["inLatLong"] as? String)!
+			MainDict.setObject(DestinationInLatlong, forKey: "inLatLong" as NSCopying)
+			print(" DestinationInLatlong.....",DestinationInLatlong)
+			
+			
+						
+			LanlongArray.add(MainDict)
+			print("LanlongArray----",LanlongArray)
+			
+			
+
+			
+	let marker = GMSMarker()
+
+	
+	let pins = DestinationInLatlong.components(separatedBy: ",")//first step is splitting the fetched array to pins array
+			print("pins....",pins)
+
+			
+			
+			
+			
+		var LocationsArray = [CLLocationCoordinate2D]()
+		for location in pins {
+		if(location.contains(","))
+		{
+			
+	   let coordinates = location.components(separatedBy: ",")
+		let lattitudeValue = Double(coordinates[0]) ?? 0.0
+		let longitudeValue = Double( coordinates[1]) ?? 0.0
+		print("latArray",lattitudeValue)
+			print("longArray",longitudeValue)
+
+	LocationsArray.append(CLLocationCoordinate2D(latitude: lattitudeValue
+					,longitude: longitudeValue))
+			
+			print("LocationsArray...",LocationsArray)
+
+					}
+			
+							
+							
+//
+//
+//		let marker = GMSMarker()
+//		let convertedlat = Double(self.latstr)
+//		let convertedlong = Double(self.longstr)
+//		let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
+//		marker.position = newPosition
+//		marker.title = self.addressString
+//		marker.map = self.mapView
+//		print("address location",self.addressString)
+//
+							
+							
 							
     self.TrackempVisitId = (Field_trackDic["empVisitId"] as? NSInteger)!
     print("TrackempVisitId----",self.TrackempVisitId)
@@ -761,6 +750,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						}
 				}
 			}
+		}
 		}
 		task.resume()
 	}
@@ -803,20 +793,20 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
                 }
             }
            
-           let marker = GMSMarker()
-            marker.position = CLLocationCoordinate2D(latitude: 12.9569, longitude: 77.7011)
-            marker.title = "Marathalli"
-            marker.snippet = "India"
-           marker.map = mapView
-            
-            //28.643091, 77.218280
-            let marker1 = GMSMarker()
-            marker1.position = CLLocationCoordinate2D(latitude: 12.9255, longitude: 77.5468)
-            marker1.title = "Banasankari"
-           
-            marker1.snippet = "India"
-            marker1.map = mapView
-        draw()
+//           let marker = GMSMarker()
+//            marker.position = CLLocationCoordinate2D(latitude: 12.9569, longitude: 77.7011)
+//            marker.title = "Marathalli"
+//            marker.snippet = "India"
+//           marker.map = mapView
+//
+//            //28.643091, 77.218280
+//            let marker1 = GMSMarker()
+//            marker1.position = CLLocationCoordinate2D(latitude: 12.9255, longitude: 77.5468)
+//            marker1.title = "Banasankari"
+//
+//            marker1.snippet = "India"
+//            marker1.map = mapView
+        //draw()
         
     }
     
