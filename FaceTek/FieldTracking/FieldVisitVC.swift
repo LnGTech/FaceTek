@@ -33,6 +33,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	
 	@IBOutlet weak var FieldVisit_Popupview: UIView!
 	
+	@IBOutlet weak var FieldVisitIn_PopupView: UIView!
 	
 	
 	@IBOutlet weak var SelectPlaceViewconstriant: NSLayoutConstraint!
@@ -536,7 +537,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     @IBAction func OkBtnclk(_ sender: Any) {
         
         FieldvisitBckview.isHidden = true
-        customView.isHidden = true
+        
+		FieldVisit_Popupview.isHidden = true
+		
+		//customView.isHidden = true
 
     }
 	
@@ -573,51 +577,59 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						let statusDic = responseJSON["status"]! as! NSDictionary
 						let code = statusDic["code"] as! NSInteger
 						if(code == 200)
-						{
-							let message = statusDic["message"] as! NSString
-							//Leave PopUp method calling
 							
-							self.customView1.frame = CGRect.init(x: 50, y: 50, width: 230, height: 300)
-							self.customView1.backgroundColor = UIColor.white
-							self.customView1.center = self.view.center
-							self.view.addSubview(self.customView1)
-							self.customSubView1.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
-							self.customSubView1.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-							let shadowPath = UIBezierPath(rect: self.customView1.bounds)
-							self.customView1.layer.masksToBounds = false
-							self.customView1.layer.shadowColor = UIColor.darkGray.cgColor
-							self.customView1.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-							self.customView1.layer.shadowOpacity = 0.8
-							self.customView1.layer.shadowPath = shadowPath.cgPath
-							self.customView1.addSubview(self.customSubView1)
-							//image
-							var imageView : UIImageView
-							imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
-							imageView.image = UIImage(named:"conform.png")
-							self.customView1.addSubview(imageView)
-							let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));
-							label.text = "Thank you!"
-							label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
-							label.font = UIFont.boldSystemFont(ofSize: 22.0)
-							label.textColor = UIColor.white
-							self.customView1.addSubview(label)
-							let label1 = UILabel(frame: CGRect(x: 55, y: 175, width: 400, height: 21))
-							label1.text = "\("Visit In") \(message)"
+							
+						{
+							self.mapView.addSubview(self.self.FieldVisitIn_PopupView)
 
-
-							label1.textColor = UIColor.darkGray
-							label1.shadowColor = UIColor.gray
-							label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-							self.customView1.addSubview(label1)
-							let myButton = UIButton(type: .system)
-							myButton.frame = CGRect(x: 65, y: 210, width: 100, height: 50)
-							// Set text on button
-							myButton.setTitle("OK", for: .normal)
-							myButton.setTitle("Pressed + Hold", for: .highlighted)
-							myButton.setTitleColor(UIColor.white, for: .normal)
-							myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-							myButton.addTarget(self, action: #selector(self.FieldVisitIN(_:)), for: .touchUpInside)
-							self.customView1.addSubview(myButton)
+							
+							self.FieldVisitIn_PopupView.isHidden = false
+							
+							
+//							let message = statusDic["message"] as! NSString
+//							//Leave PopUp method calling
+//
+//							self.customView1.frame = CGRect.init(x: 50, y: 50, width: 230, height: 300)
+//							self.customView1.backgroundColor = UIColor.white
+//							self.customView1.center = self.view.center
+//							self.view.addSubview(self.customView1)
+//							self.customSubView1.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
+//							self.customSubView1.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+//							let shadowPath = UIBezierPath(rect: self.customView1.bounds)
+//							self.customView1.layer.masksToBounds = false
+//							self.customView1.layer.shadowColor = UIColor.darkGray.cgColor
+//							self.customView1.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+//							self.customView1.layer.shadowOpacity = 0.8
+//							self.customView1.layer.shadowPath = shadowPath.cgPath
+//							self.customView1.addSubview(self.customSubView1)
+//							//image
+//							var imageView : UIImageView
+//							imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
+//							imageView.image = UIImage(named:"conform.png")
+//							self.customView1.addSubview(imageView)
+//							let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));
+//							label.text = "Thank you!"
+//							label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
+//							label.font = UIFont.boldSystemFont(ofSize: 22.0)
+//							label.textColor = UIColor.white
+//							self.customView1.addSubview(label)
+//							let label1 = UILabel(frame: CGRect(x: 55, y: 175, width: 400, height: 21))
+//							label1.text = "\("Visit In") \(message)"
+//
+//
+//							label1.textColor = UIColor.darkGray
+//							label1.shadowColor = UIColor.gray
+//							label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+//							self.customView1.addSubview(label1)
+//							let myButton = UIButton(type: .system)
+//							myButton.frame = CGRect(x: 65, y: 210, width: 100, height: 50)
+//							// Set text on button
+//							myButton.setTitle("OK", for: .normal)
+//							myButton.setTitle("Pressed + Hold", for: .highlighted)
+//							myButton.setTitleColor(UIColor.white, for: .normal)
+//							myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+//							myButton.addTarget(self, action: #selector(self.FieldVisitIN(_:)), for: .touchUpInside)
+//							self.customView1.addSubview(myButton)
 							
 						}
 						else
@@ -636,9 +648,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
 		
 	}
-	@objc func FieldVisitIN(_ sender:UIButton!)
-	{
-		customView1.isHidden = true
+	
+	@IBAction func FieldVisit_InOkbtnclk(_ sender: Any) {
+		
+		FieldVisitIn_PopupView.isHidden = true
 		FieldVisitInbtn.isEnabled = false
 		Fieldvisitoutbtn.isEnabled = true
 		self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
@@ -655,8 +668,31 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
                 marker.map = self.mapView
                 print("address location",self.addressString)
         
-		//Trackdetails()
+		
 	}
+	
+	
+	//@objc func FieldVisitIN(_ sender:UIButton!)
+//	{
+//		customView1.isHidden = true
+//		FieldVisitInbtn.isEnabled = false
+//		Fieldvisitoutbtn.isEnabled = true
+//		self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+//		self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+//		self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
+//		self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+//
+//                let marker = GMSMarker()
+//                let convertedlat = Double(latstr)
+//                let convertedlong = Double(longstr)
+//                let newPosition = CLLocationCoordinate2D(latitude: convertedlat!, longitude: convertedlong!)
+//                marker.position = newPosition
+//                marker.title = self.addressString
+//                marker.map = self.mapView
+//                print("address location",self.addressString)
+//
+//		//Trackdetails()
+//	}
 	
 	func Trackdetails()
 	{
