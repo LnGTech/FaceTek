@@ -31,6 +31,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	@IBOutlet weak var Adresstxtview: UITextView!
 	@IBOutlet weak var DrpDownview: UIView!
 	
+	@IBOutlet weak var FieldVisit_Popupview: UIView!
+	
+	
+	
 	@IBOutlet weak var SelectPlaceViewconstriant: NSLayoutConstraint!
 	@IBOutlet weak var SelectPlaceDrptble: UITableView!
 	var addressString : String = ""
@@ -56,7 +60,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
         //GoogleMapPolyline()
 
-		
+		FieldVisit_Popupview.isHidden = true
 		
 		//    //Field visit - IN and OUT button text color code
 		self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
@@ -326,19 +330,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 							
                             //self.PopUpView.isHidden = false
 							
+							self.FieldVisit_Popupview.isHidden = false
 							
-							if self.Fieldvisitout_cleardata {
-								
-								self.FieldvisitOUT_PopUp()
-
-								print("second time calling")
-								return
-							}
-							
-							return 
-							
-							
-                            self.FieldvisitOUT_PopUp()
 						}
 						else
 						{
