@@ -20,7 +20,8 @@ private var isAlreadyLoaddropdowndata = false
 
 @IBOutlet weak var PopUpView: UIView!
 
-@IBOutlet weak var FieldvisitStatusLbl: UILabel!
+	@IBOutlet weak var FieldVisitINUpdatePopview: UIView!
+	@IBOutlet weak var FieldvisitStatusLbl: UILabel!
 @IBOutlet weak var mapView: GMSMapView!
 @IBOutlet weak var Fieldvisitoutbtn: UIButton!
 @IBOutlet weak var FieldVisitInbtn: UIButton!
@@ -57,6 +58,7 @@ override func viewDidLoad() {
 	
 	//GoogleMapPolyline()
 	self.PopUpView.isHidden = true
+	//FieldVisitINUpdatePopview.isHidden = true
 
 	
 	
@@ -545,8 +547,12 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 					if(code == 200)
 					{
 						
-			 self.PopUpView.isHidden = false
-			 self.FieldvisitStatusLbl.text = "Visit IN Updated"
+						print("Field Visit In Updated")
+						//self.FieldVisitINUpdatePopview.isHidden = false
+
+						
+//			 self.PopUpView.isHidden = false
+//			 self.FieldvisitStatusLbl.text = "Visit IN Updated"
 
 					}
 					else
@@ -678,6 +684,10 @@ print("fieldVisitTrackDetails--",fieldVisitTrackDetailsArray)
 	task.resume()
 }
 
+	
+	
+	
+	
 func GoogleMapPolyline()
 {
 	GMSServices.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
