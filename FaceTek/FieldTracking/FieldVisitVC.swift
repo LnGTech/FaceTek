@@ -209,41 +209,41 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 			if let responseJSON = responseJSON as? [String: Any] {
 				
-				let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
-				DispatchQueue.main.async
+			let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
+			DispatchQueue.main.async
 					{
-						self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
-						self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
-						if (self.empAttndInDateTime == "NA") {
+			self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
+			self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
+			if (self.empAttndInDateTime == "NA") {
 							//            self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
 							//            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 							
-						} else {
+		  } else {
 							
-							if CLLocationManager.locationServicesEnabled(){
-								self.locationManager.delegate = self
-								self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
-								self.locationManager.distanceFilter = 500
-								self.locationManager.requestWhenInUseAuthorization()
-								self.locationManager.startUpdatingLocation()
+		if CLLocationManager.locationServicesEnabled(){
+		self.locationManager.delegate = self
+		self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+		self.locationManager.distanceFilter = 500
+		self.locationManager.requestWhenInUseAuthorization()
+		self.locationManager.startUpdatingLocation()
 								//UIbutton Action
-								self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
-								self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
-								self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-							}
-							self.mapView.settings.myLocationButton = true
-							self.mapView.settings.zoomGestures = true
-							self.mapView.animate(toViewingAngle: 45)
-							self.mapView.delegate = self
-						}
+		self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
+		self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
+		self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+		}
+		self.mapView.settings.myLocationButton = true
+		self.mapView.settings.zoomGestures = true
+		self.mapView.animate(toViewingAngle: 45)
+		self.mapView.delegate = self
+		}
 						
-						if (self.empAttndOutDateTime == "NA") {
+		if (self.empAttndOutDateTime == "NA") {
 							
-						} else {
-							self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-							self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-							self.Fieldvisitoutbtn.isEnabled = false
-						}
+		} else {
+		self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+		self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+		self.Fieldvisitoutbtn.isEnabled = false
+					}
 				}
 			}
 		}
@@ -271,20 +271,20 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			}
 			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 			if let responseJSON = responseJSON as? [String: Any] {
-				let ItemsDict = responseJSON["clientPlaceScheduleList"] as? [String:Any]
-				DispatchQueue.main.async
+			let ItemsDict = responseJSON["clientPlaceScheduleList"] as? [String:Any]
+			DispatchQueue.main.async
 					{
-						let SelectPlaceArray = responseJSON["clientPlaceScheduleList"] as! NSArray
-						for SelectPlaceDic in SelectPlaceArray as! [[String:Any]]
+			let SelectPlaceArray = responseJSON["clientPlaceScheduleList"] as! NSArray
+			for SelectPlaceDic in SelectPlaceArray as! [[String:Any]]
 						{
-							var MainDict:NSMutableDictionary = NSMutableDictionary()
-							var SelectPlacestr = ""
-							SelectPlacestr = (SelectPlaceDic["visitClientPlace"] as? String)!
-							MainDict.setObject(SelectPlacestr, forKey: "visitClientPlace" as NSCopying)
-							self.SelectPlaceArray.add(MainDict)
+			var MainDict:NSMutableDictionary = NSMutableDictionary()
+			var SelectPlacestr = ""
+			SelectPlacestr = (SelectPlaceDic["visitClientPlace"] as? String)!
+			MainDict.setObject(SelectPlacestr, forKey: "visitClientPlace" as NSCopying)
+			self.SelectPlaceArray.add(MainDict)
 							
-						}
-						self.SelectPlaceDrptble.reloadData()
+			}
+		    self.SelectPlaceDrptble.reloadData()
 				}
 			}
 		}
@@ -319,27 +319,27 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 				self.empVisitId = Int()
 				self.empVisitId = (responseJSON["empVisitId"] as? NSInteger)!
 				
-				DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-					self.scheduledTimerWithTimeInterval()
-					DispatchQueue.main.async {
-						let statusDic = responseJSON["status"]! as! NSDictionary
-						let code = statusDic["code"] as! NSInteger
-						if(code == 200)
-						{
-							let message = statusDic["message"] as! NSString
+			DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+			self.scheduledTimerWithTimeInterval()
+			DispatchQueue.main.async {
+			let statusDic = responseJSON["status"]! as! NSDictionary
+			let code = statusDic["code"] as! NSInteger
+			if(code == 200)
+			{
+			let message = statusDic["message"] as! NSString
 							//Leave PopUp method calling
 							
                             //self.PopUpView.isHidden = false
 							
-							self.FieldVisit_Popupview.isHidden = false
+			self.FieldVisit_Popupview.isHidden = false
 							
-						}
-						else
-						{
-							let message = responseJSON["message"]! as! NSString
-							let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
-							alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-							self.present(alert, animated: true, completion: nil)
+			}
+		   else
+		   {
+		 let message = responseJSON["message"]! as! NSString
+		let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
 						}
 					}
 				}
@@ -353,63 +353,59 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	func FieldvisitOUT_PopUp()
 	{
 
-									self.customView.frame = CGRect.init(x: 50, y: 50, width: 230, height: 300)
-									self.customView.backgroundColor = UIColor.white
-									self.customView.center = self.view.center
-									self.view.addSubview(self.customView)
-									self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
-									self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-									let shadowPath = UIBezierPath(rect: self.customView.bounds)
-									self.customView.layer.masksToBounds = false
-									self.customView.layer.shadowColor = UIColor.darkGray.cgColor
-									self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-									self.customView.layer.shadowOpacity = 0.8
-									self.customView.layer.shadowPath = shadowPath.cgPath
-									self.customView.addSubview(self.customSubView)
+	  self.customView.frame = CGRect.init(x: 50, y: 50, width: 230, height: 300)
+	  self.customView.backgroundColor = UIColor.white
+	  self.customView.center = self.view.center
+	  self.view.addSubview(self.customView)
+	  self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
+	  self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+	  let shadowPath = UIBezierPath(rect: self.customView.bounds)
+	  self.customView.layer.masksToBounds = false
+	  self.customView.layer.shadowColor = UIColor.darkGray.cgColor
+	  self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+	  self.customView.layer.shadowOpacity = 0.8
+	  self.customView.layer.shadowPath = shadowPath.cgPath
+	  self.customView.addSubview(self.customSubView)
 									//image
-									var imageView : UIImageView
-									imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
-									imageView.image = UIImage(named:"conform.png")
-									self.customView.addSubview(imageView)
-									let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));
-									label.text = "Thank you!"
-									label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
-									label.font = UIFont.boldSystemFont(ofSize: 22.0)
-									label.textColor = UIColor.white
-									self.customView.addSubview(label)
-									let label1 = UILabel(frame: CGRect(x: 55, y: 175, width: 400, height: 21))
-									//label1.text = "\("Visit In") \(message)"
+	  var imageView : UIImageView
+	  imageView  = UIImageView(frame:CGRect(x: 65, y: 10, width: 100, height: 100));
+	  imageView.image = UIImage(named:"conform.png")
+	  self.customView.addSubview(imageView)
+	  let label = UILabel(frame: CGRect(x: 55, y: 110, width: 200, height: 21));
+	  label.text = "Thank you!"
+	  label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
+	  label.font = UIFont.boldSystemFont(ofSize: 22.0)
+	  label.textColor = UIColor.white
+	  self.customView.addSubview(label)
+	  let label1 = UILabel(frame: CGRect(x: 55, y: 175, width: 400, height: 21))
+	 //label1.text = "\("Visit In") \(message)"
 		label1.text = "Visit Out Started"
-
-		
-									label1.textColor = UIColor.darkGray
-									label1.shadowColor = UIColor.gray
-									label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-									self.customView.addSubview(label1)
-									let myButton = UIButton(type: .system)
-									myButton.frame = CGRect(x: 65, y: 210, width: 100, height: 50)
+	 label1.textColor = UIColor.darkGray
+	 label1.shadowColor = UIColor.gray
+	 label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+	 self.customView.addSubview(label1)
+	 let myButton = UIButton(type: .system)
+	 myButton.frame = CGRect(x: 65, y: 210, width: 100, height: 50)
 									// Set text on button
-									myButton.setTitle("OK", for: .normal)
-									myButton.setTitle("Pressed + Hold", for: .highlighted)
-									myButton.setTitleColor(UIColor.white, for: .normal)
-									myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-									myButton.addTarget(self, action: #selector(self.FieldVisitOutPop_Okbtnclk(_:)), for: .touchUpInside)
-									self.customView.addSubview(myButton)
+	 myButton.setTitle("OK", for: .normal)
+	 myButton.setTitle("Pressed + Hold", for: .highlighted)
+	 myButton.setTitleColor(UIColor.white, for: .normal)
+	 myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+	 myButton.addTarget(self, action: #selector(self.FieldVisitOutPop_Okbtnclk(_:)), for: .touchUpInside)
+	 self.customView.addSubview(myButton)
 		
 		
 	}
 	
 	@objc func FieldVisitOutPop_Okbtnclk(_ sender:UIButton!)
 	{
-		print("ok button click")
-		FieldvisitBckview.isHidden = true
-		
-		customView.isHidden = true
+	print("ok button click")
+	FieldvisitBckview.isHidden = true
+	customView.isHidden = true
 		
 	}
 	
 	func scheduledTimerWithTimeInterval(){
-		
 		
 		timer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
 	}
@@ -535,13 +531,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     
     
     @IBAction func OkBtnclk(_ sender: Any) {
-        
         FieldvisitBckview.isHidden = true
-        
 		FieldVisit_Popupview.isHidden = true
 		
-		//customView.isHidden = true
-
     }
 	
     
@@ -566,33 +558,27 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 				print(error?.localizedDescription ?? "No data")
 				return
 			}
-			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+		let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 			
-			print("update Response---",responseJSON)
-			if let responseJSON = responseJSON as? [String: Any] {
+		print("update Response---",responseJSON)
+		if let responseJSON = responseJSON as? [String: Any] {
 				
-				DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-					self.scheduledTimerWithTimeInterval()
-					DispatchQueue.main.async {
-						let statusDic = responseJSON["status"]! as! NSDictionary
-						let code = statusDic["code"] as! NSInteger
-						if(code == 200)
-							
-							
-						{
-							self.mapView.addSubview(self.self.FieldVisitIn_PopupView)
-
-							
-							self.FieldVisitIn_PopupView.isHidden = false
-							
-														
-						}
-						else
-						{
-							let message = responseJSON["message"]! as! NSString
-							let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
-							alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-							self.present(alert, animated: true, completion: nil)
+		DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
+		self.scheduledTimerWithTimeInterval()
+		DispatchQueue.main.async {
+		let statusDic = responseJSON["status"]! as! NSDictionary
+		let code = statusDic["code"] as! NSInteger
+		if(code == 200)
+		{
+		self.mapView.addSubview(self.self.FieldVisitIn_PopupView)
+		self.FieldVisitIn_PopupView.isHidden = false
+		}
+		else
+		{
+		let message = responseJSON["message"]! as! NSString
+		let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
 						}
 					}
 				}
@@ -655,73 +641,48 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 				print(error?.localizedDescription ?? "No data")
 				return
 			}
-			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-			if let responseJSON = responseJSON as? [String: Any] {
-				
-				print("fieldTrackDic responseJSON",responseJSON)
-				
-				
-				DispatchQueue.main.async
-					{
-						
-                        self.GoogleMapPolyline()
-                        
-						let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
-						
-						
+		let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+		if let responseJSON = responseJSON as? [String: Any] {
+		print("fieldTrackDic responseJSON",responseJSON)
+		DispatchQueue.main.async
+		{
+		self.GoogleMapPolyline()
+		let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
 		for Field_trackDic in fieldTrackArray as! [[String:Any]]
 		{
 		var MainDict:NSMutableDictionary = NSMutableDictionary()
 		var Field_trackstr = ""
 		Field_trackstr = (Field_trackDic["toClientNamePlace"] as? String)!
 		
-                            
-                            
 		var OriginAddress = ""
 		OriginAddress = (Field_trackDic["outFromAddress"] as? String)!
-                            
-			let LanlongArray:NSMutableArray = NSMutableArray()
-
-	var DestinationAddress = ""
-    DestinationAddress = (Field_trackDic["inAddress"] as? String)!
+		let LanlongArray:NSMutableArray = NSMutableArray()
+	    var DestinationAddress = ""
+        DestinationAddress = (Field_trackDic["inAddress"] as? String)!
         print(" DestinationAddress.....",DestinationAddress)
-						
-			var DestinationInLatlong = ""
-			DestinationInLatlong = (Field_trackDic["inLatLong"] as? String)!
-			MainDict.setObject(DestinationInLatlong, forKey: "inLatLong" as NSCopying)
-			print(" DestinationInLatlong.....",DestinationInLatlong)
-			
+		var DestinationInLatlong = ""
+		DestinationInLatlong = (Field_trackDic["inLatLong"] as? String)!
+		MainDict.setObject(DestinationInLatlong, forKey: "inLatLong" as NSCopying)
+		print(" DestinationInLatlong.....",DestinationInLatlong)
 			LanlongArray.add(MainDict)
-			print("LanlongArray----",LanlongArray)
+		print("LanlongArray----",LanlongArray)
 
 			
-			//let coordinates = "[[39.86475483576405,-75.53281903266907], [39.864688955564304,-75.53292632102966], [39.86455719497505,-75.53300142288208], [39.86440072894666,-75.5330228805542], [39.8642689678039,-75.53295850753784], [39.863305456757146,-75.53223967552185], [39.86303369478483,-75.53266882896423]]"
-			// Remove the brackets and spaces
-			let clean = DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
-			// Split the comma separated strings into an array
-			let values = clean.components(separatedBy: ",")
-			var coords = [CLLocation]()
-			for i in stride(from: 0, to: values.count, by: 2) {
-				// Pull out each pair and convert to Doubles
-				if let lat = Double(values[i]),
-					let long = Double(values[i+1]) {
-					let coord = CLLocation(latitude: lat, longitude: long)
-					coords.append(coord)
-					
-					print("Lats......",lat)
-					print("Longs......",long)
-					let marker = GMSMarker()
-							//let convertedlat = Double(self.latstr)
-							//let convertedlong = Double(self.longstr)
-					let newPosition = CLLocationCoordinate2D(latitude: lat, longitude: long)
-							marker.position = newPosition
-							marker.title = DestinationAddress
-							marker.map = self.mapView
-					
-					
-
-					print("Latlongs...",coord)
-					print("Latlong...",coords.append(coord))
+		let clean = DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
+		let values = clean.components(separatedBy: ",")
+		var coords = [CLLocation]()
+		for i in stride(from: 0, to: values.count, by: 2) {
+		if let lat = Double(values[i]),
+		let long = Double(values[i+1]) {
+		let coord = CLLocation(latitude: lat, longitude: long)
+		coords.append(coord)
+		let marker = GMSMarker()
+		let newPosition = CLLocationCoordinate2D(latitude: lat, longitude: long)
+		marker.position = newPosition
+		marker.title = DestinationAddress
+		marker.map = self.mapView
+		print("Latlongs...",coord)
+		print("Latlong...",coords.append(coord))
 				}
 			}
 			
@@ -782,38 +743,32 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     func GoogleMapPolyline()
     {
         GMSServices.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
-            GMSPlacesClient.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
+		GMSPlacesClient.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
             
-        
             let origin = "\(12.9569),\(77.7011)"
         print("origin values----",origin)
             let destination = "\(12.9255),\(77.5468)"
             print("destination values----",origin)
-
             
-            let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
+		let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
             
-            //Rrequesting Alamofire and SwiftyJSON
-            Alamofire.request(url).responseJSON { response in
-                print(response.request as Any)  // original URL request
-                print(response.response as Any) // HTTP URL response
+		Alamofire.request(url).responseJSON { response in
+		print(response.request as Any)  // original URL request
+	    print(response.response as Any) // HTTP URL response
                 print(response.data as Any)     // server data
-                print(response.result)   // result of response serialization
-                
-                //let json = JSON(data: response.data!)
+                print(response.result)
                
-               let json = JSON(response.data)
-                let routes = json["routes"].arrayValue
-                
-                for route in routes
-                {
-                    let routeOverviewPolyline = route["overview_polyline"].dictionary
-                    let points = routeOverviewPolyline?["points"]?.stringValue
-                    let path = GMSPath.init(fromEncodedPath: points!)
-                    let polyline = GMSPolyline.init(path: path)
-                    polyline.strokeColor = UIColor.red
-                    polyline.strokeWidth = 5
-                    polyline.map = self.mapView
+		let json = JSON(response.data)
+		let routes = json["routes"].arrayValue
+		for route in routes
+		{
+		let routeOverviewPolyline = route["overview_polyline"].dictionary
+		let points = routeOverviewPolyline?["points"]?.stringValue
+		let path = GMSPath.init(fromEncodedPath: points!)
+		let polyline = GMSPolyline.init(path: path)
+		polyline.strokeColor = UIColor.red
+		polyline.strokeWidth = 5
+		polyline.map = self.mapView
                 }
             }
            
@@ -835,29 +790,22 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     }
     
     func draw() {
-            let path = GMSMutablePath()
-            path.addLatitude(12.9569, longitude:77.7011) //Mobiloitte
-            path.addLatitude(12.9255, longitude:77.5468) // New
-    
-            let dottedPolyline  = GMSPolyline(path: path)
-            dottedPolyline.map = self.mapView
-            dottedPolyline.strokeWidth = 3.0
-            let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.green), GMSStrokeStyle.solidColor(UIColor.clear)]
-            let lengths: [Any] = [10, 5]
+		let path = GMSMutablePath()
+		path.addLatitude(12.9569, longitude:77.7011) //Mobiloitte
+		path.addLatitude(12.9255, longitude:77.5468) // New
+		let dottedPolyline  = GMSPolyline(path: path)
+		dottedPolyline.map = self.mapView
+		dottedPolyline.strokeWidth = 3.0
+		let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.green), GMSStrokeStyle.solidColor(UIColor.clear)]
+		let lengths: [Any] = [10, 5]
             //dottedPolyline?.spans = GMSStyleSpans(dottedPolyline?.path!, styles as! [GMSStrokeStyle], lengths as! [NSNumber], kGMSLengthRhumb)
 
-            
-            
-            
-            let polyline = GMSPolyline(path: path)
-            polyline.strokeColor = .blue
-            polyline.strokeWidth = 3.0
-            polyline.map = self.mapView
-    
+		let polyline = GMSPolyline(path: path)
+		polyline.strokeColor = .blue
+		polyline.strokeWidth = 3.0
+		polyline.map = self.mapView
     
         }
-
-	
 }
 
 
