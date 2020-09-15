@@ -896,6 +896,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			let marker1 = GMSMarker()
 			 marker1.position = CLLocationCoordinate2D(latitude: Destinationlat, longitude: Destinationlong)
 			 marker1.title = DestinationAddress
+			
 			 marker1.snippet = "India"
 			marker1.map = self.mapView
 			
@@ -908,8 +909,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			}
 			
 			
-			let convertedlat = Double(self.latstr)
-			let convertedlong = Double(self.longstr)
 			
 			let path = GMSMutablePath()
 			path.addLatitude(currentLoc.coordinate.latitude, longitude:currentLoc.coordinate.longitude)
@@ -917,11 +916,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			path.addLatitude(Destinationlat, longitude:Destinationlong) // New
 			let dottedPolyline  = GMSPolyline(path: path)
 			dottedPolyline.map = self.mapView
-			dottedPolyline.strokeWidth = 3.0
-			let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.green), GMSStrokeStyle.solidColor(UIColor.clear)]
+			dottedPolyline.strokeWidth = 1.0
+			let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.blue), GMSStrokeStyle.solidColor(UIColor.clear)]
 			
 			
-			let lengths: [Any] = [10, 5]
+			let lengths: [Any] = [100, 100]
 			dottedPolyline.spans = GMSStyleSpans((dottedPolyline.path!), styles as! [GMSStrokeStyle], lengths as! [NSNumber], GMSLengthKind.rhumb)
 
 			let polyline = GMSPolyline(path: path)
