@@ -41,6 +41,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	var addressString : String = ""
 	var empAttndInDateTime : String = ""
 	var empAttndOutDateTime : String = ""
+	var DestinationInLatlong : String = ""
+	var DestinationAddress : String = ""
+
+	
+	var OriginLatLong : String = ""
 	var latstr : String = ""
 	var longstr : String = ""
 	var empVisitId = Int()
@@ -59,7 +64,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-        //GoogleMapPolyline()
 
 		FieldVisit_Popupview.isHidden = true
 		
@@ -114,6 +118,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		Submitbrn.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.6487585616, blue: 0.06666666667, alpha: 0.2948148545)
 		//Field visit IN disable
 		FieldVisitInbtn.isEnabled = false
+		
+        GoogleMapPolyline()
+
 		
 	}
 	
@@ -610,12 +617,12 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 //                print("address location",self.addressString)
 //
 		
-		Trackdetails()
+		Trackedetails()
 		
 	}
 	
 	
-	func Trackdetails()
+	func Trackedetails()
 	{
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
@@ -646,7 +653,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		print("fieldTrackDic responseJSON",responseJSON)
 		DispatchQueue.main.async
 		{
-		self.GoogleMapPolyline()
 		let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
 		for Field_trackDic in fieldTrackArray as! [[String:Any]]
 		{
@@ -660,15 +666,12 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	    var DestinationAddress = ""
         DestinationAddress = (Field_trackDic["inAddress"] as? String)!
         print(" DestinationAddress.....",DestinationAddress)
-		var DestinationInLatlong = ""
-		DestinationInLatlong = (Field_trackDic["inLatLong"] as? String)!
-		MainDict.setObject(DestinationInLatlong, forKey: "inLatLong" as NSCopying)
-		print(" DestinationInLatlong.....",DestinationInLatlong)
+			self.self.DestinationInLatlong = (Field_trackDic["inLatLong"] as? String)!
+			MainDict.setObject(self.DestinationInLatlong, forKey: "inLatLong" as NSCopying)
+			print("DestinationInLatlong.....",self.DestinationInLatlong)
 			LanlongArray.add(MainDict)
 		print("LanlongArray----",LanlongArray)
-
-			
-		let clean = DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
+			let clean = self.DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
 		let values = clean.components(separatedBy: ",")
 		var coords = [CLLocation]()
 		for i in stride(from: 0, to: values.count, by: 2) {
@@ -686,33 +689,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 				}
 			}
 			
-			
-	
-//	let pins = DestinationInLatlong.components(separatedBy: ",")//first step is splitting the fetched array to pins array
-//			print("pins....",pins)
-//
-//		var LocationsArray = [CLLocationCoordinate2D]()
-//		for location in pins {
-//
-//
-//	   let coordinates = location.components(separatedBy: ",")
-//
-//			let lattitudeValue = Double(coordinates[0]) ?? 0.0
-//			let longitudeValue = Double( coordinates[1]
-//
-//
-//		print("latArray",lattitudeValue)
-//			print("longArray",longitudeValue)
-//
-//	LocationsArray.append(CLLocationCoordinate2D(latitude: lattitudeValue
-//					,longitude: longitudeValue))
-//
-//			print("LocationsArray...",LocationsArray)
-//
-//
-//			}
-//
-							
 							
 //
 //
@@ -739,16 +715,30 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		}
 		task.resume()
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
     
     func GoogleMapPolyline()
     {
         GMSServices.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
 		GMSPlacesClient.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
-            
-            let origin = "\(12.9569),\(77.7011)"
+            PolylineAPI()
+		
+		
+            //let origin = "\(12.9569),\(77.7011)"
+		var origin = OriginLatLong
         print("origin values----",origin)
-            let destination = "\(12.9255),\(77.5468)"
-            print("destination values----",origin)
+            //let destination = "\(12.9255),\(77.5468)"
+		var destination = DestinationInLatlong
+		
+		print("destination values----",origin)
             
 		let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
             
@@ -772,40 +762,150 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
                 }
             }
            
-//           let marker = GMSMarker()
-//            marker.position = CLLocationCoordinate2D(latitude: 12.9569, longitude: 77.7011)
-//            marker.title = "Marathalli"
-//            marker.snippet = "India"
-//           marker.map = mapView
-//
-//            //28.643091, 77.218280
-//            let marker1 = GMSMarker()
-//            marker1.position = CLLocationCoordinate2D(latitude: 12.9255, longitude: 77.5468)
-//            marker1.title = "Banasankari"
-//
-//            marker1.snippet = "India"
-//            marker1.map = mapView
-        //draw()
+           
+        draw()
         
     }
     
     func draw() {
-		let path = GMSMutablePath()
-		path.addLatitude(12.9569, longitude:77.7011) //Mobiloitte
-		path.addLatitude(12.9255, longitude:77.5468) // New
-		let dottedPolyline  = GMSPolyline(path: path)
-		dottedPolyline.map = self.mapView
-		dottedPolyline.strokeWidth = 3.0
-		let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.green), GMSStrokeStyle.solidColor(UIColor.clear)]
-		let lengths: [Any] = [10, 5]
-            //dottedPolyline?.spans = GMSStyleSpans(dottedPolyline?.path!, styles as! [GMSStrokeStyle], lengths as! [NSNumber], kGMSLengthRhumb)
-
-		let polyline = GMSPolyline(path: path)
-		polyline.strokeColor = .blue
-		polyline.strokeWidth = 3.0
-		polyline.map = self.mapView
+//		let path = GMSMutablePath()
+//		path.addLatitude(12.9569, longitude:77.7011) //Mobiloitte
+//
+//
+//
+//		path.addLatitude(12.9255, longitude:77.5468) // New
+//		let dottedPolyline  = GMSPolyline(path: path)
+//		dottedPolyline.map = self.mapView
+//		dottedPolyline.strokeWidth = 3.0
+//		let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.green), GMSStrokeStyle.solidColor(UIColor.clear)]
+//		let lengths: [Any] = [10, 5]
+//            //dottedPolyline?.spans = GMSStyleSpans(dottedPolyline?.path!, styles as! [GMSStrokeStyle], lengths as! [NSNumber], kGMSLengthRhumb)
+//
+//		let polyline = GMSPolyline(path: path)
+//		polyline.strokeColor = .blue
+//		polyline.strokeWidth = 3.0
+//		polyline.map = self.mapView
     
         }
+	
+	func PolylineAPI()
+		{
+			
+		let defaults = UserDefaults.standard
+		RetrivedcustId = defaults.integer(forKey: "custId")
+		RetrivedempId = defaults.integer(forKey: "empId")
+					
+		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": "2020-09-03" as Any] as [String : Any]
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+					//create the session object
+		let session = URLSession.shared
+					//now create the URLRequest object using the url object
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST" //set http method as POST
+					
+		do {
+		request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+		} catch let error {
+		print(error.localizedDescription)
+		}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+		guard let data = data, error == nil else {
+		print(error?.localizedDescription ?? "No data")
+		return
+		}
+		let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+		if let responseJSON = responseJSON as? [String: Any] {
+		print("fieldTrackDic responseJSON",responseJSON)
+		DispatchQueue.main.async
+		{
+		let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
+		for Field_trackDic in fieldTrackArray as! [[String:Any]]
+		{
+		var MainDict:NSMutableDictionary = NSMutableDictionary()
+		var Field_trackstr = ""
+		Field_trackstr = (Field_trackDic["toClientNamePlace"] as? String)!
+					
+		var OriginAddress = ""
+		OriginAddress = (Field_trackDic["outFromAddress"] as? String)!
+		let LanlongArray:NSMutableArray = NSMutableArray()
+		var DestinationAddress = ""
+		DestinationAddress = (Field_trackDic["inAddress"] as? String)!
+		print(" DestinationAddress.....",DestinationAddress)
+		self.OriginLatLong = (Field_trackDic["outFromLatLong"] as? String)!
+		MainDict.setObject(self.OriginLatLong, forKey: "outFromLatLong" as NSCopying)
+			print("Origin Lat long values",self.OriginLatLong)
+			self.DestinationInLatlong = (Field_trackDic["inLatLong"] as? String)!
+		MainDict.setObject(self.DestinationInLatlong, forKey: "inLatLong" as NSCopying)
+		print("DestinationInLatlong.....",self.DestinationInLatlong)
+		LanlongArray.add(MainDict)
+		print("LanlongArray----",LanlongArray)
+			
+			
+			
+			
+		let clean = self.DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
+		let values = clean.components(separatedBy: ",")
+		var coords = [CLLocation]()
+		for i in stride(from: 0, to: values.count, by: 2) {
+		if let Destinationlat = Double(values[i]),
+		let Destinationlong = Double(values[i+1]) {
+			let marker1 = GMSMarker()
+			 marker1.position = CLLocationCoordinate2D(latitude: Destinationlat, longitude: Destinationlong)
+			 marker1.title = DestinationAddress
+			 marker1.snippet = "India"
+			marker1.map = self.mapView
+			
+			var currentLoc: CLLocation!
+			if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+			CLLocationManager.authorizationStatus() == .authorizedAlways) {
+				currentLoc = self.locationManager.location
+			   print("current location lat",currentLoc.coordinate.latitude)
+			   print("current location long",currentLoc.coordinate.longitude)
+			}
+			
+			
+			
+			let path = GMSMutablePath()
+			path.addLatitude(currentLoc.coordinate.latitude, longitude:currentLoc.coordinate.longitude) //Mobiloitte
+//
+
+			
+			path.addLatitude(Destinationlat, longitude:Destinationlong) // New
+			let dottedPolyline  = GMSPolyline(path: path)
+			dottedPolyline.map = self.mapView
+			dottedPolyline.strokeWidth = 3.0
+			let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.green), GMSStrokeStyle.solidColor(UIColor.clear)]
+			let lengths: [Any] = [10, 5]
+				//dottedPolyline?.spans = GMSStyleSpans(dottedPolyline?.path!, styles as! [GMSStrokeStyle], lengths as! [NSNumber], kGMSLengthRhumb)
+
+			let polyline = GMSPolyline(path: path)
+			polyline.strokeColor = .blue
+			polyline.strokeWidth = 3.0
+			polyline.map = self.mapView
+			
+			
+		
+		}
+
+	}
+			
+//			let marker = GMSMarker()
+//			 marker.position = CLLocationCoordinate2D(latitude: 12.9569, longitude: 77.7011)
+//			 marker.title = "Marathalli"
+//			 marker.snippet = "India"
+//			marker.map = self.mapView
+
+			 //28.643091, 77.218280
+			 
+			
+			
+	}
+	}}
+			}
+	task.resume()
+	}
 }
 
 
