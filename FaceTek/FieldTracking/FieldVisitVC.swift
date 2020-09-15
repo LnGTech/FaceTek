@@ -193,6 +193,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	func Fieldvisit_OUT()
 	{
 		
+		let defaults = UserDefaults.standard
+		RetrivedcustId = defaults.integer(forKey: "custId")
+		RetrivedempId = defaults.integer(forKey: "empId")
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
 		//create the session object
@@ -259,6 +262,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	//Dropdown API for Field-Visit form
 	func selectPlaceDrpdown()
 	{
+		let defaults = UserDefaults.standard
+		RetrivedcustId = defaults.integer(forKey: "custId")
+		RetrivedempId = defaults.integer(forKey: "empId")
 		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getVisitClientPlaceDDList")!
 		let session = URLSession.shared
@@ -300,8 +306,12 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	//Field visit - OUT form submit
 	func FieldvisitFormsubmitAPI()
 	{
+		let defaults = UserDefaults.standard
+		RetrivedcustId = defaults.integer(forKey: "custId")
+		RetrivedempId = defaults.integer(forKey: "empId")
 		let latlanstr = latstr + ", " + longstr
-		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":"Allagadda","toClientNamePlace":"koilakuntla","visitPurpose":"ClientMetting","prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
+		print("latlanstr..",latlanstr)
+		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":addressString,"toClientNamePlace":"koilakuntla","visitPurpose":VisitPuposetxtfld.text,"prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
 		
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
 		let session = URLSession.shared
@@ -325,6 +335,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			if let responseJSON = responseJSON as? [String: Any] {
 				self.empVisitId = Int()
 				self.empVisitId = (responseJSON["empVisitId"] as? NSInteger)!
+				print("empVisitId--",self.empVisitId)
 				
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
 			self.scheduledTimerWithTimeInterval()
@@ -419,7 +430,14 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	
 	//Background calling API
 	@objc func insertTrackFieldVisit_updateCounting(){
+		let defaults = UserDefaults.standard
+		RetrivedcustId = defaults.integer(forKey: "custId")
+		RetrivedempId = defaults.integer(forKey: "empId")
+		print("background emp visit id",empVisitId)
+		
 		let latlanstr = latstr + ", " + longstr
+		
+		print("Background latlanstr...",latlanstr)
 		let formatter = DateFormatter()
 		//2016-12-08 03:37:22 +0000
 		//formatter.dateFormat = "yyyy-MM-dd"
@@ -428,7 +446,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let CurrentdateString = formatter.string(from:now)
 		print("CurrentdateString",CurrentdateString)
 		
-		let parameters = [["custId": 74 ,"empId": 353,"empVisitId": "420","trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
+		let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
 		
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
 		//create the session object
@@ -503,6 +521,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		NSLog("pressed!")
 		FieldvisitBckview.isHidden = false
 		Adresstxtview.text = addressString
+		
+		let alert = UIAlertController(title: "Error", message: addressString, preferredStyle: UIAlertController.Style.alert)
+		alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
+		
 	}
 	@IBAction func Cancelbtnclk(_ sender: Any) {
 		FieldvisitBckview.isHidden = true
@@ -546,8 +569,17 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     
 	//Field-Visit In update API
 	@objc func pressINButton(button: UIButton) {
+		let defaults = UserDefaults.standard
+		RetrivedcustId = defaults.integer(forKey: "custId")
+		RetrivedempId = defaults.integer(forKey: "empId")
+		
 		let latlanstr = latstr + ", " + longstr
-		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": 420 as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":"5"] as [String : Any]
+		
+		
+		
+		print("Update latlanstr",latlanstr)
+		print("empVisitId---",empVisitId)
+		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": empVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":"5"] as [String : Any]
 		
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
 		let session = URLSession.shared
@@ -627,8 +659,16 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		RetrivedempId = defaults.integer(forKey: "empId")
+		let formatter = DateFormatter()
+		//2016-12-08 03:37:22 +0000
+		//formatter.dateFormat = "yyyy-MM-dd"
+		formatter.dateFormat = "yyyy-MM-dd"
+		
+		let now = Date()
+		let Datestr = formatter.string(from:now)
+		print("Datestr",Datestr)
         
-		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": "2020-09-03" as Any] as [String : Any]
+		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": Datestr as Any] as [String : Any]
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 		//create the session object
 		let session = URLSession.shared
@@ -761,10 +801,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		polyline.map = self.mapView
                 }
             }
-           
-           
         draw()
-        
     }
     
     func draw() {
@@ -794,8 +831,13 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		RetrivedempId = defaults.integer(forKey: "empId")
+			let formatter = DateFormatter()
+			formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+			let now = Date()
+			let CurrentdateString = formatter.string(from:now)
+			print("CurrentdateString",CurrentdateString)
 					
-		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": "2020-09-03" as Any] as [String : Any]
+		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 					//create the session object
 		let session = URLSession.shared
@@ -866,23 +908,25 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			}
 			
 			
+			let convertedlat = Double(self.latstr)
+			let convertedlong = Double(self.longstr)
 			
 			let path = GMSMutablePath()
-			path.addLatitude(currentLoc.coordinate.latitude, longitude:currentLoc.coordinate.longitude) //Mobiloitte
-//
+			path.addLatitude(currentLoc.coordinate.latitude, longitude:currentLoc.coordinate.longitude)
 
-			
 			path.addLatitude(Destinationlat, longitude:Destinationlong) // New
 			let dottedPolyline  = GMSPolyline(path: path)
 			dottedPolyline.map = self.mapView
 			dottedPolyline.strokeWidth = 3.0
 			let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.green), GMSStrokeStyle.solidColor(UIColor.clear)]
+			
+			
 			let lengths: [Any] = [10, 5]
-				//dottedPolyline?.spans = GMSStyleSpans(dottedPolyline?.path!, styles as! [GMSStrokeStyle], lengths as! [NSNumber], kGMSLengthRhumb)
+			dottedPolyline.spans = GMSStyleSpans((dottedPolyline.path!), styles as! [GMSStrokeStyle], lengths as! [NSNumber], GMSLengthKind.rhumb)
 
 			let polyline = GMSPolyline(path: path)
 			polyline.strokeColor = .blue
-			polyline.strokeWidth = 3.0
+			polyline.strokeWidth = 1.0
 			polyline.map = self.mapView
 			
 			
@@ -890,15 +934,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		}
 
 	}
-			
-//			let marker = GMSMarker()
-//			 marker.position = CLLocationCoordinate2D(latitude: 12.9569, longitude: 77.7011)
-//			 marker.title = "Marathalli"
-//			 marker.snippet = "India"
-//			marker.map = self.mapView
-
-			 //28.643091, 77.218280
-			 
+		
 			
 			
 	}
