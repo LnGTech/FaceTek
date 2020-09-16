@@ -64,14 +64,17 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		
 
 		FieldVisit_Popupview.isHidden = true
 		
-		//    //Field visit - IN and OUT button text color code
+		    //Field visit - IN and OUT button text color code
 		self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
 		self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
 		self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
 		self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+
+		
 		self.SelectPlaceViewconstriant?.constant = 0
 		SelectPlaceDrptble.register(UINib(nibName: "SelectplaceDrpdwncell", bundle: nil), forCellReuseIdentifier: "SelectplaceDrpdwncell")
 		self.VisitPuposetxtfld.delegate = self
@@ -119,6 +122,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		//Field visit IN disable
 		FieldVisitInbtn.isEnabled = false
 		
+		print("DestinationInLatlong.....",self.DestinationInLatlong)
+		
+		
+		
+		
         GoogleMapPolyline()
 
 		
@@ -145,7 +153,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	}
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let newLocation = locations.last // find your device location
-		mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 12) // show your device location on map
+		mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 20) // show your device location on map
 		mapView.settings.myLocationButton = true // show current location button
 		let lat = (newLocation?.coordinate.latitude)! // get current location latitude
 		let long = (newLocation?.coordinate.longitude)!
@@ -238,8 +246,28 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		self.locationManager.startUpdatingLocation()
 								//UIbutton Action
 		self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
-		self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
-		self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+			
+			if (self.Adresstxtview.text == "")
+			{
+				self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
+				self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+				
+			}
+			else
+			{
+				print("print in button calling")
+				self.FieldVisitInbtn.isEnabled = true
+				self.FieldVisitInbtn.setTitleColor(.black, for: .normal)
+				self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+							
+				self.Fieldvisitoutbtn.isEnabled = false
+							self.Fieldvisitoutbtn.setTitleColor(.darkGray, for: .normal)
+							self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+				
+			}
+			
+			
+		
 		}
 		self.mapView.settings.myLocationButton = true
 		self.mapView.settings.zoomGestures = true
@@ -609,6 +637,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let code = statusDic["code"] as! NSInteger
 		if(code == 200)
 		{
+			print("print calling Track Insert")
+			self.insertTrackFieldVisit_updateCounting()
+			
 		self.mapView.addSubview(self.self.FieldVisitIn_PopupView)
 		self.FieldVisitIn_PopupView.isHidden = false
 		}
@@ -887,6 +918,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			
 			
 			
+				
+			
+			
 		let clean = self.DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
 		let values = clean.components(separatedBy: ",")
 		var coords = [CLLocation]()
@@ -896,6 +930,26 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			let marker1 = GMSMarker()
 			 marker1.position = CLLocationCoordinate2D(latitude: Destinationlat, longitude: Destinationlong)
 			 marker1.title = DestinationAddress
+			print("Destinationlat...",Destinationlat)
+			print("Destinationlong...",Destinationlong)
+			
+			
+			let StartLocclean = self.OriginLatLong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
+			let Startvalues = StartLocclean.components(separatedBy: ",")
+			var Startcoords = [CLLocation]()
+			for i in stride(from: 0, to: Startvalues.count, by: 2) {
+			if let OriginLat = Double(Startvalues[i]),
+			let OriginLong = Double(Startvalues[i+1]) {
+				let marker1 = GMSMarker()
+				 marker1.position = CLLocationCoordinate2D(latitude: OriginLat, longitude: OriginLong)
+				 marker1.title = DestinationAddress
+				print("OriginLat...",OriginLat)
+				print("OriginLong...",OriginLong)
+
+			
+			
+			
+
 			
 			 marker1.snippet = "India"
 			marker1.map = self.mapView
@@ -906,12 +960,13 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 				currentLoc = self.locationManager.location
 			   print("current location lat",currentLoc.coordinate.latitude)
 			   print("current location long",currentLoc.coordinate.longitude)
-			}
 			
-			
-			
+				
+				//"12.932868868687827, 77.6080622547354"
 			let path = GMSMutablePath()
-			path.addLatitude(currentLoc.coordinate.latitude, longitude:currentLoc.coordinate.longitude)
+			//path.addLatitude(12.932868868687827, longitude:77.6080622547354)
+				
+				path.addLatitude(OriginLat, longitude:OriginLong)
 
 			path.addLatitude(Destinationlat, longitude:Destinationlong) // New
 			let dottedPolyline  = GMSPolyline(path: path)
@@ -933,8 +988,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		}
 
 	}
-		
-			
+			}
+			}
+			}
 			
 	}
 	}}
