@@ -724,40 +724,9 @@ print("fieldVisitTrackDetails--",fieldVisitTrackDetailsArray)
 }
 func GoogleMapPolyline()
 {
-	GMSServices.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
-	GMSPlacesClient.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
-		PolylineAPI()
-	
-		//let origin = "\(12.9569),\(77.7011)"
-	var origin = OriginLatLong
-	print("origin values----",origin)
-		//let destination = "\(12.9255),\(77.5468)"
-	var destination = DestinationInLatlong
-	
-	print("destination values----",origin)
-		
-	let url = "https://maps.googleapis.com/maps/api/directions/json?origin=\(origin)&destination=\(destination)&mode=driving"
-		
-	Alamofire.request(url).responseJSON { response in
-	print(response.request as Any)  // original URL request
-	print(response.response as Any) // HTTP URL response
-			print(response.data as Any)     // server data
-			print(response.result)
-		   
-	let json = JSON(response.data)
-	let routes = json["routes"].arrayValue
-	for route in routes
-	{
-	let routeOverviewPolyline = route["overview_polyline"].dictionary
-	let points = routeOverviewPolyline?["points"]?.stringValue
-	let path = GMSPath.init(fromEncodedPath: points!)
-	let polyline = GMSPolyline.init(path: path)
-	polyline.strokeColor = UIColor.red
-	polyline.strokeWidth = 5
-	polyline.map = self.mapView
-			}
-		}
-}
+	PolylineAPI()
+
+	}
 
 
 
