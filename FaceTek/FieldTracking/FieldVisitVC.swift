@@ -827,11 +827,11 @@ func PolylineAPI()
 	for i in stride(from: 0, to: values.count, by: 2) {
 	if let Destinationlat = Double(values[i]),
 	let Destinationlong = Double(values[i+1]) {
-		let marker1 = GMSMarker()
-		 marker1.position = CLLocationCoordinate2D(latitude: Destinationlat, longitude: Destinationlong)
-		 marker1.title = DestinationAddress
-		 marker1.snippet = "India"
-		marker1.map = self.mapView
+		let marker = GMSMarker()
+		 marker.position = CLLocationCoordinate2D(latitude: Destinationlat, longitude: Destinationlong)
+		 marker.title = DestinationAddress
+		 marker.snippet = "India"
+		marker.map = self.mapView
 		
 		var currentLoc: CLLocation!
 		if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
@@ -839,7 +839,6 @@ func PolylineAPI()
 			currentLoc = self.locationManager.location
 		   print("current location lat",currentLoc.coordinate.latitude)
 		   print("current location long",currentLoc.coordinate.longitude)
-		
 		let path = GMSMutablePath()
 		path.addLatitude(currentLoc.coordinate.latitude, longitude:currentLoc.coordinate.longitude)
 
@@ -847,7 +846,7 @@ func PolylineAPI()
 		let dottedPolyline  = GMSPolyline(path: path)
 		dottedPolyline.map = self.mapView
 		dottedPolyline.strokeWidth = 3.0
-		let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.green), GMSStrokeStyle.solidColor(UIColor.clear)]
+		let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.blue), GMSStrokeStyle.solidColor(UIColor.clear)]
 		
 		let lengths: [Any] = [10, 5]
 		dottedPolyline.spans = GMSStyleSpans((dottedPolyline.path!), styles as! [GMSStrokeStyle], lengths as! [NSNumber], GMSLengthKind.rhumb)
