@@ -726,125 +726,105 @@ func GoogleMapPolyline()
 {
 	PolylineAPI()
 
-	}
-
-
+}
 
 func PolylineAPI()
 	{
 		
-	let defaults = UserDefaults.standard
-	RetrivedcustId = defaults.integer(forKey: "custId")
-	RetrivedempId = defaults.integer(forKey: "empId")
-		let formatter = DateFormatter()
-		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-		let now = Date()
-		let CurrentdateString = formatter.string(from:now)
-		print("CurrentdateString",CurrentdateString)
-				
-	let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
-	let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
-				//create the session object
-	let session = URLSession.shared
-				//now create the URLRequest object using the url object
-	var request = URLRequest(url: url as URL)
-	request.httpMethod = "POST" //set http method as POST
-				
-	do {
-	request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-	} catch let error {
-	print(error.localizedDescription)
-	}
-	request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-	request.addValue("application/json", forHTTPHeaderField: "Accept")
-	let task = URLSession.shared.dataTask(with: request) { data, response, error in
-	guard let data = data, error == nil else {
-	print(error?.localizedDescription ?? "No data")
+let defaults = UserDefaults.standard
+RetrivedcustId = defaults.integer(forKey: "custId")
+RetrivedempId = defaults.integer(forKey: "empId")
+let formatter = DateFormatter()
+formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+let now = Date()
+let CurrentdateString = formatter.string(from:now)
+print("CurrentdateString",CurrentdateString)
+let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
+let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+let session = URLSession.shared
+var request = URLRequest(url: url as URL)
+request.httpMethod = "POST" //set http method as POST
+do {
+request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+} catch let error {
+print(error.localizedDescription)
+}
+request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+request.addValue("application/json", forHTTPHeaderField: "Accept")
+let task = URLSession.shared.dataTask(with: request) { data, response, error in
+guard let data = data, error == nil else {
+print(error?.localizedDescription ?? "No data")
 	return
 	}
-	let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-	if let responseJSON = responseJSON as? [String: Any] {
-	print("fieldTrackDic responseJSON",responseJSON)
-	DispatchQueue.main.async
-	{
-	let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
-	for Field_trackDic in fieldTrackArray as! [[String:Any]]
-	{
-	var MainDict:NSMutableDictionary = NSMutableDictionary()
-	var Field_trackstr = ""
-	Field_trackstr = (Field_trackDic["toClientNamePlace"] as? String)!
-				
-	var OriginAddress = ""
-	OriginAddress = (Field_trackDic["outFromAddress"] as? String)!
-	let LanlongArray:NSMutableArray = NSMutableArray()
-	var DestinationAddress = ""
-	DestinationAddress = (Field_trackDic["inAddress"] as? String)!
-	print(" DestinationAddress.....",DestinationAddress)
-	self.OriginLatLong = (Field_trackDic["outFromLatLong"] as? String)!
-	MainDict.setObject(self.OriginLatLong, forKey: "outFromLatLong" as NSCopying)
-		print("Origin Lat long values",self.OriginLatLong)
-		self.DestinationInLatlong = (Field_trackDic["inLatLong"] as? String)!
-	MainDict.setObject(self.DestinationInLatlong, forKey: "inLatLong" as NSCopying)
-	print("DestinationInLatlong.....",self.DestinationInLatlong)
-	LanlongArray.add(MainDict)
-	print("LanlongArray----",LanlongArray)
+let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+if let responseJSON = responseJSON as? [String: Any] {
+print("fieldTrackDic responseJSON",responseJSON)
+DispatchQueue.main.async
+{
+let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
+for Field_trackDic in fieldTrackArray as! [[String:Any]]
+{
+var MainDict:NSMutableDictionary = NSMutableDictionary()
+var Field_trackstr = ""
+Field_trackstr = (Field_trackDic["toClientNamePlace"] as? String)!
+var OriginAddress = ""
+OriginAddress = (Field_trackDic["outFromAddress"] as? String)!
+let LanlongArray:NSMutableArray = NSMutableArray()
+var DestinationAddress = ""
+DestinationAddress = (Field_trackDic["inAddress"] as? String)!
+print(" DestinationAddress.....",DestinationAddress)
+self.OriginLatLong = (Field_trackDic["outFromLatLong"] as? String)!
+MainDict.setObject(self.OriginLatLong, forKey: "outFromLatLong" as NSCopying)
+print("Origin Lat long values",self.OriginLatLong)
+self.DestinationInLatlong = (Field_trackDic["inLatLong"] as? String)!
+MainDict.setObject(self.DestinationInLatlong, forKey: "inLatLong" as NSCopying)
+print("DestinationInLatlong.....",self.DestinationInLatlong)
+LanlongArray.add(MainDict)
+print("LanlongArray----",LanlongArray)
 		
-		
-	let clean = self.DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
-	let values = clean.components(separatedBy: ",")
-	var coords = [CLLocation]()
-	for i in stride(from: 0, to: values.count, by: 2) {
-	if let Destinationlat = Double(values[i]),
-	let Destinationlong = Double(values[i+1]) {
-		let marker = GMSMarker()
-		 marker.position = CLLocationCoordinate2D(latitude: Destinationlat, longitude: Destinationlong)
-		 marker.title = DestinationAddress
-		 marker.snippet = "India"
-		marker.map = self.mapView
-		
-		var currentLoc: CLLocation!
-		if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-		CLLocationManager.authorizationStatus() == .authorizedAlways) {
-			currentLoc = self.locationManager.location
-		   print("current location lat",currentLoc.coordinate.latitude)
-		   print("current location long",currentLoc.coordinate.longitude)
-		let path = GMSMutablePath()
-		//path.addLatitude(currentLoc.coordinate.latitude, longitude:currentLoc.coordinate.longitude)
-			
-//			path.addLatitude(12.93288354398118, longitude:77.60805975524269)
-//		path.addLatitude(Destinationlat, longitude:Destinationlong) // New
-
-			
-			let arrLat = [12.9328252144506, 12.932529942542098, 12.932886710591994, 12.933324100032866, 12.932829783526563]
-			let arrLng = [77.60802170716183, 77.60816041281973, 77.60742040583821, 77.60724127287006, 77.60804584635869]
-			for i in 0..<arrLat.count {
-				path.add(CLLocationCoordinate2D(latitude: arrLat[i], longitude: arrLng[i]))
-			}
-
-			
-			
-			
-			
-			
-			
-			let dottedPolyline  = GMSPolyline(path: path)
-		dottedPolyline.map = self.mapView
-		dottedPolyline.strokeWidth = 3.0
-		let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.blue), GMSStrokeStyle.solidColor(UIColor.clear)]
-		
-		let lengths: [Any] = [10, 5]
-		dottedPolyline.spans = GMSStyleSpans((dottedPolyline.path!), styles as! [GMSStrokeStyle], lengths as! [NSNumber], GMSLengthKind.rhumb)
-
-		let polyline = GMSPolyline(path: path)
-		polyline.strokeColor = .blue
-		polyline.strokeWidth = 1.0
-		polyline.map = self.mapView
-	}
-}}}
-}}
-		}
-task.resume()
+let clean = self.DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
+let values = clean.components(separatedBy: ",")
+var coords = [CLLocation]()
+for i in stride(from: 0, to: values.count, by: 2) {
+if let Destinationlat = Double(values[i]),
+let Destinationlong = Double(values[i+1]) {
+let marker = GMSMarker()
+marker.position = CLLocationCoordinate2D(latitude: Destinationlat, longitude: Destinationlong)
+marker.title = DestinationAddress
+marker.snippet = "India"
+marker.map = self.mapView
+var currentLoc: CLLocation!
+if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+CLLocationManager.authorizationStatus() == .authorizedAlways) {
+currentLoc = self.locationManager.location
+print("current location lat",currentLoc.coordinate.latitude)
+print("current location long",currentLoc.coordinate.longitude)
+let path = GMSMutablePath()
+let testarray = Array(arrayLiteral: Destinationlat)
+print("testarray...",testarray)
+var arrSectionsData = NSArray()
+arrSectionsData = Array(arrayLiteral: Destinationlat) as NSArray
+print("arrSectionsData",arrSectionsData)
+let arrLat = [12.9328252144506, 12.932529942542098, 12.932886710591994, 12.933324100032866, 12.932829783526563]
+let arrLng = [77.60802170716183, 77.60816041281973, 77.60742040583821, 77.60724127287006, 77.60804584635869]
+for i in 0..<arrLat.count {
+path.add(CLLocationCoordinate2D(latitude: arrLat[i], longitude: arrLng[i]))
 }
+let dottedPolyline  = GMSPolyline(path: path)
+dottedPolyline.map = self.mapView
+dottedPolyline.strokeWidth = 3.0
+let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.blue), GMSStrokeStyle.solidColor(UIColor.clear)]
+let lengths: [Any] = [10, 5]
+dottedPolyline.spans = GMSStyleSpans((dottedPolyline.path!), styles as! [GMSStrokeStyle], lengths as! [NSNumber], GMSLengthKind.rhumb)
+let polyline = GMSPolyline(path: path)
+polyline.strokeColor = .blue
+polyline.strokeWidth = 1.0
+polyline.map = self.mapView
+	}}}}
+}}
+}
+task.resume()
+ }
 }
 
 
