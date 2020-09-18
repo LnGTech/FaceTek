@@ -725,7 +725,6 @@ print("fieldVisitTrackDetails--",fieldVisitTrackDetailsArray)
 func GoogleMapPolyline()
 {
 	PolylineAPI()
-
 }
 
 func PolylineAPI()
@@ -775,13 +774,11 @@ DestinationAddress = (Field_trackDic["inAddress"] as? String)!
 print(" DestinationAddress.....",DestinationAddress)
 self.OriginLatLong = (Field_trackDic["outFromLatLong"] as? String)!
 MainDict.setObject(self.OriginLatLong, forKey: "outFromLatLong" as NSCopying)
-print("Origin Lat long values",self.OriginLatLong)
 self.DestinationInLatlong = (Field_trackDic["inLatLong"] as? String)!
 MainDict.setObject(self.DestinationInLatlong, forKey: "inLatLong" as NSCopying)
 print("DestinationInLatlong.....",self.DestinationInLatlong)
 LanlongArray.add(MainDict)
 print("LanlongArray----",LanlongArray)
-		
 let clean = self.DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
 let values = clean.components(separatedBy: ",")
 var coords = [CLLocation]()
@@ -805,6 +802,8 @@ print("testarray...",testarray)
 var arrSectionsData = NSArray()
 arrSectionsData = Array(arrayLiteral: Destinationlat) as NSArray
 print("arrSectionsData",arrSectionsData)
+	//let arrLat = NSMutableArray()
+	//arrLat.add(<#T##anObject: Any##Any#>)
 let arrLat = [12.9328252144506, 12.932529942542098, 12.932886710591994, 12.933324100032866, 12.932829783526563]
 let arrLng = [77.60802170716183, 77.60816041281973, 77.60742040583821, 77.60724127287006, 77.60804584635869]
 for i in 0..<arrLat.count {
