@@ -145,7 +145,7 @@ override func viewDidLoad() {
 }
 func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 	let newLocation = locations.last // find your device location
-	mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 12) // show your device location on map
+	mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 20) // show your device location on map
 	mapView.settings.myLocationButton = true // show current location button
 	let lat = (newLocation?.coordinate.latitude)! // get current location latitude
 	let long = (newLocation?.coordinate.longitude)!
@@ -809,10 +809,25 @@ func PolylineAPI()
 		   print("current location lat",currentLoc.coordinate.latitude)
 		   print("current location long",currentLoc.coordinate.longitude)
 		let path = GMSMutablePath()
-		path.addLatitude(currentLoc.coordinate.latitude, longitude:currentLoc.coordinate.longitude)
+		//path.addLatitude(currentLoc.coordinate.latitude, longitude:currentLoc.coordinate.longitude)
+			
+//			path.addLatitude(12.93288354398118, longitude:77.60805975524269)
+//		path.addLatitude(Destinationlat, longitude:Destinationlong) // New
 
-		path.addLatitude(Destinationlat, longitude:Destinationlong) // New
-		let dottedPolyline  = GMSPolyline(path: path)
+			
+			let arrLat = [12.9328252144506, 12.932529942542098, 12.932886710591994, 12.933324100032866, 12.932829783526563]
+			let arrLng = [77.60802170716183, 77.60816041281973, 77.60742040583821, 77.60724127287006, 77.60804584635869]
+			for i in 0..<arrLat.count {
+				path.add(CLLocationCoordinate2D(latitude: arrLat[i], longitude: arrLng[i]))
+			}
+
+			
+			
+			
+			
+			
+			
+			let dottedPolyline  = GMSPolyline(path: path)
 		dottedPolyline.map = self.mapView
 		dottedPolyline.strokeWidth = 3.0
 		let styles: [Any] = [GMSStrokeStyle.solidColor(UIColor.blue), GMSStrokeStyle.solidColor(UIColor.clear)]
