@@ -343,6 +343,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						let code = statusDic["code"] as! NSInteger
 						if(code == 200)
 						{
+							
+							self.insertTrackFieldVisit_updateCounting()
 							let message = statusDic["message"] as! NSString
 							//Leave PopUp method calling
 							
@@ -764,16 +766,22 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 					for visit in fieldTrackArray! {
 						let fieldVisit = visit as? [String:Any]
 						let latLongString = fieldVisit!["inLatLong"] as? String
+						let Inaddress = fieldVisit!["inAddress"] as? String
+						
+						
+						
 						let latLong = latLongString?.components(separatedBy: ",")
 						let latitude = Double(latLong![0].replacingOccurrences(of: " ", with: ""))
 						let longitude = Double(latLong![1].replacingOccurrences(of: " ", with: ""))
 						path.add(CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!))
 						
-//						let marker = GMSMarker()
-//						marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-//						marker.title = "Dummy"
-//						marker.snippet = "India"
-//						marker.map = self.mapView
+						let marker = GMSMarker()
+						marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
+						marker.title = Inaddress
+						
+						print("addressString....",self.addressString)
+						//marker.snippet = "India"
+						marker.map = self.mapView
 					}
 					
 //					path.add(CLLocationCoordinate2D(latitude: 37.36, longitude: -122.0))
@@ -784,8 +792,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 					
 					let polyline = GMSPolyline(path: path)
 					polyline.strokeColor = .blue
-					polyline.strokeWidth = 10.0
-					polyline.spans = [GMSStyleSpan(color: .red)]
+					polyline.strokeWidth = 1.0
+					polyline.spans = [GMSStyleSpan(color: .blue)]
 					polyline.map = self.mapView
 					
 				}
