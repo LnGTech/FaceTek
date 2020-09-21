@@ -4222,6 +4222,8 @@
                         <outlet property="FieldVisit_Popupview" destination="dYB-Tk-vGS" id="j05-ZA-Ec5"/>
                         <outlet property="FieldvisitBckview" destination="IKi-KG-WXg" id="A7d-fM-72o"/>
                         <outlet property="Fieldvisitoutbtn" destination="VMs-aT-W6I" id="6BU-H3-0RP"/>
+                        <outlet property="PreviousMeetingView" destination="OaT-TW-lRf" id="Nn5-nd-UxM"/>
+                        <outlet property="PreviousTxt" destination="paP-fN-Ms7" id="MRn-vb-9pg"/>
                         <outlet property="SelectPlaceDrptble" destination="cjw-ab-2gF" id="3hl-Rr-qZg"/>
                         <outlet property="SelectPlaceViewconstriant" destination="yZE-s8-4NP" id="FPf-bY-87T"/>
                         <outlet property="Selectplacelbl" destination="NoD-2f-GUq" id="SFG-Yy-d0D"/>

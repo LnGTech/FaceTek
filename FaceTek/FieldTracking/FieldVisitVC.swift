@@ -29,6 +29,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	@IBOutlet weak var Selectplacelbl: UILabel!
 	@IBOutlet weak var VisitPuposetxtfld: UITextField!
 	@IBOutlet weak var Adresstxtview: UITextView!
+	
+	@IBOutlet weak var PreviousTxt: UITextField!
+	
+	
+	@IBOutlet weak var PreviousMeetingView: UIView!
 	@IBOutlet weak var DrpDownview: UIView!
 	
 	@IBOutlet weak var FieldVisit_Popupview: UIView!
@@ -75,6 +80,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		self.SelectPlaceViewconstriant?.constant = 0
 		SelectPlaceDrptble.register(UINib(nibName: "SelectplaceDrpdwncell", bundle: nil), forCellReuseIdentifier: "SelectplaceDrpdwncell")
 		self.VisitPuposetxtfld.delegate = self
+		self.PreviousTxt.delegate = self
 		FieldvisitBckview.isHidden = true
 		DrpDownview.isHidden = true
 		let defaults = UserDefaults.standard
@@ -129,9 +135,23 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
         Adresstxtview.font = UIFont(name: "verdana", size: 13.0)
         Adresstxtview.returnKeyType = .done
         Adresstxtview.delegate = self
+		//key board show and Hide
+		NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
-
+//Previous meeting Validations
+		if (Adresstxtview.text == addressString)
+		{
+			PreviousMeetingView.isHidden = true
+		}
+		else{
+			PreviousMeetingView.isHidden = false
+			
+		}
+		
+		
 		GoogleMapPolyline()
+		
 		
 		
 	}
@@ -544,6 +564,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
 	{
 		VisitPuposetxtfld.resignFirstResponder()
+		PreviousTxt.resignFirstResponder()
 		return true;
 	}
 	
@@ -850,6 +871,24 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
             Adresstxtview.text = "Reason"
             Adresstxtview.textColor = UIColor.lightGray
             Adresstxtview.font = UIFont(name: "verdana", size: 13.0)
+        }
+    }
+	
+	@objc func keyboardWillShow(notification: Notification) {
+        
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            print("notification: Keyboard will show")
+            if self.view.frame.origin.y == 0{
+                self.view.frame.origin.y -= keyboardSize.height
+            }
+        }
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+            if self.view.frame.origin.y != 0 {
+                self.view.frame.origin.y += keyboardSize.height
+            }
         }
     }
 	
