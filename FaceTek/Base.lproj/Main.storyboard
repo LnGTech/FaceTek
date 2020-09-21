@@ -4216,6 +4216,7 @@
                     <connections>
                         <outlet property="Adresstxtview" destination="9Ef-7V-Dcv" id="4ne-hU-g26"/>
                         <outlet property="Cancelbtn" destination="8ya-AR-Mzo" id="x7g-aa-wp7"/>
+                        <outlet property="ClientTxtfld" destination="A92-9t-XJ8" id="cVd-cy-rIb"/>
                         <outlet property="DrpDownview" destination="vRs-Jl-fnW" id="aBn-Du-3cP"/>
                         <outlet property="FieldVisitIn_PopupView" destination="d4e-PT-G0v" id="6Ah-Y3-20O"/>
                         <outlet property="FieldVisitInbtn" destination="KqN-hj-9Xl" id="xfR-80-8AA"/>

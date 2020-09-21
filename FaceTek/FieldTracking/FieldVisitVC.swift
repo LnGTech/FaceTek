@@ -27,6 +27,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	@IBOutlet weak var Cancelbtn: UIButton!
 	@IBOutlet weak var Submitbrn: UIButton!
 	@IBOutlet weak var Selectplacelbl: UILabel!
+	
+	@IBOutlet weak var ClientTxtfld: UITextField!
+	
 	@IBOutlet weak var VisitPuposetxtfld: UITextField!
 	@IBOutlet weak var Adresstxtview: UITextView!
 	
@@ -68,7 +71,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	var locationManager = CLLocationManager()
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
+		self.SelectPlaceDrptble.delegate = self
+		self.SelectPlaceDrptble.dataSource = self
 		
 		FieldVisit_Popupview.isHidden = true
 		
@@ -125,9 +129,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		//Field visit IN disable
 		FieldVisitInbtn.isEnabled = false
 		//Key board Hide touch any where
-		let touchtap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
-		view.addGestureRecognizer(touchtap)
-		
+//		let touchtap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+//		view.addGestureRecognizer(touchtap)
+//
 		
 		//Address Textview
 		Adresstxtview.text = "Reason"
@@ -155,10 +159,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
 		
 	}
-	@objc override func dismissKeyboard() {
-		
-		view.endEditing(true)
-	}
+//	@objc override func dismissKeyboard() {
+//
+//		view.endEditing(true)
+//	}
 	
 	
 	@objc func actionTextFieldIsEditingChanged(sender: UITextField) {
@@ -539,6 +543,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	
 	// method to run when table view cell is tapped
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
+		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+		view.addGestureRecognizer(tap)
+		tap.cancelsTouchesInView = false
 		let drpcell = tableView.dequeueReusableCell(withIdentifier: "SelectplaceDrpdwncell", for: indexPath) as! SelectplaceDrpdwncell
 		var responseDict = self.SelectPlaceArray[indexPath.row] as! NSMutableDictionary
 		var maindata = SelectPlaceArray[indexPath.row]
@@ -547,10 +555,24 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		drpcell.selectPlacedrpLbl!.text = Selectplacestr
 		Selectplacelbl.text = Selectplacestr
 		DrpDownview.isHidden = true
-		UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-			self.SelectPlaceViewconstriant?.constant = 45
-			self.view.layoutIfNeeded()
-		}, completion: nil)
+		
+		if (drpcell.selectPlacedrpLbl.text == "Others")
+		{
+			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+				self.SelectPlaceViewconstriant?.constant = 45
+				self.view.layoutIfNeeded()
+			}, completion: nil)
+		}
+		else
+		{
+			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+				self.SelectPlaceViewconstriant?.constant = 0
+				self.view.layoutIfNeeded()
+			}, completion: nil)
+			
+		}
+
+		
 		
 	}
 	@objc func pressButton(button: UIButton) {
@@ -563,6 +585,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	}
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
 	{
+		ClientTxtfld.resignFirstResponder()
 		VisitPuposetxtfld.resignFirstResponder()
 		PreviousTxt.resignFirstResponder()
 		return true;
