@@ -14,7 +14,7 @@ import Alamofire
 import SwiftyJSON
 
 
-class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource {
+class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate {
 	
 	private var isAlreadyLoaddropdowndata = false
 	private var Fieldvisitout_cleardata = false
@@ -118,10 +118,26 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		Submitbrn.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.6487585616, blue: 0.06666666667, alpha: 0.2948148545)
 		//Field visit IN disable
 		FieldVisitInbtn.isEnabled = false
+		//Key board Hide touch any where
+		let touchtap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
+		view.addGestureRecognizer(touchtap)
 		
+		
+		//Address Textview
+		Adresstxtview.text = "Reason"
+        Adresstxtview.textColor = UIColor.lightGray
+        Adresstxtview.font = UIFont(name: "verdana", size: 13.0)
+        Adresstxtview.returnKeyType = .done
+        Adresstxtview.delegate = self
+
+
 		GoogleMapPolyline()
 		
 		
+	}
+	@objc override func dismissKeyboard() {
+		
+		view.endEditing(true)
 	}
 	
 	
@@ -145,7 +161,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	}
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let newLocation = locations.last // find your device location
-		mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 20) // show your device location on map
+		mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 16) // show your device location on map
 		mapView.settings.myLocationButton = true // show current location button
 		let lat = (newLocation?.coordinate.latitude)! // get current location latitude
 		let long = (newLocation?.coordinate.longitude)!
@@ -706,6 +722,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 									let newPosition = CLLocationCoordinate2D(latitude: lat, longitude: long)
 									marker.position = newPosition
 									marker.title = DestinationAddress
+									
+									
+									
+									
 									marker.map = self.mapView
 									print("Latlongs...",coord)
 									print("Latlong...",coords.append(coord))
@@ -781,6 +801,15 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						
 						print("addressString....",self.addressString)
 						//marker.snippet = "India"
+						
+						let lbl = UILabel()
+						lbl.text = "ABC 123"
+						lbl.textColor = UIColor.black
+						lbl.backgroundColor = UIColor.cyan
+						// add label to viewAn
+						//lbl.frame = viewAn.bounds
+						self.view.addSubview(lbl)
+						
 						marker.map = self.mapView
 					}
 					
@@ -800,6 +829,30 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			}}
 		task.resume()
 	}
+	
+	func textViewDidBeginEditing(_ textView: UITextView) {
+        if Adresstxtview.text == "Reason" {
+            Adresstxtview.text = ""
+            Adresstxtview.textColor = UIColor.black
+            Adresstxtview.font = UIFont(name: "verdana", size: 18.0)
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            Adresstxtview.resignFirstResponder()
+        }
+        return true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if Adresstxtview.text == "" {
+            Adresstxtview.text = "Reason"
+            Adresstxtview.textColor = UIColor.lightGray
+            Adresstxtview.font = UIFont(name: "verdana", size: 13.0)
+        }
+    }
+	
 }
 
 
