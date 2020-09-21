@@ -16,6 +16,7 @@ import SwiftyJSON
 
 class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate {
 	
+	
 	private var isAlreadyLoaddropdowndata = false
 	private var Fieldvisitout_cleardata = false
 	
@@ -71,6 +72,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	var locationManager = CLLocationManager()
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+		
 		self.SelectPlaceDrptble.delegate = self
 		self.SelectPlaceDrptble.dataSource = self
 		
@@ -831,8 +834,15 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						let fieldVisit = visit as? [String:Any]
 						let latLongString = fieldVisit!["inLatLong"] as? String
 						let Inaddress = fieldVisit!["inAddress"] as? String
+						print("In address values...",Inaddress as Any)
 						
-						
+						for (index, name) in fieldTrackArray!
+							.enumerated()
+						{
+							//YOUR LOGIC....
+							print("Index values",name)
+							print("Index Integer numbers values..",index)//0, 1, 2, 3 ...
+						}
 						
 						let latLong = latLongString?.components(separatedBy: ",")
 						let latitude = Double(latLong![0].replacingOccurrences(of: " ", with: ""))
