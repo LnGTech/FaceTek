@@ -566,11 +566,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
                 }
                 
             }
-        }
+        
+		}
         else
         {
-            //
-            //let drpcell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell", for: indexPath) as! Dropdowncell
+           
 			let cell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell") as! Dropdowncell
 			
 			let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
@@ -585,13 +585,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             //cell.textLabel!.text = custLeaveNamestr
             
             SelectLeaveTypeTxtfield.text = "" + " " + custLeaveNamestr!
-            
             cell.DropdownLbl!.text = custLeaveNamestr
-
             //LeaveTypetxt.text = custLeaveNamestr!
 			tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: true)
-
-
             self.custLeaveId = (responseDict["custLeaveId"] as? NSInteger)!
             print("Selected Customer Id",custLeaveId)
             Dropdowntbl.isHidden = true
@@ -600,6 +596,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             
         }
     }
+	
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 50
