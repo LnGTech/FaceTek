@@ -210,6 +210,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             RemarkTextview.text = ""
             RemarkTextview.textColor = UIColor.black
             RemarkTextview.font = UIFont(name: "verdana", size: 18.0)
+			
         }
     }
     
@@ -494,37 +495,6 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 
 		   return cellToReturn
 		
-        
-//        if tableView == self.LeaveNavigationtbl {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
-//            cell.accessoryType = .disclosureIndicator
-//            // set the text from the data model
-//            cell.LeaveNavigationLbl?.text = self.LeaveNavigationMenuArray[indexPath.row]
-//
-//            return cell
-//        }
-//        else
-//        {
-//
-//
-//            let drpcell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell", for: indexPath) as! Dropdowncell
-//            let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
-//            _ = LeavetypeDropdownArray[indexPath.row]
-//            print("Retrived data",responseDict)
-//            self.LeavetypeDropdownArray.add(MainDict)
-//            print("Leave Type Array",LeavetypeDropdownArray)
-//            var custLeaveNamestr : String?
-//            custLeaveNamestr = responseDict["custLeaveName"] as? String
-//            print("custLeaveNamestr",custLeaveNamestr)
-//            drpcell.DropdownLbl!.text = custLeaveNamestr
-//            return drpcell
-//
-//
-//
-//
-//
-//
-//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
@@ -677,8 +647,10 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
                                     let code = responseJSON["code"]! as! NSInteger
                                     let message = responseJSON["message"]! as! NSString
                                     //Leave PopUp method calling
-								self.LeavePopUp()
-            
+									self.LeavePopUp()
+									//self.RemarkTextview.resignFirstResponder()
+
+									
                                 }
                                 else
                                 {
@@ -716,6 +688,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         Fromtxt.text = ""
         
     }
+	
+	
     
     func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {
         let mainContainer: UIView = UIView(frame: viewContainer.frame)
@@ -766,6 +740,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         }
     }
     
+	
+    
+	
     func LeavePopUp()
     {
         
@@ -773,7 +750,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         self.customView.backgroundColor = UIColor.white     //give color to the view
         self.customView.center = self.view.center
         self.view.addSubview(self.customView)
-        self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 233, height: 150)
+        self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 230, height: 150)
         self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
         let shadowPath = UIBezierPath(rect: self.customView.bounds)
         self.customView.layer.masksToBounds = false
