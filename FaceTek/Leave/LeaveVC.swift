@@ -648,9 +648,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
                                     let message = responseJSON["message"]! as! NSString
                                     //Leave PopUp method calling
 									self.LeavePopUp()
-									//self.RemarkTextview.resignFirstResponder()
+									self.RemarkTextview.resignFirstResponder()
 
-									
+
                                 }
                                 else
                                 {
