@@ -454,10 +454,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         var count:Int?
         if tableView == self.LeaveNavigationtbl {
             count = LeaveNavigationMenuArray.count
+			return count!
         }
             //if tableView == self.Dropdowntbl {
-        else
-        {
+        if tableView == self.Dropdowntbl {
+        
             count =  LeavetypeDropdownArray.count
         }
         return count!
@@ -477,6 +478,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         else
         {
             
+				
             let drpcell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell", for: indexPath) as! Dropdowncell
             let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
             _ = LeavetypeDropdownArray[indexPath.row]
@@ -488,6 +490,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             print("custLeaveNamestr",custLeaveNamestr)
             drpcell.DropdownLbl!.text = custLeaveNamestr
             return drpcell
+			
+			
+			
+			
+			
             
         }
     }
@@ -536,15 +543,15 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         {
             //
             let drpcell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell", for: indexPath) as! Dropdowncell
-            var responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
-            var maindata = LeavetypeDropdownArray[indexPath.row]
+			let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
+			_ = LeavetypeDropdownArray[indexPath.row]
             print("Retrived data",responseDict)
             self.LeavetypeDropdownArray.add(MainDict)
             print("Leave Type Array",LeavetypeDropdownArray)
             
             var custLeaveNamestr : String?
             custLeaveNamestr = responseDict["custLeaveName"] as? String
-            print("custLeaveNamestr",custLeaveNamestr)
+			print("custLeaveNamestr",custLeaveNamestr as Any)
             //cell.textLabel!.text = custLeaveNamestr
             
             SelectLeaveTypeTxtfield.text = "" + " " + custLeaveNamestr!
@@ -552,6 +559,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             drpcell.DropdownLbl!.text = custLeaveNamestr
 
             //LeaveTypetxt.text = custLeaveNamestr!
+			tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: true)
+
 
             self.custLeaveId = (responseDict["custLeaveId"] as? NSInteger)!
             print("Selected Customer Id",custLeaveId)
@@ -641,7 +650,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
                                     let code = responseJSON["code"]! as! NSInteger
                                     let message = responseJSON["message"]! as! NSString
                                     //Leave PopUp method calling
-                                    self.LeavePopUp()
+								self.LeavePopUp()
             
                                 }
                                 else
@@ -799,6 +808,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         RemarkTextview.text = "Reason"
         RemarkTextview.textColor = UIColor.lightGray
         RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+		
+		
+		
     }
     func RefreshLoadingData()
     {
@@ -881,6 +893,5 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         self.activityIndicator.stopAnimating()
     }
     
-    
-    
+	
 }
