@@ -466,37 +466,65 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
+		 var cellToReturn = UITableViewCell() // Dummy value
+		   if tableView == self.LeaveNavigationtbl {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell") as! LeaveNavigationcell
+			   
+			   cell.accessoryType = .disclosureIndicator
+			//            // set the text from the data model
+			            cell.LeaveNavigationLbl?.text = self.LeaveNavigationMenuArray[indexPath.row]
+			
+			
+			cellToReturn = cell
+			
+		   } else if tableView == self.Dropdowntbl {
+			let cell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell") as! Dropdowncell
+			let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
+			            _ = LeavetypeDropdownArray[indexPath.row]
+			            print("Retrived data",responseDict)
+			            self.LeavetypeDropdownArray.add(MainDict)
+			            print("Leave Type Array",LeavetypeDropdownArray)
+			            var custLeaveNamestr : String?
+			            custLeaveNamestr = responseDict["custLeaveName"] as? String
+			            print("custLeaveNamestr",custLeaveNamestr)
+			            cell.DropdownLbl!.text = custLeaveNamestr
+			   cellToReturn = cell
+		   }
+
+		   return cellToReturn
+		
         
-        if tableView == self.LeaveNavigationtbl {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
-            cell.accessoryType = .disclosureIndicator
-            // set the text from the data model
-            cell.LeaveNavigationLbl?.text = self.LeaveNavigationMenuArray[indexPath.row]
-            
-            return cell
-        }
-        else
-        {
-            
-				
-            let drpcell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell", for: indexPath) as! Dropdowncell
-            let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
-            _ = LeavetypeDropdownArray[indexPath.row]
-            print("Retrived data",responseDict)
-            self.LeavetypeDropdownArray.add(MainDict)
-            print("Leave Type Array",LeavetypeDropdownArray)
-            var custLeaveNamestr : String?
-            custLeaveNamestr = responseDict["custLeaveName"] as? String
-            print("custLeaveNamestr",custLeaveNamestr)
-            drpcell.DropdownLbl!.text = custLeaveNamestr
-            return drpcell
-			
-			
-			
-			
-			
-            
-        }
+//        if tableView == self.LeaveNavigationtbl {
+//            let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
+//            cell.accessoryType = .disclosureIndicator
+//            // set the text from the data model
+//            cell.LeaveNavigationLbl?.text = self.LeaveNavigationMenuArray[indexPath.row]
+//
+//            return cell
+//        }
+//        else
+//        {
+//
+//
+//            let drpcell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell", for: indexPath) as! Dropdowncell
+//            let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
+//            _ = LeavetypeDropdownArray[indexPath.row]
+//            print("Retrived data",responseDict)
+//            self.LeavetypeDropdownArray.add(MainDict)
+//            print("Leave Type Array",LeavetypeDropdownArray)
+//            var custLeaveNamestr : String?
+//            custLeaveNamestr = responseDict["custLeaveName"] as? String
+//            print("custLeaveNamestr",custLeaveNamestr)
+//            drpcell.DropdownLbl!.text = custLeaveNamestr
+//            return drpcell
+//
+//
+//
+//
+//
+//
+//        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
@@ -542,7 +570,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         else
         {
             //
-            let drpcell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell", for: indexPath) as! Dropdowncell
+            //let drpcell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell", for: indexPath) as! Dropdowncell
+			let cell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell") as! Dropdowncell
+			
 			let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
 			_ = LeavetypeDropdownArray[indexPath.row]
             print("Retrived data",responseDict)
@@ -556,7 +586,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             
             SelectLeaveTypeTxtfield.text = "" + " " + custLeaveNamestr!
             
-            drpcell.DropdownLbl!.text = custLeaveNamestr
+            cell.DropdownLbl!.text = custLeaveNamestr
 
             //LeaveTypetxt.text = custLeaveNamestr!
 			tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: true)

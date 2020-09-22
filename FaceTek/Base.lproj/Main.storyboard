@@ -4826,7 +4826,7 @@
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gGh-EU-ioc">
-                                                                <rect key="frame" x="300" y="12" width="15" height="15"/>
+                                                                <rect key="frame" x="290" y="12" width="15" height="15"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="Z1l-ip-2Ih"/>
@@ -4834,7 +4834,7 @@
                                                                 </constraints>
                                                             </button>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RkE-s8-ioN">
-                                                                <rect key="frame" x="300" y="44" width="15" height="15"/>
+                                                                <rect key="frame" x="290" y="44" width="15" height="15"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="15" id="BhG-cu-Z2j"/>
@@ -4845,14 +4845,14 @@
                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstItem="B72-DR-XQU" firstAttribute="leading" secondItem="yI1-w2-ifh" secondAttribute="trailing" constant="8" id="22H-YN-wI5"/>
-                                                            <constraint firstItem="gGh-EU-ioc" firstAttribute="leading" secondItem="FiI-6e-ZvD" secondAttribute="trailing" constant="24" id="9Hz-zZ-3K5"/>
+                                                            <constraint firstItem="gGh-EU-ioc" firstAttribute="leading" secondItem="FiI-6e-ZvD" secondAttribute="trailing" constant="14" id="9Hz-zZ-3K5"/>
                                                             <constraint firstItem="FiI-6e-ZvD" firstAttribute="top" secondItem="1DP-uD-Mxu" secondAttribute="top" constant="8" id="BwQ-sD-ut3"/>
-                                                            <constraint firstAttribute="trailing" secondItem="gGh-EU-ioc" secondAttribute="trailing" constant="44" id="CZb-QC-UPL"/>
+                                                            <constraint firstAttribute="trailing" secondItem="gGh-EU-ioc" secondAttribute="trailing" constant="54" id="CZb-QC-UPL"/>
                                                             <constraint firstItem="yI1-w2-ifh" firstAttribute="top" secondItem="JmQ-aa-BXM" secondAttribute="bottom" constant="8" id="N4R-rW-N06"/>
                                                             <constraint firstItem="FiI-6e-ZvD" firstAttribute="leading" secondItem="JmQ-aa-BXM" secondAttribute="trailing" constant="8" id="NmB-Sq-9td"/>
                                                             <constraint firstAttribute="height" constant="70" id="PFX-Gl-rWa"/>
-                                                            <constraint firstItem="RkE-s8-ioN" firstAttribute="leading" secondItem="B72-DR-XQU" secondAttribute="trailing" constant="24" id="UaR-dn-1zs"/>
-                                                            <constraint firstAttribute="trailing" secondItem="RkE-s8-ioN" secondAttribute="trailing" constant="44" id="Wyf-JJ-Pnc"/>
+                                                            <constraint firstItem="RkE-s8-ioN" firstAttribute="leading" secondItem="B72-DR-XQU" secondAttribute="trailing" constant="14" id="UaR-dn-1zs"/>
+                                                            <constraint firstAttribute="trailing" secondItem="RkE-s8-ioN" secondAttribute="trailing" constant="54" id="Wyf-JJ-Pnc"/>
                                                             <constraint firstItem="RkE-s8-ioN" firstAttribute="top" secondItem="gGh-EU-ioc" secondAttribute="bottom" constant="17" id="XrD-cb-qmO"/>
                                                             <constraint firstItem="gGh-EU-ioc" firstAttribute="top" secondItem="1DP-uD-Mxu" secondAttribute="top" constant="12" id="mSD-xV-HHH"/>
                                                             <constraint firstItem="JmQ-aa-BXM" firstAttribute="leading" secondItem="1DP-uD-Mxu" secondAttribute="leading" constant="8" id="nDo-Hz-5FE"/>
