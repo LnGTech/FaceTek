@@ -292,8 +292,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		AttendanceDashboardCell.AttendanceDashboardLbl.text = self.DashboardArray[indexPath.item]
 		let image = DashboardIconImgs[indexPath.row]
 		AttendanceDashboardCell.Attendanceimage.image = image
-		AttendanceDashboardCell.layer.borderWidth = 1.0
-		AttendanceDashboardCell.layer.borderColor = UIColor.blue.cgColor
+		//AttendanceDashboardCell.layer.borderWidth = 1.0
+		//AttendanceDashboardCell.layer.borderColor = UIColor.blue.cgColor
 		customActivityIndicatory(self.view, startAnimate: false)
 		return AttendanceDashboardCell
 		

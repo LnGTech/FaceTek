@@ -64,7 +64,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     let TodatePicker = UIDatePicker()
     override func viewDidLoad() {
         super.viewDidLoad()
-	AppliedLeavePopup.isHidden = true
+			AppliedLeavePopup.isHidden = true
 	startLoadingSpinner()
 	timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
 	RefreshLoadingData()
@@ -111,7 +111,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	RetrivedempId = defaults.integer(forKey: "empId")
 	print("RetrivedempId----",RetrivedempId)
 	Dropdowntbl.isHidden = true
-	RemarkTextview.text = "Reason"
+	RemarkTextview.text = "  Remarks"
 	RemarkTextview.textColor = UIColor.lightGray
 	RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
 	RemarkTextview.returnKeyType = .done
@@ -161,10 +161,10 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         }
     }
     func textViewDidBeginEditing(_ textView: UITextView) {
-	if RemarkTextview.text == "Reason" {
+	if RemarkTextview.text == " Remarks" {
 	RemarkTextview.text = ""
 	RemarkTextview.textColor = UIColor.black
-	RemarkTextview.font = UIFont(name: "verdana", size: 18.0)
+	RemarkTextview.font = UIFont(name: "verdana", size: 14.0)
 			
         }
     }
@@ -178,9 +178,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     func textViewDidEndEditing(_ textView: UITextView) {
 	if RemarkTextview.text == "" {
-	RemarkTextview.text = "Reason"
+	RemarkTextview.text = " Remarks"
 	RemarkTextview.textColor = UIColor.lightGray
-	RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+	RemarkTextview.font = UIFont(name: "verdana", size: 14.0)
 	RemarkTextview.resignFirstResponder()
 
         }
@@ -670,18 +670,18 @@ task.resume()
 	Totxt.text = nil
 	Totxt.placeholder = "To"
 	RemarkTextview.text = nil
-	RemarkTextview.text = "Reason"
+	RemarkTextview.text = " Remarks"
     RemarkTextview.textColor = UIColor.lightGray
-	RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+	RemarkTextview.font = UIFont(name: "verdana", size: 14.0)
 	startLoadingSpinner()
 	timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
             return
         }
 	cleardata = true
 	RemarkTextview.text = nil
-	RemarkTextview.text = "Reason"
+	RemarkTextview.text = " Remarks"
 	RemarkTextview.textColor = UIColor.lightGray
-	RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+	RemarkTextview.font = UIFont(name: "verdana", size: 14.0)
 		
     }
     func RefreshLoadingData()

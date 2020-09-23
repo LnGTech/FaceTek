@@ -4307,7 +4307,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LZu-kb-S4P">
                                 <rect key="frame" x="8" y="201" width="358" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" From" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vfl-nU-YvP">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  From" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vfl-nU-YvP">
                                         <rect key="frame" x="4" y="10" width="350" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="mqq-te-C9P"/>
@@ -4340,7 +4340,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PG4-ER-C2R">
                                 <rect key="frame" x="8" y="270" width="358" height="60"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" To" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGM-u5-JWb">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  To" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="gGM-u5-JWb">
                                         <rect key="frame" x="4" y="10" width="350" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="iA0-D9-duM"/>
@@ -4376,11 +4376,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder=" Leave Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LWk-Y4-04x">
-                                        <rect key="frame" x="0.0" y="0.0" width="358" height="52"/>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="  Leave Type" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LWk-Y4-04x">
+                                        <rect key="frame" x="4" y="0.0" width="354" height="52"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="O4D-Ae-9CU"/>
                                         </constraints>
+                                        <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
@@ -4412,7 +4413,7 @@
                                     <constraint firstItem="TCd-8a-lqh" firstAttribute="top" secondItem="KbG-u2-G5q" secondAttribute="bottom" constant="20" id="Ksy-AG-DB9"/>
                                     <constraint firstAttribute="trailing" secondItem="LWk-Y4-04x" secondAttribute="trailing" id="PL4-cK-HqE"/>
                                     <constraint firstAttribute="trailing" secondItem="KbG-u2-G5q" secondAttribute="trailing" constant="14" id="SVX-hU-dQt"/>
-                                    <constraint firstItem="LWk-Y4-04x" firstAttribute="leading" secondItem="gbY-Rs-4vN" secondAttribute="leading" id="cB6-dJ-hWz"/>
+                                    <constraint firstItem="LWk-Y4-04x" firstAttribute="leading" secondItem="gbY-Rs-4vN" secondAttribute="leading" constant="4" id="cB6-dJ-hWz"/>
                                     <constraint firstAttribute="trailing" secondItem="TCd-8a-lqh" secondAttribute="trailing" id="dzz-eG-rFP"/>
                                     <constraint firstItem="LWk-Y4-04x" firstAttribute="top" secondItem="KbG-u2-G5q" secondAttribute="bottom" constant="12" id="eXb-Cx-Cf9"/>
                                     <constraint firstAttribute="height" constant="60" id="gQW-eF-CSr"/>
