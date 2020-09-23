@@ -167,13 +167,10 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			currentLoc = locationManager.location
 			LattitudestrData = String(currentLoc.coordinate.latitude)
 			print("curent Latitude string value",LattitudestrData)
-			
 			LongitudestrData = String(currentLoc.coordinate.longitude)
 			print("curent longitude string value",LongitudestrData)
 			//empAttendanceInLatLongstr = "\(LattitudestrData) \(LongitudestrData)"
-			
 			empAttendanceInLatLongstr = LattitudestrData + ", " + LongitudestrData
-			
 			
 		}
 		

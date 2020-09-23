@@ -55,6 +55,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     var isMenuVisible:Bool!
     @IBOutlet weak var hamburgerView: UIView!
     
+	
+	@IBOutlet weak var AppliedLeavePopup: UIView!
+	
     @IBOutlet weak var menu: UIView!
     @IBOutlet weak var ContactUsView: UIView!
     @IBOutlet weak var ContactUsadrstextview: UITextView!
@@ -73,6 +76,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		AppliedLeavePopup.isHidden = true
         
         startLoadingSpinner()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
@@ -647,7 +651,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
                                     let code = responseJSON["code"]! as! NSInteger
                                     let message = responseJSON["message"]! as! NSString
                                     //Leave PopUp method calling
-									self.LeavePopUp()
+									//self.LeavePopUp()
+									self.AppliedLeavePopup.isHidden = false
 									self.RemarkTextview.resignFirstResponder()
 
 
@@ -676,7 +681,13 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     }
     
     
-    @objc func buttonAction(_ sender:UIButton!)
+	@IBAction func LeaveOkBtnclk(_ sender: Any) {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+        self.present(UITabBarController, animated:true, completion:nil)
+        
+	}
+	@objc func buttonAction(_ sender:UIButton!)
     {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
