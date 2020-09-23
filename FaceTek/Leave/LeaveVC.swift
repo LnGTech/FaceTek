@@ -19,12 +19,10 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     var timer = Timer()
-
     @IBOutlet weak var SelectLeaveTypeTxtfield: UITextField!
     @IBOutlet weak var LeavesLbl: UILabel!
     @IBOutlet weak var DropdownBackview: UIView!
     //private var Drpdowntbl: UITableView!
-    
     
     @IBOutlet weak var Dropdowntbl: UITableView!
     var LeavetypeDropdownArray:NSMutableArray = NSMutableArray()
@@ -51,13 +49,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     @IBOutlet weak var LeaveNavigationtbl: UITableView!
      //var LeaveNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
     var LeaveNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
-    
     var isMenuVisible:Bool!
     @IBOutlet weak var hamburgerView: UIView!
-    
-	
 	@IBOutlet weak var AppliedLeavePopup: UIView!
-	
     @IBOutlet weak var menu: UIView!
     @IBOutlet weak var ContactUsView: UIView!
     @IBOutlet weak var ContactUsadrstextview: UITextView!
@@ -68,152 +62,112 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     @IBOutlet weak var LeaveTypetxt: UILabel!
     @IBOutlet weak var FromBtn: UIButton!
     @IBOutlet weak var ToBtn: UIButton!
-    
     var button: HamburgerButton! = nil
-    
     let FromdatePicker = UIDatePicker()
     let TodatePicker = UIDatePicker()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-		AppliedLeavePopup.isHidden = true
-        
-        startLoadingSpinner()
-        timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
-
-        
-        
-        RefreshLoadingData()
-        
-        ContactUsadrstextview.isEditable = false
-
-
-        NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-        
-        DropdownBackview.isHidden = true
-        LeavesLbl.isHidden = true
-        customActivityIndicatory(self.view, startAnimate: false)
-        
-        menu.layer.shadowOffset = .zero
-        menu.layer.shadowColor = UIColor.gray.cgColor
-        menu.layer.shadowRadius = 0
-        menu.layer.shadowOpacity = 1
-        menu.layer.shadowPath = UIBezierPath(rect: menu.bounds).cgPath
-        
-        
-        let shadowPath = UIBezierPath(rect: view.bounds)
-        menu.layer.masksToBounds = false
-        menu.layer.shadowColor = UIColor.gray.cgColor
-        menu.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-        menu.layer.shadowOpacity = 0.2
-        menu.layer.shadowPath = shadowPath.cgPath
-        
-        
-        self.DropdownBackview.layer.masksToBounds = false
-        self.DropdownBackview.layer.cornerRadius = 5
-        self.DropdownBackview.layer.shadowColor = UIColor.black.cgColor
-        self.DropdownBackview.layer.shadowPath = UIBezierPath(roundedRect: self.DropdownBackview.bounds, cornerRadius: self.DropdownBackview.layer.cornerRadius).cgPath
-        self.DropdownBackview.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
-        self.DropdownBackview.layer.shadowOpacity = 0.1
-        self.DropdownBackview.layer.shadowRadius = 1.0
-        
-        
-        self.Dropdowntbl.layer.masksToBounds = false
-        self.Dropdowntbl.layer.cornerRadius = 5
-        self.Dropdowntbl.layer.shadowColor = UIColor.black.cgColor
-        self.Dropdowntbl.layer.shadowPath = UIBezierPath(roundedRect: self.Dropdowntbl.bounds, cornerRadius: self.Dropdowntbl.layer.cornerRadius).cgPath
-        self.Dropdowntbl.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
-        self.Dropdowntbl.layer.shadowOpacity = 0.1
-        self.Dropdowntbl.layer.shadowRadius = 1.0
-        
-        
-        let tap = UITapGestureRecognizer(target: self, action: #selector(LeaveVC.tapFunction))
-        SelectLeaveTypeTxtfield.isUserInteractionEnabled = true
-        SelectLeaveTypeTxtfield.addGestureRecognizer(tap)
-        
-        isMenuVisible = true
-        menu.isHidden = true
-        ContactUsView.isHidden = true
-        
-        let defaults = UserDefaults.standard
-        RetrivedcustId = defaults.integer(forKey: "custId")
-        print("RetrivedcustId----",RetrivedcustId)
-        RetrivedempId = defaults.integer(forKey: "empId")
-        print("RetrivedempId----",RetrivedempId)
-        
-        Dropdowntbl.isHidden = true
-        RemarkTextview.text = "Reason"
-        RemarkTextview.textColor = UIColor.lightGray
-        RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
-        RemarkTextview.returnKeyType = .done
-        RemarkTextview.delegate = self
-        
-        LeaveNavigationtbl.register(UINib(nibName: "LeaveNavigationcell", bundle: nil), forCellReuseIdentifier: "LeaveNavigationcell")
-        
-        Dropdowntbl.register(UINib(nibName: "Dropdowncell", bundle: nil), forCellReuseIdentifier: "Dropdowncell")
-        
-        RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
-        print("RetrivedMobileNumber-----",RetrivedMobileNumber)
-        
-        //RetrivedMobileNumber = defaults.string(forKey: "Mobilenum")!
-        //print("RetrivedMobileNumber-----",RetrivedMobileNumber)
-        MobilenumberLbl.text = RetrivedMobileNumber
+	AppliedLeavePopup.isHidden = true
+	startLoadingSpinner()
+	timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
+	RefreshLoadingData()
+	ContactUsadrstextview.isEditable = false
+	NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+	NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+	DropdownBackview.isHidden = true
+	LeavesLbl.isHidden = true
+	customActivityIndicatory(self.view, startAnimate: false)
+	menu.layer.shadowOffset = .zero
+	menu.layer.shadowColor = UIColor.gray.cgColor
+	menu.layer.shadowRadius = 0
+	menu.layer.shadowOpacity = 1
+	menu.layer.shadowPath = UIBezierPath(rect: menu.bounds).cgPath
+	let shadowPath = UIBezierPath(rect: view.bounds)
+	menu.layer.masksToBounds = false
+	menu.layer.shadowColor = UIColor.gray.cgColor
+	menu.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+	menu.layer.shadowOpacity = 0.2
+	menu.layer.shadowPath = shadowPath.cgPath
+	self.DropdownBackview.layer.masksToBounds = false
+	self.DropdownBackview.layer.cornerRadius = 5
+	self.DropdownBackview.layer.shadowColor = UIColor.black.cgColor
+	self.DropdownBackview.layer.shadowPath = UIBezierPath(roundedRect: self.DropdownBackview.bounds, cornerRadius: self.DropdownBackview.layer.cornerRadius).cgPath
+	self.DropdownBackview.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+	self.DropdownBackview.layer.shadowOpacity = 0.1
+	self.DropdownBackview.layer.shadowRadius = 1.0
+	self.Dropdowntbl.layer.masksToBounds = false
+	self.Dropdowntbl.layer.cornerRadius = 5
+	self.Dropdowntbl.layer.shadowColor = UIColor.black.cgColor
+	self.Dropdowntbl.layer.shadowPath = UIBezierPath(roundedRect:self.Dropdowntbl.bounds, cornerRadius: self.Dropdowntbl.layer.cornerRadius).cgPath
+	self.Dropdowntbl.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+	self.Dropdowntbl.layer.shadowOpacity = 0.1
+	self.Dropdowntbl.layer.shadowRadius = 1.0
+	let tap = UITapGestureRecognizer(target: self, action: #selector(LeaveVC.tapFunction))
+	SelectLeaveTypeTxtfield.isUserInteractionEnabled = true
+	SelectLeaveTypeTxtfield.addGestureRecognizer(tap)
+	isMenuVisible = true
+	menu.isHidden = true
+	ContactUsView.isHidden = true
+	let defaults = UserDefaults.standard
+	RetrivedcustId = defaults.integer(forKey: "custId")
+	print("RetrivedcustId----",RetrivedcustId)
+	RetrivedempId = defaults.integer(forKey: "empId")
+	print("RetrivedempId----",RetrivedempId)
+	Dropdowntbl.isHidden = true
+	RemarkTextview.text = "Reason"
+	RemarkTextview.textColor = UIColor.lightGray
+	RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+	RemarkTextview.returnKeyType = .done
+	RemarkTextview.delegate = self
+	LeaveNavigationtbl.register(UINib(nibName: "LeaveNavigationcell", bundle: nil), forCellReuseIdentifier: "LeaveNavigationcell")
+	Dropdowntbl.register(UINib(nibName: "Dropdowncell", bundle: nil), forCellReuseIdentifier: "Dropdowncell")
+	RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
+	MobilenumberLbl.text = RetrivedMobileNumber
         
 //        Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
 //        UserNameLbl.text = Employeenamestr
 //
 //        brNamestr = defaults.string(forKey: "brName") ?? ""
        // print("brNamestr-----",brNamestr)
-        CompanyNameLbl.text = brNamestr
-        self.button = HamburgerButton(frame: CGRect(x: 0, y: 0, width: 46, height: 46))
-        self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
-        self.hamburgerView.addSubview(button)
-        
-        FromView.layer.borderWidth = 1
-        FromView.layer.borderColor = UIColor.darkGray.cgColor
-        
-        Toview.layer.borderWidth = 1
-        Toview.layer.borderColor = UIColor.darkGray.cgColor
-        LeaveTypeview.layer.borderWidth = 1
-        LeaveTypeview.layer.borderColor = UIColor.darkGray.cgColor
-        RemarkTextview.layer.borderWidth = 1
-        RemarkTextview.layer.borderColor = UIColor.darkGray.cgColor
-        FromDatesetDatePicker()
-        ToDatesetDatePicker()
-        FromBtn.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchUpInside)
-        
-        //Textfield Enable
-        
-        Totxt.isUserInteractionEnabled = false
+	CompanyNameLbl.text = brNamestr
+	self.button = HamburgerButton(frame: CGRect(x: 0, y: 0, width: 46, height: 46))
+	self.button.addTarget(self, action: #selector(ViewController.toggle(_:)), for:.touchUpInside)
+	self.hamburgerView.addSubview(button)
+	FromView.layer.borderWidth = 1
+	FromView.layer.borderColor = UIColor.darkGray.cgColor
+	Toview.layer.borderWidth = 1
+	Toview.layer.borderColor = UIColor.darkGray.cgColor
+	LeaveTypeview.layer.borderWidth = 1
+	LeaveTypeview.layer.borderColor = UIColor.darkGray.cgColor
+	RemarkTextview.layer.borderWidth = 1
+	RemarkTextview.layer.borderColor = UIColor.darkGray.cgColor
+	FromDatesetDatePicker()
+	ToDatesetDatePicker()
+	FromBtn.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchUpInside)
+	Totxt.isUserInteractionEnabled = false
         
     }
-    
     
     @objc
     func tapFunction(sender:UITapGestureRecognizer) {
         print("tap working")
-        
-        if Dropdowntbl.isHidden {
-            
-            Dropdowntbl.isHidden = false
-            DropdownBackview.isHidden = false
-            LeavesLbl.isHidden = false
-            APIDropdowntabledata()
+	if Dropdowntbl.isHidden {
+	Dropdowntbl.isHidden = false
+	DropdownBackview.isHidden = false
+	LeavesLbl.isHidden = false
+    APIDropdowntabledata()
         } else {
-            Dropdowntbl.isHidden = true
-            DropdownBackview.isHidden = true
-            LeavesLbl.isHidden = true
+	Dropdowntbl.isHidden = true
+	DropdownBackview.isHidden = true
+	LeavesLbl.isHidden = true
             
         }
-        
     }
-    
     func textViewDidBeginEditing(_ textView: UITextView) {
-        if RemarkTextview.text == "Reason" {
-            RemarkTextview.text = ""
-            RemarkTextview.textColor = UIColor.black
-            RemarkTextview.font = UIFont(name: "verdana", size: 18.0)
+	if RemarkTextview.text == "Reason" {
+	RemarkTextview.text = ""
+	RemarkTextview.textColor = UIColor.black
+	RemarkTextview.font = UIFont(name: "verdana", size: 18.0)
 			
         }
     }
@@ -226,13 +180,12 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        if RemarkTextview.text == "" {
-            RemarkTextview.text = "Reason"
-            RemarkTextview.textColor = UIColor.lightGray
-            RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+	if RemarkTextview.text == "" {
+	RemarkTextview.text = "Reason"
+	RemarkTextview.textColor = UIColor.lightGray
+	RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
         }
     }
-    
     @objc func toggle(_ sender: AnyObject!) {
         self.toggleComparision()
         menu.isHidden = false
@@ -252,24 +205,24 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     func toggleComparision()
     {
-        if (isMenuVisible)
-        {
-            UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
-                var frame = self.menu.frame
-                frame.origin.x = 0
-                self.menu.frame = frame
-                self.isMenuVisible = false;
-                self.menu.isHidden = false
+	if (isMenuVisible)
+	{
+	UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+	var frame = self.menu.frame
+	frame.origin.x = 0
+	self.menu.frame = frame
+	self.isMenuVisible = false;
+	self.menu.isHidden = false
             })
-        } else {
-            UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
-                var frame = self.menu.frame
-                frame.origin.x = -self.view.frame.size.width
-                self.menu.frame = frame
-            }) { (finished) in
-                if finished {
-                    self.isMenuVisible = true
-                    self.menu.isHidden = true
+	} else {
+	UIView.transition(with: menu, duration: 0.3, options: .beginFromCurrentState, animations: {
+	var frame = self.menu.frame
+	frame.origin.x = -self.view.frame.size.width
+	self.menu.frame = frame
+	}) { (finished) in
+	if finished {
+	self.isMenuVisible = true
+	self.menu.isHidden = true
                 }
             }
         }
@@ -283,34 +236,31 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     @objc func FromDatesetDatePicker() {
         //Format Date
-        FromdatePicker.datePickerMode = .date
-        
+	FromdatePicker.datePickerMode = .date
         //ToolBar
-        let toolbar = UIToolbar();
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker));
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+	let toolbar = UIToolbar();
+	toolbar.sizeToFit()
+    let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker));
+	let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+	let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
         
-        toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
-        Fromtxt.inputAccessoryView = toolbar
-        Fromtxt.inputView = FromdatePicker
+	toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+	Fromtxt.inputAccessoryView = toolbar
+	Fromtxt.inputView = FromdatePicker
         
     }
     
     @objc func doneDatePicker(){
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MMM-yyyy"
-        Fromtxt.text = formatter.string(from: FromdatePicker.date)
-        Totxt.text = formatter.string(from: FromdatePicker.date)
-        Totxt.isUserInteractionEnabled = true
-        Fromdatestr = formattedDateFromString(dateString: Fromtxt.text!, withFormat: "yyyy-MM-dd")!
-        print("Fromdatestr---",Fromdatestr)
-        Todatestr = formattedDateFromString(dateString: Totxt.text!, withFormat: "yyyy-MM-dd")!
-        
-        print("Todatestr---",Todatestr)
-        
-        self.view.endEditing(true)
+	let formatter = DateFormatter()
+	formatter.dateFormat = "dd-MMM-yyyy"
+	Fromtxt.text = formatter.string(from: FromdatePicker.date)
+	Totxt.text = formatter.string(from: FromdatePicker.date)
+	Totxt.isUserInteractionEnabled = true
+	Fromdatestr = formattedDateFromString(dateString: Fromtxt.text!, withFormat: "yyyy-MM-dd")!
+	print("Fromdatestr---",Fromdatestr)
+	Todatestr = formattedDateFromString(dateString: Totxt.text!, withFormat: "yyyy-MM-dd")!
+	print("Todatestr---",Todatestr)
+	self.view.endEditing(true)
     }
     
     @objc func cancelDatePicker(){
@@ -319,57 +269,50 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     func ToDatesetDatePicker() {
         //Format Date
-        TodatePicker.datePickerMode = .date
-        
+	TodatePicker.datePickerMode = .date
         //ToolBar
-        let toolbar = UIToolbar();
-        toolbar.sizeToFit()
-        let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(TodatedoneDatePicker));
-        let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-        let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
-        
+	let toolbar = UIToolbar();
+	toolbar.sizeToFit()
+	let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(TodatedoneDatePicker));
+	let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+	let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
         toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
-        Totxt.inputAccessoryView = toolbar
-        Totxt.inputView = TodatePicker
+	Totxt.inputAccessoryView = toolbar
+	Totxt.inputView = TodatePicker
         
     }
-    
     @objc func TodatedoneDatePicker(){
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd-MMM-yyyy"
-        Totxt.text = formatter.string(from: TodatePicker.date)
-        Todatestr = formattedDateFromString(dateString: Totxt.text!, withFormat: "yyyy-MM-dd")!
-        print("Todatestr---",Todatestr)
-        self.view.endEditing(true)
+	let formatter = DateFormatter()
+	formatter.dateFormat = "dd-MMM-yyyy"
+	Totxt.text = formatter.string(from: TodatePicker.date)
+	Todatestr = formattedDateFromString(dateString: Totxt.text!, withFormat: "yyyy-MM-dd")!
+	print("Todatestr---",Todatestr)
+	self.view.endEditing(true)
     }
     
     func formattedDateFromString(dateString: String, withFormat format: String) -> String? {
         
-        let inputFormatter = DateFormatter()
-        inputFormatter.dateFormat = "dd/MM/yyyy"
-        
-        if let date = inputFormatter.date(from: dateString) {
-            
-            let outputFormatter = DateFormatter()
-            outputFormatter.dateFormat = format
-            
-            return outputFormatter.string(from: date)
+	let inputFormatter = DateFormatter()
+	inputFormatter.dateFormat = "dd/MM/yyyy"
+	if let date = inputFormatter.date(from: dateString) {
+	let outputFormatter = DateFormatter()
+	outputFormatter.dateFormat = format
+	return outputFormatter.string(from: date)
         }
         
-        return nil
+	return nil
     }
     
     @IBAction func DropdownBtnclk(_ sender: Any) {
-        if Dropdowntbl.isHidden {
-            Dropdowntbl.isHidden = false
-            DropdownBackview.isHidden = false
-            LeavesLbl.isHidden = false
-            
-            APIDropdowntabledata()
+	if Dropdowntbl.isHidden {
+	Dropdowntbl.isHidden = false
+	DropdownBackview.isHidden = false
+	LeavesLbl.isHidden = false
+	APIDropdowntabledata()
         } else {
-            Dropdowntbl.isHidden = false
-            DropdownBackview.isHidden = false
-            LeavesLbl.isHidden = false
+	Dropdowntbl.isHidden = false
+	DropdownBackview.isHidden = false
+	LeavesLbl.isHidden = false
         }
     }
     
@@ -379,194 +322,142 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             return
         }
         
-        
-        
-        isAlreadyLoaddropdowndata = true
-        print("calling API Dropdown data")
-        let parameters = [
+	isAlreadyLoaddropdowndata = true
+	print("calling API Dropdown data")
+	let parameters = [
             "custId": RetrivedcustId] as [String : Any]
-        //let url: NSURL = NSURL(string: "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getLeaveListByCustId")!
-        
+	var StartPoint = Baseurl.shared().baseURL
+	var Endpoint1 = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getLeaveListByCustId"
 		
-		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint1 = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getLeaveListByCustId"
-		
-		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint1)")!
-
-		
-		
-        
-        //http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
-        customActivityIndicatory(self.view, startAnimate: true)
-        
-        //create the session object
-        let session = URLSession.shared
-        //now create the URLRequest object using the url object
-        var request = URLRequest(url: url as URL)
-        request.httpMethod = "POST" //set http method as POST
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print("Json Response",responseJSON)
-                DispatchQueue.main.async {
-                    let custLeaveTypeDtoListDict = responseJSON["custLeaveTypeDtoList"] as! NSArray
-                    print("Array values----",custLeaveTypeDtoListDict)
-                    
-                    for LeaveTypesubDictionary in custLeaveTypeDtoListDict as! [[String:Any]]
-                    {
-                        var MainDict:NSMutableDictionary = NSMutableDictionary()
-                        self.custLeaveNamestr = LeaveTypesubDictionary["custLeaveName"] as? String
-                        print("custLeaveName-------",self.custLeaveNamestr)
-                        MainDict.setObject(self.custLeaveNamestr, forKey: "custLeaveName" as NSCopying)
-                        self.custLeaveId = (LeaveTypesubDictionary["custLeaveId"] as? NSInteger)!
-                        print("custLeaveId-------",self.custLeaveId)
-                        MainDict.setObject(self.custLeaveNamestr, forKey: "custLeaveName" as NSCopying)
-                        
-                        MainDict.setObject(self.custLeaveId, forKey: "custLeaveId" as NSCopying)
-                        self.LeavetypeDropdownArray.add(MainDict)
-                        self.Dropdowntbl.reloadData()
-                        
-                        
-                    }
-                    self.customActivityIndicatory(self.view, startAnimate: false)
-                    
-                    
-                }
-                
-            }
-            
-        }
-        task.resume()
-        
+	let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint1)")!
+	customActivityIndicatory(self.view, startAnimate: true)
+	let session = URLSession.shared
+	var request = URLRequest(url: url as URL)
+	request.httpMethod = "POST" //set http method as POST
+	do {
+	request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+	} catch let error {
+	print(error.localizedDescription)
+	}
+   request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+	request.addValue("application/json", forHTTPHeaderField: "Accept")
+	let task = URLSession.shared.dataTask(with: request) { data, response, error in
+	guard let data = data, error == nil else {
+	print(error?.localizedDescription ?? "No data")
+	return
+   }
+	let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+	if let responseJSON = responseJSON as? [String: Any] {
+	print("Json Response",responseJSON)
+	DispatchQueue.main.async {
+	let custLeaveTypeDtoListDict = responseJSON["custLeaveTypeDtoList"] as! NSArray
+	print("Array values----",custLeaveTypeDtoListDict)
+	for LeaveTypesubDictionary in custLeaveTypeDtoListDict as! [[String:Any]]
+	{
+	var MainDict:NSMutableDictionary = NSMutableDictionary()
+	self.custLeaveNamestr = LeaveTypesubDictionary["custLeaveName"] as? String
+	print("custLeaveName-------",self.custLeaveNamestr)
+	MainDict.setObject(self.custLeaveNamestr, forKey: "custLeaveName" as NSCopying)
+	self.custLeaveId = (LeaveTypesubDictionary["custLeaveId"] as? NSInteger)!
+	print("custLeaveId-------",self.custLeaveId)
+	MainDict.setObject(self.custLeaveNamestr, forKey: "custLeaveName" as NSCopying)
+	MainDict.setObject(self.custLeaveId, forKey: "custLeaveId" as NSCopying)
+	self.LeavetypeDropdownArray.add(MainDict)
+	self.Dropdowntbl.reloadData()
+	}
+	self.customActivityIndicatory(self.view, startAnimate: false)
+	}
+}
+}
+task.resume()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        var count:Int?
-        if tableView == self.LeaveNavigationtbl {
-            count = LeaveNavigationMenuArray.count
-			return count!
+	var count:Int?
+	if tableView == self.LeaveNavigationtbl {
+	count = LeaveNavigationMenuArray.count
+	return count!
         }
             //if tableView == self.Dropdowntbl {
-        if tableView == self.Dropdowntbl {
-        
-            count =  LeavetypeDropdownArray.count
+	if tableView == self.Dropdowntbl {
+	count =  LeavetypeDropdownArray.count
         }
-        return count!
+	return count!
     }
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-		
-		 var cellToReturn = UITableViewCell() // Dummy value
-		   if tableView == self.LeaveNavigationtbl {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell") as! LeaveNavigationcell
-			   
-			   cell.accessoryType = .disclosureIndicator
-			//            // set the text from the data model
-			            cell.LeaveNavigationLbl?.text = self.LeaveNavigationMenuArray[indexPath.row]
-			
-			
-			cellToReturn = cell
-			
-		   } else if tableView == self.Dropdowntbl {
-			let cell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell") as! Dropdowncell
-			let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
+	var cellToReturn = UITableViewCell() // Dummy value
+	if tableView == self.LeaveNavigationtbl {
+	let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell") as! LeaveNavigationcell
+	cell.accessoryType = .disclosureIndicator
+	cell.LeaveNavigationLbl?.text = self.LeaveNavigationMenuArray[indexPath.row]
+	cellToReturn = cell
+    } else if tableView == self.Dropdowntbl {
+	let cell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell") as! Dropdowncell
+	let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
 			            _ = LeavetypeDropdownArray[indexPath.row]
-			            print("Retrived data",responseDict)
-			            self.LeavetypeDropdownArray.add(MainDict)
-			            print("Leave Type Array",LeavetypeDropdownArray)
-			            var custLeaveNamestr : String?
-			            custLeaveNamestr = responseDict["custLeaveName"] as? String
-			            print("custLeaveNamestr",custLeaveNamestr)
-			            cell.DropdownLbl!.text = custLeaveNamestr
-			   cellToReturn = cell
+	print("Retrived data",responseDict)
+	self.LeavetypeDropdownArray.add(MainDict)
+	print("Leave Type Array",LeavetypeDropdownArray)
+	var custLeaveNamestr : String?
+	custLeaveNamestr = responseDict["custLeaveName"] as? String
+	print("custLeaveNamestr",custLeaveNamestr)
+	cell.DropdownLbl!.text = custLeaveNamestr
+	cellToReturn = cell
 		   }
-
-		   return cellToReturn
-		
+	return cellToReturn
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
         
     {
-        if (tableView == LeaveNavigationtbl)
-        {
-            
-            if indexPath.row == 0 {
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                
-                let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
-                self.present(CalendarVC, animated:true, completion:nil)
-                
-            }
-				
-				else if indexPath.item == 2 {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					
-					let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
-					self.present(FieldVisitVC, animated:true, completion:nil)
-					
-					
-				}
-            
-            else if indexPath.item == 6 {
-                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-                let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
-                self.present(FaqVC, animated:true, completion:nil)
-                
-                
-            }
-            else if indexPath.item == 7 {
-                
-                if ContactUsView.isHidden {
-                    ContactUsView.isHidden = false
-                } else {
-                    ContactUsView.isHidden = true
-                }
-                
-            }
-        
-		}
-        else
-        {
-           
-			let cell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell") as! Dropdowncell
-			
-			let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
+	if (tableView == LeaveNavigationtbl)
+	{
+    if indexPath.row == 0 {
+	let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
+	self.present(CalendarVC, animated:true, completion:nil)
+   }
+   else if indexPath.item == 2 {
+   let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+   let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
+	self.present(FieldVisitVC, animated:true, completion:nil)
+	}
+    else if indexPath.item == 6 {
+	let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+	self.present(FaqVC, animated:true, completion:nil)
+	}
+    else if indexPath.item == 7 {
+	if ContactUsView.isHidden {
+	ContactUsView.isHidden = false
+	} else {
+	ContactUsView.isHidden = true
+	}
+}
+}
+	else
+	{
+	let cell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell") as! Dropdowncell
+	let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
 			_ = LeavetypeDropdownArray[indexPath.row]
-            print("Retrived data",responseDict)
-            self.LeavetypeDropdownArray.add(MainDict)
-            print("Leave Type Array",LeavetypeDropdownArray)
-            
-            var custLeaveNamestr : String?
-            custLeaveNamestr = responseDict["custLeaveName"] as? String
-			print("custLeaveNamestr",custLeaveNamestr as Any)
+	print("Retrived data",responseDict)
+	self.LeavetypeDropdownArray.add(MainDict)
+	print("Leave Type Array",LeavetypeDropdownArray)
+	var custLeaveNamestr : String?
+	custLeaveNamestr = responseDict["custLeaveName"] as? String
+	print("custLeaveNamestr",custLeaveNamestr as Any)
             //cell.textLabel!.text = custLeaveNamestr
-            
-            SelectLeaveTypeTxtfield.text = "" + " " + custLeaveNamestr!
-            cell.DropdownLbl!.text = custLeaveNamestr
+	SelectLeaveTypeTxtfield.text = "" + " " + custLeaveNamestr!
+	cell.DropdownLbl!.text = custLeaveNamestr
             //LeaveTypetxt.text = custLeaveNamestr!
-			tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: true)
-            self.custLeaveId = (responseDict["custLeaveId"] as? NSInteger)!
-            print("Selected Customer Id",custLeaveId)
-            Dropdowntbl.isHidden = true
-            DropdownBackview.isHidden = true
-            LeavesLbl.isHidden = true
+	tableView.deselectRow(at: tableView.indexPathForSelectedRow!, animated: true)
+	self.custLeaveId = (responseDict["custLeaveId"] as? NSInteger)!
+	print("Selected Customer Id",custLeaveId)
+	Dropdowntbl.isHidden = true
+	DropdownBackview.isHidden = true
+	LeavesLbl.isHidden = true
             
         }
     }
@@ -576,122 +467,94 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         return 50
     }
     
-    
-    
     @IBAction func SubmitBtnclk(_ sender: Any) {
-        
-        let Fromtxt = self.Fromtxt.text
-        let Totxt = self.Totxt.text
-        let Leaveselect = self.SelectLeaveTypeTxtfield.text
-        let Remark = self.RemarkTextview.text
-
-         if (Fromtxt == "")
+	let Fromtxt = self.Fromtxt.text
+	let Totxt = self.Totxt.text
+	let Leaveselect = self.SelectLeaveTypeTxtfield.text
+	let Remark = self.RemarkTextview.text
+	if (Fromtxt == "")
          {
-
        // if (Fromtxt == "" || Totxt == "" || SelectLeaveTypeTxtfield.text == "" ){
-               let alert = UIAlertController(title: "Error", message: "Fill up  all mandatory fields", preferredStyle: UIAlertController.Style.alert)
-               alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-               self.present(alert, animated: true, completion: nil)
+	let alert = UIAlertController(title: "Error", message: "Fill up  all mandatory fields", preferredStyle: UIAlertController.Style.alert)
+	alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+	self.present(alert, animated: true, completion: nil)
                return
            }
-         else if (SelectLeaveTypeTxtfield.text == "")
+    else if (SelectLeaveTypeTxtfield.text == "")
          {
             
-            let alert = UIAlertController(title: "Error", message: "Select Leave Type", preferredStyle: UIAlertController.Style.alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-            self.present(alert, animated: true, completion: nil)
-            return
-
-         }
-
-    
-           else {
+	let alert = UIAlertController(title: "Error", message: "Select Leave Type", preferredStyle: UIAlertController.Style.alert)
+	alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+	self.present(alert, animated: true, completion: nil)
+	return
+}
+   else {
+	let parameters = ["empId": RetrivedempId as Any,"custLeaveId": custLeaveId as Any,"empLeaveFrom": Fromdatestr as Any,"empLeaveTo": Todatestr as Any,"empLeaveRemarks":RemarkTextview.text as Any] as [String : Any]
             
-
-                    let parameters = ["empId": RetrivedempId as Any,"custLeaveId": custLeaveId as Any,"empLeaveFrom": Fromdatestr as Any,"empLeaveTo": Todatestr as Any,"empLeaveRemarks":RemarkTextview.text as Any] as [String : Any]
-                    //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/apply")!
-            
-			var StartPoint = Baseurl.shared().baseURL
-			var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/apply"
-			
-			let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
-			
-			
-			
-                    self.customActivityIndicatory(self.view, startAnimate: true)
-                    //create the session object
-                    let session = URLSession.shared
-                    //now create the URLRequest object using the url object
-                    var request = URLRequest(url: url as URL)
-                    request.httpMethod = "POST" //set http method as POST
-            
-                    do {
-                        request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-                    } catch let error {
-                        print(error.localizedDescription)
-                    }
-            
-                    request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-                    request.addValue("application/json", forHTTPHeaderField: "Accept")
-                    let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                        guard let data = data, error == nil else {
-                            print(error?.localizedDescription ?? "No data")
-                            return
-                        }
-            
-            
-                        let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                        if let responseJSON = responseJSON as? [String: Any] {
-                            print("Json Response",responseJSON)
-                            DispatchQueue.main.async {
-                                let code = responseJSON["code"]! as! NSInteger
-                                print("code---",code)
-                                if(code == 200)
-                                {
-                                    let code = responseJSON["code"]! as! NSInteger
-                                    let message = responseJSON["message"]! as! NSString
+	var StartPoint = Baseurl.shared().baseURL
+	var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/apply"
+	let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
+	self.customActivityIndicatory(self.view, startAnimate: true)
+	let session = URLSession.shared
+	var request = URLRequest(url: url as URL)
+	request.httpMethod = "POST" //set http method as POST
+	do {
+	request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+	} catch let error {
+	print(error.localizedDescription)
+	}
+	request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+	request.addValue("application/json", forHTTPHeaderField: "Accept")
+	let task = URLSession.shared.dataTask(with: request) { data, response, error in
+	guard let data = data, error == nil else {
+	print(error?.localizedDescription ?? "No data")
+	return
+	}
+	let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+	if let responseJSON = responseJSON as? [String: Any] {
+	print("Json Response",responseJSON)
+	DispatchQueue.main.async {
+	let code = responseJSON["code"]! as! NSInteger
+	print("code---",code)
+	if(code == 200)
+	{
+    let code = responseJSON["code"]! as! NSInteger
+	let message = responseJSON["message"]! as! NSString
                                     //Leave PopUp method calling
 									//self.LeavePopUp()
-									self.AppliedLeavePopup.isHidden = false
-									self.RemarkTextview.resignFirstResponder()
-
-
-                                }
-                                else
-                                {
-                                    let message = responseJSON["message"]! as! NSString
-                                    let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
-                                    alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-                                    self.present(alert, animated: true, completion: nil)
-                                }
-                                self.customActivityIndicatory(self.view, startAnimate: false)
+	self.AppliedLeavePopup.isHidden = false
+	self.RemarkTextview.resignFirstResponder()
+		
+	}
+	else
+	{
+	let message = responseJSON["message"]! as! NSString
+	let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
+	alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+	self.present(alert, animated: true, completion: nil)
+	}
+    self.customActivityIndicatory(self.view, startAnimate: false)
             
-                            }
-                        }
-            
-            
-                    }
-                    task.resume()
-           
-
-           }
-        
-        
-        
+	}
+	}
+}
+task.resume()
+		
+		}
     }
     
     
 	@IBAction func LeaveOkBtnclk(_ sender: Any) {
-		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-        self.present(UITabBarController, animated:true, completion:nil)
+    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+	self.present(UITabBarController, animated:true, completion:nil)
         
 	}
 	@objc func buttonAction(_ sender:UIButton!)
     {
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-        let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-        self.present(UITabBarController, animated:true, completion:nil)
+	let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+	self.present(UITabBarController, animated:true, completion:nil)
         
     }
     
@@ -699,8 +562,6 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         Fromtxt.text = ""
         
     }
-	
-	
     
     func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {
         let mainContainer: UIView = UIView(frame: viewContainer.frame)
@@ -734,11 +595,10 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
         return activityIndicatorView
     }
     @objc func keyboardWillShow(notification: Notification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            print("notification: Keyboard will show")
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
+	if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+	print("notification: Keyboard will show")
+	if self.view.frame.origin.y == 0{
+	self.view.frame.origin.y -= keyboardSize.height
             }
         }
     }
@@ -750,13 +610,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
             }
         }
     }
-    
-	
-    
-	
     func LeavePopUp()
     {
-        
         self.customView.frame = CGRect.init(x: 0, y: 0, width: 230, height: 300)
         self.customView.backgroundColor = UIColor.white     //give color to the view
         self.customView.center = self.view.center
@@ -801,93 +656,70 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-		if cleardata {
-            //LeaveTypetxt.text = " Select Type"
-            Fromtxt.text = nil
-            Fromtxt.placeholder = "From"
-            Totxt.text = nil
-            Totxt.placeholder = "To"
-            RemarkTextview.text = nil
-            RemarkTextview.text = "Reason"
-            RemarkTextview.textColor = UIColor.lightGray
-            RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
-            
-            startLoadingSpinner()
-                   timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
+	if cleardata {
+	Fromtxt.text = nil
+    Fromtxt.placeholder = "From"
+	Totxt.text = nil
+	Totxt.placeholder = "To"
+	RemarkTextview.text = nil
+	RemarkTextview.text = "Reason"
+    RemarkTextview.textColor = UIColor.lightGray
+	RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+	startLoadingSpinner()
+	timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
             return
         }
-        cleardata = true
-
-        RemarkTextview.text = nil
-        RemarkTextview.text = "Reason"
-        RemarkTextview.textColor = UIColor.lightGray
-        RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
-		
-		
+	cleardata = true
+	RemarkTextview.text = nil
+	RemarkTextview.text = "Reason"
+	RemarkTextview.textColor = UIColor.lightGray
+	RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
 		
     }
     func RefreshLoadingData()
     {
-        
-        RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
-        print("RetrivedMobileNumber-----",RetrivedMobileNumber)
-        RetrivedCustmercode = UserDefaults.standard.string(forKey: "Custmercode") ?? ""
-        print("RetrivedCustmercode-----",RetrivedCustmercode)
-        
-        
-        let parameters = ["custCode":RetrivedCustmercode as Any,
+	RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
+	print("RetrivedMobileNumber-----",RetrivedMobileNumber)
+	RetrivedCustmercode = UserDefaults.standard.string(forKey: "Custmercode") ?? ""
+	print("RetrivedCustmercode-----",RetrivedCustmercode)
+	let parameters = ["custCode":RetrivedCustmercode as Any,
                           "empMobile":RetrivedMobileNumber as Any] as [String : Any]
 		
-		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint3 = "/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile"
-		
-		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint3)")!
-		
-		
-        //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
-        
-        self.customActivityIndicatory(self.view, startAnimate: true)
-        
-        //create the session object
-        let session = URLSession.shared
-        //now create the URLRequest object using the url object
-        var request = URLRequest(url: url as URL)
-        request.httpMethod = "POST" //set http method as POST
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+	var StartPoint = Baseurl.shared().baseURL
+	var Endpoint3 = "/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile"
+	let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint3)")!
+	self.customActivityIndicatory(self.view, startAnimate: true)
+	let session = URLSession.shared
+	var request = URLRequest(url: url as URL)
+	request.httpMethod = "POST" //set http method as POST
+	do {
+   request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
         } catch let error {
             print(error.localizedDescription)
         }
         
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
+   request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+	request.addValue("application/json", forHTTPHeaderField: "Accept")
+	let task = URLSession.shared.dataTask(with: request) { data, response, error in
+	guard let data = data, error == nil else {
+	print(error?.localizedDescription ?? "No data")
                 return
             }
             
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print("Refresh Json Response",responseJSON)
-                
-                DispatchQueue.main.async
-                    {
-                        let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
-                        self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
-                        print("Refresh employeeName",self.RefreshemployeeNam)
-                        
-                        self.RefreshbrName = (ItemsDict["brName"] as? String)!
-                        print("Refresh brName",self.RefreshbrName)
-                        self.UserNameLbl.text = self.RefreshemployeeNam
-                        
-                        print("brNamestr-----",self.brNamestr)
-                        self.CompanyNameLbl.text = self.RefreshbrName
-                        
-                }
+	let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+	if let responseJSON = responseJSON as? [String: Any] {
+	print("Refresh Json Response",responseJSON)
+    DispatchQueue.main.async
+	{
+	let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
+	self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
+	print("Refresh employeeName",self.RefreshemployeeNam)
+	self.RefreshbrName = (ItemsDict["brName"] as? String)!
+	print("Refresh brName",self.RefreshbrName)
+	self.UserNameLbl.text = self.RefreshemployeeNam
+	print("brNamestr-----",self.brNamestr)
+	self.CompanyNameLbl.text = self.RefreshbrName
+		}
             }    }
         task.resume()
         
