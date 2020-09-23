@@ -143,8 +143,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
         Adresstxtview.returnKeyType = .done
         Adresstxtview.delegate = self
 		//key board show and Hide
-		NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(LeaveVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+		NotificationCenter.default.addObserver(self, selector: #selector(FieldVisitVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(FieldVisitVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 
 //Previous meeting Validations
 		if (Adresstxtview.text == addressString)

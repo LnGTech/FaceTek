@@ -9,7 +9,6 @@
 import UIKit
 
 class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate, UITextViewDelegate {
-    
     var RetrivedcustId = Int()
     var RetrivedempId = Int()
     var custLeaveId = Int()
@@ -38,9 +37,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     var RefreshemployeeNam : String = ""
     var RefreshbrName : String = ""
     var RetrivedCustmercode : String = ""
-
-    
-    @IBOutlet weak var CompanyNameLbl: UILabel!
+	@IBOutlet weak var CompanyNameLbl: UILabel!
     @IBOutlet weak var UserNameLbl: UILabel!
     @IBOutlet weak var MobilenumberLbl: UILabel!
     @IBOutlet weak var FromView: UIView!
@@ -184,6 +181,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	RemarkTextview.text = "Reason"
 	RemarkTextview.textColor = UIColor.lightGray
 	RemarkTextview.font = UIFont(name: "verdana", size: 13.0)
+	RemarkTextview.resignFirstResponder()
+
         }
     }
     @objc func toggle(_ sender: AnyObject!) {
@@ -520,8 +519,8 @@ task.resume()
 	{
     let code = responseJSON["code"]! as! NSInteger
 	let message = responseJSON["message"]! as! NSString
-                                    //Leave PopUp method calling
-									//self.LeavePopUp()
+	//Leave PopUp method calling
+	//self.LeavePopUp()
 	self.AppliedLeavePopup.isHidden = false
 	self.RemarkTextview.resignFirstResponder()
 		
@@ -594,22 +593,31 @@ task.resume()
         }
         return activityIndicatorView
     }
-    @objc func keyboardWillShow(notification: Notification) {
-	if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-	print("notification: Keyboard will show")
-	if self.view.frame.origin.y == 0{
-	self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
-    }
+	
+	
+	@objc func keyboardWillShow(sender: NSNotification) {
+		 self.view.frame.origin.y = -200 // Move view 150 points upward
+	}
+
+	@objc func keyboardWillHide(sender: NSNotification) {
+		 self.view.frame.origin.y = 0 // Move view to original position
+	}
+	
+//    @objc func keyboardWillShow(notification: Notification) {
+//	if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//	print("notification: Keyboard will show")
+//	if self.view.frame.origin.y == 0{
+//	self.view.frame.origin.y -= keyboardSize.height
+//            }
+//        }
+//    }
+//    @objc func keyboardWillHide(notification: Notification) {
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y != 0 {
+//                self.view.frame.origin.y += keyboardSize.height
+//            }
+//        }
+//    }
     func LeavePopUp()
     {
         self.customView.frame = CGRect.init(x: 0, y: 0, width: 230, height: 300)
@@ -708,16 +716,12 @@ task.resume()
             
 	let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 	if let responseJSON = responseJSON as? [String: Any] {
-	print("Refresh Json Response",responseJSON)
     DispatchQueue.main.async
 	{
 	let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
 	self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
-	print("Refresh employeeName",self.RefreshemployeeNam)
 	self.RefreshbrName = (ItemsDict["brName"] as? String)!
-	print("Refresh brName",self.RefreshbrName)
 	self.UserNameLbl.text = self.RefreshemployeeNam
-	print("brNamestr-----",self.brNamestr)
 	self.CompanyNameLbl.text = self.RefreshbrName
 		}
             }    }
