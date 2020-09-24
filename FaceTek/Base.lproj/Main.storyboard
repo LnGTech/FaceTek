@@ -4238,6 +4238,62 @@
             </objects>
             <point key="canvasLocation" x="6455.1999999999998" y="-595.05247376311854"/>
         </scene>
+        <!--My TeamVC-->
+        <scene sceneID="Buc-ON-22G">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P8X-53-wos" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <viewController storyboardIdentifier="MyTeamVC" modalPresentationStyle="fullScreen" id="hjf-Qs-mry" customClass="MyTeamVC" customModule="Facetek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Xuf-V2-oq3">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5OA-5m-JsH">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My Team" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="697-uC-JUv">
+                                        <rect key="frame" x="71" y="10" width="175" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="175" id="EQg-we-qSj"/>
+                                            <constraint firstAttribute="height" constant="25" id="kRf-XV-vUn"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UNj-AG-lhs">
+                                        <rect key="frame" x="13" y="10" width="15" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="15" id="05q-JG-5zz"/>
+                                            <constraint firstAttribute="height" constant="25" id="jQA-pR-NwG"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="backicon.png"/>
+                                        <connections>
+                                            <action selector="BackBtnclk:" destination="hjf-Qs-mry" eventType="touchUpInside" id="Bxs-Ir-2e3"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.054901960780000002" green="0.29803921570000003" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="UNj-AG-lhs" firstAttribute="top" secondItem="5OA-5m-JsH" secondAttribute="top" constant="10" id="2rD-aP-AsR"/>
+                                    <constraint firstItem="UNj-AG-lhs" firstAttribute="leading" secondItem="5OA-5m-JsH" secondAttribute="leading" constant="13" id="EUc-VU-R66"/>
+                                    <constraint firstAttribute="height" constant="50" id="Scn-cg-b0s"/>
+                                    <constraint firstItem="697-uC-JUv" firstAttribute="top" secondItem="5OA-5m-JsH" secondAttribute="top" constant="10" id="diF-Au-Lqn"/>
+                                    <constraint firstItem="697-uC-JUv" firstAttribute="leading" secondItem="UNj-AG-lhs" secondAttribute="trailing" constant="43" id="vsv-aP-BpS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="5OA-5m-JsH" firstAttribute="top" secondItem="nDA-BW-HDy" secondAttribute="top" id="Rma-Ls-w9g"/>
+                            <constraint firstItem="5OA-5m-JsH" firstAttribute="trailing" secondItem="nDA-BW-HDy" secondAttribute="trailing" id="XlJ-gF-2OV"/>
+                            <constraint firstItem="5OA-5m-JsH" firstAttribute="leading" secondItem="nDA-BW-HDy" secondAttribute="leading" id="r83-I1-PbE"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="nDA-BW-HDy"/>
+                    </view>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="7145" y="-591"/>
+        </scene>
         <!--Leave-->
         <scene sceneID="0JX-47-dkF">
             <objects>

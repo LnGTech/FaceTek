@@ -10,6 +10,7 @@
 		272A19662509212C0036A431 /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A19652509212C0036A431 /* InternetConnection.swift */; };
 		27C15748250908DA008A4B0E /* InternetConnection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C15747250908DA008A4B0E /* InternetConnection.storyboard */; };
 		441CB81EC64E93C9F09F4678 /* Pods_FaceTek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E0F6F10C2DF4F3018A06F56 /* Pods_FaceTek.framework */; };
+		74068875251CAAD900B4F654 /* MyTeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74068874251CAAD900B4F654 /* MyTeamVC.swift */; };
 		740D706E243C419C00CF6C2F /* office_in.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D706D243C419B00CF6C2F /* office_in.png */; };
 		740D7070243C41A300CF6C2F /* office_out.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D706F243C41A200CF6C2F /* office_out.png */; };
 		740D7072243C41AA00CF6C2F /* track_movement.png in Resources */ = {isa = PBXBuildFile; fileRef = 740D7071243C41AA00CF6C2F /* track_movement.png */; };
@@ -184,6 +185,7 @@
 /* Begin PBXFileReference section */
 		272A19652509212C0036A431 /* InternetConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
 		27C15747250908DA008A4B0E /* InternetConnection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InternetConnection.storyboard; sourceTree = "<group>"; };
+		74068874251CAAD900B4F654 /* MyTeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamVC.swift; sourceTree = "<group>"; };
 		740D706D243C419B00CF6C2F /* office_in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office_in.png; sourceTree = "<group>"; };
 		740D706F243C41A200CF6C2F /* office_out.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office_out.png; sourceTree = "<group>"; };
 		740D7071243C41AA00CF6C2F /* track_movement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = track_movement.png; sourceTree = "<group>"; };
@@ -382,6 +384,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		74068871251CAA7800B4F654 /* My Team */ = {
+			isa = PBXGroup;
+			children = (
+				74068874251CAAD900B4F654 /* MyTeamVC.swift */,
+			);
+			path = "My Team";
+			sourceTree = "<group>";
+		};
 		740D70B8243C8E7100CF6C2F /* Attendance */ = {
 			isa = PBXGroup;
 			children = (
@@ -639,6 +649,7 @@
 				740D70B8243C8E7100CF6C2F /* Attendance */,
 				740D70B9243C8EB700CF6C2F /* Leave */,
 				745FE48D24F3A75300A40776 /* FieldTracking */,
+				74068871251CAA7800B4F654 /* My Team */,
 				74D998662434621200DFCBEC /* Main.storyboard */,
 				74D9986C2434621300DFCBEC /* Assets.xcassets */,
 				747F8D9B243AEA8300ABBD5E /* Images */,
@@ -992,6 +1003,7 @@
 				74D9989B2434999500DFCBEC /* DashboardCell.swift in Sources */,
 				74444F9424D2F8C5005DA8EC /* ManagerLeavecell.swift in Sources */,
 				74FA123C24AC68D400A356E7 /* RecognitionGLView.swift in Sources */,
+				74068875251CAAD900B4F654 /* MyTeamVC.swift in Sources */,
 				74E68A7224C832B100A3B009 /* Dropdowncell.swift in Sources */,
 				746017B12435F37700969CA2 /* NavigationMenucell.swift in Sources */,
 				74FA123824AC68BD00A356E7 /* RecognitionViewController.swift in Sources */,

@@ -17,6 +17,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
 		
+		//if (@available(iOS 13, *))
+			if #available(iOS 13.0, *) {
+		
+			let statusBar1 =  UIView()
+			statusBar1.frame = UIApplication.shared.statusBarFrame
+			statusBar1.backgroundColor = UIColor.red
+			UIApplication.shared.keyWindow?.addSubview(statusBar1)
+		}
+		
 		//Google map key
 		GMSServices.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
 		

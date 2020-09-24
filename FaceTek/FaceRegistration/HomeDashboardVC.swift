@@ -955,6 +955,14 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 				
 				
 			}
+			else if indexPath.item == 3 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				
+				let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+				self.present(MyTeamVC, animated:true, completion:nil)
+				
+				
+			}
         
         else if indexPath.item == 6 {
 			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
