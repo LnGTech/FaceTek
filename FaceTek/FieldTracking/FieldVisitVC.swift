@@ -24,6 +24,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	@IBOutlet weak var mapView: GMSMapView!
 	@IBOutlet weak var Fieldvisitoutbtn: UIButton!
 	@IBOutlet weak var FieldVisitInbtn: UIButton!
+	
+	@IBOutlet weak var FldvisitFormView: UIView!
 	@IBOutlet weak var FieldvisitBckview: UIView!
 	@IBOutlet weak var Cancelbtn: UIButton!
 	@IBOutlet weak var Submitbrn: UIButton!
@@ -145,14 +147,35 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		//key board show and Hide
 		NotificationCenter.default.addObserver(self, selector: #selector(FieldVisitVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(FieldVisitVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+		
+		//Field Visit form Top and Bottom Green line code
+		// Creates the bottom border
+		let borderBottom = CALayer()
+		let borderWidth = CGFloat(2.0)
+		borderBottom.borderColor = UIColor.green.cgColor
+		borderBottom.frame = CGRect(x: 0, y: FldvisitFormView.frame.height - 1.0, width: FldvisitFormView.frame.width , height: FldvisitFormView.frame.height - 1.0)
+		borderBottom.borderWidth = borderWidth
+		FldvisitFormView.layer.addSublayer(borderBottom)
+		FldvisitFormView.layer.masksToBounds = true
+
+		// Creates the Top border
+		let borderTop = CALayer()
+		borderTop.borderColor = UIColor.green.cgColor
+		borderTop.frame = CGRect(x: 0, y: 0, width: FldvisitFormView.frame.width, height: 1)
+		borderTop.borderWidth = borderWidth
+		FldvisitFormView.layer.addSublayer(borderTop)
+		FldvisitFormView.layer.masksToBounds = true
+
+		
+		
 
 //Previous meeting Validations
 		if (Adresstxtview.text == addressString)
 		{
-			PreviousMeetingView.isHidden = true
+			PreviousMeetingView.isHidden = false
 		}
 		else{
-			PreviousMeetingView.isHidden = false
+			PreviousMeetingView.isHidden = true
 			
 		}
 		

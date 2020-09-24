@@ -3884,7 +3884,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cdP-2e-TnE">
-                                        <rect key="frame" x="0.0" y="59" width="352" height="503"/>
+                                        <rect key="frame" x="0.0" y="59" width="352" height="495"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Place/Client Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="upk-39-zIv">
                                                 <rect key="frame" x="14" y="24" width="324" height="35"/>
@@ -4075,7 +4075,7 @@
                                             <constraint firstItem="OaT-TW-lRf" firstAttribute="leading" secondItem="cdP-2e-TnE" secondAttribute="leading" constant="14" id="sqV-zM-eyk"/>
                                             <constraint firstItem="GMf-CW-pVP" firstAttribute="top" secondItem="EJB-Tu-smO" secondAttribute="bottom" constant="10" id="t3G-hj-FFI"/>
                                             <constraint firstItem="Kke-74-XX8" firstAttribute="top" secondItem="Yig-CM-KpB" secondAttribute="bottom" constant="8" id="tyq-Xz-yS8"/>
-                                            <constraint firstAttribute="height" constant="503" id="uTR-8R-8tN"/>
+                                            <constraint firstAttribute="height" constant="495" id="uTR-8R-8tN"/>
                                             <constraint firstItem="upk-39-zIv" firstAttribute="leading" secondItem="cdP-2e-TnE" secondAttribute="leading" constant="14" id="zQV-P4-LMF"/>
                                         </constraints>
                                     </view>
@@ -4223,6 +4223,7 @@
                         <outlet property="FieldVisit_Popupview" destination="dYB-Tk-vGS" id="j05-ZA-Ec5"/>
                         <outlet property="FieldvisitBckview" destination="IKi-KG-WXg" id="A7d-fM-72o"/>
                         <outlet property="Fieldvisitoutbtn" destination="VMs-aT-W6I" id="6BU-H3-0RP"/>
+                        <outlet property="FldvisitFormView" destination="cdP-2e-TnE" id="g6w-wX-5QG"/>
                         <outlet property="PreviousMeetingView" destination="OaT-TW-lRf" id="Nn5-nd-UxM"/>
                         <outlet property="PreviousTxt" destination="paP-fN-Ms7" id="MRn-vb-9pg"/>
                         <outlet property="SelectPlaceDrptble" destination="cjw-ab-2gF" id="3hl-Rr-qZg"/>
