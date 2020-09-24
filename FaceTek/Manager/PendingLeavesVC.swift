@@ -150,7 +150,6 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                     {
                         
                         let empnamestr = statusDic["empName"] as? String
-                        print("suresh empname",empnamestr as Any)
                         
                          self.Pendingtble.isHidden = false
                         

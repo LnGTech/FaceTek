@@ -59,6 +59,8 @@
 		7449F96D24AE284900232D46 /* LogINVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449F96C24AE284900232D46 /* LogINVC.swift */; };
 		744B18B424CEB1B6004FB334 /* no_leves_found.png in Resources */ = {isa = PBXBuildFile; fileRef = 744B18B324CEB1B6004FB334 /* no_leves_found.png */; };
 		744B8C7224CAC0B6004634C0 /* ManagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B8C7124CAC0B6004634C0 /* ManagerVC.swift */; };
+		744BA9C8251CC303006E38D8 /* MyTeamtblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744BA9C6251CC303006E38D8 /* MyTeamtblCell.swift */; };
+		744BA9C9251CC303006E38D8 /* MyTeamtblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744BA9C7251CC303006E38D8 /* MyTeamtblCell.xib */; };
 		744D49F824F63946001075E8 /* SelectplaceDrpdwncell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744D49F624F63946001075E8 /* SelectplaceDrpdwncell.swift */; };
 		744D49F924F63946001075E8 /* SelectplaceDrpdwncell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744D49F724F63946001075E8 /* SelectplaceDrpdwncell.xib */; };
 		7451D15024CC62F7006EE244 /* AbsentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */; };
@@ -234,6 +236,8 @@
 		7449F96C24AE284900232D46 /* LogINVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogINVC.swift; sourceTree = "<group>"; };
 		744B18B324CEB1B6004FB334 /* no_leves_found.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_leves_found.png; sourceTree = "<group>"; };
 		744B8C7124CAC0B6004634C0 /* ManagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerVC.swift; sourceTree = "<group>"; };
+		744BA9C6251CC303006E38D8 /* MyTeamtblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamtblCell.swift; sourceTree = "<group>"; };
+		744BA9C7251CC303006E38D8 /* MyTeamtblCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTeamtblCell.xib; sourceTree = "<group>"; };
 		744D49F624F63946001075E8 /* SelectplaceDrpdwncell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectplaceDrpdwncell.swift; sourceTree = "<group>"; };
 		744D49F724F63946001075E8 /* SelectplaceDrpdwncell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectplaceDrpdwncell.xib; sourceTree = "<group>"; };
 		745163352507DC6200269C72 /* Facetek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Facetek.entitlements; sourceTree = "<group>"; };
@@ -384,6 +388,8 @@
 			isa = PBXGroup;
 			children = (
 				74068874251CAAD900B4F654 /* MyTeamVC.swift */,
+				744BA9C6251CC303006E38D8 /* MyTeamtblCell.swift */,
+				744BA9C7251CC303006E38D8 /* MyTeamtblCell.xib */,
 			);
 			path = "My Team";
 			sourceTree = "<group>";
@@ -856,6 +862,7 @@
 				747F8DB6243B3B5700ABBD5E /* home_bg.png in Resources */,
 				74D998942434690E00DFCBEC /* splashScreenLogo.png in Resources */,
 				7447702A24CF1A2900EFBB2F /* EarlyLeaverscell.xib in Resources */,
+				744BA9C9251CC303006E38D8 /* MyTeamtblCell.xib in Resources */,
 				74FA122F24AC687F00A356E7 /* DirectDisplayShader.fsh in Resources */,
 				747F8DCA243B547F00ABBD5E /* home_icon.png in Resources */,
 				744125D524D0311D00075CC1 /* PendingLeavescellTableViewCell.xib in Resources */,
@@ -1023,6 +1030,7 @@
 				74795DC3244DB98D00C6F03C /* DBHelper.swift in Sources */,
 				74FA124024AC690F00A356E7 /* enable_cxx.cpp in Sources */,
 				7429321924498B6600C59157 /* Protocols.swift in Sources */,
+				744BA9C8251CC303006E38D8 /* MyTeamtblCell.swift in Sources */,
 				74F5D11E243758A600D6E811 /* InputOTPVC.swift in Sources */,
 				74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */,
 				744125D424D0311D00075CC1 /* PendingLeavescellTableViewCell.swift in Sources */,
