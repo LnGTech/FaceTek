@@ -13,6 +13,9 @@ class MyTeamtblCell: UITableViewCell {
 	@IBOutlet weak var nameLbl: UILabel!
 	
 	@IBOutlet weak var MobilenumberLbl: UILabel!
+	
+	@IBOutlet weak var img: UIImageView!
+	
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

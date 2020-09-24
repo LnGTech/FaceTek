@@ -123,6 +123,14 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 				   MyTeamtblCell.nameLbl.text = dicShiftDetails?.value(forKey: "empName") as? String
 				   MyTeamtblCell.MobilenumberLbl.text = dicShiftDetails?.value(forKey: "empMobileNo") as? String
 			
+			MyTeamtblCell.img.layer.borderWidth = 1
+			MyTeamtblCell.img.layer.masksToBounds = false
+			MyTeamtblCell.img.layer.borderColor = UIColor.green.cgColor
+			MyTeamtblCell.img.layer.backgroundColor = UIColor.green.cgColor
+
+			MyTeamtblCell.img.layer.cornerRadius = MyTeamtblCell.img.frame.height/2
+			MyTeamtblCell.img.clipsToBounds = true
+			
 			
 	//           }
 			   return MyTeamtblCell
