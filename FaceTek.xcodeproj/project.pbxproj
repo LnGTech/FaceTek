@@ -106,8 +106,6 @@
 		747F8DA0243AECDF00ABBD5E /* reg.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8D9F243AECDE00ABBD5E /* reg.png */; };
 		747F8DA2243AF27200ABBD5E /* company-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DA1243AF27100ABBD5E /* company-small.png */; };
 		747F8DA4243AF27800ABBD5E /* idcard-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DA3243AF27700ABBD5E /* idcard-small.png */; };
-		747F8DA6243AF85F00ABBD5E /* CaptureVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F8DA5243AF85F00ABBD5E /* CaptureVC.swift */; };
-		747F8DA8243AF94D00ABBD5E /* Captured.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DA7243AF94D00ABBD5E /* Captured.jpeg */; };
 		747F8DAA243B08CA00ABBD5E /* conform.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DA9243B08C900ABBD5E /* conform.png */; };
 		747F8DAC243B368700ABBD5E /* HomeDashboardVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F8DAB243B368700ABBD5E /* HomeDashboardVC.swift */; };
 		747F8DAE243B37EA00ABBD5E /* AttendanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F8DAD243B37EA00ABBD5E /* AttendanceVC.swift */; };
@@ -284,8 +282,6 @@
 		747F8D9F243AECDE00ABBD5E /* reg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reg.png; sourceTree = "<group>"; };
 		747F8DA1243AF27100ABBD5E /* company-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "company-small.png"; sourceTree = "<group>"; };
 		747F8DA3243AF27700ABBD5E /* idcard-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "idcard-small.png"; sourceTree = "<group>"; };
-		747F8DA5243AF85F00ABBD5E /* CaptureVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaptureVC.swift; sourceTree = "<group>"; };
-		747F8DA7243AF94D00ABBD5E /* Captured.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Captured.jpeg; sourceTree = "<group>"; };
 		747F8DA9243B08C900ABBD5E /* conform.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = conform.png; sourceTree = "<group>"; };
 		747F8DAB243B368700ABBD5E /* HomeDashboardVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeDashboardVC.swift; sourceTree = "<group>"; };
 		747F8DAD243B37EA00ABBD5E /* AttendanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceVC.swift; sourceTree = "<group>"; };
@@ -565,7 +561,6 @@
 				747F8DB3243B3AAF00ABBD5E /* notification.png */,
 				747F8DB5243B3B5700ABBD5E /* home_bg.png */,
 				747F8DA9243B08C900ABBD5E /* conform.png */,
-				747F8DA7243AF94D00ABBD5E /* Captured.jpeg */,
 				747F8DA3243AF27700ABBD5E /* idcard-small.png */,
 				747F8DA1243AF27100ABBD5E /* company-small.png */,
 				747F8D9F243AECDE00ABBD5E /* reg.png */,
@@ -595,7 +590,6 @@
 			isa = PBXGroup;
 			children = (
 				747F8D9D243AEB1D00ABBD5E /* FaceRegistrationVC.swift */,
-				747F8DA5243AF85F00ABBD5E /* CaptureVC.swift */,
 				747F8DAB243B368700ABBD5E /* HomeDashboardVC.swift */,
 				746716822456E7C300277A14 /* CalendarVC.swift */,
 				746716882456EBAD00277A14 /* Calendarcell.swift */,
@@ -846,7 +840,6 @@
 				74D998682434621200DFCBEC /* Main.storyboard in Resources */,
 				74E68A7524C833EF00A3B009 /* circle.png in Resources */,
 				747F8DA4243AF27800ABBD5E /* idcard-small.png in Resources */,
-				747F8DA8243AF94D00ABBD5E /* Captured.jpeg in Resources */,
 				740D7076243C5CDE00CF6C2F /* leave_user.png in Resources */,
 				74398CDF2462E9F20053DA0F /* WhiteBck.png in Resources */,
 				740D7074243C52C300CF6C2F /* attendence_new.png in Resources */,
@@ -1008,7 +1001,6 @@
 				746017B12435F37700969CA2 /* NavigationMenucell.swift in Sources */,
 				74FA123824AC68BD00A356E7 /* RecognitionViewController.swift in Sources */,
 				74D998652434621200DFCBEC /* ViewController.swift in Sources */,
-				747F8DA6243AF85F00ABBD5E /* CaptureVC.swift in Sources */,
 				7449F96D24AE284900232D46 /* LogINVC.swift in Sources */,
 				740D70BF243C9A0700CF6C2F /* OfficeOutVC.swift in Sources */,
 				747F8DAC243B368700ABBD5E /* HomeDashboardVC.swift in Sources */,
