@@ -13,6 +13,20 @@ import GooglePlaces
 import Alamofire
 import SwiftyJSON
 
+extension UIViewController {
+func dismissKey()
+{
+let dismisstap: UITapGestureRecognizer = UITapGestureRecognizer( target: self, action: #selector(UIViewController.dismissKeyboard1))
+dismisstap.cancelsTouchesInView = false
+	view.addGestureRecognizer(dismisstap)
+}
+@objc func dismissKeyboard1()
+{
+view.endEditing(true)
+}
+}
+
+
 
 class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate {
 	
@@ -75,12 +89,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		
+		//Touch anywhere key board hide method
+		dismissKey()
 		self.SelectPlaceDrptble.delegate = self
 		self.SelectPlaceDrptble.dataSource = self
-		
 		FieldVisit_Popupview.isHidden = true
-		
 		//    //Field visit - IN and OUT button text color code
 		self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
 		self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
@@ -207,6 +220,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	@objc func tapFunction(sender:UITapGestureRecognizer) {
 		print("tap working")
 		DrpDownview.isHidden = false
+		//view.endEditing(true)
+		
+
 		
 	}
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
