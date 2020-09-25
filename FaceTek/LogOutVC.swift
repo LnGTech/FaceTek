@@ -636,7 +636,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
         nameDataLock.lock()
         for i in 0..<MAX_FACES {
             if ((names[i] as! String) != "") {
-                nameLabels[i].string = names[i]
+                nameLabels[i].string = "" //names[i]
                 nameLabels[i].foregroundColor = UIColor.blue.cgColor
             } else {
                 nameLabels[i].string = "Face doesn't matched"

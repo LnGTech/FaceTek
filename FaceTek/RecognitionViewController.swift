@@ -922,15 +922,22 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
         //Field visit
         
         //then go to dahsboard
-        let count = (self.navigationController?.viewControllers.count)!
-        for i:Int in 0...count {
-            let vc = self.navigationController?.viewControllers[i]
-            if (vc?.isKind(of: RegistrationVC.self))! {
-                (vc as! RegistrationVC).showTabBar = true
-                self.navigationController?.popToViewController(vc!, animated: true)
-                break
-            }
-        }
+//        let count = (self.navigationController?.viewControllers.count)!
+//        for i:Int in 0...count {
+//            let vc = self.navigationController?.viewControllers[i]
+//            if (vc?.isKind(of: RegistrationVC.self))! {
+//                (vc as! RegistrationVC).showTabBar = true
+//                self.navigationController?.popToViewController(vc!, animated: true)
+//                break
+				
+				
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+		let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+		self.present(UITabBarController, animated:true, completion:nil)
+				
+				
+            //}
+        //}
     }
     
     private func saveFile() {
