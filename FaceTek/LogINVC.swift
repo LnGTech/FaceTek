@@ -720,7 +720,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
         nameDataLock.lock()
         for i in 0..<MAX_FACES {
             if ((names[i] as! String) != "") {
-                nameLabels[i].string = "" //names[i]
+                nameLabels[i].string = Employeenamestr //names[i]
                 nameLabels[i].foregroundColor = UIColor.blue.cgColor
                 
             } else {
