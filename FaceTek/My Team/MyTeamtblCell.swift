@@ -10,6 +10,7 @@ import UIKit
 
 class MyTeamtblCell: UITableViewCell {
 	
+	@IBOutlet weak var MyTeamcellview: UIView!
 	@IBOutlet weak var nameLbl: UILabel!
 	
 	@IBOutlet weak var MobilenumberLbl: UILabel!

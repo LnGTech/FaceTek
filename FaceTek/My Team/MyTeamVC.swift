@@ -116,24 +116,27 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 		}
 		
 		  
-		   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-			   let MyTeamtblCell = tableView.dequeueReusableCell(withIdentifier: "MyTeamtblCell", for: indexPath) as! MyTeamtblCell
-			   let dicShiftDetails = marLeavesData.object(at: indexPath.row) as? NSDictionary
+		func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		let MyTeamtblCell = tableView.dequeueReusableCell(withIdentifier: "MyTeamtblCell", for: indexPath) as! MyTeamtblCell
+		let dicShiftDetails = marLeavesData.object(at: indexPath.row) as? NSDictionary
 	
-				   MyTeamtblCell.nameLbl.text = dicShiftDetails?.value(forKey: "empName") as? String
-				   MyTeamtblCell.MobilenumberLbl.text = dicShiftDetails?.value(forKey: "empMobileNo") as? String
-			
-			MyTeamtblCell.img.layer.borderWidth = 1
-			MyTeamtblCell.img.layer.masksToBounds = false
-			MyTeamtblCell.img.layer.borderColor = UIColor.green.cgColor
-			MyTeamtblCell.img.layer.backgroundColor = UIColor.green.cgColor
-
-			MyTeamtblCell.img.layer.cornerRadius = MyTeamtblCell.img.frame.height/2
-			MyTeamtblCell.img.clipsToBounds = true
-			
-			
+		MyTeamtblCell.nameLbl.text = dicShiftDetails?.value(forKey: "empName") as? String
+		MyTeamtblCell.MobilenumberLbl.text = dicShiftDetails?.value(forKey: "empMobileNo") as? String
+		let borderBottom = CALayer()
+		let borderWidth = CGFloat(1.0)
+		borderBottom.borderColor = UIColor.lightGray.cgColor
+		borderBottom.frame = CGRect(x: 0, y: MyTeamtblCell.MyTeamcellview.frame.height - 1.0, width: MyTeamtblCell.MyTeamcellview.frame.width , height: MyTeamtblCell.MyTeamcellview.frame.height - 1.0)
+	    borderBottom.borderWidth = borderWidth
+		MyTeamtblCell.MyTeamcellview.layer.addSublayer(borderBottom)
+		MyTeamtblCell.MyTeamcellview.layer.masksToBounds = true
+		MyTeamtblCell.img.layer.borderWidth = 1
+		MyTeamtblCell.img.layer.masksToBounds = false
+		MyTeamtblCell.img.layer.borderColor = UIColor.green.cgColor
+		MyTeamtblCell.img.layer.backgroundColor = UIColor.green.cgColor
+		MyTeamtblCell.img.layer.cornerRadius = MyTeamtblCell.img.frame.height/2
+		MyTeamtblCell.img.clipsToBounds = true
 	//           }
-			   return MyTeamtblCell
+		return MyTeamtblCell
 		   }
 	
     

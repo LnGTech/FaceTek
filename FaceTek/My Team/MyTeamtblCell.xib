@@ -47,6 +47,7 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="MobilenumberLbl" destination="j5V-jD-Sc5" id="PFU-xf-yM1"/>
+                <outlet property="MyTeamcellview" destination="im9-VT-BD2" id="se5-y9-ncE"/>
                 <outlet property="img" destination="ofI-Pp-wyI" id="V7F-tc-Q7b"/>
                 <outlet property="nameLbl" destination="Ruh-72-zfa" id="Z04-6E-mqM"/>
             </connections>
