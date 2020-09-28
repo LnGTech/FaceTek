@@ -625,6 +625,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			ContactLbl.isHidden = true
 			NameLbl.isHidden = true
 			MobnumberLbl.isHidden = true
+			Cantactsubview.isHidden = true
 			ClientView.backgroundColor = UIColor.white
 			ClientTxtfld.backgroundColor = UIColor.white
 //
@@ -652,6 +653,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		 if(drpcell.selectPlacedrpLbl.text == "SH5")
 		{
 			ClientTxtfld.isHidden = true
+			Cantactsubview.isHidden = false
+
 			ClientView.backgroundColor = UIColor.clear
 			ContactLbl = UILabel(frame: CGRect(x: 0, y: 5, width: 320, height: 23))
 			//label.center = CGPoint(x: 160, y: 284)

@@ -33,7 +33,7 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 		
 		  MyTeamtbl.register(UINib(nibName: "MyTeamtblCell", bundle: nil), forCellReuseIdentifier: "MyTeamtblCell")
 		
-		let parameters = ["brId": 83 as Any,"custId": 74 as Any,"empId": 356 as Any] as [String : Any]
+		let parameters = ["brId": 83 as Any,"custId": 74 as Any,"empId": 353 as Any] as [String : Any]
 			   
 				var StartPoint = Baseurl.shared().baseURL
 				var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getMyTeamDetails"
