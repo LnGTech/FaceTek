@@ -49,6 +49,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	
 	
 	@IBOutlet weak var ClientView: UIView!
+	@IBOutlet weak var Contactsubview: UIView!
+
 	@IBOutlet weak var ClientTxtfld: UITextField!
 	
 	@IBOutlet weak var VisitPuposetxtfld: UITextField!
@@ -72,7 +74,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	var empAttndOutDateTime : String = ""
 	var DestinationInLatlong : String = ""
 	var DestinationAddress : String = ""
-	
+    var RetrivedMobileNumber = String()
+
 	
 	var OriginLatLong : String = ""
 	var latstr : String = ""
@@ -89,6 +92,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	var customView1 = UIView()
 	var customSubView1 = UIView()
 	var ContactLbl = UILabel()
+	var NameLbl = UILabel()
+	var MobnumberLbl = UILabel()
+
 	var Cantactsubview = UIView()
 
 
@@ -614,6 +620,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		{
 			ClientTxtfld.isHidden = false
 			ContactLbl.isHidden = true
+			NameLbl.isHidden = true
+			MobnumberLbl.isHidden = true
 			ClientView.backgroundColor = UIColor.white
 			ClientTxtfld.backgroundColor = UIColor.white
 //
@@ -642,22 +650,41 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		{
 			ClientTxtfld.isHidden = true
 			ClientView.backgroundColor = UIColor.gray
-			ContactLbl = UILabel(frame: CGRect(x: 0, y: 5, width: 200, height: 23))
+			ContactLbl = UILabel(frame: CGRect(x: 0, y: 5, width: 320, height: 23))
 			//label.center = CGPoint(x: 160, y: 284)
 			ContactLbl.textAlignment = NSTextAlignment.left
 			ContactLbl.text = "Catact details"
 			ContactLbl.backgroundColor = UIColor.clear
+			let defaults = UserDefaults.standard
+			RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
+			
+			NameLbl = UILabel(frame: CGRect(x: 0, y: 30, width: 320, height: 23))
+			NameLbl.textAlignment = NSTextAlignment.left
+			NameLbl.text = "suresh Bandaru"
+			NameLbl.backgroundColor = UIColor.red
+			
+			MobnumberLbl = UILabel(frame: CGRect(x: 0, y: 55, width: 320, height: 23))
+			MobnumberLbl.textAlignment = NSTextAlignment.left
+			MobnumberLbl.text = RetrivedMobileNumber
+			MobnumberLbl.backgroundColor = UIColor.red
 
 
 			Cantactsubview.frame = CGRect.init(x: 0, y: 30, width: 322, height: 65)
-			Cantactsubview.backgroundColor = UIColor.clear     //give color to the view
+			Cantactsubview.backgroundColor = UIColor.white     //give color to the view
 			Cantactsubview.layer.borderColor = UIColor.gray.cgColor
 			Cantactsubview.layer.borderWidth = 1.0
 			//Cantactsubview.center = self.view.center
 			//self.ClientView.addSubview(Cantactsubview)
+			self.ClientView.addSubview(Cantactsubview)
+
 			self.ClientView.addSubview(ContactLbl)
+			self.ClientView.addSubview(NameLbl)
+			self.ClientView.addSubview(MobnumberLbl)
+
+
+			
 			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-				self.SelectPlaceViewconstriant?.constant = 100
+				self.SelectPlaceViewconstriant?.constant = 85
 				self.view.layoutIfNeeded()
 			}, completion: nil)
 
