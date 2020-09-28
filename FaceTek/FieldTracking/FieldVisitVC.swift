@@ -75,6 +75,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	var DestinationInLatlong : String = ""
 	var DestinationAddress : String = ""
     var RetrivedMobileNumber = String()
+    var Employeenamestr = String()
+
+	
 
 	
 	var OriginLatLong : String = ""
@@ -649,27 +652,29 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		 if(drpcell.selectPlacedrpLbl.text == "SH5")
 		{
 			ClientTxtfld.isHidden = true
-			ClientView.backgroundColor = UIColor.gray
+			ClientView.backgroundColor = UIColor.clear
 			ContactLbl = UILabel(frame: CGRect(x: 0, y: 5, width: 320, height: 23))
 			//label.center = CGPoint(x: 160, y: 284)
 			ContactLbl.textAlignment = NSTextAlignment.left
 			ContactLbl.text = "Catact details"
 			ContactLbl.backgroundColor = UIColor.clear
 			let defaults = UserDefaults.standard
+			
+			Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
+			//        UserNameLbl.text = Employeenamestr
 			RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
 			
-			NameLbl = UILabel(frame: CGRect(x: 0, y: 30, width: 320, height: 23))
+			NameLbl = UILabel(frame: CGRect(x: 5, y: 3, width: 320, height: 23))
 			NameLbl.textAlignment = NSTextAlignment.left
-			NameLbl.text = "suresh Bandaru"
-			NameLbl.backgroundColor = UIColor.red
-			
-			MobnumberLbl = UILabel(frame: CGRect(x: 0, y: 55, width: 320, height: 23))
+			NameLbl.text = Employeenamestr
+			NameLbl.textColor = UIColor.lightGray
+			NameLbl.backgroundColor = UIColor.clear
+			MobnumberLbl = UILabel(frame: CGRect(x: 5, y: 30, width: 320, height: 23))
 			MobnumberLbl.textAlignment = NSTextAlignment.left
 			MobnumberLbl.text = RetrivedMobileNumber
-			MobnumberLbl.backgroundColor = UIColor.red
-
-
-			Cantactsubview.frame = CGRect.init(x: 0, y: 30, width: 322, height: 65)
+			MobnumberLbl.textColor = UIColor.lightGray
+			MobnumberLbl.backgroundColor = UIColor.clear
+			Cantactsubview.frame = CGRect.init(x: 0, y: 30, width: 322, height: 60)
 			Cantactsubview.backgroundColor = UIColor.white     //give color to the view
 			Cantactsubview.layer.borderColor = UIColor.gray.cgColor
 			Cantactsubview.layer.borderWidth = 1.0
@@ -678,8 +683,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			self.ClientView.addSubview(Cantactsubview)
 
 			self.ClientView.addSubview(ContactLbl)
-			self.ClientView.addSubview(NameLbl)
-			self.ClientView.addSubview(MobnumberLbl)
+			self.Cantactsubview.addSubview(NameLbl)
+			self.Cantactsubview.addSubview(MobnumberLbl)
 
 
 			
