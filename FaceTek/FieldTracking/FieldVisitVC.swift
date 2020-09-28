@@ -88,6 +88,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	//FieldVisit IN Views
 	var customView1 = UIView()
 	var customSubView1 = UIView()
+	var ContactLbl = UILabel()
+	var Cantactsubview = UIView()
+
+
+	
 	var SelectPlaceArray:NSMutableArray = NSMutableArray()
 	var locationManager = CLLocationManager()
 	override func viewDidLoad() {
@@ -607,32 +612,16 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
 		if (drpcell.selectPlacedrpLbl.text == "Others")
 		{
+			ClientTxtfld.isHidden = false
+			ContactLbl.isHidden = true
+			ClientView.backgroundColor = UIColor.white
+			ClientTxtfld.backgroundColor = UIColor.white
+//
+//
+
+
 			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
 				self.SelectPlaceViewconstriant?.constant = 45
-				self.view.layoutIfNeeded()
-			}, completion: nil)
-		}
-		else if(drpcell.selectPlacedrpLbl.text == "SH5")
-		{
-			ClientTxtfld.isHidden = true
-			ClientView.backgroundColor = UIColor.gray
-			let label = UILabel(frame: CGRect(x: 0, y: 5, width: 200, height: 23))
-			//label.center = CGPoint(x: 160, y: 284)
-			label.textAlignment = NSTextAlignment.left
-			label.text = "Catact details"
-			label.backgroundColor = UIColor.clear
-			
-			var Cantactsubview = UIView()
-
-			Cantactsubview.frame = CGRect.init(x: 0, y: 30, width: 322, height: 65)
-			Cantactsubview.backgroundColor = UIColor.clear     //give color to the view
-			Cantactsubview.layer.borderColor = UIColor.gray.cgColor
-			Cantactsubview.layer.borderWidth = 1.0
-			//Cantactsubview.center = self.view.center
-			//self.ClientView.addSubview(Cantactsubview)
-			self.ClientView.addSubview(label)
-			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-				self.SelectPlaceViewconstriant?.constant = 100
 				self.view.layoutIfNeeded()
 			}, completion: nil)
 			
@@ -643,7 +632,44 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 				self.SelectPlaceViewconstriant?.constant = 0
 				self.view.layoutIfNeeded()
 			}, completion: nil)
+
 			
+			
+		}
+		
+		
+		 if(drpcell.selectPlacedrpLbl.text == "SH5")
+		{
+			ClientTxtfld.isHidden = true
+			ClientView.backgroundColor = UIColor.gray
+			ContactLbl = UILabel(frame: CGRect(x: 0, y: 5, width: 200, height: 23))
+			//label.center = CGPoint(x: 160, y: 284)
+			ContactLbl.textAlignment = NSTextAlignment.left
+			ContactLbl.text = "Catact details"
+			ContactLbl.backgroundColor = UIColor.clear
+
+
+			Cantactsubview.frame = CGRect.init(x: 0, y: 30, width: 322, height: 65)
+			Cantactsubview.backgroundColor = UIColor.clear     //give color to the view
+			Cantactsubview.layer.borderColor = UIColor.gray.cgColor
+			Cantactsubview.layer.borderWidth = 1.0
+			//Cantactsubview.center = self.view.center
+			//self.ClientView.addSubview(Cantactsubview)
+			self.ClientView.addSubview(ContactLbl)
+			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+				self.SelectPlaceViewconstriant?.constant = 100
+				self.view.layoutIfNeeded()
+			}, completion: nil)
+
+		}
+		else
+		{
+
+			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
+				self.SelectPlaceViewconstriant?.constant = 45
+				self.view.layoutIfNeeded()
+			}, completion: nil)
+
 		}
 
 		
