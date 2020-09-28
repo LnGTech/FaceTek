@@ -33,6 +33,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	
 	private var isAlreadyLoaddropdowndata = false
 	private var Fieldvisitout_cleardata = false
+    private var RefreshformData = false
+
 	
 	
 	@IBOutlet weak var mapView: GMSMapView!
@@ -90,6 +92,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	var locationManager = CLLocationManager()
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		ClientTxtfld.delegate = self
+		VisitPuposetxtfld.delegate = self
+
 		
 		//Touch anywhere key board hide method
 		dismissKey()
@@ -98,7 +103,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		FieldVisit_Popupview.isHidden = true
 		//    //Field visit - IN and OUT button text color code
 		self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-		self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+		self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
 		self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
 		self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
 		self.SelectPlaceViewconstriant?.constant = 0
@@ -610,23 +615,22 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		else if(drpcell.selectPlacedrpLbl.text == "SH5")
 		{
 			ClientTxtfld.isHidden = true
-			ClientView.backgroundColor = UIColor.lightGray
-			let label = UILabel(frame: CGRect(x: 0, y: 5, width: 200, height: 21))
+			ClientView.backgroundColor = UIColor.gray
+			let label = UILabel(frame: CGRect(x: 0, y: 5, width: 200, height: 23))
 			//label.center = CGPoint(x: 160, y: 284)
 			label.textAlignment = NSTextAlignment.left
 			label.text = "Catact details"
-			label.backgroundColor = UIColor.red
+			label.backgroundColor = UIColor.clear
 			
 			var Cantactsubview = UIView()
 
-			Cantactsubview.frame = CGRect.init(x: 0, y: 30, width: 300, height: 50)
-			Cantactsubview.backgroundColor = UIColor.blue     //give color to the view
+			Cantactsubview.frame = CGRect.init(x: 0, y: 30, width: 322, height: 65)
+			Cantactsubview.backgroundColor = UIColor.clear     //give color to the view
+			Cantactsubview.layer.borderColor = UIColor.gray.cgColor
+			Cantactsubview.layer.borderWidth = 1.0
 			//Cantactsubview.center = self.view.center
-			self.ClientView.addSubview(Cantactsubview)
-			
+			//self.ClientView.addSubview(Cantactsubview)
 			self.ClientView.addSubview(label)
-			
-			
 			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
 				self.SelectPlaceViewconstriant?.constant = 100
 				self.view.layoutIfNeeded()
@@ -648,6 +652,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	}
 	@objc func pressButton(button: UIButton) {
 		NSLog("pressed!")
+		ClientTxtfld.text?.removeAll()
+		VisitPuposetxtfld.text?.removeAll()
 		FieldvisitBckview.isHidden = false
 		Adresstxtview.text = addressString
 	}
@@ -669,6 +675,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
 	}
 	@IBAction func FieldvisitOUT_Submitbtnclk(_ sender: Any) {
+		
 		
 		
 		FieldvisitFormsubmitAPI()
@@ -910,7 +917,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 							//YOUR LOGIC....
 							print("Index values",name)
 							print("Index Integer numbers values..",index)//0, 1, 2, 3 ...
-						}
+						//}
 						
 						let latLong = latLongString?.components(separatedBy: ",")
 						let latitude = Double(latLong![0].replacingOccurrences(of: " ", with: ""))
@@ -924,13 +931,31 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						print("addressString....",self.addressString)
 						//marker.snippet = "India"
 						
-						let lbl = UILabel()
-						lbl.text = "ABC 123"
-						lbl.textColor = UIColor.black
-						lbl.backgroundColor = UIColor.cyan
-						// add label to viewAn
-						//lbl.frame = viewAn.bounds
-						self.view.addSubview(lbl)
+						let labelMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!))
+							
+							let Indexstrnumbers = String(index)
+							print("Indexstrnumbers",Indexstrnumbers)
+
+							
+						let label = UILabel()
+						//label.text = Indexstrnumbers
+						label.text = Indexstrnumbers
+						label.backgroundColor = UIColor.blue
+						label.sizeToFit()
+						labelMarker.iconView = label
+						labelMarker.map = self.mapView
+							
+							
+						
+						
+//
+//						let lbl = UILabel()
+//						lbl.text = "ABC 123"
+//						lbl.textColor = UIColor.black
+//						lbl.backgroundColor = UIColor.cyan
+//						// add label to viewAn
+//						//lbl.frame = viewAn.bounds
+//						self.mapView.addSubview(lbl)
 						
 						marker.map = self.mapView
 					}
@@ -949,6 +974,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 					
 				}
 			}}
+		}
 		task.resume()
 	}
 	
@@ -993,7 +1019,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
         }
     }
 	
-}
+	}
 
 
 
