@@ -76,13 +76,15 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 		self.locationManager.startUpdatingLocation()
 		}
 		
-		MyTeamGooglemapFormview.layer.masksToBounds = false
-		MyTeamGooglemapFormview.layer.cornerRadius = MyTeamGooglemapFormview.frame.height/2
-        MyTeamGooglemapFormview.layer.shadowColor = UIColor.black.cgColor
-        MyTeamGooglemapFormview.layer.shadowPath = UIBezierPath(roundedRect: MyTeamGooglemapFormview.bounds, cornerRadius: MyTeamGooglemapFormview.layer.cornerRadius).cgPath
-        MyTeamGooglemapFormview.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
-        MyTeamGooglemapFormview.layer.shadowOpacity = 0.5
-        MyTeamGooglemapFormview.layer.shadowRadius = 1.0
+//		MyTeamGooglemapFormview.layer.masksToBounds = false
+//		MyTeamGooglemapFormview.layer.cornerRadius = MyTeamGooglemapFormview.frame.height/2
+//        MyTeamGooglemapFormview.layer.shadowColor = UIColor.black.cgColor
+//        MyTeamGooglemapFormview.layer.shadowPath = UIBezierPath(roundedRect: MyTeamGooglemapFormview.bounds, cornerRadius: MyTeamGooglemapFormview.layer.cornerRadius).cgPath
+//        MyTeamGooglemapFormview.layer.shadowOffset = CGSize(width: 0.0, height: 3.0)
+//        MyTeamGooglemapFormview.layer.shadowOpacity = 0.5
+//        MyTeamGooglemapFormview.layer.shadowRadius = 1.0
+		
+		
 		let formatter = DateFormatter()
 		formatter.dateFormat = "dd-MMM-yyyy"
 		Datetxtfle.text = formatter.string(from: Datepicker.date)
