@@ -17,12 +17,22 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 
 	@IBOutlet weak var Dateview: UIView!
 	@IBOutlet weak var mapView: GMSMapView!
+	
+	@IBOutlet weak var Datetxtfle: UITextField!
+	@IBOutlet weak var DateSelectionBtn: UIButton!
+    let Datepicker = UIDatePicker()
+
+	
+	
+	
 	var latstr : String = ""
 	var longstr : String = ""
 	var addressString : String = ""
 	var RetrivedcustId = Int()
 	var RetrivedempId = Int()
 	var locationManager = CLLocationManager()
+    var ConvertedCurrentDatestr = NSString()
+
 
 
 
@@ -37,6 +47,12 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 		self.Dateview.layer.borderWidth = 1
 
 		Dateview.layer.borderColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
+		
+		Datetxtfle.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchDown)
+		DateSelectionBtn.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchDown)
+
+		DateSelectionBtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
+
 
 		//self.customView.backgroundColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
 
@@ -53,6 +69,68 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 
         // Do any additional setup after loading the view.
     }
+	@objc func pressButton(button: UIButton) {
+		print("Log values..")
+		
+		let toolbar = UIToolbar();
+		toolbar.sizeToFit()
+		let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker));
+		let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+		let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+		
+		toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+		
+		Datetxtfle.inputAccessoryView = toolbar
+		Datetxtfle.inputView = Datepicker
+		
+	}
+
+	@objc func FromDatesetDatePicker() {
+            //Format Date
+           // DatetxtFld.datePickerMode = .date
+            
+            //ToolBar
+            let toolbar = UIToolbar();
+            toolbar.sizeToFit()
+            let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker));
+            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+            
+            toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+            
+            Datetxtfle.inputAccessoryView = toolbar
+            Datetxtfle.inputView = Datepicker
+             
+        }
+        
+        @objc func doneDatePicker(){
+            let formatter = DateFormatter()
+            formatter.dateFormat = "dd-MMM-yyyy"
+            Datetxtfle.text = formatter.string(from: Datepicker.date)
+             //var ConvertedDatestr = ""
+            ConvertedCurrentDatestr = formattedDateFromString(dateString:
+                Datetxtfle.text!, withFormat: "yyyy-MM-dd")! as NSString
+            print("ConvertedCurrentDatestr---",ConvertedCurrentDatestr)
+            //AbsentAPIMethod()
+            self.view.endEditing(true)
+        }
+        
+        @objc func cancelDatePicker(){
+            self.view.endEditing(true)
+    };
+    func formattedDateFromString(dateString: String, withFormat format: String) -> String? {
+        let inputFormatter = DateFormatter()
+        inputFormatter.dateFormat = "dd/MM/yyyy"
+        if let date = inputFormatter.date(from: dateString) {
+            let outputFormatter = DateFormatter()
+            outputFormatter.dateFormat = format
+            return outputFormatter.string(from: date)
+        }
+        return nil
+    }
+	
+	
+	
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation])
 
 	{

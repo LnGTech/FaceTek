@@ -4390,7 +4390,7 @@
                                         <state key="normal" backgroundImage="BottomArrow.png"/>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="89l-LO-R2d" firstAttribute="leading" secondItem="SHt-7r-33c" secondAttribute="trailing" constant="12" id="IUr-b7-4hP"/>
                                     <constraint firstItem="SHt-7r-33c" firstAttribute="top" secondItem="IkL-5E-4rH" secondAttribute="top" constant="17" id="PJJ-Hl-s0J"/>
@@ -4415,6 +4415,8 @@
                         <viewLayoutGuide key="safeArea" id="JLc-UV-iyC"/>
                     </view>
                     <connections>
+                        <outlet property="DateSelectionBtn" destination="89l-LO-R2d" id="VmC-DB-UZW"/>
+                        <outlet property="Datetxtfle" destination="SHt-7r-33c" id="syL-3a-eqT"/>
                         <outlet property="Dateview" destination="IkL-5E-4rH" id="aw4-Ba-9Ug"/>
                         <outlet property="mapView" destination="nc0-Wh-ywR" id="a5Z-PY-Zn5"/>
                     </connections>
