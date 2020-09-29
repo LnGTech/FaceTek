@@ -65,6 +65,13 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 		self.locationManager.startUpdatingLocation()
 		}
 		
+		let formatter = DateFormatter()
+		formatter.dateFormat = "dd-MMM-yyyy"
+		Datetxtfle.text = formatter.string(from: Datepicker.date)
+		 //var ConvertedDatestr = ""
+		ConvertedCurrentDatestr = formattedDateFromString(dateString:
+			Datetxtfle.text!, withFormat: "yyyy-MM-dd")! as NSString
+		
 		GoogleMapPolyline()
 
         // Do any additional setup after loading the view.
@@ -112,6 +119,7 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
                 Datetxtfle.text!, withFormat: "yyyy-MM-dd")! as NSString
             print("ConvertedCurrentDatestr---",ConvertedCurrentDatestr)
             //AbsentAPIMethod()
+			GoogleMapPolyline()
             self.view.endEditing(true)
         }
         
@@ -190,7 +198,7 @@ func GoogleMapPolyline()
 			let now = Date()
 			let CurrentdateString = formatter.string(from:now)
 			print("CurrentdateString",CurrentdateString)
-			let parameters = ["custId": "74" as Any,"empId": "354" as Any,"visitDate": "2020-09-29" as Any] as [String : Any]
+			let parameters = ["custId": "74" as Any,"empId": "354" as Any,"visitDate": ConvertedCurrentDatestr as Any] as [String : Any]
 		
 		//let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 		
