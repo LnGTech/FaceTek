@@ -71,6 +71,8 @@
 		74520D3B24CB1AF5001252ED /* EarlyLeaversVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3A24CB1AF5001252ED /* EarlyLeaversVC.swift */; };
 		7455252E250A79B800D18C3F /* facetek_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 7455252D250A79B800D18C3F /* facetek_title.png */; };
 		745650E22522F6CC009BFA88 /* MyTeamGoogleMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745650E12522F6CC009BFA88 /* MyTeamGoogleMapVC.swift */; };
+		745650E725235664009BFA88 /* Googlemapformtblcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745650E525235664009BFA88 /* Googlemapformtblcell.swift */; };
+		745650E825235664009BFA88 /* Googlemapformtblcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 745650E625235664009BFA88 /* Googlemapformtblcell.xib */; };
 		745D5C55247CCA7B00052FC4 /* mobile.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C54247CCA7A00052FC4 /* mobile.png */; };
 		745D5C57247CCC2F00052FC4 /* leavemanagement.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C56247CCC2C00052FC4 /* leavemanagement.png */; };
 		745D5C5F247CDA9700052FC4 /* Home_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C5E247CDA9600052FC4 /* Home_user.png */; };
@@ -250,6 +252,8 @@
 		74520D3A24CB1AF5001252ED /* EarlyLeaversVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaversVC.swift; sourceTree = "<group>"; };
 		7455252D250A79B800D18C3F /* facetek_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facetek_title.png; sourceTree = "<group>"; };
 		745650E12522F6CC009BFA88 /* MyTeamGoogleMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamGoogleMapVC.swift; sourceTree = "<group>"; };
+		745650E525235664009BFA88 /* Googlemapformtblcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Googlemapformtblcell.swift; sourceTree = "<group>"; };
+		745650E625235664009BFA88 /* Googlemapformtblcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Googlemapformtblcell.xib; sourceTree = "<group>"; };
 		745D5C54247CCA7A00052FC4 /* mobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobile.png; sourceTree = "<group>"; };
 		745D5C56247CCC2C00052FC4 /* leavemanagement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leavemanagement.png; sourceTree = "<group>"; };
 		745D5C5E247CDA9600052FC4 /* Home_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home_user.png; sourceTree = "<group>"; };
@@ -392,6 +396,8 @@
 				74068874251CAAD900B4F654 /* MyTeamVC.swift */,
 				744BA9C6251CC303006E38D8 /* MyTeamtblCell.swift */,
 				745650E12522F6CC009BFA88 /* MyTeamGoogleMapVC.swift */,
+				745650E525235664009BFA88 /* Googlemapformtblcell.swift */,
+				745650E625235664009BFA88 /* Googlemapformtblcell.xib */,
 				744BA9C7251CC303006E38D8 /* MyTeamtblCell.xib */,
 			);
 			path = "My Team";
@@ -858,6 +864,7 @@
 				745D5C57247CCC2F00052FC4 /* leavemanagement.png in Resources */,
 				7467168B2456EBAD00277A14 /* Calendarcell.xib in Resources */,
 				74D998A02434A8B800DFCBEC /* qrcode.png in Resources */,
+				745650E825235664009BFA88 /* Googlemapformtblcell.xib in Resources */,
 				7469426724B34B1100C24342 /* hand.png in Resources */,
 				740D7070243C41A300CF6C2F /* office_out.png in Resources */,
 				740D7072243C41AA00CF6C2F /* track_movement.png in Resources */,
@@ -1061,6 +1068,7 @@
 				744D49F824F63946001075E8 /* SelectplaceDrpdwncell.swift in Sources */,
 				74FA123A24AC68C800A356E7 /* RecognitionCamera.swift in Sources */,
 				740FC4F1243DF57400F71B72 /* LeaveNavigationcell.swift in Sources */,
+				745650E725235664009BFA88 /* Googlemapformtblcell.swift in Sources */,
 				746017A82435BAC600969CA2 /* HamburgerButton.swift in Sources */,
 				74520D3524CB1A5A001252ED /* AbsentVC.swift in Sources */,
 			);

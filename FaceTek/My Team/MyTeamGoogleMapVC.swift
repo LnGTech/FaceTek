@@ -13,8 +13,11 @@ import GooglePlaces
 import Alamofire
 import SwiftyJSON
 
-class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
+class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITableViewDelegate,UITableViewDataSource {
 
+	@IBOutlet weak var MyteamGooglemapFormtbl: UITableView!
+	@IBOutlet weak var scrollView: UIScrollView!
+	@IBOutlet weak var MyTeamGooglemapFormview: UIView!
 	@IBOutlet weak var Dateview: UIView!
 	@IBOutlet weak var mapView: GMSMapView!
 	
@@ -34,11 +37,19 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
     var ConvertedCurrentDatestr = NSString()
 
 
+    var titlesArray = ["Place/Client Name","Visit Date & Time","Time spent","Km travel","Visit Purpose","Visit Outcome","Address"]
 
 
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		mapView.delegate = self
+		MyTeamGooglemapFormview.isHidden = true
+		
+		MyteamGooglemapFormtbl.register(UINib(nibName: "Googlemapformtblcell", bundle: nil), forCellReuseIdentifier: "Googlemapformtblcell")
+
+		
+
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		print("My team RetrivedcustId----",RetrivedcustId)
@@ -72,10 +83,16 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 		ConvertedCurrentDatestr = formattedDateFromString(dateString:
 			Datetxtfle.text!, withFormat: "yyyy-MM-dd")! as NSString
 		
+		
+		
 		GoogleMapPolyline()
 
         // Do any additional setup after loading the view.
     }
+	
+
+	
+	
 	@objc func pressButton(button: UIButton) {
 		print("Log values..")
 		
@@ -247,6 +264,9 @@ func GoogleMapPolyline()
 							marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
 							marker.title = Inaddress
 							
+							
+							
+							
 							print("addressString....",self.addressString)
 							//marker.snippet = "India"
 							
@@ -296,5 +316,62 @@ func GoogleMapPolyline()
 			//}
 			task.resume()
 		}
+	func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+		MyTeamGooglemapFormview.isHidden = false
 
-}
+		print("marker tapped:", marker.title)
+           return true
+    }
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		var count:Int?
+		if tableView == self.MyteamGooglemapFormtbl {
+		count = titlesArray.count
+		return count!
+			}
+				//if tableView == self.Dropdowntbl {
+//		if tableView == self.Dropdowntbl {
+//		count =  LeavetypeDropdownArray.count
+//			}
+		return count!
+		}
+		
+		// create a cell for each table view row
+		func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		var cellToReturn = UITableViewCell() // Dummy value
+		if tableView == self.MyteamGooglemapFormtbl {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Googlemapformtblcell") as! Googlemapformtblcell
+		cell.accessoryType = .disclosureIndicator
+		cell.titleLbl?.text = self.titlesArray[indexPath.row]
+		cellToReturn = cell
+			}
+//		} else if tableView == self.Dropdowntbl {
+//		let cell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell") as! Dropdowncell
+//		let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
+//							_ = LeavetypeDropdownArray[indexPath.row]
+//		print("Retrived data",responseDict)
+//		self.LeavetypeDropdownArray.add(MainDict)
+//		print("Leave Type Array",LeavetypeDropdownArray)
+//		var custLeaveNamestr : String?
+//		custLeaveNamestr = responseDict["custLeaveName"] as? String
+//		print("custLeaveNamestr",custLeaveNamestr)
+//		cell.DropdownLbl!.text = custLeaveNamestr
+//		cellToReturn = cell
+//			   }
+		return cellToReturn
+		}
+		
+		func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+			
+		{
+			print("Tapped")
+			}
+		
+		
+		func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+			return 76
+		
+		}
+	}
+	
+	
+
