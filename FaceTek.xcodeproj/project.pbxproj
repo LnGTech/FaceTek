@@ -70,6 +70,7 @@
 		74520D3924CB1ADC001252ED /* LatecomersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3824CB1ADC001252ED /* LatecomersVC.swift */; };
 		74520D3B24CB1AF5001252ED /* EarlyLeaversVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3A24CB1AF5001252ED /* EarlyLeaversVC.swift */; };
 		7455252E250A79B800D18C3F /* facetek_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 7455252D250A79B800D18C3F /* facetek_title.png */; };
+		745650E22522F6CC009BFA88 /* MyTeamGoogleMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745650E12522F6CC009BFA88 /* MyTeamGoogleMapVC.swift */; };
 		745D5C55247CCA7B00052FC4 /* mobile.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C54247CCA7A00052FC4 /* mobile.png */; };
 		745D5C57247CCC2F00052FC4 /* leavemanagement.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C56247CCC2C00052FC4 /* leavemanagement.png */; };
 		745D5C5F247CDA9700052FC4 /* Home_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C5E247CDA9600052FC4 /* Home_user.png */; };
@@ -248,6 +249,7 @@
 		74520D3824CB1ADC001252ED /* LatecomersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatecomersVC.swift; sourceTree = "<group>"; };
 		74520D3A24CB1AF5001252ED /* EarlyLeaversVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaversVC.swift; sourceTree = "<group>"; };
 		7455252D250A79B800D18C3F /* facetek_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facetek_title.png; sourceTree = "<group>"; };
+		745650E12522F6CC009BFA88 /* MyTeamGoogleMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamGoogleMapVC.swift; sourceTree = "<group>"; };
 		745D5C54247CCA7A00052FC4 /* mobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobile.png; sourceTree = "<group>"; };
 		745D5C56247CCC2C00052FC4 /* leavemanagement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leavemanagement.png; sourceTree = "<group>"; };
 		745D5C5E247CDA9600052FC4 /* Home_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home_user.png; sourceTree = "<group>"; };
@@ -389,6 +391,7 @@
 			children = (
 				74068874251CAAD900B4F654 /* MyTeamVC.swift */,
 				744BA9C6251CC303006E38D8 /* MyTeamtblCell.swift */,
+				745650E12522F6CC009BFA88 /* MyTeamGoogleMapVC.swift */,
 				744BA9C7251CC303006E38D8 /* MyTeamtblCell.xib */,
 			);
 			path = "My Team";
@@ -1043,6 +1046,7 @@
 				7424A04724AC6AFB000B466F /* AppDelegate.swift in Sources */,
 				74F07AC024B0BE7E000E6924 /* AttendanceInDB.swift in Sources */,
 				74D9986B2434621200DFCBEC /* FaceTek.xcdatamodeld in Sources */,
+				745650E22522F6CC009BFA88 /* MyTeamGoogleMapVC.swift in Sources */,
 				7451D15024CC62F7006EE244 /* AbsentHeaderCell.swift in Sources */,
 				740D70C1243CB13E00CF6C2F /* WifiConnection.swift in Sources */,
 				74520D3B24CB1AF5001252ED /* EarlyLeaversVC.swift in Sources */,

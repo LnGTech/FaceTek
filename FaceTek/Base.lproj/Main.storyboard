@@ -4347,6 +4347,28 @@
             </objects>
             <point key="canvasLocation" x="7144.8000000000002" y="-591.45427286356824"/>
         </scene>
+        <!--My Team Google MapVC-->
+        <scene sceneID="DB6-Lp-twc">
+            <objects>
+                <viewController storyboardIdentifier="MyTeamGoogleMapVC" modalPresentationStyle="fullScreen" id="Vdr-3u-h3p" customClass="MyTeamGoogleMapVC" customModule="Facetek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="KZI-2m-52J">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="oPY-8L-hiu">
+                                <rect key="frame" x="67" y="53" width="240" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="JLc-UV-iyC"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cCa-u5-OSo" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="7776.8000000000002" y="-591.45427286356824"/>
+        </scene>
         <!--Leave-->
         <scene sceneID="0JX-47-dkF">
             <objects>

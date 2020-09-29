@@ -7,32 +7,37 @@
 //
 
 import UIKit
+import GoogleMaps
+import CoreLocation
+import GooglePlaces
+import Alamofire
+import SwiftyJSON
 
-class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLocationManagerDelegate,GMSMapViewDelegate {
 	
 	
+	
+	
+	
+	@IBOutlet weak var mapView: GMSMapView!
+	var latstr : String = ""
+	var longstr : String = ""
+	var addressString : String = ""
+
     var mDictAttendanceData = NSMutableDictionary()
     var marLeavesData = NSMutableArray()
-
-
-	
 	@IBOutlet weak var MyTeamtbl: UITableView!
 	@IBOutlet weak var Nodataview: UIView!
 	override func viewDidLoad() {
         super.viewDidLoad()
-		
+		self.MyTeamtbl.delegate = self
+		self.MyTeamtbl.dataSource = self
 		self.MyTeamtbl.rowHeight = 65
-
-		
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
-		
 		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
 		view.addSubview(statusBarView)
-		
 		Nodataview.isHidden = true
-		
 		  MyTeamtbl.register(UINib(nibName: "MyTeamtblCell", bundle: nil), forCellReuseIdentifier: "MyTeamtblCell")
-		
 		let parameters = ["brId": 83 as Any,"custId": 74 as Any,"empId": 353 as Any] as [String : Any]
 			   
 				var StartPoint = Baseurl.shared().baseURL
@@ -107,6 +112,52 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 		
     }
 	
+	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+		let newLocation = locations.last // find your device location
+		mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 16) // show your device location on map
+		mapView.settings.myLocationButton = true // show current location button
+		let lat = (newLocation?.coordinate.latitude)! // get current location latitude
+		let long = (newLocation?.coordinate.longitude)!
+		latstr = String(lat)
+		longstr = String(long)
+		let geoCoder = CLGeocoder()
+		let location = CLLocation(latitude: lat, longitude: long)
+		geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+			let pm = placemarks! as [CLPlacemark]
+			
+			if pm.count > 0 {
+				let pm = placemarks![0]
+				print(pm.country as Any)
+				print(pm.locality as Any)
+				print(pm.subLocality as Any)
+				print(pm.thoroughfare as Any)
+				print(pm.postalCode as Any)
+				print(pm.subThoroughfare as Any)
+				if pm.subLocality != nil {
+					self.addressString = self.addressString + pm.subLocality! + ", "
+				}
+				if pm.thoroughfare != nil {
+					self.addressString = self.addressString + pm.thoroughfare! + ", "
+				}
+				if pm.locality != nil {
+					self.addressString = self.addressString + pm.locality! + ", "
+				}
+				if pm.country != nil {
+					self.addressString = self.addressString + pm.country! + ", "
+				}
+				if pm.postalCode != nil {
+					self.addressString = self.addressString + pm.postalCode! + " "
+				}
+				//    let marker = GMSMarker()
+				//    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
+				//    marker.title = self.addressString
+				//    marker.map = self.mapView
+				//    print("address location",self.addressString)
+			}
+		})
+	}
+	
+	
 //	func numberOfSections(in tableView: UITableView) -> Int {
 //			return self.marLeavesData.count
 //		   }
@@ -138,6 +189,13 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 	//           }
 		return MyTeamtblCell
 		   }
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+		let MyTeamGoogleMapVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamGoogleMapVC") as! MyTeamGoogleMapVC
+		self.present(MyTeamGoogleMapVC, animated:true, completion:nil)
+        
+    }
 	
     
 	@IBAction func BackBtnclk(_ sender: Any) {
