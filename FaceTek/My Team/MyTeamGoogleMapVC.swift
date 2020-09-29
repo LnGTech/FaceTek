@@ -342,6 +342,8 @@ func GoogleMapPolyline()
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Googlemapformtblcell") as! Googlemapformtblcell
 		cell.accessoryType = .disclosureIndicator
 		cell.titleLbl?.text = self.titlesArray[indexPath.row]
+			cell.accessoryType = UITableViewCellAccessoryType.none
+
 		cellToReturn = cell
 			}
 //		} else if tableView == self.Dropdowntbl {
