@@ -15,6 +15,7 @@ import SwiftyJSON
 
 class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
 
+	@IBOutlet weak var Dateview: UIView!
 	@IBOutlet weak var mapView: GMSMapView!
 	var latstr : String = ""
 	var longstr : String = ""
@@ -33,6 +34,12 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 		print("My team RetrivedcustId----",RetrivedcustId)
 		RetrivedempId = defaults.integer(forKey: "empId")
 		print("RetrivedempId----",RetrivedempId)
+		self.Dateview.layer.borderWidth = 1
+
+		Dateview.layer.borderColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
+
+		//self.customView.backgroundColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
+
 		
 		if CLLocationManager.locationServicesEnabled(){
 		self.locationManager.delegate = self
@@ -135,15 +142,15 @@ func GoogleMapPolyline()
 							let fieldVisit = visit as? [String:Any]
 							let latLongString = fieldVisit!["inLatLong"] as? String
 							let Inaddress = fieldVisit!["inAddress"] as? String
-							print("In address values...",Inaddress as Any)
-							
-							for (index, name) in fieldTrackArray!
-								.enumerated()
-							{
-								//YOUR LOGIC....
-								print("Index values",name)
-								print("Index Integer numbers values..",index)//0, 1, 2, 3 ...
-							//}
+//							print("In address values...",Inaddress as Any)
+//
+//							for (index, name) in fieldTrackArray!
+//								.enumerated()
+//							{
+//								//YOUR LOGIC....
+//								print("Index values",name)
+//								print("Index Integer numbers values..",index)//0, 1, 2, 3 ...
+//							//}
 							
 							let latLong = latLongString?.components(separatedBy: ",")
 							let latitude = Double(latLong![0].replacingOccurrences(of: " ", with: ""))
@@ -159,13 +166,13 @@ func GoogleMapPolyline()
 							
 							let labelMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!))
 								
-								let Indexstrnumbers = String(index)
-								print("Indexstrnumbers",Indexstrnumbers)
+								//let Indexstrnumbers = String(index)
+								//print("Indexstrnumbers",Indexstrnumbers)
 
 								
 							let label = UILabel()
 							//label.text = Indexstrnumbers
-							label.text = Indexstrnumbers
+							//label.text = Indexstrnumbers
 							label.backgroundColor = UIColor.blue
 							label.sizeToFit()
 							labelMarker.iconView = label
@@ -200,7 +207,7 @@ func GoogleMapPolyline()
 						
 					}
 				}}
-			}
+			//}
 			task.resume()
 		}
 
