@@ -638,8 +638,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 				self.view.layoutIfNeeded()
 			}, completion: nil)
 
-			
-			
 		}
 		
 		
@@ -706,12 +704,22 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	}
 	@objc func pressButton(button: UIButton) {
 		NSLog("pressed!")
+		//Selectplacelbl.text?.removeAll()
 		ClientTxtfld.text?.removeAll()
 		VisitPuposetxtfld.text?.removeAll()
+		PreviousTxt.text?.removeAll()
 		FieldvisitBckview.isHidden = false
 		Adresstxtview.text = addressString
 	}
 	@IBAction func Cancelbtnclk(_ sender: Any) {
+		
+		
+		Selectplacelbl.text?.removeAll()
+		ClientTxtfld.text?.removeAll()
+		VisitPuposetxtfld.text?.removeAll()
+		PreviousTxt.text?.removeAll()
+		Adresstxtview.text = addressString
+		
 		FieldvisitBckview.isHidden = true
 	}
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
@@ -1055,23 +1063,31 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 //        }
 //    }
 	
-	@objc func keyboardWillShow(notification: Notification) {
-        
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            print("notification: Keyboard will show")
-            if self.view.frame.origin.y == 0{
-                self.view.frame.origin.y -= keyboardSize.height
-            }
-        }
-    }
-    
-    @objc func keyboardWillHide(notification: Notification) {
-        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
-            if self.view.frame.origin.y != 0 {
-                self.view.frame.origin.y += keyboardSize.height
-            }
-        }
-    }
+	
+	@objc func keyboardWillShow(sender: NSNotification) {
+		 self.view.frame.origin.y = -200 // Move view 150 points upward
+	}
+
+	@objc func keyboardWillHide(sender: NSNotification) {
+		 self.view.frame.origin.y = 0 // Move view to original position
+	}
+//	@objc func keyboardWillShow(notification: Notification) {
+//        
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//            print("notification: Keyboard will show")
+//            if self.view.frame.origin.y == 0{
+//                self.view.frame.origin.y -= keyboardSize.height
+//            }
+//        }
+//    }
+//    
+//    @objc func keyboardWillHide(notification: Notification) {
+//        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
+//            if self.view.frame.origin.y != 0 {
+//                self.view.frame.origin.y += keyboardSize.height
+//            }
+//        }
+//    }
 	
 	}
 
