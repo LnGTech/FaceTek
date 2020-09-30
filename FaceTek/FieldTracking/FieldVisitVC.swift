@@ -77,9 +77,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     var RetrivedMobileNumber = String()
     var Employeenamestr = String()
 
-	
-
-	
 	var OriginLatLong : String = ""
 	var latstr : String = ""
 	var longstr : String = ""
@@ -108,8 +105,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		super.viewDidLoad()
 		ClientTxtfld.delegate = self
 		VisitPuposetxtfld.delegate = self
-
-		
 		//Touch anywhere key board hide method
 		dismissKey()
 		self.SelectPlaceDrptble.delegate = self
@@ -172,12 +167,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 //		view.addGestureRecognizer(touchtap)
 //
 		
-		//Address Textview
-		Adresstxtview.text = "Reason"
-        Adresstxtview.textColor = UIColor.lightGray
-        Adresstxtview.font = UIFont(name: "verdana", size: 13.0)
-        Adresstxtview.returnKeyType = .done
-        Adresstxtview.delegate = self
+		
 		//key board show and Hide
 		NotificationCenter.default.addObserver(self, selector: #selector(FieldVisitVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(FieldVisitVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
@@ -219,6 +209,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
 		
 	}
+	
+	
+	
 //	@objc override func dismissKeyboard() {
 //
 //		view.endEditing(true)
@@ -692,7 +685,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 
 			
 			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
-				self.SelectPlaceViewconstriant?.constant = 85
+				self.SelectPlaceViewconstriant?.constant = 80
 				self.view.layoutIfNeeded()
 			}, completion: nil)
 
@@ -1039,28 +1032,28 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		task.resume()
 	}
 	
-	func textViewDidBeginEditing(_ textView: UITextView) {
-        if Adresstxtview.text == "Reason" {
-            Adresstxtview.text = ""
-            Adresstxtview.textColor = UIColor.black
-            Adresstxtview.font = UIFont(name: "verdana", size: 18.0)
-        }
-    }
-    
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            Adresstxtview.resignFirstResponder()
-        }
-        return true
-    }
-    
-    func textViewDidEndEditing(_ textView: UITextView) {
-        if Adresstxtview.text == "" {
-            Adresstxtview.text = "Reason"
-            Adresstxtview.textColor = UIColor.lightGray
-            Adresstxtview.font = UIFont(name: "verdana", size: 13.0)
-        }
-    }
+//	func textViewDidBeginEditing(_ textView: UITextView) {
+//        if Adresstxtview.text == "Reason" {
+//            Adresstxtview.text = ""
+//            Adresstxtview.textColor = UIColor.black
+//            Adresstxtview.font = UIFont(name: "verdana", size: 16.0)
+//        }
+//    }
+//    
+//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+//        if text == "\n" {
+//            Adresstxtview.resignFirstResponder()
+//        }
+//        return true
+//    }
+//    
+//    func textViewDidEndEditing(_ textView: UITextView) {
+//        if Adresstxtview.text == "" {
+//            Adresstxtview.text = "Reason"
+//            Adresstxtview.textColor = UIColor.black
+//            Adresstxtview.font = UIFont(name: "verdana", size: 16.0)
+//        }
+//    }
 	
 	@objc func keyboardWillShow(notification: Notification) {
         
