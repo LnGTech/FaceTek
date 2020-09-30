@@ -196,10 +196,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 //Previous meeting Validations
 		if (Adresstxtview.text == addressString)
 		{
-			PreviousMeetingView.isHidden = true
+			PreviousMeetingView.isHidden = false
 		}
 		else{
-			PreviousMeetingView.isHidden = false
+			PreviousMeetingView.isHidden = true
 			
 		}
 		
@@ -407,7 +407,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		RetrivedempId = defaults.integer(forKey: "empId")
 		let latlanstr = latstr + ", " + longstr
 		print("latlanstr..",latlanstr)
-		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":Adresstxtview.text,"toClientNamePlace":"koilakuntla","visitPurpose":VisitPuposetxtfld.text,"prevVisitId":"2","meetingOutcome":"Approved","empVisitScheduleId":"2"] as [String : Any]
+		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":Adresstxtview.text,"toClientNamePlace":ClientTxtfld.text,"visitPurpose":VisitPuposetxtfld.text,"prevVisitId":"2","meetingOutcome":PreviousTxt.text,"empVisitScheduleId":"2"] as [String : Any]
 		
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
 		let session = URLSession.shared
