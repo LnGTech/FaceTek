@@ -206,10 +206,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 //Previous meeting Validations
 		if (Adresstxtview.text == addressString)
 		{
-			PreviousMeetingView.isHidden = false
+			PreviousMeetingView.isHidden = true
 		}
 		else{
-			PreviousMeetingView.isHidden = true
+			PreviousMeetingView.isHidden = false
 			
 		}
 		
@@ -998,13 +998,13 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 							print("Indexstrnumbers",Indexstrnumbers)
 
 							
-						let label = UILabel()
-						//label.text = Indexstrnumbers
-						label.text = Indexstrnumbers
-						label.backgroundColor = UIColor.blue
-						label.sizeToFit()
-						labelMarker.iconView = label
-						labelMarker.map = self.mapView
+//						let label = UILabel()
+//						//label.text = Indexstrnumbers
+//						label.text = Indexstrnumbers
+//						label.backgroundColor = UIColor.blue
+//						label.sizeToFit()
+//						labelMarker.iconView = label
+//						labelMarker.map = self.mapView
 							
 							
 						

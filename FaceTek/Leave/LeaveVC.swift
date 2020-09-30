@@ -678,6 +678,9 @@ task.resume()
     Fromtxt.placeholder = "From"
 	Totxt.text = nil
 	Totxt.placeholder = "To"
+		SelectLeaveTypeTxtfield.text = nil
+		SelectLeaveTypeTxtfield.placeholder = "Leave Type"
+		
 	RemarkTextview.text = nil
 	RemarkTextview.text = " Remarks"
     RemarkTextview.textColor = UIColor.lightGray
