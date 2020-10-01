@@ -79,6 +79,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     var RetrivedMobileNumber = String()
     var Employeenamestr = String()
     var FirstLocation = String()
+	var DestinationLocation = String()
 
 
 	var OriginLatLong : String = ""
@@ -426,7 +427,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			let OutLatLnglocation = CLLocation(latitude: currentLoc.coordinate.latitude, longitude: currentLoc.coordinate.longitude)
 
 			let locationData = NSKeyedArchiver.archivedData(withRootObject: OutLatLnglocation)
-			UserDefaults.standard.set(locationData, forKey: "locationData")
+			UserDefaults.standard.set(locationData, forKey: "locationDatavalues")
+			print("Outlatlangvalues",locationData)
 
 		
 		
@@ -462,14 +464,14 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 				self.empVisitId = (responseJSON["empVisitId"] as? NSInteger)!
 				
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-					self.scheduledTimerWithTimeInterval()
+					//self.scheduledTimerWithTimeInterval()
 					DispatchQueue.main.async {
 						let statusDic = responseJSON["status"]! as! NSDictionary
 						let code = statusDic["code"] as! NSInteger
 						if(code == 200)
 						{
 							
-							self.insertTrackFieldVisit_updateCounting()
+							//self.insertTrackFieldVisit_updateCounting()
 							let message = statusDic["message"] as! NSString
 							//Leave PopUp method calling
 							
@@ -550,98 +552,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
 	}
 	
-	func scheduledTimerWithTimeInterval(){
-		
-		timer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
-	}
-	////ksdsds
-	//Background calling API
-	@objc func insertTrackFieldVisit_updateCounting(){
-		
-		
-		
-		if let loadedData = UserDefaults.standard.data(forKey: "locationData")
-		{
-			if let loadedLocation = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? CLLocation {
-				print("First Location Lat",loadedLocation.coordinate.latitude)
-				print("First Location long",loadedLocation.coordinate.longitude)
-				locationManager.requestWhenInUseAuthorization()
-				var currentLoc: CLLocation!
-				if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-				CLLocationManager.authorizationStatus() == .authorizedAlways) {
-				   currentLoc = locationManager.location
-				   print("SecondLocation",currentLoc.coordinate.latitude)
-				   print("SecondLocation",currentLoc.coordinate.longitude)
-				
-			
-		let FirstLacoationLat1 = (loadedLocation.coordinate.latitude)
-		let FirstLacoationLng1 = (loadedLocation.coordinate.longitude)
-					//"outFromLatLong": "15.225391290164756, 78.31401312731046",
-
-		let SecondLocationLat2 = (currentLoc.coordinate.latitude)
-		let SecondLocationLng2 = (currentLoc.coordinate.longitude)
-
-		let currentLocation = CLLocation(latitude: FirstLacoationLat1, longitude: FirstLacoationLng1)
-		var DestinationLocation = CLLocation(latitude: SecondLocationLat2, longitude: SecondLocationLng2)
-		//var distance = currentLocation.distance(from: DestinationLocation) / 1000
-			var distance = currentLocation.distance(from: DestinationLocation) * 0.000621371
-		print(String(format: "The distance to my buddy is %.01fkm", distance))
-		let defaults = UserDefaults.standard
-		RetrivedcustId = defaults.integer(forKey: "custId")
-		RetrivedempId = defaults.integer(forKey: "empId")
-		let latlanstr = latstr + ", " + longstr
-		
-		
-		print("Background latlanstr...",latlanstr)
-		let formatter = DateFormatter()
-		//2016-12-08 03:37:22 +0000
-		//formatter.dateFormat = "yyyy-MM-dd"
-		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-		let now = Date()
-		let CurrentdateString = formatter.string(from:now)
-		print("CurrentdateString",CurrentdateString)
-		
-		let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
-		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
-		//create the session object
-		let session = URLSession.shared
-		var request = URLRequest(url: url as URL)
-		request.httpMethod = "POST" //set http method as POST
-		do {
-			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-		} catch let error {
-			print(error.localizedDescription)
-		}
-		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-		request.addValue("application/json", forHTTPHeaderField: "Accept")
-		let task = URLSession.shared.dataTask(with: request) { data, response, error in
-			guard let data = data, error == nil else {
-				print(error?.localizedDescription ?? "No data")
-				return
-			}
-			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-			
-			print("insertTrackFieldVisit---",responseJSON)
-			if let responseJSON = responseJSON as? [String: Any] {
-				DispatchQueue.main.async
-					{
-						
-						
-				}
-				
-				
-			}
-			
-			
-		}
-		task.resume()
-		
-	}
-		}
-		
-	}
-	}
+	
+	
 	
 	
 	//tableview Delegate methods
@@ -683,10 +595,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			Cantactsubview.isHidden = true
 			ClientView.backgroundColor = UIColor.white
 			ClientTxtfld.backgroundColor = UIColor.white
-//
-//
-
-
 			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: {
 				self.SelectPlaceViewconstriant?.constant = 45
 				self.view.layoutIfNeeded()
@@ -800,10 +708,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	}
 	@IBAction func FieldvisitOUT_Submitbtnclk(_ sender: Any) {
 		
-		
-		
 		FieldvisitFormsubmitAPI()
-		
 		self.FieldVisitInbtn.setTitleColor(.black, for: .normal)
 		self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
 		FieldVisitInbtn.isEnabled = true
@@ -813,9 +718,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
 		
 	}
-	
-	
-	
 	
 	@IBAction func OkBtnclk(_ sender: Any) {
 		FieldvisitBckview.isHidden = true
@@ -829,10 +731,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		RetrivedempId = defaults.integer(forKey: "empId")
-		
 		let latlanstr = latstr + ", " + longstr
-		
-		
 		
 		print("Update latlanstr",latlanstr)
 		print("empVisitId---",empVisitId)
@@ -858,14 +757,18 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			
 			print("update Response---",responseJSON)
 			if let responseJSON = responseJSON as? [String: Any] {
+				self.scheduledTimerWithTimeInterval()
 				
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
 					self.scheduledTimerWithTimeInterval()
 					DispatchQueue.main.async {
+						self.insertTrackFieldVisit_updateCounting()
+						
 						let statusDic = responseJSON["status"]! as! NSDictionary
 						let code = statusDic["code"] as! NSInteger
 						if(code == 200)
 						{
+							self.scheduledTimerWithTimeInterval()
 							self.mapView.addSubview(self.self.FieldVisitIn_PopupView)
 							self.FieldVisitIn_PopupView.isHidden = false
 						}
@@ -883,6 +786,104 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		}
 		task.resume()
 		
+		
+	}
+	
+	
+	func scheduledTimerWithTimeInterval(){
+		
+		timer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
+	}
+	////ksdsds
+	//Background calling API
+	@objc func insertTrackFieldVisit_updateCounting(){
+		
+		let previousLocationEncoded = UserDefaults.standard.object(forKey: "locationDatavalues") as? Data
+		let previousLocationDecoded = NSKeyedUnarchiver.unarchiveObject(with: previousLocationEncoded!) as! CLLocation
+		print("sddsfsfsfs",previousLocationDecoded)
+		
+		if let loadedData = UserDefaults.standard.data(forKey: "locationDatavalues")
+		{
+			if let loadedLocation = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? CLLocation {
+				print("First Location Lat",loadedLocation.coordinate.latitude)
+				print("First Location long",loadedLocation.coordinate.longitude)
+				locationManager.requestWhenInUseAuthorization()
+				
+			
+		let FirstLacoationLat1 = (loadedLocation.coordinate.latitude)
+		let FirstLacoationLng1 = (loadedLocation.coordinate.longitude)
+					//"outFromLatLong": "15.225391290164756, 78.31401312731046",
+				var currentLoc: CLLocation!
+				if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+				CLLocationManager.authorizationStatus() == .authorizedAlways) {
+					currentLoc = self.locationManager.location
+				   print("SecondLocation",currentLoc.coordinate.latitude)
+				   print("SecondLocation",currentLoc.coordinate.longitude)
+					let SecondLocationLat2 = (currentLoc.coordinate.latitude)
+					let SecondLocationLng2 = (currentLoc.coordinate.longitude)
+					var DestinationLocation = CLLocation(latitude: SecondLocationLat2, longitude: SecondLocationLng2)
+					print("Destination Latlong values",DestinationLocation)
+
+
+		let currentLocation = CLLocation(latitude: FirstLacoationLat1, longitude: FirstLacoationLng1)
+		var distance = currentLocation.distance(from: DestinationLocation) / 1000
+			//var distance = previousLocationDecoded.distance(from: DestinationLocation) * 0.000621371
+		//print(String(format: "The distance to my buddy is %.01fkm", distance))
+		let defaults = UserDefaults.standard
+		RetrivedcustId = defaults.integer(forKey: "custId")
+		RetrivedempId = defaults.integer(forKey: "empId")
+		let latlanstr = latstr + ", " + longstr
+		
+		
+		print("Background latlanstr...",latlanstr)
+		let formatter = DateFormatter()
+		//2016-12-08 03:37:22 +0000
+		//formatter.dateFormat = "yyyy-MM-dd"
+		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+		let now = Date()
+		let CurrentdateString = formatter.string(from:now)
+		print("CurrentdateString",CurrentdateString)
+		
+		let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+		
+		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
+		//create the session object
+		let session = URLSession.shared
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST" //set http method as POST
+		do {
+			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+		} catch let error {
+			print(error.localizedDescription)
+		}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			guard let data = data, error == nil else {
+				print(error?.localizedDescription ?? "No data")
+				return
+			}
+			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+			
+			print("insertTrackFieldVisit---",responseJSON)
+			if let responseJSON = responseJSON as? [String: Any] {
+				DispatchQueue.main.async
+					{
+						
+						
+
+				}
+				}
+				
+			
+			
+			
+		}
+		task.resume()
+		
+	}
+		}
+		}
 		
 	}
 	
@@ -968,9 +969,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 									let newPosition = CLLocationCoordinate2D(latitude: lat, longitude: long)
 									marker.position = newPosition
 									marker.title = DestinationAddress
-									
-									
-									
 									
 									marker.map = self.mapView
 									print("Latlongs...",coord)
@@ -1060,15 +1058,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 							let Indexstrnumbers = String(index)
 							print("Indexstrnumbers",Indexstrnumbers)
 
-							
-//						let label = UILabel()
-//						//label.text = Indexstrnumbers
-//						label.text = Indexstrnumbers
-//						label.backgroundColor = UIColor.blue
-//						label.sizeToFit()
-//						labelMarker.iconView = label
-//						labelMarker.map = self.mapView
-							
 						
 						marker.map = self.mapView
 					}
