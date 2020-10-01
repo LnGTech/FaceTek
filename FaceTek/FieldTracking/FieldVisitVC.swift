@@ -47,6 +47,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	@IBOutlet weak var Submitbrn: UIButton!
 	@IBOutlet weak var Selectplacelbl: UILabel!
 	
+	@IBOutlet weak var SelectPlacetxtfld: UITextField!
+
 	
 	@IBOutlet weak var ClientView: UIView!
 	@IBOutlet weak var Contactsubview: UIView!
@@ -155,8 +157,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
 		//select place lable guesture
 		let tap = UITapGestureRecognizer(target: self, action: #selector(FieldVisitVC.tapFunction))
-		Selectplacelbl.isUserInteractionEnabled = true
-		Selectplacelbl.addGestureRecognizer(tap)
+		SelectPlacetxtfld.isUserInteractionEnabled = true
+		SelectPlacetxtfld.addGestureRecognizer(tap)
 		
 		//visit Purpose textfield validation
 		VisitPuposetxtfld.addTarget(self, action: #selector(actionTextFieldIsEditingChanged), for: UIControl.Event.editingChanged)
@@ -252,13 +254,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		longstr = String(long)
 		let geoCoder = CLGeocoder()
 		let location = CLLocation(latitude: lat, longitude: long)
-        var distance = location.distance(from: location) / 1000
 
 		
-		let locationData = NSKeyedArchiver.archivedData(withRootObject: location)
-		UserDefaults.standard.set(locationData, forKey: "locationData")
-
-		// loading it
+		
 		
 		self.locationManager.stopUpdatingLocation()
 
@@ -417,6 +415,22 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	//Field visit - OUT form submit
 	func FieldvisitFormsubmitAPI()
 	{
+		
+		locationManager.requestWhenInUseAuthorization()
+		var currentLoc: CLLocation!
+		if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+		CLLocationManager.authorizationStatus() == .authorizedAlways) {
+		   currentLoc = locationManager.location
+		   print("Outlatlong values",currentLoc.coordinate.latitude)
+		   print("Outlatlong values",currentLoc.coordinate.longitude)
+			let OutLatLnglocation = CLLocation(latitude: currentLoc.coordinate.latitude, longitude: currentLoc.coordinate.longitude)
+
+			let locationData = NSKeyedArchiver.archivedData(withRootObject: OutLatLnglocation)
+			UserDefaults.standard.set(locationData, forKey: "locationData")
+
+		
+		
+		
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		RetrivedempId = defaults.integer(forKey: "empId")
@@ -478,6 +492,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		}
 		task.resume()
 		
+	}
 	}
 	
 	func FieldvisitOUT_PopUp()
@@ -544,14 +559,12 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	@objc func insertTrackFieldVisit_updateCounting(){
 		
 		
+		
 		if let loadedData = UserDefaults.standard.data(forKey: "locationData")
 		{
 			if let loadedLocation = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? CLLocation {
 				print("First Location Lat",loadedLocation.coordinate.latitude)
 				print("First Location long",loadedLocation.coordinate.longitude)
-				
-				
-				
 				locationManager.requestWhenInUseAuthorization()
 				var currentLoc: CLLocation!
 				if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
@@ -569,18 +582,13 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let SecondLocationLng2 = (currentLoc.coordinate.longitude)
 
 		let currentLocation = CLLocation(latitude: FirstLacoationLat1, longitude: FirstLacoationLng1)
-		var DestinationLocation = CLLocation(latitude: 15.225391290164756, longitude: 78.31401312731046)
+		var DestinationLocation = CLLocation(latitude: SecondLocationLat2, longitude: SecondLocationLng2)
 		//var distance = currentLocation.distance(from: DestinationLocation) / 1000
 			var distance = currentLocation.distance(from: DestinationLocation) * 0.000621371
-
-					
 		print(String(format: "The distance to my buddy is %.01fkm", distance))
-
-		
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		RetrivedempId = defaults.integer(forKey: "empId")
-		
 		let latlanstr = latstr + ", " + longstr
 		
 		
@@ -663,7 +671,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		var Selectplacestr : String?
 		Selectplacestr = responseDict["visitClientPlace"] as? String
 		drpcell.selectPlacedrpLbl!.text = Selectplacestr
-		Selectplacelbl.text = Selectplacestr
+		SelectPlacetxtfld.text = Selectplacestr
 		DrpDownview.isHidden = true
 		
 		if (drpcell.selectPlacedrpLbl.text == "Others")
@@ -758,7 +766,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	}
 	@objc func pressButton(button: UIButton) {
 		NSLog("pressed!")
-		//Selectplacelbl.text?.removeAll()
+		//SelectPlacetxtfld.text?.removeAll()
 		ClientTxtfld.text?.removeAll()
 		VisitPuposetxtfld.text?.removeAll()
 		PreviousTxt.text?.removeAll()
@@ -768,7 +776,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	@IBAction func Cancelbtnclk(_ sender: Any) {
 		
 		
-		Selectplacelbl.text?.removeAll()
+		SelectPlacetxtfld.text?.removeAll()
 		ClientTxtfld.text?.removeAll()
 		VisitPuposetxtfld.text?.removeAll()
 		PreviousTxt.text?.removeAll()
@@ -1061,26 +1069,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 //						labelMarker.iconView = label
 //						labelMarker.map = self.mapView
 							
-							
-						
-						
-//
-//						let lbl = UILabel()
-//						lbl.text = "ABC 123"
-//						lbl.textColor = UIColor.black
-//						lbl.backgroundColor = UIColor.cyan
-//						// add label to viewAn
-//						//lbl.frame = viewAn.bounds
-//						self.mapView.addSubview(lbl)
 						
 						marker.map = self.mapView
 					}
-					
-//					path.add(CLLocationCoordinate2D(latitude: 37.36, longitude: -122.0))
-//					path.add(CLLocationCoordinate2D(latitude: 37.45, longitude: -122.0))
-//					path.add(CLLocationCoordinate2D(latitude: 37.45, longitude: -122.2))
-//					path.add(CLLocationCoordinate2D(latitude: 37.36, longitude: -122.2))
-//					path.add(CLLocationCoordinate2D(latitude: 37.36, longitude: -122.0))
 					
 					let polyline = GMSPolyline(path: path)
 					polyline.strokeColor = .blue
@@ -1094,28 +1085,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		task.resume()
 	}
 	
-//	func textViewDidBeginEditing(_ textView: UITextView) {
-//        if Adresstxtview.text == "Reason" {
-//            Adresstxtview.text = ""
-//            Adresstxtview.textColor = UIColor.black
-//            Adresstxtview.font = UIFont(name: "verdana", size: 16.0)
-//        }
-//    }
-//
-//    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-//        if text == "\n" {
-//            Adresstxtview.resignFirstResponder()
-//        }
-//        return true
-//    }
-//
-//    func textViewDidEndEditing(_ textView: UITextView) {
-//        if Adresstxtview.text == "" {
-//            Adresstxtview.text = "Reason"
-//            Adresstxtview.textColor = UIColor.black
-//            Adresstxtview.font = UIFont(name: "verdana", size: 16.0)
-//        }
-//    }
 	
 	
 	@objc func keyboardWillShow(sender: NSNotification) {
