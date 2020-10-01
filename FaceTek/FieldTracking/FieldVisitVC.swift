@@ -76,6 +76,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	var DestinationAddress : String = ""
     var RetrivedMobileNumber = String()
     var Employeenamestr = String()
+    var FirstLocation = String()
+
 
 	var OriginLatLong : String = ""
 	var latstr : String = ""
@@ -245,10 +247,23 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		mapView.settings.myLocationButton = true // show current location button
 		let lat = (newLocation?.coordinate.latitude)! // get current location latitude
 		let long = (newLocation?.coordinate.longitude)!
+		
 		latstr = String(lat)
 		longstr = String(long)
 		let geoCoder = CLGeocoder()
 		let location = CLLocation(latitude: lat, longitude: long)
+        var distance = location.distance(from: location) / 1000
+
+		
+		let locationData = NSKeyedArchiver.archivedData(withRootObject: location)
+		UserDefaults.standard.set(locationData, forKey: "locationData")
+
+		// loading it
+		
+		self.locationManager.stopUpdatingLocation()
+
+		
+		
 		geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
 			let pm = placemarks! as [CLPlacemark]
 			
@@ -527,11 +542,47 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	////ksdsds
 	//Background calling API
 	@objc func insertTrackFieldVisit_updateCounting(){
+		
+		
+		if let loadedData = UserDefaults.standard.data(forKey: "locationData")
+		{
+			if let loadedLocation = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? CLLocation {
+				print("First Location Lat",loadedLocation.coordinate.latitude)
+				print("First Location long",loadedLocation.coordinate.longitude)
+				
+				
+				
+				locationManager.requestWhenInUseAuthorization()
+				var currentLoc: CLLocation!
+				if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+				CLLocationManager.authorizationStatus() == .authorizedAlways) {
+				   currentLoc = locationManager.location
+				   print("SecondLocation",currentLoc.coordinate.latitude)
+				   print("SecondLocation",currentLoc.coordinate.longitude)
+				
+			
+		let FirstLacoationLat1 = (loadedLocation.coordinate.latitude)
+		let FirstLacoationLng1 = (loadedLocation.coordinate.longitude)
+					//"outFromLatLong": "15.225391290164756, 78.31401312731046",
+
+		let SecondLocationLat2 = (currentLoc.coordinate.latitude)
+		let SecondLocationLng2 = (currentLoc.coordinate.longitude)
+
+		let currentLocation = CLLocation(latitude: FirstLacoationLat1, longitude: FirstLacoationLng1)
+		var DestinationLocation = CLLocation(latitude: 15.225391290164756, longitude: 78.31401312731046)
+		//var distance = currentLocation.distance(from: DestinationLocation) / 1000
+			var distance = currentLocation.distance(from: DestinationLocation) * 0.000621371
+
+					
+		print(String(format: "The distance to my buddy is %.01fkm", distance))
+
+		
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		RetrivedempId = defaults.integer(forKey: "empId")
 		
 		let latlanstr = latstr + ", " + longstr
+		
 		
 		print("Background latlanstr...",latlanstr)
 		let formatter = DateFormatter()
@@ -542,7 +593,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let CurrentdateString = formatter.string(from:now)
 		print("CurrentdateString",CurrentdateString)
 		
-		let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":"0.5","trackBattery":"99"] as [String : Any]]
+		let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
 		
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
 		//create the session object
@@ -568,6 +619,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 				DispatchQueue.main.async
 					{
 						
+						
 				}
 				
 				
@@ -578,8 +630,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		task.resume()
 		
 	}
-	
-	
+		}
+		
+	}
+	}
 	
 	
 	//tableview Delegate methods
@@ -1047,14 +1101,14 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 //            Adresstxtview.font = UIFont(name: "verdana", size: 16.0)
 //        }
 //    }
-//    
+//
 //    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
 //        if text == "\n" {
 //            Adresstxtview.resignFirstResponder()
 //        }
 //        return true
 //    }
-//    
+//
 //    func textViewDidEndEditing(_ textView: UITextView) {
 //        if Adresstxtview.text == "" {
 //            Adresstxtview.text = "Reason"
@@ -1072,7 +1126,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		 self.view.frame.origin.y = 0 // Move view to original position
 	}
 //	@objc func keyboardWillShow(notification: Notification) {
-//        
+//
 //        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
 //            print("notification: Keyboard will show")
 //            if self.view.frame.origin.y == 0{
@@ -1080,7 +1134,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 //            }
 //        }
 //    }
-//    
+//
 //    @objc func keyboardWillHide(notification: Notification) {
 //        if let keyboardSize = (notification.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue {
 //            if self.view.frame.origin.y != 0 {

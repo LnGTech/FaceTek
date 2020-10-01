@@ -3899,7 +3899,15 @@
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hw9-4Q-oum">
                                                 <rect key="frame" x="14" y="67" width="324" height="50"/>
                                                 <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Select Place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoD-2f-GUq">
+                                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Select Place" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IoD-aF-xmk">
+                                                        <rect key="frame" x="6" y="8" width="318" height="40"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="height" constant="40" id="8j4-b2-xzZ"/>
+                                                        </constraints>
+                                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                        <textInputTraits key="textInputTraits"/>
+                                                    </textField>
+                                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" Select Place" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NoD-2f-GUq">
                                                         <rect key="frame" x="6" y="8" width="318" height="40"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -3915,6 +3923,8 @@
                                                 </subviews>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <constraints>
+                                                    <constraint firstAttribute="trailing" secondItem="IoD-aF-xmk" secondAttribute="trailing" id="Crn-lf-PRv"/>
+                                                    <constraint firstItem="IoD-aF-xmk" firstAttribute="top" secondItem="hw9-4Q-oum" secondAttribute="top" constant="8" id="Gwy-FU-PID"/>
                                                     <constraint firstAttribute="trailing" secondItem="vhb-UV-loJ" secondAttribute="trailing" constant="13" id="NEs-kX-Lcq"/>
                                                     <constraint firstItem="NoD-2f-GUq" firstAttribute="leading" secondItem="hw9-4Q-oum" secondAttribute="leading" constant="6" id="P1r-dY-rA2"/>
                                                     <constraint firstAttribute="bottom" secondItem="vhb-UV-loJ" secondAttribute="bottom" constant="17" id="TaP-vK-U4B"/>
@@ -3923,6 +3933,7 @@
                                                     <constraint firstItem="vhb-UV-loJ" firstAttribute="top" secondItem="hw9-4Q-oum" secondAttribute="top" constant="13" id="cCm-3i-nCZ"/>
                                                     <constraint firstAttribute="height" constant="50" id="cDE-BV-jZR"/>
                                                     <constraint firstAttribute="bottom" secondItem="NoD-2f-GUq" secondAttribute="bottom" constant="2" id="hru-Od-RZV"/>
+                                                    <constraint firstItem="IoD-aF-xmk" firstAttribute="leading" secondItem="hw9-4Q-oum" secondAttribute="leading" constant="6" id="jRp-bh-6hr"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EJB-Tu-smO">
@@ -4259,6 +4270,7 @@
                         <outlet property="PreviousTxt" destination="paP-fN-Ms7" id="MRn-vb-9pg"/>
                         <outlet property="SelectPlaceDrptble" destination="cjw-ab-2gF" id="3hl-Rr-qZg"/>
                         <outlet property="SelectPlaceViewconstriant" destination="yZE-s8-4NP" id="FPf-bY-87T"/>
+                        <outlet property="SelectPlacetxtfld" destination="IoD-aF-xmk" id="RCT-TP-3dk"/>
                         <outlet property="Selectplacelbl" destination="NoD-2f-GUq" id="SFG-Yy-d0D"/>
                         <outlet property="Submitbrn" destination="GY1-1e-Xnx" id="3az-vp-YNR"/>
                         <outlet property="VisitPuposetxtfld" destination="Yig-CM-KpB" id="l9f-z8-Hci"/>
