@@ -25,7 +25,7 @@ dismisstap.cancelsTouchesInView = false
 view.endEditing(true)
 }
 }
-
+//suresh
 
 
 class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate {
