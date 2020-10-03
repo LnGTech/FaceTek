@@ -181,7 +181,13 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		// Creates the bottom border
 		let borderBottom = CALayer()
 		let borderWidth = CGFloat(2.0)
-		borderBottom.borderColor = UIColor.green.cgColor
+//		borderBottom.borderColor = (UIColor(red: 204/255.0, green: 255/255.0, blue: 204/255.0, alpha: 1.0) as! UIColor) as! CGColor
+//
+//
+		
+		borderBottom.borderColor = #colorLiteral(red: 0.8325170875, green: 0.9924197793, blue: 0.8371630907, alpha: 1)
+
+		
 		borderBottom.frame = CGRect(x: 0, y: FldvisitFormView.frame.height - 1.0, width: FldvisitFormView.frame.width , height: FldvisitFormView.frame.height - 1.0)
 		borderBottom.borderWidth = borderWidth
 		FldvisitFormView.layer.addSublayer(borderBottom)
@@ -189,7 +195,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 
 		// Creates the Top border
 		let borderTop = CALayer()
-		borderTop.borderColor = UIColor.green.cgColor
+		borderTop.borderColor = #colorLiteral(red: 0.8325170875, green: 0.9924197793, blue: 0.8371630907, alpha: 1)
+
+
+		
 		borderTop.frame = CGRect(x: 0, y: 0, width: FldvisitFormView.frame.width, height: 1)
 		borderTop.borderWidth = borderWidth
 		FldvisitFormView.layer.addSublayer(borderTop)
@@ -438,7 +447,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		RetrivedempId = defaults.integer(forKey: "empId")
 		let latlanstr = latstr + ", " + longstr
 		print("latlanstr..",latlanstr)
-		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":Adresstxtview.text,"toClientNamePlace":ClientTxtfld.text,"visitPurpose":VisitPuposetxtfld.text,"prevVisitId":"2","meetingOutcome":PreviousTxt.text,"empVisitScheduleId":"2"] as [String : Any]
+			let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":Adresstxtview.text,"toClientNamePlace":ClientTxtfld.text,"visitPurpose":VisitPuposetxtfld.text,"prevVisitId":"2","meetingOutcome":PreviousTxt.text,"empVisitScheduleId":"2"] as [String : Any]
 		
 		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
 		let session = URLSession.shared
