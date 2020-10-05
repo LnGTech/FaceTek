@@ -71,6 +71,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     var FirstLocation = String()
 	var DestinationLocation = String()
 	var meetingOutcome = String()
+	var Inaddress = String()
+
+	
+	
 
 	
 
@@ -202,14 +206,29 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		borderTop.borderWidth = borderWidth
 		FldvisitFormView.layer.addSublayer(borderTop)
 		FldvisitFormView.layer.masksToBounds = true
+		
+		print("in address values",Inaddress)
+
+		if (Inaddress == "NA")
+		{
+			GoogleMapPolyline()
+
+		}
+		else
+		{
+			FieldVisitInbtn.isEnabled = true
+			Fieldvisitoutbtn.isEnabled = false
+
+
+			self.FieldVisitInbtn.setTitleColor(.red, for: .normal)
+			self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
+
+			
+		}
+		
+
 
 		
-		
-		PrevioumeetingValidationMethod()
-
-
-		
-		GoogleMapPolyline()
 		
 		
 		
@@ -338,7 +357,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 					{
 						self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
 						self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
-						if (self.empAttndInDateTime == "NA") {
+						if (self.empAttndInDateTime == "NA" ) {
 							//            self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
 							//            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 							
@@ -417,21 +436,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		}
 		task.resume()
 	}
-	//Field visit - OUT form submit
-	func PrevioumeetingValidationMethod()
-	{
 	
-	if (meetingOutcome == "NA")
-	{
-		PreviousMeetingView.isHidden = true
-
-	}
-	else
-	{
-		PreviousMeetingView.isHidden = false
-
-	}
-	}
 	
 	
 	
@@ -757,7 +762,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
 		print("Update latlanstr",latlanstr)
 		print("empVisitId---",empVisitId)
-		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": empVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
+		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": 1119 as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
 		
 		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
 		let session = URLSession.shared
@@ -796,10 +801,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						}
 						else
 						{
-							let message = responseJSON["message"]! as! NSString
-							let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
-							alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-							self.present(alert, animated: true, completion: nil)
+//							let message = responseJSON["message"]! as! NSString
+//							let alert = UIAlertController(title: "Alert", message: message as String, preferredStyle: UIAlertController.Style.alert)
+//							alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+//							self.present(alert, animated: true, completion: nil)
 						}
 					}
 				}
@@ -866,7 +871,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let CurrentdateString = formatter.string(from:now)
 		print("CurrentdateString",CurrentdateString)
 		
-		let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+		let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": 1119,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
 		
 		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
 		//create the session object
@@ -1061,7 +1066,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		print("CurrentdateStringsecond",CurrentdateString)
 		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
-		let session = URLSession.shared
+		_ = URLSession.shared
 		var request = URLRequest(url: url as URL)
 		request.httpMethod = "POST" //set http method as POST
 		do {
@@ -1085,8 +1090,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 					for visit in fieldTrackArray! {
 						let fieldVisit = visit as? [String:Any]
 						let latLongString = fieldVisit!["inLatLong"] as? String
-						let Inaddress = fieldVisit!["inAddress"] as? String
-						print("In address values...",Inaddress as Any)
+						self.Inaddress = (fieldVisit!["inAddress"] as? String)!
+						print("In address values...",self.Inaddress as Any)
 						
 						for (index, name) in fieldTrackArray!
 							.enumerated()
@@ -1103,7 +1108,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						
 						let marker = GMSMarker()
 						marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-						marker.title = Inaddress
+							marker.title = self.Inaddress
 						
 						print("addressString....",self.addressString)
 						//marker.snippet = "India"
