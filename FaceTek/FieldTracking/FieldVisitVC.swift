@@ -452,7 +452,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 			UserDefaults.standard.set(locationData, forKey: "locationDatavalues")
 			print("Outlatlangvalues",locationData)
 
-		
+		print("previous id value ",PreviousempVisitId)
 		
 		
 		let defaults = UserDefaults.standard
@@ -460,7 +460,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		RetrivedempId = defaults.integer(forKey: "empId")
 		let latlanstr = latstr + ", " + longstr
 		print("latlanstr..",latlanstr)
-			let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":Adresstxtview.text,"toClientNamePlace":ClientTxtfld.text,"visitPurpose":VisitPuposetxtfld.text,"prevVisitId":PreviousempVisitId,"meetingOutcome":PreviousTxt.text,"empVisitScheduleId":"2"] as [String : Any]
+			let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":Adresstxtview.text,"toClientNamePlace":ClientTxtfld.text,"visitPurpose":VisitPuposetxtfld.text,"prevVisitId":PreviousempVisitId,"meetingOutcome":PreviousTxt.text,"empVisitScheduleId":RetrivedempVisitId] as [String : Any]
 		
 		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
 		let session = URLSession.shared
@@ -861,7 +861,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let formatter = DateFormatter()
 		//2016-12-08 03:37:22 +0000
 		//formatter.dateFormat = "yyyy-MM-dd"
-		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
 		let now = Date()
 		let CurrentdateString = formatter.string(from:now)
 		print("CurrentdateString",CurrentdateString)
@@ -998,13 +998,13 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 								
 								print("RetrivedempVisitId----",self.RetrivedempVisitId)
 								
-								var a = 1
-								a = self.RetrivedempVisitId-a
-								print("Decrement value",a)
+								//var a = 1
+									self.PreviousempVisitId = 1
+									self.PreviousempVisitId = self.RetrivedempVisitId-self.PreviousempVisitId
+									print("Decrement value",self.PreviousempVisitId)
 
 
-								self.PreviousempVisitId = self.PreviousempVisitId - 1
-								print("PreviousempVisitId---",self.PreviousempVisitId)
+								
 								
 								let clean = self.DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
 								let values = clean.components(separatedBy: ",")
@@ -1030,7 +1030,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 								print("TrackempVisitId----",self.TrackempVisitId)
 								let fieldVisitTrackDetailsArray = Field_trackDic["fieldVisitTrackDetails"] as! NSArray
 								print("fieldVisitTrackDetails--",fieldVisitTrackDetailsArray)
-								
 							}
 								
 						}
@@ -1059,7 +1058,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 		let now = Date()
 		let CurrentdateString = formatter.string(from:now)
-		print("CurrentdateString",CurrentdateString)
+		print("CurrentdateStringsecond",CurrentdateString)
 		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 		let session = URLSession.shared
