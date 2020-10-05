@@ -46,29 +46,19 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	@IBOutlet weak var Cancelbtn: UIButton!
 	@IBOutlet weak var Submitbrn: UIButton!
 	@IBOutlet weak var Selectplacelbl: UILabel!
-	
 	@IBOutlet weak var SelectPlacetxtfld: UITextField!
 
 	
 	@IBOutlet weak var ClientView: UIView!
 	@IBOutlet weak var Contactsubview: UIView!
-
 	@IBOutlet weak var ClientTxtfld: UITextField!
-	
 	@IBOutlet weak var VisitPuposetxtfld: UITextField!
 	@IBOutlet weak var Adresstxtview: UITextView!
-	
 	@IBOutlet weak var PreviousTxt: UITextField!
-	
-	
 	@IBOutlet weak var PreviousMeetingView: UIView!
 	@IBOutlet weak var DrpDownview: UIView!
-	
 	@IBOutlet weak var FieldVisit_Popupview: UIView!
-	
 	@IBOutlet weak var FieldVisitIn_PopupView: UIView!
-	
-	
 	@IBOutlet weak var SelectPlaceViewconstriant: NSLayoutConstraint!
 	@IBOutlet weak var SelectPlaceDrptble: UITableView!
 	var addressString : String = ""
@@ -80,12 +70,19 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
     var Employeenamestr = String()
     var FirstLocation = String()
 	var DestinationLocation = String()
+	var meetingOutcome = String()
+
+	
 
 
 	var OriginLatLong : String = ""
 	var latstr : String = ""
 	var longstr : String = ""
 	var empVisitId = Int()
+	var RetrivedempVisitId = Int()
+	var PreviousempVisitId = Int()
+
+
 	var TrackempVisitId = Int()
 	var timer = Timer()
 	var RetrivedcustId = Int()
@@ -108,6 +105,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 	var locationManager = CLLocationManager()
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		Trackedetails()
+		//self.PreviousMeetingView.isHidden = true
 		ClientTxtfld.delegate = self
 		VisitPuposetxtfld.delegate = self
 		//Touch anywhere key board hide method
@@ -206,17 +205,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 
 		
 		
+		PrevioumeetingValidationMethod()
 
-//Previous meeting Validations
-		if (Adresstxtview.text == addressString)
-		{
-			PreviousMeetingView.isHidden = false
-		}
-		else{
-			PreviousMeetingView.isHidden = true
-			
-		}
-		
+
 		
 		GoogleMapPolyline()
 		
@@ -230,6 +221,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 //
 //		view.endEditing(true)
 //	}
+	
+	
+	//Previous meeting Validations
+	
 	
 	
 	@objc func actionTextFieldIsEditingChanged(sender: UITextField) {
@@ -316,7 +311,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		RetrivedempId = defaults.integer(forKey: "empId")
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
 		//create the session object
 		let session = URLSession.shared
 		//now create the URLRequest object using the url object
@@ -385,7 +380,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		RetrivedempId = defaults.integer(forKey: "empId")
 		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getVisitClientPlaceDDList")!
+		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getVisitClientPlaceDDList")!
 		let session = URLSession.shared
 		var request = URLRequest(url: url as URL)
 		request.httpMethod = "POST" //set http method as POST
@@ -423,6 +418,24 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		task.resume()
 	}
 	//Field visit - OUT form submit
+	func PrevioumeetingValidationMethod()
+	{
+	
+	if (meetingOutcome == "NA")
+	{
+		PreviousMeetingView.isHidden = true
+
+	}
+	else
+	{
+		PreviousMeetingView.isHidden = false
+
+	}
+	}
+	
+	
+	
+	
 	func FieldvisitFormsubmitAPI()
 	{
 		
@@ -447,9 +460,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		RetrivedempId = defaults.integer(forKey: "empId")
 		let latlanstr = latstr + ", " + longstr
 		print("latlanstr..",latlanstr)
-			let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":Adresstxtview.text,"toClientNamePlace":ClientTxtfld.text,"visitPurpose":VisitPuposetxtfld.text,"prevVisitId":"2","meetingOutcome":PreviousTxt.text,"empVisitScheduleId":"2"] as [String : Any]
+			let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":Adresstxtview.text,"toClientNamePlace":ClientTxtfld.text,"visitPurpose":VisitPuposetxtfld.text,"prevVisitId":PreviousempVisitId,"meetingOutcome":PreviousTxt.text,"empVisitScheduleId":"2"] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
+		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
 		let session = URLSession.shared
 		var request = URLRequest(url: url as URL)
 		request.httpMethod = "POST" //set http method as POST
@@ -746,7 +759,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		print("empVisitId---",empVisitId)
 		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": empVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
+		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
 		let session = URLSession.shared
 		var request = URLRequest(url: url as URL)
 		request.httpMethod = "POST" //set http method as POST
@@ -855,7 +868,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
 		let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
 		
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
+		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
 		//create the session object
 		let session = URLSession.shared
 		var request = URLRequest(url: url as URL)
@@ -924,7 +937,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		print("Datestr",Datestr)
 		
 		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": Datestr as Any] as [String : Any]
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 		//create the session object
 		let session = URLSession.shared
 		//now create the URLRequest object using the url object
@@ -948,50 +961,84 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 				print("fieldTrackDic responseJSON",responseJSON)
 				DispatchQueue.main.async
 					{
-						let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
-						for Field_trackDic in fieldTrackArray as! [[String:Any]]
-						{
-							var MainDict:NSMutableDictionary = NSMutableDictionary()
-							var Field_trackstr = ""
-							Field_trackstr = (Field_trackDic["toClientNamePlace"] as? String)!
-							
-							var OriginAddress = ""
-							OriginAddress = (Field_trackDic["outFromAddress"] as? String)!
-							let LanlongArray:NSMutableArray = NSMutableArray()
-							var DestinationAddress = ""
-							DestinationAddress = (Field_trackDic["inAddress"] as? String)!
-							print(" DestinationAddress.....",DestinationAddress)
-							self.self.DestinationInLatlong = (Field_trackDic["inLatLong"] as? String)!
-							MainDict.setObject(self.DestinationInLatlong, forKey: "inLatLong" as NSCopying)
-							print("DestinationInLatlong.....",self.DestinationInLatlong)
-							LanlongArray.add(MainDict)
-							print("LanlongArray----",LanlongArray)
-							let clean = self.DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
-							let values = clean.components(separatedBy: ",")
-							var coords = [CLLocation]()
-							for i in stride(from: 0, to: values.count, by: 2) {
-								if let lat = Double(values[i]),
-									let long = Double(values[i+1]) {
-									let coord = CLLocation(latitude: lat, longitude: long)
-									coords.append(coord)
-									let marker = GMSMarker()
-									let newPosition = CLLocationCoordinate2D(latitude: lat, longitude: long)
-									marker.position = newPosition
-									marker.title = DestinationAddress
-									
-									marker.map = self.mapView
-									print("Latlongs...",coord)
-									print("Latlong...",coords.append(coord))
+						
+						let statusDic = responseJSON["status"]! as! NSDictionary
+						print("statusDic---",statusDic)
+						let code = statusDic["code"] as? NSInteger
+						print("code-----",code as Any)
+						
+						if (code == 200)
+						
+							{
+								self.PreviousMeetingView.isHidden = false
+
+								
+								let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
+								for Field_trackDic in fieldTrackArray as! [[String:Any]]
+								{
+								var MainDict:NSMutableDictionary = NSMutableDictionary()
+								var Field_trackstr = ""
+								Field_trackstr = (Field_trackDic["toClientNamePlace"] as? String)!
+								
+								var OriginAddress = ""
+								OriginAddress = (Field_trackDic["outFromAddress"] as? String)!
+								let LanlongArray:NSMutableArray = NSMutableArray()
+								var DestinationAddress = ""
+								DestinationAddress = (Field_trackDic["inAddress"] as? String)!
+								print(" DestinationAddress.....",DestinationAddress)
+								self.self.DestinationInLatlong = (Field_trackDic["inLatLong"] as? String)!
+								MainDict.setObject(self.DestinationInLatlong, forKey: "inLatLong" as NSCopying)
+								print("DestinationInLatlong.....",self.DestinationInLatlong)
+								LanlongArray.add(MainDict)
+								print("LanlongArray----",LanlongArray)
+								self.meetingOutcome = (Field_trackDic["meetingOutcome"] as? String)!
+								print("meetingOutcome...",self.meetingOutcome)
+								self.RetrivedempVisitId = (Field_trackDic["empVisitId"] as? NSInteger)!
+								
+								
+								print("RetrivedempVisitId----",self.RetrivedempVisitId)
+								
+								var a = 1
+								a = self.RetrivedempVisitId-a
+								print("Decrement value",a)
+
+
+								self.PreviousempVisitId = self.PreviousempVisitId - 1
+								print("PreviousempVisitId---",self.PreviousempVisitId)
+								
+								let clean = self.DestinationInLatlong.replacingOccurrences(of: "[\\[\\] ]", with: "", options: .regularExpression, range: nil)
+								let values = clean.components(separatedBy: ",")
+								var coords = [CLLocation]()
+								for i in stride(from: 0, to: values.count, by: 2) {
+									if let lat = Double(values[i]),
+										let long = Double(values[i+1]) {
+										let coord = CLLocation(latitude: lat, longitude: long)
+										coords.append(coord)
+										let marker = GMSMarker()
+										let newPosition = CLLocationCoordinate2D(latitude: lat, longitude: long)
+										marker.position = newPosition
+										marker.title = DestinationAddress
+										
+										marker.map = self.mapView
+										print("Latlongs...",coord)
+										print("Latlong...",coords.append(coord))
+									}
 								}
+								
+								
+								self.TrackempVisitId = (Field_trackDic["empVisitId"] as? NSInteger)!
+								print("TrackempVisitId----",self.TrackempVisitId)
+								let fieldVisitTrackDetailsArray = Field_trackDic["fieldVisitTrackDetails"] as! NSArray
+								print("fieldVisitTrackDetails--",fieldVisitTrackDetailsArray)
+								
 							}
-							
-							
-							self.TrackempVisitId = (Field_trackDic["empVisitId"] as? NSInteger)!
-							print("TrackempVisitId----",self.TrackempVisitId)
-							let fieldVisitTrackDetailsArray = Field_trackDic["fieldVisitTrackDetails"] as! NSArray
-							print("fieldVisitTrackDetails--",fieldVisitTrackDetailsArray)
-							
+								
 						}
+						else
+						{
+							self.PreviousMeetingView.isHidden = true
+						}
+						
 				}
 			}
 		}
@@ -1014,7 +1061,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		let CurrentdateString = formatter.string(from:now)
 		print("CurrentdateString",CurrentdateString)
 		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
-		let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 		let session = URLSession.shared
 		var request = URLRequest(url: url as URL)
 		request.httpMethod = "POST" //set http method as POST
