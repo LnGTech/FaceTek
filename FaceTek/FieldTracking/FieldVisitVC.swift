@@ -250,6 +250,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						if (self.Inaddress == "NA")
 						{
 							self.FieldVisitInbtn.setTitleColor(.red, for: .normal)
+							self.Fieldvisitoutbtn.setTitleColor(.blue, for: .normal)
+
 							self.RetrivedempVisitId = (fieldVisit?["empVisitId"] as? NSInteger)!
 print("RetrivedempVisitId----",self.RetrivedempVisitId)
 							
@@ -257,20 +259,24 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 							print("calling first method")
 
 						}
-						else
-						{
-							self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-							self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-							//Fieldvisit-Enable-Disable method
-							self.Fieldvisit_OUT()
-							print("calling second method")
+						
+							else
+							{
+								self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), for: .normal)
+								self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+								//Fieldvisit-Enable-Disable method
+								self.Fieldvisit_OUT()
+								print("calling second method")
+
+								
+							}
 							
 						}
 						
 						
 					}
 			}}
-		}
+		
 		task.resume()
 
 
@@ -400,7 +406,7 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 						self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
 						self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
 						if (self.empAttndInDateTime == "NA" ) {
-							//            self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
+							            //self.Fieldvisitoutbtn.setTitleColor(.blue, for: .normal)
 							//            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 							
 						} else {
@@ -422,16 +428,38 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 							self.mapView.delegate = self
 						}
 						
-						if (self.empAttndOutDateTime == "NA") {
+						if (self.Inaddress == "NA")
+						{
+							if (self.empAttndOutDateTime == "NA") {
+								
+							} else {
+								self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+								self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+								self.Fieldvisitoutbtn.isEnabled = false
+							}
+
 							
-						} else {
-							self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-							self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-							self.Fieldvisitoutbtn.isEnabled = false
 						}
+						else
+						{
+							if (self.Inaddress == "NA")
+							{
+								if (self.empAttndOutDateTime == "NA") {
+									
+								} else {
+									self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), for: .normal)
+									self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+									self.Fieldvisitoutbtn.isEnabled = false
+								}
+							
+						}
+						
+						
 				}
 			}
 		}
+		}
+			
 		task.resume()
 	}
 	//Dropdown API for Field-Visit form
@@ -531,7 +559,6 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 				self.empVisitId = Int()
 				self.empVisitId = (responseJSON["empVisitId"] as? NSInteger)!
 				print("empVisitId...",self.empVisitId)
-				
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
 					//self.scheduledTimerWithTimeInterval()
 					DispatchQueue.main.async {
