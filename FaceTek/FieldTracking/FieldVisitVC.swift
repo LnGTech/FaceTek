@@ -134,7 +134,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		print("RetrivedcustId----",RetrivedcustId)
 		RetrivedempId = defaults.integer(forKey: "empId")
 		print("RetrivedempId----",RetrivedempId)
-		
+		//Fieldvisit-Enable-Disable method
+		//Fieldvisit_OUT()
 		//Select Dropdown method
 		selectPlaceDrpdown()
 		
@@ -205,81 +206,106 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		borderTop.borderWidth = borderWidth
 		FldvisitFormView.layer.addSublayer(borderTop)
 		FldvisitFormView.layer.masksToBounds = true
-		
-		print("in address values",Inaddress)
-		
-		
+
 		let formatter = DateFormatter()
-		formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-		let now = Date()
-		let CurrentdateString = formatter.string(from:now)
-		print("CurrentdateStringsecond",CurrentdateString)
-		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
-		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
-		_ = URLSession.shared
-		var request = URLRequest(url: url as URL)
-		request.httpMethod = "POST" //set http method as POST
-		do {
-			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-		} catch let error {
-			print(error.localizedDescription)
-		}
-		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-		request.addValue("application/json", forHTTPHeaderField: "Accept")
-		let task = URLSession.shared.dataTask(with: request) { data, response, error in
-			guard let data = data, error == nil else {
-				print(error?.localizedDescription ?? "No data")
-				return
-			}
-			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-			if let responseJSON = responseJSON as? [String: Any] {
-				print("fieldTrackDic responseJSON",responseJSON)
-				DispatchQueue.main.async {
-					let path = GMSMutablePath()
-					let fieldTrackArray = responseJSON["fieldTrack"] as? [Any]
-					for visit in fieldTrackArray! {
-						let fieldVisit = visit as? [String:Any]
-						let latLongString = fieldVisit!["inLatLong"] as? String
-						self.Inaddress = (fieldVisit!["inAddress"] as? String)!
-						print("In address values...",self.Inaddress as Any)
-						
-						
-						
-						
-						
-						if (self.Inaddress == "NA")
-						{
-							self.FieldVisitInbtn.setTitleColor(.red, for: .normal)
-							self.Fieldvisitoutbtn.setTitleColor(.blue, for: .normal)
-
-							self.RetrivedempVisitId = (fieldVisit?["empVisitId"] as? NSInteger)!
-print("RetrivedempVisitId----",self.RetrivedempVisitId)
+				formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+				let now = Date()
+				let CurrentdateString = formatter.string(from:now)
+				print("CurrentdateStringsecond",CurrentdateString)
+				let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
+				let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+				_ = URLSession.shared
+				var request = URLRequest(url: url as URL)
+				request.httpMethod = "POST" //set http method as POST
+				do {
+					request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+				} catch let error {
+					print(error.localizedDescription)
+				}
+				request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+				request.addValue("application/json", forHTTPHeaderField: "Accept")
+				let task = URLSession.shared.dataTask(with: request) { data, response, error in
+					guard let data = data, error == nil else {
+						print(error?.localizedDescription ?? "No data")
+						return
+					}
+					let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+					if let responseJSON = responseJSON as? [String: Any] {
+						print("fieldTrackDic responseJSON",responseJSON)
+						DispatchQueue.main.async {
 							
-							self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
-							print("calling first method")
+							
+							let statusDic = responseJSON["status"]! as! NSDictionary
+							print("statusDic---",statusDic)
+							let code = statusDic["code"] as? NSInteger
+							print("code-----",code as Any)
+							
+							if (code == 200)
+							
+								{
+									
+							
+							
+							let path = GMSMutablePath()
+							let fieldTrackArray = responseJSON["fieldTrack"] as? [Any]
+							for visit in fieldTrackArray! {
+								let fieldVisit = visit as? [String:Any]
+								let latLongString = fieldVisit!["inLatLong"] as? String
+								self.Inaddress = (fieldVisit!["inAddress"] as? String)!
+								print("In address values...",self.Inaddress as Any)
+								
+								
+								
+								
+								
+								if (self.Inaddress == "NA")
+								{
+									
+									self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), for: .normal)
+									self.FieldVisitInbtn.setTitleColor(.red, for: .normal)
+									self.RetrivedempVisitId = (fieldVisit?["empVisitId"] as? NSInteger)!
+		print("RetrivedempVisitId----",self.RetrivedempVisitId)
+									self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
+									print("calling first method")
 
-						}
+								}
+									
+									
+									else
+									{
+										
+										self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1), for: .normal)
+										self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+										//Fieldvisit-Enable-Disable method
+																			print("calling second method")
+
+										
+									}
+									
+								}
+								
+								
+							}
 						
+							
 							else
 							{
-								self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.9607843161, green: 0.7058823705, blue: 0.200000003, alpha: 1), for: .normal)
-								self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-								//Fieldvisit-Enable-Disable method
 								self.Fieldvisit_OUT()
-								print("calling second method")
 
 								
 							}
 							
 						}
-						
-						
 					}
-			}}
+		}
+				
 		
-		task.resume()
+				task.resume()
+	
+					self.Fieldvisit_OUT()
 
-
+		
+		
 	}
 	
 	
@@ -406,7 +432,7 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 						self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
 						self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
 						if (self.empAttndInDateTime == "NA" ) {
-							            //self.Fieldvisitoutbtn.setTitleColor(.blue, for: .normal)
+							//            self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
 							//            self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 							
 						} else {
@@ -428,38 +454,16 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 							self.mapView.delegate = self
 						}
 						
-						if (self.Inaddress == "NA")
-						{
-							if (self.empAttndOutDateTime == "NA") {
-								
-							} else {
-								self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-								self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-								self.Fieldvisitoutbtn.isEnabled = false
-							}
-
+						if (self.empAttndOutDateTime == "NA") {
 							
+						} else {
+							self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+							self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+							self.Fieldvisitoutbtn.isEnabled = false
 						}
-						else
-						{
-							if (self.Inaddress == "NA")
-							{
-								if (self.empAttndOutDateTime == "NA") {
-									
-								} else {
-									self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), for: .normal)
-									self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-									self.Fieldvisitoutbtn.isEnabled = false
-								}
-							
-						}
-						
-						
 				}
 			}
 		}
-		}
-			
 		task.resume()
 	}
 	//Dropdown API for Field-Visit form
@@ -520,6 +524,7 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 		CLLocationManager.authorizationStatus() == .authorizedAlways) {
 		   currentLoc = locationManager.location
 		   print("Outlatlong values",currentLoc.coordinate.latitude)
+		   print("Outlatlong values",currentLoc.coordinate.longitude)
 			let OutLatLnglocation = CLLocation(latitude: currentLoc.coordinate.latitude, longitude: currentLoc.coordinate.longitude)
 
 			let locationData = NSKeyedArchiver.archivedData(withRootObject: OutLatLnglocation)
@@ -558,7 +563,7 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 			if let responseJSON = responseJSON as? [String: Any] {
 				self.empVisitId = Int()
 				self.empVisitId = (responseJSON["empVisitId"] as? NSInteger)!
-				print("empVisitId...",self.empVisitId)
+				
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
 					//self.scheduledTimerWithTimeInterval()
 					DispatchQueue.main.async {
@@ -831,12 +836,10 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 					RetrivedcustId = defaults.integer(forKey: "custId")
 					RetrivedempId = defaults.integer(forKey: "empId")
 					let latlanstr = latstr + ", " + longstr
-					print("RetrivedempVisitId----",self.RetrivedempVisitId)
-
 					
 					print("Update latlanstr",latlanstr)
 					print("empVisitId---",empVisitId)
-					let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": self.RetrivedempVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
+					let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": RetrivedempVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
 					
 					let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
 					let session = URLSession.shared
@@ -886,7 +889,6 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 						}
 					}
 					task.resume()
-			
 			
 		}
 		else
@@ -895,12 +897,10 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 					RetrivedcustId = defaults.integer(forKey: "custId")
 					RetrivedempId = defaults.integer(forKey: "empId")
 					let latlanstr = latstr + ", " + longstr
-					print("RetrivedempVisitId----",self.RetrivedempVisitId)
-
 					
 					print("Update latlanstr",latlanstr)
 					print("empVisitId---",empVisitId)
-					let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": self.empVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
+					let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": empVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
 					
 					let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
 					let session = URLSession.shared
@@ -952,6 +952,7 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 					task.resume()
 			
 		}
+		
 		
 		
 		
@@ -969,7 +970,7 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 	@objc func insertTrackFieldVisit_updateCounting(){
 		
 		
-		if(Inaddress == "NA")
+		if (Inaddress == "NA")
 		{
 			let previousLocationEncoded = UserDefaults.standard.object(forKey: "locationDatavalues") as? Data
 				let previousLocationDecoded = NSKeyedUnarchiver.unarchiveObject(with: previousLocationEncoded!) as! CLLocation
@@ -1017,7 +1018,7 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 				let CurrentdateString = formatter.string(from:now)
 				print("CurrentdateString",CurrentdateString)
 				
-							let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": self.RetrivedempVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+				let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": RetrivedempVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
 				
 				let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
 				//create the session object
@@ -1107,7 +1108,7 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 				let CurrentdateString = formatter.string(from:now)
 				print("CurrentdateString",CurrentdateString)
 				
-							let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": self.empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+				let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
 				
 				let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
 				//create the session object
@@ -1147,7 +1148,6 @@ print("RetrivedempVisitId----",self.RetrivedempVisitId)
 			}
 				}
 				}
-			
 			
 		}
 		
