@@ -262,7 +262,9 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 								{
 									
 									self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), for: .normal)
-									self.FieldVisitInbtn.setTitleColor(.red, for: .normal)
+									self.FieldVisitInbtn.setTitleColor(.black, for: .normal)
+									self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+									
 									self.RetrivedempVisitId = (fieldVisit?["empVisitId"] as? NSInteger)!
 		print("RetrivedempVisitId----",self.RetrivedempVisitId)
 									self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
@@ -273,7 +275,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 									
 									else
 									{
-										
+										self.Fieldvisit_OUT()
+										//self.GoogleMapPolyline()
+
+
 										self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1), for: .normal)
 										self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
 										//Fieldvisit-Enable-Disable method
@@ -291,6 +296,8 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 							else
 							{
 								self.Fieldvisit_OUT()
+								//self.GoogleMapPolyline()
+
 
 								
 							}
@@ -302,8 +309,6 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 		
 				task.resume()
 	
-					self.Fieldvisit_OUT()
-
 		
 		
 	}
@@ -438,6 +443,11 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 						} else {
 							
 							if CLLocationManager.locationServicesEnabled(){
+								
+								if(self.Inaddress == "NA")
+								{
+								
+								
 								self.locationManager.delegate = self
 								self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
 								self.locationManager.distanceFilter = 500
@@ -445,8 +455,24 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 								self.locationManager.startUpdatingLocation()
 								//UIbutton Action
 								self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
-								self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
-								self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+								self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
+								self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+							}
+								else
+								{
+									self.locationManager.delegate = self
+									self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
+									self.locationManager.distanceFilter = 500
+									self.locationManager.requestWhenInUseAuthorization()
+									self.locationManager.startUpdatingLocation()
+									//UIbutton Action
+									self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
+									self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
+
+									self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+
+									self.GoogleMapPolyline()
+								}
 							}
 							self.mapView.settings.myLocationButton = true
 							self.mapView.settings.zoomGestures = true
