@@ -295,11 +295,10 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 							
 							else
 							{
+								
 								self.Fieldvisit_OUT()
 								//self.GoogleMapPolyline()
 
-
-								
 							}
 							
 						}
