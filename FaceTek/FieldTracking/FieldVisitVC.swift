@@ -357,48 +357,75 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
 	let geoCoder = CLGeocoder()
 	let location = CLLocation(latitude: lat, longitude: long)
 
-	
-	
-	
 	self.locationManager.stopUpdatingLocation()
+		geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
 
+	var placeMark: CLPlacemark!
+        placeMark = placemarks?[0]
+
+        // Location name
+        if let locationName = placeMark.location {
+            print("locationName",locationName)
+        }
+        // Street address
+        if let street = placeMark.thoroughfare {
+            print("street",street)
+        }
+        // City
+        if let city = placeMark.subAdministrativeArea {
+            print("city",city)
+        }
+        // Zip code
+        if let zip = placeMark.isoCountryCode {
+            print("zip",zip)
+        }
+        // Country
+        if let country = placeMark.country {
+            print("country",country)
+        }
+    })
 	
 	
-	geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
-		let pm = placemarks! as [CLPlacemark]
-		
-		if pm.count > 0 {
-			let pm = placemarks![0]
-			print(pm.country as Any)
-			print(pm.locality as Any)
-			print(pm.subLocality as Any)
-			print(pm.thoroughfare as Any)
-			print(pm.postalCode as Any)
-			print(pm.subThoroughfare as Any)
-			if pm.subLocality != nil {
-				self.addressString = self.addressString + pm.subLocality! + ", "
-			}
-			if pm.thoroughfare != nil {
-				self.addressString = self.addressString + pm.thoroughfare! + ", "
-			}
-			if pm.locality != nil {
-				self.addressString = self.addressString + pm.locality! + ", "
-			}
-			if pm.country != nil {
-				self.addressString = self.addressString + pm.country! + ", "
-			}
-			if pm.postalCode != nil {
-				self.addressString = self.addressString + pm.postalCode! + " "
-			}
-			//    let marker = GMSMarker()
-			//    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
-			//    marker.title = self.addressString
-			//    marker.map = self.mapView
-			//    print("address location",self.addressString)
-		}
-	})
+
+//	geoCoder.reverseGeocodeLocation(location, completionHandler: { (placemarks, error) -> Void in
+//		let pm = placemarks! as [CLPlacemark]
+//
+//		if pm.count > 0 {
+//			let pm = placemarks![0]
+//			print(pm.country as Any)
+//			print(pm.locality as Any)
+//			print(pm.subLocality as Any)
+//			print(pm.thoroughfare as Any)
+//			print(pm.postalCode as Any)
+//			print(pm.subThoroughfare as Any)
+//			if pm.subLocality != nil {
+//				self.addressString = self.addressString + pm.subLocality! + ", "
+//			}
+//			if pm.thoroughfare != nil {
+//				self.addressString = self.addressString + pm.thoroughfare! + ", "
+//			}
+//			if pm.locality != nil {
+//				self.addressString = self.addressString + pm.locality! + ", "
+//			}
+//			if pm.country != nil {
+//				self.addressString = self.addressString + pm.country! + ", "
+//			}
+//			if pm.postalCode != nil {
+//				self.addressString = self.addressString + pm.postalCode! + " "
+//			}
+//			//    let marker = GMSMarker()
+//			//    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
+//			//    marker.title = self.addressString
+//			//    marker.map = self.mapView
+//			//    print("address location",self.addressString)
+//		}
+//	})
 }
 
+	
+	
+	
+	
 
 //Field-visit OUT Enable and Disable
 func Fieldvisit_OUT()
