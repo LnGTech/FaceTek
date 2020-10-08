@@ -1016,10 +1016,6 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 	}
 	
 	
-	
-	
-	
-	
 }
 
 
@@ -1106,7 +1102,7 @@ func scheduledTimerWithTimeInterval(){
 					DispatchQueue.main.async
 						{
 							
-							
+							self.Trackedetails()
 
 					}
 					}
