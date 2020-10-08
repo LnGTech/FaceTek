@@ -850,14 +850,35 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 }
 @IBAction func FieldvisitOUT_Submitbtnclk(_ sender: Any) {
 	
-	FieldvisitFormsubmitAPI()
-	self.FieldVisitInbtn.setTitleColor(.black, for: .normal)
-	self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
-	FieldVisitInbtn.isEnabled = true
-	Fieldvisitoutbtn.isEnabled = false
-	self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-	self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-	self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
+	if (SelectPlacetxtfld.text == ""){
+               let alert = UIAlertController(title: "Error", message: "Please choose select place", preferredStyle: UIAlertController.Style.alert)
+               alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+               self.present(alert, animated: true, completion: nil)
+               return
+           }
+            if (VisitPuposetxtfld.text == ""){
+                   let alert = UIAlertController(title: "Error", message: "Please Enter Visit Purpose", preferredStyle: UIAlertController.Style.alert)
+                   alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                   self.present(alert, animated: true, completion: nil)
+                   return
+               }
+
+           else {
+            
+
+			
+			FieldvisitFormsubmitAPI()
+			self.FieldVisitInbtn.setTitleColor(.black, for: .normal)
+			self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+			FieldVisitInbtn.isEnabled = true
+			Fieldvisitoutbtn.isEnabled = false
+			self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+			self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+			self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
+			        }
+        
+    
+
 	
 }
 
