@@ -25,7 +25,8 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 	@IBOutlet weak var DateSelectionBtn: UIButton!
     let Datepicker = UIDatePicker()
 
-	
+    var MarkerdataArray:NSMutableArray = NSMutableArray()
+
 	
 	var empVisitId = Int()
 
@@ -42,8 +43,9 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
     var ConvertedCurrentDatestr = NSString()
 
 
-    var titlesArray = ["Place/Client Name","Visit Date & Time","Time spent","Km travel","Visit Purpose","Visit Outcome","Address"]
+//    var titlesArray = ["Place/Client Name","Visit Date & Time","Time spent","Km travel","Visit Purpose","Visit Outcome","Address"]
 
+    var titlesArray = ["Place/Client Name"]
 
 	
     override func viewDidLoad() {
@@ -292,10 +294,10 @@ func GoogleMapPolyline()
 							
 							let marker = GMSMarker()
 							marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-							marker.title = self.MarkerSelectedVisitIdvalue
+							marker.title = ConvertempVisitId
 							marker.snippet = ConvertempVisitId
 							
-							self.MarkerSelectedVisitIdvalue = marker.snippet!
+							self.MarkerSelectedVisitIdvalue = marker.title!
 							print("snippet values",marker.snippet)
 							print("snippet values----",self.MarkerSelectedVisitIdvalue)
 
@@ -360,6 +362,8 @@ func GoogleMapPolyline()
 		print("marker tapped:", marker.title)
 		print("Retrived snippet values....",MarkerSelectedVisitIdvalue)
 
+		var Markerselect = marker.title
+		
 		
 		let formatter = DateFormatter()
 				formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
@@ -397,7 +401,7 @@ func GoogleMapPolyline()
 							if (code == 200)
 							
 								{
-									
+								
 							
 							
 							let path = GMSMutablePath()
@@ -406,19 +410,24 @@ func GoogleMapPolyline()
 								let fieldVisit = visit as? [String:Any]
 								let latLongString = fieldVisit!["inLatLong"] as? String
 								
-								
-								
-								
 								self.empVisitId = (fieldVisit?["empVisitId"] as? NSInteger)!
 										print("empVisitId...",self.empVisitId)
 								let MarkerselectedConvertedempVisitId = String(self.empVisitId)
 
-								
-								
-								if (MarkerselectedConvertedempVisitId == self.MarkerSelectedVisitIdvalue) {
-									var Inaddress = (fieldVisit!["inAddress"] as? String)!
+								if (MarkerselectedConvertedempVisitId == Markerselect) {
+									
+									var MainDict:NSMutableDictionary = NSMutableDictionary()
+
+									
+									var Inaddress = (fieldVisit!["visitPurpose"] as? String)!
+									
+									MainDict.setObject(Inaddress, forKey: "visitPurpose" as NSCopying)
+									
+									
 									print("Marker selected In address values...",Inaddress as Any)
 									
+									self.MarkerdataArray.add(MainDict)
+									self.MyteamGooglemapFormtbl.reloadData()
 									
 								}
 									
@@ -445,7 +454,7 @@ func GoogleMapPolyline()
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		var count:Int?
 		if tableView == self.MyteamGooglemapFormtbl {
-		count = titlesArray.count
+		count = MarkerdataArray.count
 		return count!
 			}
 				//if tableView == self.Dropdowntbl {
@@ -461,8 +470,23 @@ func GoogleMapPolyline()
 		if tableView == self.MyteamGooglemapFormtbl {
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Googlemapformtblcell") as! Googlemapformtblcell
 		cell.accessoryType = .disclosureIndicator
-		cell.titleLbl?.text = self.titlesArray[indexPath.row]
-			cell.accessoryType = UITableViewCellAccessoryType.none
+		cell.titleDataLbl?.text = self.titlesArray[indexPath.row]
+//			cell.accessoryType = UITableViewCellAccessoryType.none
+//
+			
+			let responseDict = self.MarkerdataArray[indexPath.row] as! NSMutableDictionary
+								_ = MarkerdataArray[indexPath.row]
+			print("Retrived data",responseDict)
+			//self.MarkerdataArray.add(MainDict)
+			print("Leave Type Array",MarkerdataArray)
+			var tblinAddress : String?
+			tblinAddress = responseDict["visitPurpose"] as? String
+			print("tblinAddress",tblinAddress as Any)
+			
+			cell.titleLbl?.text = tblinAddress
+				cell.accessoryType = UITableViewCellAccessoryType.none
+			
+			
 
 		cellToReturn = cell
 			}

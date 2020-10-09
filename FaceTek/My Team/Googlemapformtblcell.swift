@@ -11,6 +11,9 @@ import UIKit
 class Googlemapformtblcell: UITableViewCell {
 
 	@IBOutlet weak var titleLbl: UILabel!
+	
+	@IBOutlet weak var titleDataLbl: UILabel!
+	
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
