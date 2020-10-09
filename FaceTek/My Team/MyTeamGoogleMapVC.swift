@@ -27,10 +27,15 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 
 	
 	
-	
+	var empVisitId = Int()
+
 	var latstr : String = ""
 	var longstr : String = ""
 	var addressString : String = ""
+	var Visitpurpose : String = ""
+	var MarkerSelectedVisitIdvalue : String = ""
+
+
 	var RetrivedcustId = Int()
 	var RetrivedempId = Int()
 	var locationManager = CLLocationManager()
@@ -224,11 +229,13 @@ func GoogleMapPolyline()
 			let now = Date()
 			let CurrentdateString = formatter.string(from:now)
 			print("CurrentdateString",CurrentdateString)
-			let parameters = ["custId": "74" as Any,"empId": "354" as Any,"visitDate": ConvertedCurrentDatestr as Any] as [String : Any]
+			//let parameters = ["custId": "74" as Any,"empId": "353" as Any,"visitDate": ConvertedCurrentDatestr as Any] as [String : Any]
+		
+		let parameters = ["custId": "74" as Any,"empId": "358" as Any,"visitDate": "2020-10-09" as Any] as [String : Any]
 		
 		//let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 		
-			let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+			let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 			let session = URLSession.shared
 			var request = URLRequest(url: url as URL)
 			request.httpMethod = "POST" //set http method as POST
@@ -250,10 +257,24 @@ func GoogleMapPolyline()
 					DispatchQueue.main.async {
 						let path = GMSMutablePath()
 						let fieldTrackArray = responseJSON["fieldTrack"] as? [Any]
+						
+						
+						
+						
 						for visit in fieldTrackArray! {
 							let fieldVisit = visit as? [String:Any]
 							let latLongString = fieldVisit!["inLatLong"] as? String
 							let Inaddress = fieldVisit!["inAddress"] as? String
+							let toClientNamePlace = (fieldVisit!["toClientNamePlace"] as? String)!
+							self.empVisitId = (fieldVisit?["empVisitId"] as? NSInteger)!
+							print("empVisitId...",self.empVisitId)
+					
+
+							let ConvertempVisitId = String(self.empVisitId)
+
+							
+							
+							
 //							print("In address values...",Inaddress as Any)
 //
 //							for (index, name) in fieldTrackArray!
@@ -271,7 +292,14 @@ func GoogleMapPolyline()
 							
 							let marker = GMSMarker()
 							marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
-							marker.title = Inaddress
+							marker.title = self.MarkerSelectedVisitIdvalue
+							marker.snippet = ConvertempVisitId
+							
+							self.MarkerSelectedVisitIdvalue = marker.snippet!
+							print("snippet values",marker.snippet)
+							print("snippet values----",self.MarkerSelectedVisitIdvalue)
+
+							
 							
 							
 							
@@ -328,7 +356,90 @@ func GoogleMapPolyline()
 	func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
 		MyTeamGooglemapFormview.isHidden = false
 
+		//MarkerSelectedVisitIdvalue = marker.title!
 		print("marker tapped:", marker.title)
+		print("Retrived snippet values....",MarkerSelectedVisitIdvalue)
+
+		
+		let formatter = DateFormatter()
+				formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+				let now = Date()
+				let CurrentdateString = formatter.string(from:now)
+				print("CurrentdateStringsecond",CurrentdateString)
+				let parameters = ["custId": 74 as Any,"empId": 358 as Any,"visitDate": CurrentdateString as Any] as [String : Any]
+				let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+				_ = URLSession.shared
+				var request = URLRequest(url: url as URL)
+				request.httpMethod = "POST" //set http method as POST
+				do {
+					request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+				} catch let error {
+					print(error.localizedDescription)
+				}
+				request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+				request.addValue("application/json", forHTTPHeaderField: "Accept")
+				let task = URLSession.shared.dataTask(with: request) { data, response, error in
+					guard let data = data, error == nil else {
+						print(error?.localizedDescription ?? "No data")
+						return
+					}
+					let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+					if let responseJSON = responseJSON as? [String: Any] {
+						print("fieldTrackDic responseJSON",responseJSON)
+						DispatchQueue.main.async {
+							
+							
+							let statusDic = responseJSON["status"]! as! NSDictionary
+							print("statusDic---",statusDic)
+							let code = statusDic["code"] as? NSInteger
+							print("code-----",code as Any)
+							
+							if (code == 200)
+							
+								{
+									
+							
+							
+							let path = GMSMutablePath()
+							let fieldTrackArray = responseJSON["fieldTrack"] as? [Any]
+							for visit in fieldTrackArray! {
+								let fieldVisit = visit as? [String:Any]
+								let latLongString = fieldVisit!["inLatLong"] as? String
+								
+								
+								
+								
+								self.empVisitId = (fieldVisit?["empVisitId"] as? NSInteger)!
+										print("empVisitId...",self.empVisitId)
+								let MarkerselectedConvertedempVisitId = String(self.empVisitId)
+
+								
+								
+								if (MarkerselectedConvertedempVisitId == self.MarkerSelectedVisitIdvalue) {
+									var Inaddress = (fieldVisit!["inAddress"] as? String)!
+									print("Marker selected In address values...",Inaddress as Any)
+									
+									
+								}
+									
+								}
+								
+								
+							}
+						
+							
+							
+							
+						}
+					}
+		}
+				
+		
+				task.resume()
+		
+		
+		
+		
            return true
     }
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

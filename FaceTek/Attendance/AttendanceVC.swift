@@ -1554,7 +1554,6 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			if let country = placeMark?.addressDictionary?["Country"] as? String {
 				self.address += country
 			}
-			
 			// Passing address back
 			handler(self.address)
 		})
