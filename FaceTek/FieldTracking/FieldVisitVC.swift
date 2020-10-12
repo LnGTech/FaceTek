@@ -119,10 +119,14 @@ override func viewDidLoad() {
 	self.SelectPlaceDrptble.dataSource = self
 	FieldVisit_Popupview.isHidden = true
 	//    //Field visit - IN and OUT button text color code
-	self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-	self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-	self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-	self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+	//self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+	self.FieldVisitInbtn.setTitleColor(.lightGray, for: .normal)
+
+	self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+	//self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+	self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
+
+	self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 	self.SelectPlaceViewconstriant?.constant = 0
 	SelectPlaceDrptble.register(UINib(nibName: "SelectplaceDrpdwncell", bundle: nil), forCellReuseIdentifier: "SelectplaceDrpdwncell")
 	self.VisitPuposetxtfld.delegate = self
@@ -263,7 +267,7 @@ override func viewDidLoad() {
 								
 								self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.1764705926, green: 0.01176470611, blue: 0.5607843399, alpha: 1), for: .normal)
 								self.FieldVisitInbtn.setTitleColor(.black, for: .normal)
-								self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+								self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 								
 								self.RetrivedempVisitId = (fieldVisit?["empVisitId"] as? NSInteger)!
 	print("RetrivedempVisitId----",self.RetrivedempVisitId)
@@ -280,7 +284,7 @@ override func viewDidLoad() {
 
 
 									self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.2745098174, green: 0.4862745106, blue: 0.1411764771, alpha: 1), for: .normal)
-									self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+									self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 									//Fieldvisit-Enable-Disable method
 																		print("calling second method")
 
@@ -490,7 +494,7 @@ func Fieldvisit_OUT()
 							//UIbutton Action
 							self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
 							self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
-							self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+							self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 						}
 							else
 							{
@@ -503,7 +507,7 @@ func Fieldvisit_OUT()
 								self.Fieldvisitoutbtn.addTarget(self, action: #selector(self.pressButton(button:)), for: .touchUpInside)
 								self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
 
-								self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+								self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 
 								self.GoogleMapPolyline()
 							}
@@ -518,7 +522,7 @@ func Fieldvisit_OUT()
 						
 					} else {
 						self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-						self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+						self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 						self.Fieldvisitoutbtn.isEnabled = false
 					}
 			}
@@ -880,7 +884,9 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 
 @objc func FieldVisitInbtnclick(_ sender:UIButton!)
 {
-	self.Fieldvisitoutbtn.setTitleColor(.darkGray, for: .normal)
+	self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
+	self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
+
 	
 }
 @IBAction func FieldvisitOUT_Submitbtnclk(_ sender: Any) {
@@ -904,11 +910,14 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 			
 			FieldvisitFormsubmitAPI()
 			self.FieldVisitInbtn.setTitleColor(.black, for: .normal)
-			self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+			self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 			FieldVisitInbtn.isEnabled = true
 			Fieldvisitoutbtn.isEnabled = false
-			self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-			self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+			//self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+				
+				self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
+
+			self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 			self.FieldVisitInbtn.addTarget(self, action: #selector(self.pressINButton(button:)), for: .touchUpInside)
 			        }
         
@@ -1253,10 +1262,10 @@ func scheduledTimerWithTimeInterval(){
 	FieldVisitIn_PopupView.isHidden = true
 	FieldVisitInbtn.isEnabled = false
 	Fieldvisitoutbtn.isEnabled = true
-	self.FieldVisitInbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
-	self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+	self.FieldVisitInbtn.setTitleColor(.lightGray, for: .normal)
+	self.FieldVisitInbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 	self.Fieldvisitoutbtn.setTitleColor(.black, for: .normal)
-	self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 16)
+	self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 	
 	Trackedetails()
 }
