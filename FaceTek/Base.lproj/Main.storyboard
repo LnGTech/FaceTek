@@ -4455,6 +4455,12 @@
                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cNz-1a-l0Y">
+                                                <rect key="frame" x="3" y="56" width="332" height="513"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <viewLayoutGuide key="contentLayoutGuide" id="n0r-dp-aoc"/>
+                                                <viewLayoutGuide key="frameLayoutGuide" id="ybl-65-Xk0"/>
+                                            </scrollView>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -4465,14 +4471,6 @@
                                             <constraint firstAttribute="height" constant="50" id="gIo-4a-USr"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="elI-ZR-n3F">
-                                        <rect key="frame" x="0.0" y="51" width="335" height="520"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <connections>
-                                            <outlet property="dataSource" destination="Vdr-3u-h3p" id="pHN-is-7Ir"/>
-                                            <outlet property="delegate" destination="Vdr-3u-h3p" id="qti-hi-7iu"/>
-                                        </connections>
-                                    </tableView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kS9-Qa-iKR">
                                         <rect key="frame" x="0.0" y="572" width="335" height="75"/>
                                         <subviews>
@@ -4502,13 +4500,9 @@
                                     <constraint firstAttribute="trailing" secondItem="kS9-Qa-iKR" secondAttribute="trailing" id="6Xi-08-B3I"/>
                                     <constraint firstItem="LoG-of-deq" firstAttribute="leading" secondItem="hVB-FB-Fsq" secondAttribute="leading" id="9EY-Qa-ELA"/>
                                     <constraint firstAttribute="trailing" secondItem="LoG-of-deq" secondAttribute="trailing" id="Oye-HW-Jer"/>
-                                    <constraint firstItem="kS9-Qa-iKR" firstAttribute="top" secondItem="elI-ZR-n3F" secondAttribute="bottom" constant="1" id="Se6-Ti-gUV"/>
                                     <constraint firstAttribute="bottom" secondItem="kS9-Qa-iKR" secondAttribute="bottom" id="VbR-sG-Ola"/>
-                                    <constraint firstAttribute="trailing" secondItem="elI-ZR-n3F" secondAttribute="trailing" id="ViF-YF-Hvx"/>
                                     <constraint firstItem="kS9-Qa-iKR" firstAttribute="leading" secondItem="hVB-FB-Fsq" secondAttribute="leading" id="a2x-Fh-eAB"/>
-                                    <constraint firstItem="elI-ZR-n3F" firstAttribute="leading" secondItem="hVB-FB-Fsq" secondAttribute="leading" id="k3Z-rO-ymp"/>
                                     <constraint firstItem="LoG-of-deq" firstAttribute="top" secondItem="hVB-FB-Fsq" secondAttribute="top" id="qNY-RI-Uf7"/>
-                                    <constraint firstItem="elI-ZR-n3F" firstAttribute="top" secondItem="LoG-of-deq" secondAttribute="bottom" constant="1" id="sZG-V2-Op2"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -4534,7 +4528,7 @@
                         <outlet property="Datetxtfle" destination="SHt-7r-33c" id="syL-3a-eqT"/>
                         <outlet property="Dateview" destination="IkL-5E-4rH" id="aw4-Ba-9Ug"/>
                         <outlet property="MyTeamGooglemapFormview" destination="hVB-FB-Fsq" id="wPD-mD-xLA"/>
-                        <outlet property="MyteamGooglemapFormtbl" destination="elI-ZR-n3F" id="K5m-hF-2sq"/>
+                        <outlet property="Scroll" destination="hVB-FB-Fsq" id="3hv-Vd-5Y1"/>
                         <outlet property="mapView" destination="nc0-Wh-ywR" id="a5Z-PY-Zn5"/>
                     </connections>
                 </viewController>

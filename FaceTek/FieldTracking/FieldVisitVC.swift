@@ -521,7 +521,7 @@ func Fieldvisit_OUT()
 					if (self.empAttndOutDateTime == "NA") {
 						
 					} else {
-						self.Fieldvisitoutbtn.setTitleColor(#colorLiteral(red: 0.3333333433, green: 0.3333333433, blue: 0.3333333433, alpha: 1), for: .normal)
+						self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
 						self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
 						self.Fieldvisitoutbtn.isEnabled = false
 					}
