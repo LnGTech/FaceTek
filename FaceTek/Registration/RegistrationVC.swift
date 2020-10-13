@@ -195,6 +195,9 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
         UserDefaults.standard.set(self.custId, forKey: "custId")
         UserDefaults.standard.set(self.empId, forKey: "empId")
         UserDefaults.standard.set(self.brCode, forKey: "brCode")
+        UserDefaults.standard.set(self.brId, forKey: "brId")
+
+		
         UserDefaults.standard.set(self.employeeName, forKey: "employeeName")
         UserDefaults.standard.set(self.brName, forKey: "brName")
         UserDefaults.standard.set(self.empPresistedFaceId, forKey: "empPresistedFaceId")

@@ -233,7 +233,7 @@ func GoogleMapPolyline()
 			print("CurrentdateString",CurrentdateString)
 			//let parameters = ["custId": "74" as Any,"empId": "353" as Any,"visitDate": ConvertedCurrentDatestr as Any] as [String : Any]
 		
-		let parameters = ["custId": "74" as Any,"empId": "391" as Any,"visitDate": "2020-10-12" as Any] as [String : Any]
+		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 		
 		//let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 		
@@ -372,12 +372,19 @@ func GoogleMapPolyline()
 		var Markerselect = marker.title
 		
 		
+		let defaults = UserDefaults.standard
+		RetrivedcustId = defaults.integer(forKey: "custId")
+		print("My team RetrivedcustId----",RetrivedcustId)
+		RetrivedempId = defaults.integer(forKey: "empId")
+		print("RetrivedempId----",RetrivedempId)
+
+		
 		let formatter = DateFormatter()
 				formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 				let now = Date()
 				let CurrentdateString = formatter.string(from:now)
 				print("CurrentdateStringsecond",CurrentdateString)
-				let parameters = ["custId": 74 as Any,"empId": 391 as Any,"visitDate": "2020-10-12" as Any] as [String : Any]
+				let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 				let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 				_ = URLSession.shared
 				var request = URLRequest(url: url as URL)
@@ -438,9 +445,10 @@ func GoogleMapPolyline()
 									
 									MainDict.setObject(timeSpent, forKey: "timeSpent" as NSCopying)
 									
-//									var kmTravelled = (fieldVisit!["kmTravelled"] as? String)!
-//
-//									MainDict.setObject(kmTravelled, forKey: "kmTravelled" as NSCopying)
+									var kmTravelled = (fieldVisit?["kmTravelled"] as? NSInteger)!
+									print("kmTravelled----",kmTravelled)
+									
+									MainDict.setObject(kmTravelled, forKey: "kmTravelled" as NSCopying)
 //
 									
 									var visitPurpose = (fieldVisit!["visitPurpose"] as? String)!
@@ -526,10 +534,14 @@ func GoogleMapPolyline()
 			print("timeSpent",timeSpent as Any)
 			cell.TimespentLbl.text = timeSpent
 			
-			var kmTravelled = responseDict["kmTravelled"] as? String
+			var kmTravelled = responseDict["kmTravelled"] as! NSInteger
 			
 			print("kmTravelled",kmTravelled as Any)
-			cell.KmtravelLbl.text = kmTravelled
+			
+			let ConvertTravelData = String(kmTravelled)
+
+			
+			cell.KmtravelLbl.text = ConvertTravelData
 			
 			var visitPurpose = responseDict["visitPurpose"] as? String
 			

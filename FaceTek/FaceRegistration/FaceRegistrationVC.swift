@@ -30,6 +30,7 @@ class FaceRegistrationVC: UIViewController {
 		custbrCode = defaults.string(forKey: "brCode") ?? ""
         Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
         
+		
         //Brach code conver capital letters
         //var CapitalcustbrCode = (custbrCode.uppercased())
 

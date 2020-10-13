@@ -110,6 +110,8 @@ var locationManager = CLLocationManager()
 override func viewDidLoad() {
 	super.viewDidLoad()
 	Trackedetails()
+	GoogleMapPolyline()
+	
 	//self.PreviousMeetingView.isHidden = true
 	ClientTxtfld.delegate = self
 	VisitPuposetxtfld.delegate = self
@@ -498,6 +500,9 @@ func Fieldvisit_OUT()
 						}
 							else
 							{
+								
+								
+								print(" calling polyline dsfsdfsff")
 								self.locationManager.delegate = self
 								self.locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
 								self.locationManager.distanceFilter = 500

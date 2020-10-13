@@ -24,8 +24,8 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
 	var longstr : String = ""
 	var addressString : String = ""
 
-    var mDictAttendanceData = NSMutableDictionary()
-    var marLeavesData = NSMutableArray()
+    var MyTeamData = NSMutableDictionary()
+    var MyTeamArray = NSMutableArray()
 	@IBOutlet weak var MyTeamtbl: UITableView!
 	@IBOutlet weak var Nodataview: UIView!
 	override func viewDidLoad() {
@@ -38,7 +38,19 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
 		view.addSubview(statusBarView)
 		Nodataview.isHidden = true
 		  MyTeamtbl.register(UINib(nibName: "MyTeamtblCell", bundle: nil), forCellReuseIdentifier: "MyTeamtblCell")
-		let parameters = ["brId": 83 as Any,"custId": 74 as Any,"empId": 353 as Any] as [String : Any]
+		
+		let defaults = UserDefaults.standard
+		var RetrivedcustId = defaults.integer(forKey: "custId")
+		print(" RetrivedcustId----",RetrivedcustId)
+		
+		var RetrivedempId = defaults.integer(forKey: "empId")
+		print(" RetrivedempId----",RetrivedempId)
+		
+		var RetrivedbrId = defaults.integer(forKey: "brId")
+		print(" RetrivedbrId----",RetrivedbrId)
+
+		
+		let parameters = ["brId": RetrivedbrId as Any,"custId": RetrivedcustId as Any,"empId": RetrivedempId as Any] as [String : Any]
 			   
 				var StartPoint = Baseurl.shared().baseURL
 				var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getMyTeamDetails"
@@ -92,12 +104,12 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
 							 }
 										 
 							
-							 self.mDictAttendanceData = NSMutableDictionary()
+							 self.MyTeamData = NSMutableDictionary()
 							if responseJSON != nil{
-								self.mDictAttendanceData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
+								self.MyTeamData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
 								
-								if let temp = self.mDictAttendanceData.value(forKey: "reportingEmployees") as? NSArray{
-									self.marLeavesData = temp.mutableCopy() as! NSMutableArray
+								if let temp = self.MyTeamData.value(forKey: "reportingEmployees") as? NSArray{
+									self.MyTeamArray = temp.mutableCopy() as! NSMutableArray
 								}
 								
 							  
@@ -163,13 +175,13 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
 //		   }
 //
 		func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-			return self.marLeavesData.count
+			return self.MyTeamArray.count
 		}
 		
 		  
 		func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let MyTeamtblCell = tableView.dequeueReusableCell(withIdentifier: "MyTeamtblCell", for: indexPath) as! MyTeamtblCell
-		let dicShiftDetails = marLeavesData.object(at: indexPath.row) as? NSDictionary
+		let dicShiftDetails = MyTeamArray.object(at: indexPath.row) as? NSDictionary
 	
 		MyTeamtblCell.nameLbl.text = dicShiftDetails?.value(forKey: "empName") as? String
 		MyTeamtblCell.MobilenumberLbl.text = dicShiftDetails?.value(forKey: "empMobileNo") as? String
