@@ -434,6 +434,26 @@ func GoogleMapPolyline()
 									
 									MainDict.setObject(visitEndDateTime, forKey: "visitEndDateTime" as NSCopying)
 									
+									var timeSpent = (fieldVisit!["timeSpent"] as? String)!
+									
+									MainDict.setObject(timeSpent, forKey: "timeSpent" as NSCopying)
+									
+//									var kmTravelled = (fieldVisit!["kmTravelled"] as? String)!
+//
+//									MainDict.setObject(kmTravelled, forKey: "kmTravelled" as NSCopying)
+//
+									
+									var visitPurpose = (fieldVisit!["visitPurpose"] as? String)!
+									
+									MainDict.setObject(visitPurpose, forKey: "visitPurpose" as NSCopying)
+									var meetingOutcome = (fieldVisit!["meetingOutcome"] as? String)!
+									
+									MainDict.setObject(meetingOutcome, forKey: "meetingOutcome" as NSCopying)
+									
+									var inAddress = (fieldVisit!["inAddress"] as? String)!
+									
+									MainDict.setObject(inAddress, forKey: "inAddress" as NSCopying)
+									
 									
 									print("Marker selected IntoClientNamePlaceaddress values...",toClientNamePlace as Any)
 									
@@ -482,12 +502,8 @@ func GoogleMapPolyline()
 		let cell = tableView.dequeueReusableCell(withIdentifier: "Googlemapformtblcell") as! Googlemapformtblcell
 		cell.accessoryType = .disclosureIndicator
 			
-			cell.titleLbl?.text = self.titlesArray[indexPath.row]
+			//cell.titleLbl?.text = self.titlesArray[indexPath.row]
 				cell.accessoryType = UITableViewCellAccessoryType.none
-			
-			
-//			cell.accessoryType = UITableViewCellAccessoryType.none
-//
 			
 			let responseDict = self.MarkerdataArray[indexPath.row] as! NSMutableDictionary
 								_ = MarkerdataArray[indexPath.row]
@@ -497,22 +513,52 @@ func GoogleMapPolyline()
 			var toClientNamePlace : String?
 			toClientNamePlace = responseDict["toClientNamePlace"] as? String
 			
-			//cell.ClientnameLbl.text = toClientNamePlace
 			print("toClientNamePlace",toClientNamePlace as Any)
+			cell.ClientPlaceNameLbl.text = toClientNamePlace
 			
 			var visitEndDateTime = responseDict["visitEndDateTime"] as? String
 			
 			print("visitEndDateTime",visitEndDateTime as Any)
+			cell.VisitDtetimeLbl.text = visitEndDateTime
+			
+			var timeSpent = responseDict["timeSpent"] as? String
+			
+			print("timeSpent",timeSpent as Any)
+			cell.TimespentLbl.text = timeSpent
+			
+			var kmTravelled = responseDict["kmTravelled"] as? String
+			
+			print("kmTravelled",kmTravelled as Any)
+			cell.KmtravelLbl.text = kmTravelled
+			
+			var visitPurpose = responseDict["visitPurpose"] as? String
+			
+			print("visitPurpose",visitPurpose as Any)
+			cell.VisitPurposeLbl.text = visitPurpose
+			
+			var meetingOutcome = responseDict["meetingOutcome"] as? String
+			
+			print("meetingOutcome",visitPurpose as Any)
+			cell.VisitOutcomeLbl.text = meetingOutcome
+			var inAddress = responseDict["inAddress"] as? String
+			
+			print("inAddress",visitPurpose as Any)
+			cell.AddressLbl.text = inAddress
+
+
 			//cell.ClintNameDisLbl.text = visitEndDateTime
 
-			
-			let mutableItems = NSMutableArray(array: MarkerdataArray)
-			
-			
-			let newArray = mutableItems as Array
-			print("newArray",newArray)
-
-			cell.titleDataLbl?.text = newArray[indexPath.row] as? String
+				
+//			let borderBottom = CALayer()
+//				let borderWidth = CGFloat(5.0)
+//
+//				borderBottom.borderColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+//			borderBottom.frame = CGRect(x: 0, y: cell.VisitDatetimeView.frame.height - 2.0, width: cell.VisitDatetimeView.frame.width , height: cell.VisitDatetimeView.frame.height - 5.0)
+//				borderBottom.borderWidth = borderWidth
+//			cell.VisitDatetimeView.layer.addSublayer(borderBottom)
+//			cell.VisitDatetimeView.layer.masksToBounds = true
+//
+							
 		cellToReturn = cell
 			}
 //		} else if tableView == self.Dropdowntbl {

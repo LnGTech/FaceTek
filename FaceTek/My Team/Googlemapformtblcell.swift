@@ -10,9 +10,37 @@ import UIKit
 
 class Googlemapformtblcell: UITableViewCell {
 
-	@IBOutlet weak var titleLbl: UILabel!
+	@IBOutlet weak var ClientPlaceView: UIView!
 	
-	@IBOutlet weak var titleDataLbl: UILabel!
+	
+	@IBOutlet weak var VisitDatetimeView: UIView!
+	
+	@IBOutlet weak var timespentView: UIView!
+	
+	@IBOutlet weak var KmtravelView: UIView!
+	
+	@IBOutlet weak var VisitPurposeView: UIView!
+	
+	
+	@IBOutlet weak var VisitOutcomeView: UIView!
+	
+	@IBOutlet weak var AddressView: UIView!
+	
+	
+	@IBOutlet weak var ClientPlaceNameLbl: UILabel!
+	
+	@IBOutlet weak var VisitDtetimeLbl: UILabel!
+	
+	@IBOutlet weak var TimespentLbl: UILabel!
+	
+	@IBOutlet weak var KmtravelLbl: UILabel!
+	
+	
+	@IBOutlet weak var VisitPurposeLbl: UILabel!
+	
+	@IBOutlet weak var VisitOutcomeLbl: UILabel!
+	
+	@IBOutlet weak var AddressLbl: UILabel!
 	
 	override func awakeFromNib() {
         super.awakeFromNib()
