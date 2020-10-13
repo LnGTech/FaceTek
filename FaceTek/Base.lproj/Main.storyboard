@@ -5879,7 +5879,7 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="sTZ-wP-Sgc">
                                         <rect key="frame" x="0.0" y="0.0" width="335" height="50"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field Visit" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiS-hd-snU">
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Field Visit Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qiS-hd-snU">
                                                 <rect key="frame" x="3" y="15" width="330" height="25"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5916,6 +5916,9 @@
                                                 <state key="normal" title="CLOSE">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="CloseBtnclk:" destination="v1w-35-gdi" eventType="touchUpInside" id="ipN-27-49x"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -5963,6 +5966,7 @@
                         <outlet property="DateSelectionBtn" destination="2Qx-6E-zVF" id="mVE-Vx-7A6"/>
                         <outlet property="Datetxtfle" destination="Dzd-6i-h59" id="uti-DN-lFq"/>
                         <outlet property="Dateview" destination="rYF-tk-c9l" id="sRn-W4-D6n"/>
+                        <outlet property="FieldvisitDetailsLbl" destination="qiS-hd-snU" id="yrx-Zu-Vbb"/>
                         <outlet property="MyTeamGooglemapFormview" destination="LFm-OC-vj8" id="x57-MN-u6i"/>
                         <outlet property="MyteamGooglemapFormtbl" destination="qZA-uD-JQz" id="GKO-H4-zoX"/>
                         <outlet property="mapView" destination="m4l-Dx-H3Z" id="ONr-Sw-4ZK"/>

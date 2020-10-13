@@ -42,6 +42,23 @@ class Googlemapformtblcell: UITableViewCell {
 	
 	@IBOutlet weak var AddressLbl: UILabel!
 	
+	
+	@IBOutlet weak var ClientPlacetxtLbl: UILabel!
+	
+	@IBOutlet weak var VisitdatetxtLbl: UILabel!
+	
+	
+	
+	@IBOutlet weak var timespenttxtLbl: UILabel!
+	
+	@IBOutlet weak var KmTraveltxtLbl: UILabel!
+	
+	@IBOutlet weak var VisitpurposetxtLbl: UILabel!
+	
+	@IBOutlet weak var VisitOutcometxtLbl: UILabel!
+	
+	
+	@IBOutlet weak var AddresstxtLbl: UILabel!
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

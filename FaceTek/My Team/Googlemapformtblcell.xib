@@ -30,15 +30,15 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" red="0.65198683375634525" green="0.65198683375634525" blue="0.65198683375634525" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Client/Place Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vlz-ze-wuv">
                                         <rect key="frame" x="0.0" y="40" width="386" height="34"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="14"/>
-                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
@@ -163,7 +163,7 @@
                                 <rect key="frame" x="0.0" y="490" width="386" height="100"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ci-Td-v7C">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Address" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1ci-Td-v7C">
                                         <rect key="frame" x="-1" y="13" width="386" height="26"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -191,18 +191,25 @@
             <connections>
                 <outlet property="AddressLbl" destination="tcn-hn-qLF" id="Pvs-7I-pUa"/>
                 <outlet property="AddressView" destination="xf4-Rv-NMc" id="kr5-LZ-awg"/>
+                <outlet property="AddresstxtLbl" destination="1ci-Td-v7C" id="ZEn-ez-uE4"/>
                 <outlet property="ClientPlaceNameLbl" destination="Vlz-ze-wuv" id="FmC-1R-Jz1"/>
                 <outlet property="ClientPlaceView" destination="bbx-ZO-pWs" id="yPz-lC-4nZ"/>
+                <outlet property="ClientPlacetxtLbl" destination="mZr-4E-RjO" id="1EG-Ua-eIa"/>
+                <outlet property="KmTraveltxtLbl" destination="OBc-i4-RHt" id="atz-6O-bzt"/>
                 <outlet property="KmtravelLbl" destination="ml7-kZ-z98" id="TTg-ud-ryS"/>
                 <outlet property="KmtravelView" destination="tyL-QH-xY4" id="Okj-YQ-6L9"/>
-                <outlet property="TimespentLbl" destination="DEe-gB-eMc" id="aev-o0-1Kn"/>
+                <outlet property="TimespentLbl" destination="DEe-gB-eMc" id="gAm-ja-7JP"/>
                 <outlet property="VisitDatetimeView" destination="O3D-S5-ahK" id="XaX-WE-bx2"/>
                 <outlet property="VisitDtetimeLbl" destination="zQa-rV-rLo" id="iIo-pt-wql"/>
                 <outlet property="VisitOutcomeLbl" destination="XgH-oc-s4F" id="rcd-fU-x2U"/>
                 <outlet property="VisitOutcomeView" destination="rgY-Rp-RtC" id="kCu-SM-L2I"/>
+                <outlet property="VisitOutcometxtLbl" destination="YXF-y3-7Ox" id="aVM-ZB-Cvg"/>
                 <outlet property="VisitPurposeLbl" destination="X6x-gU-W34" id="W1o-H9-0kT"/>
                 <outlet property="VisitPurposeView" destination="EBj-43-0ng" id="ZRz-oq-9r8"/>
+                <outlet property="VisitdatetxtLbl" destination="JWB-IA-NBt" id="Fcy-eN-S7C"/>
+                <outlet property="VisitpurposetxtLbl" destination="ZvM-tM-gdm" id="kqN-7f-QV8"/>
                 <outlet property="timespentView" destination="aOp-J0-T2H" id="Gii-1M-crU"/>
+                <outlet property="timespenttxtLbl" destination="nVI-pE-3JI" id="NYi-i6-ZLm"/>
             </connections>
             <point key="canvasLocation" x="179.71014492753625" y="293.30357142857139"/>
         </tableViewCell>

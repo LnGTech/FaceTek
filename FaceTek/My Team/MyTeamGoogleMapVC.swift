@@ -15,6 +15,7 @@ import SwiftyJSON
 
 class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITableViewDelegate,UITableViewDataSource {
 
+	@IBOutlet weak var FieldvisitDetailsLbl: UILabel!
 	@IBOutlet weak var MyteamGooglemapFormtbl: UITableView!
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var MyTeamGooglemapFormview: UIView!
@@ -50,11 +51,23 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		FieldvisitDetailsLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+		FieldvisitDetailsLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+
+
 		mapView.delegate = self
 		MyTeamGooglemapFormview.isHidden = true
 		
 		MyteamGooglemapFormtbl.register(UINib(nibName: "Googlemapformtblcell", bundle: nil), forCellReuseIdentifier: "Googlemapformtblcell")
 
+		MyTeamGooglemapFormview.layer.cornerRadius = 20
+		MyTeamGooglemapFormview.clipsToBounds = true
+		MyTeamGooglemapFormview.layer.masksToBounds = false
+		MyTeamGooglemapFormview.layer.shadowRadius = 7
+		MyTeamGooglemapFormview.layer.shadowOpacity = 0.6
+		MyTeamGooglemapFormview.layer.shadowOffset = CGSize(width: 0, height: 5)
+		MyTeamGooglemapFormview.layer.shadowColor = UIColor.black.cgColor
 		
 
 		let defaults = UserDefaults.standard
@@ -102,6 +115,7 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 		
 		
 		GoogleMapPolyline()
+		
 
         // Do any additional setup after loading the view.
     }
@@ -518,6 +532,76 @@ func GoogleMapPolyline()
 			print("Retrived data",responseDict)
 			//self.MarkerdataArray.add(MainDict)
 			print("Leave Type Array",MarkerdataArray)
+			
+			//Label color and font style's
+			cell.ClientPlaceNameLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			cell.VisitDtetimeLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			cell.TimespentLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			cell.KmtravelLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			cell.VisitPurposeLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			cell.VisitOutcomeLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			cell.AddressLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+
+
+			cell.ClientPlacetxtLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+			cell.VisitdatetxtLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+			cell.timespenttxtLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+			cell.KmTraveltxtLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+			cell.VisitpurposetxtLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+			cell.VisitOutcometxtLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+			cell.AddresstxtLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+
+
+
+			//cell.ClientPlaceNameLbl.font = UIFont(name: "verdana", size: 16.0)
+			//cell.ClientPlacetxtLbl.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
+			cell.ClientPlacetxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+
+			let attributes :Dictionary = [NSAttributedStringKey.font : cell.ClientPlaceNameLbl.font]
+			cell.VisitdatetxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+			let VisitDateattributes :Dictionary = [NSAttributedStringKey.font : cell.VisitdatetxtLbl.font]
+			cell.timespenttxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+			let Timespentattributes :Dictionary = [NSAttributedStringKey.font : cell.timespenttxtLbl.font]
+			
+			cell.KmTraveltxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+			let Kmtravelattributes :Dictionary = [NSAttributedStringKey.font : cell.KmTraveltxtLbl.font]
+			
+			cell.VisitpurposetxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+			let Visitpurposeattributes :Dictionary = [NSAttributedStringKey.font : cell.VisitpurposetxtLbl.font]
+			
+			cell.VisitOutcometxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+			let Visitoutcomeattributes :Dictionary = [NSAttributedStringKey.font : cell.VisitOutcometxtLbl.font]
+			
+			cell.AddresstxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+			let Addressattributes :Dictionary = [NSAttributedStringKey.font : cell.AddresstxtLbl.font]
+
+
+
+			
+			cell.ClientPlaceNameLbl.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)!
+			let attributes1 :Dictionary = [NSAttributedStringKey.font : cell.ClientPlaceNameLbl.font]
+			cell.VisitDtetimeLbl.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)!
+			let VisitDateattributesLbl :Dictionary = [NSAttributedStringKey.font : cell.VisitDtetimeLbl.font]
+			cell.TimespentLbl.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)!
+			let TimespentattributesLbl :Dictionary = [NSAttributedStringKey.font : cell.TimespentLbl.font]
+			
+			cell.KmtravelLbl.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)!
+			let KmtravelattributesLbl :Dictionary = [NSAttributedStringKey.font : cell.KmtravelLbl.font]
+			
+			cell.VisitPurposeLbl.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)!
+			let VisitpurposeattributesLbl :Dictionary = [NSAttributedStringKey.font : cell.VisitPurposeLbl.font]
+			
+			cell.VisitOutcomeLbl.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)!
+			let VisitoutcomeattributesLbl :Dictionary = [NSAttributedStringKey.font : cell.VisitOutcomeLbl.font]
+			
+			cell.AddressLbl.font = UIFont(name: "HelveticaNeue-Bold", size: 16.0)!
+			let AddressattributesLbl :Dictionary = [NSAttributedStringKey.font : cell.AddressLbl.font]
+
+
+			
+
+			
+			
 			var toClientNamePlace : String?
 			toClientNamePlace = responseDict["toClientNamePlace"] as? String
 			
@@ -600,6 +684,14 @@ func GoogleMapPolyline()
 			return 560
 		
 		}
+	
+	
+	@IBAction func CloseBtnclk(_ sender: Any) {
+		
+		MyTeamGooglemapFormview.isHidden = true
+		
+	}
+	
 	}
 	
 	
