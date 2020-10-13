@@ -13,9 +13,8 @@ import GooglePlaces
 import Alamofire
 import SwiftyJSON
 
-class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate {
+class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITableViewDelegate,UITableViewDataSource {
 
-	@IBOutlet weak var Scroll: UIView!
 	@IBOutlet weak var MyteamGooglemapFormtbl: UITableView!
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var MyTeamGooglemapFormview: UIView!
@@ -54,8 +53,9 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 		mapView.delegate = self
 		MyTeamGooglemapFormview.isHidden = true
 		
-		
+		MyteamGooglemapFormtbl.register(UINib(nibName: "Googlemapformtblcell", bundle: nil), forCellReuseIdentifier: "Googlemapformtblcell")
 
+		
 
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
@@ -102,24 +102,13 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 		
 		
 		GoogleMapPolyline()
-		
 
         // Do any additional setup after loading the view.
     }
 	
 
-	public func scrollViewDidScroll(_ scrollView: UIScrollView) {
-
-        if(scrollView.panGestureRecognizer.translation(in: scrollView.superview).y > 0) {
-            print("up")
-        }
-        else {
-            print("down")
-        }
-    }
 	
 	
-	//sccroll view
 	@objc func pressButton(button: UIButton) {
 		print("Log values..")
 		
@@ -388,7 +377,7 @@ func GoogleMapPolyline()
 				let now = Date()
 				let CurrentdateString = formatter.string(from:now)
 				print("CurrentdateStringsecond",CurrentdateString)
-				let parameters = ["custId": 74 as Any,"empId": 391 as Any,"visitDate": CurrentdateString as Any] as [String : Any]
+				let parameters = ["custId": 74 as Any,"empId": 391 as Any,"visitDate": "2020-10-12" as Any] as [String : Any]
 				let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 				_ = URLSession.shared
 				var request = URLRequest(url: url as URL)
@@ -448,8 +437,8 @@ func GoogleMapPolyline()
 									
 									print("Marker selected IntoClientNamePlaceaddress values...",toClientNamePlace as Any)
 									
-									//self.MarkerdataArray.add(MainDict)
-									//self.MyteamGooglemapFormtbl.reloadData()
+									self.MarkerdataArray.add(MainDict)
+									self.MyteamGooglemapFormtbl.reloadData()
 									
 								}
 									
@@ -473,7 +462,87 @@ func GoogleMapPolyline()
 		
            return true
     }
+	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		var count:Int?
+		if tableView == self.MyteamGooglemapFormtbl {
+		count = MarkerdataArray.count
+		return count!
+			}
+				//if tableView == self.Dropdowntbl {
+//		if tableView == self.Dropdowntbl {
+//		count =  LeavetypeDropdownArray.count
+//			}
+		return count!
 		}
+		
+		// create a cell for each table view row
+		func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		var cellToReturn = UITableViewCell() // Dummy value
+		if tableView == self.MyteamGooglemapFormtbl {
+		let cell = tableView.dequeueReusableCell(withIdentifier: "Googlemapformtblcell") as! Googlemapformtblcell
+		cell.accessoryType = .disclosureIndicator
+			
+			cell.titleLbl?.text = self.titlesArray[indexPath.row]
+				cell.accessoryType = UITableViewCellAccessoryType.none
+			
+			
+//			cell.accessoryType = UITableViewCellAccessoryType.none
+//
+			
+			let responseDict = self.MarkerdataArray[indexPath.row] as! NSMutableDictionary
+								_ = MarkerdataArray[indexPath.row]
+			print("Retrived data",responseDict)
+			//self.MarkerdataArray.add(MainDict)
+			print("Leave Type Array",MarkerdataArray)
+			var toClientNamePlace : String?
+			toClientNamePlace = responseDict["toClientNamePlace"] as? String
+			
+			//cell.ClientnameLbl.text = toClientNamePlace
+			print("toClientNamePlace",toClientNamePlace as Any)
+			
+			var visitEndDateTime = responseDict["visitEndDateTime"] as? String
+			
+			print("visitEndDateTime",visitEndDateTime as Any)
+			//cell.ClintNameDisLbl.text = visitEndDateTime
+
+			
+			let mutableItems = NSMutableArray(array: MarkerdataArray)
+			
+			
+			let newArray = mutableItems as Array
+			print("newArray",newArray)
+
+			cell.titleDataLbl?.text = newArray[indexPath.row] as? String
+		cellToReturn = cell
+			}
+//		} else if tableView == self.Dropdowntbl {
+//		let cell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell") as! Dropdowncell
+//		let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
+//							_ = LeavetypeDropdownArray[indexPath.row]
+//		print("Retrived data",responseDict)
+//		self.LeavetypeDropdownArray.add(MainDict)
+//		print("Leave Type Array",LeavetypeDropdownArray)
+//		var custLeaveNamestr : String?
+//		custLeaveNamestr = responseDict["custLeaveName"] as? String
+//		print("custLeaveNamestr",custLeaveNamestr)
+//		cell.DropdownLbl!.text = custLeaveNamestr
+//		cellToReturn = cell
+//			   }
+		return cellToReturn
+		}
+		
+		func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+			
+		{
+			print("Tapped")
+			}
+		
+		
+		func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+			return 560
+		
+		}
+	}
 	
 	
 
