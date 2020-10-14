@@ -156,6 +156,24 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 		let DaystrLbl = String(Daystr!.prefix(3))
 		cell.DayLbl.text = DaystrLbl
 
+		cell.EventdayLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+		let holidayNameattributes :Dictionary = [NSAttributedStringKey.font : cell.EventdayLbl.font]
+		
+		cell.DateLbl.font = UIFont(name: "HelveticaNeue-Light", size: 18.0)!
+		let holidayDateattributes :Dictionary = [NSAttributedStringKey.font : cell.DateLbl.font]
+		
+		cell.DayLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+		let dayattributes :Dictionary = [NSAttributedStringKey.font : cell.DayLbl.font]
+		
+		cell.EventdayLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+		cell.DateLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+		cell.DayLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+
+
+
+		
+		
+		
 		
 			//cell.MobilenumberLbl.text = CalendarDetails?.value(forKey: "holidayName") as? String
 			
