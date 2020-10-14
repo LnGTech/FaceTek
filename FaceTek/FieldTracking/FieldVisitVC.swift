@@ -195,8 +195,6 @@ override func viewDidLoad() {
 //
 	
 	borderBottom.borderColor = #colorLiteral(red: 0.8325170875, green: 0.9924197793, blue: 0.8371630907, alpha: 1)
-
-	
 	borderBottom.frame = CGRect(x: 0, y: FldvisitFormView.frame.height - 1.0, width: FldvisitFormView.frame.width , height: FldvisitFormView.frame.height - 1.0)
 	borderBottom.borderWidth = borderWidth
 	FldvisitFormView.layer.addSublayer(borderBottom)
@@ -205,9 +203,6 @@ override func viewDidLoad() {
 	// Creates the Top border
 	let borderTop = CALayer()
 	borderTop.borderColor = #colorLiteral(red: 0.8325170875, green: 0.9924197793, blue: 0.8371630907, alpha: 1)
-
-
-	
 	borderTop.frame = CGRect(x: 0, y: 0, width: FldvisitFormView.frame.width, height: 1)
 	borderTop.borderWidth = borderWidth
 	FldvisitFormView.layer.addSublayer(borderTop)

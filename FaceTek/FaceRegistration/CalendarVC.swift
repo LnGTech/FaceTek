@@ -11,7 +11,8 @@ import UIKit
 class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     
-    @IBOutlet weak var Calendartbl: UITableView!
+	@IBOutlet weak var HolidaycalendarLbl: UILabel!
+	@IBOutlet weak var Calendartbl: UITableView!
 	var CalendarData = NSMutableDictionary()
     var CalendarArray = NSMutableArray()
     
@@ -24,6 +25,14 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		//self.Calendartbl.separatorStyle = UITableViewCell.SeparatorStyle.none
+		
+		HolidaycalendarLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+		let Holidaycalendarattributes :Dictionary = [NSAttributedStringKey.font : HolidaycalendarLbl.font]
+		
+		HolidaycalendarLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
         
         Calendartbl.register(UINib(nibName: "Calendarcell", bundle: nil), forCellReuseIdentifier: "Calendarcell")
         
@@ -62,23 +71,6 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 						print("status------",statusDic)
 						let Calendarcode = statusDic["code"] as? NSInteger
 						print("Calendar code-----",Calendarcode as Any)
-//									 if (LeavePendingCode == 200)
-//									{
-//
-//		//								let empnamestr = statusDic["empName"] as? String
-//		//
-//		//
-//										 self.MyTeamtbl.isHidden = false
-//
-//
-//
-//									 }
-//									else
-//									{
-//
-//									  print("Not   Leaves")
-//										self.Nodataview.isHidden = false
-//									 }
 //
 									
 									 self.CalendarData = NSMutableDictionary()
@@ -124,13 +116,13 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         
         
         
-        let borderBottom = CALayer()
-        let borderWidth = CGFloat(2.0)
-        borderBottom.borderColor = UIColor.gray.cgColor
-        borderBottom.frame = CGRect(x: 0, y: cell.Bckview.frame.height - 1.0, width: cell.Bckview.frame.width , height: cell.Bckview.frame.height - 1.0)
-        borderBottom.borderWidth = borderWidth
-        cell.Bckview.layer.addSublayer(borderBottom)
-        cell.Bckview.layer.masksToBounds = true
+//        let borderBottom = CALayer()
+//        let borderWidth = CGFloat(1.0)
+//        borderBottom.borderColor = UIColor.lightGray.cgColor
+//        borderBottom.frame = CGRect(x: 0, y: cell.Bckview.frame.height - 1.0, width: cell.Bckview.frame.width , height: cell.Bckview.frame.height - 1.0)
+//        borderBottom.borderWidth = borderWidth
+//        cell.Bckview.layer.addSublayer(borderBottom)
+//        cell.Bckview.layer.masksToBounds = false
         //Textfield border and bottom line color code
         
         cell.Bckview.layer.borderWidth = 2.0
@@ -147,19 +139,24 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 		
 		let CalendarDetails = CalendarArray.object(at: indexPath.row) as? NSDictionary
 		cell.EventdayLbl.text = CalendarDetails?.value(forKey: "holidayName") as? String
+		var Datestr = CalendarDetails?.value(forKey: "holidayDate") as? String
 		
-			cell.DateLbl.text = CalendarDetails?.value(forKey: "holidayDate") as? String
-		//cell.DayLbl.text = CalendarDetails?.value(forKey: "day") as? String
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		let myDate = dateFormatter.date(from: Datestr!)!
+
+		dateFormatter.dateFormat = "dd-MM-YYYY"
+		let Convertdate = dateFormatter.string(from: myDate)
+		cell.DateLbl.text = Convertdate
 		
 		let Daystr = CalendarDetails?.value(forKey: "day") as? String
-		
 		let DaystrLbl = String(Daystr!.prefix(3))
 		cell.DayLbl.text = DaystrLbl
 
 		cell.EventdayLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
 		let holidayNameattributes :Dictionary = [NSAttributedStringKey.font : cell.EventdayLbl.font]
 		
-		cell.DateLbl.font = UIFont(name: "HelveticaNeue-Light", size: 18.0)!
+		cell.DateLbl.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
 		let holidayDateattributes :Dictionary = [NSAttributedStringKey.font : cell.DateLbl.font]
 		
 		cell.DayLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
@@ -169,15 +166,6 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 		cell.DateLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
 		cell.DayLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
 
-
-
-		
-		
-		
-		
-			//cell.MobilenumberLbl.text = CalendarDetails?.value(forKey: "holidayName") as? String
-			
-        
         return cell
     }
     
@@ -190,7 +178,7 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 70
+        return 80
     }
 
     
