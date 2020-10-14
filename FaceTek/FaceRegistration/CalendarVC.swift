@@ -12,6 +12,8 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     
     
     @IBOutlet weak var Calendartbl: UITableView!
+	var CalendarData = NSMutableDictionary()
+    var CalendarArray = NSMutableArray()
     
     
     var DayArray = ["Wed","Wed","Sun","Fri","Wed","Sat","Fri","Sun","Mon","Mon","Sun","Sat","Fri"]
@@ -26,19 +28,85 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         Calendartbl.register(UINib(nibName: "Calendarcell", bundle: nil), forCellReuseIdentifier: "Calendarcell")
         
         
-      
+		let parameters = ["refbrId": 12 as Any] as [String : Any];
+		
+//		var StartPoint = Baseurl.shared().baseURL
+//		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/setup/generateOtp"
+		
+		let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/mobile/holidayClaendar/getholidayListByBrId")!
+		
+						//create the session object
+						let session = URLSession.shared
+						//now create the URLRequest object using the url object
+						var request = URLRequest(url: url as URL)
+						request.httpMethod = "POST" //set http method as POST
+						do {
+							request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+						} catch let error {
+							print(error.localizedDescription)
+						}
+						request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+						request.addValue("application/json", forHTTPHeaderField: "Accept")
+						//create dataTask using the ses
+						//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+						let task = URLSession.shared.dataTask(with: request) { data, response, error in
+							guard let data = data, error == nil else {
+								print(error?.localizedDescription ?? "No data")
+								return
+							}
+							let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+							if let responseJSON = responseJSON as? [String: Any] {
+								print("Pending Leaves Json Response",responseJSON)
+								DispatchQueue.main.async {
+						let statusDic = responseJSON["status"]! as! NSDictionary
+						print("status------",statusDic)
+						let Calendarcode = statusDic["code"] as? NSInteger
+						print("Calendar code-----",Calendarcode as Any)
+//									 if (LeavePendingCode == 200)
+//									{
+//
+//		//								let empnamestr = statusDic["empName"] as? String
+//		//
+//		//
+//										 self.MyTeamtbl.isHidden = false
+//
+//
+//
+//									 }
+//									else
+//									{
+//
+//									  print("Not   Leaves")
+//										self.Nodataview.isHidden = false
+//									 }
+//
+									
+									 self.CalendarData = NSMutableDictionary()
+									if responseJSON != nil{
+										self.CalendarData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
+										
+										if let temp = self.CalendarData.value(forKey: "holidayList") as? NSArray{
+											self.CalendarArray = temp.mutableCopy() as! NSMutableArray
+										}
+										
+									  
 
-
-        // Do any additional setup after loading the view.
-    }
-    
+									}
+								self.Calendartbl.reloadData()
+				//                }
+								}
+							}
+						}
+						task.resume()
+	}
+		
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         
         var count:Int?
         
         if tableView == self.Calendartbl {
-            count = CalendarEventdayArray.count
+			count = self.CalendarArray.count
         }
        
         return count!
@@ -76,20 +144,21 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
         cell.layer.shadowRadius = 4.0
         
         
-        
-        
-        
-        // set the text from the data model
-        cell.EventdayLbl?.text = self.CalendarEventdayArray[indexPath.row]
-        
-        cell.DayLbl?.text = self.DayArray[indexPath.row]
+		
+		let CalendarDetails = CalendarArray.object(at: indexPath.row) as? NSDictionary
+		cell.EventdayLbl.text = CalendarDetails?.value(forKey: "holidayName") as? String
+		
+			cell.DateLbl.text = CalendarDetails?.value(forKey: "holidayDate") as? String
+		//cell.DayLbl.text = CalendarDetails?.value(forKey: "day") as? String
+		
+		let Daystr = CalendarDetails?.value(forKey: "day") as? String
+		
+		let DaystrLbl = String(Daystr!.prefix(3))
+		cell.DayLbl.text = DaystrLbl
 
-        
-        
-        //        let image = NavigationMenuArray[indexPath.row]
-        //
-        //        cell.slideMenuimgicon.image = image
-        
+		
+			//cell.MobilenumberLbl.text = CalendarDetails?.value(forKey: "holidayName") as? String
+			
         
         return cell
     }
@@ -117,15 +186,4 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     }
     
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
