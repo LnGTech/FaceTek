@@ -963,6 +963,15 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 				
 				
 			}
+			
+			else if indexPath.item == 5 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				
+				let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+				self.present(LeaveHistoryVC, animated:true, completion:nil)
+				
+				
+			}
         
         else if indexPath.item == 6 {
 			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

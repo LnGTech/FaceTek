@@ -63,6 +63,9 @@
 		744BA9C9251CC303006E38D8 /* MyTeamtblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744BA9C7251CC303006E38D8 /* MyTeamtblCell.xib */; };
 		744D49F824F63946001075E8 /* SelectplaceDrpdwncell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744D49F624F63946001075E8 /* SelectplaceDrpdwncell.swift */; };
 		744D49F924F63946001075E8 /* SelectplaceDrpdwncell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744D49F724F63946001075E8 /* SelectplaceDrpdwncell.xib */; };
+		7450F7B525382383004F6A24 /* LeaveHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7450F7B425382383004F6A24 /* LeaveHistoryVC.swift */; };
+		7450F7B8253826D6004F6A24 /* LeaveHistoryHeadercell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7450F7B6253826D6004F6A24 /* LeaveHistoryHeadercell.swift */; };
+		7450F7B9253826D6004F6A24 /* LeaveHistoryHeadercell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7450F7B7253826D6004F6A24 /* LeaveHistoryHeadercell.xib */; };
 		7451D15024CC62F7006EE244 /* AbsentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */; };
 		7451D15124CC62F7006EE244 /* AbsentHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */; };
 		74520D3524CB1A5A001252ED /* AbsentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3424CB1A5A001252ED /* AbsentVC.swift */; };
@@ -243,6 +246,9 @@
 		744BA9C7251CC303006E38D8 /* MyTeamtblCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTeamtblCell.xib; sourceTree = "<group>"; };
 		744D49F624F63946001075E8 /* SelectplaceDrpdwncell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectplaceDrpdwncell.swift; sourceTree = "<group>"; };
 		744D49F724F63946001075E8 /* SelectplaceDrpdwncell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectplaceDrpdwncell.xib; sourceTree = "<group>"; };
+		7450F7B425382383004F6A24 /* LeaveHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveHistoryVC.swift; sourceTree = "<group>"; };
+		7450F7B6253826D6004F6A24 /* LeaveHistoryHeadercell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveHistoryHeadercell.swift; sourceTree = "<group>"; };
+		7450F7B7253826D6004F6A24 /* LeaveHistoryHeadercell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveHistoryHeadercell.xib; sourceTree = "<group>"; };
 		745163352507DC6200269C72 /* Facetek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Facetek.entitlements; sourceTree = "<group>"; };
 		7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsentHeaderCell.swift; sourceTree = "<group>"; };
 		7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsentHeaderCell.xib; sourceTree = "<group>"; };
@@ -399,6 +405,7 @@
 				745650E525235664009BFA88 /* Googlemapformtblcell.swift */,
 				745650E625235664009BFA88 /* Googlemapformtblcell.xib */,
 				744BA9C7251CC303006E38D8 /* MyTeamtblCell.xib */,
+				7450F7B32538233C004F6A24 /* LeaveHistory */,
 			);
 			path = "My Team";
 			sourceTree = "<group>";
@@ -467,6 +474,16 @@
 				744125D724D0328200075CC1 /* PendingHeadercell.xib */,
 			);
 			path = Manager;
+			sourceTree = "<group>";
+		};
+		7450F7B32538233C004F6A24 /* LeaveHistory */ = {
+			isa = PBXGroup;
+			children = (
+				7450F7B425382383004F6A24 /* LeaveHistoryVC.swift */,
+				7450F7B6253826D6004F6A24 /* LeaveHistoryHeadercell.swift */,
+				7450F7B7253826D6004F6A24 /* LeaveHistoryHeadercell.xib */,
+			);
+			path = LeaveHistory;
 			sourceTree = "<group>";
 		};
 		745FE48D24F3A75300A40776 /* FieldTracking */ = {
@@ -911,6 +928,7 @@
 				74444F9524D2F8C5005DA8EC /* ManagerLeavecell.xib in Resources */,
 				747F8DBE243B3E8E00ABBD5E /* home-icon_y.png in Resources */,
 				74FA123024AC687F00A356E7 /* DirectDisplayShader.vsh in Resources */,
+				7450F7B9253826D6004F6A24 /* LeaveHistoryHeadercell.xib in Resources */,
 				74795DBC244D9D1900C6F03C /* absent (1).png in Resources */,
 				74D9989824347DD400DFCBEC /* facetek-text-with-logo.png in Resources */,
 				745F31B6244ECEF400B89F08 /* Leaves1.png in Resources */,
@@ -1015,6 +1033,7 @@
 				74FA123C24AC68D400A356E7 /* RecognitionGLView.swift in Sources */,
 				74068875251CAAD900B4F654 /* MyTeamVC.swift in Sources */,
 				74E68A7224C832B100A3B009 /* Dropdowncell.swift in Sources */,
+				7450F7B525382383004F6A24 /* LeaveHistoryVC.swift in Sources */,
 				746017B12435F37700969CA2 /* NavigationMenucell.swift in Sources */,
 				74FA123824AC68BD00A356E7 /* RecognitionViewController.swift in Sources */,
 				74D998652434621200DFCBEC /* ViewController.swift in Sources */,
@@ -1046,6 +1065,7 @@
 				744125D424D0311D00075CC1 /* PendingLeavescellTableViewCell.swift in Sources */,
 				744125D124D02DA500075CC1 /* PendingLeavesVC.swift in Sources */,
 				744125D824D0328200075CC1 /* PendingHeadercell.swift in Sources */,
+				7450F7B8253826D6004F6A24 /* LeaveHistoryHeadercell.swift in Sources */,
 				7447702924CF1A2900EFBB2F /* EarlyLeaverscell.swift in Sources */,
 				74F5D124243758D400D6E811 /* SMRippleView.swift in Sources */,
 				7429321B24498B7000C59157 /* AppManager.swift in Sources */,
