@@ -10,10 +10,25 @@ import UIKit
 
 class LeaveHistorycell: UITableViewCell {
 
-	@IBOutlet weak var Leavetypename: UILabel!
+	@IBOutlet weak var LeaveHistorycellBackview: UIView!
 	
+	@IBOutlet weak var DateLbl: UILabel!
 	
-    override func awakeFromNib() {
+	@IBOutlet weak var NoofdaysLbl: UILabel!
+	
+	@IBOutlet weak var LeavetypeLbl: UILabel!
+	
+	@IBOutlet weak var Remarktxtview: UITextView!
+	
+	@IBOutlet weak var LeavedatetxtLbl: UILabel!
+	
+	@IBOutlet weak var NofodaystxtLbl: UILabel!
+	
+	@IBOutlet weak var LeavetypetxtLbl: UILabel!
+	
+	@IBOutlet weak var LeaveremarktxtLbl: UILabel!
+	
+	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }

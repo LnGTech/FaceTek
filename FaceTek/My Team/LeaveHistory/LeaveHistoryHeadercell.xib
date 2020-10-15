@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rB5-Wc-2Zv">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="41"/>
+                        <rect key="frame" x="0.0" y="0.0" width="318" height="41"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leave Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kKM-ZY-F62">
                                 <rect key="frame" x="8" y="10" width="134" height="21"/>
@@ -51,7 +51,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="0FZ-qz-kQo" firstAttribute="top" secondItem="rB5-Wc-2Zv" secondAttribute="top" constant="10" id="BXv-RI-sJZ"/>
-                            <constraint firstAttribute="trailing" secondItem="0FZ-qz-kQo" secondAttribute="trailing" constant="7" id="Jyj-MC-eTp"/>
+                            <constraint firstAttribute="trailing" secondItem="0FZ-qz-kQo" secondAttribute="trailing" constant="5" id="Jyj-MC-eTp"/>
                             <constraint firstItem="kKM-ZY-F62" firstAttribute="leading" secondItem="rB5-Wc-2Zv" secondAttribute="leading" constant="8" id="WUv-jC-Ed1"/>
                             <constraint firstItem="UVC-WH-nRq" firstAttribute="top" secondItem="rB5-Wc-2Zv" secondAttribute="top" constant="10" id="brK-X3-5Pl"/>
                             <constraint firstItem="0FZ-qz-kQo" firstAttribute="leading" secondItem="UVC-WH-nRq" secondAttribute="trailing" constant="8" id="lgi-QK-S9f"/>
@@ -63,13 +63,15 @@
                 <constraints>
                     <constraint firstItem="rB5-Wc-2Zv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="8Ee-rF-eBI"/>
                     <constraint firstItem="rB5-Wc-2Zv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="ByW-KL-7Og"/>
-                    <constraint firstAttribute="trailing" secondItem="rB5-Wc-2Zv" secondAttribute="trailing" id="EHi-w9-hqW"/>
+                    <constraint firstAttribute="trailing" secondItem="rB5-Wc-2Zv" secondAttribute="trailing" constant="2" id="EHi-w9-hqW"/>
                     <constraint firstAttribute="bottom" secondItem="rB5-Wc-2Zv" secondAttribute="bottom" id="M37-XB-MPV"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="LeaveHistoryRejectedLbl" destination="UVC-WH-nRq" id="Ptz-rS-ZcZ"/>
                 <outlet property="LeaveHistorystatusview" destination="rB5-Wc-2Zv" id="I3K-YY-stA"/>
+                <outlet property="LeavestsLbl" destination="kKM-ZY-F62" id="LEL-Kv-vDq"/>
             </connections>
             <point key="canvasLocation" x="-81.159420289855078" y="60.602678571428569"/>
         </tableViewCell>

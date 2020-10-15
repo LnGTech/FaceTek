@@ -10,7 +10,13 @@ import UIKit
 
 class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 	
-    var LeaveHistoryData = NSMutableDictionary()
+	
+	@IBOutlet weak var Dateselectedview: UIView!
+	
+	@IBOutlet weak var LeaveHistorytitleLbl: UILabel!
+	
+	@IBOutlet weak var SelectedDateLbl: UILabel!
+	var LeaveHistoryData = NSMutableDictionary()
 
 	@IBOutlet weak var Nodatafoundview: UIView!
 	
@@ -18,9 +24,21 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		Dateselectedview.layer.borderWidth = 1
+		Dateselectedview.layer.borderColor = UIColor.lightGray.cgColor
+
+		
 		LeaveHistorytbl.isHidden = true
 		Nodatafoundview.isHidden = true
+		self.LeaveHistorytbl.rowHeight = 230.0
+		LeaveHistorytitleLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 21.0)!
+		let LeaveHistorytitleattributes :Dictionary = [NSAttributedStringKey.font : LeaveHistorytitleLbl.font]
+		LeaveHistorytitleLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+		SelectedDateLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+		let LeaveHistoryselectedattributes :Dictionary = [NSAttributedStringKey.font : SelectedDateLbl.font]
+		SelectedDateLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
 		
+
 		LeaveHistorytbl.register(UINib(nibName: "LeaveHistorycell", bundle: nil), forCellReuseIdentifier: "LeaveHistorycell")
 
 		LeaveHistorytbl.register(UINib(nibName: "LeaveHistoryHeadercell", bundle: nil), forCellReuseIdentifier: "LeaveHistoryHeadercell")
@@ -142,6 +160,15 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 			headerCell.LeaveHistorystatusview.layer.borderColor = UIColor.lightGray.cgColor
 			
 			
+			headerCell.LeavestsLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)!
+			let LeaveHistorystsattributes :Dictionary = [NSAttributedStringKey.font : headerCell.LeavestsLbl.font]
+			headerCell.LeavestsLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+
+			
+			headerCell.LeaveHistoryRejectedLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)!
+			let LeaveHistoryRejectedattributes :Dictionary = [NSAttributedStringKey.font : headerCell.LeaveHistoryRejectedLbl.font]
+			//headerCell.LeaveHistoryRejectedLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			
 //            if let temp = dict?.value(forKey: "totalCount") as? Int{
 //                headerCell.lblCount.text = "count: \(temp)"
 //            }
@@ -164,7 +191,7 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         return headerCell
     }
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return 50
+        return 230
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 45
@@ -178,14 +205,82 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         if let temp = leaveTypeDetails?.value(forKey: "leaveType") as? String{
             strLeavetypeName = temp
         }
+		
+		
+		
+		
         let predict = NSPredicate(format: "leaveType = %@", strLeavetypeName)
         let arrFilter = arrLeaveHistory.filtered(using: predict) as NSArray
         if arrFilter.count > 0{
-            let dictEmp = arrFilter.object(at: indexPath.row) as? NSDictionary
-            LeaveHistorycell.Leavetypename.text = dictEmp?.value(forKey: "leaveType") as? String
+            let dictLeaveHistory = arrFilter.object(at: indexPath.row) as? NSDictionary
+            //LeaveHistorycell.Leavetypename.text = dictEmp?.value(forKey: "leaveType") as? String
+			
+			var Fromdatestr = ""
+			Fromdatestr = (dictLeaveHistory?.value(forKey: "empLeaveFrom") as? String)!
+			var Todatestr = ""
+			Todatestr = (dictLeaveHistory?.value(forKey: "empLeaveTo") as? String)!
+			
+			//var Datestr = Fromdatestr + Todatestr
+			var Datestr = Fromdatestr + " To " + Todatestr
+			LeaveHistorycell.DateLbl.text = Datestr
+			
+			
+			var Noofdayscount = Int()
+
+			Noofdayscount = (dictLeaveHistory?.value(forKey: "empLeaveDaysCount") as? NSInteger)!
+			let ConvertstNoofdayscountr2 = String(Noofdayscount)
+            LeaveHistorycell.NoofdaysLbl.text = ConvertstNoofdayscountr2
+			
+			
+			LeaveHistorycell.LeavetypeLbl.text = (dictLeaveHistory?.value(forKey: "leaveType") as? String)!
+			LeaveHistorycell.Remarktxtview.text = (dictLeaveHistory?.value(forKey: "empLeaveRemarks") as? String)!
+			
+			
+			LeaveHistorycell.LeavedatetxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)!
+			let Datetxtattributes :Dictionary = [NSAttributedStringKey.font : LeaveHistorycell.LeavedatetxtLbl.font]
+			LeaveHistorycell.LeavedatetxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			
+			LeaveHistorycell.NofodaystxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)!
+			let Noofdaystxtattributes :Dictionary = [NSAttributedStringKey.font : LeaveHistorycell.NofodaystxtLbl.font]
+			LeaveHistorycell.NofodaystxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			
+			LeaveHistorycell.LeavetypetxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)!
+			let Leavetypetxttxtattributes :Dictionary = [NSAttributedStringKey.font : LeaveHistorycell.LeavetypetxtLbl.font]
+			LeaveHistorycell.LeavetypetxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			
+			LeaveHistorycell.LeaveremarktxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)!
+			let Leaveremarktxttxtattributes :Dictionary = [NSAttributedStringKey.font : LeaveHistorycell.LeaveremarktxtLbl.font]
+			LeaveHistorycell.LeaveremarktxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			
+			
+
+			LeaveHistorycell.DateLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+			let Dateattributes :Dictionary = [NSAttributedStringKey.font : LeaveHistorycell.DateLbl.font]
+			LeaveHistorycell.DateLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+			
+			LeaveHistorycell.NoofdaysLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+			let Noofdaysattributes :Dictionary = [NSAttributedStringKey.font : LeaveHistorycell.NoofdaysLbl.font]
+			LeaveHistorycell.NoofdaysLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+			
+			LeaveHistorycell.LeavetypeLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+			let Leavetypeattributes :Dictionary = [NSAttributedStringKey.font : LeaveHistorycell.LeavetypeLbl.font]
+			LeaveHistorycell.LeavetypeLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+			
+			LeaveHistorycell.Remarktxtview.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+			let Leaveremarksattributes :Dictionary = [NSAttributedStringKey.font : LeaveHistorycell.Remarktxtview.font]
+			LeaveHistorycell.Remarktxtview.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+
+			
+			
+			
+			LeaveHistorycell.LeaveHistorycellBackview.layer.borderWidth = 1
+			LeaveHistorycell.LeaveHistorycellBackview.layer.borderColor = UIColor.lightGray.cgColor
         }
         return LeaveHistorycell
     }
+	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		return 230;//Choose your custom row height
+	}
 	
 }
 

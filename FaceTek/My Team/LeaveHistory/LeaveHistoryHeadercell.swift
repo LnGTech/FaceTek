@@ -12,7 +12,10 @@ class LeaveHistoryHeadercell: UITableViewCell {
 
 	@IBOutlet weak var LeaveHistorystatusview: UIView!
 	
+	@IBOutlet weak var LeavestsLbl: UILabel!
+	@IBOutlet weak var LeaveHistorystsLbl: UIView!
 	
+	@IBOutlet weak var LeaveHistoryRejectedLbl: UILabel!
 	
 	
     override func awakeFromNib() {
