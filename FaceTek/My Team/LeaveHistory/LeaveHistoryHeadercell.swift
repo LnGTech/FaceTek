@@ -10,7 +10,9 @@ import UIKit
 
 class LeaveHistoryHeadercell: UITableViewCell {
 
-	@IBOutlet weak var Leavestatusname: UILabel!
+	@IBOutlet weak var LeaveHistorystatusview: UIView!
+	
+	
 	
 	
     override func awakeFromNib() {

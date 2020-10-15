@@ -68,6 +68,7 @@
 		7450F7B9253826D6004F6A24 /* LeaveHistoryHeadercell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7450F7B7253826D6004F6A24 /* LeaveHistoryHeadercell.xib */; };
 		7450F7BC25383D73004F6A24 /* LeaveHistorycell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7450F7BA25383D73004F6A24 /* LeaveHistorycell.swift */; };
 		7450F7BD25383D73004F6A24 /* LeaveHistorycell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7450F7BB25383D73004F6A24 /* LeaveHistorycell.xib */; };
+		7450F7BF25385727004F6A24 /* Exlamationimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7450F7BE25385726004F6A24 /* Exlamationimg.png */; };
 		7451D15024CC62F7006EE244 /* AbsentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */; };
 		7451D15124CC62F7006EE244 /* AbsentHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */; };
 		74520D3524CB1A5A001252ED /* AbsentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3424CB1A5A001252ED /* AbsentVC.swift */; };
@@ -253,6 +254,7 @@
 		7450F7B7253826D6004F6A24 /* LeaveHistoryHeadercell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveHistoryHeadercell.xib; sourceTree = "<group>"; };
 		7450F7BA25383D73004F6A24 /* LeaveHistorycell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveHistorycell.swift; sourceTree = "<group>"; };
 		7450F7BB25383D73004F6A24 /* LeaveHistorycell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveHistorycell.xib; sourceTree = "<group>"; };
+		7450F7BE25385726004F6A24 /* Exlamationimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Exlamationimg.png; sourceTree = "<group>"; };
 		745163352507DC6200269C72 /* Facetek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Facetek.entitlements; sourceTree = "<group>"; };
 		7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsentHeaderCell.swift; sourceTree = "<group>"; };
 		7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsentHeaderCell.xib; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 				7450F7B425382383004F6A24 /* LeaveHistoryVC.swift */,
 				7450F7B6253826D6004F6A24 /* LeaveHistoryHeadercell.swift */,
 				7450F7B7253826D6004F6A24 /* LeaveHistoryHeadercell.xib */,
+				7450F7BE25385726004F6A24 /* Exlamationimg.png */,
 				7450F7BA25383D73004F6A24 /* LeaveHistorycell.swift */,
 				7450F7BB25383D73004F6A24 /* LeaveHistorycell.xib */,
 			);
@@ -936,6 +939,7 @@
 				74FA123024AC687F00A356E7 /* DirectDisplayShader.vsh in Resources */,
 				7450F7B9253826D6004F6A24 /* LeaveHistoryHeadercell.xib in Resources */,
 				74795DBC244D9D1900C6F03C /* absent (1).png in Resources */,
+				7450F7BF25385727004F6A24 /* Exlamationimg.png in Resources */,
 				74D9989824347DD400DFCBEC /* facetek-text-with-logo.png in Resources */,
 				745F31B6244ECEF400B89F08 /* Leaves1.png in Resources */,
 				74D9989E24349F9D00DFCBEC /* gps.png in Resources */,

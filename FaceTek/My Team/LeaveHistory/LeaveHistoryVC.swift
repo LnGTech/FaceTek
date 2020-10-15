@@ -137,8 +137,10 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         }
         if arrSectionsData.count > 0{
             let dict = arrSectionsData.object(at: section) as? NSDictionary
-			headerCell.Leavestatusname.text = "Leave Status"
-
+			//headerCell.Leavestatusname.text = "Leave Status"
+			headerCell.LeaveHistorystatusview.layer.borderWidth = 1
+			headerCell.LeaveHistorystatusview.layer.borderColor = UIColor.lightGray.cgColor
+			
 			
 //            if let temp = dict?.value(forKey: "totalCount") as? Int{
 //                headerCell.lblCount.text = "count: \(temp)"
@@ -165,7 +167,7 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         return 50
     }
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 75
+        return 45
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let LeaveHistorycell = tableView.dequeueReusableCell(withIdentifier: "LeaveHistorycell", for: indexPath) as! LeaveHistorycell
