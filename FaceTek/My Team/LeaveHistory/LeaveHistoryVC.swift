@@ -8,8 +8,10 @@
 
 import UIKit
 
-class LeaveHistoryVC: UIViewController {
+class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 	
+    var LeaveHistoryData = NSMutableDictionary()
+
 	@IBOutlet weak var Nodatafoundview: UIView!
 	
 	@IBOutlet weak var LeaveHistorytbl: UITableView!
@@ -18,6 +20,13 @@ class LeaveHistoryVC: UIViewController {
         super.viewDidLoad()
 		LeaveHistorytbl.isHidden = true
 		Nodatafoundview.isHidden = true
+		
+		LeaveHistorytbl.register(UINib(nibName: "LeaveHistorycell", bundle: nil), forCellReuseIdentifier: "LeaveHistorycell")
+
+		LeaveHistorytbl.register(UINib(nibName: "LeaveHistoryHeadercell", bundle: nil), forCellReuseIdentifier: "LeaveHistoryHeadercell")
+
+		
+		
 		
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
 		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
@@ -31,7 +40,7 @@ class LeaveHistoryVC: UIViewController {
 	{
         print("Leave Proceed------")
        
-        let parameters = ["empId": 358 as Any, "monthYear": "2020-10-01" as Any] as [String : Any]
+        let parameters = ["empId": 358 as Any, "monthYear": "2020-09-01" as Any] as [String : Any]
         
 		
 		var StartPoint = Baseurl.shared().baseURL
@@ -80,15 +89,101 @@ class LeaveHistoryVC: UIViewController {
         }
                 
                     }
-//                     self.mDictAttendanceData = NSMutableDictionary()
-//                    if responseJSON != nil{
-//                        self.mDictAttendanceData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
-//                    }
-//                   self.Absenttbl.reloadData()
+                     self.LeaveHistoryData = NSMutableDictionary()
+                    if responseJSON != nil{
+                        self.LeaveHistoryData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
+                    }
+				
+				DispatchQueue.main.async {
+					self.LeaveHistorytbl.reloadData()
+				}
                 }
             }
         
         task.resume()
     }
+	
+	func numberOfSections(in tableView: UITableView) -> Int {
+        if LeaveHistoryData.allKeys.count > 0{
+            if let temp = LeaveHistoryData.value(forKey: "empLeaveList") as? NSArray{
+                return temp.count
+            }
+            return 0
+        }
+        return 0
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if  LeaveHistoryData.allKeys.count > 0{
+            var arrSectionsData = NSArray()
+            if let temp = LeaveHistoryData.value(forKey: "empLeaveList") as? NSArray{
+                arrSectionsData = temp
+            }
+            if arrSectionsData.count > 0{
+                let dict = arrSectionsData.object(at: section) as? NSDictionary
+                if let temp = dict?.value(forKey: "empLeaveDaysCount") as? Int{
+                    return temp
+                }
+                return 0
+            }
+            return 0
+        }
+        return 0
+    }
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerCell = tableView.dequeueReusableCell(withIdentifier: "LeaveHistoryHeadercell") as! LeaveHistoryHeadercell
+        var arrSectionsData = NSArray()
+        if let temp = LeaveHistoryData.value(forKey: "empLeaveList") as? NSArray{
+            arrSectionsData = temp
+        }
+        if arrSectionsData.count > 0{
+            let dict = arrSectionsData.object(at: section) as? NSDictionary
+			headerCell.Leavestatusname.text = "Leave Status"
+
+			
+//            if let temp = dict?.value(forKey: "totalCount") as? Int{
+//                headerCell.lblCount.text = "count: \(temp)"
+//            }
+//            var strTimings = ""
+//            if let shiftStarttime = dict?.value(forKey: "shiftStart") as? String{
+//                strTimings = shiftStarttime
+//            }
+//            if let shiftEndtime = dict?.value(forKey: "shiftEnd") as? String{
+//                //strTimings = strTimings + shiftEndtime
+//                strTimings = "\(strTimings)  -  \(shiftEndtime)"
+//
+//            }
+//             headerCell.lblTimings.text = strTimings
+//            if let temp = dict?.value(forKey: "shiftName") as? String{
+//                 headerCell.lblShiftName.text = temp
+//            }
+//
+        }
+       
+        return headerCell
+    }
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return 50
+    }
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 75
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let LeaveHistorycell = tableView.dequeueReusableCell(withIdentifier: "LeaveHistorycell", for: indexPath) as! LeaveHistorycell
+         let arrLeaveHistory =  LeaveHistoryData.value(forKey: "empLeaveList") as! NSArray
+        
+        let leaveTypeDetails = arrLeaveHistory.object(at: indexPath.section) as? NSDictionary
+        var strLeavetypeName = ""
+        if let temp = leaveTypeDetails?.value(forKey: "leaveType") as? String{
+            strLeavetypeName = temp
+        }
+        let predict = NSPredicate(format: "leaveType = %@", strLeavetypeName)
+        let arrFilter = arrLeaveHistory.filtered(using: predict) as NSArray
+        if arrFilter.count > 0{
+            let dictEmp = arrFilter.object(at: indexPath.row) as? NSDictionary
+            LeaveHistorycell.Leavetypename.text = dictEmp?.value(forKey: "leaveType") as? String
+        }
+        return LeaveHistorycell
+    }
+	
 }
 

@@ -1,5 +1,5 @@
 //
-//  LeaveHistoryHeadercell.swift
+//  LeaveHistorycell.swift
 //  FaceTek
 //
 //  Created by sureshbabu bandaru on 10/15/20.
@@ -8,9 +8,9 @@
 
 import UIKit
 
-class LeaveHistoryHeadercell: UITableViewCell {
+class LeaveHistorycell: UITableViewCell {
 
-	@IBOutlet weak var Leavestatusname: UILabel!
+	@IBOutlet weak var Leavetypename: UILabel!
 	
 	
     override func awakeFromNib() {

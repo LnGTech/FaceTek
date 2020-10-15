@@ -66,6 +66,8 @@
 		7450F7B525382383004F6A24 /* LeaveHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7450F7B425382383004F6A24 /* LeaveHistoryVC.swift */; };
 		7450F7B8253826D6004F6A24 /* LeaveHistoryHeadercell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7450F7B6253826D6004F6A24 /* LeaveHistoryHeadercell.swift */; };
 		7450F7B9253826D6004F6A24 /* LeaveHistoryHeadercell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7450F7B7253826D6004F6A24 /* LeaveHistoryHeadercell.xib */; };
+		7450F7BC25383D73004F6A24 /* LeaveHistorycell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7450F7BA25383D73004F6A24 /* LeaveHistorycell.swift */; };
+		7450F7BD25383D73004F6A24 /* LeaveHistorycell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7450F7BB25383D73004F6A24 /* LeaveHistorycell.xib */; };
 		7451D15024CC62F7006EE244 /* AbsentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */; };
 		7451D15124CC62F7006EE244 /* AbsentHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */; };
 		74520D3524CB1A5A001252ED /* AbsentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3424CB1A5A001252ED /* AbsentVC.swift */; };
@@ -249,6 +251,8 @@
 		7450F7B425382383004F6A24 /* LeaveHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveHistoryVC.swift; sourceTree = "<group>"; };
 		7450F7B6253826D6004F6A24 /* LeaveHistoryHeadercell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveHistoryHeadercell.swift; sourceTree = "<group>"; };
 		7450F7B7253826D6004F6A24 /* LeaveHistoryHeadercell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveHistoryHeadercell.xib; sourceTree = "<group>"; };
+		7450F7BA25383D73004F6A24 /* LeaveHistorycell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveHistorycell.swift; sourceTree = "<group>"; };
+		7450F7BB25383D73004F6A24 /* LeaveHistorycell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveHistorycell.xib; sourceTree = "<group>"; };
 		745163352507DC6200269C72 /* Facetek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Facetek.entitlements; sourceTree = "<group>"; };
 		7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsentHeaderCell.swift; sourceTree = "<group>"; };
 		7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsentHeaderCell.xib; sourceTree = "<group>"; };
@@ -482,6 +486,8 @@
 				7450F7B425382383004F6A24 /* LeaveHistoryVC.swift */,
 				7450F7B6253826D6004F6A24 /* LeaveHistoryHeadercell.swift */,
 				7450F7B7253826D6004F6A24 /* LeaveHistoryHeadercell.xib */,
+				7450F7BA25383D73004F6A24 /* LeaveHistorycell.swift */,
+				7450F7BB25383D73004F6A24 /* LeaveHistorycell.xib */,
 			);
 			path = LeaveHistory;
 			sourceTree = "<group>";
@@ -940,6 +946,7 @@
 				745D5C6B247CE6CD00052FC4 /* facetek.png in Resources */,
 				7440736A24B74F4700B30039 /* selectmode.png in Resources */,
 				745D5C5F247CDA9700052FC4 /* Home_user.png in Resources */,
+				7450F7BD25383D73004F6A24 /* LeaveHistorycell.xib in Resources */,
 				7463BA8524EA4B2700EABA48 /* no_location_found.png in Resources */,
 				747F8DB8243B3D4800ABBD5E /* home-icon_w.png in Resources */,
 				740FC4E4243D988A00F71B72 /* today.png in Resources */,
@@ -1076,6 +1083,7 @@
 				745650E22522F6CC009BFA88 /* MyTeamGoogleMapVC.swift in Sources */,
 				7451D15024CC62F7006EE244 /* AbsentHeaderCell.swift in Sources */,
 				740D70C1243CB13E00CF6C2F /* WifiConnection.swift in Sources */,
+				7450F7BC25383D73004F6A24 /* LeaveHistorycell.swift in Sources */,
 				74520D3B24CB1AF5001252ED /* EarlyLeaversVC.swift in Sources */,
 				74F5D122243758C800D6E811 /* Extensions.swift in Sources */,
 				7429321524498B5300C59157 /* UIappViewController.swift in Sources */,
