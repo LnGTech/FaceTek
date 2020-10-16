@@ -10,7 +10,12 @@ import UIKit
 
 class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 	
-	
+	var Currentdatestr : String = ""
+	var SelectedDatestr : String = ""
+
+
+
+
 	@IBOutlet weak var Dateselectedview: UIView!
 	
 	@IBOutlet weak var LeaveHistorytitleLbl: UILabel!
@@ -24,10 +29,21 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		let today = Date()
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		Currentdatestr = dateFormatter.string(from: today)
+		SelectedDateLbl.text = Currentdatestr
+		
+		
 		Dateselectedview.layer.borderWidth = 1
 		Dateselectedview.layer.borderColor = UIColor.lightGray.cgColor
 
-		
+		let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.DateselectedViewAction))
+		self.Dateselectedview.addGestureRecognizer(gesture)
+
+				
 		LeaveHistorytbl.isHidden = true
 		Nodatafoundview.isHidden = true
 		self.LeaveHistorytbl.rowHeight = 230.0
@@ -54,11 +70,40 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 
         // Do any additional setup after loading the view.
     }
+	
+	
+	@objc func DateselectedViewAction(sender : UITapGestureRecognizer) {
+		print("Selected date...")
+		AKMonthYearPickerView.sharedInstance.barTintColor =  #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+
+			   AKMonthYearPickerView.sharedInstance.previousYear = 4
+			   
+			   AKMonthYearPickerView.sharedInstance.show(vc: self, doneHandler: doneHandler, completetionalHandler: completetionalHandler)
+	}
+
+	
     func LeaveHistorymethod()
 	{
         print("Leave Proceed------")
        
-        let parameters = ["empId": 358 as Any, "monthYear": "2020-09-01" as Any] as [String : Any]
+		let defaults = UserDefaults.standard
+		
+		var RetrivedempId = defaults.integer(forKey: "empId")
+		print(" RetrivedempId----",RetrivedempId)
+		
+
+		
+        let parameters = ["empId": RetrivedempId as Any, "monthYear": Currentdatestr as Any] as [String : Any]
+		
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		let myDate = dateFormatter.date(from: Currentdatestr)!
+
+		dateFormatter.dateFormat = "MMM yyyy"
+		let Convertdate = dateFormatter.string(from: myDate)
+		print("Convertdate",Convertdate)
+		SelectedDateLbl.text = Convertdate
+		
         
 		
 		var StartPoint = Baseurl.shared().baseURL
@@ -120,6 +165,9 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         
         task.resume()
     }
+	
+	
+	
 	
 	func numberOfSections(in tableView: UITableView) -> Int {
         if LeaveHistoryData.allKeys.count > 0{
@@ -281,6 +329,111 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 		return 230;//Choose your custom row height
 	}
+	
+	private func doneHandler() {
+		
+				print("Month picker Done button action")
+		selected_date_DoneMethod()
+    }
+    
+	
+    private func completetionalHandler(month: Int, year: Int) {
+        print( "month = ", month, " year = ", year )
+		var Monthstr = String(month)
+		var Yearstr = String(year)
+		var Datestr = "1"
+
+		
+		
+		SelectedDatestr = Yearstr + "-" + Monthstr + "-" + Datestr
+		
+		print("SelectedDatestr....",SelectedDatestr)
+    }
+	
+	func selected_date_DoneMethod()
+	{
+			print("Leave Proceed------")
+		   
+			let defaults = UserDefaults.standard
+			
+			var RetrivedempId = defaults.integer(forKey: "empId")
+			print(" RetrivedempId----",RetrivedempId)
+			
+
+			
+			let parameters = ["empId": RetrivedempId as Any, "monthYear": SelectedDatestr as Any] as [String : Any]
+		
+		
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		let myDate = dateFormatter.date(from: SelectedDatestr)!
+
+		dateFormatter.dateFormat = "MMM yyyy"
+		let Convertdate = dateFormatter.string(from: myDate)
+		print("Convertdate",Convertdate)
+		SelectedDateLbl.text = Convertdate
+		
+		
+			
+			var StartPoint = Baseurl.shared().baseURL
+			var Endpoint = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getEmployeeLeaveList"
+			
+			let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+			
+			//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/getAbsentEmployeeDetails")!
+			//http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
+			//create the session object
+			let session = URLSession.shared
+			//now create the URLRequest object using the url object
+			var request = URLRequest(url: url as URL)
+			request.httpMethod = "POST" //set http method as POST
+			do {
+				request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+			} catch let error {
+				print(error.localizedDescription)
+			}
+			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+			request.addValue("application/json", forHTTPHeaderField: "Accept")
+			//create dataTask using the ses
+			//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+			let task = URLSession.shared.dataTask(with: request) { data, response, error in
+				guard let data = data, error == nil else {
+					print(error?.localizedDescription ?? "No data")
+					return
+				}
+				let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+				if let responseJSON = responseJSON as? [String: Any] {
+					print("Leave History Json Response",responseJSON)
+					DispatchQueue.main.async {
+				 if let absentShiftDetailsid = responseJSON["empLeaveList"] as? NSNull {
+				
+			 print("null values printed.....")
+					self.Nodatafoundview.isHidden = false
+
+	//             self.NoLeavesView.isHidden = false
+	//            self.Absenttbl.isHidden = true
+											}
+				else
+				{
+					self.LeaveHistorytbl.isHidden = false
+
+			print("Normal values printed....")
+			}
+					
+						}
+						 self.LeaveHistoryData = NSMutableDictionary()
+						if responseJSON != nil{
+							self.LeaveHistoryData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
+						}
+					
+					DispatchQueue.main.async {
+						self.LeaveHistorytbl.reloadData()
+					}
+					}
+				}
+			
+			task.resume()
+		}
 	
 }
 

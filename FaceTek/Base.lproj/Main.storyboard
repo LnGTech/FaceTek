@@ -6066,7 +6066,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="LdR-vA-ysz" firstAttribute="top" secondItem="LBp-qg-N3h" secondAttribute="top" constant="13" id="14V-2j-M1y"/>
                                     <constraint firstAttribute="height" constant="280" id="RbO-5E-Bnm"/>
