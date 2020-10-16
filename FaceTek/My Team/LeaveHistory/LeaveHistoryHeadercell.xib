@@ -31,7 +31,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Rejected" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UVC-WH-nRq">
-                                <rect key="frame" x="209" y="10" width="75" height="21"/>
+                                <rect key="frame" x="204" y="10" width="75" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="G7l-rm-Bre"/>
                                     <constraint firstAttribute="width" constant="75" id="qif-jr-lHE"/>
@@ -41,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Exlamationimg.png" translatesAutoresizingMaskIntoConstraints="NO" id="0FZ-qz-kQo">
-                                <rect key="frame" x="292" y="10" width="21" height="21"/>
+                                <rect key="frame" x="287" y="10" width="21" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="21" id="FJJ-WB-jM1"/>
                                     <constraint firstAttribute="height" constant="21" id="i0p-b2-fUC"/>
@@ -51,7 +51,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="0FZ-qz-kQo" firstAttribute="top" secondItem="rB5-Wc-2Zv" secondAttribute="top" constant="10" id="BXv-RI-sJZ"/>
-                            <constraint firstAttribute="trailing" secondItem="0FZ-qz-kQo" secondAttribute="trailing" constant="5" id="Jyj-MC-eTp"/>
+                            <constraint firstAttribute="trailing" secondItem="0FZ-qz-kQo" secondAttribute="trailing" constant="10" id="Jyj-MC-eTp"/>
                             <constraint firstItem="kKM-ZY-F62" firstAttribute="leading" secondItem="rB5-Wc-2Zv" secondAttribute="leading" constant="8" id="WUv-jC-Ed1"/>
                             <constraint firstItem="UVC-WH-nRq" firstAttribute="top" secondItem="rB5-Wc-2Zv" secondAttribute="top" constant="10" id="brK-X3-5Pl"/>
                             <constraint firstItem="0FZ-qz-kQo" firstAttribute="leading" secondItem="UVC-WH-nRq" secondAttribute="trailing" constant="8" id="lgi-QK-S9f"/>
@@ -72,6 +72,7 @@
                 <outlet property="LeaveHistoryRejectedLbl" destination="UVC-WH-nRq" id="Ptz-rS-ZcZ"/>
                 <outlet property="LeaveHistorystatusview" destination="rB5-Wc-2Zv" id="I3K-YY-stA"/>
                 <outlet property="LeavestsLbl" destination="kKM-ZY-F62" id="LEL-Kv-vDq"/>
+                <outlet property="Rejectedimg" destination="0FZ-qz-kQo" id="KVU-Sa-NuF"/>
             </connections>
             <point key="canvasLocation" x="-81.159420289855078" y="60.602678571428569"/>
         </tableViewCell>

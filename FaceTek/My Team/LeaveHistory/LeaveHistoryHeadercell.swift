@@ -17,6 +17,7 @@ class LeaveHistoryHeadercell: UITableViewCell {
 	
 	@IBOutlet weak var LeaveHistoryRejectedLbl: UILabel!
 	
+	@IBOutlet weak var Rejectedimg: UIImageView!
 	
     override func awakeFromNib() {
         super.awakeFromNib()

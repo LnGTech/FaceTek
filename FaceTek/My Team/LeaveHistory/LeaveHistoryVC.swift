@@ -14,7 +14,8 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	var SelectedDatestr : String = ""
 
 
-
+	@IBOutlet weak var RejectedView: UIView!
+	
 
 	@IBOutlet weak var Dateselectedview: UIView!
 	
@@ -46,6 +47,7 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 				
 		LeaveHistorytbl.isHidden = true
 		Nodatafoundview.isHidden = true
+		RejectedView.isHidden = true
 		self.LeaveHistorytbl.rowHeight = 230.0
 		LeaveHistorytitleLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 21.0)!
 		let LeaveHistorytitleattributes :Dictionary = [NSAttributedStringKey.font : LeaveHistorytitleLbl.font]
@@ -65,6 +67,17 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
 		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
 		view.addSubview(statusBarView)
+		
+		
+		RejectedView.layer.cornerRadius = 20
+		RejectedView.clipsToBounds = true
+		RejectedView.layer.masksToBounds = false
+		RejectedView.layer.shadowRadius = 7
+		RejectedView.layer.shadowOpacity = 0.6
+		RejectedView.layer.shadowOffset = CGSize(width: 0, height: 5)
+		RejectedView.layer.shadowColor = UIColor.black.cgColor
+		
+		
 		
 		LeaveHistorymethod()
 
@@ -207,6 +220,11 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 			headerCell.LeaveHistorystatusview.layer.borderWidth = 1
 			headerCell.LeaveHistorystatusview.layer.borderColor = UIColor.lightGray.cgColor
 			
+			let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(imageTapped(tapGestureRecognizer:)))
+			headerCell.Rejectedimg.isUserInteractionEnabled = true
+			headerCell.addGestureRecognizer(tapGestureRecognizer)
+			
+			
 			
 			headerCell.LeavestsLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)!
 			let LeaveHistorystsattributes :Dictionary = [NSAttributedStringKey.font : headerCell.LeavestsLbl.font]
@@ -238,6 +256,15 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
        
         return headerCell
     }
+	@objc func imageTapped(tapGestureRecognizer: UITapGestureRecognizer)
+	{
+
+		RejectedView.isHidden = false
+
+	print("image tapped")
+		// Your action
+	}
+	
     func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return 230
     }
@@ -434,6 +461,12 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 			
 			task.resume()
 		}
+	
+	
+	@IBAction func Closebtn(_ sender: Any) {
+		RejectedView.isHidden = true
+		
+	}
 	
 }
 
