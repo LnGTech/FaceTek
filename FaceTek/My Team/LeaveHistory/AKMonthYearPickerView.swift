@@ -40,7 +40,7 @@ public class AKMonthYearPickerView: UIView {
     public  var previousYear        = 10
     
     public static var sharedInstance   = {
-        return AKMonthYearPickerView(frame: CGRect(origin: CGPoint(x: 0, y: (AKMonthYearPickerConstants.AppFrameSettings.screenHeight - 256) / 2), size: CGSize(width: AKMonthYearPickerConstants.AppFrameSettings.screenWidth, height: 216)))
+        return AKMonthYearPickerView(frame: CGRect(origin: CGPoint(x: 0, y: (AKMonthYearPickerConstants.AppFrameSettings.screenHeight + 240) / 2), size: CGSize(width: AKMonthYearPickerConstants.AppFrameSettings.screenWidth, height: 216)))
     }()
     
     var toolBar : UIToolbar?
@@ -104,7 +104,7 @@ public class AKMonthYearPickerView: UIView {
     
     private func getToolBar() -> UIToolbar {
         
-        let customToolbar          = UIToolbar(frame: CGRect(origin: CGPoint(x: 0, y: (AKMonthYearPickerConstants.AppFrameSettings.screenHeight - 256) / 2), size: CGSize(width: AKMonthYearPickerConstants.AppFrameSettings.screenWidth, height: 40)))
+        let customToolbar          = UIToolbar(frame: CGRect(origin: CGPoint(x: 0, y: (AKMonthYearPickerConstants.AppFrameSettings.screenHeight + 250) / 2), size: CGSize(width: AKMonthYearPickerConstants.AppFrameSettings.screenWidth, height: 40)))
         
         customToolbar.barStyle     = .blackTranslucent
         customToolbar.barTintColor = barTintColor
@@ -124,7 +124,7 @@ public class AKMonthYearPickerView: UIView {
 		
 		
 		let cancelButton = UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.done, target: self, action: "cancelButtonPressed:")
-		let acceptButton = UIBarButtonItem(title: "Accept", style: UIBarButtonItemStyle.plain, target: self, action: "acceptButtonPressed:")
+		let acceptButton = UIBarButtonItem(title: "Proceed", style: UIBarButtonItemStyle.plain, target: self, action: "acceptButtonPressed:")
 		let flexibleSpace = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.flexibleSpace, target: nil, action: nil);
 		toolbar.items = [cancelButton, flexibleSpace, acceptButton]
 		
