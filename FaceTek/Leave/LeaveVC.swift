@@ -418,6 +418,15 @@ task.resume()
 	let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
 	self.present(CalendarVC, animated:true, completion:nil)
    }
+		else if indexPath.item == 1 {
+			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+			
+			let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+			self.present(AttendanceHistoryVC, animated:true, completion:nil)
+			
+			
+		}
+		
    else if indexPath.item == 2 {
    let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
    let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC

@@ -6205,7 +6205,60 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5rP-73-hBN" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="8549.6000000000004" y="-591.45427286356824"/>
+            <point key="canvasLocation" x="8508" y="-591"/>
+        </scene>
+        <!--Attendance HistoryVC-->
+        <scene sceneID="0aX-wr-5DQ">
+            <objects>
+                <viewController storyboardIdentifier="AttendanceHistoryVC" modalPresentationStyle="fullScreen" id="XkG-Yq-sTx" customClass="AttendanceHistoryVC" customModule="Facetek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="i9W-H5-Rqe">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2di-VI-xkg">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attendance History" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2ox-aI-G6o">
+                                        <rect key="frame" x="71" y="10" width="175" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="175" id="uLJ-lK-Vg0"/>
+                                            <constraint firstAttribute="height" constant="25" id="wWD-pB-4hM"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ADy-5y-vgg">
+                                        <rect key="frame" x="13" y="10" width="15" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Lkj-cq-iNd"/>
+                                            <constraint firstAttribute="width" constant="15" id="aeZ-c3-0u4"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="backicon.png"/>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.054901960780000002" green="0.29803921570000003" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ADy-5y-vgg" firstAttribute="leading" secondItem="2di-VI-xkg" secondAttribute="leading" constant="13" id="C4R-nC-Xxo"/>
+                                    <constraint firstItem="ADy-5y-vgg" firstAttribute="top" secondItem="2di-VI-xkg" secondAttribute="top" constant="10" id="bS2-pG-xaU"/>
+                                    <constraint firstItem="2ox-aI-G6o" firstAttribute="leading" secondItem="ADy-5y-vgg" secondAttribute="trailing" constant="43" id="eDr-Z3-b0U"/>
+                                    <constraint firstAttribute="height" constant="50" id="t3h-dB-rSf"/>
+                                    <constraint firstItem="2ox-aI-G6o" firstAttribute="top" secondItem="2di-VI-xkg" secondAttribute="top" constant="10" id="xoR-DU-nJX"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="2di-VI-xkg" firstAttribute="leading" secondItem="o5S-HC-7V5" secondAttribute="leading" id="LqQ-p9-o3n"/>
+                            <constraint firstItem="2di-VI-xkg" firstAttribute="trailing" secondItem="o5S-HC-7V5" secondAttribute="trailing" id="eay-87-AWB"/>
+                            <constraint firstItem="2di-VI-xkg" firstAttribute="top" secondItem="o5S-HC-7V5" secondAttribute="top" id="qfG-Xr-zRw"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="o5S-HC-7V5"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="PZy-kB-8oh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9217" y="-595"/>
         </scene>
     </scenes>
     <resources>

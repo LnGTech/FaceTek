@@ -70,6 +70,7 @@
 		7450F7BD25383D73004F6A24 /* LeaveHistorycell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7450F7BB25383D73004F6A24 /* LeaveHistorycell.xib */; };
 		7450F7BF25385727004F6A24 /* Exlamationimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7450F7BE25385726004F6A24 /* Exlamationimg.png */; };
 		7450F7C12539950E004F6A24 /* AKMonthYearPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7450F7C02539950E004F6A24 /* AKMonthYearPickerView.swift */; };
+		7450F7C42539CA17004F6A24 /* AttendanceHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7450F7C32539CA17004F6A24 /* AttendanceHistoryVC.swift */; };
 		7451D15024CC62F7006EE244 /* AbsentHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */; };
 		7451D15124CC62F7006EE244 /* AbsentHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */; };
 		74520D3524CB1A5A001252ED /* AbsentVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3424CB1A5A001252ED /* AbsentVC.swift */; };
@@ -257,6 +258,7 @@
 		7450F7BB25383D73004F6A24 /* LeaveHistorycell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveHistorycell.xib; sourceTree = "<group>"; };
 		7450F7BE25385726004F6A24 /* Exlamationimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Exlamationimg.png; sourceTree = "<group>"; };
 		7450F7C02539950E004F6A24 /* AKMonthYearPickerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AKMonthYearPickerView.swift; sourceTree = "<group>"; };
+		7450F7C32539CA17004F6A24 /* AttendanceHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AttendanceHistoryVC.swift; sourceTree = "<group>"; };
 		745163352507DC6200269C72 /* Facetek.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Facetek.entitlements; sourceTree = "<group>"; };
 		7451D14E24CC62F7006EE244 /* AbsentHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsentHeaderCell.swift; sourceTree = "<group>"; };
 		7451D14F24CC62F7006EE244 /* AbsentHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsentHeaderCell.xib; sourceTree = "<group>"; };
@@ -498,6 +500,14 @@
 			path = LeaveHistory;
 			sourceTree = "<group>";
 		};
+		7450F7C22539C9D9004F6A24 /* Attendance History */ = {
+			isa = PBXGroup;
+			children = (
+				7450F7C32539CA17004F6A24 /* AttendanceHistoryVC.swift */,
+			);
+			path = "Attendance History";
+			sourceTree = "<group>";
+		};
 		745FE48D24F3A75300A40776 /* FieldTracking */ = {
 			isa = PBXGroup;
 			children = (
@@ -688,6 +698,7 @@
 				740D70B9243C8EB700CF6C2F /* Leave */,
 				745FE48D24F3A75300A40776 /* FieldTracking */,
 				74068871251CAA7800B4F654 /* My Team */,
+				7450F7C22539C9D9004F6A24 /* Attendance History */,
 				74D998662434621200DFCBEC /* Main.storyboard */,
 				74D9986C2434621300DFCBEC /* Assets.xcassets */,
 				747F8D9B243AEA8300ABBD5E /* Images */,
@@ -1050,6 +1061,7 @@
 				7450F7B525382383004F6A24 /* LeaveHistoryVC.swift in Sources */,
 				746017B12435F37700969CA2 /* NavigationMenucell.swift in Sources */,
 				74FA123824AC68BD00A356E7 /* RecognitionViewController.swift in Sources */,
+				7450F7C42539CA17004F6A24 /* AttendanceHistoryVC.swift in Sources */,
 				74D998652434621200DFCBEC /* ViewController.swift in Sources */,
 				7449F96D24AE284900232D46 /* LogINVC.swift in Sources */,
 				740D70BF243C9A0700CF6C2F /* OfficeOutVC.swift in Sources */,
