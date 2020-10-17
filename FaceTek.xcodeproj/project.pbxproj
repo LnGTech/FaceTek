@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		272A19662509212C0036A431 /* InternetConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 272A19652509212C0036A431 /* InternetConnection.swift */; };
+		27AB124F253AC811002667B0 /* LocalAuthFailed.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27AB124E253AC811002667B0 /* LocalAuthFailed.storyboard */; };
+		27AB1254253AC828002667B0 /* LocalAuthFailedVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27AB1253253AC828002667B0 /* LocalAuthFailedVC.swift */; };
 		27C15748250908DA008A4B0E /* InternetConnection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 27C15747250908DA008A4B0E /* InternetConnection.storyboard */; };
 		441CB81EC64E93C9F09F4678 /* Pods_FaceTek.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9E0F6F10C2DF4F3018A06F56 /* Pods_FaceTek.framework */; };
 		74068875251CAAD900B4F654 /* MyTeamVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74068874251CAAD900B4F654 /* MyTeamVC.swift */; };
@@ -168,7 +170,6 @@
 		74FA122F24AC687F00A356E7 /* DirectDisplayShader.fsh in Resources */ = {isa = PBXBuildFile; fileRef = 74FA122D24AC687F00A356E7 /* DirectDisplayShader.fsh */; };
 		74FA123024AC687F00A356E7 /* DirectDisplayShader.vsh in Resources */ = {isa = PBXBuildFile; fileRef = 74FA122E24AC687F00A356E7 /* DirectDisplayShader.vsh */; };
 		74FA123524AC689800A356E7 /* libfsdk-static_64.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FA123324AC689800A356E7 /* libfsdk-static_64.a */; };
-		74FA123624AC689800A356E7 /* libfsdk-static.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 74FA123424AC689800A356E7 /* libfsdk-static.a */; };
 		74FA123824AC68BD00A356E7 /* RecognitionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FA123724AC68BD00A356E7 /* RecognitionViewController.swift */; };
 		74FA123A24AC68C800A356E7 /* RecognitionCamera.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FA123924AC68C700A356E7 /* RecognitionCamera.swift */; };
 		74FA123C24AC68D400A356E7 /* RecognitionGLView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74FA123B24AC68D400A356E7 /* RecognitionGLView.swift */; };
@@ -195,6 +196,8 @@
 
 /* Begin PBXFileReference section */
 		272A19652509212C0036A431 /* InternetConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InternetConnection.swift; sourceTree = "<group>"; };
+		27AB124E253AC811002667B0 /* LocalAuthFailed.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LocalAuthFailed.storyboard; sourceTree = "<group>"; };
+		27AB1253253AC828002667B0 /* LocalAuthFailedVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalAuthFailedVC.swift; sourceTree = "<group>"; };
 		27C15747250908DA008A4B0E /* InternetConnection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = InternetConnection.storyboard; sourceTree = "<group>"; };
 		74068874251CAAD900B4F654 /* MyTeamVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamVC.swift; sourceTree = "<group>"; };
 		740D706D243C419B00CF6C2F /* office_in.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = office_in.png; sourceTree = "<group>"; };
@@ -384,7 +387,6 @@
 				744367BF24D2C98400B4AF4D /* WebKit.framework in Frameworks */,
 				74FA123524AC689800A356E7 /* libfsdk-static_64.a in Frameworks */,
 				74FA124324AC698100A356E7 /* libz.tbd in Frameworks */,
-				74FA123624AC689800A356E7 /* libfsdk-static.a in Frameworks */,
 				441CB81EC64E93C9F09F4678 /* Pods_FaceTek.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -406,6 +408,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		27AB124D253AC7F8002667B0 /* LocalAuthentication */ = {
+			isa = PBXGroup;
+			children = (
+				27AB124E253AC811002667B0 /* LocalAuthFailed.storyboard */,
+				27AB1253253AC828002667B0 /* LocalAuthFailedVC.swift */,
+			);
+			path = LocalAuthentication;
+			sourceTree = "<group>";
+		};
 		74068871251CAA7800B4F654 /* My Team */ = {
 			isa = PBXGroup;
 			children = (
@@ -679,6 +690,7 @@
 			isa = PBXGroup;
 			children = (
 				745163352507DC6200269C72 /* Facetek.entitlements */,
+				27AB124D253AC7F8002667B0 /* LocalAuthentication */,
 				74FA123124AC689800A356E7 /* FaceSDK */,
 				74FA122C24AC687F00A356E7 /* Shaders */,
 				7424A04624AC6AFB000B466F /* AppDelegate.swift */,
@@ -951,6 +963,7 @@
 				74444F9524D2F8C5005DA8EC /* ManagerLeavecell.xib in Resources */,
 				747F8DBE243B3E8E00ABBD5E /* home-icon_y.png in Resources */,
 				74FA123024AC687F00A356E7 /* DirectDisplayShader.vsh in Resources */,
+				27AB124F253AC811002667B0 /* LocalAuthFailed.storyboard in Resources */,
 				7450F7B9253826D6004F6A24 /* LeaveHistoryHeadercell.xib in Resources */,
 				74795DBC244D9D1900C6F03C /* absent (1).png in Resources */,
 				7450F7BF25385727004F6A24 /* Exlamationimg.png in Resources */,
@@ -1088,6 +1101,7 @@
 				7429321924498B6600C59157 /* Protocols.swift in Sources */,
 				744BA9C8251CC303006E38D8 /* MyTeamtblCell.swift in Sources */,
 				74F5D11E243758A600D6E811 /* InputOTPVC.swift in Sources */,
+				27AB1254253AC828002667B0 /* LocalAuthFailedVC.swift in Sources */,
 				74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */,
 				744125D424D0311D00075CC1 /* PendingLeavescellTableViewCell.swift in Sources */,
 				744125D124D02DA500075CC1 /* PendingLeavesVC.swift in Sources */,
@@ -1224,7 +1238,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1279,7 +1293,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 12.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -1298,12 +1312,12 @@
 				CODE_SIGN_ENTITLEMENTS = FaceTek/Facetek.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.28;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Q74B5B8Q2;
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = FaceTek/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1312,7 +1326,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FaceTek/FaceSDK",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lng.FaceTek;
 				PRODUCT_NAME = Facetek;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1332,12 +1346,12 @@
 				CODE_SIGN_ENTITLEMENTS = FaceTek/Facetek.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1.0.28;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 6Q74B5B8Q2;
 				ENABLE_BITCODE = NO;
 				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = FaceTek/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 11.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1346,7 +1360,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/FaceTek/FaceSDK",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.5;
 				PRODUCT_BUNDLE_IDENTIFIER = com.Lng.FaceTek;
 				PRODUCT_NAME = Facetek;
 				PROVISIONING_PROFILE_SPECIFIER = "";

@@ -9,6 +9,7 @@
 import UIKit
 import CoreData
 import GoogleMaps
+import LocalAuthentication
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -54,14 +55,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		//			}
 		//		}
 		
-		let def = UserDefaults.standard
-		let is_authenticated = def.string(forKey: "RetrivedFaceid") // return false if not found or stored value
-		print("is_authenticated-----",is_authenticated)
-		var RetrivedFace = String()
 		let defaults = UserDefaults.standard
-		if let RetrivedFace = defaults.string(forKey: "RetrivedFaceid") {
-			print("RetrivedFaceid----",RetrivedFace)
-		}
+		let is_authenticated = defaults.string(forKey: "RetrivedFaceid") // return false if not found or stored value
 		
 		if let name = defaults.string(forKey: "userNameKey") {
 			print("nsuserdefault----",name)
@@ -73,29 +68,64 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				navVC.navigationBar.isHidden = true
 				self.window?.rootViewController = navVC
 				self.window?.makeKeyAndVisible()
-
-				
-//				                let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//				                let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
-//				                //self.present(tabBarController, animated:true, completion:nil)
-//				                self.window?.rootViewController = tabBarController
-//				                self.window?.makeKeyAndVisible()
-//
-//
-//
-				
 			} else if (name == "Coding Explorer" && is_authenticated != nil) {
 				//already registered user
-				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
-				//self.present(tabBarController, animated:true, completion:nil)
-				self.window?.rootViewController = tabBarController
-				self.window?.makeKeyAndVisible()
+				
+				//Add local authentication to pass through Apple Review Guidelines
+				//Guideline 2.5.13 - Performance - Software Requirements
+				//https://developer.apple.com/app-store/review/guidelines/#performance
+				
+				let context = LAContext()
+				context.localizedCancelTitle = "Enter Username/Password"
+				var error: NSError? = nil
+				if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
+					let reason = "Log in to your account"
+					context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason ) { success, error in
+
+						if success {
+							// Move to the main thread because a state update triggers UI changes.
+							DispatchQueue.main.async { [unowned self] in
+								//successfully loggedin/authenticated
+								self.goToHomeScreen()
+							}
+
+						} else {
+							print(error?.localizedDescription ?? "Failed to authenticate")
+							// Fall back to a asking for username and password.
+							
+							DispatchQueue.main.async {
+								self.localAuthFailed()
+							}
+						}
+					}
+				} else {
+					// Fall back to a asking for username and password.
+					// Device doesn't have face ID and touch ID
+					self.goToHomeScreen()
+				}
+				
+				
 			} else {
 				print("normal")
 			}
 		}
 		return true
+	}
+	
+	private func goToHomeScreen() {
+		//successfully loggedin/authenticated
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+		let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
+		//self.present(tabBarController, animated:true, completion:nil)
+		self.window?.rootViewController = tabBarController
+		self.window?.makeKeyAndVisible()
+	}
+	
+	private func localAuthFailed() {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "LocalAuthFailed", bundle:nil)
+		let viewController = storyBoard.instantiateInitialViewController()
+		self.window?.rootViewController = viewController
+		self.window?.makeKeyAndVisible()
 	}
 	
 	func applicationWillResignActive(_ application: UIApplication) {

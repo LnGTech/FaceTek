@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="H9s-4k-gd0">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Local Auth FailedVC-->
+        <scene sceneID="c9v-rP-KAZ">
+            <objects>
+                <viewController id="H9s-4k-gd0" customClass="LocalAuthFailedVC" customModule="Facetek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="XJn-kl-mIP">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We need you to authenticate using your Touch ID or Face ID to proceed further. " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FO2-G0-YX3">
+                                <rect key="frame" x="70" y="244" width="274" height="120"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="120" id="QSr-4R-YNX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DEL-Oh-ZnH">
+                                <rect key="frame" x="136" y="374" width="142" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="142" id="LOM-1g-r6E"/>
+                                    <constraint firstAttribute="height" constant="30" id="kvG-qn-pcX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
+                                <state key="normal" title="Try Again"/>
+                                <connections>
+                                    <action selector="tryAgain:" destination="H9s-4k-gd0" eventType="touchUpInside" id="kdV-Uz-XsY"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="m86-i5-tuB"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="FO2-G0-YX3" firstAttribute="top" secondItem="m86-i5-tuB" secondAttribute="top" constant="200" id="276-1N-zVB"/>
+                            <constraint firstItem="DEL-Oh-ZnH" firstAttribute="top" secondItem="FO2-G0-YX3" secondAttribute="bottom" constant="10" id="A9k-cs-jUU"/>
+                            <constraint firstItem="FO2-G0-YX3" firstAttribute="leading" secondItem="m86-i5-tuB" secondAttribute="leading" constant="70" id="BjT-ut-5Nk"/>
+                            <constraint firstItem="DEL-Oh-ZnH" firstAttribute="centerX" secondItem="XJn-kl-mIP" secondAttribute="centerX" id="VwK-Ic-rQc"/>
+                            <constraint firstItem="m86-i5-tuB" firstAttribute="trailing" secondItem="FO2-G0-YX3" secondAttribute="trailing" constant="70" id="rFF-Dg-GWa"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gpI-3L-piP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-939" y="88"/>
+        </scene>
+    </scenes>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
+</document>

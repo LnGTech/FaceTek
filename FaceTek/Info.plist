@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>We need camera access to track facial features of a user to register, login and logout functionalities</string>
+	<key>NSFaceIDUsageDescription</key>
+	<string>We need your biometric based authentication for extra security</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>We need location access to monitor user location</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

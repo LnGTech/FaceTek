@@ -39,7 +39,7 @@ class InputOTPVC: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		customActivityIndicatory(self.view, startAnimate: false)
+		_ = customActivityIndicatory(self.view, startAnimate: false)
 		
 		let defaults = UserDefaults.standard
 		empPresistedFaceId = defaults.string(forKey: "empPresistedFaceId")!
@@ -52,9 +52,10 @@ class InputOTPVC: UIViewController {
 		RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
 		print("RetrivedMobileNumber-----",RetrivedMobileNumber)
 		PopupView.isHidden = true
-		var OtpLblstr1 = "We have sent the OTP to +91 "
-		var OTPLblfullstr = OtpLblstr1 + RetrivedMobileNumber
+		let OtpLblstr1 = "We have sent the OTP to +91 "
+		let OTPLblfullstr = OtpLblstr1 + RetrivedMobileNumber
 		OTPtextLbl.text = OTPLblfullstr
+		OTPLbl.text = ""
 		VerifiedOTP()
 		// var returnValue: [datatype]? = UserDefaults.standard.object(forKey: "otpNo") as? [datatype]
 		
@@ -116,47 +117,31 @@ class InputOTPVC: UIViewController {
 		
 	}
 	
-	
 	@IBAction func Verified_OkBtnclk(_ sender: Any) {
 		
 		let storyBoard = UIStoryboard(name: "Main", bundle:nil)
 		let FaceRegistrationVC = storyBoard.instantiateViewController(withIdentifier: "FaceRegistrationVC") as! FaceRegistrationVC
 		self.navigationController?.pushViewController(FaceRegistrationVC, animated:true)
 		//self.present(FaceRegistrationVC, animated:true, completion:nil)
-		
-		//        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-		//
-		//        let FaceRegistrationVC = storyBoard.instantiateViewController(withIdentifier: "FaceRegistrationVC") as! FaceRegistrationVC
-		//        self.present(FaceRegistrationVC, animated:true, completion:nil)
-		
-		
 	}
 	
 	@IBAction func cancel(_ sender: Any) {
-		
 		self.navigationController?.popViewController(animated: true)
-		
 	}
-	func VerifiedOTP()
-	{
+	
+	func VerifiedOTP() {
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		print("RetrivedcustId----",RetrivedcustId)
 		RetrivedempId = defaults.integer(forKey: "empId")
 		print("RetrivedempId----",RetrivedempId)
-		let parameters = ["refCustId": RetrivedcustId as Any,
-						  "empId":  RetrivedempId as Any] as [String : Any];
+		let parameters = ["refCustId": RetrivedcustId as Any, "empId":  RetrivedempId as Any] as [String : Any]
 		
-		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/setup/generateOtp"
+		let StartPoint = Baseurl.shared().baseURL
+		let Endpoint = "/attnd-api-gateway-service/api/customer/employee/setup/generateOtp"
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
-		
-		
-		customActivityIndicatory(self.view, startAnimate: true)
-		
-		//create the session object
-		let session = URLSession.shared
+		_ = customActivityIndicatory(self.view, startAnimate: true)
 		
 		//now create the URLRequest object using the url object
 		var request = URLRequest(url: url as URL)
@@ -182,7 +167,7 @@ class InputOTPVC: UIViewController {
 				let statusDic = responseJSON["status"]! as! NSDictionary
 				print("statusDic---",statusDic)
 				DispatchQueue.main.async {
-					self.customActivityIndicatory(self.view, startAnimate: false)
+					_ = self.customActivityIndicatory(self.view, startAnimate: false)
 					let code = statusDic["code"] as? NSInteger
 					print("code-----",code as Any)
 					
@@ -192,7 +177,10 @@ class InputOTPVC: UIViewController {
 						self.OTP = (ItemsDict["otp"] as? NSInteger)!
 						print("OTP ------------",self.OTP as Any)
 						self.otpstringValue = "\(String(describing: self.OTP))"
-						self.OTPLbl.text = self.otpstringValue
+						#if DEBUG
+							self.OTPLbl.text = self.otpstringValue
+						#endif
+						
 						print("success---")
 						
 					}
@@ -203,7 +191,7 @@ class InputOTPVC: UIViewController {
 						print("statusDic---",statusDic)
 						let message = statusDic["message"] as? NSString
 						print("message-----",message as Any)
-						var alert = UIAlertController(title: "Failure", message: message as! String, preferredStyle: UIAlertController.Style.alert)
+						let alert = UIAlertController(title: "Failure", message: message as String?, preferredStyle: UIAlertController.Style.alert)
 						alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
 						self.present(alert, animated: true, completion:nil)
 						print("Failure---")
@@ -246,7 +234,7 @@ class InputOTPVC: UIViewController {
 			//else if (InputFacestr == "")
 			
 			if (empPresistedFaceId == "")
-				
+			
 			{
 				print("Calling second dashboard Part")
 				print("Login success")
@@ -269,7 +257,7 @@ class InputOTPVC: UIViewController {
 		{
 			print("Login Failure")
 			
-			var alert = UIAlertController(title: "Failure", message: "Incorrect OTP", preferredStyle: UIAlertController.Style.alert)
+			let alert = UIAlertController(title: "Failure", message: "Incorrect OTP", preferredStyle: UIAlertController.Style.alert)
 			alert.addAction(UIAlertAction(title: "Okay!!", style: UIAlertAction.Style.default, handler: nil))
 			self.present(alert, animated: true, completion: nil)
 			
