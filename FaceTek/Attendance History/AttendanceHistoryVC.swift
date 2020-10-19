@@ -13,6 +13,10 @@ import FSCalendar
 class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDelegate {
 	private weak var calendar: FSCalendar!
 
+	@IBOutlet weak var segctrl: UISegmentedControl!
+	
+	@IBOutlet weak var Fscalendarview: UIView!
+	
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,10 +27,13 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
 		view.addSubview(statusBarView)
 		
-		let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 320, height: 300))
+		let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 340, height: 300))
 		calendar.dataSource = self
 		calendar.delegate = self
-		view.addSubview(calendar)
+		Fscalendarview.addSubview(calendar)
+		
+
+
 		self.calendar = calendar
 
 
