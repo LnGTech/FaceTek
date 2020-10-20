@@ -14,9 +14,23 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 	
 	var presentDateArray = [String]()
 	var absentDateArray = [String]()
+	var WeeklyOffDateArray = [String]()
+
 	
 	private weak var calendar: FSCalendar!
-
+	
+	@IBOutlet weak var PresentLbl: UILabel!
+	
+	@IBOutlet weak var AbsentLbl: UILabel!
+	
+	@IBOutlet weak var LeaveLbl: UILabel!
+	
+	
+	@IBOutlet weak var HolidayLbl: UILabel!
+	
+	
+	@IBOutlet weak var WeeklyOffLbl: UILabel!
+	
 	@IBOutlet weak var segctrl: UISegmentedControl!
 	
 	@IBOutlet weak var Fscalendarview: UIView!
@@ -113,15 +127,26 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		let datestring2 : String = dateFormatter3.string(from: date)
 		if presentDateArray.contains(datestring2)
 		{
-			return UIColor.green
+			//return UIColor.green
+			
+			return #colorLiteral(red: 0.8980392157, green: 0.8980392157, blue: 0.9176470588, alpha: 1)
 		}
 		else if absentDateArray.contains(datestring2)
 		{
-			return UIColor.red
-			
+			//return UIColor.red
+			return #colorLiteral(red: 1, green: 0.1764705882, blue: 0.3333333333, alpha: 1)
 		}
+			else if WeeklyOffDateArray.contains(datestring2)
+			{
+				//return UIColor.blue
+				
+				return #colorLiteral(red: 0.3529411765, green: 0.7843137255, blue: 0.9803921569, alpha: 1)
+			}
+			
 		else
 		{
+
+			
 			return nil
 		}
 
@@ -140,7 +165,7 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 
 
 
-		let parameters = ["empId": RetrivedempId as Any, "brId": 83 as Any,"date":"2020-10-03" as Any] as [String : Any]
+		let parameters = ["empId": 358 as Any, "brId": 83 as Any,"date":"2020-10-03" as Any] as [String : Any]
 
 //			let dateFormatter = DateFormatter()
 //			dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -182,7 +207,7 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 				
 				if let responseJSON = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
 								let presentdetails = responseJSON["present"] as? [[String:Any]],
-								let Absentdetails = responseJSON["absent"] as? [[String:Any]] {
+								let Absentdetails = responseJSON["absent"] as? [[String:Any]],let Weeklyoffdetails = responseJSON["weeklyOff"] as? [[String:Any]] {
 
 								let dateFormatter = DateFormatter()
 								//dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -196,15 +221,34 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 								}
 								self.absentDateArray = Absentdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
 					
+					self.WeeklyOffDateArray = Weeklyoffdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
+					
+					
 					self.absentDateArray.count
 					print("absentDateArray",self.absentDateArray.count)
 
+					
+					
 					
 					print("presentDateArray",self.presentDateArray)
 
 					print("absentDateArray",self.absentDateArray)
 								DispatchQueue.main.async
 									{
+										
+										var convertPresentstr = String(self.presentDateArray.count)
+										
+										self.PresentLbl.text = convertPresentstr
+										
+										var convertAbsentstr = String(self.absentDateArray.count)
+										
+										self.AbsentLbl.text = convertAbsentstr
+										
+										var convertWeeklyOffstr = String(self.WeeklyOffDateArray.count)
+										
+										self.WeeklyOffLbl.text = convertWeeklyOffstr
+										
+
 										self.calendar.reloadData()
 								}
 							
@@ -216,7 +260,9 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 				task.resume()
 		}
 
-
+	func maximumDate(for calendar: FSCalendar) -> Date {
+		return Date()
+	}
 
 
 }
