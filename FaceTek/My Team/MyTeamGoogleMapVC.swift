@@ -15,6 +15,9 @@ import SwiftyJSON
 
 class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITableViewDelegate,UITableViewDataSource {
 
+	
+    private var isAlreadyLoading = false
+
 	@IBOutlet weak var FieldvisitDetailsLbl: UILabel!
 	@IBOutlet weak var MyteamGooglemapFormtbl: UITableView!
 	@IBOutlet weak var scrollView: UIScrollView!
@@ -480,6 +483,15 @@ func GoogleMapPolyline()
 									print("Marker selected IntoClientNamePlaceaddress values...",toClientNamePlace as Any)
 									
 									self.MarkerdataArray.add(MainDict)
+									
+									
+									if self.isAlreadyLoading {
+										return
+									}
+									
+									self.isAlreadyLoading = true
+
+									
 									self.MyteamGooglemapFormtbl.reloadData()
 									
 								}
@@ -639,7 +651,16 @@ func GoogleMapPolyline()
 			var inAddress = responseDict["inAddress"] as? String
 			
 			print("inAddress",visitPurpose as Any)
+			
+			
+			if (cell.AddressLbl.text == "")
+			{
 			cell.AddressLbl.text = inAddress
+			}
+			else
+			{
+				print("Not null values")
+			}
 
 
 			//cell.ClintNameDisLbl.text = visitEndDateTime
