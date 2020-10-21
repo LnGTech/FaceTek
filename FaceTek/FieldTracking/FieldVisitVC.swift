@@ -34,6 +34,7 @@ class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegat
 private var isAlreadyLoaddropdowndata = false
 private var Fieldvisitout_cleardata = false
 private var RefreshformData = false
+    private var isAlreadyAddrestxt = false
 
 
 
@@ -841,6 +842,21 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 }
 @objc func pressButton(button: UIButton) {
 	NSLog("pressed!")
+	
+	
+	if (Adresstxtview.text == "")
+	{
+	print("nillvalues---",addressString)
+	Adresstxtview.text = addressString
+	}
+	else
+	{
+		print("not nill")
+		
+		
+	}
+
+	
 	self.ClientView.setNeedsLayout()
 	self.ClientView.layoutIfNeeded()
 	self.ClientTxtfld.setNeedsLayout()
@@ -852,14 +868,23 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 	ClientTxtfld.text?.removeAll()
 	VisitPuposetxtfld.text?.removeAll()
 	PreviousTxt.text?.removeAll()
-	//FieldvisitBckview.isHidden = false
-	Adresstxtview.text = addressString
+	
 	DispatchQueue.main.async {
 		
-		self.viewDidLoad()
+		if(self.SelectPlacetxtfld.text == "")
+		{
+			self.viewDidLoad()
+			
+			self.SelectPlaceDrptble.reloadData()
+			self.FieldvisitBckview.isHidden = false
+			
+		}
+		else
+		{
+			
+		}
 		
-		self.SelectPlaceDrptble.reloadData()
-		self.FieldvisitBckview.isHidden = false
+		
 	}}
 	
 	
