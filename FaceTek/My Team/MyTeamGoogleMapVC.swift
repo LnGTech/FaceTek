@@ -381,13 +381,10 @@ func GoogleMapPolyline()
 		}
 	func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
 		MyTeamGooglemapFormview.isHidden = false
-
 		//MarkerSelectedVisitIdvalue = marker.title!
 		print("marker tapped:", marker.title)
 		print("Retrived snippet values....",MarkerSelectedVisitIdvalue)
-
 		var Markerselect = marker.title
-		
 		
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
@@ -423,7 +420,6 @@ func GoogleMapPolyline()
 						print("fieldTrackDic responseJSON",responseJSON)
 						DispatchQueue.main.async {
 							
-							
 							let statusDic = responseJSON["status"]! as! NSDictionary
 							print("statusDic---",statusDic)
 							let code = statusDic["code"] as? NSInteger
@@ -433,7 +429,6 @@ func GoogleMapPolyline()
 							
 								{
 								
-							
 							
 							let path = GMSMutablePath()
 							let fieldTrackArray = responseJSON["fieldTrack"] as? [Any]
@@ -445,6 +440,8 @@ func GoogleMapPolyline()
 										print("empVisitId...",self.empVisitId)
 								let MarkerselectedConvertedempVisitId = String(self.empVisitId)
 
+								print("Suresh empVisitId...",MarkerselectedConvertedempVisitId)
+								
 								if (MarkerselectedConvertedempVisitId == Markerselect) {
 									
 									var MainDict:NSMutableDictionary = NSMutableDictionary()
@@ -483,15 +480,12 @@ func GoogleMapPolyline()
 									print("Marker selected IntoClientNamePlaceaddress values...",toClientNamePlace as Any)
 									
 									self.MarkerdataArray.add(MainDict)
-									
-									
-									if self.isAlreadyLoading {
-										return
-									}
-									
-									self.isAlreadyLoading = true
-
-									
+//									if(self.isAlreadyLoading)
+//									{
+//										return
+//									}
+//
+//									self.isAlreadyLoading = true
 									self.MyteamGooglemapFormtbl.reloadData()
 									
 								}
@@ -620,6 +614,9 @@ func GoogleMapPolyline()
 			print("toClientNamePlace",toClientNamePlace as Any)
 			cell.ClientPlaceNameLbl.text = toClientNamePlace
 			
+			
+			
+			
 			var visitEndDateTime = responseDict["visitEndDateTime"] as? String
 			
 			print("visitEndDateTime",visitEndDateTime as Any)
@@ -705,11 +702,20 @@ func GoogleMapPolyline()
 			return 560
 		
 		}
+	override func viewWillAppear(_ animated: Bool) {
+		DispatchQueue.main.async {
+			self.MyteamGooglemapFormtbl.reloadData()
+		}
+	}
+	
+	
 	
 	
 	@IBAction func CloseBtnclk(_ sender: Any) {
 		
 		MyTeamGooglemapFormview.isHidden = true
+		
+MarkerdataArray.count-1
 		
 	}
 	
