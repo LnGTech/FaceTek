@@ -13,10 +13,11 @@ import GooglePlaces
 import Alamofire
 import SwiftyJSON
 
-class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITableViewDelegate,UITableViewDataSource {
+class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITableViewDelegate,UITableViewDataSource,UITextFieldDelegate {
 
 	
-    private var isAlreadyLoading = false
+	@IBOutlet weak var Dummytxtfld: UITextField!
+	private var isAlreadyLoading = false
 
 	@IBOutlet weak var FieldvisitDetailsLbl: UILabel!
 	@IBOutlet weak var MyteamGooglemapFormtbl: UITableView!
@@ -55,6 +56,8 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		self.Dummytxtfld.delegate = self
+
 		FieldvisitDetailsLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 		FieldvisitDetailsLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
 
@@ -380,6 +383,15 @@ func GoogleMapPolyline()
 			task.resume()
 		}
 	func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+		
+		
+//		if(self.isAlreadyLoading)
+//		{
+//			print("hello suresh")
+//	    return false
+//		}
+		
+	self.isAlreadyLoading = true
 		MyTeamGooglemapFormview.isHidden = false
 		//MarkerSelectedVisitIdvalue = marker.title!
 		print("marker tapped:", marker.title)
@@ -442,6 +454,14 @@ func GoogleMapPolyline()
 
 								print("Suresh empVisitId...",MarkerselectedConvertedempVisitId)
 								
+								print("suresh Markerselect",Markerselect)
+								
+								self.Dummytxtfld.text = Markerselect
+								print("self.Dummytxtfld.text",self.Dummytxtfld.text)
+								
+								
+								
+								
 								if (MarkerselectedConvertedempVisitId == Markerselect) {
 									
 									var MainDict:NSMutableDictionary = NSMutableDictionary()
@@ -480,6 +500,18 @@ func GoogleMapPolyline()
 									print("Marker selected IntoClientNamePlaceaddress values...",toClientNamePlace as Any)
 									
 									self.MarkerdataArray.add(MainDict)
+									
+//									if(self.Dummytxtfld.text == ""){
+//
+//										self.Dummytxtfld.text = toClientNamePlace
+//									}
+//									else
+//									{
+//
+//
+//									}
+//
+									
 //									if(self.isAlreadyLoading)
 //									{
 //										return
@@ -711,12 +743,20 @@ func GoogleMapPolyline()
 	
 	
 	
+	
 	@IBAction func CloseBtnclk(_ sender: Any) {
 		
 		MyTeamGooglemapFormview.isHidden = true
 		
-MarkerdataArray.count-1
+		Dummytxtfld.text?.removeAll()
+
 		
+		
+	}
+	
+	func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+		Dummytxtfld.resignFirstResponder()
+		return true
 	}
 	
 	}
