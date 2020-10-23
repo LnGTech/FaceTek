@@ -265,6 +265,14 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 	}
 
 
+	
+	@IBAction func BackBtnclk(_ sender: Any) {
+		self.presentingViewController?.dismiss(animated: false, completion: nil)
+
+
+	}
+	
 }
+
 	
 

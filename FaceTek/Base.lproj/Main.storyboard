@@ -5894,7 +5894,7 @@
                                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Sv-Bh-3bq">
+                                            <textField hidden="YES" opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Sv-Bh-3bq">
                                                 <rect key="frame" x="207" y="8" width="97" height="34"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -6020,6 +6020,9 @@
                                             <constraint firstAttribute="height" constant="25" id="p5X-Yd-oIY"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="backicon.png"/>
+                                        <connections>
+                                            <action selector="BackBtnclk:" destination="unN-jl-LuC" eventType="touchUpInside" id="A9q-6v-1vK"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.054901960780000002" green="0.29803921570000003" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -6250,6 +6253,9 @@
                                             <constraint firstAttribute="width" constant="15" id="aeZ-c3-0u4"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="backicon.png"/>
+                                        <connections>
+                                            <action selector="BackBtnclk:" destination="XkG-Yq-sTx" eventType="touchUpInside" id="J2E-6e-ilT"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.054901960780000002" green="0.29803921570000003" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

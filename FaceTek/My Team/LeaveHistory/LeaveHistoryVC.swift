@@ -469,5 +469,12 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 		
 	}
 	
+	@IBAction func BackBtnclk(_ sender: Any) {
+		self.presentingViewController?.dismiss(animated: false, completion: nil)
+
+
+	}
+	
+	
 }
 

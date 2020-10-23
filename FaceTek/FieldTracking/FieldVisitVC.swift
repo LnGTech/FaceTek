@@ -493,6 +493,9 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
 			if pm.postalCode != nil {
 				self.addressString = self.addressString + pm.postalCode! + " "
 			}
+			
+			
+			print("printed address values...",self.addressString)
 			//    let marker = GMSMarker()
 			//    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
 			//    marker.title = self.addressString
@@ -967,7 +970,9 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 	ClientTxtfld.text?.removeAll()
 	VisitPuposetxtfld.text?.removeAll()
 	PreviousTxt.text?.removeAll()
-	Adresstxtview.text = addressString
+	
+	Adresstxtview.text?.removeAll()
+	//Adresstxtview.text = addressString
 	
 	FieldvisitBckview.isHidden = true
 }
