@@ -76,7 +76,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	@IBOutlet weak var ContactTextView: UITextView!
 	var isMenuVisible:Bool!
 	@IBOutlet weak var AttendanceNavigationtbl: UITableView!
-	 //var AttendanceNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
+	//var AttendanceNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	
 	var AttendanceNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
@@ -358,7 +358,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			cellToReturn = cell
 			
 		}
-			
+		
 		else if tableView == MovementoutDrpTbl
 		{
 			let cell:UITableViewCell = tableView.dequeueReusableCell(withIdentifier: "myCell", for: indexPath)
@@ -383,7 +383,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-		
+	
 	{
 		if tableView == AttendanceNavigationtbl
 		{
@@ -393,42 +393,42 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 				self.present(CalendarVC, animated:true, completion:nil)
 				
 			}
-				else if indexPath.item == 1 {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					
-					let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
-					self.present(AttendanceHistoryVC, animated:true, completion:nil)
-					
-					
-				}
+			else if indexPath.item == 1 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				
+				let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+				self.present(AttendanceHistoryVC, animated:true, completion:nil)
 				
 				
-				else if indexPath.item == 2 {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					
-					let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
-					self.present(FieldVisitVC, animated:true, completion:nil)
-					
-					
-				}
+			}
+			
+			
+			else if indexPath.item == 2 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 				
-				else if indexPath.item == 3 {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					
-					let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
-					self.present(MyTeamVC, animated:true, completion:nil)
-					
-					
-				}
-				else if indexPath.item == 5 {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					
-					let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
-					self.present(LeaveHistoryVC, animated:true, completion:nil)
-					
-					
-				}
+				let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
+				self.present(FieldVisitVC, animated:true, completion:nil)
 				
+				
+			}
+			
+			else if indexPath.item == 3 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				
+				let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+				self.present(MyTeamVC, animated:true, completion:nil)
+				
+				
+			}
+			else if indexPath.item == 5 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				
+				let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+				self.present(LeaveHistoryVC, animated:true, completion:nil)
+				
+				
+			}
+			
 			
 			else if indexPath.item == 6 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
@@ -586,7 +586,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
-
+		
 		
 		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
 		
@@ -614,62 +614,62 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 			if let responseJSON = responseJSON as? [String: Any] {
 				DispatchQueue.main.async
+				{
+					
+					let statusDic = responseJSON["status"]! as! NSDictionary
+					print("Beacon status------",statusDic)
+					let code = (statusDic["code"] as? NSInteger)!
+					print("Beacon status------",code)
+					self.AttendanceIntime()
+					
+					let defaults = UserDefaults.standard
+					UserDefaults.standard.set("GeneralMode", forKey: "Mode")
+					
+					
+					if(code == 200)
+					
 					{
+						let ssid = self.fetchSSIDInfo()
+						print("SSID----: \(ssid)")
+						let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
+						print("empBeacons...",ItemsDict)
 						
-						let statusDic = responseJSON["status"]! as! NSDictionary
-						print("Beacon status------",statusDic)
-						let code = (statusDic["code"] as? NSInteger)!
-						print("Beacon status------",code)
-						self.AttendanceIntime()
-						
-						let defaults = UserDefaults.standard
-						UserDefaults.standard.set("GeneralMode", forKey: "Mode")
-						
-						
-						if(code == 200)
+						if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
 							
-						{
-							let ssid = self.fetchSSIDInfo()
-							print("SSID----: \(ssid)")
-							let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
-							print("empBeacons...",ItemsDict)
+							print("null values printed.....")
 							
-							if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
-								
-								print("null values printed.....")
-								
-								self.AttendanceIntime()
-								
-								
-							}
-							else
-							{
-								
-								print("Normal values...")
-								let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
-								print("beaconMapDtolist---",beaconMapDtolistArray)
-								for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
-								{
-									var MainDict:NSMutableDictionary = NSMutableDictionary()
-									var beaconCode = ""
-									beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
-									print(" beaconCode--",beaconCode)
-									if (beaconCode == ssid)
-									{
-										self.AttendanceIntime()
-										
-									}
-									else
-									{
-										
-										let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
-										alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-										self.present(alert, animated: true, completion: nil)
-									}
-								}
-								
-							}
+							self.AttendanceIntime()
+							
+							
 						}
+						else
+						{
+							
+							print("Normal values...")
+							let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
+							print("beaconMapDtolist---",beaconMapDtolistArray)
+							for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
+							{
+								var MainDict:NSMutableDictionary = NSMutableDictionary()
+								var beaconCode = ""
+								beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
+								print(" beaconCode--",beaconCode)
+								if (beaconCode == ssid)
+								{
+									self.AttendanceIntime()
+									
+								}
+								else
+								{
+									
+									let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
+									alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+									self.present(alert, animated: true, completion: nil)
+								}
+							}
+							
+						}
+					}
 				}
 				
 			}
@@ -725,67 +725,67 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 			if let responseJSON = responseJSON as? [String: Any] {
 				DispatchQueue.main.async
+				{
+					
+					let statusDic = responseJSON["status"]! as! NSDictionary
+					print("Beacon status------",statusDic)
+					let code = (statusDic["code"] as? NSInteger)!
+					print("Beacon status------",code)
+					
+					
+					self.AttendanceOutime()
+					let defaults = UserDefaults.standard
+					//UserDefaults.standard.set("GeneralMode", forKey: "Mode")
+					
+					
+					
+					if(code == 200)
+					
 					{
 						
-						let statusDic = responseJSON["status"]! as! NSDictionary
-						print("Beacon status------",statusDic)
-						let code = (statusDic["code"] as? NSInteger)!
-						print("Beacon status------",code)
+						let ssid = self.fetchSSIDInfo()
+						print("SSID----: \(ssid)")
+						let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
+						print("empBeacons...",ItemsDict)
 						
-						
-						self.AttendanceOutime()
-						let defaults = UserDefaults.standard
-						//UserDefaults.standard.set("GeneralMode", forKey: "Mode")
-						
-						
-						
-						if(code == 200)
+						if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
 							
+							print("null values printed.....")
+							
+							self.AttendanceOutime()
+							
+							
+						}
+						else
 						{
 							
-							let ssid = self.fetchSSIDInfo()
-							print("SSID----: \(ssid)")
-							let ItemsDict = responseJSON["empBeacons"] as! NSDictionary
-							print("empBeacons...",ItemsDict)
-							
-							if let absentEmpShiftDetails = ItemsDict["beaconMapDtolist"] as? NSNull {
-								
-								print("null values printed.....")
-								
-								self.AttendanceOutime()
-								
-								
-							}
-							else
+							print("Normal values...")
+							let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
+							print("beaconMapDtolist---",beaconMapDtolistArray)
+							for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
 							{
-								
-								print("Normal values...")
-								let beaconMapDtolistArray = ItemsDict["beaconMapDtolist"] as! NSArray
-								print("beaconMapDtolist---",beaconMapDtolistArray)
-								for beaconMapDtolistDic in beaconMapDtolistArray as! [[String:Any]]
+								var MainDict:NSMutableDictionary = NSMutableDictionary()
+								var beaconCode = ""
+								beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
+								print(" beaconCode--",beaconCode)
+								if (beaconCode == ssid)
 								{
-									var MainDict:NSMutableDictionary = NSMutableDictionary()
-									var beaconCode = ""
-									beaconCode = (beaconMapDtolistDic["beaconCode"] as? String)!
-									print(" beaconCode--",beaconCode)
-									if (beaconCode == ssid)
-									{
-										self.AttendanceOutime()
-										UserDefaults.standard.set("BeaconeMode", forKey: "Mode")
-										
-										
-									}
-									else
-									{
-										
-										let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
-										alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-										self.present(alert, animated: true, completion: nil)
-									}
+									self.AttendanceOutime()
+									UserDefaults.standard.set("BeaconeMode", forKey: "Mode")
+									
+									
 								}
-								
+								else
+								{
+									
+									let alert = UIAlertController(title: "Alert", message: "You seems to be Out of Office range", preferredStyle: UIAlertControllerStyle.alert)
+									alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+									self.present(alert, animated: true, completion: nil)
+								}
 							}
+							
 						}
+					}
 				}
 				
 			}
@@ -821,30 +821,30 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		}
 		else
 		{
-					DispatchQueue.main.async {
-						print("Office IN Internet Unavailable")
-						
-			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-			let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
-			self.present(OfficeInVC, animated:true, completion:nil)
-					}
-
+			DispatchQueue.main.async {
+				print("Office IN Internet Unavailable")
+				
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
+				self.present(OfficeInVC, animated:true, completion:nil)
+			}
+			
 		}
-			
-			
-//			if(AppManager.sharedInstance.isReachability) {
-//				BeconeMethodaAPI()
-//				EmployeeSignInChecking()
-//			} else {
-//				DispatchQueue.main.async {
-//					print("Office IN Internet Unavailable")
-//
-//		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//		let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
-//		self.present(OfficeInVC, animated:true, completion:nil)
-//				}
-//			}
-//		}
+		
+		
+		//			if(AppManager.sharedInstance.isReachability) {
+		//				BeconeMethodaAPI()
+		//				EmployeeSignInChecking()
+		//			} else {
+		//				DispatchQueue.main.async {
+		//					print("Office IN Internet Unavailable")
+		//
+		//		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+		//		let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
+		//		self.present(OfficeInVC, animated:true, completion:nil)
+		//				}
+		//			}
+		//		}
 	}
 	
 	
@@ -858,18 +858,18 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		}
 		else
 		{
-					DispatchQueue.main.async {
-						print("Office IN Internet Unavailable")
-						
-			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-			let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
-			self.present(OfficeInVC, animated:true, completion:nil)
-					}
-
+			DispatchQueue.main.async {
+				print("Office IN Internet Unavailable")
+				
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				let OfficeInVC = storyBoard.instantiateViewController(withIdentifier: "OfficeInVC") as! OfficeInVC
+				self.present(OfficeInVC, animated:true, completion:nil)
+			}
+			
 		}
 	}
-		
-		
+	
+	
 	
 	
 	func EmployeeSignInChecking()
@@ -943,7 +943,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 	}
 	func SpecificTimeRange_SignIn()
-		
+	
 	{
 		
 		
@@ -991,10 +991,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 						UserDefaults.standard.set(self.Facename, forKey: "Facename")
 						UserDefaults.standard.synchronize()
 						
-						let loginvc = LogINVC.init(screen: UIScreen.main)
-						//self.navigationController?.pushViewController(loginvc, animated: true)
-						loginvc.modalPresentationStyle = .fullScreen
-						self.present(loginvc, animated: true, completion: nil)
+						self.goToLoginVC()
 						
 					}
 					
@@ -1003,6 +1000,17 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		}
 		task.resume()
 		
+	}
+	
+	private func goToLoginVC() {
+		LocalAuthentication.check(from: self) { (success, error) in
+			if success {
+				let loginvc = LogINVC.init(screen: UIScreen.main)
+				//self.navigationController?.pushViewController(loginvc, animated: true)
+				loginvc.modalPresentationStyle = .fullScreen
+				self.present(loginvc, animated: true, completion: nil)
+			}
+		}
 	}
 	
 	func EmployeeSignOut_Checking()
@@ -1059,7 +1067,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 					else
 					{
 						var alert = UIAlertController(title: "Office OUT", message:
-							"Attendance OUT is already marked for the day" as! String, preferredStyle: UIAlertController.Style.alert)
+														"Attendance OUT is already marked for the day" as! String, preferredStyle: UIAlertController.Style.alert)
 						alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
 						self.present(alert, animated: true, completion: nil)
 						print("Failure---")
@@ -1075,7 +1083,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	
 	
 	func SpecificTimeRange_SignOut()
-		
+	
 	{
 		
 		//let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
@@ -1135,9 +1143,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 							UserDefaults.standard.set(self.currentDatestr, forKey: "currentDate")
 							
 							UserDefaults.standard.set(outtimedateString, forKey: "outtimedate")
-							let objRecVC = LogOutVC(screen:  UIScreen.main)
-							objRecVC.modalPresentationStyle = .fullScreen
-							self.present(objRecVC, animated:true, completion:nil)
+							
+							self.goToLogoutVC()
 							
 						}
 						else
@@ -1177,6 +1184,16 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 	}
 	
+	private func goToLogoutVC() {
+		LocalAuthentication.check(from: self) { (success, error) in
+			if success {
+				let objRecVC = LogOutVC(screen:  UIScreen.main)
+				objRecVC.modalPresentationStyle = .fullScreen
+				self.present(objRecVC, animated:true, completion:nil)
+			}
+		}
+	}
+	
 	func EmergencyExitOutime() {
 		var isInternet: Bool = true
 		if(isInternet == true)
@@ -1196,7 +1213,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			//Show Alert
 			
 		}
-			
+		
 	}
 	
 	func EmergencyOuttime_Checking()
@@ -1275,7 +1292,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	
 	
 	func EmergencyExitOutTimeAPI()
-		
+	
 	{
 		
 		//let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
@@ -1341,9 +1358,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 						UserDefaults.standard.set(self.currentDatestr, forKey: "currentDate")
 						
 						UserDefaults.standard.set(outtimedateString, forKey: "outtimedate")
-						let objRecVC = LogOutVC(screen:  UIScreen.main)
-						objRecVC.modalPresentationStyle = .fullScreen
-						self.present(objRecVC, animated:true, completion:nil)
+						
+						self.goToLogoutVC()
 						
 					}
 					
@@ -1372,7 +1388,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	//MovementIn
 	
 	func MovementInUpdate()
-		
+	
 	{
 		
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
@@ -1407,16 +1423,16 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 				
 				let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
 				DispatchQueue.main.async
-					{
-						self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
-						self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
+				{
+					self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
+					self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
+					
+					
+					if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
 						
-						
-						if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
-							
-							let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
-							alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-							self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
+						let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+						alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+						self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
 							
 							self.MovementIn()
 							
@@ -1428,7 +1444,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 							self.present(alert, animated: true, completion: nil)
 							
 						}
-						
+					
 				}
 			}
 		}
@@ -1471,14 +1487,14 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 				
 				let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
 				DispatchQueue.main.async
-					{
-						self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
-						self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
-						if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
-							
-							let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
-							alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-							self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
+				{
+					self.empAttndInDateTime = ItemsDict?["empAttndInDateTime"] as? String ?? ""
+					self.empAttndOutDateTime = ItemsDict?["empAttndOutDateTime"] as? String ?? ""
+					if (self.empAttndInDateTime == "NA" && self.empAttndOutDateTime == "NA") {
+						
+						let alert = UIAlertController(title: "Alert", message: "Movement is permitted during office hours only", preferredStyle: UIAlertControllerStyle.alert)
+						alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+						self.present(alert, animated: true, completion: nil)                            }                             else if (self.empAttndInDateTime != "NA" && self.empAttndOutDateTime == "NA") {
 							
 							self.MovementOut()
 							
@@ -1490,11 +1506,11 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 							self.present(alert, animated: true, completion: nil)
 							
 						}
-						
-						
-						
-						
-						
+					
+					
+					
+					
+					
 				}
 			}
 		}
@@ -1519,7 +1535,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		BeconeMethodaAPI()
 		MovementOut_API()
 		
-			
+		
 	}
 	
 	
@@ -1963,7 +1979,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint14)")!
 		
-
+		
 		
 		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/movement/create")!
 		//http://122.166.152.106:8080
@@ -2088,7 +2104,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint15)")!
 		
-
+		
 		
 		
 		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile")!
@@ -2121,18 +2137,18 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 				print("Refresh Json Response",responseJSON)
 				
 				DispatchQueue.main.async
-					{
-						let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
-						self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
-						print("Refresh employeeName",self.RefreshemployeeNam)
-						
-						self.RefreshbrName = (ItemsDict["brName"] as? String)!
-						print("Refresh brName",self.RefreshbrName)
-						self.UserNameLbl.text = self.RefreshemployeeNam
-						
-						print("brNamestr-----",self.brNamestr)
-						self.CompanyNameLbl.text = self.RefreshbrName
-						
+				{
+					let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
+					self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
+					print("Refresh employeeName",self.RefreshemployeeNam)
+					
+					self.RefreshbrName = (ItemsDict["brName"] as? String)!
+					print("Refresh brName",self.RefreshbrName)
+					self.UserNameLbl.text = self.RefreshemployeeNam
+					
+					print("brNamestr-----",self.brNamestr)
+					self.CompanyNameLbl.text = self.RefreshbrName
+					
 				}
 			}    }
 		task.resume()

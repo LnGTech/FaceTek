@@ -70,55 +70,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				self.window?.makeKeyAndVisible()
 			} else if (name == "Coding Explorer" && is_authenticated != nil) {
 				//already registered user
-				
-				//Add local authentication to pass through Apple Review Guidelines
-				//Guideline 2.5.13 - Performance - Software Requirements
-				//https://developer.apple.com/app-store/review/guidelines/#performance
-				
-				let context = LAContext()
-				context.localizedCancelTitle = "Enter Username/Password"
-				var error: NSError? = nil
-				if context.canEvaluatePolicy(.deviceOwnerAuthentication, error: &error) {
-					let reason = "Log in to your account"
-					context.evaluatePolicy(.deviceOwnerAuthentication, localizedReason: reason ) { success, error in
-
-						if success {
-							// Move to the main thread because a state update triggers UI changes.
-							DispatchQueue.main.async { [unowned self] in
-								//successfully loggedin/authenticated
-								self.goToHomeScreen()
-							}
-
-						} else {
-							print(error?.localizedDescription ?? "Failed to authenticate")
-							// Fall back to a asking for username and password.
-							
-							DispatchQueue.main.async {
-								self.localAuthFailed()
-							}
-						}
-					}
-				} else {
-					// Fall back to a asking for username and password.
-					// Device doesn't have face ID and touch ID
-					self.goToHomeScreen()
-				}
-				
-				
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
+				//self.present(tabBarController, animated:true, completion:nil)
+				self.window?.rootViewController = tabBarController
+				self.window?.makeKeyAndVisible()
 			} else {
 				print("normal")
 			}
 		}
 		return true
-	}
-	
-	private func goToHomeScreen() {
-		//successfully loggedin/authenticated
-		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-		let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
-		//self.present(tabBarController, animated:true, completion:nil)
-		self.window?.rootViewController = tabBarController
-		self.window?.makeKeyAndVisible()
 	}
 	
 	private func localAuthFailed() {
