@@ -6612,12 +6612,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="V4l-up-0zN" firstAttribute="top" secondItem="TsX-oI-GVJ" secondAttribute="top" id="0LG-xn-D7B"/>
+                            <constraint firstItem="V4l-up-0zN" firstAttribute="leading" secondItem="TsX-oI-GVJ" secondAttribute="leading" id="G9h-r9-CUY"/>
+                            <constraint firstItem="V4l-up-0zN" firstAttribute="trailing" secondItem="TsX-oI-GVJ" secondAttribute="trailing" id="Jak-q6-sdn"/>
                             <constraint firstItem="TsX-oI-GVJ" firstAttribute="trailing" secondItem="htS-4i-xoh" secondAttribute="trailing" constant="11" id="Lk8-af-a2U"/>
                             <constraint firstItem="TsX-oI-GVJ" firstAttribute="trailing" secondItem="ass-Np-GET" secondAttribute="trailing" constant="20" id="NiE-6s-x56"/>
                             <constraint firstItem="htS-4i-xoh" firstAttribute="leading" secondItem="TsX-oI-GVJ" secondAttribute="leading" constant="11" id="QVf-F4-Zr4"/>
                             <constraint firstItem="V4l-up-0zN" firstAttribute="trailing" secondItem="TsX-oI-GVJ" secondAttribute="trailing" id="dwR-wT-1jT"/>
                             <constraint firstItem="htS-4i-xoh" firstAttribute="top" secondItem="TsX-oI-GVJ" secondAttribute="top" constant="10" id="f4w-aV-PcK"/>
                             <constraint firstItem="V4l-up-0zN" firstAttribute="leading" secondItem="TsX-oI-GVJ" secondAttribute="leading" id="g4d-Fq-rgV"/>
+                            <constraint firstItem="V4l-up-0zN" firstAttribute="bottom" secondItem="TsX-oI-GVJ" secondAttribute="bottom" id="iVQ-K6-vwg"/>
                             <constraint firstItem="ass-Np-GET" firstAttribute="leading" secondItem="TsX-oI-GVJ" secondAttribute="leading" constant="20" id="wIc-sQ-5eR"/>
                             <constraint firstItem="ass-Np-GET" firstAttribute="top" secondItem="TsX-oI-GVJ" secondAttribute="top" constant="5" id="wN1-YO-7fn"/>
                             <constraint firstItem="V4l-up-0zN" firstAttribute="top" secondItem="TsX-oI-GVJ" secondAttribute="top" id="xjC-nc-ogr"/>
@@ -6628,10 +6632,13 @@
                     <connections>
                         <outlet property="AddressDataLbl" destination="IPx-Nd-bOk" id="ZOD-nk-hcc"/>
                         <outlet property="AdressLbltxt" destination="feM-co-Nzt" id="fPc-ii-GOC"/>
+                        <outlet property="Closebtnview" destination="bQ0-Ol-oxB" id="tKr-5D-7XW"/>
                         <outlet property="DateSelectionBtn" destination="f1W-dm-gzh" id="3YA-8w-9mf"/>
                         <outlet property="Datetxtfle" destination="1Dw-Uv-cQo" id="UK1-ic-3pv"/>
                         <outlet property="Dateview" destination="htS-4i-xoh" id="WOa-nS-sYZ"/>
                         <outlet property="FieldvisitDetailsLbl" destination="t7A-4n-4mZ" id="22S-nw-4zM"/>
+                        <outlet property="FieldvisitDetailsview" destination="Uuq-VH-84R" id="R5R-Oh-fvz"/>
+                        <outlet property="FormLblBckview" destination="ONy-NU-dOo" id="DY5-Gt-8TH"/>
                         <outlet property="KmtravelDataLbl" destination="CQd-od-h2Z" id="q7C-CJ-XhW"/>
                         <outlet property="KmtravelLbltxt" destination="eex-ck-qHo" id="Wsk-gf-8hD"/>
                         <outlet property="MyTeamGooglemapFormview" destination="ass-Np-GET" id="tAH-Wo-wYe"/>

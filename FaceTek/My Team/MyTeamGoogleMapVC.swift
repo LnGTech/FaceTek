@@ -22,6 +22,12 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 	@IBOutlet weak var MyteamGooglemapFormtbl: UITableView!
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var MyTeamGooglemapFormview: UIView!
+	
+	@IBOutlet weak var FieldvisitDetailsview: UIView!
+	
+	@IBOutlet weak var Closebtnview: UIView!
+	@IBOutlet weak var FormLblBckview: UIView!
+	
 	@IBOutlet weak var Dateview: UIView!
 	@IBOutlet weak var mapView: GMSMapView!
 	
@@ -93,7 +99,7 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 
 
 		mapView.delegate = self
-		MyTeamGooglemapFormview.isHidden = true
+		//MyTeamGooglemapFormview.isHidden = true
 		
 
 		MyTeamGooglemapFormview.layer.cornerRadius = 20
@@ -147,6 +153,21 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 		ConvertedCurrentDatestr = formattedDateFromString(dateString:
 			Datetxtfle.text!, withFormat: "yyyy-MM-dd")! as NSString
 		
+		let borderBottom = CALayer()
+		let borderWidth = CGFloat(2.0)
+		borderBottom.borderColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+		borderBottom.frame = CGRect(x: 0, y: FieldvisitDetailsview.frame.height - 1.0, width: FieldvisitDetailsview.frame.width , height: FieldvisitDetailsview.frame.height - 1.0)
+		borderBottom.borderWidth = borderWidth
+		FieldvisitDetailsview.layer.addSublayer(borderBottom)
+		FieldvisitDetailsview.layer.masksToBounds = true
+
+		// Creates the Top border
+		let borderTop = CALayer()
+		borderTop.borderColor = #colorLiteral(red: 0.721568644, green: 0.8862745166, blue: 0.5921568871, alpha: 1)
+		borderTop.frame = CGRect(x: 0, y: 0, width: Closebtnview.frame.width, height: 1)
+		borderTop.borderWidth = borderWidth
+		Closebtnview.layer.addSublayer(borderTop)
+		Closebtnview.layer.masksToBounds = true
 		
 		
 		GoogleMapPolyline()

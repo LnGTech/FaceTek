@@ -243,13 +243,9 @@ override func viewDidLoad() {
 //
 //
 	Adresstxtview.textColor = #colorLiteral(red: 0.2414736675, green: 0.2414736675, blue: 0.2414736675, alpha: 1)
-//	Adresstxtview.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
-//	let Adresstxtviewattributes :Dictionary = [NSAttributedStringKey.font : Adresstxtview.font]
+
 	PreviousTxt.textColor = #colorLiteral(red: 0.2414736675, green: 0.2414736675, blue: 0.2414736675, alpha: 1)
-//	PreviousTxt.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
-//	let PreviousTxtattributes :Dictionary = [NSAttributedStringKey.font : PreviousTxt.font]
-//	
-	
+
 	
 	//key board show and Hide
 	NotificationCenter.default.addObserver(self, selector: #selector(FieldVisitVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
