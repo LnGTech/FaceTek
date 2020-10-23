@@ -468,17 +468,15 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
 			print(pm.locality as Any)
 			print(pm.subLocality as Any)
 			print(pm.subAdministrativeArea as Any)
-
-			
 			print(pm.thoroughfare as Any)
 			print(pm.postalCode as Any)
 			print(pm.subThoroughfare as Any)
-			if pm.subLocality != nil {
-				self.addressString = self.addressString + pm.subLocality! + ", "
-			}
-			if pm.thoroughfare != nil {
-				self.addressString = self.addressString + pm.thoroughfare! + ", "
-			}
+//			if pm.subLocality != nil {
+//				self.addressString = self.addressString + pm.subLocality! + ", "
+//			}
+//			if pm.thoroughfare != nil {
+//				self.addressString = self.addressString + pm.thoroughfare! + ", "
+//			}
 			if pm.locality != nil {
 				self.addressString = self.addressString + pm.locality! + ", "
 			}
@@ -493,14 +491,6 @@ func locationManager(_ manager: CLLocationManager, didUpdateLocations locations:
 			if pm.postalCode != nil {
 				self.addressString = self.addressString + pm.postalCode! + " "
 			}
-			
-			
-			print("printed address values...",self.addressString)
-			//    let marker = GMSMarker()
-			//    marker.position = CLLocationCoordinate2DMake(newLocation!.coordinate.latitude, newLocation!.coordinate.longitude)
-			//    marker.title = self.addressString
-			//    marker.map = self.mapView
-			//    print("address location",self.addressString)
 		}
 	})
 }
@@ -926,7 +916,6 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 	else
 	{
 		print("not nill")
-		
 		
 	}
 
@@ -1539,13 +1528,13 @@ func PolylineAPI()
 					self.Inaddress = (fieldVisit!["inAddress"] as? String)!
 					print("In address values...",self.Inaddress as Any)
 					
-					for (index, name) in fieldTrackArray!
-						.enumerated()
-					{
-						//YOUR LOGIC....
-						print("Index values",name)
-						print("Index Integer numbers values..",index)//0, 1, 2, 3 ...
-					//}
+//					for (index, name) in fieldTrackArray!
+//						.enumerated()
+//					{
+//						//YOUR LOGIC....
+//						print("Index values",name)
+//						print("Index Integer numbers values..",index)//0, 1, 2, 3 ...
+//					//}
 					
 					let latLong = latLongString?.components(separatedBy: ",")
 					let latitude = Double(latLong![0].replacingOccurrences(of: " ", with: ""))
@@ -1556,17 +1545,17 @@ func PolylineAPI()
 					marker.position = CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!)
 						marker.title = self.Inaddress
 					
-					print("addressString....",self.addressString)
+					//print("addressString....",self.addressString)
 					//marker.snippet = "India"
 					
 					let labelMarker = GMSMarker(position: CLLocationCoordinate2D(latitude: latitude!, longitude: longitude!))
 						
-						let Indexstrnumbers = String(index)
-						print("Indexstrnumbers",Indexstrnumbers)
+//						let Indexstrnumbers = String(index)
+//						print("Indexstrnumbers",Indexstrnumbers)
 
 					
 					marker.map = self.mapView
-				}
+				//}
 				
 				let polyline = GMSPolyline(path: path)
 				polyline.strokeColor = .blue

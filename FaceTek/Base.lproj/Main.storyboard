@@ -3761,6 +3761,7 @@
         <!--Field VisitVC-->
         <scene sceneID="dDq-Jd-mCt">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="GsU-y9-gHr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="FieldVisitVC" modalPresentationStyle="fullScreen" id="iPY-GP-swF" customClass="FieldVisitVC" customModule="Facetek" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="X4y-Ll-pXI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -4286,7 +4287,6 @@
                         <outlet property="mapView" destination="8lq-0n-iyX" id="pLb-W2-0aO"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="GsU-y9-gHr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="6455.1999999999998" y="-595.05247376311854"/>
         </scene>
