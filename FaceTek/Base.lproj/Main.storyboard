@@ -6234,9 +6234,24 @@
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4l-up-0zN" customClass="GMSMapView">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="N0a-Sr-VTt">
+                                        <rect key="frame" x="50" y="500" width="250" height="40"/>
+                                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="40" id="cyb-A7-HIY"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="667" id="1WR-jq-rw9"/>
+                                    <constraint firstItem="N0a-Sr-VTt" firstAttribute="top" secondItem="V4l-up-0zN" secondAttribute="top" constant="500" id="5t0-l0-Dey"/>
+                                    <constraint firstAttribute="trailing" secondItem="N0a-Sr-VTt" secondAttribute="trailing" constant="75" id="82E-Ze-jrT"/>
+                                    <constraint firstItem="N0a-Sr-VTt" firstAttribute="leading" secondItem="V4l-up-0zN" secondAttribute="leading" constant="50" id="xKU-7k-7MW"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htS-4i-xoh">
@@ -6652,6 +6667,7 @@
                         <outlet property="VisitOutcomeLbltxt" destination="rSH-7a-fZs" id="iA8-4I-kkr"/>
                         <outlet property="VisitPurposeDataLbl" destination="ba8-ZF-Thg" id="Asf-KL-rkH"/>
                         <outlet property="VisitPurposeLbltxt" destination="JZA-0w-9q9" id="xAm-p7-mNL"/>
+                        <outlet property="VisitStatusLbl" destination="N0a-Sr-VTt" id="Q1M-cV-M2v"/>
                         <outlet property="mapView" destination="V4l-up-0zN" id="t5G-Fl-sUU"/>
                     </connections>
                 </viewController>

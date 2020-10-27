@@ -202,52 +202,14 @@ override func viewDidLoad() {
 	
 	//Form Label Text font
 	
-//	FieldVisitLbltxt.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//	FieldVisitLbltxt.font = UIFont(name: "HelveticaNeue-Light", size: 18.0)!
-//	let attributes :Dictionary = [NSAttributedStringKey.font : FieldVisitLbltxt.font]
-	
-//	PlaceClintNametxtLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//	PlaceClintNametxtLbl.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
-//	let ClintPlaceattributes :Dictionary = [NSAttributedStringKey.font : PlaceClintNametxtLbl.font]
-//	
-//	VisitPurposetxtLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//	VisitPurposetxtLbl.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
-//	let VisitPurooseattributes :Dictionary = [NSAttributedStringKey.font : VisitPurposetxtLbl.font]
-//	
-//	AddresstxtLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//	AddresstxtLbl.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
-//	let Addressattributes :Dictionary = [NSAttributedStringKey.font : AddresstxtLbl.font]
-//	
-//	PreviousMeetingtxtLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//	PreviousMeetingtxtLbl.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
-//	let PreviousMeetingtxtLblattributes :Dictionary = [NSAttributedStringKey.font : PreviousMeetingtxtLbl.font]
-	
 	PlacestxtLbl.textColor = #colorLiteral(red: 0.2414736675, green: 0.2414736675, blue: 0.2414736675, alpha: 1)
-//	PlacestxtLbl.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
-//	let PlacestxtLblattributes :Dictionary = [NSAttributedStringKey.font : PlacestxtLbl.font]
-//
-	
-	
 	
 	SelectPlacetxtfld.textColor = #colorLiteral(red: 0.2414736675, green: 0.2414736675, blue: 0.2414736675, alpha: 1)
-//	SelectPlacetxtfld.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
-//	let SelectPlacetxtfldattributes :Dictionary = [NSAttributedStringKey.font : SelectPlacetxtfld.font]
-//
-
 	ClientTxtfld.textColor = #colorLiteral(red: 0.2414736675, green: 0.2414736675, blue: 0.2414736675, alpha: 1)
-//	ClientTxtfld.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
-//	let ClientTxtfldattributes :Dictionary = [NSAttributedStringKey.font : ClientTxtfld.font]
 	VisitPuposetxtfld.textColor = #colorLiteral(red: 0.2414736675, green: 0.2414736675, blue: 0.2414736675, alpha: 1)
-//	VisitPuposetxtfld.font = UIFont(name: "HelveticaNeue-Light", size: 16.0)!
-//	let VisitPuposetxtfldattributes :Dictionary = [NSAttributedStringKey.font : VisitPuposetxtfld.font]
-//
-//
 	Adresstxtview.textColor = #colorLiteral(red: 0.2414736675, green: 0.2414736675, blue: 0.2414736675, alpha: 1)
-
 	PreviousTxt.textColor = #colorLiteral(red: 0.2414736675, green: 0.2414736675, blue: 0.2414736675, alpha: 1)
-
-	
-	//key board show and Hide
+		//key board show and Hide
 	NotificationCenter.default.addObserver(self, selector: #selector(FieldVisitVC.keyboardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
 	NotificationCenter.default.addObserver(self, selector: #selector(FieldVisitVC.keyboardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
 	
@@ -360,7 +322,6 @@ override func viewDidLoad() {
 							
 						}
 					
-						
 						else
 						{
 							
@@ -373,11 +334,7 @@ override func viewDidLoad() {
 				}
 	}
 			
-	
 			task.resume()
-
-	
-	
 }
 
 

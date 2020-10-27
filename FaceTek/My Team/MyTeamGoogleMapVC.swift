@@ -20,6 +20,10 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 
 	@IBOutlet weak var FieldvisitDetailsLbl: UILabel!
 	@IBOutlet weak var MyteamGooglemapFormtbl: UITableView!
+	
+	@IBOutlet weak var VisitStatusLbl: UILabel!
+	
+	
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var MyTeamGooglemapFormview: UIView!
 	
@@ -330,13 +334,21 @@ func GoogleMapPolyline()
 				}
 				let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 				if let responseJSON = responseJSON as? [String: Any] {
-					print("fieldTrackDic responseJSON",responseJSON)
+					print(" My Team fieldTrackDic responseJSON",responseJSON)
+					
+					
+					
 					DispatchQueue.main.async {
+						
+						let statusDic = responseJSON["status"]! as! NSDictionary
+						print("statusDic---",statusDic)
+						let code = statusDic["code"] as? NSInteger
+						print("code-----",code as Any)
+						
+						if (code == 200)
+						{
 						let path = GMSMutablePath()
 						let fieldTrackArray = responseJSON["fieldTrack"] as? [Any]
-						
-						
-						
 						
 						for visit in fieldTrackArray! {
 							let fieldVisit = visit as? [String:Any]
@@ -346,29 +358,12 @@ func GoogleMapPolyline()
 							
 							let visitEndDateTime = (fieldVisit!["visitEndDateTime"] as? String)!
 							
-							
-							
-							
-							
 							self.empVisitId = (fieldVisit?["empVisitId"] as? NSInteger)!
 							print("empVisitId...",self.empVisitId)
 					
 
 							let ConvertempVisitId = String(self.empVisitId)
 
-							
-							
-							
-//							print("In address values...",Inaddress as Any)
-//
-//							for (index, name) in fieldTrackArray!
-//								.enumerated()
-//							{
-//								//YOUR LOGIC....
-//								print("Index values",name)
-//								print("Index Integer numbers values..",index)//0, 1, 2, 3 ...
-//							//}
-							
 							let latLong = latLongString?.components(separatedBy: ",")
 							let latitude = Double(latLong![0].replacingOccurrences(of: " ", with: ""))
 							let longitude = Double(latLong![1].replacingOccurrences(of: " ", with: ""))
@@ -383,10 +378,6 @@ func GoogleMapPolyline()
 							print("snippet values",marker.snippet)
 							print("snippet values----",self.MarkerSelectedVisitIdvalue)
 
-							
-							
-							
-							
 							
 							print("addressString....",self.addressString)
 							//marker.snippet = "India"
@@ -405,26 +396,9 @@ func GoogleMapPolyline()
 							labelMarker.iconView = label
 							labelMarker.map = self.mapView
 								
-								
-							
-							
-	//
-	//						let lbl = UILabel()
-	//						lbl.text = "ABC 123"
-	//						lbl.textColor = UIColor.black
-	//						lbl.backgroundColor = UIColor.cyan
-	//						// add label to viewAn
-	//						//lbl.frame = viewAn.bounds
-	//						self.mapView.addSubview(lbl)
 							
 							marker.map = self.mapView
 						}
-						
-	//					path.add(CLLocationCoordinate2D(latitude: 37.36, longitude: -122.0))
-	//					path.add(CLLocationCoordinate2D(latitude: 37.45, longitude: -122.0))
-	//					path.add(CLLocationCoordinate2D(latitude: 37.45, longitude: -122.2))
-	//					path.add(CLLocationCoordinate2D(latitude: 37.36, longitude: -122.2))
-	//					path.add(CLLocationCoordinate2D(latitude: 37.36, longitude: -122.0))
 						
 						let polyline = GMSPolyline(path: path)
 						polyline.strokeColor = .blue
@@ -432,6 +406,25 @@ func GoogleMapPolyline()
 						polyline.spans = [GMSStyleSpan(color: .blue)]
 						polyline.map = self.mapView
 						
+					
+					}
+					else
+					{
+												
+						print("statusDic---",statusDic)
+						let message = statusDic["message"] as? NSString
+						
+						
+						self.VisitStatusLbl.text = message as String?
+						
+						self.mapView.addSubview(self.VisitStatusLbl)
+
+						
+						print("Visi UnAvailable")
+
+						print("message-----",message as Any)
+						
+					}
 					}
 				}}
 			//}
@@ -440,13 +433,6 @@ func GoogleMapPolyline()
 	func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
 		
 		
-//		if(self.isAlreadyLoading)
-//		{
-//			print("hello suresh")
-//	    return false
-//		}
-		
-	self.isAlreadyLoading = true
 		MyTeamGooglemapFormview.isHidden = false
 		//MarkerSelectedVisitIdvalue = marker.title!
 		print("marker tapped:", marker.title)
@@ -504,15 +490,6 @@ func GoogleMapPolyline()
 								self.empVisitId = (fieldVisit?["empVisitId"] as? NSInteger)!
 										print("empVisitId...",self.empVisitId)
 								let MarkerselectedConvertedempVisitId = String(self.empVisitId)
-
-								print("Suresh empVisitId...",MarkerselectedConvertedempVisitId)
-								
-								print("suresh Markerselect",Markerselect)
-								
-								
-								
-								
-								
 								if (MarkerselectedConvertedempVisitId == Markerselect) {
 									
 									var MainDict:NSMutableDictionary = NSMutableDictionary()
@@ -529,8 +506,6 @@ func GoogleMapPolyline()
 									let TimespentattributesLbltxt :Dictionary = [NSAttributedStringKey.font : self.TimespentLbltxt.font]
 									self.TimespentLbltxt.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 									self.TimespentLbltxt.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
-
-
 									let KmtravelattributesLbltxt :Dictionary = [NSAttributedStringKey.font : self.KmtravelLbltxt.font]
 									self.KmtravelLbltxt.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 									self.KmtravelLbltxt.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
@@ -548,12 +523,8 @@ func GoogleMapPolyline()
 									self.AdressLbltxt.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 									self.AdressLbltxt.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
 
-									
-									
-
 									//UILable API Data
 									var toClientNamePlace = (fieldVisit!["toClientNamePlace"] as? String)!
-									
 									self.PlaceClientDataLbl.text = toClientNamePlace
 									let attributes :Dictionary = [NSAttributedStringKey.font : self.PlaceClientDataLbl.font]
 									self.PlaceClientDataLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
@@ -563,11 +534,7 @@ func GoogleMapPolyline()
 									MainDict.setObject(toClientNamePlace, forKey: "toClientNamePlace" as NSCopying)
 									
 									var visitEndDateTime = (fieldVisit!["visitEndDateTime"] as? String)!
-									
-									
-
 									self.VisitDatetimeDataLbl.text = visitEndDateTime
-									
 									let VisitDatetimeDataattributes :Dictionary = [NSAttributedStringKey.font : self.VisitDatetimeDataLbl.font]
 									self.VisitDatetimeDataLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 									self.VisitDatetimeDataLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
@@ -580,8 +547,6 @@ func GoogleMapPolyline()
 									let TimespentDataattributes :Dictionary = [NSAttributedStringKey.font : self.TimeSpentDataLbl.font]
 									self.TimeSpentDataLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 									self.TimeSpentDataLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
-									
-									
 									
 									MainDict.setObject(timeSpent, forKey: "timeSpent" as NSCopying)
 									
@@ -628,32 +593,12 @@ func GoogleMapPolyline()
 									self.AddressDataLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 									self.AddressDataLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
 									
-									
 									MainDict.setObject(inAddress, forKey: "inAddress" as NSCopying)
-									
-									
 									print("Marker selected IntoClientNamePlaceaddress values...",toClientNamePlace as Any)
 									
 									self.MarkerdataArray.add(MainDict)
 									
-//									if(self.Dummytxtfld.text == ""){
 //
-//										self.Dummytxtfld.text = toClientNamePlace
-//									}
-//									else
-//									{
-//
-//
-//									}
-//
-									
-//									if(self.isAlreadyLoading)
-//									{
-//										return
-//									}
-//
-//									self.isAlreadyLoading = true
-									
 								}
 									
 								}
