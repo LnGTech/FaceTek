@@ -80,7 +80,7 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 
 
 	var RetrivedcustId = Int()
-	var RetrivedempId = Int()
+	var RetrivedMyTeamempId = Int()
 	var locationManager = CLLocationManager()
     var ConvertedCurrentDatestr = NSString()
 
@@ -99,7 +99,7 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 
 
 		mapView.delegate = self
-		//MyTeamGooglemapFormview.isHidden = true
+		MyTeamGooglemapFormview.isHidden = true
 		
 
 		MyTeamGooglemapFormview.layer.cornerRadius = 20
@@ -114,8 +114,8 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		print("My team RetrivedcustId----",RetrivedcustId)
-		RetrivedempId = defaults.integer(forKey: "empId")
-		print("RetrivedempId----",RetrivedempId)
+		RetrivedMyTeamempId = defaults.integer(forKey: "MyTeamempId")
+		print("RetrivedMyTeamempId----",RetrivedMyTeamempId)
 		self.Dateview.layer.borderWidth = 1
 
 		Dateview.layer.borderColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
@@ -295,7 +295,12 @@ func GoogleMapPolyline()
 			
 			let defaults = UserDefaults.standard
 			RetrivedcustId = defaults.integer(forKey: "custId")
-			RetrivedempId = defaults.integer(forKey: "empId")
+			print("My team RetrivedcustId----",RetrivedcustId)
+			RetrivedMyTeamempId = defaults.integer(forKey: "MyTeamempId")
+			print("RetrivedMyTeamempId----",RetrivedMyTeamempId)
+		
+		
+		
 			let formatter = DateFormatter()
 			formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 			let now = Date()
@@ -303,7 +308,7 @@ func GoogleMapPolyline()
 			print("CurrentdateString",CurrentdateString)
 			//let parameters = ["custId": "74" as Any,"empId": "353" as Any,"visitDate": ConvertedCurrentDatestr as Any] as [String : Any]
 		
-		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
+		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedMyTeamempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 		
 		//let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 		
@@ -451,16 +456,14 @@ func GoogleMapPolyline()
 		let defaults = UserDefaults.standard
 		RetrivedcustId = defaults.integer(forKey: "custId")
 		print("My team RetrivedcustId----",RetrivedcustId)
-		RetrivedempId = defaults.integer(forKey: "empId")
-		print("RetrivedempId----",RetrivedempId)
-
-		
+		RetrivedMyTeamempId = defaults.integer(forKey: "MyTeamempId")
+		print("RetrivedMyTeamempId----",RetrivedMyTeamempId)
 		let formatter = DateFormatter()
 				formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
 				let now = Date()
 				let CurrentdateString = formatter.string(from:now)
 				print("CurrentdateStringsecond",CurrentdateString)
-				let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
+				let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedMyTeamempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 				let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 				_ = URLSession.shared
 				var request = URLRequest(url: url as URL)

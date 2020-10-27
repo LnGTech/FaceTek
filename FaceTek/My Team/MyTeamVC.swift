@@ -23,6 +23,10 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
 	var latstr : String = ""
 	var longstr : String = ""
 	var addressString : String = ""
+	var RetrivedempId = Int()
+	var MyTeamempId = Int()
+
+
 
     var MyTeamData = NSMutableDictionary()
     var MyTeamArray = NSMutableArray()
@@ -203,7 +207,19 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
 		   }
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
+		let dicShiftDetails = MyTeamArray.object(at: indexPath.row) as? NSDictionary
+		
+		
+		
 		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+		
+		MyTeamempId = (dicShiftDetails?.value(forKey: "empId") as? NSInteger)!
+		print("Stored empid",MyTeamempId)
+		
+		UserDefaults.standard.set(self.MyTeamempId, forKey: "MyTeamempId")
+
+		
 		let MyTeamGoogleMapVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamGoogleMapVC") as! MyTeamGoogleMapVC
 		self.present(MyTeamGoogleMapVC, animated:true, completion:nil)
         
