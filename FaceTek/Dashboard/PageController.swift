@@ -189,7 +189,6 @@ class PageController: UIViewController, UIScrollViewDelegate {
         let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC") as! RegistrationVC
         let navVC = UINavigationController.init(rootViewController: RegistrationVC)
-        
         navVC.modalPresentationStyle = .fullScreen
         navVC.navigationBar.isHidden = true
         self.present(navVC, animated:true, completion:nil)

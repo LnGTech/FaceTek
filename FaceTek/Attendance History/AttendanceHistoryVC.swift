@@ -15,9 +15,13 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 	var presentDateArray = [String]()
 	var absentDateArray = [String]()
 	var WeeklyOffDateArray = [String]()
+    var customView = UIView()
+
 
 	
 	private weak var calendar: FSCalendar!
+	
+	
 	
 	@IBOutlet weak var PresentLbl: UILabel!
 	
@@ -45,78 +49,27 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
 		view.addSubview(statusBarView)
 		
-		let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 340, height: 300))
-		calendar.dataSource = self
-		calendar.delegate = self
-		Fscalendarview.addSubview(calendar)
-		self.calendar = calendar
 		
+		self.customView.frame = CGRect.init(x: 0, y: 0, width: 350, height: 300)
+        self.customView.backgroundColor = UIColor.blue     //give color to the view
+        self.Fscalendarview.center = self.customView.center
+        self.Fscalendarview.addSubview(self.customView)
+		
+		let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 350, height: 300))
+		
+		
+		
+		
+				calendar.dataSource = self
+		calendar.delegate = self
+		customView.addSubview(calendar)
+		self.calendar = calendar
 		
 		AttendanceHistoryAPIMethod()
 
     }
 	
 	
-	
-//	func getdateFromJSON()
-//	{
-//		let url = NSURL(string: "http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/mobile/employee/getOneMonthReport")
-//		let request = NSMutableURLRequest(url: url! as URL)
-//		let task = URLSession.shared.dataTask(with: request as URLRequest) { (data, response, error)
-//			in
-//			guard error == nil && data != nil else
-//			{
-//				print("Error:",error ?? "error")
-//				return
-//			}
-//			let httpstatus = response as? HTTPURLResponse
-//			if httpstatus?.statusCode == 200
-//			{
-//				if data?.count != 0
-//				{
-//					if let responseJSON = (try? JSONSerialization.jsonObject(with: data!, options: .allowFragments)) as? [String:Any],
-//						let presentdetails = responseJSON["Present"] as? [[String:Any]],
-//						let Absentdetails = responseJSON["Absent"] as? [[String:Any]] {
-//
-//						let dateFormatter = DateFormatter()
-//						dateFormatter.dateFormat = "yyyy-MM-dd"
-//
-//
-//						self.presentDateArray = presentdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.compactMap {
-//							dateFormatter.string(from:$0)
-//						}
-//						self.absentDateArray = Absentdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
-//						DispatchQueue.main.async
-//							{
-//								self.calendar.reloadData()
-//						}
-//					}
-//				}
-//				else
-//				{
-//					print("No data got from URL")
-//				}
-//			}
-//			else{
-//				print("error httpstatus code is :",httpstatus?.statusCode ?? "5")
-//			}
-//
-//		}
-//		task.resume()
-//	}
-	
-
-//
-//	func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, eventDefaultColorsFor date: Date) -> [UIColor]? {
-//
-//		let dateString = date.toString(dateFormat: "yyyy-MM-dd")
-//		if self.presentDateArray.contains(dateString!) {
-//			return [UIColor.blue]
-//		}
-//		return [UIColor.white]
-//	}
-	
-
 	func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
 		
 		let dateFormatter3 = DateFormatter()
@@ -145,8 +98,9 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 			
 		else
 		{
-
 			
+			return appearance.titleSelectionColor
+
 			return nil
 		}
 
@@ -156,16 +110,12 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 	
 	func AttendanceHistoryAPIMethod()
 	{
-			print("Leave Proceed------")
 
 			let defaults = UserDefaults.standard
 
 			var RetrivedempId = defaults.integer(forKey: "empId")
-			print(" RetrivedempId----",RetrivedempId)
 
-
-
-		let parameters = ["empId": 358 as Any, "brId": 83 as Any,"date":"2020-10-03" as Any] as [String : Any]
+		let parameters = ["empId": 358 as Any, "brId": 83 as Any,"date":"2020-10-01" as Any] as [String : Any]
 
 //			let dateFormatter = DateFormatter()
 //			dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -260,11 +210,13 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 				task.resume()
 		}
 
+	
 	func maximumDate(for calendar: FSCalendar) -> Date {
 		return Date()
+		
+		
 	}
-
-
+	
 	
 	@IBAction func BackBtnclk(_ sender: Any) {
 		self.presentingViewController?.dismiss(animated: false, completion: nil)
