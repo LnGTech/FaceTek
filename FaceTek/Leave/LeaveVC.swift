@@ -440,6 +440,16 @@ task.resume()
 			
 			
 		}
+		
+		else if indexPath.item == 4 {
+			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+			
+			let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+			self.present(ExpenseClaimVC, animated:true, completion:nil)
+			
+			
+		}
+		
 		else if indexPath.item == 5 {
 			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 			

@@ -51,16 +51,13 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		
 		
 		self.customView.frame = CGRect.init(x: 0, y: 0, width: 350, height: 300)
-        self.customView.backgroundColor = UIColor.blue     //give color to the view
+        self.customView.backgroundColor = UIColor.white     //give color to the view
         self.Fscalendarview.center = self.customView.center
         self.Fscalendarview.addSubview(self.customView)
 		
 		let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 350, height: 300))
 		
-		
-		
-		
-				calendar.dataSource = self
+		calendar.dataSource = self
 		calendar.delegate = self
 		customView.addSubview(calendar)
 		self.calendar = calendar

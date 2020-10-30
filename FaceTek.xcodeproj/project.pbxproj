@@ -111,6 +111,7 @@
 		746EE171248F9FC8007A1DA8 /* PrivacyPolicyVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746EE170248F9FC8007A1DA8 /* PrivacyPolicyVC.swift */; };
 		746FC13C248280C700445207 /* LeaveDownArrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 746FC13B248280C700445207 /* LeaveDownArrow.png */; };
 		746FC13E2482817700445207 /* LeavedownArrowimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 746FC13D2482817600445207 /* LeavedownArrowimg.png */; };
+		7472DE1E254C0E15004756E9 /* ExpenseClaimVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7472DE1D254C0E15004756E9 /* ExpenseClaimVC.swift */; };
 		74795DBA244D9D1000C6F03C /* leaves.png in Resources */ = {isa = PBXBuildFile; fileRef = 74795DB9244D9D1000C6F03C /* leaves.png */; };
 		74795DBC244D9D1900C6F03C /* absent (1).png in Resources */ = {isa = PBXBuildFile; fileRef = 74795DBB244D9D1900C6F03C /* absent (1).png */; };
 		74795DBE244D9D1F00C6F03C /* Early leavers.png in Resources */ = {isa = PBXBuildFile; fileRef = 74795DBD244D9D1E00C6F03C /* Early leavers.png */; };
@@ -303,6 +304,7 @@
 		746EE170248F9FC8007A1DA8 /* PrivacyPolicyVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyVC.swift; sourceTree = "<group>"; };
 		746FC13B248280C700445207 /* LeaveDownArrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeaveDownArrow.png; sourceTree = "<group>"; };
 		746FC13D2482817600445207 /* LeavedownArrowimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = LeavedownArrowimg.png; sourceTree = "<group>"; };
+		7472DE1D254C0E15004756E9 /* ExpenseClaimVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseClaimVC.swift; sourceTree = "<group>"; };
 		74795DB9244D9D1000C6F03C /* leaves.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leaves.png; sourceTree = "<group>"; };
 		74795DBB244D9D1900C6F03C /* absent (1).png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "absent (1).png"; sourceTree = "<group>"; };
 		74795DBD244D9D1E00C6F03C /* Early leavers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Early leavers.png"; sourceTree = "<group>"; };
@@ -533,6 +535,14 @@
 			path = FieldTracking;
 			sourceTree = "<group>";
 		};
+		7472DE1C254C0DB0004756E9 /* Expense Claim's */ = {
+			isa = PBXGroup;
+			children = (
+				7472DE1D254C0E15004756E9 /* ExpenseClaimVC.swift */,
+			);
+			path = "Expense Claim's";
+			sourceTree = "<group>";
+		};
 		74795DB8244D9CF600C6F03C /* ManagerDashboard-Icons */ = {
 			isa = PBXGroup;
 			children = (
@@ -717,6 +727,7 @@
 				745FE48D24F3A75300A40776 /* FieldTracking */,
 				74068871251CAA7800B4F654 /* My Team */,
 				7450F7C22539C9D9004F6A24 /* Attendance History */,
+				7472DE1C254C0DB0004756E9 /* Expense Claim's */,
 				74D998662434621200DFCBEC /* Main.storyboard */,
 				74D9986C2434621300DFCBEC /* Assets.xcassets */,
 				747F8D9B243AEA8300ABBD5E /* Images */,
@@ -1076,6 +1087,7 @@
 			files = (
 				74D9989B2434999500DFCBEC /* DashboardCell.swift in Sources */,
 				74444F9424D2F8C5005DA8EC /* ManagerLeavecell.swift in Sources */,
+				7472DE1E254C0E15004756E9 /* ExpenseClaimVC.swift in Sources */,
 				74FA123C24AC68D400A356E7 /* RecognitionGLView.swift in Sources */,
 				74068875251CAAD900B4F654 /* MyTeamVC.swift in Sources */,
 				74E68A7224C832B100A3B009 /* Dropdowncell.swift in Sources */,

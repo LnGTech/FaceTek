@@ -6002,6 +6002,21 @@
             </objects>
             <point key="canvasLocation" x="9216.7999999999993" y="-595.05247376311854"/>
         </scene>
+        <!--Expense ClaimVC-->
+        <scene sceneID="33a-ge-QYT">
+            <objects>
+                <viewController storyboardIdentifier="ExpenseClaimVC" wantsFullScreenLayout="YES" modalPresentationStyle="fullScreen" id="5gb-rk-yw8" customClass="ExpenseClaimVC" customModule="Facetek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="N6t-ok-TTs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="blg-Ik-8s0"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mBh-5z-1Ju" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9850" y="-595"/>
+        </scene>
         <!--My Team Google MapVC-->
         <scene sceneID="qkN-UF-0mV">
             <objects>
