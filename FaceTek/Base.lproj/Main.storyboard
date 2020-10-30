@@ -6760,6 +6760,9 @@
                                             <constraint firstAttribute="width" constant="15" id="tjR-8w-fna"/>
                                         </constraints>
                                         <state key="normal" backgroundImage="backicon.png"/>
+                                        <connections>
+                                            <action selector="BackBtnclk:" destination="X5X-MY-zBe" eventType="touchUpInside" id="V38-mt-gOj"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.054901960780000002" green="0.29803921570000003" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -6839,6 +6842,9 @@
                                     <constraint firstAttribute="height" constant="50" id="Qm9-qF-EJw"/>
                                 </constraints>
                                 <state key="normal" backgroundImage="Bluecircleimg.png"/>
+                                <connections>
+                                    <action selector="Btnclk:" destination="X5X-MY-zBe" eventType="touchUpInside" id="TVL-Dm-ql8"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -6865,6 +6871,62 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2di-uA-kQr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="9822" y="-591"/>
+        </scene>
+        <!--Expenses Claim FormVC-->
+        <scene sceneID="2io-D2-I9S">
+            <objects>
+                <viewController storyboardIdentifier="ExpensesClaimFormVC" modalPresentationStyle="fullScreen" id="GlY-BC-BCj" customClass="ExpensesClaimFormVC" customModule="Facetek" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eRF-sx-vah">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FXg-Gn-TRY">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="50"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expenses Claim" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VXu-FY-Vje">
+                                        <rect key="frame" x="71" y="10" width="175" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="Gh6-h7-geK"/>
+                                            <constraint firstAttribute="width" constant="175" id="oMu-YC-0ra"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LFx-W7-cmS">
+                                        <rect key="frame" x="13" y="10" width="15" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="J2c-Md-mW2"/>
+                                            <constraint firstAttribute="width" constant="15" id="nEq-E0-kq7"/>
+                                        </constraints>
+                                        <state key="normal" backgroundImage="backicon.png"/>
+                                        <connections>
+                                            <action selector="BackBtnclk:" destination="GlY-BC-BCj" eventType="touchUpInside" id="srl-Ku-ST8"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" red="0.054901960780000002" green="0.29803921570000003" blue="0.5450980392" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="VXu-FY-Vje" firstAttribute="leading" secondItem="LFx-W7-cmS" secondAttribute="trailing" constant="43" id="GWX-7O-hZt"/>
+                                    <constraint firstItem="LFx-W7-cmS" firstAttribute="leading" secondItem="FXg-Gn-TRY" secondAttribute="leading" constant="13" id="Vtj-92-iy5"/>
+                                    <constraint firstAttribute="height" constant="50" id="mg7-ZC-dch"/>
+                                    <constraint firstItem="VXu-FY-Vje" firstAttribute="top" secondItem="FXg-Gn-TRY" secondAttribute="top" constant="10" id="ohY-Rj-7gN"/>
+                                    <constraint firstItem="LFx-W7-cmS" firstAttribute="top" secondItem="FXg-Gn-TRY" secondAttribute="top" constant="10" id="wVA-je-3KS"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="FXg-Gn-TRY" firstAttribute="trailing" secondItem="Wdv-OL-FGq" secondAttribute="trailing" id="Vem-3K-Ohs"/>
+                            <constraint firstItem="FXg-Gn-TRY" firstAttribute="top" secondItem="Wdv-OL-FGq" secondAttribute="top" id="izh-8H-5Ve"/>
+                            <constraint firstItem="FXg-Gn-TRY" firstAttribute="leading" secondItem="Wdv-OL-FGq" secondAttribute="leading" id="pqq-n4-Mxk"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Wdv-OL-FGq"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HcU-n6-wC1" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="10470" y="-595"/>
         </scene>
     </scenes>
     <resources>

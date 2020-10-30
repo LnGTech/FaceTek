@@ -58,6 +58,7 @@
 		7447702A24CF1A2900EFBB2F /* EarlyLeaverscell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7447702824CF1A2900EFBB2F /* EarlyLeaverscell.xib */; };
 		744774D1250A3484008266D4 /* Baseurl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744774D0250A3484008266D4 /* Baseurl.swift */; };
 		7447EED4254C25830013FB72 /* Bluecircleimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7447EED3254C25830013FB72 /* Bluecircleimg.png */; };
+		7447EED6254C2BB00013FB72 /* ExpensesClaimFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7447EED5254C2BB00013FB72 /* ExpensesClaimFormVC.swift */; };
 		7448549524AF1C5500F36A99 /* LogOutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448549424AF1C5500F36A99 /* LogOutVC.swift */; };
 		7449F96D24AE284900232D46 /* LogINVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449F96C24AE284900232D46 /* LogINVC.swift */; };
 		744B18B424CEB1B6004FB334 /* no_leves_found.png in Resources */ = {isa = PBXBuildFile; fileRef = 744B18B324CEB1B6004FB334 /* no_leves_found.png */; };
@@ -251,6 +252,7 @@
 		744774D0250A3484008266D4 /* Baseurl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baseurl.swift; sourceTree = "<group>"; };
 		7447B3F12504F4A4001C54BC /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7447EED3254C25830013FB72 /* Bluecircleimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bluecircleimg.png; sourceTree = "<group>"; };
+		7447EED5254C2BB00013FB72 /* ExpensesClaimFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesClaimFormVC.swift; sourceTree = "<group>"; };
 		7448549424AF1C5500F36A99 /* LogOutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutVC.swift; sourceTree = "<group>"; };
 		7449F96C24AE284900232D46 /* LogINVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogINVC.swift; sourceTree = "<group>"; };
 		744B18B324CEB1B6004FB334 /* no_leves_found.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_leves_found.png; sourceTree = "<group>"; };
@@ -523,7 +525,6 @@
 			isa = PBXGroup;
 			children = (
 				7450F7C32539CA17004F6A24 /* AttendanceHistoryVC.swift */,
-				7447EED3254C25830013FB72 /* Bluecircleimg.png */,
 			);
 			path = "Attendance History";
 			sourceTree = "<group>";
@@ -541,7 +542,9 @@
 		7472DE1C254C0DB0004756E9 /* Expense Claim's */ = {
 			isa = PBXGroup;
 			children = (
+				7447EED3254C25830013FB72 /* Bluecircleimg.png */,
 				7472DE1D254C0E15004756E9 /* ExpenseClaimVC.swift */,
+				7447EED5254C2BB00013FB72 /* ExpensesClaimFormVC.swift */,
 			);
 			path = "Expense Claim's";
 			sourceTree = "<group>";
@@ -1107,6 +1110,7 @@
 				272A19662509212C0036A431 /* InternetConnection.swift in Sources */,
 				746EE171248F9FC8007A1DA8 /* PrivacyPolicyVC.swift in Sources */,
 				74F5D120243758B700D6E811 /* Constants.swift in Sources */,
+				7447EED6254C2BB00013FB72 /* ExpensesClaimFormVC.swift in Sources */,
 				747F8D9E243AEB1D00ABBD5E /* FaceRegistrationVC.swift in Sources */,
 				74520D3924CB1ADC001252ED /* LatecomersVC.swift in Sources */,
 				740D70BB243C8F3200CF6C2F /* OfficeInVC.swift in Sources */,
