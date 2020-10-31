@@ -241,9 +241,19 @@ override func viewDidLoad() {
 			let CurrentdateString = formatter.string(from:now)
 			print("CurrentdateStringsecond",CurrentdateString)
 			let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
-			let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+	
+	
+	var StartPoint = Baseurl.shared().baseURL
+	var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild"
+	let urlstring = "\(StartPoint)\(Endpoint1)"
+	print("First",urlstring)
+	let url = NSURL(string: urlstring)
+	
+	
+	
+//			let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 			_ = URLSession.shared
-			var request = URLRequest(url: url as URL)
+	var request = URLRequest(url: url as! URL)
 			request.httpMethod = "POST" //set http method as POST
 			do {
 				request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -461,11 +471,19 @@ func Fieldvisit_OUT()
 	RetrivedcustId = defaults.integer(forKey: "custId")
 	RetrivedempId = defaults.integer(forKey: "empId")
 	let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-	let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+	
+	var StartPoint = Baseurl.shared().baseURL
+	var Endpoint1 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+	let urlstring = "\(StartPoint)\(Endpoint1)"
+	print("First",urlstring)
+	let url = NSURL(string: urlstring)
+	
+	
+	//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
 	//create the session object
 	let session = URLSession.shared
 	//now create the URLRequest object using the url object
-	var request = URLRequest(url: url as URL)
+	var request = URLRequest(url: url as! URL)
 	request.httpMethod = "POST" //set http method as POST
 	
 	do {
@@ -554,9 +572,17 @@ func selectPlaceDrpdown()
 	RetrivedcustId = defaults.integer(forKey: "custId")
 	RetrivedempId = defaults.integer(forKey: "empId")
 	let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-	let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getVisitClientPlaceDDList")!
+	
+	var StartPoint = Baseurl.shared().baseURL
+	var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getVisitClientPlaceDDList"
+	let urlstring = "\(StartPoint)\(Endpoint1)"
+	print("First",urlstring)
+	let url = NSURL(string: urlstring)
+	
+	
+	//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getVisitClientPlaceDDList")!
 	let session = URLSession.shared
-	var request = URLRequest(url: url as URL)
+	var request = URLRequest(url: url as! URL)
 	request.httpMethod = "POST" //set http method as POST
 	do {
 		request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
@@ -621,10 +647,18 @@ func FieldvisitFormsubmitAPI()
 	let latlanstr = latstr + ", " + longstr
 	print("latlanstr..",latlanstr)
 		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":Adresstxtview.text,"toClientNamePlace":ClientTxtfld.text,"visitPurpose":VisitPuposetxtfld.text,"prevVisitId":PreviousempVisitId,"meetingOutcome":PreviousTxt.text,"empVisitScheduleId":RetrivedempVisitId] as [String : Any]
+		
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId"
+		let urlstring = "\(StartPoint)\(Endpoint1)"
+		print("First",urlstring)
+		let url = NSURL(string: urlstring)
+		
 	
-	let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
+	//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertFieldVisitOutDetailsWithScheduleId")!
 	let session = URLSession.shared
-	var request = URLRequest(url: url as URL)
+		var request = URLRequest(url: url as! URL)
 	request.httpMethod = "POST" //set http method as POST
 	do {
 		request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -988,10 +1022,18 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 				print("Update latlanstr",latlanstr)
 				print("empVisitId---",empVisitId)
 				let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": RetrivedempVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails"
+		let urlstring = "\(StartPoint)\(Endpoint1)"
+		print("First",urlstring)
+		let url = NSURL(string: urlstring)
+
+		
 				
-				let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
+				//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
 				let session = URLSession.shared
-				var request = URLRequest(url: url as URL)
+		var request = URLRequest(url: url as! URL)
 				request.httpMethod = "POST" //set http method as POST
 				do {
 					request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -1049,10 +1091,18 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 				print("Update latlanstr",latlanstr)
 				print("empVisitId---",empVisitId)
 				let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": empVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails"
+		let urlstring = "\(StartPoint)\(Endpoint1)"
+		print("First",urlstring)
+		let url = NSURL(string: urlstring)
+
+		
 				
-				let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
+				//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails")!
 				let session = URLSession.shared
-				var request = URLRequest(url: url as URL)
+		var request = URLRequest(url: url as! URL)
 				request.httpMethod = "POST" //set http method as POST
 				do {
 					request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -1163,11 +1213,19 @@ func scheduledTimerWithTimeInterval(){
 			print("CurrentdateString",CurrentdateString)
 			
 			let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": RetrivedempVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+						
+						
+						var StartPoint = Baseurl.shared().baseURL
+						var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit"
+						let urlstring = "\(StartPoint)\(Endpoint1)"
+						print("First",urlstring)
+						let url = NSURL(string: urlstring)
+						
 			
-			let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
+			//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
 			//create the session object
 			let session = URLSession.shared
-			var request = URLRequest(url: url as URL)
+						var request = URLRequest(url: url as! URL)
 			request.httpMethod = "POST" //set http method as POST
 			do {
 				request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -1253,11 +1311,17 @@ func scheduledTimerWithTimeInterval(){
 			print("CurrentdateString",CurrentdateString)
 			
 			let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+						
+						var StartPoint = Baseurl.shared().baseURL
+						var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit"
+						let urlstring = "\(StartPoint)\(Endpoint1)"
+						print("First",urlstring)
+						let url = NSURL(string: urlstring)
 			
-			let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
+			//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
 			//create the session object
 			let session = URLSession.shared
-			var request = URLRequest(url: url as URL)
+						var request = URLRequest(url: url as! URL)
 			request.httpMethod = "POST" //set http method as POST
 			do {
 				request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -1327,11 +1391,18 @@ func Trackedetails()
 	print("Datestr",Datestr)
 	
 	let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": Datestr as Any] as [String : Any]
-	let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+	
+	var StartPoint = Baseurl.shared().baseURL
+	var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild"
+	let urlstring = "\(StartPoint)\(Endpoint1)"
+	print("First",urlstring)
+	let url = NSURL(string: urlstring)
+	
+	//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 	//create the session object
 	let session = URLSession.shared
 	//now create the URLRequest object using the url object
-	var request = URLRequest(url: url as URL)
+	var request = URLRequest(url: url as! URL)
 	request.httpMethod = "POST" //set http method as POST
 	
 	do {
@@ -1450,9 +1521,16 @@ func PolylineAPI()
 	let CurrentdateString = formatter.string(from:now)
 	print("CurrentdateStringsecond",CurrentdateString)
 	let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
-	let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+	
+	var StartPoint = Baseurl.shared().baseURL
+	var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild"
+	let urlstring = "\(StartPoint)\(Endpoint1)"
+	print("First",urlstring)
+	let url = NSURL(string: urlstring)
+	
+	//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 	_ = URLSession.shared
-	var request = URLRequest(url: url as URL)
+	var request = URLRequest(url: url as! URL)
 	request.httpMethod = "POST" //set http method as POST
 	do {
 		request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body

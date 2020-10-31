@@ -318,9 +318,17 @@ func GoogleMapPolyline()
 		
 		//let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 		
-			let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild"
+		let urlstring = "\(StartPoint)\(Endpoint1)"
+		print("First",urlstring)
+		let url = NSURL(string: urlstring)
+		
+		
+			//let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 			let session = URLSession.shared
-			var request = URLRequest(url: url as URL)
+		var request = URLRequest(url: url as! URL)
 			request.httpMethod = "POST" //set http method as POST
 			do {
 				request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
@@ -461,9 +469,16 @@ func GoogleMapPolyline()
 		print("ConvertedCurrentDatestr second",ConvertedCurrentDatestr)
 		
 				let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedMyTeamempId as Any,"visitDate": ConvertedCurrentDatestr as Any] as [String : Any]
-				let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild"
+		let urlstring = "\(StartPoint)\(Endpoint1)"
+		print("First",urlstring)
+		let url = NSURL(string: urlstring)
+		
+				//let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 				_ = URLSession.shared
-				var request = URLRequest(url: url as URL)
+		var request = URLRequest(url: url as! URL)
 				request.httpMethod = "POST" //set http method as POST
 				do {
 					request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
