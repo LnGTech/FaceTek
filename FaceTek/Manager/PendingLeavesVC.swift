@@ -212,11 +212,26 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                 headerCell.CountLbl.text = Daycount
             headerCell.Btnclk.addTarget(self, action: #selector(self.pressButton(sender:)), for: .touchUpInside)
             headerCell.Btnclk.tag = section
-            headerCell.img.layer.borderWidth = 1
-            headerCell.img.layer.masksToBounds = false
-            headerCell.img.layer.borderColor = UIColor.clear.cgColor
-            headerCell.img.layer.cornerRadius = headerCell.img.frame.width/2
-            headerCell.img.clipsToBounds = true
+//            headerCell.img.layer.borderWidth = 1
+//            headerCell.img.layer.masksToBounds = false
+//            headerCell.img.layer.borderColor = UIColor.clear.cgColor
+//            headerCell.img.layer.cornerRadius = headerCell.img.frame.height/2
+//            headerCell.img.clipsToBounds = true
+					
+					 //headerCell.img = UIImage(named: "Leaves1.png")
+//					headerCell.img.layer.borderWidth = 1.0
+//					headerCell.img.layer.masksToBounds = false
+//					headerCell.img.layer.borderColor = UIColor.white.cgColor
+//					headerCell.img.layer.cornerRadius = headerCell.img.frame.size.width / 2
+//					headerCell.img.clipsToBounds = true
+//					
+//					
+					
+					headerCell.img?.layer.cornerRadius = (headerCell.img?.frame.size.width ?? 0.0) / 2
+					headerCell.img?.clipsToBounds = true
+					headerCell.img?.layer.borderWidth = 1.0
+					headerCell.img?.layer.borderColor = UIColor.clear.cgColor
+					
 
         }
         }
