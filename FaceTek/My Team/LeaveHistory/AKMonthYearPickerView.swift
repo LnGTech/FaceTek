@@ -218,10 +218,8 @@ private class MonthYearPickerView: UIPickerView, UIPickerViewDelegate, UIPickerV
             month += 1
         }
         self.months = months
-        
         self.delegate = self
         self.dataSource = self
-        
         let currentMonth = NSCalendar(identifier: NSCalendar.Identifier.gregorian)!.component(.month, from: NSDate() as Date)
         self.selectRow(currentMonth - 1, inComponent: 0, animated: false)
     }

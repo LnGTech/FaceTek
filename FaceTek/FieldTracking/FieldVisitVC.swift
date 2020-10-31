@@ -930,8 +930,7 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 @objc func FieldVisitInbtnclick(_ sender:UIButton!)
 {
 	self.Fieldvisitoutbtn.setTitleColor(.lightGray, for: .normal)
-	self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)
-}
+	self.Fieldvisitoutbtn.titleLabel?.font = UIFont.boldSystemFont(ofSize: 14)}
 @IBAction func FieldvisitOUT_Submitbtnclk(_ sender: Any) {
 	
 	if (SelectPlacetxtfld.text == ""){

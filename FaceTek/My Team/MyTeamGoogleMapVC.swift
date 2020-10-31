@@ -104,6 +104,7 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 
 		mapView.delegate = self
 		MyTeamGooglemapFormview.isHidden = true
+		VisitStatusLbl.isHidden = true
 		
 
 		MyTeamGooglemapFormview.layer.cornerRadius = 20
@@ -311,12 +312,13 @@ func GoogleMapPolyline()
 			let CurrentdateString = formatter.string(from:now)
 			print("CurrentdateString",CurrentdateString)
 			//let parameters = ["custId": "74" as Any,"empId": "353" as Any,"visitDate": ConvertedCurrentDatestr as Any] as [String : Any]
+		print("ConvertedCurrentDatestr23",ConvertedCurrentDatestr)
 		
-		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedMyTeamempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
+		let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedMyTeamempId as Any,"visitDate": ConvertedCurrentDatestr as Any] as [String : Any]
 		
 		//let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
 		
-			let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+			let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 			let session = URLSession.shared
 			var request = URLRequest(url: url as URL)
 			request.httpMethod = "POST" //set http method as POST
@@ -405,22 +407,28 @@ func GoogleMapPolyline()
 						polyline.strokeWidth = 1.0
 						polyline.spans = [GMSStyleSpan(color: .blue)]
 						polyline.map = self.mapView
-						
+						self.VisitStatusLbl.isHidden = true
+
 					
 					}
 					else
 					{
-												
+						
+						self.VisitStatusLbl.isHidden = false
+
 						print("statusDic---",statusDic)
 						let message = statusDic["message"] as? NSString
 						
-						
+						//self.VisitStatusLbl.isHidden = false
 						self.VisitStatusLbl.text = message as String?
 						
 						self.mapView.addSubview(self.VisitStatusLbl)
 
 						
+						
 						print("Visi UnAvailable")
+						
+						
 
 						print("message-----",message as Any)
 						
@@ -449,8 +457,11 @@ func GoogleMapPolyline()
 				let now = Date()
 				let CurrentdateString = formatter.string(from:now)
 				print("CurrentdateStringsecond",CurrentdateString)
-				let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedMyTeamempId as Any,"visitDate": CurrentdateString as Any] as [String : Any]
-				let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
+		
+		print("ConvertedCurrentDatestr second",ConvertedCurrentDatestr)
+		
+				let parameters = ["custId": RetrivedcustId as Any,"empId": RetrivedMyTeamempId as Any,"visitDate": ConvertedCurrentDatestr as Any] as [String : Any]
+				let url: NSURL = NSURL(string:"http://52.183.137.54:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/getFieldVisitTrackDetailsWithAChild")!
 				_ = URLSession.shared
 				var request = URLRequest(url: url as URL)
 				request.httpMethod = "POST" //set http method as POST
@@ -550,12 +561,17 @@ func GoogleMapPolyline()
 									
 									MainDict.setObject(timeSpent, forKey: "timeSpent" as NSCopying)
 									
-									var kmTravelled = (fieldVisit?["kmTravelled"] as? NSInteger)!
+									var kmTravelled = (fieldVisit?["kmTravelled"] as? NSNumber)!
 									print("kmTravelled----",kmTravelled)
 									
-									var ConvertKmtravel = String(kmTravelled)
 									
-									self.KmtravelDataLbl.text = ConvertKmtravel
+									let temp:NSNumber = kmTravelled
+									let tempString = temp.stringValue
+
+									
+									//var ConvertKmtravel = String(kmTravelled)
+									
+									self.KmtravelDataLbl.text = tempString
 									
 									let KmtraveledDataattributes :Dictionary = [NSAttributedStringKey.font : self.KmtravelDataLbl.font]
 									self.KmtravelDataLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
