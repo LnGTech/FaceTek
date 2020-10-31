@@ -209,7 +209,7 @@ class AbsentVC: UIViewController ,UITextFieldDelegate,UITableViewDelegate,UITabl
         if arrSectionsData.count > 0{
             let dict = arrSectionsData.object(at: section) as? NSDictionary
             if let temp = dict?.value(forKey: "totalCount") as? Int{
-                headerCell.lblCount.text = "count: \(temp)"
+                headerCell.lblCount.text = "Count: \(temp)"
             }
             var strTimings = ""
             if let shiftStarttime = dict?.value(forKey: "shiftStart") as? String{

@@ -11,7 +11,6 @@ import UIKit
 class PendingHeadercell: UITableViewCell {
     
     @IBOutlet weak var empNameLbl: UILabel!
-    
     @IBOutlet weak var CountLbl: UILabel!
     @IBOutlet weak var img: UIImageView!
     
