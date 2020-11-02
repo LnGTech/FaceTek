@@ -1144,6 +1144,7 @@
                         <outlet property="AttendanceNavigationtbl" destination="2y9-EJ-HK9" id="N7c-eh-grQ"/>
                         <outlet property="Attentionview" destination="b0i-Nb-uan" id="hsn-xi-Kcv"/>
                         <outlet property="CompanyNameLbl" destination="aCR-5O-URJ" id="gNI-kA-A5h"/>
+                        <outlet property="CompanyPowerLbl" destination="fGg-9K-TWY" id="UGE-kr-bi0"/>
                         <outlet property="ContactTextView" destination="Rmc-TN-Jlc" id="Lpu-LP-rmS"/>
                         <outlet property="ContactUsView" destination="ywh-Zn-nI2" id="jZo-KN-ex7"/>
                         <outlet property="EmergencyTimeoutview" destination="QIF-yx-D3g" id="HCk-ik-Gvx"/>
@@ -4598,6 +4599,7 @@
                     <connections>
                         <outlet property="AppliedLeavePopup" destination="uFH-Xk-BjY" id="iZm-pY-Vw1"/>
                         <outlet property="CompanyNameLbl" destination="nCU-0Y-3qa" id="JgL-MP-zdA"/>
+                        <outlet property="CompanyPowerLbl" destination="bSN-Kj-DrW" id="JLz-MR-42N"/>
                         <outlet property="ContactUsView" destination="cYy-Yb-i4V" id="qHh-SQ-a1N"/>
                         <outlet property="ContactUsadrstextview" destination="cYy-Yb-i4V" id="VFc-bg-xlZ"/>
                         <outlet property="DropdownBackview" destination="KbG-u2-G5q" id="jaX-40-qMb"/>
@@ -5518,6 +5520,7 @@
                         <outlet property="Absentimg" destination="b2U-0t-6ZG" id="ewH-uz-4q4"/>
                         <outlet property="Absentview" destination="Jgh-xZ-KCY" id="kDX-mo-Xu3"/>
                         <outlet property="CompanyNameLbl" destination="EIW-q5-1Wh" id="ATk-n7-VDF"/>
+                        <outlet property="CompanyPowerLbl" destination="B9k-cV-3eT" id="cYf-oc-Yib"/>
                         <outlet property="ContactusText" destination="pHY-5M-wpJ" id="KHO-IA-4Rz"/>
                         <outlet property="EarlyLeaversLbl" destination="Mvh-0d-JWR" id="ksW-pZ-OUO"/>
                         <outlet property="EarlyLeaversimg" destination="07l-dn-QOu" id="Nrt-9q-Kzg"/>

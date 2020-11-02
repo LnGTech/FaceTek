@@ -17,6 +17,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	@IBOutlet weak var stackView: UIStackView!
 	
 	@IBOutlet weak var hamburgerView: UIView!
+	
+	
+	@IBOutlet weak var CompanyPowerLbl: UILabel!
 	@IBOutlet weak var CompanyNameLbl: UILabel!
 	@IBOutlet weak var UserNameLbl: UILabel!
 	@IBOutlet weak var MobilenumberLbl: UILabel!
@@ -119,6 +122,10 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		super.viewDidLoad()
         startLoadingSpinner()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
+		CompanyPowerLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 12.0)!
+		let Datetxtattributes :Dictionary = [NSAttributedStringKey.font :CompanyPowerLbl.font]
+		CompanyPowerLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		
         
         //Loading Mobile number and company name
         RefreshLoadingData()
@@ -248,8 +255,14 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         RetrivedCustmercode = UserDefaults.standard.string(forKey: "Custmercode") ?? ""
         print("RetrivedCustmercode-----",RetrivedCustmercode)
         
+		self.ContactusText.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let ContactUsattributes :Dictionary = [NSAttributedStringKey.font : self.ContactusText.font]
+		self.ContactusText.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+		
         
-        
+		self.MobilenumberLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let Mobilenumberattributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]
+		self.MobilenumberLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
 		MobilenumberLbl.text = RetrivedMobileNumber
 		Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
@@ -916,6 +929,15 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		// set the text from the data model
 		cell.LeaveNavigationLbl?.text = self.HomeDashboardNavigationMenuArray[indexPath.row]
 		
+		cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+		let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+		cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		//cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+		
+//		cell.LeaveNavigationLbl.textColor = UIColor.black
+//		cell.LeaveNavigationLbl.font = UIFont(name: "verdana", size: 16.0)
+		
+		
 		//        let image = NavigationMenuArray[indexPath.row]
 		//
 		//        cell.slideMenuimgicon.image = image
@@ -1119,6 +1141,15 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                         
                         print("brNamestr-----",self.brNamestr)
                         self.CompanyNameLbl.text = self.RefreshbrName
+						
+						self.CompanyNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+						let Companynameatributes :Dictionary = [NSAttributedStringKey.font : self.CompanyNameLbl.font]
+						self.CompanyNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+						
+						self.UserNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+						let Usernameatributes :Dictionary = [NSAttributedStringKey.font : self.UserNameLbl.font]
+						self.UserNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+						
                 }
             }    }
         task.resume()

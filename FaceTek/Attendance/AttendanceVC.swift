@@ -54,6 +54,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	@IBOutlet weak var EmergencyoutBtn: UIButton!
 	var label = UILabel()
 	
+	
+	@IBOutlet weak var CompanyPowerLbl: UILabel!
 	//label.ishidden = true
 	
 	@IBOutlet weak var OutPermissionLbl: UILabel!
@@ -102,6 +104,11 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		startLoadingSpinner()
 		timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
 		
+		CompanyPowerLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 12.0)!
+		let Datetxtattributes :Dictionary = [NSAttributedStringKey.font :CompanyPowerLbl.font]
+		CompanyPowerLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+
+		
 		RefreshLoadingData()
 		
 		ContactTextView.isEditable = false
@@ -145,6 +152,15 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		//        RetrivedMobileNumber = defaults.string(forKey: "Mobilenum")!
 		//        print("RetrivedMobileNumber-----",RetrivedMobileNumber)
+		
+		self.ContactTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let Contactusattributes :Dictionary = [NSAttributedStringKey.font : self.ContactTextView.font]
+		self.ContactTextView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+		self.MobilenumberLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let Mobilenumberattributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]
+		self.MobilenumberLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+        
 		MobilenumberLbl.text = RetrivedMobileNumber
 		//Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
 		//		UserNameLbl.text = Employeenamestr
@@ -353,6 +369,12 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
 			cell.accessoryType = .disclosureIndicator
 			// set the text from the data model
+			
+			
+			cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+			let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			
 			cell.LeaveNavigationLbl?.text = self.AttendanceNavigationMenuArray[indexPath.row]
 			customActivityIndicatory(self.view, startAnimate: false)
 			cellToReturn = cell
@@ -2150,6 +2172,16 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 					let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
 					self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
 					print("Refresh employeeName",self.RefreshemployeeNam)
+					
+					self.CompanyNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+					let Companynameatributes :Dictionary = [NSAttributedStringKey.font : self.CompanyNameLbl.font]
+					self.CompanyNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+					
+					self.UserNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+					let Usernameatributes :Dictionary = [NSAttributedStringKey.font : self.UserNameLbl.font]
+					self.UserNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+					
+					
 					
 					self.RefreshbrName = (ItemsDict["brName"] as? String)!
 					print("Refresh brName",self.RefreshbrName)
