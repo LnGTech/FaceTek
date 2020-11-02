@@ -251,6 +251,65 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 //           let arrFilter = arrAbsentEmp.filtered(using: predict) as NSArray
 //           if arrFilter.count > 0{
 //               let dictEmp = arrFilter.object(at: indexPath.row) as? NSDictionary
+		
+		
+		//Label Font size and color
+		
+		
+		PendingLeavescellTableViewCell.FromtxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let PendingLeavesFromtxtLblattributes :Dictionary = [NSAttributedStringKey.font : PendingLeavescellTableViewCell.FromtxtLbl.font]
+		//PendingLeavescellTableViewCell.FromtxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		PendingLeavescellTableViewCell.FromtxtLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+		
+		PendingLeavescellTableViewCell.TotxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let PendingLeavestotxtLblAttributes :Dictionary = [NSAttributedStringKey.font : PendingLeavescellTableViewCell.TotxtLbl.font]
+		//PendingLeavescellTableViewCell.FromtxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		PendingLeavescellTableViewCell.TotxtLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+		PendingLeavescellTableViewCell.RemarkstxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let PendingLeavesRemarksAttributes :Dictionary = [NSAttributedStringKey.font : PendingLeavescellTableViewCell.RemarkstxtLbl.font]
+		//PendingLeavescellTableViewCell.FromtxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		PendingLeavescellTableViewCell.RemarkstxtLbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+		
+		
+		PendingLeavescellTableViewCell.FromLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
+		let PendingLeavesFromLblattributes :Dictionary = [NSAttributedStringKey.font : PendingLeavescellTableViewCell.FromLbl.font]
+		//PendingLeavescellTableViewCell.FromtxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		PendingLeavescellTableViewCell.FromLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+
+		
+		PendingLeavescellTableViewCell.ToLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
+		let PendingLeavestoLblAttributes :Dictionary = [NSAttributedStringKey.font : PendingLeavescellTableViewCell.ToLbl.font]
+		//PendingLeavescellTableViewCell.FromtxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		PendingLeavescellTableViewCell.ToLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+
+		PendingLeavescellTableViewCell.RemarksLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 13.0)!
+		let PendingLeavesRemarksAttributes2 :Dictionary = [NSAttributedStringKey.font : PendingLeavescellTableViewCell.RemarksLbl.font]
+		//PendingLeavescellTableViewCell.FromtxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		PendingLeavescellTableViewCell.RemarksLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+
+
+		PendingLeavescellTableViewCell.RejctLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : PendingLeavescellTableViewCell.RejctLbl.font]
+		//PendingLeavescellTableViewCell.FromtxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		PendingLeavescellTableViewCell.RejctLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+
+		PendingLeavescellTableViewCell.AcceptLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let PendingLeavesAcceptattributes :Dictionary = [NSAttributedStringKey.font : PendingLeavescellTableViewCell.AcceptLbl.font]
+		//PendingLeavescellTableViewCell.FromtxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		PendingLeavescellTableViewCell.AcceptLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+
+
+		
+		PendingLeavescellTableViewCell.LeaveTypeLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let LeaveTypeattributes :Dictionary = [NSAttributedStringKey.font : PendingLeavescellTableViewCell.LeaveTypeLbl.font]
+		//PendingLeavescellTableViewCell.FromtxtLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		//PendingLeavescellTableViewCell.LeaveTypeLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+
+
+		
+		
                PendingLeavescellTableViewCell.FromLbl.text = dicShiftDetails?.value(forKey: "empLeaveFrom") as? String
                PendingLeavescellTableViewCell.ToLbl.text = dicShiftDetails?.value(forKey: "empLeaveTo") as? String
         PendingLeavescellTableViewCell.RemarksLbl.text = dicShiftDetails?.value(forKey: "empLeaveRemarks") as? String

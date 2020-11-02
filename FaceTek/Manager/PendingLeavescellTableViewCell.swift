@@ -10,7 +10,14 @@ import UIKit
 
 class PendingLeavescellTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var FromLbl: UILabel!
+	
+	
+	@IBOutlet weak var FromtxtLbl: UILabel!
+	
+	@IBOutlet weak var TotxtLbl: UILabel!
+	
+	@IBOutlet weak var RemarkstxtLbl: UILabel!
+	@IBOutlet weak var FromLbl: UILabel!
     
     @IBOutlet weak var ToLbl: UILabel!
     @IBOutlet weak var RemarksLbl: UILabel!
