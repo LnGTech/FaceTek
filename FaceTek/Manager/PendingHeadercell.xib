@@ -20,12 +20,12 @@
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DWi-ui-AX2">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="42"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Leaves1.png" translatesAutoresizingMaskIntoConstraints="NO" id="csG-Jp-c8K">
-                                <rect key="frame" x="23" y="7" width="25" height="25"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="office_out.png" translatesAutoresizingMaskIntoConstraints="NO" id="csG-Jp-c8K">
+                                <rect key="frame" x="23" y="4" width="30" height="30"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="25" id="KOY-ik-y6N"/>
-                                    <constraint firstAttribute="height" constant="25" id="mya-aF-pVt"/>
+                                    <constraint firstAttribute="width" constant="30" id="KOY-ik-y6N"/>
+                                    <constraint firstAttribute="height" constant="30" id="mya-aF-pVt"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uyv-rd-6hA">
@@ -64,7 +64,7 @@
                         <constraints>
                             <constraint firstItem="0bf-Tw-7Wg" firstAttribute="top" secondItem="DWi-ui-AX2" secondAttribute="top" constant="11" id="2hW-G0-kRC"/>
                             <constraint firstAttribute="trailing" secondItem="0bf-Tw-7Wg" secondAttribute="trailing" constant="23" id="4BB-qe-GeK"/>
-                            <constraint firstItem="csG-Jp-c8K" firstAttribute="top" secondItem="DWi-ui-AX2" secondAttribute="top" constant="7" id="I3h-NV-FP1"/>
+                            <constraint firstItem="csG-Jp-c8K" firstAttribute="top" secondItem="DWi-ui-AX2" secondAttribute="top" constant="4" id="I3h-NV-FP1"/>
                             <constraint firstItem="csG-Jp-c8K" firstAttribute="leading" secondItem="DWi-ui-AX2" secondAttribute="leading" constant="23" id="Ij4-sA-fB8"/>
                             <constraint firstAttribute="bottom" secondItem="ct3-lL-70w" secondAttribute="bottom" id="Jsp-b3-2hw"/>
                             <constraint firstAttribute="trailing" secondItem="ct3-lL-70w" secondAttribute="trailing" id="TBW-1v-Cz4"/>
@@ -73,7 +73,7 @@
                             <constraint firstItem="ct3-lL-70w" firstAttribute="leading" secondItem="DWi-ui-AX2" secondAttribute="leading" constant="4" id="e2A-Bd-QaF"/>
                             <constraint firstItem="ct3-lL-70w" firstAttribute="top" secondItem="DWi-ui-AX2" secondAttribute="top" id="rtR-96-dc5"/>
                             <constraint firstItem="Dix-fV-T6b" firstAttribute="leading" secondItem="uyv-rd-6hA" secondAttribute="trailing" constant="8" id="sBn-Aa-IRU"/>
-                            <constraint firstItem="uyv-rd-6hA" firstAttribute="leading" secondItem="csG-Jp-c8K" secondAttribute="trailing" constant="10" id="v6f-f7-0aO"/>
+                            <constraint firstItem="uyv-rd-6hA" firstAttribute="leading" secondItem="csG-Jp-c8K" secondAttribute="trailing" constant="5" id="v6f-f7-0aO"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -97,6 +97,6 @@
     </objects>
     <resources>
         <image name="LeavedownArrowimg.png" width="29" height="29"/>
-        <image name="Leaves1.png" width="200" height="200"/>
+        <image name="office_out.png" width="120" height="120"/>
     </resources>
 </document>
