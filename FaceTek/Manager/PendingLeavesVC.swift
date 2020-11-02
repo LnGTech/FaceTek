@@ -46,6 +46,9 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		//self.Pendingtble.rowHeight = 10.0
+
         
         PendingLeaves_AcceptView.isHidden = true
         PendingLeaves_RejectView.isHidden = true
@@ -212,20 +215,9 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                 headerCell.CountLbl.text = Daycount
             headerCell.Btnclk.addTarget(self, action: #selector(self.pressButton(sender:)), for: .touchUpInside)
             headerCell.Btnclk.tag = section
-//            headerCell.img.layer.borderWidth = 1
-//            headerCell.img.layer.masksToBounds = false
-//            headerCell.img.layer.borderColor = UIColor.clear.cgColor
-//            headerCell.img.layer.cornerRadius = headerCell.img.frame.height/2
-//            headerCell.img.clipsToBounds = true
 					
-					 //headerCell.img = UIImage(named: "Leaves1.png")
-//					headerCell.img.layer.borderWidth = 1.0
-//					headerCell.img.layer.masksToBounds = false
-//					headerCell.img.layer.borderColor = UIColor.white.cgColor
-//					headerCell.img.layer.cornerRadius = headerCell.img.frame.size.width / 2
-//					headerCell.img.clipsToBounds = true
-//					
-//					
+					//PendingHeadercell.
+		
 					
 					headerCell.img?.layer.cornerRadius = (headerCell.img?.frame.size.width ?? 0.0) / 2
 					headerCell.img?.clipsToBounds = true
@@ -239,13 +231,19 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         
         return headerCell
     }
+	
+	
     
-       func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-           return 40
-       }
+//       func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+//           return 40
+//       }
        func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
            return 50
        }
+	
+	
+	
+	
        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
            let PendingLeavescellTableViewCell = tableView.dequeueReusableCell(withIdentifier: "PendingLeavescellTableViewCell", for: indexPath) as! PendingLeavescellTableViewCell
            let dicShiftDetails = marLeavesData.object(at: indexPath.section) as? NSDictionary
@@ -273,6 +271,10 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 //           }
            return PendingLeavescellTableViewCell
        }
+	
+	
+	
+	
     @objc func pressButton(sender: UIButton) {
         let dict = marLeavesData.object(at:sender.tag ) as? NSDictionary
         let mdic = dict?.mutableCopy() as! NSMutableDictionary
