@@ -60,7 +60,6 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     @IBOutlet weak var FromBtn: UIButton!
     @IBOutlet weak var ToBtn: UIButton!
     var button: HamburgerButton! = nil
-	
 	@IBOutlet weak var CompanyPowerLbl: UILabel!
 	
     let FromdatePicker = UIDatePicker()
