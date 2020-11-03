@@ -26,6 +26,10 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
+		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
+		view.addSubview(statusBarView)
+		
 		//self.Calendartbl.separatorStyle = UITableViewCell.SeparatorStyle.none
 		
 		HolidaycalendarLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!

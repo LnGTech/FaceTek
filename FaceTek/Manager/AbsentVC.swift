@@ -29,6 +29,11 @@ class AbsentVC: UIViewController ,UITextFieldDelegate,UITableViewDelegate,UITabl
     @IBOutlet weak var NoLeavesLbl: UILabel!
      override func viewDidLoad() {
         super.viewDidLoad()
+		
+		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
+		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
+		view.addSubview(statusBarView)
+		
          let defaults = UserDefaults.standard
                RetrivedcustId = defaults.integer(forKey: "custId")
                print("RetrivedcustId----",RetrivedcustId)
