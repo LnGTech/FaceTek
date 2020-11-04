@@ -710,7 +710,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1215686275" green="0.3921568627" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.054901960784313725" green="0.29803921568627451" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="tPJ-Sr-xZO" firstAttribute="leading" secondItem="KPH-5q-qLk" secondAttribute="leading" constant="60" id="KPx-x3-ZdD"/>
                                     <constraint firstItem="YX9-Iv-yge" firstAttribute="leading" secondItem="KPH-5q-qLk" secondAttribute="leading" constant="8" id="RKX-jA-ZRm"/>
@@ -4049,7 +4049,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1215686275" green="0.3921568627" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.054901960784313725" green="0.29803921568627451" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="70" id="1Cm-FV-x0Q"/>
                                     <constraint firstItem="Tpb-n6-iF4" firstAttribute="leading" secondItem="wcx-0R-90L" secondAttribute="leading" constant="60" id="eH0-Qn-SZW"/>
@@ -4559,7 +4559,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.1215686275" green="0.3921568627" blue="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.054901960784313725" green="0.29803921568627451" blue="0.54509803921568623" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="q0X-9J-TTk" firstAttribute="leading" secondItem="wm4-gl-DSf" secondAttribute="leading" constant="60" id="DuM-3b-M1R"/>
                                     <constraint firstAttribute="height" constant="70" id="FR6-3R-418"/>
@@ -6628,9 +6628,25 @@
             </objects>
             <point key="canvasLocation" x="10470" y="-595"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="Rww-c9-Ue7">
+            <objects>
+                <viewController id="UNM-qA-3wx" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="pfT-w1-4O4">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="2iT-7Y-b6y"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mhx-C5-DgY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2490" y="-318"/>
+        </scene>
         <!--Log into Saavn-->
         <scene sceneID="Qcq-GP-rdt">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vLz-ir-fAZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="InputOTPVC" modalPresentationStyle="overFullScreen" id="Nsr-f1-PGu" customClass="InputOTPVC" customModule="Facetek" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="BmR-mr-Byc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
@@ -6903,7 +6919,6 @@
                         <outlet property="tf4" destination="ovd-IS-FKW" id="MJM-1F-lsq"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="vLz-ir-fAZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2368.8000000000002" y="89.505247376311857"/>
         </scene>

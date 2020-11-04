@@ -26,6 +26,11 @@ class FaceRegistrationVC: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
+		let statusBarColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 0.9680276113)
+			statusBarView.backgroundColor = statusBarColor
+		view.addSubview(statusBarView)
+		
 		let defaults = UserDefaults.standard
 		custbrCode = defaults.string(forKey: "brCode") ?? ""
 		Employeenamestr = defaults.string(forKey: "employeeName") ?? ""

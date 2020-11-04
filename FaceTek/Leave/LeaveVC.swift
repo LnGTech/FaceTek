@@ -67,6 +67,11 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
+		let statusBarColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 0.9680276113)
+			statusBarView.backgroundColor = statusBarColor
+		view.addSubview(statusBarView)
+		
 		CompanyPowerLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 12.0)!
 		let Datetxtattributes :Dictionary = [NSAttributedStringKey.font :CompanyPowerLbl.font]
 		CompanyPowerLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)

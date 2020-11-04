@@ -27,6 +27,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			UIApplication.shared.keyWindow?.addSubview(statusBar1)
 		}
 		
+		
+		
+		
+		
 		//Google map key
 		GMSServices.provideAPIKey("AIzaSyCA5zQA-tWuaGYyhrAr9H1e2rMOT3sI7Ac")
 		
@@ -62,20 +66,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			print("nsuserdefault----",name)
 			if (name == "Coding Explorer" && is_authenticated == nil) {
 				//new user
-				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC")
-				let navVC = UINavigationController.init(rootViewController: RegistrationVC)
-				navVC.navigationBar.isHidden = true
-				self.window?.rootViewController = navVC
-				self.window?.makeKeyAndVisible()
-				
-				
 //				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//				let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
-//				//self.present(tabBarController, animated:true, completion:nil)
-//				self.window?.rootViewController = tabBarController
+//				let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC")
+//				let navVC = UINavigationController.init(rootViewController: RegistrationVC)
+//				navVC.navigationBar.isHidden = true
+//				self.window?.rootViewController = navVC
 //				self.window?.makeKeyAndVisible()
 //
+				
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
+				//self.present(tabBarController, animated:true, completion:nil)
+				self.window?.rootViewController = tabBarController
+				self.window?.makeKeyAndVisible()
+
 				
 				
 				

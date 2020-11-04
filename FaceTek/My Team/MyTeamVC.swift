@@ -38,7 +38,7 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
 		self.MyTeamtbl.dataSource = self
 		self.MyTeamtbl.rowHeight = 65
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
-		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
+		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 0.9680276113)
 		view.addSubview(statusBarView)
 		Nodataview.isHidden = true
 		  MyTeamtbl.register(UINib(nibName: "MyTeamtblCell", bundle: nil), forCellReuseIdentifier: "MyTeamtblCell")

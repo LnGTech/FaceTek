@@ -42,6 +42,15 @@ class InputOTPVC: UIViewController {
 	var Employeenamestr = String()
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
+      let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
+		let statusBarColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 0.9680276113)
+			statusBarView.backgroundColor = statusBarColor
+		view.addSubview(statusBarView)
+		
+		
+		
+		
 		self.otpdisplayLbl.isHidden == true
 
 		

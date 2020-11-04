@@ -48,7 +48,7 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         super.viewDidLoad()
 		
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
-		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
+		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 0.9680276113)
 		view.addSubview(statusBarView)
 		
 		//self.Pendingtble.rowHeight = 10.0
