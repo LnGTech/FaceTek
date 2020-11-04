@@ -90,18 +90,37 @@ class InputOTPVC: UIViewController {
 	
 	
 	@IBAction func textEditDidBegin(_ sender: UITextField) {
-		print("textEditDidBegin has been pressed")
-		
-		if !(sender.text?.isEmpty)!{
-			sender.selectAll(self)
-			//buttonUnSelected()
-		}else{
-			print("Empty")
-			sender.text = " "
-			
-		}
-		
+	
+	print("textEditDidBegin has been pressed")
+	
+			if !(sender.text?.isEmpty)!{
+				sender.selectAll(self)
+				//buttonUnSelected()
+			}else{
+				print("Empty")
+				sender.text = " "
+	
+			}
+	
+	
 	}
+	
+//	@IBAction func textEditDidBegin(_ sender: UITextField) {
+//		print("textEditDidBegin has been pressed")
+//		
+//		if !(sender.text?.isEmpty)!{
+//			sender.selectAll(self)
+//			//buttonUnSelected()
+//		}else{
+//			print("Empty")
+//			sender.text = " "
+//			
+//		}
+//		
+//	}
+	
+	
+	
 	@IBAction func textEditChanged(_ sender: UITextField) {
 		print("textEditChanged has been pressed")
 		let count = sender.text?.count
@@ -122,7 +141,30 @@ class InputOTPVC: UIViewController {
 			}
 		}
 		
+		
 	}
+	
+	//@IBAction func textEditChanged(_ sender: UITextField) {
+//		print("textEditChanged has been pressed")
+//		let count = sender.text?.count
+//		//
+//		if count == 1{
+//
+//			switch sender {
+//			case tf1:
+//				tf2.becomeFirstResponder()
+//			case tf2:
+//				tf3.becomeFirstResponder()
+//			case tf3:
+//				tf4.becomeFirstResponder()
+//			case tf4:
+//				tf4.resignFirstResponder()
+//			default:
+//				print("default")
+//			}
+//		}
+//
+	//}
 	
 	
 	@IBAction func Verified_OkBtnclk(_ sender: Any) {
