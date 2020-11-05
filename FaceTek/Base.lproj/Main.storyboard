@@ -5814,14 +5814,6 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2n-PJ-NgV">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="300"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HWc-ao-xPE">
-                                                <rect key="frame" x="10" y="0.0" width="31" height="30"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="31" id="0pF-V0-mux"/>
-                                                    <constraint firstAttribute="height" constant="30" id="ayb-9q-b0u"/>
-                                                </constraints>
-                                                <state key="normal" title="Prev"/>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="afv-IA-Rew">
                                                 <rect key="frame" x="303" y="0.0" width="32" height="30"/>
                                                 <constraints>
@@ -5829,15 +5821,32 @@
                                                     <constraint firstAttribute="width" constant="32" id="cny-LR-JsJ"/>
                                                 </constraints>
                                                 <state key="normal" title="Next"/>
+                                                <connections>
+                                                    <action selector="NextBtnclk:" destination="XkG-Yq-sTx" eventType="touchUpInside" id="G2N-08-hzI"/>
+                                                    <action selector="nextTapped:" destination="XkG-Yq-sTx" eventType="touchUpInside" id="5lL-X0-Bnd"/>
+                                                </connections>
                                             </button>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5LJ-pU-FUG">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zVd-fX-6Mx">
+                                                        <rect key="frame" x="21" y="8" width="46" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="Button"/>
+                                                        <connections>
+                                                            <action selector="Btnclk:" destination="XkG-Yq-sTx" eventType="touchUpInside" id="nzq-bm-VCQ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" systemColor="systemOrangeColor" red="1" green="0.58431372550000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            </view>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstItem="afv-IA-Rew" firstAttribute="top" secondItem="S2n-PJ-NgV" secondAttribute="top" id="9RR-bo-RmT"/>
                                             <constraint firstAttribute="height" constant="300" id="Nqd-Ei-B2A"/>
-                                            <constraint firstItem="HWc-ao-xPE" firstAttribute="leading" secondItem="S2n-PJ-NgV" secondAttribute="leading" constant="10" id="cpy-eW-xM8"/>
                                             <constraint firstAttribute="trailing" secondItem="afv-IA-Rew" secondAttribute="trailing" constant="8" id="irq-JR-Zjy"/>
-                                            <constraint firstItem="HWc-ao-xPE" firstAttribute="top" secondItem="S2n-PJ-NgV" secondAttribute="top" id="npL-Q3-6oZ"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aEi-DH-LSY">
@@ -5991,7 +6000,9 @@
                         <outlet property="Fscalendarview" destination="S2n-PJ-NgV" id="MhR-yb-Sby"/>
                         <outlet property="HolidayLbl" destination="PdU-cQ-mLa" id="ZBO-AI-jgP"/>
                         <outlet property="LeaveLbl" destination="EFd-e2-IoO" id="aPE-GT-o10"/>
+                        <outlet property="NextBtn" destination="afv-IA-Rew" id="D9r-hr-lf4"/>
                         <outlet property="PresentLbl" destination="aEi-DH-LSY" id="EHs-OY-DXa"/>
+                        <outlet property="PrevView" destination="5LJ-pU-FUG" id="jlw-Mw-csN"/>
                         <outlet property="WeeklyOffLbl" destination="nOb-JR-8DU" id="ZZN-sb-I3I"/>
                     </connections>
                 </viewController>

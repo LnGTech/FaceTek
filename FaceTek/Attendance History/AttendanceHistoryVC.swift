@@ -18,6 +18,13 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
     var customView = UIView()
 	var Currentdatestr : String = ""
 	private weak var calendar: FSCalendar!
+	
+	@IBOutlet weak var PrevBtn: UIButton!
+	
+	@IBOutlet weak var PrevView: UIView!
+	
+	@IBOutlet weak var NextBtn: UIButton!
+	
 	@IBOutlet weak var PresentLbl: UILabel!
 	@IBOutlet weak var AbsentLbl: UILabel!
 	@IBOutlet weak var LeaveLbl: UILabel!
@@ -52,12 +59,25 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		
 		calendar.dataSource = self
 		calendar.delegate = self
+		
+		let button = UIButton(frame: CGRect(x: 10, y: 10, width: 30, height: 30))
+		button.backgroundColor = .red
+		button.tag = 0
+		button.addTarget(self, action: #selector(pressButton(_:)), for: .touchUpInside)
+		self.Fscalendarview.addSubview(button)
+		
+		//customView.addSubview(PrevBtn)
+		//customView.addSubview(PrevView)
+		customView.addSubview(NextBtn)
+
 		customView.addSubview(calendar)
 		self.calendar = calendar
 		
 		AttendanceHistoryAPIMethod()
 
     }
+	
+	
 	
 	
 	func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
@@ -227,9 +247,45 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 	}
 	
 	
+	
+	@objc func pressButton(_ button: UIButton) {
+//
+		
+        //unit = (calendarView.scope == FSCalendarScope.month) ? FSCalendarUnit.month : FSCalendarUnit.weekOfYear
+        let previousMonth = Calendar.current.date(byAdding: .month, value: -1, to: calendar.currentPage)
+        calendar.setCurrentPage(previousMonth!, animated: true)
+		print("PREV tapped!",previousMonth)
+
+		
+	}
+	
+	@IBAction func PrevBtnclk(_ sender: Any) {
+		calendar.setCurrentPage(getPreviousMonth(date: calendar.currentPage), animated: true)
+	}
+	
+	@IBAction func NextBtnclk(_ sender: Any) {
+		
+		print("Tapped")
+		calendar.setCurrentPage(getNextMonth(date: calendar.currentPage), animated: true)
+	}
+	
+	
+	
+
+	func getNextMonth(date:Date)->Date {
+		return  Calendar.current.date(byAdding: .month, value: 1, to:date)!
+	}
+
+	func getPreviousMonth(date:Date)->Date {
+		return  Calendar.current.date(byAdding: .month, value: -1, to:date)!
+	}
+	
+	@IBAction func Btnclk(_ sender: Any) {
+		print("suresh bandaru...")
+	}
+	
 	@IBAction func BackBtnclk(_ sender: Any) {
 		self.presentingViewController?.dismiss(animated: false, completion: nil)
-
 
 	}
 	
