@@ -16,34 +16,28 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 	var absentDateArray = [String]()
 	var WeeklyOffDateArray = [String]()
     var customView = UIView()
-
-
-	
+	var Currentdatestr : String = ""
 	private weak var calendar: FSCalendar!
-	
-	
-	
 	@IBOutlet weak var PresentLbl: UILabel!
-	
 	@IBOutlet weak var AbsentLbl: UILabel!
-	
 	@IBOutlet weak var LeaveLbl: UILabel!
-	
-	
 	@IBOutlet weak var HolidayLbl: UILabel!
-	
-	
 	@IBOutlet weak var WeeklyOffLbl: UILabel!
-	
 	@IBOutlet weak var segctrl: UISegmentedControl!
-	
 	@IBOutlet weak var Fscalendarview: UIView!
 	var AttendanceHistorydata = NSMutableDictionary()
     var AttendanceHistoryArray = NSMutableArray()
 	
-	
     override func viewDidLoad() {
         super.viewDidLoad()
+		
+		
+		let today = Date()
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		Currentdatestr = dateFormatter.string(from: today)
+		print("current date",Currentdatestr)
+		//SelectedDateLbl.text = Currentdatestr
 		
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
 		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
@@ -54,7 +48,6 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
         self.customView.backgroundColor = UIColor.white     //give color to the view
         self.Fscalendarview.center = self.customView.center
         self.Fscalendarview.addSubview(self.customView)
-		
 		let calendar = FSCalendar(frame: CGRect(x: 0, y: 0, width: 350, height: 300))
 		
 		calendar.dataSource = self
@@ -108,21 +101,40 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 	func AttendanceHistoryAPIMethod()
 	{
 
+
 			let defaults = UserDefaults.standard
-
+			var RetrivedcustId = defaults.integer(forKey: "custId")
+			print(" RetrivedcustId----",RetrivedcustId)
+			
 			var RetrivedempId = defaults.integer(forKey: "empId")
+			print(" RetrivedempId----",RetrivedempId)
+			
+			var RetrivedbrId = defaults.integer(forKey: "brId")
+		
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		let myDate = dateFormatter.date(from: Currentdatestr)!
 
-		let parameters = ["empId": 358 as Any, "brId": 83 as Any,"date":"2020-10-01" as Any] as [String : Any]
+		dateFormatter.dateFormat = "yyyy-MM"
+		let Convertdate = dateFormatter.string(from: myDate)
+		print("Convertdate",Convertdate)
+		
+		var Datestr = "\(Convertdate)\("-01")"
+		print("Datestr-----",Datestr)
+		
+		
+			print(" RetrivedbrId----",RetrivedbrId)
+		let parameters = ["empId": RetrivedempId as Any, "brId": RetrivedbrId as Any,"date": Datestr as Any] as [String : Any]
 
 //			let dateFormatter = DateFormatter()
 //			dateFormatter.dateFormat = "yyyy-MM-dd"
 //			let myDate = dateFormatter.date(from: Currentdatestr)!
 //
-//			dateFormatter.dateFormat = "MMM yyyy"
+//			dateFormatter.dateFormat = "yyyy-MM"
 //			let Convertdate = dateFormatter.string(from: myDate)
 //			print("Convertdate",Convertdate)
-//			SelectedDateLbl.text = Convertdate
-//
+			//SelectedDateLbl.text = Convertdate
+
 
 
 			var StartPoint = Baseurl.shared().baseURL
