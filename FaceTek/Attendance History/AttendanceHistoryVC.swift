@@ -18,13 +18,9 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
     var customView = UIView()
 	var Currentdatestr : String = ""
 	private weak var calendar: FSCalendar!
-	
 	@IBOutlet weak var PrevBtn: UIButton!
-	
 	@IBOutlet weak var PrevView: UIView!
-	
 	@IBOutlet weak var NextBtn: UIButton!
-	
 	@IBOutlet weak var PresentLbl: UILabel!
 	@IBOutlet weak var AbsentLbl: UILabel!
 	@IBOutlet weak var LeaveLbl: UILabel!
@@ -249,11 +245,12 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 	
 	
 	@objc func pressButton(_ button: UIButton) {
-//
+		let previousMonth = Calendar.current.date(byAdding: .month, value: -1, to: Date())
+
 		
-        //unit = (calendarView.scope == FSCalendarScope.month) ? FSCalendarUnit.month : FSCalendarUnit.weekOfYear
-        let previousMonth = Calendar.current.date(byAdding: .month, value: -1, to: calendar.currentPage)
-        calendar.setCurrentPage(previousMonth!, animated: true)
+
+//        let previousMonth = Calendar.current.date(byAdding: .month, value: -1, to: calendar.currentPage)
+//        calendar.setCurrentPage(previousMonth!, animated: true)
 		print("PREV tapped!",previousMonth)
 
 		
@@ -281,7 +278,6 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 	}
 	
 	@IBAction func Btnclk(_ sender: Any) {
-		print("suresh bandaru...")
 	}
 	
 	@IBAction func BackBtnclk(_ sender: Any) {
