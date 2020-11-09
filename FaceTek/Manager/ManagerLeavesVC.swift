@@ -202,26 +202,19 @@ class ManagerLeavesVC: UIViewController,UITextFieldDelegate,UITableViewDelegate,
                      
 					if let lateComersShiftDetails = responseJSON["appLeaveShiftDetails"] as? [Any], !lateComersShiftDetails.isEmpty {
                         print("appLeaveShiftDetails----",lateComersShiftDetails)
-                        
                         self.NoLeavesView.isHidden = true
-
                         self.Leavestbl.isHidden = false
                         print("appLeaveShiftDetails Print empty values----")
                     }
                     else
                     {
                         self.NoLeavesView.isHidden = false
-
                         self.Leavestbl.isHidden = true
-
-                        
                     }
                     
                      self.mDictAttendanceData = NSMutableDictionary()
                     if responseJSON != nil{
                         self.mDictAttendanceData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
-						
-						
 						
                     }
                    self.Leavestbl.reloadData()
@@ -279,8 +272,7 @@ class ManagerLeavesVC: UIViewController,UITextFieldDelegate,UITableViewDelegate,
             if let temp = dict?.value(forKey: "shiftName") as? String{
                  headerCell.lblShiftName.text = temp
             }
-           
-        }
+		}
        
         return headerCell
     }
