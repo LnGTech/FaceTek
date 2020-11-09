@@ -197,13 +197,32 @@ class ManagerLeavesVC: UIViewController,UITextFieldDelegate,UITableViewDelegate,
             }
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
-                print("Absent Json Response",responseJSON)
+                print("Leaves Json Response",responseJSON)
                 DispatchQueue.main.async {
                      
+					if let lateComersShiftDetails = responseJSON["appLeaveShiftDetails"] as? [Any], !lateComersShiftDetails.isEmpty {
+                        print("appLeaveShiftDetails----",lateComersShiftDetails)
+                        
+                        self.NoLeavesView.isHidden = true
+
+                        self.Leavestbl.isHidden = false
+                        print("appLeaveShiftDetails Print empty values----")
+                    }
+                    else
+                    {
+                        self.NoLeavesView.isHidden = false
+
+                        self.Leavestbl.isHidden = true
+
+                        
+                    }
                     
                      self.mDictAttendanceData = NSMutableDictionary()
                     if responseJSON != nil{
                         self.mDictAttendanceData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
+						
+						
+						
                     }
                    self.Leavestbl.reloadData()
                 }

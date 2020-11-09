@@ -67,26 +67,20 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
 		let defaults = UserDefaults.standard
 		defaults.set("Coding Explorer", forKey: "userNameKey")
 		
-		
 		customActivityIndicatory(self.view, startAnimate: false)
 		hideKeyboardWhenTappedAround()
 		CustmercodeTxt.delegate = self
 		MobilenumTxt.delegate = self
-		
 		let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
-		
 		view.addGestureRecognizer(tap)
-		
 		let myColor : UIColor = UIColor.lightGray
 		Customercodeview.layer.borderWidth = 1
 		Customercodeview.layer.borderColor = myColor.cgColor
 		Customercodeview.layer.borderColor = myColor.cgColor
 		
-		
 		Custmernumberview.layer.borderWidth = 1
 		Custmernumberview.layer.borderColor = myColor.cgColor
 		Custmernumberview.layer.borderColor = myColor.cgColor
-		
 		Bckview.layer.shadowColor = UIColor.black.cgColor
 		Bckview.layer.shadowOffset = CGSize(width: 0, height: 1.0)
 		Bckview.layer.shadowOpacity = 0.2
@@ -106,10 +100,6 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
 		CancelBtn.layer.borderColor = UIColor.white.cgColor
 		//uppercase letters keypad
 		CustmercodeTxt.addTarget(self, action: #selector(myTextFieldTextChanged), for: UIControl.Event.editingChanged)
-		
-		
-		
-		// Do any additional setup after loading the view.
 	}
 	
 	
@@ -121,16 +111,10 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
 			self.present(tabBarController, animated:true, completion:nil)
 		}
 	}
-	
-	
-	
-	
 	@objc override func dismissKeyboard() {
 		//Causes the view (or one of its embedded text fields) to resign the first responder status.
 		view.endEditing(true)
 	}
-	
-	
 	@objc func myTextFieldTextChanged (textField: UITextField) {
 		CustmercodeTxt.text =  textField.text?.uppercased()
 	}
@@ -184,19 +168,13 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
 		}
 		
 	}
-	
-	
-	
 	@IBAction func ConfirmBtnclk(_ sender: Any) {
 		let storyBoard = UIStoryboard(name: "Main", bundle:nil)
 		let InputOTPVC = storyBoard.instantiateViewController(withIdentifier: "InputOTPVC") as! InputOTPVC
-		//Stored values in Locally Using NSUserDefaulds Database
-		
 		UserDefaults.standard.set(self.custId, forKey: "custId")
 		UserDefaults.standard.set(self.empId, forKey: "empId")
 		UserDefaults.standard.set(self.brCode, forKey: "brCode")
 		UserDefaults.standard.set(self.brId, forKey: "brId")
-		
 		
 		UserDefaults.standard.set(self.employeeName, forKey: "employeeName")
 		UserDefaults.standard.set(self.brName, forKey: "brName")
