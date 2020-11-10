@@ -32,6 +32,7 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		
 		let today = Date()
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -234,21 +235,10 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 			
 			headerCell.LeaveHistoryRejectedLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)!
 			let LeaveHistoryRejectedattributes :Dictionary = [NSAttributedStringKey.font : headerCell.LeaveHistoryRejectedLbl.font]
-			//headerCell.LeaveHistoryRejectedLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
 			
-//            if let temp = dict?.value(forKey: "totalCount") as? Int{
-//                headerCell.lblCount.text = "count: \(temp)"
-//            }
-//            var strTimings = ""
-//            if let shiftStarttime = dict?.value(forKey: "shiftStart") as? String{
-//                strTimings = shiftStarttime
-//            }
-//            if let shiftEndtime = dict?.value(forKey: "shiftEnd") as? String{
-//                //strTimings = strTimings + shiftEndtime
-//                strTimings = "\(strTimings)  -  \(shiftEndtime)"
-//
-//            }
-             //headerCell.lblTimings.text = strTimings
+			headerCell.LeaveHistoryRejectedLbl.isHidden = true
+			headerCell.Rejectedimg.isHidden = true
+			
             if let temp = dict?.value(forKey: "empLeaveStatus") as? String{
 				
 				var empLeaveStatus = ""
@@ -258,12 +248,15 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 				{
 					headerCell.LeaveHistoryRejectedLbl.text = "Rejected"
 					headerCell.Rejectedimg.isHidden = false
+					headerCell.LeaveHistoryRejectedLbl.isHidden = false
+
 
 				}
 				else
 				{
 					headerCell.LeaveHistoryRejectedLbl.text = "Pending"
-
+					headerCell.LeaveHistoryRejectedLbl.isHidden = false
+					headerCell.LeaveHistoryRejectedLbl.textColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
 					headerCell.Rejectedimg.isHidden = true
 					
 				}
