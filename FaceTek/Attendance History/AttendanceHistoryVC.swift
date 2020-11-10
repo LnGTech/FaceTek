@@ -66,7 +66,6 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		button.tag = 0
 		button.addTarget(self, action: #selector(pressButton(_:)), for: .touchUpInside)
 		self.Fscalendarview.addSubview(button)
-		
 		//customView.addSubview(PrevBtn)
 		//customView.addSubview(PrevView)
 		customView.addSubview(NextBtn)
@@ -75,10 +74,6 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		AttendanceHistoryAPIMethod()
 
     }
-	
-	
-	
-	
 	func calendar(_ calendar: FSCalendar, appearance: FSCalendarAppearance, fillDefaultColorFor date: Date) -> UIColor? {
 		
 		let dateFormatter3 = DateFormatter()
@@ -107,41 +102,27 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 			
 		else
 		{
-			
 			return appearance.titleSelectionColor
-
 			return nil
 		}
 
 	}
-
-	
-	
 	func AttendanceHistoryAPIMethod()
 	{
-
-
-			let defaults = UserDefaults.standard
+		let defaults = UserDefaults.standard
 			var RetrivedcustId = defaults.integer(forKey: "custId")
 			print(" RetrivedcustId----",RetrivedcustId)
-			
 			var RetrivedempId = defaults.integer(forKey: "empId")
 			print(" RetrivedempId----",RetrivedempId)
-			
 			var RetrivedbrId = defaults.integer(forKey: "brId")
-		
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "yyyy-MM-dd"
 		let myDate = dateFormatter.date(from: Currentdatestr)!
-
 		dateFormatter.dateFormat = "yyyy-MM"
 		let Convertdate = dateFormatter.string(from: myDate)
 		print("Convertdate",Convertdate)
-		
 		var Datestr = "\(Convertdate)\("-01")"
 		print("Datestr-----",Datestr)
-		
-		
 			print(" RetrivedbrId----",RetrivedbrId)
 		let parameters = ["empId": RetrivedempId as Any, "brId": RetrivedbrId as Any,"date": Datestr as Any] as [String : Any]
 
@@ -258,9 +239,14 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		let date = Date()
 		let calendar = Calendar.current
 		let PreviousMonthDate = Calendar.current.component(.month, from: Date())
-		let previousMonth = PreviousMonthDate - 1
+		var previousMonth = PreviousMonthDate - 1
 		let nextYear = PreviousMonthDate + 1
+		
+		previousMonth -= 1
 		print("previousMonth...",previousMonth)
+
+
+		
 		
 		let currentYear = Calendar.current.component(.year, from: Date())
 		print("currentYear..",currentYear)
