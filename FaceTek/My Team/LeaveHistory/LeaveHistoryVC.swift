@@ -248,10 +248,27 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 //                strTimings = "\(strTimings)  -  \(shiftEndtime)"
 //
 //            }
-//             headerCell.lblTimings.text = strTimings
-//            if let temp = dict?.value(forKey: "shiftName") as? String{
-//                 headerCell.lblShiftName.text = temp
-//            }
+             //headerCell.lblTimings.text = strTimings
+            if let temp = dict?.value(forKey: "empLeaveStatus") as? String{
+				
+				var empLeaveStatus = ""
+				
+                 empLeaveStatus = temp
+				if (empLeaveStatus == "App")
+				{
+					headerCell.LeaveHistoryRejectedLbl.text = "Rejected"
+					headerCell.Rejectedimg.isHidden = false
+
+				}
+				else
+				{
+					headerCell.LeaveHistoryRejectedLbl.text = "Pending"
+
+					headerCell.Rejectedimg.isHidden = true
+					
+				}
+				
+            }
 //
         }
        
@@ -309,7 +326,14 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 			
 			
 			LeaveHistorycell.LeavetypeLbl.text = (dictLeaveHistory?.value(forKey: "leaveType") as? String)!
+			
+			var empLeaveStatus : String = ""
+			empLeaveStatus = (dictLeaveHistory?.value(forKey: "empLeaveStatus") as? String)!
+			print("empLeaveStatus....",empLeaveStatus)
+			
+			
 			LeaveHistorycell.Remarktxtview.text = (dictLeaveHistory?.value(forKey: "empLeaveRemarks") as? String)!
+			
 			
 			
 			LeaveHistorycell.LeavedatetxtLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 15.0)!
