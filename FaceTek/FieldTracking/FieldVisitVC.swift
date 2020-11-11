@@ -91,12 +91,6 @@ var DestinationLocation = String()
 var meetingOutcome = String()
 var Inaddress = String()
 
-
-
-
-
-
-
 var OriginLatLong : String = ""
 var latstr : String = ""
 var longstr : String = ""
@@ -120,8 +114,6 @@ var NameLbl = UILabel()
 var MobnumberLbl = UILabel()
 
 var Cantactsubview = UIView()
-
-
 
 var SelectPlaceArray:NSMutableArray = NSMutableArray()
 var locationManager = CLLocationManager()
@@ -281,9 +273,6 @@ override func viewDidLoad() {
 						if (code == 200)
 						
 							{
-								
-						
-						
 						let path = GMSMutablePath()
 						let fieldTrackArray = responseJSON["fieldTrack"] as? [Any]
 						for visit in fieldTrackArray! {
@@ -291,11 +280,6 @@ override func viewDidLoad() {
 							let latLongString = fieldVisit!["inLatLong"] as? String
 							self.Inaddress = (fieldVisit!["inAddress"] as? String)!
 							print("In address values...",self.Inaddress as Any)
-							
-							
-							
-							
-							
 							if (self.Inaddress == "NA")
 							{
 								
