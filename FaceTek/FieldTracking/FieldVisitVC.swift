@@ -25,7 +25,7 @@ view.addGestureRecognizer(dismisstap)
 view.endEditing(true)
 }
 }
-//suresh
+
 
 
 class FieldVisitVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,UITextViewDelegate {
