@@ -107,6 +107,7 @@
 		746017B82435FB3300969CA2 /* back-arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = 746017B72435FB3300969CA2 /* back-arrow.png */; };
 		746017BA2436022A00969CA2 /* login_screen_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 746017B92436022A00969CA2 /* login_screen_icon.png */; };
 		7463BA8524EA4B2700EABA48 /* no_location_found.png in Resources */ = {isa = PBXBuildFile; fileRef = 7463BA8424EA4B2700EABA48 /* no_location_found.png */; };
+		7463BA96255BD414007A0300 /* Attach.png in Resources */ = {isa = PBXBuildFile; fileRef = 7463BA95255BD413007A0300 /* Attach.png */; };
 		746716832456E7C300277A14 /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746716822456E7C300277A14 /* CalendarVC.swift */; };
 		7467168A2456EBAD00277A14 /* Calendarcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 746716882456EBAD00277A14 /* Calendarcell.swift */; };
 		7467168B2456EBAD00277A14 /* Calendarcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 746716892456EBAD00277A14 /* Calendarcell.xib */; };
@@ -304,6 +305,7 @@
 		746017B72435FB3300969CA2 /* back-arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back-arrow.png"; sourceTree = "<group>"; };
 		746017B92436022A00969CA2 /* login_screen_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_screen_icon.png; sourceTree = "<group>"; };
 		7463BA8424EA4B2700EABA48 /* no_location_found.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_location_found.png; sourceTree = "<group>"; };
+		7463BA95255BD413007A0300 /* Attach.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Attach.png; sourceTree = "<group>"; };
 		746716822456E7C300277A14 /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		746716882456EBAD00277A14 /* Calendarcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Calendarcell.swift; sourceTree = "<group>"; };
 		746716892456EBAD00277A14 /* Calendarcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Calendarcell.xib; sourceTree = "<group>"; };
@@ -610,6 +612,7 @@
 		747F8D9B243AEA8300ABBD5E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				7463BA95255BD413007A0300 /* Attach.png */,
 				74466DD1255AD6C30020C815 /* Attendance-circled-left.png */,
 				74466DD0255AD6C30020C815 /* Attendance-circled-lRight.png */,
 				74C1616D253DB22400E8C956 /* RighAttnceHitry.jpeg */,
@@ -935,6 +938,7 @@
 				740FC4EC243DB3D100F71B72 /* pass.png in Resources */,
 				74D998682434621200DFCBEC /* Main.storyboard in Resources */,
 				74E68A7524C833EF00A3B009 /* circle.png in Resources */,
+				7463BA96255BD414007A0300 /* Attach.png in Resources */,
 				747F8DA4243AF27800ABBD5E /* idcard-small.png in Resources */,
 				740D7076243C5CDE00CF6C2F /* leave_user.png in Resources */,
 				74398CDF2462E9F20053DA0F /* WhiteBck.png in Resources */,
