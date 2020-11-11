@@ -12,6 +12,9 @@ import FSCalendar
 
 class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDelegate,FSCalendarDelegateAppearance {
 	
+	var PreviousMonthDate = ""
+	var count = 0
+
 	var presentDateArray = [String]()
 	var absentDateArray = [String]()
 	var WeeklyOffDateArray = [String]()
@@ -35,6 +38,12 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
         super.viewDidLoad()
 		
 		
+		let calendar1 = Calendar.current
+				let CurrentMonth = Calendar.current.component(.month, from: Date())
+				PreviousMonthDate = String(CurrentMonth)
+		
+		
+		
 		let today = Date()
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -56,19 +65,27 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		calendar.dataSource = self
 		calendar.delegate = self
 		
-		let button = UIButton(frame: CGRect(x: 5, y: 5, width: 40, height: 40))
+		let Leftbutton = UIButton(frame: CGRect(x: 5, y: 5, width: 40, height: 40))
+		Leftbutton.setImage(UIImage(named: "Attendance-circled-left.png"), for: UIControlState.normal)
+		Leftbutton.backgroundColor = .white
+		Leftbutton.tag = 0
+		
+		Leftbutton.addTarget(self, action: #selector(LeftpressButton(_:)), for: .touchUpInside)
+		self.Fscalendarview.addSubview(Leftbutton)
+
+		
+		let Rightbutton = UIButton(frame: CGRect(x: 300, y: 5, width: 40, height: 40))
 		//button.setTitle("Prev", for: UIControlState.normal)
-		button.setTitleColor(.blue, for: .normal)
+		Rightbutton.setTitleColor(.blue, for: .normal)
 
 		//AttnceHitry.jpeg
-		button.setImage(UIImage(named: "AttnceHitry.jpeg"), for: UIControlState.normal)
-		button.backgroundColor = .white
-		button.tag = 0
-		button.addTarget(self, action: #selector(pressButton(_:)), for: .touchUpInside)
-		self.Fscalendarview.addSubview(button)
-		//customView.addSubview(PrevBtn)
-		//customView.addSubview(PrevView)
-		customView.addSubview(NextBtn)
+		Rightbutton.setImage(UIImage(named: "Attendance-circled-lRight.png"), for: UIControlState.normal)
+		Rightbutton.backgroundColor = .white
+		Rightbutton.tag = 1
+		Rightbutton.addTarget(self, action: #selector(RightpressButton(_:)), for: .touchUpInside)
+		self.Fscalendarview.addSubview(Rightbutton)
+
+		
 		customView.addSubview(calendar)
 		self.calendar = calendar
 		AttendanceHistoryAPIMethod()
@@ -228,7 +245,7 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 	
 	
 	
-	@objc func pressButton(_ button: UIButton) {
+	@objc func LeftpressButton(_ sender: Any) {
 		//let previousMonthCalendar = Calendar.current.date(byAdding: .month, value: -1, to: Date())
 		
 		
@@ -236,148 +253,174 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
         calendar.setCurrentPage(previousMonthCalendar!, animated: true)
 		
 		
-		let date = Date()
-		let calendar = Calendar.current
-		let PreviousMonthDate = Calendar.current.component(.month, from: Date())
-		var previousMonth = PreviousMonthDate - 1
-		let nextYear = PreviousMonthDate + 1
+		print("CurrentMonth...",PreviousMonthDate)
+		let converintvalue = Int(PreviousMonthDate)
 		
-		previousMonth -= 1
-		print("previousMonth...",previousMonth)
+		var newValue = converintvalue!
+
+		newValue -= 1
+		print("newValue...",newValue)
 
 
 		
 		
-		let currentYear = Calendar.current.component(.year, from: Date())
-		print("currentYear..",currentYear)
 		
-		let CurrentYearstr  = String(currentYear)
-		let PreviousMonthstr = String(previousMonth)
-
-		var DateYear = ""
-		 DateYear = "\(CurrentYearstr)-\(PreviousMonthstr)"
-		print("DateYear....",DateYear)
+//		let date = Date()
+//		let calendar = Calendar.current
+//		let PreviousMonthDate = Calendar.current.component(.month, from: Date())
+//		var previousMonth = PreviousMonthDate - 1
+//		let nextYear = PreviousMonthDate + 1
 		
-
-		var Datestr = "\(DateYear)\("-01")"
-		print("Datestr..",Datestr)
-
-					let defaults = UserDefaults.standard
-					var RetrivedcustId = defaults.integer(forKey: "custId")
-					print(" RetrivedcustId----",RetrivedcustId)
-					
-					var RetrivedempId = defaults.integer(forKey: "empId")
-					print(" RetrivedempId----",RetrivedempId)
-					
-					var RetrivedbrId = defaults.integer(forKey: "brId")
-				
-				let dateFormatter = DateFormatter()
-				dateFormatter.dateFormat = "yyyy-MM-dd"
-				let myDate = dateFormatter.date(from: Currentdatestr)!
-
-				dateFormatter.dateFormat = "yyyy-MM"
-				let Convertdate = dateFormatter.string(from: myDate)
-				print("Convertdate",Convertdate)
-				
-//				var Datestr = "\(Convertdate)\("-01")"
-//				print("Datestr-----",Datestr)
-				
-				
-					print(" RetrivedbrId----",RetrivedbrId)
-				let parameters = ["empId": RetrivedempId as Any, "brId": RetrivedbrId as Any,"date": Datestr as Any] as [String : Any]
-
-		//			let dateFormatter = DateFormatter()
-		//			dateFormatter.dateFormat = "yyyy-MM-dd"
-		//			let myDate = dateFormatter.date(from: Currentdatestr)!
-		//
-		//			dateFormatter.dateFormat = "yyyy-MM"
-		//			let Convertdate = dateFormatter.string(from: myDate)
-		//			print("Convertdate",Convertdate)
-					//SelectedDateLbl.text = Convertdate
-
-
-
-					var StartPoint = Baseurl.shared().baseURL
-					var Endpoint = "/attnd-api-gateway-service/api/customer/mobile/employee/getOneMonthReport"
-
-					let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
-
-					//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/getAbsentEmployeeDetails")!
-					//http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
-					//create the session object
-					let session = URLSession.shared
-					//now create the URLRequest object using the url object
-					var request = URLRequest(url: url as URL)
-					request.httpMethod = "POST" //set http method as POST
-					do {
-						request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-					} catch let error {
-						print(error.localizedDescription)
-					}
-					request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-					request.addValue("application/json", forHTTPHeaderField: "Accept")
-					//create dataTask using the ses
-					//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
-					let task = URLSession.shared.dataTask(with: request) { data, response, error in
-						guard let data = data, error == nil else {
-							print(error?.localizedDescription ?? "No data")
-							return
-						}
-						
-						if let responseJSON = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
-										let presentdetails = responseJSON["present"] as? [[String:Any]],
-										let Absentdetails = responseJSON["absent"] as? [[String:Any]],let Weeklyoffdetails = responseJSON["weeklyOff"] as? [[String:Any]] {
-
-										let dateFormatter = DateFormatter()
-										//dateFormatter.dateFormat = "yyyy-MM-dd"
-
-							dateFormatter.dateFormat = "dd-MM-yyyy"
-
-										self.presentDateArray = presentdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.compactMap {
-											dateFormatter.string(from:$0)
-											
-											
-										}
-										self.absentDateArray = Absentdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
-							
-							self.WeeklyOffDateArray = Weeklyoffdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
-							
-							
-							self.absentDateArray.count
-							print("absentDateArray",self.absentDateArray.count)
-
-							
-							
-							
-							print("presentDateArray",self.presentDateArray)
-
-							print("absentDateArray",self.absentDateArray)
-										DispatchQueue.main.async
-											{
-												
-												var convertPresentstr = String(self.presentDateArray.count)
-												
-												self.PresentLbl.text = convertPresentstr
-												
-												var convertAbsentstr = String(self.absentDateArray.count)
-												
-												self.AbsentLbl.text = convertAbsentstr
-												
-												var convertWeeklyOffstr = String(self.WeeklyOffDateArray.count)
-												
-												self.WeeklyOffLbl.text = convertWeeklyOffstr
-												
-
-												self.calendar.reloadData()
-										}
-									
-								
-						}
-						}
-			
-
-						task.resume()
+//		previousMonth -= 1
+//		print("previousMonth...",previousMonth)
+//
+//		count = previousMonth
+//
+//		count -= 1
+//		print("count",count)
+//
+		
+		
+//		let currentYear = Calendar.current.component(.year, from: Date())
+//		print("currentYear..",currentYear)
+//
+//		let CurrentYearstr  = String(currentYear)
+//		let PreviousMonthstr = String(previousMonth)
+//
+//		var DateYear = ""
+//		 DateYear = "\(CurrentYearstr)-\(PreviousMonthstr)"
+//		print("DateYear....",DateYear)
+//
+//
+//		var Datestr = "\(DateYear)\("-01")"
+//		print("Datestr..",Datestr)
+//
+//					let defaults = UserDefaults.standard
+//					var RetrivedcustId = defaults.integer(forKey: "custId")
+//					print(" RetrivedcustId----",RetrivedcustId)
+//
+//					var RetrivedempId = defaults.integer(forKey: "empId")
+//					print(" RetrivedempId----",RetrivedempId)
+//
+//					var RetrivedbrId = defaults.integer(forKey: "brId")
+//
+//				let dateFormatter = DateFormatter()
+//				dateFormatter.dateFormat = "yyyy-MM-dd"
+//				let myDate = dateFormatter.date(from: Currentdatestr)!
+//
+//				dateFormatter.dateFormat = "yyyy-MM"
+//				let Convertdate = dateFormatter.string(from: myDate)
+//				print("Convertdate",Convertdate)
+//
+////				var Datestr = "\(Convertdate)\("-01")"
+////				print("Datestr-----",Datestr)
+//
+//
+//					print(" RetrivedbrId----",RetrivedbrId)
+//				let parameters = ["empId": RetrivedempId as Any, "brId": RetrivedbrId as Any,"date": Datestr as Any] as [String : Any]
+//
+//		//			let dateFormatter = DateFormatter()
+//		//			dateFormatter.dateFormat = "yyyy-MM-dd"
+//		//			let myDate = dateFormatter.date(from: Currentdatestr)!
+//		//
+//		//			dateFormatter.dateFormat = "yyyy-MM"
+//		//			let Convertdate = dateFormatter.string(from: myDate)
+//		//			print("Convertdate",Convertdate)
+//					//SelectedDateLbl.text = Convertdate
+//
+//
+//
+//					var StartPoint = Baseurl.shared().baseURL
+//					var Endpoint = "/attnd-api-gateway-service/api/customer/mobile/employee/getOneMonthReport"
+//
+//					let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+//
+//					//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/getAbsentEmployeeDetails")!
+//					//http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
+//					//create the session object
+//					let session = URLSession.shared
+//					//now create the URLRequest object using the url object
+//					var request = URLRequest(url: url as URL)
+//					request.httpMethod = "POST" //set http method as POST
+//					do {
+//						request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+//					} catch let error {
+//						print(error.localizedDescription)
+//					}
+//					request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//					request.addValue("application/json", forHTTPHeaderField: "Accept")
+//					//create dataTask using the ses
+//					//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+//					let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//						guard let data = data, error == nil else {
+//							print(error?.localizedDescription ?? "No data")
+//							return
+//						}
+//
+//						if let responseJSON = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
+//										let presentdetails = responseJSON["present"] as? [[String:Any]],
+//										let Absentdetails = responseJSON["absent"] as? [[String:Any]],let Weeklyoffdetails = responseJSON["weeklyOff"] as? [[String:Any]] {
+//
+//										let dateFormatter = DateFormatter()
+//										//dateFormatter.dateFormat = "yyyy-MM-dd"
+//
+//							dateFormatter.dateFormat = "dd-MM-yyyy"
+//
+//										self.presentDateArray = presentdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.compactMap {
+//											dateFormatter.string(from:$0)
+//
+//
+//										}
+//										self.absentDateArray = Absentdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
+//
+//							self.WeeklyOffDateArray = Weeklyoffdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
+//
+//
+//							self.absentDateArray.count
+//							print("absentDateArray",self.absentDateArray.count)
+//
+//
+//
+//
+//							print("presentDateArray",self.presentDateArray)
+//
+//							print("absentDateArray",self.absentDateArray)
+//										DispatchQueue.main.async
+//											{
+//
+//												var convertPresentstr = String(self.presentDateArray.count)
+//
+//												self.PresentLbl.text = convertPresentstr
+//
+//												var convertAbsentstr = String(self.absentDateArray.count)
+//
+//												self.AbsentLbl.text = convertAbsentstr
+//
+//												var convertWeeklyOffstr = String(self.WeeklyOffDateArray.count)
+//
+//												self.WeeklyOffLbl.text = convertWeeklyOffstr
+//
+//
+//												self.calendar.reloadData()
+//										}
+//
+//
+//						}
+//						}
+//
+//
+//						task.resume()
 				}
+	
+	
+	@objc func RightpressButton(_ sender: Any) {
+	let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: calendar.currentPage)
+	calendar.setCurrentPage(nextMonth!, animated: true)
+		print("Right button clicked")
+	
+	}
+
+	
 		
 	@IBAction func PrevBtnclk(_ sender: Any) {
 		calendar.setCurrentPage(getPreviousMonth(date: calendar.currentPage), animated: true)
