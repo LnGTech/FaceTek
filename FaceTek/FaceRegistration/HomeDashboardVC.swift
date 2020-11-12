@@ -60,6 +60,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	var brNamestr : String = ""
     var RefreshemployeeNam : String = ""
     var RefreshbrName : String = ""
+	var empIsGPSTrackEnabled = Int()
 
 
     
@@ -110,6 +111,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	    //var HomeDashboardNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	var HomeDashboardNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+	
+	var HomeDashboardGPSFalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
 	
 	override func viewDidLayoutSubviews() {
@@ -573,6 +576,15 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 				print("empIsSupervisor_Manager ------------", empIsSupervisor_Manager as Any)
 				
 				
+				
+				
+				self.empIsGPSTrackEnabled = (responseJSON["empIsGPSTrackEnabled"] as? Int)!
+
+				print("empIsGPSTrackEnabled ------------", self.empIsGPSTrackEnabled as Any)
+				
+				//print("empIsGPSTrackEnabledstr...",self.ConvertempIsGPSTrackEnabledstr)
+				
+				
 				let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
 				
 				//Employee Upcoming Leaves and Office In ,Office Out
@@ -917,9 +929,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 			count = HomeDashboardNavigationMenuArray.count
 		}
 		
-		//        if tableView == self.Menutbl {
-		//            count =  NavigationmenuArray.count
-		//        }
+		        if tableView == self.HomeDashboatdtbl {
+		            count =  HomeDashboardGPSFalseArray.count
+		        }
 		return count!
 		
 	}
@@ -931,6 +943,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
 		cell.accessoryType = .disclosureIndicator
 		
+		if (empIsGPSTrackEnabled == 1)
+		{
 		
 		// set the text from the data model
 		cell.LeaveNavigationLbl?.text = self.HomeDashboardNavigationMenuArray[indexPath.row]
@@ -938,15 +952,15 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
 		let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
 		cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
-		//cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
-		
-//		cell.LeaveNavigationLbl.textColor = UIColor.black
-//		cell.LeaveNavigationLbl.font = UIFont(name: "verdana", size: 16.0)
-		
-		
-		//        let image = NavigationMenuArray[indexPath.row]
-		//
-		//        cell.slideMenuimgicon.image = image
+		}
+		else
+		{
+			cell.LeaveNavigationLbl?.text = self.HomeDashboardGPSFalseArray[indexPath.row]
+			
+			cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+			let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		}
 		
 		
 		return cell

@@ -39,6 +39,8 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 	@IBOutlet weak var SelectedDateview: UIView!
 	@IBOutlet weak var SubmitBtn: UIButton!
     let Datepicker = UIDatePicker()
+    var ConvertedCurrentDatestr = String()
+
 
 	
 	override func viewDidLoad() {
@@ -149,10 +151,11 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
             formatter.dateFormat = "dd-MMM-yyyy"
             ExpenseDatetxtfld.text = formatter.string(from: Datepicker.date)
              //var ConvertedDatestr = ""
-//            ConvertedCurrentDatestr = formattedDateFromString(dateString:
-//                DatetxtFld.text!, withFormat: "yyyy-MM-dd")! as NSString
-//            print("ConvertedCurrentDatestr---",ConvertedCurrentDatestr)
-            //AbsentAPIMethod()
+            ConvertedCurrentDatestr = formattedDateFromString(dateString:
+                ExpenseDatetxtfld.text!, withFormat: "yyyy-MM-dd")! as String
+            print("ConvertedCurrentDatestr---",ConvertedCurrentDatestr)
+			
+			
             self.view.endEditing(true)
         }
         
