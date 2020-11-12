@@ -12,6 +12,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     var RetrivedcustId = Int()
     var RetrivedempId = Int()
     var custLeaveId = Int()
+	var empIsGPSTrackEnabled = Int()
+
     var customView = UIView()
     var customSubView = UIView()
     var validation = ()
@@ -25,6 +27,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     
     @IBOutlet weak var Dropdowntbl: UITableView!
     var LeavetypeDropdownArray:NSMutableArray = NSMutableArray()
+	var empIsGPSTrackEnabledArray:NSMutableArray = NSMutableArray()
     var MainDict:NSMutableDictionary = NSMutableDictionary()
     var custLeaveNamestr:String?
     var RetrivedMobileNumber = String()
@@ -46,6 +49,8 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     @IBOutlet weak var LeaveNavigationtbl: UITableView!
      //var LeaveNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
     var LeaveNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+	var LeaveNavigationMenuGPSFalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us",""]
+
     var isMenuVisible:Bool!
     @IBOutlet weak var hamburgerView: UIView!
 	@IBOutlet weak var AppliedLeavePopup: UIView!
@@ -163,6 +168,62 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	ToDatesetDatePicker()
 	FromBtn.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchUpInside)
 	Totxt.isUserInteractionEnabled = false
+		
+		//For empIsGPSTrackEnabled
+		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
+		
+		
+		var empIsGPSTrackEnabledStartPoint = Baseurl.shared().baseURL
+		var empIsGPSTrackEnabledEndpoint = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		
+		let url: NSURL = NSURL(string:"\(empIsGPSTrackEnabledStartPoint)\(empIsGPSTrackEnabledEndpoint)")!
+		
+		
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
+		//create the session object
+		let session = URLSession.shared
+		
+		//now create the URLRequest object using the url object
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST" //set http method as POST
+		
+		do {
+			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+		} catch let error {
+			print(error.localizedDescription)
+		}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		//create dataTask using the ses
+		//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			guard let data = data, error == nil else {
+				print(error?.localizedDescription ?? "No data")
+				return
+			}
+			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+			if let responseJSON = responseJSON as? [String: Any] {
+				
+				DispatchQueue.main.async
+					{
+						
+						var MainDict:NSMutableDictionary = NSMutableDictionary()
+						self.empIsGPSTrackEnabled = (responseJSON["empIsGPSTrackEnabled"] as? Int)!
+						MainDict.setObject(self.empIsGPSTrackEnabled, forKey: "empIsGPSTrackEnabled" as NSCopying)
+						self.empIsGPSTrackEnabledArray.add(self.MainDict)
+						self.LeaveNavigationtbl.reloadData()
+
+						
+				}
+				
+			}
+
+			
+			
+		}
+		task.resume()
+
         
     }
     
@@ -398,6 +459,15 @@ task.resume()
 	count = LeaveNavigationMenuArray.count
 	return count!
         }
+	else{
+		if tableView == self.LeaveNavigationtbl {
+		count = LeaveNavigationMenuGPSFalseArray.count
+		return count!
+		
+		}
+		}
+		
+		
             //if tableView == self.Dropdowntbl {
 	if tableView == self.Dropdowntbl {
 	count =  LeavetypeDropdownArray.count
@@ -407,8 +477,14 @@ task.resume()
     
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+		
+		print("Leave empIsGPSTrackEnabled-------",self.empIsGPSTrackEnabled)
+
 	var cellToReturn = UITableViewCell() // Dummy value
 	if tableView == self.LeaveNavigationtbl {
+		
+		if(empIsGPSTrackEnabled == 1)
+		{
 	let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell") as! LeaveNavigationcell
 	cell.accessoryType = .disclosureIndicator
 		
@@ -418,6 +494,20 @@ task.resume()
 		cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
 	cell.LeaveNavigationLbl?.text = self.LeaveNavigationMenuArray[indexPath.row]
 	cellToReturn = cell
+		}
+		else
+		{
+			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell") as! LeaveNavigationcell
+			cell.accessoryType = .disclosureIndicator
+				
+				
+				cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+				let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			cell.LeaveNavigationLbl?.text = self.LeaveNavigationMenuGPSFalseArray[indexPath.row]
+			cellToReturn = cell
+			
+		}
     } else if tableView == self.Dropdowntbl {
 	let cell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell") as! Dropdowncell
 	let responseDict = self.LeavetypeDropdownArray[indexPath.row] as! NSMutableDictionary
@@ -437,6 +527,9 @@ task.resume()
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
         
     {
+		
+		if (empIsGPSTrackEnabled == 1)
+		{
 	if (tableView == LeaveNavigationtbl)
 	{
     if indexPath.row == 0 {
@@ -499,6 +592,68 @@ task.resume()
 	}
 }
 }
+		}
+			else if(empIsGPSTrackEnabled == 0)
+		
+			{
+				if indexPath.row == 0 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
+				self.present(CalendarVC, animated:true, completion:nil)
+			   }
+					else if indexPath.item == 1 {
+						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+						
+						let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+						self.present(AttendanceHistoryVC, animated:true, completion:nil)
+						
+						
+					}
+					
+			  
+					else if indexPath.item == 2 {
+						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+						
+						let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+						self.present(MyTeamVC, animated:true, completion:nil)
+						
+						
+					}
+					
+					else if indexPath.item == 3 {
+						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+						
+						let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+						self.present(ExpenseClaimVC, animated:true, completion:nil)
+						
+						
+					}
+					
+					else if indexPath.item == 4 {
+						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+						
+						let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+						self.present(LeaveHistoryVC, animated:true, completion:nil)
+						
+						
+					}
+					
+					
+				else if indexPath.item == 5 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+				let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+				self.present(FaqVC, animated:true, completion:nil)
+				}
+				else if indexPath.item == 6 {
+				if ContactUsView.isHidden {
+				ContactUsView.isHidden = false
+				} else {
+				ContactUsView.isHidden = true
+				}
+			}
+			}
+			
+		
 	else
 	{
 	let cell = tableView.dequeueReusableCell(withIdentifier: "Dropdowncell") as! Dropdowncell

@@ -15,9 +15,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     
 	@IBOutlet weak var scrollView: UIScrollView!
 	@IBOutlet weak var stackView: UIStackView!
-	
 	@IBOutlet weak var hamburgerView: UIView!
-	
 	
 	@IBOutlet weak var CompanyPowerLbl: UILabel!
 	@IBOutlet weak var CompanyNameLbl: UILabel!
@@ -108,11 +106,14 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	var RetrivedcustId = Int()
 	var RetrivedempId = Int()
+    var empIsGPSTrackEnabledArray:NSMutableArray = NSMutableArray()
+    var MainDict:NSMutableDictionary = NSMutableDictionary()
+
 	
 	    //var HomeDashboardNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	var HomeDashboardNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
-	var HomeDashboardGPSFalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+	var HomeDashboardGPSFalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us",""]
 	
 	
 	override func viewDidLayoutSubviews() {
@@ -349,6 +350,63 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		self.PendingLeavesview.addGestureRecognizer(PendingLeavesTap)
 		
 		
+		
+		
+		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
+		
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
+		
+		
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
+		//create the session object
+		let session = URLSession.shared
+		
+		//now create the URLRequest object using the url object
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST" //set http method as POST
+		
+		do {
+			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+		} catch let error {
+			print(error.localizedDescription)
+		}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		//create dataTask using the ses
+		//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+			guard let data = data, error == nil else {
+				print(error?.localizedDescription ?? "No data")
+				return
+			}
+			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+			if let responseJSON = responseJSON as? [String: Any] {
+				
+				DispatchQueue.main.async
+					{
+						
+						var MainDict:NSMutableDictionary = NSMutableDictionary()
+						self.empIsGPSTrackEnabled = (responseJSON["empIsGPSTrackEnabled"] as? Int)!
+						print("empIsGPSTrackEnabled-------",self.empIsGPSTrackEnabled)
+						MainDict.setObject(self.empIsGPSTrackEnabled, forKey: "empIsGPSTrackEnabled" as NSCopying)
+						self.empIsGPSTrackEnabledArray.add(self.MainDict)
+						self.HomeDashboatdtbl.reloadData()
+
+						
+				}
+				
+			}
+
+			
+			
+		}
+		task.resume()
+		
 		// Do any additional setup after loading the view.
 	}
 	
@@ -513,19 +571,6 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
 		
-		//    var RetrivedcustId : Int = 0r
-		//
-		//
-		//
-		//    let parameters = ["custId": RetrivedcustId] as [String : Any]
-		//
-		
-		//create the url with URL
-		//let url = URL(string: "https://www.webliststore.biz/app_api/api/authenticate_user")! //change the url
-		
-		
-		//let url: NSURL = NSURL(string:"http://122.166.152.106:8081/attnd-api-gateway-service/api/customer/employee/setup/updateEmpAppStatus ")!
-		
 		
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
@@ -576,13 +621,6 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 				print("empIsSupervisor_Manager ------------", empIsSupervisor_Manager as Any)
 				
 				
-				
-				
-				self.empIsGPSTrackEnabled = (responseJSON["empIsGPSTrackEnabled"] as? Int)!
-
-				print("empIsGPSTrackEnabled ------------", self.empIsGPSTrackEnabled as Any)
-				
-				//print("empIsGPSTrackEnabledstr...",self.ConvertempIsGPSTrackEnabledstr)
 				
 				
 				let ItemsDict = responseJSON["empAttendanceStatus"] as? [String:Any]
@@ -922,48 +960,66 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 		
+		if section == 0
+        {
+            return HomeDashboardNavigationMenuArray.count
+        }
+        else  {
+            return HomeDashboardGPSFalseArray.count
+        }
 		
-		var count:Int?
-		
-		if tableView == self.HomeDashboatdtbl {
-			count = HomeDashboardNavigationMenuArray.count
-		}
-		
-		        if tableView == self.HomeDashboatdtbl {
-		            count =  HomeDashboardGPSFalseArray.count
-		        }
-		return count!
+//		var count:Int?
+//
+//		if tableView == self.HomeDashboatdtbl {
+//			count = HomeDashboardNavigationMenuArray.count
+//		}
+////		else
+////		{
+////			count =  HomeDashboardGPSFalseArray.count
+////			}
+//		return count!
 		
 	}
 	
 	// create a cell for each table view row
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		
-		// create a new cell if needed or reuse an old one
-		let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
-		cell.accessoryType = .disclosureIndicator
-		
+		var cellToReturn = UITableViewCell() // Dummy value
+
+
 		if (empIsGPSTrackEnabled == 1)
 		{
-		
-		// set the text from the data model
-		cell.LeaveNavigationLbl?.text = self.HomeDashboardNavigationMenuArray[indexPath.row]
-		
-		cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
-		let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
-		cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
-		}
-		else
-		{
-			cell.LeaveNavigationLbl?.text = self.HomeDashboardGPSFalseArray[indexPath.row]
+			
+			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
+			cell.accessoryType = .disclosureIndicator
+			// set the text from the data model
+			
 			
 			cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
 			let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
 			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			
+			cell.LeaveNavigationLbl?.text = self.HomeDashboardNavigationMenuArray[indexPath.row]
+			customActivityIndicatory(self.view, startAnimate: false)
+			cellToReturn = cell
+		}
+		else
+		{
+		let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
+		cell.accessoryType = .disclosureIndicator
+		cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+		let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+		cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			
+		cell.LeaveNavigationLbl?.text = self.HomeDashboardGPSFalseArray[indexPath.row]
+			customActivityIndicatory(self.view, startAnimate: false)
+			cellToReturn = cell
+			
+			
+
 		}
 		
-		
-		return cell
+		return cellToReturn
 	}
 	
 	
@@ -972,77 +1028,79 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 	{
 		
+		if (empIsGPSTrackEnabled == 1)
+		{
 		if indexPath.row == 0 {
 			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-			
+
 			let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
 			self.present(CalendarVC, animated:true, completion:nil)
-			
-			
+
+
 			//
 			//            let storyBoard = UIStoryboard(name: "Main", bundle:nil)
 			//            let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
 			//            self.navigationController?.pushViewController(CalendarVC, animated:false)
 			//
-			
-			
-			
+
+
+
 		}
-			
+
 			else if indexPath.item == 1 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				
+
 				let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
 				self.present(AttendanceHistoryVC, animated:true, completion:nil)
-				
-				
+
+
 			}
-			
-			
+
+
 			else if indexPath.item == 2 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				
+
 				let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
 				self.present(FieldVisitVC, animated:true, completion:nil)
-				
-				
+
+
 			}
 			else if indexPath.item == 3 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				
+
 				let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
 				self.present(MyTeamVC, animated:true, completion:nil)
-				
-				
+
+
 			}
 			else if indexPath.item == 4 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				
+
 				let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
 				self.present(ExpenseClaimVC, animated:true, completion:nil)
-				
-				
+
+
 			}
-			
+
 			else if indexPath.item == 5 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				
+
 				let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
 				self.present(LeaveHistoryVC, animated:true, completion:nil)
-				
-				
+
+
 			}
-        
+
         else if indexPath.item == 6 {
 			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-			
+
 			let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
 			self.present(FaqVC, animated:true, completion:nil)
-			
-			
+
+
 		}
 		else if indexPath.item == 7 {
-			
+
 			if ContactusText.isHidden {
 				//ContactUsView.isHidden = false
 				ContactusText.isHidden = false
@@ -1050,11 +1108,83 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 				//ContactUsView.isHidden = true
 				ContactusText.isHidden = true
 			}
+
+
+
+		}
+		}
+		else
+		{
 			
-			
+			if indexPath.row == 0 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+				let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
+				self.present(CalendarVC, animated:true, completion:nil)
+
+
+			}
+
+				else if indexPath.item == 1 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+					let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+					self.present(AttendanceHistoryVC, animated:true, completion:nil)
+
+
+				}
+
+
+				
+				else if indexPath.item == 2 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+					let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+					self.present(MyTeamVC, animated:true, completion:nil)
+
+
+				}
+				else if indexPath.item == 3 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+					let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+					self.present(ExpenseClaimVC, animated:true, completion:nil)
+
+
+				}
+
+				else if indexPath.item == 4 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+					let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+					self.present(LeaveHistoryVC, animated:true, completion:nil)
+
+
+				}
+
+			else if indexPath.item == 5 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+				let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+				self.present(FaqVC, animated:true, completion:nil)
+
+
+			}
+			else if indexPath.item == 6 {
+
+				if ContactusText.isHidden {
+					//ContactUsView.isHidden = false
+					ContactusText.isHidden = false
+				} else {
+					//ContactUsView.isHidden = true
+					ContactusText.isHidden = true
+				}
+
+
+
+			}
 			
 		}
-		
 		
 		
 	}

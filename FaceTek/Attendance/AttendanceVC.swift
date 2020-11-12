@@ -13,14 +13,16 @@ import SystemConfiguration.CaptiveNetwork
 class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSource, UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
 	let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
 	var timer = Timer()
-	
-	var MainDict:NSMutableDictionary = NSMutableDictionary()
+    var empIsGPSTrackEnabledArray:NSMutableArray = NSMutableArray()
+    var MainDict:NSMutableDictionary = NSMutableDictionary()
 	
 	var locationManager = CLLocationManager()
 	var LattitudestrData = String()
 	var LongitudestrData = String()
 	var empAttendanceInLatLongstr = String()
 	var address: String = ""
+	var empIsGPSTrackEnabled = Int()
+
 	var RetrivedcustId = Int()
 	var RetrivedempId = Int()
 	var ConvertShiftstartTime = Int()
@@ -81,6 +83,9 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	//var AttendanceNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	
 	var AttendanceNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+	
+	
+	var AttendanceNavigationMenuGPSfalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us",""]
 	
 	var MovementoutDrpTbl: UITableView  =   UITableView()
 	//var MovementOutDrpArray: [String] = ["One", "Two", "Three"]
@@ -242,7 +247,62 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		}
 		task.resume()
 		
+		//For empIsGPSTrackEnabled
+		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
+		
+		var empIsGPSTrackEnabledStartPoint = Baseurl.shared().baseURL
+		var empIsGPSTrackEnabledEndpoint = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		
+		let url1: NSURL = NSURL(string:"\(empIsGPSTrackEnabledStartPoint)\(empIsGPSTrackEnabledEndpoint)")!
+		
+		
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		
+		//create the session object
+		let session = URLSession.shared
+		
+		//now create the URLRequest object using the url object
+		_ = URLRequest(url: url1 as! URL)
+		request.httpMethod = "POST" //set http method as POST
+		
+		do {
+			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+		} catch let error {
+			print(error.localizedDescription)
+		}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		//create dataTask using the ses
+		//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+		let task1 = URLSession.shared.dataTask(with: request) { data, response, error in
+			guard let data = data, error == nil else {
+				print(error?.localizedDescription ?? "No data")
+				return
+			}
+			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+			if let responseJSON = responseJSON as? [String: Any] {
+				
+				DispatchQueue.main.async
+					{
+						
+						var MainDict:NSMutableDictionary = NSMutableDictionary()
+						self.empIsGPSTrackEnabled = (responseJSON["empIsGPSTrackEnabled"] as? Int)!
+						print("empIsGPSTrackEnabled-------",self.empIsGPSTrackEnabled)
+						MainDict.setObject(self.empIsGPSTrackEnabled, forKey: "empIsGPSTrackEnabled" as NSCopying)
+						self.empIsGPSTrackEnabledArray.add(self.MainDict)
+						self.AttendanceNavigationtbl.reloadData()
+
+						
+				}
+				
+			}
+
+			
+			
+		}
+		task.resume()
+
 		
 	}
 	
@@ -367,9 +427,14 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		var cellToReturn = UITableViewCell() // Dummy value
 		
+		
+		print("Attendance empIsGPSTrackEnabled ------------",self.empIsGPSTrackEnabled as Any)
+
 		if tableView == AttendanceNavigationtbl
 		{
 			
+			if (empIsGPSTrackEnabled == 1)
+			{
 			// create a new cell if needed or reuse an old one
 			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
 			cell.accessoryType = .disclosureIndicator
@@ -383,6 +448,24 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			cell.LeaveNavigationLbl?.text = self.AttendanceNavigationMenuArray[indexPath.row]
 			customActivityIndicatory(self.view, startAnimate: false)
 			cellToReturn = cell
+			}
+			else
+			{
+				let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
+				cell.accessoryType = .disclosureIndicator
+				// set the text from the data model
+				
+				
+				cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+				let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+				
+				cell.LeaveNavigationLbl?.text = self.AttendanceNavigationMenuGPSfalseArray[indexPath.row]
+				customActivityIndicatory(self.view, startAnimate: false)
+				cellToReturn = cell
+
+				
+			}
 			
 		}
 		
@@ -412,6 +495,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	
 	{
+		if (empIsGPSTrackEnabled == 1)
+		{
 		if tableView == AttendanceNavigationtbl
 		{
 			if indexPath.row == 0 {
@@ -481,6 +566,74 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 				}
 			}
 		}
+		}
+			else if(empIsGPSTrackEnabled == 0)
+			
+		{
+			
+				if indexPath.row == 0 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+					let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
+					self.present(CalendarVC, animated:true, completion:nil)
+					
+				}
+				else if indexPath.item == 1 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+					
+					let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+					self.present(AttendanceHistoryVC, animated:true, completion:nil)
+					
+					
+				}
+				
+				
+				
+				
+				else if indexPath.item == 2 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+					
+					let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+					self.present(MyTeamVC, animated:true, completion:nil)
+					
+					
+				}
+					else if indexPath.item == 3 {
+						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+						
+						let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+						self.present(ExpenseClaimVC, animated:true, completion:nil)
+						
+						
+					}
+					
+				else if indexPath.item == 4 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+					
+					let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+					self.present(LeaveHistoryVC, animated:true, completion:nil)
+					
+					
+				}
+				
+				
+				else if indexPath.item == 5 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+					let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+					self.present(FaqVC, animated:true, completion:nil)
+					
+				}
+				else if indexPath.item == 6 {
+					
+					if self.ContactTextView.isHidden {
+						self.ContactTextView.isHidden = false
+					} else {
+						self.ContactTextView.isHidden = true
+					}
+				}
+			}
+			
+		
+			
 		else
 		{
 			print("calling movement table")
@@ -541,10 +694,26 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			
 			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 			if let responseJSON = responseJSON as? [String: Any] {
+				
+				DispatchQueue.main.async
+				{
 				print("Employee ---- Json Response",responseJSON)
 				var empIsSupervisor_Manager: Bool?
 				empIsSupervisor_Manager = (responseJSON["empIsSupervisor_Manager"] as? Bool)!
 				print("empIsSupervisor_Manager ------------",empIsSupervisor_Manager as Any)
+				
+				var MainDict:NSMutableDictionary = NSMutableDictionary()
+
+				self.empIsGPSTrackEnabled = (responseJSON["empIsGPSTrackEnabled"] as? Int)!
+				
+				MainDict.setObject(self.empIsGPSTrackEnabled, forKey: "empIsGPSTrackEnabled" as NSCopying)
+				self.empIsGPSTrackEnabledArray.add(self.MainDict)
+				self.AttendanceNavigationtbl.reloadData()
+
+				}
+				
+				
+				
 				
 				let ItemsDict = responseJSON["empAttendanceStatus"] as! NSDictionary
 				
