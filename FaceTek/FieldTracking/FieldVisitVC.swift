@@ -180,11 +180,7 @@ override func viewDidLoad() {
 	SelectPlacetxtfld.isUserInteractionEnabled = true
 	SelectPlacetxtfld.addGestureRecognizer(tap)
 	
-	//visit Purpose textfield validation
-	VisitPuposetxtfld.addTarget(self, action: #selector(actionTextFieldIsEditingChanged), for: UIControl.Event.editingChanged)
-	Submitbrn.isEnabled = false
-	Submitbrn.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.6487585616, blue: 0.06666666667, alpha: 0.2948148545)
-	//Field visit IN disable
+		//Field visit IN disable
 	//FieldVisitInbtn.isEnabled = false
 	//Key board Hide touch any where
 //		let touchtap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.dismissKeyboard))
@@ -341,8 +337,6 @@ override func viewDidLoad() {
 
 //Previous meeting Validations
 
-
-
 @objc func actionTextFieldIsEditingChanged(sender: UITextField) {
 	if sender.text!.isEmpty {
 		// textfield is empty
@@ -350,7 +344,7 @@ override func viewDidLoad() {
 	} else {
 		print("text field is not empty")
 		Submitbrn.isEnabled = true
-		Submitbrn.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.7098039216, blue: 0.2670965325, alpha: 1)
+		Submitbrn.backgroundColor = #colorLiteral(red: 0.9529411793, green: 0.6862745285, blue: 0.1333333403, alpha: 1)
 		
 		// text field is not empty
 	}
@@ -1416,6 +1410,11 @@ func Trackedetails()
 					
 						{
 							self.PreviousMeetingView.isHidden = false
+							//visit Purpose textfield validation
+							self.PreviousTxt.addTarget(self, action: #selector(self.actionTextFieldIsEditingChanged), for: UIControl.Event.editingChanged)
+							self.Submitbrn.isEnabled = false
+							self.Submitbrn.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.6487585616, blue: 0.06666666667, alpha: 0.2948148545)
+
 
 							
 							let fieldTrackArray = responseJSON["fieldTrack"] as! NSArray
@@ -1481,6 +1480,12 @@ func Trackedetails()
 					else
 					{
 						self.PreviousMeetingView.isHidden = true
+						
+						//visit Purpose textfield validation
+						self.VisitPuposetxtfld.addTarget(self, action: #selector(self.actionTextFieldIsEditingChanged), for: UIControl.Event.editingChanged)
+						self.Submitbrn.isEnabled = false
+						self.Submitbrn.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.6487585616, blue: 0.06666666667, alpha: 0.2948148545)
+
 					}
 					
 			}
