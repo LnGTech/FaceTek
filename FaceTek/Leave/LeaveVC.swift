@@ -640,7 +640,7 @@ task.resume()
 						let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
 						self.present(FaqVC, animated:true, completion:nil)
 						}
-						else if indexPath.item == 6 {
+						else if indexPath.item == 7 {
 						if ContactUsView.isHidden {
 						ContactUsView.isHidden = false
 						} else {

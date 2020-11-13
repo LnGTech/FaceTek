@@ -97,12 +97,15 @@ var longstr : String = ""
 var empVisitId = Int()
 var RetrivedempVisitId = Int()
 var PreviousempVisitId = Int()
-
+	var empVisitSheduleId = Int()
+	var SelectedempVisitSheduleId = Int()
 
 var TrackempVisitId = Int()
 var timer = Timer()
 var RetrivedcustId = Int()
 var RetrivedempId = Int()
+	var prevVisitId = Int()
+
 //FieldvisitOUT views
 var customView = UIView()
 var customSubView = UIView()
@@ -150,6 +153,12 @@ override func viewDidLoad() {
 	print("RetrivedcustId----",RetrivedcustId)
 	RetrivedempId = defaults.integer(forKey: "empId")
 	print("RetrivedempId----",RetrivedempId)
+	
+	
+	
+	prevVisitId = UserDefaults.standard.integer(forKey: "empVisitId")
+	
+	
 	//Fieldvisit-Enable-Disable method
 	//Fieldvisit_OUT()
 	//Select Dropdown method
@@ -577,6 +586,10 @@ func selectPlaceDrpdown()
 		let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 		if let responseJSON = responseJSON as? [String: Any] {
 			let ItemsDict = responseJSON["clientPlaceScheduleList"] as? [String:Any]
+			print("Dropdown array sheduled id",responseJSON)
+			print("Dropdown array sheduled id...",responseJSON)
+
+			
 			DispatchQueue.main.async
 				{
 					let SelectPlaceArray = responseJSON["clientPlaceScheduleList"] as! NSArray
@@ -586,6 +599,13 @@ func selectPlaceDrpdown()
 						var SelectPlacestr = ""
 						SelectPlacestr = (SelectPlaceDic["visitClientPlace"] as? String)!
 						MainDict.setObject(SelectPlacestr, forKey: "visitClientPlace" as NSCopying)
+						
+						self.empVisitSheduleId = ((SelectPlaceDic["empVisitSheduleId"] as? Int)!)
+						print("empVisitSheduleId...",self.empVisitSheduleId)
+						
+						
+						MainDict.setObject(self.empVisitSheduleId, forKey: "empVisitSheduleId" as NSCopying)
+						
 						self.SelectPlaceArray.add(MainDict)
 						
 					}
@@ -617,14 +637,16 @@ func FieldvisitFormsubmitAPI()
 		print("Outlatlangvalues",locationData)
 
 	print("previous id value ",PreviousempVisitId)
-	
+		print("Retrived SelectedempVisitSheduleId",SelectedempVisitSheduleId)
+	print("Retrived Stored empVisitId",prevVisitId)
+
 	
 	let defaults = UserDefaults.standard
 	RetrivedcustId = defaults.integer(forKey: "custId")
 	RetrivedempId = defaults.integer(forKey: "empId")
 	let latlanstr = latstr + ", " + longstr
 	print("latlanstr..",latlanstr)
-		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":Adresstxtview.text,"toClientNamePlace":ClientTxtfld.text,"visitPurpose":VisitPuposetxtfld.text,"prevVisitId":PreviousempVisitId,"meetingOutcome":PreviousTxt.text,"empVisitScheduleId":RetrivedempVisitId] as [String : Any]
+		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"outFromLatLong": latlanstr as Any,"outFromAddress":Adresstxtview.text,"toClientNamePlace":ClientTxtfld.text,"visitPurpose":VisitPuposetxtfld.text,"prevVisitId":prevVisitId,"meetingOutcome":PreviousTxt.text,"empVisitScheduleId":SelectedempVisitSheduleId] as [String : Any]
 		
 		
 		var StartPoint = Baseurl.shared().baseURL
@@ -657,6 +679,13 @@ func FieldvisitFormsubmitAPI()
 			self.empVisitId = Int()
 			self.empVisitId = (responseJSON["empVisitId"] as? NSInteger)!
 			
+			
+			UserDefaults.standard.set(self.empVisitId, forKey: "empVisitId") //setObject
+			self.empVisitId = UserDefaults.standard.integer(forKey: "empVisitId")
+			print("Stored empVisitId",self.empVisitId)
+			
+			
+			
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
 				//self.scheduledTimerWithTimeInterval()
 				DispatchQueue.main.async {
@@ -665,7 +694,6 @@ func FieldvisitFormsubmitAPI()
 					if(code == 200)
 					{
 						
-						//self.insertTrackFieldVisit_updateCounting()
 						let message = statusDic["message"] as! NSString
 						//Leave PopUp method calling
 						
@@ -760,6 +788,10 @@ func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> U
 	var maindata = SelectPlaceArray[indexPath.row]
 	var Selectplacestr : String?
 	Selectplacestr = responseDict["visitClientPlace"] as? String
+	
+	empVisitSheduleId = ((responseDict["empVisitSheduleId"] as? Int)!)
+	
+	
 	drpcell.selectPlacedrpLbl!.text = Selectplacestr
 	drpcell.selectPlacedrpLbl!.textColor = #colorLiteral(red: 0.2414736675, green: 0.2414736675, blue: 0.2414736675, alpha: 1)
 	
@@ -781,6 +813,10 @@ func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 	Selectplacestr = responseDict["visitClientPlace"] as? String
 	drpcell.selectPlacedrpLbl!.text = Selectplacestr
 	SelectPlacetxtfld.text = Selectplacestr
+	
+	SelectedempVisitSheduleId = ((responseDict["empVisitSheduleId"] as? Int)!)
+	
+	
 	DrpDownview.isHidden = true
 	
 	if (drpcell.selectPlacedrpLbl.text == "Others")
@@ -992,6 +1028,17 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 	
 	if(Inaddress == "NA")
 	{
+		
+		
+		locationManager.requestWhenInUseAuthorization()
+		var currentLoc: CLLocation!
+		if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+		CLLocationManager.authorizationStatus() == .authorizedAlways) {
+		   currentLoc = locationManager.location
+		   print("lattitude..",currentLoc.coordinate.latitude)
+		   print("longitude..",currentLoc.coordinate.longitude)
+		}
+		
 		let defaults = UserDefaults.standard
 				RetrivedcustId = defaults.integer(forKey: "custId")
 				RetrivedempId = defaults.integer(forKey: "empId")
@@ -999,7 +1046,7 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 				
 				print("Update latlanstr",latlanstr)
 				print("empVisitId---",empVisitId)
-				let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": RetrivedempVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
+				let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": RetrivedempVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any]
 		
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails"
@@ -1029,12 +1076,14 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 					
 					print("update Response---",responseJSON)
 					if let responseJSON = responseJSON as? [String: Any] {
-						self.scheduledTimerWithTimeInterval()
+						//self.scheduledTimerWithTimeInterval()
 						
 						DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-							self.scheduledTimerWithTimeInterval()
+//							self.scheduledTimerWithTimeInterval()
 							DispatchQueue.main.async {
-								self.insertTrackFieldVisit_updateCounting()
+						self.scheduledTimerWithTimeInterval()
+
+						//self.insertTrackFieldVisit_updateCounting()
 								
 								let statusDic = responseJSON["status"]! as! NSDictionary
 								let code = statusDic["code"] as! NSInteger
@@ -1068,7 +1117,9 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 				
 				print("Update latlanstr",latlanstr)
 				print("empVisitId---",empVisitId)
-				let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": empVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
+//				let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": empVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
+		
+		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": empVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any]
 		
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails"
@@ -1135,7 +1186,7 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 
 func scheduledTimerWithTimeInterval(){
 	
-	timer = Timer.scheduledTimer(timeInterval: 120, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
+	timer = Timer.scheduledTimer(timeInterval: 300, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
 }
 ////ksdsds
 //Background calling API
