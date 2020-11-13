@@ -246,13 +246,23 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
                  empLeaveStatus = temp
 				if (empLeaveStatus == "App")
 				{
-					headerCell.LeaveHistoryRejectedLbl.text = "Rejected"
-					headerCell.Rejectedimg.isHidden = false
+					headerCell.LeaveHistoryRejectedLbl.text = "Approved"
+					headerCell.Rejectedimg.isHidden = true
 					headerCell.LeaveHistoryRejectedLbl.isHidden = false
-
+					headerCell.LeaveHistoryRejectedLbl.textColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
 
 				}
-				else
+					if (empLeaveStatus == "Rej")
+					{
+						headerCell.LeaveHistoryRejectedLbl.text = "Rejected"
+						headerCell.Rejectedimg.isHidden = false
+						headerCell.LeaveHistoryRejectedLbl.isHidden = false
+						headerCell.LeaveHistoryRejectedLbl.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+
+					}
+
+				if (empLeaveStatus == "")
+
 				{
 					headerCell.LeaveHistoryRejectedLbl.text = "Pending"
 					headerCell.LeaveHistoryRejectedLbl.isHidden = false
