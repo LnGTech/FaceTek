@@ -1023,7 +1023,7 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 }
 
 
-//Field-Visit In update API
+//Field-Visit IN update API
 @objc func pressINButton(button: UIButton) {
 	
 	if(Inaddress == "NA")
@@ -1084,15 +1084,15 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 						DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
 //							self.scheduledTimerWithTimeInterval()
 							DispatchQueue.main.async {
-						self.scheduledTimerWithTimeInterval()
+						//self.scheduledTimerWithTimeInterval()
 
-						//self.insertTrackFieldVisit_updateCounting()
+						self.insertTrackFieldVisit_updateCounting()
 								
 								let statusDic = responseJSON["status"]! as! NSDictionary
 								let code = statusDic["code"] as! NSInteger
 								if(code == 200)
 								{
-									self.scheduledTimerWithTimeInterval()
+									//self.scheduledTimerWithTimeInterval()
 									self.mapView.addSubview(self.self.FieldVisitIn_PopupView)
 									self.FieldVisitIn_PopupView.isHidden = false
 								}
@@ -1167,10 +1167,10 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 					
 					print("update Response---",responseJSON)
 					if let responseJSON = responseJSON as? [String: Any] {
-						self.scheduledTimerWithTimeInterval()
+						//self.scheduledTimerWithTimeInterval()
 						
 						DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-							self.scheduledTimerWithTimeInterval()
+							//self.scheduledTimerWithTimeInterval()
 							DispatchQueue.main.async {
 								self.insertTrackFieldVisit_updateCounting()
 								
@@ -1178,7 +1178,9 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 								let code = statusDic["code"] as! NSInteger
 								if(code == 200)
 								{
-									self.scheduledTimerWithTimeInterval()
+									self.insertTrackFieldVisit_updateCounting()
+
+									//self.scheduledTimerWithTimeInterval()
 									self.mapView.addSubview(self.self.FieldVisitIn_PopupView)
 									self.FieldVisitIn_PopupView.isHidden = false
 								}
@@ -1201,12 +1203,12 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 	
 }
 
-
+//Background Location method
 func scheduledTimerWithTimeInterval(){
 	
 	timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
 }
-////ksdsds
+
 //Background calling API
 @objc func insertTrackFieldVisit_updateCounting(){
 	
@@ -1431,6 +1433,7 @@ func scheduledTimerWithTimeInterval(){
 	
 	}
 }
+	//FieldVisit IN OK Button Code
 
 @IBAction func FieldVisit_InOkbtnclk(_ sender: Any) {
 	
