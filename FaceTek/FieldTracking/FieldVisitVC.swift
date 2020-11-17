@@ -687,7 +687,7 @@ func FieldvisitFormsubmitAPI()
 			
 			
 			DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
-				//self.scheduledTimerWithTimeInterval()
+				self.scheduledTimerWithTimeInterval()
 				DispatchQueue.main.async {
 					let statusDic = responseJSON["status"]! as! NSDictionary
 					let code = statusDic["code"] as! NSInteger
@@ -1037,16 +1037,19 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 		   currentLoc = locationManager.location
 		   print("lattitude..",currentLoc.coordinate.latitude)
 		   print("longitude..",currentLoc.coordinate.longitude)
-		}
+			let Inlatstr = String(currentLoc.coordinate.latitude)
+			let Inlongstr = String(currentLoc.coordinate.longitude)
+		let Inlatlanstr = Inlatstr + ", " + Inlongstr
+
 		
 		let defaults = UserDefaults.standard
 				RetrivedcustId = defaults.integer(forKey: "custId")
 				RetrivedempId = defaults.integer(forKey: "empId")
-				let latlanstr = latstr + ", " + longstr
+				//let latlanstr = latstr + ", " + longstr
 				
-				print("Update latlanstr",latlanstr)
+				print("Update latlanstr",Inlatlanstr)
 				print("empVisitId---",empVisitId)
-				let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": RetrivedempVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any]
+				let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": RetrivedempVisitId as Any,"inLatLong": Inlatlanstr as Any,"inAddress":addressString as Any]
 		
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails"
@@ -1074,7 +1077,7 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 					}
 					let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 					
-					print("update Response---",responseJSON)
+					print("timer update Response---",responseJSON)
 					if let responseJSON = responseJSON as? [String: Any] {
 						//self.scheduledTimerWithTimeInterval()
 						
@@ -1093,6 +1096,7 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 									self.mapView.addSubview(self.self.FieldVisitIn_PopupView)
 									self.FieldVisitIn_PopupView.isHidden = false
 								}
+									
 								else
 								{
 		//							let message = responseJSON["message"]! as! NSString
@@ -1105,21 +1109,35 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 						
 					}
 				}
+		
 				task.resume()
 		
 	}
+	}
 	else
 	{
+		
+		locationManager.requestWhenInUseAuthorization()
+		var currentLoc: CLLocation!
+		if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+		CLLocationManager.authorizationStatus() == .authorizedAlways) {
+		   currentLoc = locationManager.location
+		   print("lattitude..",currentLoc.coordinate.latitude)
+		   print("longitude..",currentLoc.coordinate.longitude)
+			let Inlatstr = String(currentLoc.coordinate.latitude)
+			let Inlongstr = String(currentLoc.coordinate.longitude)
+		let Inlatlanstr = Inlatstr + ", " + Inlongstr
+
 		let defaults = UserDefaults.standard
 				RetrivedcustId = defaults.integer(forKey: "custId")
 				RetrivedempId = defaults.integer(forKey: "empId")
-				let latlanstr = latstr + ", " + longstr
+				//let latlanstr = latstr + ", " + longstr
 				
-				print("Update latlanstr",latlanstr)
+				print("timer 1 Update latlanstr",Inlatlanstr)
 				print("empVisitId---",empVisitId)
 //				let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": empVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any,"kmTravelled":""] as [String : Any]
 		
-		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": empVisitId as Any,"inLatLong": latlanstr as Any,"inAddress":addressString as Any]
+		let parameters = ["custId": RetrivedcustId as Any,"empId":RetrivedempId as Any,"empVisitId": empVisitId as Any,"inLatLong": Inlatlanstr as Any,"inAddress":addressString as Any]
 		
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/updateFieldVisitInDetails"
@@ -1179,14 +1197,14 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 				task.resume()
 		
 	}
-	
+	}
 	
 }
 
 
 func scheduledTimerWithTimeInterval(){
 	
-	timer = Timer.scheduledTimer(timeInterval: 300, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
+	timer = Timer.scheduledTimer(timeInterval: 60, target: self, selector: #selector(self.insertTrackFieldVisit_updateCounting), userInfo: nil, repeats: true)
 }
 ////ksdsds
 //Background calling API
@@ -1226,13 +1244,26 @@ func scheduledTimerWithTimeInterval(){
 			var distance = currentLocation.distance(from: DestinationLocation) / 1000
 				//var distance = previousLocationDecoded.distance(from: DestinationLocation) * 0.000621371
 			//print(String(format: "The distance to my buddy is %.01fkm", distance))
-			let defaults = UserDefaults.standard
-			RetrivedcustId = defaults.integer(forKey: "custId")
-			RetrivedempId = defaults.integer(forKey: "empId")
-			let latlanstr = latstr + ", " + longstr
+//			let defaults = UserDefaults.standard
+//			RetrivedcustId = defaults.integer(forKey: "custId")
+//			RetrivedempId = defaults.integer(forKey: "empId")
+//			let latlanstr = latstr + ", " + longstr
+//
+						locationManager.requestWhenInUseAuthorization()
+						var currentLoc: CLLocation!
+						if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+						CLLocationManager.authorizationStatus() == .authorizedAlways) {
+						   currentLoc = locationManager.location
+						   print("lattitude..",currentLoc.coordinate.latitude)
+						   print("longitude..",currentLoc.coordinate.longitude)
+							let Inlatstr = String(currentLoc.coordinate.latitude)
+							let Inlongstr = String(currentLoc.coordinate.longitude)
+						let Inlatlanstr = Inlatstr + ", " + Inlongstr
+
+						
+						
 			
-			
-			print("Background latlanstr...",latlanstr)
+			print("Background latlanstr...",Inlatlanstr)
 			let formatter = DateFormatter()
 			//2016-12-08 03:37:22 +0000
 			//formatter.dateFormat = "yyyy-MM-dd"
@@ -1241,7 +1272,7 @@ func scheduledTimerWithTimeInterval(){
 			let CurrentdateString = formatter.string(from:now)
 			print("CurrentdateString",CurrentdateString)
 			
-			let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": RetrivedempVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+			let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": RetrivedempVisitId,"trackDateTime": CurrentdateString,"trackLatLong":Inlatlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
 						
 						
 						var StartPoint = Baseurl.shared().baseURL
@@ -1291,6 +1322,8 @@ func scheduledTimerWithTimeInterval(){
 			}
 		
 	}
+	}
+				
 	else
 	{
 		let previousLocationEncoded = UserDefaults.standard.object(forKey: "locationDatavalues") as? Data
@@ -1324,13 +1357,25 @@ func scheduledTimerWithTimeInterval(){
 			var distance = currentLocation.distance(from: DestinationLocation) / 1000
 				//var distance = previousLocationDecoded.distance(from: DestinationLocation) * 0.000621371
 			//print(String(format: "The distance to my buddy is %.01fkm", distance))
-			let defaults = UserDefaults.standard
-			RetrivedcustId = defaults.integer(forKey: "custId")
-			RetrivedempId = defaults.integer(forKey: "empId")
-			let latlanstr = latstr + ", " + longstr
-			
-			
-			print("Background latlanstr...",latlanstr)
+//			let defaults = UserDefaults.standard
+//			RetrivedcustId = defaults.integer(forKey: "custId")
+//			RetrivedempId = defaults.integer(forKey: "empId")
+//			let latlanstr = latstr + ", " + longstr
+						
+						
+						
+						locationManager.requestWhenInUseAuthorization()
+						var currentLoc: CLLocation!
+						if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+						CLLocationManager.authorizationStatus() == .authorizedAlways) {
+						   currentLoc = locationManager.location
+						   print("lattitude..",currentLoc.coordinate.latitude)
+						   print("longitude..",currentLoc.coordinate.longitude)
+							let Inlatstr = String(currentLoc.coordinate.latitude)
+							let Inlongstr = String(currentLoc.coordinate.longitude)
+						let Inlatlanstr = Inlatstr + ", " + Inlongstr
+
+			print("Background latlanstr...",Inlatlanstr)
 			let formatter = DateFormatter()
 			//2016-12-08 03:37:22 +0000
 			//formatter.dateFormat = "yyyy-MM-dd"
@@ -1339,7 +1384,7 @@ func scheduledTimerWithTimeInterval(){
 			let CurrentdateString = formatter.string(from:now)
 			print("CurrentdateString",CurrentdateString)
 			
-			let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":latlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+			let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":Inlatlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
 						
 						var StartPoint = Baseurl.shared().baseURL
 						var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit"
@@ -1370,15 +1415,10 @@ func scheduledTimerWithTimeInterval(){
 				if let responseJSON = responseJSON as? [String: Any] {
 					DispatchQueue.main.async
 						{
-							
-							
-
+					
 					}
 					}
 					
-				
-				
-				
 			}
 			task.resume()
 			
@@ -1389,7 +1429,7 @@ func scheduledTimerWithTimeInterval(){
 	}
 	
 	
-	
+	}
 }
 
 @IBAction func FieldVisit_InOkbtnclk(_ sender: Any) {
