@@ -987,7 +987,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		var cellToReturn = UITableViewCell() // Dummy value
 
 
-		if (empIsGPSTrackEnabled == 1)
+		if (empIsGPSTrackEnabled == 0)
 		{
 			
 			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
@@ -1027,7 +1027,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	{
 		
-		if (empIsGPSTrackEnabled == 1)
+		if (empIsGPSTrackEnabled == 0)
 		{
 		if indexPath.row == 0 {
 			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)

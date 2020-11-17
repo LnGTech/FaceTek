@@ -1086,7 +1086,7 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 							DispatchQueue.main.async {
 						//self.scheduledTimerWithTimeInterval()
 
-						self.insertTrackFieldVisit_updateCounting()
+						//self.insertTrackFieldVisit_updateCounting()
 								
 								let statusDic = responseJSON["status"]! as! NSDictionary
 								let code = statusDic["code"] as! NSInteger
@@ -1172,7 +1172,7 @@ func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'ret
 						DispatchQueue.main.asyncAfter(deadline: .now() + 0.0) {
 							//self.scheduledTimerWithTimeInterval()
 							DispatchQueue.main.async {
-								self.insertTrackFieldVisit_updateCounting()
+								//self.insertTrackFieldVisit_updateCounting()
 								
 								let statusDic = responseJSON["status"]! as! NSDictionary
 								let code = statusDic["code"] as! NSInteger
@@ -1210,229 +1210,344 @@ func scheduledTimerWithTimeInterval(){
 }
 
 //Background calling API
-@objc func insertTrackFieldVisit_updateCounting(){
 	
-	
-	if (Inaddress == "NA")
+	@objc func insertTrackFieldVisit_updateCounting()
 	{
-		let previousLocationEncoded = UserDefaults.standard.object(forKey: "locationDatavalues") as? Data
-			let previousLocationDecoded = NSKeyedUnarchiver.unarchiveObject(with: previousLocationEncoded!) as! CLLocation
-			print("sddsfsfsfs",previousLocationDecoded)
-			
-			if let loadedData = UserDefaults.standard.data(forKey: "locationDatavalues")
-			{
-				if let loadedLocation = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? CLLocation {
-					print("First Location Lat",loadedLocation.coordinate.latitude)
-					print("First Location long",loadedLocation.coordinate.longitude)
-					locationManager.requestWhenInUseAuthorization()
-					
+			let previousLocationEncoded = UserDefaults.standard.object(forKey: "locationDatavalues") as? Data
+				let previousLocationDecoded = NSKeyedUnarchiver.unarchiveObject(with: previousLocationEncoded!) as! CLLocation
+				print("sddsfsfsfs",previousLocationDecoded)
 				
-			let FirstLacoationLat1 = (loadedLocation.coordinate.latitude)
-			let FirstLacoationLng1 = (loadedLocation.coordinate.longitude)
-						//"outFromLatLong": "15.225391290164756, 78.31401312731046",
-					var currentLoc: CLLocation!
-					if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-					CLLocationManager.authorizationStatus() == .authorizedAlways) {
-						currentLoc = self.locationManager.location
-					   print("SecondLocation",currentLoc.coordinate.latitude)
-					   print("SecondLocation",currentLoc.coordinate.longitude)
-						let SecondLocationLat2 = (currentLoc.coordinate.latitude)
-						let SecondLocationLng2 = (currentLoc.coordinate.longitude)
-						var DestinationLocation = CLLocation(latitude: SecondLocationLat2, longitude: SecondLocationLng2)
-						print("Destination Latlong values",DestinationLocation)
-
-
-			let currentLocation = CLLocation(latitude: FirstLacoationLat1, longitude: FirstLacoationLng1)
-			var distance = currentLocation.distance(from: DestinationLocation) / 1000
-				//var distance = previousLocationDecoded.distance(from: DestinationLocation) * 0.000621371
-			//print(String(format: "The distance to my buddy is %.01fkm", distance))
-//			let defaults = UserDefaults.standard
-//			RetrivedcustId = defaults.integer(forKey: "custId")
-//			RetrivedempId = defaults.integer(forKey: "empId")
-//			let latlanstr = latstr + ", " + longstr
-//
+				if let loadedData = UserDefaults.standard.data(forKey: "locationDatavalues")
+				{
+					if let loadedLocation = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? CLLocation {
+						print("First Location Lat",loadedLocation.coordinate.latitude)
+						print("First Location long",loadedLocation.coordinate.longitude)
 						locationManager.requestWhenInUseAuthorization()
+						
+					
+				let FirstLacoationLat1 = (loadedLocation.coordinate.latitude)
+				let FirstLacoationLng1 = (loadedLocation.coordinate.longitude)
+							//"outFromLatLong": "15.225391290164756, 78.31401312731046",
 						var currentLoc: CLLocation!
 						if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
 						CLLocationManager.authorizationStatus() == .authorizedAlways) {
-						   currentLoc = locationManager.location
-						   print("lattitude..",currentLoc.coordinate.latitude)
-						   print("longitude..",currentLoc.coordinate.longitude)
-							let Inlatstr = String(currentLoc.coordinate.latitude)
-							let Inlongstr = String(currentLoc.coordinate.longitude)
-						let Inlatlanstr = Inlatstr + ", " + Inlongstr
+							currentLoc = self.locationManager.location
+						   print("SecondLocation",currentLoc.coordinate.latitude)
+						   print("SecondLocation",currentLoc.coordinate.longitude)
+							let SecondLocationLat2 = (currentLoc.coordinate.latitude)
+							let SecondLocationLng2 = (currentLoc.coordinate.longitude)
+							var DestinationLocation = CLLocation(latitude: SecondLocationLat2, longitude: SecondLocationLng2)
+							print("Destination Latlong values",DestinationLocation)
 
-						
-						
-			
-			print("Background latlanstr...",Inlatlanstr)
-			let formatter = DateFormatter()
-			//2016-12-08 03:37:22 +0000
-			//formatter.dateFormat = "yyyy-MM-dd"
-			formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-			let now = Date()
-			let CurrentdateString = formatter.string(from:now)
-			print("CurrentdateString",CurrentdateString)
-			
-			let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": RetrivedempVisitId,"trackDateTime": CurrentdateString,"trackLatLong":Inlatlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
-						
-						
-						var StartPoint = Baseurl.shared().baseURL
-						var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit"
-						let urlstring = "\(StartPoint)\(Endpoint1)"
-						print("First",urlstring)
-						let url = NSURL(string: urlstring)
-						
-			
-			//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
-			//create the session object
-			let session = URLSession.shared
-						var request = URLRequest(url: url as! URL)
-			request.httpMethod = "POST" //set http method as POST
-			do {
-				request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-			} catch let error {
-				print(error.localizedDescription)
-			}
-			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-			request.addValue("application/json", forHTTPHeaderField: "Accept")
-			let task = URLSession.shared.dataTask(with: request) { data, response, error in
-				guard let data = data, error == nil else {
-					print(error?.localizedDescription ?? "No data")
-					return
-				}
-				let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-				
-				print("insertTrackFieldVisit---",responseJSON)
-				if let responseJSON = responseJSON as? [String: Any] {
-					DispatchQueue.main.async
-						{
+
+				let currentLocation = CLLocation(latitude: FirstLacoationLat1, longitude: FirstLacoationLng1)
+				var distance = currentLocation.distance(from: DestinationLocation) / 1000
+					//var distance = previousLocationDecoded.distance(from: DestinationLocation) * 0.000621371
+				//print(String(format: "The distance to my buddy is %.01fkm", distance))
+	//			let defaults = UserDefaults.standard
+	//			RetrivedcustId = defaults.integer(forKey: "custId")
+	//			RetrivedempId = defaults.integer(forKey: "empId")
+	//			let latlanstr = latstr + ", " + longstr
+	//
+							locationManager.requestWhenInUseAuthorization()
+							var currentLoc: CLLocation!
+							if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+							CLLocationManager.authorizationStatus() == .authorizedAlways) {
+							   currentLoc = locationManager.location
+							   print("lattitude..",currentLoc.coordinate.latitude)
+							   print("longitude..",currentLoc.coordinate.longitude)
+								let Inlatstr = String(currentLoc.coordinate.latitude)
+								let Inlongstr = String(currentLoc.coordinate.longitude)
+							let Inlatlanstr = Inlatstr + ", " + Inlongstr
+
 							
-							self.Trackedetails()
-
-					}
-					}
-					
+							
 				
+				print("Background latlanstr...",Inlatlanstr)
+				let formatter = DateFormatter()
+				//2016-12-08 03:37:22 +0000
+				//formatter.dateFormat = "yyyy-MM-dd"
+				formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+				let now = Date()
+				let CurrentdateString = formatter.string(from:now)
+				print("CurrentdateString",CurrentdateString)
 				
+				let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": RetrivedempVisitId,"trackDateTime": CurrentdateString,"trackLatLong":Inlatlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+							
+							
+							var StartPoint = Baseurl.shared().baseURL
+							var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit"
+							let urlstring = "\(StartPoint)\(Endpoint1)"
+							print("First",urlstring)
+							let url = NSURL(string: urlstring)
+							
 				
-			}
-			task.resume()
-			
-		}
-			}
-			}
-		
-	}
-	}
-				
-	else
-	{
-		let previousLocationEncoded = UserDefaults.standard.object(forKey: "locationDatavalues") as? Data
-			let previousLocationDecoded = NSKeyedUnarchiver.unarchiveObject(with: previousLocationEncoded!) as! CLLocation
-			print("sddsfsfsfs",previousLocationDecoded)
-			
-			if let loadedData = UserDefaults.standard.data(forKey: "locationDatavalues")
-			{
-				if let loadedLocation = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? CLLocation {
-					print("First Location Lat",loadedLocation.coordinate.latitude)
-					print("First Location long",loadedLocation.coordinate.longitude)
-					locationManager.requestWhenInUseAuthorization()
-					
-				
-			let FirstLacoationLat1 = (loadedLocation.coordinate.latitude)
-			let FirstLacoationLng1 = (loadedLocation.coordinate.longitude)
-						//"outFromLatLong": "15.225391290164756, 78.31401312731046",
-					var currentLoc: CLLocation!
-					if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-					CLLocationManager.authorizationStatus() == .authorizedAlways) {
-						currentLoc = self.locationManager.location
-					   print("SecondLocation",currentLoc.coordinate.latitude)
-					   print("SecondLocation",currentLoc.coordinate.longitude)
-						let SecondLocationLat2 = (currentLoc.coordinate.latitude)
-						let SecondLocationLng2 = (currentLoc.coordinate.longitude)
-						var DestinationLocation = CLLocation(latitude: SecondLocationLat2, longitude: SecondLocationLng2)
-						print("Destination Latlong values",DestinationLocation)
-
-
-			let currentLocation = CLLocation(latitude: FirstLacoationLat1, longitude: FirstLacoationLng1)
-			var distance = currentLocation.distance(from: DestinationLocation) / 1000
-				//var distance = previousLocationDecoded.distance(from: DestinationLocation) * 0.000621371
-			//print(String(format: "The distance to my buddy is %.01fkm", distance))
-//			let defaults = UserDefaults.standard
-//			RetrivedcustId = defaults.integer(forKey: "custId")
-//			RetrivedempId = defaults.integer(forKey: "empId")
-//			let latlanstr = latstr + ", " + longstr
-						
-						
-						
-						locationManager.requestWhenInUseAuthorization()
-						var currentLoc: CLLocation!
-						if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
-						CLLocationManager.authorizationStatus() == .authorizedAlways) {
-						   currentLoc = locationManager.location
-						   print("lattitude..",currentLoc.coordinate.latitude)
-						   print("longitude..",currentLoc.coordinate.longitude)
-							let Inlatstr = String(currentLoc.coordinate.latitude)
-							let Inlongstr = String(currentLoc.coordinate.longitude)
-						let Inlatlanstr = Inlatstr + ", " + Inlongstr
-
-			print("Background latlanstr...",Inlatlanstr)
-			let formatter = DateFormatter()
-			//2016-12-08 03:37:22 +0000
-			//formatter.dateFormat = "yyyy-MM-dd"
-			formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-			let now = Date()
-			let CurrentdateString = formatter.string(from:now)
-			print("CurrentdateString",CurrentdateString)
-			
-			let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":Inlatlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
-						
-						var StartPoint = Baseurl.shared().baseURL
-						var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit"
-						let urlstring = "\(StartPoint)\(Endpoint1)"
-						print("First",urlstring)
-						let url = NSURL(string: urlstring)
-			
-			//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
-			//create the session object
-			let session = URLSession.shared
-						var request = URLRequest(url: url as! URL)
-			request.httpMethod = "POST" //set http method as POST
-			do {
-				request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-			} catch let error {
-				print(error.localizedDescription)
-			}
-			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-			request.addValue("application/json", forHTTPHeaderField: "Accept")
-			let task = URLSession.shared.dataTask(with: request) { data, response, error in
-				guard let data = data, error == nil else {
-					print(error?.localizedDescription ?? "No data")
-					return
+				//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
+				//create the session object
+				let session = URLSession.shared
+							var request = URLRequest(url: url as! URL)
+				request.httpMethod = "POST" //set http method as POST
+				do {
+					request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+				} catch let error {
+					print(error.localizedDescription)
 				}
-				let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+				request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+				request.addValue("application/json", forHTTPHeaderField: "Accept")
+				let task = URLSession.shared.dataTask(with: request) { data, response, error in
+					guard let data = data, error == nil else {
+						print(error?.localizedDescription ?? "No data")
+						return
+					}
+					let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+					
+					print("insertTrackFieldVisit---",responseJSON)
+					if let responseJSON = responseJSON as? [String: Any] {
+						DispatchQueue.main.async
+							{
+								
+								self.Trackedetails()
+
+						}
+						}
+						
+					
+					
+					
+				}
+				task.resume()
 				
-				print("insertTrackFieldVisit---",responseJSON)
-				if let responseJSON = responseJSON as? [String: Any] {
-					DispatchQueue.main.async
-						{
-					
-					}
-					}
-					
 			}
-			task.resume()
-			
+				}
+				}
 		}
-			}
-			}
+	}
 		
-	}
 	
 	
-	}
-}
+//@objc func insertTrackFieldVisit_updateCounting(){
+//
+//
+//	if (Inaddress == "NA")
+//	{
+//		let previousLocationEncoded = UserDefaults.standard.object(forKey: "locationDatavalues") as? Data
+//			let previousLocationDecoded = NSKeyedUnarchiver.unarchiveObject(with: previousLocationEncoded!) as! CLLocation
+//			print("sddsfsfsfs",previousLocationDecoded)
+//
+//			if let loadedData = UserDefaults.standard.data(forKey: "locationDatavalues")
+//			{
+//				if let loadedLocation = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? CLLocation {
+//					print("First Location Lat",loadedLocation.coordinate.latitude)
+//					print("First Location long",loadedLocation.coordinate.longitude)
+//					locationManager.requestWhenInUseAuthorization()
+//
+//
+//			let FirstLacoationLat1 = (loadedLocation.coordinate.latitude)
+//			let FirstLacoationLng1 = (loadedLocation.coordinate.longitude)
+//						//"outFromLatLong": "15.225391290164756, 78.31401312731046",
+//					var currentLoc: CLLocation!
+//					if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+//					CLLocationManager.authorizationStatus() == .authorizedAlways) {
+//						currentLoc = self.locationManager.location
+//					   print("SecondLocation",currentLoc.coordinate.latitude)
+//					   print("SecondLocation",currentLoc.coordinate.longitude)
+//						let SecondLocationLat2 = (currentLoc.coordinate.latitude)
+//						let SecondLocationLng2 = (currentLoc.coordinate.longitude)
+//						var DestinationLocation = CLLocation(latitude: SecondLocationLat2, longitude: SecondLocationLng2)
+//						print("Destination Latlong values",DestinationLocation)
+//
+//
+//			let currentLocation = CLLocation(latitude: FirstLacoationLat1, longitude: FirstLacoationLng1)
+//			var distance = currentLocation.distance(from: DestinationLocation) / 1000
+//				//var distance = previousLocationDecoded.distance(from: DestinationLocation) * 0.000621371
+//			//print(String(format: "The distance to my buddy is %.01fkm", distance))
+////			let defaults = UserDefaults.standard
+////			RetrivedcustId = defaults.integer(forKey: "custId")
+////			RetrivedempId = defaults.integer(forKey: "empId")
+////			let latlanstr = latstr + ", " + longstr
+////
+//						locationManager.requestWhenInUseAuthorization()
+//						var currentLoc: CLLocation!
+//						if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+//						CLLocationManager.authorizationStatus() == .authorizedAlways) {
+//						   currentLoc = locationManager.location
+//						   print("lattitude..",currentLoc.coordinate.latitude)
+//						   print("longitude..",currentLoc.coordinate.longitude)
+//							let Inlatstr = String(currentLoc.coordinate.latitude)
+//							let Inlongstr = String(currentLoc.coordinate.longitude)
+//						let Inlatlanstr = Inlatstr + ", " + Inlongstr
+//
+//
+//
+//
+//			print("Background latlanstr...",Inlatlanstr)
+//			let formatter = DateFormatter()
+//			//2016-12-08 03:37:22 +0000
+//			//formatter.dateFormat = "yyyy-MM-dd"
+//			formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+//			let now = Date()
+//			let CurrentdateString = formatter.string(from:now)
+//			print("CurrentdateString",CurrentdateString)
+//
+//			let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": RetrivedempVisitId,"trackDateTime": CurrentdateString,"trackLatLong":Inlatlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+//
+//
+//						var StartPoint = Baseurl.shared().baseURL
+//						var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit"
+//						let urlstring = "\(StartPoint)\(Endpoint1)"
+//						print("First",urlstring)
+//						let url = NSURL(string: urlstring)
+//
+//
+//			//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
+//			//create the session object
+//			let session = URLSession.shared
+//						var request = URLRequest(url: url as! URL)
+//			request.httpMethod = "POST" //set http method as POST
+//			do {
+//				request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+//			} catch let error {
+//				print(error.localizedDescription)
+//			}
+//			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//			request.addValue("application/json", forHTTPHeaderField: "Accept")
+//			let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//				guard let data = data, error == nil else {
+//					print(error?.localizedDescription ?? "No data")
+//					return
+//				}
+//				let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+//
+//				print("insertTrackFieldVisit---",responseJSON)
+//				if let responseJSON = responseJSON as? [String: Any] {
+//					DispatchQueue.main.async
+//						{
+//
+//							self.Trackedetails()
+//
+//					}
+//					}
+//
+//
+//
+//
+//			}
+//			task.resume()
+//
+//		}
+//			}
+//			}
+//
+//	}
+//	}
+//
+//	else
+//	{
+//		let previousLocationEncoded = UserDefaults.standard.object(forKey: "locationDatavalues") as? Data
+//			let previousLocationDecoded = NSKeyedUnarchiver.unarchiveObject(with: previousLocationEncoded!) as! CLLocation
+//			print("sddsfsfsfs",previousLocationDecoded)
+//
+//			if let loadedData = UserDefaults.standard.data(forKey: "locationDatavalues")
+//			{
+//				if let loadedLocation = NSKeyedUnarchiver.unarchiveObject(with: loadedData) as? CLLocation {
+//					print("First Location Lat",loadedLocation.coordinate.latitude)
+//					print("First Location long",loadedLocation.coordinate.longitude)
+//					locationManager.requestWhenInUseAuthorization()
+//
+//
+//			let FirstLacoationLat1 = (loadedLocation.coordinate.latitude)
+//			let FirstLacoationLng1 = (loadedLocation.coordinate.longitude)
+//						//"outFromLatLong": "15.225391290164756, 78.31401312731046",
+//					var currentLoc: CLLocation!
+//					if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+//					CLLocationManager.authorizationStatus() == .authorizedAlways) {
+//						currentLoc = self.locationManager.location
+//					   print("SecondLocation",currentLoc.coordinate.latitude)
+//					   print("SecondLocation",currentLoc.coordinate.longitude)
+//						let SecondLocationLat2 = (currentLoc.coordinate.latitude)
+//						let SecondLocationLng2 = (currentLoc.coordinate.longitude)
+//						var DestinationLocation = CLLocation(latitude: SecondLocationLat2, longitude: SecondLocationLng2)
+//						print("Destination Latlong values",DestinationLocation)
+//
+//
+//			let currentLocation = CLLocation(latitude: FirstLacoationLat1, longitude: FirstLacoationLng1)
+//			var distance = currentLocation.distance(from: DestinationLocation) / 1000
+//				//var distance = previousLocationDecoded.distance(from: DestinationLocation) * 0.000621371
+//			//print(String(format: "The distance to my buddy is %.01fkm", distance))
+////			let defaults = UserDefaults.standard
+////			RetrivedcustId = defaults.integer(forKey: "custId")
+////			RetrivedempId = defaults.integer(forKey: "empId")
+////			let latlanstr = latstr + ", " + longstr
+//
+//
+//
+//						locationManager.requestWhenInUseAuthorization()
+//						var currentLoc: CLLocation!
+//						if(CLLocationManager.authorizationStatus() == .authorizedWhenInUse ||
+//						CLLocationManager.authorizationStatus() == .authorizedAlways) {
+//						   currentLoc = locationManager.location
+//						   print("lattitude..",currentLoc.coordinate.latitude)
+//						   print("longitude..",currentLoc.coordinate.longitude)
+//							let Inlatstr = String(currentLoc.coordinate.latitude)
+//							let Inlongstr = String(currentLoc.coordinate.longitude)
+//						let Inlatlanstr = Inlatstr + ", " + Inlongstr
+//
+//			print("Background latlanstr...",Inlatlanstr)
+//			let formatter = DateFormatter()
+//			//2016-12-08 03:37:22 +0000
+//			//formatter.dateFormat = "yyyy-MM-dd"
+//			formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+//			let now = Date()
+//			let CurrentdateString = formatter.string(from:now)
+//			print("CurrentdateString",CurrentdateString)
+//
+//			let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": empVisitId,"trackDateTime": CurrentdateString,"trackLatLong":Inlatlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+//
+//						var StartPoint = Baseurl.shared().baseURL
+//						var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit"
+//						let urlstring = "\(StartPoint)\(Endpoint1)"
+//						print("First",urlstring)
+//						let url = NSURL(string: urlstring)
+//
+//			//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/employee/fieldVisit/insertTrackFieldVisit")!
+//			//create the session object
+//			let session = URLSession.shared
+//						var request = URLRequest(url: url as! URL)
+//			request.httpMethod = "POST" //set http method as POST
+//			do {
+//				request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+//			} catch let error {
+//				print(error.localizedDescription)
+//			}
+//			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//			request.addValue("application/json", forHTTPHeaderField: "Accept")
+//			let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//				guard let data = data, error == nil else {
+//					print(error?.localizedDescription ?? "No data")
+//					return
+//				}
+//				let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+//
+//				print("insertTrackFieldVisit---",responseJSON)
+//				if let responseJSON = responseJSON as? [String: Any] {
+//					DispatchQueue.main.async
+//						{
+//
+//					}
+//					}
+//
+//			}
+//			task.resume()
+//
+//		}
+//			}
+//			}
+//
+//	}
+//
+//
+//	}
+//}
 	//FieldVisit IN OK Button Code
 
 @IBAction func FieldVisit_InOkbtnclk(_ sender: Any) {
