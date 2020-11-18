@@ -207,8 +207,8 @@ ExpenseClaimAPI_Integration()
 			if arrSectionsData.count > 0{
 				let dict = arrSectionsData.object(at: section) as? NSDictionary
 				//headerCell.Leavestatusname.text = "Leave Status"
-//				headerCell.LeaveHistorystatusview.layer.borderWidth = 1
-//				headerCell.LeaveHistorystatusview.layer.borderColor = UIColor.lightGray.cgColor
+				headerCell.HeadercellBackVieew.layer.borderWidth = 1
+				headerCell.HeadercellBackVieew.layer.borderColor = UIColor.lightGray.cgColor
 				
 				
 				
@@ -268,6 +268,11 @@ ExpenseClaimAPI_Integration()
 				strLeavetypeName = String(temp1)
 				print("strLeavetypeName...",strLeavetypeName)
 				Expensecell.lbl.text = strLeavetypeName
+				
+				Expensecell.Viewmore_Btmview.layer.borderWidth = 1
+				Expensecell.Viewmore_Btmview.layer.borderColor = UIColor.lightGray.cgColor
+
+				
 				
 			}
 			

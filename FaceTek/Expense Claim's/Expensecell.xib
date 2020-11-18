@@ -24,11 +24,33 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vcJ-Ac-GJP">
+                        <rect key="frame" x="0.0" y="126" width="320" height="45"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eYG-s9-BDb">
+                                <rect key="frame" x="143" y="8" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="View">
+                                    <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
+                                </state>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="45" id="Tup-4i-y4h"/>
+                        </constraints>
+                    </view>
                 </subviews>
-                <color key="backgroundColor" red="0.51170544659999995" green="0.73933290470000002" blue="0.95034898479999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <color key="backgroundColor" systemColor="systemGray6Color" red="0.94901960780000005" green="0.94901960780000005" blue="0.96862745100000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="vcJ-Ac-GJP" secondAttribute="trailing" id="FEv-ko-WhB"/>
+                    <constraint firstAttribute="bottom" secondItem="vcJ-Ac-GJP" secondAttribute="bottom" constant="1" id="Ssa-GR-Ycr"/>
+                    <constraint firstItem="vcJ-Ac-GJP" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="eB2-li-c1r"/>
+                </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="Viewmore_Btmview" destination="vcJ-Ac-GJP" id="qCj-7w-3ne"/>
                 <outlet property="lbl" destination="Yhu-Rb-kdQ" id="5uu-Sz-RKk"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="127.23214285714285"/>

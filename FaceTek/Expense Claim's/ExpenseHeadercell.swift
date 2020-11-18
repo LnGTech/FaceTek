@@ -10,6 +10,7 @@ import UIKit
 
 class ExpenseHeadercell: UITableViewCell {
 
+	@IBOutlet weak var HeadercellBackVieew: UIView!
 	
 	@IBOutlet weak var ExpenseClaimLbl: UILabel!
 	
