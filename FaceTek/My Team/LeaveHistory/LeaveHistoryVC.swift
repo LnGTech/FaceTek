@@ -398,8 +398,6 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 		var Yearstr = String(year)
 		var Datestr = "1"
 
-		
-		
 		SelectedDatestr = Yearstr + "-" + Monthstr + "-" + Datestr
 		
 		print("SelectedDatestr....",SelectedDatestr)

@@ -6562,6 +6562,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="DateView" destination="qc6-MJ-881" id="FDM-MQ-usN"/>
+                        <outlet property="SelectedDateLbl" destination="tLY-ps-oLS" id="5Xv-3F-zm9"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2di-uA-kQr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
