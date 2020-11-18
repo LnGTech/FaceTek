@@ -16,12 +16,6 @@ class PendingLeavesVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
     var Convertdaycount = ""
     var ConvertEmpLeaveId = ""
 
-    
-    
-
-    
-
-    
     var mDictAttendanceData = NSMutableDictionary()
 
     @IBOutlet weak var Noleavesview: UIView!

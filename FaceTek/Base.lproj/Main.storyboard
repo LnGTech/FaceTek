@@ -6542,6 +6542,15 @@
                                     <action selector="Btnclk:" destination="X5X-MY-zBe" eventType="touchUpInside" id="TVL-Dm-ql8"/>
                                 </connections>
                             </button>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HwT-pO-PNB">
+                                <rect key="frame" x="13" y="125" width="350" height="520"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="X5X-MY-zBe" id="AgE-9b-h2a"/>
+                                    <outlet property="delegate" destination="X5X-MY-zBe" id="ez9-8t-JfU"/>
+                                </connections>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -6562,6 +6571,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="DateView" destination="qc6-MJ-881" id="FDM-MQ-usN"/>
+                        <outlet property="Expensetbl" destination="HwT-pO-PNB" id="LEr-uV-6EZ"/>
                         <outlet property="SelectedDateLbl" destination="tLY-ps-oLS" id="5Xv-3F-zm9"/>
                     </connections>
                 </viewController>

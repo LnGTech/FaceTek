@@ -296,6 +296,7 @@ class LeaveHistoryVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         let LeaveHistorycell = tableView.dequeueReusableCell(withIdentifier: "LeaveHistorycell", for: indexPath) as! LeaveHistorycell
          let arrLeaveHistory =  LeaveHistoryData.value(forKey: "empLeaveList") as! NSArray
         
+		print("arrLeaveHistory...",arrLeaveHistory)
         let leaveTypeDetails = arrLeaveHistory.object(at: indexPath.section) as? NSDictionary
         var strLeavetypeName = ""
         if let temp = leaveTypeDetails?.value(forKey: "leaveType") as? String{

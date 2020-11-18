@@ -140,6 +140,10 @@
 		747F8DCA243B547F00ABBD5E /* home_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DC9243B547E00ABBD5E /* home_icon.png */; };
 		747F8DCC243B54F700ABBD5E /* leave_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DCB243B54F600ABBD5E /* leave_icon.png */; };
 		747F8DCE243B556C00ABBD5E /* attendence_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DCD243B556B00ABBD5E /* attendence_icon.png */; };
+		74822C51256518460078F4D8 /* Expensecell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74822C4F256518460078F4D8 /* Expensecell.swift */; };
+		74822C52256518460078F4D8 /* Expensecell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74822C50256518460078F4D8 /* Expensecell.xib */; };
+		74822C55256518630078F4D8 /* ExpenseHeadercell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74822C53256518630078F4D8 /* ExpenseHeadercell.swift */; };
+		74822C56256518630078F4D8 /* ExpenseHeadercell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74822C54256518630078F4D8 /* ExpenseHeadercell.xib */; };
 		748E22EC247B971C0060464F /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E22EB247B971C0060464F /* PageController.swift */; };
 		7497BDAC24CC1E0800EE54D0 /* AbsenttblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7497BDAA24CC1E0800EE54D0 /* AbsenttblCell.swift */; };
 		7497BDAD24CC1E0800EE54D0 /* AbsenttblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7497BDAB24CC1E0800EE54D0 /* AbsenttblCell.xib */; };
@@ -338,6 +342,10 @@
 		747F8DC9243B547E00ABBD5E /* home_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = home_icon.png; sourceTree = "<group>"; };
 		747F8DCB243B54F600ABBD5E /* leave_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leave_icon.png; sourceTree = "<group>"; };
 		747F8DCD243B556B00ABBD5E /* attendence_icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = attendence_icon.png; sourceTree = "<group>"; };
+		74822C4F256518460078F4D8 /* Expensecell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expensecell.swift; sourceTree = "<group>"; };
+		74822C50256518460078F4D8 /* Expensecell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Expensecell.xib; sourceTree = "<group>"; };
+		74822C53256518630078F4D8 /* ExpenseHeadercell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseHeadercell.swift; sourceTree = "<group>"; };
+		74822C54256518630078F4D8 /* ExpenseHeadercell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ExpenseHeadercell.xib; sourceTree = "<group>"; };
 		748E22EB247B971C0060464F /* PageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
 		7497BDAA24CC1E0800EE54D0 /* AbsenttblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenttblCell.swift; sourceTree = "<group>"; };
 		7497BDAB24CC1E0800EE54D0 /* AbsenttblCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsenttblCell.xib; sourceTree = "<group>"; };
@@ -550,6 +558,10 @@
 			children = (
 				7447EED3254C25830013FB72 /* Bluecircleimg.png */,
 				7472DE1D254C0E15004756E9 /* ExpenseClaimVC.swift */,
+				74822C54256518630078F4D8 /* ExpenseHeadercell.xib */,
+				74822C53256518630078F4D8 /* ExpenseHeadercell.swift */,
+				74822C4F256518460078F4D8 /* Expensecell.swift */,
+				74822C50256518460078F4D8 /* Expensecell.xib */,
 				7447EED5254C2BB00013FB72 /* ExpensesClaimFormVC.swift */,
 			);
 			path = "Expense Claim's";
@@ -952,6 +964,7 @@
 				745650E825235664009BFA88 /* Googlemapformtblcell.xib in Resources */,
 				7469426724B34B1100C24342 /* hand.png in Resources */,
 				740D7070243C41A300CF6C2F /* office_out.png in Resources */,
+				74822C56256518630078F4D8 /* ExpenseHeadercell.xib in Resources */,
 				740D7072243C41AA00CF6C2F /* track_movement.png in Resources */,
 				744125D924D0328200075CC1 /* PendingHeadercell.xib in Resources */,
 				747F8DB6243B3B5700ABBD5E /* home_bg.png in Resources */,
@@ -988,6 +1001,7 @@
 				74466DD3255AD6C30020C815 /* Attendance-circled-left.png in Resources */,
 				74795DC0244D9D2400C6F03C /* late commers.png in Resources */,
 				740FA3FB247BE1FE00E4FC3D /* attendence.png in Resources */,
+				74822C52256518460078F4D8 /* Expensecell.xib in Resources */,
 				746017B42435F62800969CA2 /* user.png in Resources */,
 				740FC4EE243DB3D700F71B72 /* pending.png in Resources */,
 				7455252E250A79B800D18C3F /* facetek_title.png in Resources */,
@@ -1120,6 +1134,7 @@
 				747F8DAC243B368700ABBD5E /* HomeDashboardVC.swift in Sources */,
 				746017B62435F90200969CA2 /* RegistrationVC.swift in Sources */,
 				272A19662509212C0036A431 /* InternetConnection.swift in Sources */,
+				74822C51256518460078F4D8 /* Expensecell.swift in Sources */,
 				746EE171248F9FC8007A1DA8 /* PrivacyPolicyVC.swift in Sources */,
 				74F5D120243758B700D6E811 /* Constants.swift in Sources */,
 				7447EED6254C2BB00013FB72 /* ExpensesClaimFormVC.swift in Sources */,
@@ -1150,6 +1165,7 @@
 				7447702924CF1A2900EFBB2F /* EarlyLeaverscell.swift in Sources */,
 				74F5D124243758D400D6E811 /* SMRippleView.swift in Sources */,
 				7429321B24498B7000C59157 /* AppManager.swift in Sources */,
+				74822C55256518630078F4D8 /* ExpenseHeadercell.swift in Sources */,
 				744774D1250A3484008266D4 /* Baseurl.swift in Sources */,
 				7424A04724AC6AFB000B466F /* AppDelegate.swift in Sources */,
 				74F07AC024B0BE7E000E6924 /* AttendanceInDB.swift in Sources */,
