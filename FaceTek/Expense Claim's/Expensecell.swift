@@ -10,7 +10,10 @@ import UIKit
 
 class Expensecell: UITableViewCell {
 
+	@IBOutlet weak var ExpenseBackview: UIView!
 	@IBOutlet weak var Viewmore_Btmview: UIView!
+	
+	
 	@IBOutlet weak var lbl: UILabel!
 	override func awakeFromNib() {
         super.awakeFromNib()

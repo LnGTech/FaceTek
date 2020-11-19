@@ -32,7 +32,7 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
-		self.Expensetbl.rowHeight = 230.0
+		self.Expensetbl.rowHeight = 240.0
 
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
 		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
@@ -311,7 +311,7 @@ ExpenseClaimAPI_Integration()
 			return Expensecell
 		}
 		func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-			return 230;//Choose your custom row height
+			return 250;//Choose your custom row height
 		}
 	
 	@IBAction func Btnclk(_ sender: Any) {
