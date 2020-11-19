@@ -29,9 +29,7 @@
                                             <constraint firstAttribute="height" constant="30" id="e7g-0O-s05"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                        <state key="normal" title="View">
-                                            <color key="titleColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
-                                        </state>
+                                        <state key="normal" title="View More"/>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -115,7 +113,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zh-Lx-XmL">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="₹ " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Zh-Lx-XmL">
                                 <rect key="frame" x="210" y="80" width="108" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="Wzt-1P-FJW"/>
@@ -184,9 +182,13 @@
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
+                <outlet property="ClaimDateLbl" destination="Ztg-Is-e6Z" id="Soe-9J-W3l"/>
+                <outlet property="ExpenseAmtLbl" destination="8Zh-Lx-XmL" id="hKH-aI-2xX"/>
+                <outlet property="ExpenseApprovedAmtLbl" destination="S2K-sh-4Se" id="2B9-oH-f0e"/>
                 <outlet property="ExpenseBackview" destination="eA2-k5-c95" id="Gxg-YD-pR0"/>
+                <outlet property="ExpenseDateLbl" destination="3m9-Im-iU8" id="h8O-wj-ihW"/>
+                <outlet property="ExpenseTypeLbl" destination="sGw-UQ-7m8" id="yoH-6w-H3a"/>
                 <outlet property="Viewmore_Btmview" destination="vcJ-Ac-GJP" id="qCj-7w-3ne"/>
-                <outlet property="lbl" destination="Ztg-Is-e6Z" id="OjQ-wH-NMv"/>
             </connections>
             <point key="canvasLocation" x="-351" y="109"/>
         </tableViewCell>

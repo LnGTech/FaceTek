@@ -87,6 +87,7 @@
 		745650E22522F6CC009BFA88 /* MyTeamGoogleMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745650E12522F6CC009BFA88 /* MyTeamGoogleMapVC.swift */; };
 		745650E725235664009BFA88 /* Googlemapformtblcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745650E525235664009BFA88 /* Googlemapformtblcell.swift */; };
 		745650E825235664009BFA88 /* Googlemapformtblcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 745650E625235664009BFA88 /* Googlemapformtblcell.xib */; };
+		745793EC2566824D0087D4CA /* RupeeIcon.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 745793EB2566824D0087D4CA /* RupeeIcon.jpg */; };
 		745D5C55247CCA7B00052FC4 /* mobile.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C54247CCA7A00052FC4 /* mobile.png */; };
 		745D5C57247CCC2F00052FC4 /* leavemanagement.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C56247CCC2C00052FC4 /* leavemanagement.png */; };
 		745D5C5F247CDA9700052FC4 /* Home_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 745D5C5E247CDA9600052FC4 /* Home_user.png */; };
@@ -289,6 +290,7 @@
 		745650E12522F6CC009BFA88 /* MyTeamGoogleMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamGoogleMapVC.swift; sourceTree = "<group>"; };
 		745650E525235664009BFA88 /* Googlemapformtblcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Googlemapformtblcell.swift; sourceTree = "<group>"; };
 		745650E625235664009BFA88 /* Googlemapformtblcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Googlemapformtblcell.xib; sourceTree = "<group>"; };
+		745793EB2566824D0087D4CA /* RupeeIcon.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RupeeIcon.jpg; sourceTree = "<group>"; };
 		745D5C54247CCA7A00052FC4 /* mobile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mobile.png; sourceTree = "<group>"; };
 		745D5C56247CCC2C00052FC4 /* leavemanagement.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = leavemanagement.png; sourceTree = "<group>"; };
 		745D5C5E247CDA9600052FC4 /* Home_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Home_user.png; sourceTree = "<group>"; };
@@ -624,6 +626,7 @@
 		747F8D9B243AEA8300ABBD5E /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				745793EB2566824D0087D4CA /* RupeeIcon.jpg */,
 				7463BA95255BD413007A0300 /* Attach.png */,
 				74466DD1255AD6C30020C815 /* Attendance-circled-left.png */,
 				74466DD0255AD6C30020C815 /* Attendance-circled-lRight.png */,
@@ -970,6 +973,7 @@
 				747F8DB6243B3B5700ABBD5E /* home_bg.png in Resources */,
 				74D998942434690E00DFCBEC /* splashScreenLogo.png in Resources */,
 				74C1616E253DB22400E8C956 /* RighAttnceHitry.jpeg in Resources */,
+				745793EC2566824D0087D4CA /* RupeeIcon.jpg in Resources */,
 				7447702A24CF1A2900EFBB2F /* EarlyLeaverscell.xib in Resources */,
 				744BA9C9251CC303006E38D8 /* MyTeamtblCell.xib in Resources */,
 				74FA122F24AC687F00A356E7 /* DirectDisplayShader.fsh in Resources */,

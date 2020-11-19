@@ -6531,6 +6531,14 @@
                                     <constraint firstItem="uRA-fo-51G" firstAttribute="top" secondItem="vat-uX-Ow9" secondAttribute="top" constant="13" id="uH2-0e-ldD"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HwT-pO-PNB">
+                                <rect key="frame" x="13" y="130" width="350" height="535"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="X5X-MY-zBe" id="AgE-9b-h2a"/>
+                                    <outlet property="delegate" destination="X5X-MY-zBe" id="ez9-8t-JfU"/>
+                                </connections>
+                            </tableView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNi-Cr-F8V">
                                 <rect key="frame" x="298" y="568" width="50" height="50"/>
                                 <constraints>
@@ -6542,14 +6550,6 @@
                                     <action selector="Btnclk:" destination="X5X-MY-zBe" eventType="touchUpInside" id="TVL-Dm-ql8"/>
                                 </connections>
                             </button>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HwT-pO-PNB">
-                                <rect key="frame" x="13" y="130" width="350" height="535"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="X5X-MY-zBe" id="AgE-9b-h2a"/>
-                                    <outlet property="delegate" destination="X5X-MY-zBe" id="ez9-8t-JfU"/>
-                                </connections>
-                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -6575,6 +6575,7 @@
                     <connections>
                         <outlet property="DateView" destination="qc6-MJ-881" id="FDM-MQ-usN"/>
                         <outlet property="Expensetbl" destination="HwT-pO-PNB" id="LEr-uV-6EZ"/>
+                        <outlet property="NoDatafoundview" destination="vat-uX-Ow9" id="OcG-QC-CoU"/>
                         <outlet property="SelectedDateLbl" destination="tLY-ps-oLS" id="5Xv-3F-zm9"/>
                     </connections>
                 </viewController>
