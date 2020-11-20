@@ -32,7 +32,7 @@ class CalendarVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 		
 		//self.Calendartbl.separatorStyle = UITableViewCell.SeparatorStyle.none
 		
-		HolidaycalendarLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+		HolidaycalendarLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 21.0)!
 		let Holidaycalendarattributes :Dictionary = [NSAttributedStringKey.font : HolidaycalendarLbl.font]
 		
 		HolidaycalendarLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)

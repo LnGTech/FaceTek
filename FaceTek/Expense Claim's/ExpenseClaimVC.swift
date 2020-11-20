@@ -24,7 +24,7 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         super.viewDidLoad()
 		self.Expensetbl.isHidden = true
 		self.Expensetbl.rowHeight = 240.0
-		ExpenseClaimtitleLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+		ExpenseClaimtitleLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 21.0)!
 		let ExpenseClaimtitleLblattributes :Dictionary = [NSAttributedStringKey.font : ExpenseClaimtitleLbl.font]
 		ExpenseClaimtitleLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 		SelectedDateLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!

@@ -21,6 +21,8 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
     var customView = UIView()
 	var Currentdatestr : String = ""
 	private weak var calendar: FSCalendar!
+	
+	@IBOutlet weak var AttendanceHistorytitleLbl: UILabel!
 	@IBOutlet weak var PrevBtn: UIButton!
 	@IBOutlet weak var PrevView: UIView!
 	@IBOutlet weak var NextBtn: UIButton!
@@ -42,7 +44,9 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 				let CurrentMonth = Calendar.current.component(.month, from: Date())
 				PreviousMonthDate = String(CurrentMonth)
 		
-		
+		let AttendanceHistorytitleLblattributes :Dictionary = [NSAttributedStringKey.font : AttendanceHistorytitleLbl.font]
+		AttendanceHistorytitleLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+		AttendanceHistorytitleLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 21.0)!
 		
 		let today = Date()
 		let dateFormatter = DateFormatter()

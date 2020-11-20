@@ -79,7 +79,7 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		//Color codes
 		let ExpenseClaimtitleLblattributes :Dictionary = [NSAttributedStringKey.font : ExpensetitleLbl.font]
 		ExpensetitleLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-		ExpensetitleLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+		ExpensetitleLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 21.0)!
 		
 		let ExpenseDatetxtfldAttributes :Dictionary = [NSAttributedStringKey.font : ExpenseDatetxtfld.font]
 		ExpenseDatetxtfld.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
