@@ -25,6 +25,19 @@ class Expensecell: UITableViewCell {
 	
 	@IBOutlet weak var ExpenseTypeLbl: UILabel!
 	
+	
+	//Text Labels
+	
+	@IBOutlet weak var ClaimDatetxtLbl: UILabel!
+	
+	@IBOutlet weak var ExpenseDatetxtLbl: UILabel!
+	
+	@IBOutlet weak var ExpenseAmounttxtLbl: UILabel!
+	
+	@IBOutlet weak var ExpenseAprovedtxtLbl: UILabel!
+	
+	@IBOutlet weak var ExpenseTypetxtLbl: UILabel!
+	
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

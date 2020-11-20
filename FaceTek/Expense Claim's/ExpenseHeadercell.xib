@@ -21,19 +21,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense Claim Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QOZ-8B-bcD">
-                                <rect key="frame" x="10" y="7" width="165" height="30"/>
+                                <rect key="frame" x="10" y="7" width="180" height="30"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="165" id="KbX-X0-JkW"/>
+                                    <constraint firstAttribute="width" constant="180" id="KbX-X0-JkW"/>
                                     <constraint firstAttribute="height" constant="30" id="bcg-rt-AfJ"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nDZ-F9-Itb">
+                                <rect key="frame" x="181" y="7" width="100" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="DHT-Wv-HQn"/>
+                                    <constraint firstAttribute="width" constant="100" id="kb6-DC-00C"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cancel.png" translatesAutoresizingMaskIntoConstraints="NO" id="BHb-dJ-DSo">
+                                <rect key="frame" x="287" y="10" width="25" height="25"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="25" id="R7A-Jb-K79"/>
+                                    <constraint firstAttribute="height" constant="25" id="V7N-aE-wOf"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="nDZ-F9-Itb" firstAttribute="top" secondItem="c0w-Wa-hEf" secondAttribute="top" constant="7" id="3gd-sW-9PO"/>
                             <constraint firstItem="QOZ-8B-bcD" firstAttribute="top" secondItem="c0w-Wa-hEf" secondAttribute="top" constant="7" id="4Ca-QP-1hz"/>
+                            <constraint firstAttribute="trailing" secondItem="BHb-dJ-DSo" secondAttribute="trailing" constant="8" id="4z6-tn-Ooy"/>
+                            <constraint firstItem="BHb-dJ-DSo" firstAttribute="top" secondItem="c0w-Wa-hEf" secondAttribute="top" constant="10" id="J1P-o4-OPC"/>
+                            <constraint firstItem="BHb-dJ-DSo" firstAttribute="leading" secondItem="nDZ-F9-Itb" secondAttribute="trailing" constant="6" id="kLd-5o-1Cq"/>
                             <constraint firstItem="QOZ-8B-bcD" firstAttribute="leading" secondItem="c0w-Wa-hEf" secondAttribute="leading" constant="10" id="sHq-BS-DHU"/>
                         </constraints>
                     </view>
@@ -50,8 +72,13 @@
             <connections>
                 <outlet property="ExpenseClaimLbl" destination="QOZ-8B-bcD" id="M6H-0b-y8f"/>
                 <outlet property="HeadercellBackVieew" destination="c0w-Wa-hEf" id="rNe-XJ-IxH"/>
+                <outlet property="cancelimg" destination="BHb-dJ-DSo" id="DlF-Bf-bvz"/>
+                <outlet property="statusLbl" destination="nDZ-F9-Itb" id="QDU-La-Jk0"/>
             </connections>
             <point key="canvasLocation" x="137.68115942028987" y="84.375"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="cancel.png" width="29" height="29"/>
+    </resources>
 </document>

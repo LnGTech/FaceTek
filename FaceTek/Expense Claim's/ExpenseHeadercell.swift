@@ -12,6 +12,8 @@ class ExpenseHeadercell: UITableViewCell {
 
 	@IBOutlet weak var HeadercellBackVieew: UIView!
 	
+	@IBOutlet weak var cancelimg: UIImageView!
+	@IBOutlet weak var statusLbl: UILabel!
 	@IBOutlet weak var ExpenseClaimLbl: UILabel!
 	
     override func awakeFromNib() {

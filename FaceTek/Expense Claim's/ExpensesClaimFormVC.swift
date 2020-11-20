@@ -21,45 +21,31 @@ view.endEditing(true)
 	
 }
 }
-
-
-
-
 class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelegate {
 	
 	@IBOutlet weak var ExpenseClaimTextview: UITextView!
 	@IBOutlet weak var ExpenseDatetxtfld: UITextField!
 	@IBOutlet weak var ExpenseTypetxtfld: UITextField!
 	@IBOutlet weak var ExpenseAmttxtfld: UITextField!
-	
 	@IBOutlet weak var AttachfileActionView: UIView!
-	
 	@IBOutlet weak var ImageSelectedView: UIView!
-	
 	@IBOutlet weak var SelectedDateview: UIView!
 	@IBOutlet weak var SubmitBtn: UIButton!
     let Datepicker = UIDatePicker()
     var ConvertedCurrentDatestr = String()
-
-
-	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
 		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
 		view.addSubview(statusBarView)
 		ImageSelectedView.isHidden = true
-
-		
 		ExpenseClaimTextview.delegate = self
 		ExpenseDatetxtfld.delegate = self
 		ExpenseTypetxtfld.delegate = self
 		ExpenseAmttxtfld.delegate = self
-		
 		ExpenseClaimdismissKey()
 
 		//Textview Place holder code
-		
 		ExpenseClaimTextview.text = "Remarks (Optional)"
 		ExpenseClaimTextview.textColor = UIColor.lightGray
 		//UIView Action Target
@@ -73,18 +59,10 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		ImageSelectedView.layer.shadowOpacity = 0.6
 		ImageSelectedView.layer.shadowOffset = CGSize(width: 0, height: 20)
 		ImageSelectedView.layer.shadowColor = UIColor.darkGray.cgColor
-		
 		//ExpenseAmttxtfld Validation
 		SubmitBtn.isEnabled = false
-
 		ExpenseAmttxtfld.addTarget(self, action: #selector(ExpenseAmount), for: UIControl.Event.editingChanged)
-		
-//		let DateGusture = UITapGestureRecognizer(target: self, action:  #selector(self.FromDatesetDatePicker))
-//		self.SelectedDateview.addGestureRecognizer(DateGusture)
-
-	ExpenseDatetxtfld.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchDown)
-		
-		
+		ExpenseDatetxtfld.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchDown)
     }
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		if let touch = touches.first {
@@ -92,18 +70,14 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 			ImageSelectedView.isHidden = true
 		}
 	}
-
-
 	@objc func AttachfileActionClk(sender : UITapGestureRecognizer) {
-		
 		ImageSelectedView.isHidden = false
 
 	}
 	func textViewDidBeginEditing(_ textView: UITextView) {
-
 		if ExpenseClaimTextview.textColor == UIColor.lightGray {
-			ExpenseClaimTextview.text = ""
-			ExpenseClaimTextview.textColor = UIColor.black
+		ExpenseClaimTextview.text = ""
+		ExpenseClaimTextview.textColor = UIColor.black
 		}
 	}
 	
@@ -122,16 +96,12 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 			print("text field is not empty")
 			SubmitBtn.isEnabled = true
 			SubmitBtn.backgroundColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
-			
-			// text field is not empty
 		}
 	}
 	
 	//Datepicker
 	@objc func FromDatesetDatePicker() {
-            //Format Date
-           // DatetxtFld.datePickerMode = .date
-            
+           
             //ToolBar
             let toolbar = UIToolbar();
             toolbar.sizeToFit()
@@ -147,18 +117,15 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
         }
         
         @objc func doneDatePicker(){
-            let formatter = DateFormatter()
-            formatter.dateFormat = "dd-MMM-yyyy"
-            ExpenseDatetxtfld.text = formatter.string(from: Datepicker.date)
+		let formatter = DateFormatter()
+		formatter.dateFormat = "dd-MMM-yyyy"
+		ExpenseDatetxtfld.text = formatter.string(from: Datepicker.date)
              //var ConvertedDatestr = ""
-            ConvertedCurrentDatestr = formattedDateFromString(dateString:
-                ExpenseDatetxtfld.text!, withFormat: "yyyy-MM-dd")! as String
-            print("ConvertedCurrentDatestr---",ConvertedCurrentDatestr)
-			
-			
+		ConvertedCurrentDatestr = formattedDateFromString(dateString:
+		ExpenseDatetxtfld.text!, withFormat: "yyyy-MM-dd")! as String
+		print("ConvertedCurrentDatestr---",ConvertedCurrentDatestr)
             self.view.endEditing(true)
         }
-        
         @objc func cancelDatePicker(){
             self.view.endEditing(true)
     };

@@ -6532,7 +6532,7 @@
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HwT-pO-PNB">
-                                <rect key="frame" x="13" y="130" width="350" height="535"/>
+                                <rect key="frame" x="13" y="130" width="352" height="535"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="dataSource" destination="X5X-MY-zBe" id="AgE-9b-h2a"/>
@@ -6565,7 +6565,7 @@
                             <constraint firstItem="qc6-MJ-881" firstAttribute="top" secondItem="XZH-lO-6my" secondAttribute="bottom" constant="10" id="SaR-GM-2pB"/>
                             <constraint firstItem="bNi-Cr-F8V" firstAttribute="top" secondItem="vat-uX-Ow9" secondAttribute="bottom" constant="163" id="ToU-ez-JNd"/>
                             <constraint firstItem="jfc-pk-CSI" firstAttribute="bottom" secondItem="HwT-pO-PNB" secondAttribute="bottom" constant="2" id="aQq-0H-toX"/>
-                            <constraint firstItem="jfc-pk-CSI" firstAttribute="trailing" secondItem="HwT-pO-PNB" secondAttribute="trailing" constant="12" id="fSQ-fE-BJ8"/>
+                            <constraint firstItem="jfc-pk-CSI" firstAttribute="trailing" secondItem="HwT-pO-PNB" secondAttribute="trailing" constant="10" id="fSQ-fE-BJ8"/>
                             <constraint firstItem="vat-uX-Ow9" firstAttribute="leading" secondItem="jfc-pk-CSI" secondAttribute="leading" id="jZB-Hv-7Lp"/>
                             <constraint firstItem="qc6-MJ-881" firstAttribute="leading" secondItem="jfc-pk-CSI" secondAttribute="leading" constant="13" id="xck-1A-dFd"/>
                         </constraints>
@@ -6574,6 +6574,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="DateView" destination="qc6-MJ-881" id="FDM-MQ-usN"/>
+                        <outlet property="ExpenseClaimtitleLbl" destination="bzF-6c-F9g" id="57s-hl-YuG"/>
                         <outlet property="Expensetbl" destination="HwT-pO-PNB" id="LEr-uV-6EZ"/>
                         <outlet property="NoDatafoundview" destination="vat-uX-Ow9" id="OcG-QC-CoU"/>
                         <outlet property="SelectedDateLbl" destination="tLY-ps-oLS" id="5Xv-3F-zm9"/>

@@ -74,10 +74,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense Approved Amount" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hzn-z0-LgW">
-                                <rect key="frame" x="10" y="115" width="200" height="25"/>
+                                <rect key="frame" x="10" y="115" width="220" height="25"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="eFj-On-2kx"/>
-                                    <constraint firstAttribute="width" constant="200" id="eUg-sG-F88"/>
+                                    <constraint firstAttribute="width" constant="220" id="eUg-sG-F88"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <nil key="textColor"/>
@@ -183,11 +183,16 @@
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="ClaimDateLbl" destination="Ztg-Is-e6Z" id="Soe-9J-W3l"/>
+                <outlet property="ClaimDatetxtLbl" destination="hxt-UF-w99" id="pHJ-cF-jFW"/>
+                <outlet property="ExpenseAmounttxtLbl" destination="FwQ-Dg-bQk" id="1Zd-nk-r6U"/>
                 <outlet property="ExpenseAmtLbl" destination="8Zh-Lx-XmL" id="hKH-aI-2xX"/>
                 <outlet property="ExpenseApprovedAmtLbl" destination="S2K-sh-4Se" id="2B9-oH-f0e"/>
+                <outlet property="ExpenseAprovedtxtLbl" destination="hzn-z0-LgW" id="dnM-vD-5dn"/>
                 <outlet property="ExpenseBackview" destination="eA2-k5-c95" id="Gxg-YD-pR0"/>
                 <outlet property="ExpenseDateLbl" destination="3m9-Im-iU8" id="h8O-wj-ihW"/>
+                <outlet property="ExpenseDatetxtLbl" destination="qC9-y3-5Hi" id="E5Y-oU-cSb"/>
                 <outlet property="ExpenseTypeLbl" destination="sGw-UQ-7m8" id="yoH-6w-H3a"/>
+                <outlet property="ExpenseTypetxtLbl" destination="Tft-xv-NQV" id="9Bp-Nt-hIQ"/>
                 <outlet property="Viewmore_Btmview" destination="vcJ-Ac-GJP" id="qCj-7w-3ne"/>
             </connections>
             <point key="canvasLocation" x="-351" y="109"/>
