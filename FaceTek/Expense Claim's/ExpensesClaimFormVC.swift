@@ -30,9 +30,14 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 	@IBOutlet weak var AttachfileActionView: UIView!
 	@IBOutlet weak var ImageSelectedView: UIView!
 	@IBOutlet weak var SelectedDateview: UIView!
+	
+	@IBOutlet weak var ClaimPopupview: UIView!
+	
 	@IBOutlet weak var SubmitBtn: UIButton!
     let Datepicker = UIDatePicker()
     var ConvertedCurrentDatestr = String()
+	var Currentdatestr : String = ""
+
 	override func viewDidLoad() {
         super.viewDidLoad()
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
@@ -44,6 +49,12 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		ExpenseTypetxtfld.delegate = self
 		ExpenseAmttxtfld.delegate = self
 		ExpenseClaimdismissKey()
+		let today = Date()
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		Currentdatestr = dateFormatter.string(from: today)
+		//ExpenseDatetxtfld.text = Currentdatestr
+		self.ClaimPopupview.isHidden = true
 
 		//Textview Place holder code
 		ExpenseClaimTextview.text = "Remarks (Optional)"
@@ -63,6 +74,8 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		SubmitBtn.isEnabled = false
 		ExpenseAmttxtfld.addTarget(self, action: #selector(ExpenseAmount), for: UIControl.Event.editingChanged)
 		ExpenseDatetxtfld.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchDown)
+		
+		
     }
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		if let touch = touches.first {
@@ -140,10 +153,87 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
         return nil
     }
 	
+	func FormAPISubmitData()
+	{
+		let defaults = UserDefaults.standard
+		var RetrivedempId = defaults.integer(forKey: "empId")
+		var RetrivedcustId = defaults.integer(forKey: "custId")
+		
+		let parameters = [
+			"refCustId": RetrivedcustId,
+			"refEmpId": RetrivedempId,
+			"empExpDate": ConvertedCurrentDatestr,
+			"empExpType": ExpenseTypetxtfld.text,
+			"empExpAmount": ExpenseAmttxtfld.text,
+			"empExpClaimRemarks": ExpenseClaimTextview.text,
+			"claimAttachments": []] as [String : Any]
+		
+		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/Mob/employee/expenseClaim/insertEmpExpenseClaim")!
+		
+		let session = URLSession.shared
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST"
+		do {
+		request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+			
+		} catch let error {
+					print(error.localizedDescription)
+				}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		
+		
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+		guard let data = data, error == nil else {
+		print(error?.localizedDescription ?? "No data")
+						return
+					}
+		let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+		if let responseJSON = responseJSON as? [String: Any] {
+		print("Expense Submit History Json Response",responseJSON)
+		DispatchQueue.main.async {
+		let statusDic = responseJSON["status"]! as! NSDictionary
+		print("status------",statusDic)
+		let Expensecode = statusDic["code"] as? NSInteger
+		if (Expensecode == 200)
+		{
+			self.ClaimPopupview.isHidden = false
+											
+		}
+			else
+		{
+			self.ClaimPopupview.isHidden = true
+
+			print("false values")
+			}
+
+		}
+
+	}
+		DispatchQueue.main.async {
+						}
+					}
+		task.resume()
+		
+	}
+	
+	
+	
 	@IBAction func BackBtnclk(_ sender: Any) {
 		self.presentingViewController?.dismiss(animated: false, completion: nil)
 
-
+	}
+	
+	@IBAction func OkBtnclk(_ sender: Any) {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+		let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+		self.present(ExpenseClaimVC, animated:true, completion:nil)
+		
+	}
+	
+	@IBAction func Submitbtnclk(_ sender: Any) {
+		FormAPISubmitData()
+		
 	}
 	
 }
