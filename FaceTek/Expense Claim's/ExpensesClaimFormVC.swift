@@ -23,6 +23,7 @@ view.endEditing(true)
 }
 class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelegate {
 	
+	@IBOutlet weak var ExpensetitleLbl: UILabel!
 	@IBOutlet weak var ExpenseClaimTextview: UITextView!
 	@IBOutlet weak var ExpenseDatetxtfld: UITextField!
 	@IBOutlet weak var ExpenseTypetxtfld: UITextField!
@@ -75,6 +76,36 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		ExpenseAmttxtfld.addTarget(self, action: #selector(ExpenseAmount), for: UIControl.Event.editingChanged)
 		ExpenseDatetxtfld.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchDown)
 		
+		//Color codes
+		let ExpenseClaimtitleLblattributes :Dictionary = [NSAttributedStringKey.font : ExpensetitleLbl.font]
+		ExpensetitleLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+		ExpensetitleLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+		
+		let ExpenseDatetxtfldAttributes :Dictionary = [NSAttributedStringKey.font : ExpenseDatetxtfld.font]
+		ExpenseDatetxtfld.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		ExpenseDatetxtfld.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+		let ExpenseTypetxtfldAttributes :Dictionary = [NSAttributedStringKey.font : ExpenseTypetxtfld.font]
+		ExpenseTypetxtfld.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		ExpenseTypetxtfld.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+		let ExpenseAmttxtfldAttributes :Dictionary = [NSAttributedStringKey.font : ExpenseAmttxtfld.font]
+		ExpenseAmttxtfld.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		ExpenseAmttxtfld.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+		
+		
+		ExpenseDatetxtfld.attributedPlaceholder = NSAttributedString(string: "Expense Date", attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)])
+		ExpenseDatetxtfld.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+		ExpenseTypetxtfld.attributedPlaceholder = NSAttributedString(string: "Expense Type", attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)])
+		ExpenseTypetxtfld.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+		ExpenseAmttxtfld.attributedPlaceholder = NSAttributedString(string: "Amount", attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)])
+		ExpenseAmttxtfld.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+
+		ExpenseClaimTextview.text = "Enter Remarks"
+        ExpenseClaimTextview.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		ExpenseClaimTextview.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+
+        ExpenseClaimTextview.delegate = self
+		
+
 		
     }
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -87,12 +118,37 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		ImageSelectedView.isHidden = false
 
 	}
+//	func textViewDidBeginEditing(_ textView: UITextView) {
+//		if ExpenseClaimTextview.textColor == UIColor.lightGray {
+//		ExpenseClaimTextview.text = ""
+//		ExpenseClaimTextview.textColor = UIColor.black
+//		}
+//	}
 	func textViewDidBeginEditing(_ textView: UITextView) {
-		if ExpenseClaimTextview.textColor == UIColor.lightGray {
-		ExpenseClaimTextview.text = ""
-		ExpenseClaimTextview.textColor = UIColor.black
-		}
-	}
+        if ExpenseClaimTextview.text == "Enter Remarks" {
+            ExpenseClaimTextview.text = ""
+            ExpenseClaimTextview.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			ExpenseClaimTextview.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+        }
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        if text == "\n" {
+            ExpenseClaimTextview.resignFirstResponder()
+        }
+        return true
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        if ExpenseClaimTextview.text == "" {
+            ExpenseClaimTextview.text = "Enter Remarks"
+            ExpenseClaimTextview.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			ExpenseClaimTextview.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+        }
+    }
+	
+	
+	
 	
 	func textFieldShouldReturn(_ textField: UITextField) -> Bool // called when 'return' key pressed. return NO to ignore.
 	{

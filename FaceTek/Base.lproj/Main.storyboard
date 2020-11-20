@@ -6629,7 +6629,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BU8-Fh-ovg">
                                 <rect key="frame" x="20" y="80" width="335" height="45"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Expense Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hhG-4x-3DM">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hhG-4x-3DM">
                                         <rect key="frame" x="10" y="5" width="320" height="35"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
@@ -6932,6 +6932,7 @@
                         <outlet property="ExpenseClaimTextview" destination="tP6-9p-mrP" id="puX-Ms-f2A"/>
                         <outlet property="ExpenseDatetxtfld" destination="hhG-4x-3DM" id="z3f-60-EkH"/>
                         <outlet property="ExpenseTypetxtfld" destination="Xbg-uS-1eq" id="r9t-lS-Imx"/>
+                        <outlet property="ExpensetitleLbl" destination="VXu-FY-Vje" id="fwc-oX-jWK"/>
                         <outlet property="ImageSelectedView" destination="X7S-0N-qLa" id="bTM-UK-tCQ"/>
                         <outlet property="SelectedDateview" destination="BU8-Fh-ovg" id="36U-n7-Giv"/>
                         <outlet property="SubmitBtn" destination="8ye-o7-g9e" id="bmi-Za-Xkq"/>
