@@ -18,10 +18,18 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	@IBOutlet weak var SelectedDateLbl: UILabel!
 	var Currentdatestr : String = ""
 	var SelectedDatestr : String = ""
+	var empExpClaimId : String = ""
+
+	
+
+
 	@IBOutlet weak var Expensetbl: UITableView!
 	@IBOutlet weak var DateView: UIView!
+	
+	@IBOutlet weak var DeleteView: UIView!
 	override func viewDidLoad() {
         super.viewDidLoad()
+		self.DeleteView.isHidden = true
 		self.Expensetbl.isHidden = true
 		self.Expensetbl.rowHeight = 240.0
 		ExpenseClaimtitleLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 21.0)!
@@ -44,6 +52,15 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 		DateView.layer.borderColor = UIColor.lightGray.cgColor
 		let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.DateselectedViewAction))
 		self.DateView.addGestureRecognizer(gesture)
+		//Delete view shadow color
+		DeleteView.layer.cornerRadius = 1
+		DeleteView.clipsToBounds = true
+		DeleteView.layer.masksToBounds = false
+		DeleteView.layer.shadowRadius = 20
+		DeleteView.layer.shadowOpacity = 0.6
+		DeleteView.layer.shadowOffset = CGSize(width: 0, height: 20)
+		DeleteView.layer.shadowColor = UIColor.darkGray.cgColor
+		
         ExpenseClaimAPI_Integration()
     }
 	@objc func DateselectedViewAction(sender : UITapGestureRecognizer) {
@@ -159,6 +176,21 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	if let temp = dict?.value(forKey: "empExpClaimStatus") as? String{
 	var empExpClaimStatus = ""
 	empExpClaimStatus = temp
+		
+		
+		
+		
+		
+		let tap = UITapGestureRecognizer(target: self, action: #selector(ExpenseClaimVC.tappedMe))
+		headerCell.cancelimg.addGestureRecognizer(tap)
+		headerCell.cancelimg.isUserInteractionEnabled = true
+		
+		print("selected id empExpClaimId 210")
+print("selected suresh")
+		print("empExpClaimId...",empExpClaimId)
+
+		
+		
 	if (empExpClaimStatus == "App")
     {
 	headerCell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
@@ -167,7 +199,6 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	headerCell.cancelimg.isHidden = true
 	headerCell.statusLbl.isHidden = true
 	headerCell.statusLbl.textColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
-
 								}
 	if (empExpClaimStatus == "Rej")
 	{
@@ -273,10 +304,33 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	Expensecell.ExpenseTypeLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 	let ExpenseTypeattributes :Dictionary = [NSAttributedStringKey.font : Expensecell.ExpenseTypeLbl.font]
 	Expensecell.ExpenseTypeLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+		
+        let sectionTitle = ExpenseHistoryData[indexPath.section]
+		print("sectionTitle",sectionTitle)
+
+		
 				
 			}
 			return Expensecell
 		}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+        
+    {
+		
+		let Expensecell = tableView.dequeueReusableCell(withIdentifier: "Expensecell", for: indexPath) as! Expensecell
+		let arrLeaveHistory =  ExpenseHistoryData.value(forKey: "expenseClaimDto") as! NSArray
+		let ExpenseTypeDetails = arrLeaveHistory.object(at: indexPath.section) as? NSDictionary
+		if let temp = ExpenseTypeDetails?.value(forKey: "empExpClaimId") as? Int{
+		empExpClaimId = String(temp)
+
+			
+		}
+		
+	}
+	
+	
+	
 		func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 			return 250;//Choose your custom row height
 		}
@@ -287,6 +341,13 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 		self.present(ExpensesClaimFormVC, animated:true, completion:nil)
         
 	}
+	@objc func tappedMe(tapGestureRecognizer: UITapGestureRecognizer)
+	{
+print("cancel button clickd")
+
+		DeleteView.isHidden = false
+	}
+	
 	func selected_date_DoneMethod()
 	{
 	let defaults = UserDefaults.standard

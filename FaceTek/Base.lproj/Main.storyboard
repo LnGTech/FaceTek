@@ -6551,14 +6551,65 @@
                                     <action selector="Btnclk:" destination="X5X-MY-zBe" eventType="touchUpInside" id="TVL-Dm-ql8"/>
                                 </connections>
                             </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H6d-fD-dQq">
+                                <rect key="frame" x="18" y="269" width="340" height="90"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Are You Sure ?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SSh-HC-zOQ">
+                                        <rect key="frame" x="20" y="13" width="150" height="25"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="25" id="FAy-Th-CKh"/>
+                                            <constraint firstAttribute="width" constant="150" id="GZq-wA-fiX"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N8Z-Rz-fIE">
+                                        <rect key="frame" x="139" y="46" width="80" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="Elv-0T-af5"/>
+                                            <constraint firstAttribute="height" constant="30" id="NVS-eu-lGk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <state key="normal" title="Cancel">
+                                            <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="odI-HR-E2k">
+                                        <rect key="frame" x="225" y="46" width="80" height="30"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="Oen-oy-JH9"/>
+                                            <constraint firstAttribute="width" constant="80" id="fd5-IO-09r"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                        <state key="normal" title="Proceed">
+                                            <color key="titleColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="odI-HR-E2k" secondAttribute="trailing" constant="35" id="ZAy-9E-I2p"/>
+                                    <constraint firstItem="SSh-HC-zOQ" firstAttribute="leading" secondItem="H6d-fD-dQq" secondAttribute="leading" constant="20" id="ZhA-ty-jBh"/>
+                                    <constraint firstItem="N8Z-Rz-fIE" firstAttribute="top" secondItem="SSh-HC-zOQ" secondAttribute="bottom" constant="8" id="ezK-t8-PHj"/>
+                                    <constraint firstItem="odI-HR-E2k" firstAttribute="top" secondItem="H6d-fD-dQq" secondAttribute="top" constant="46" id="fWD-fv-P4K"/>
+                                    <constraint firstItem="odI-HR-E2k" firstAttribute="leading" secondItem="N8Z-Rz-fIE" secondAttribute="trailing" constant="6" id="yJ5-7z-fkS"/>
+                                    <constraint firstAttribute="height" constant="90" id="yhk-WL-UmH"/>
+                                    <constraint firstItem="SSh-HC-zOQ" firstAttribute="top" secondItem="H6d-fD-dQq" secondAttribute="top" constant="13" id="zeG-U7-VY6"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="jfc-pk-CSI" firstAttribute="trailing" secondItem="qc6-MJ-881" secondAttribute="trailing" constant="12" id="46c-uT-DH7"/>
                             <constraint firstItem="HwT-pO-PNB" firstAttribute="top" secondItem="qc6-MJ-881" secondAttribute="bottom" constant="15" id="4cE-iZ-uvw"/>
                             <constraint firstItem="HwT-pO-PNB" firstAttribute="leading" secondItem="jfc-pk-CSI" secondAttribute="leading" constant="13" id="6rs-lh-xec"/>
+                            <constraint firstItem="H6d-fD-dQq" firstAttribute="top" secondItem="qc6-MJ-881" secondAttribute="bottom" constant="154" id="Aoh-WS-9e2"/>
                             <constraint firstItem="vat-uX-Ow9" firstAttribute="top" secondItem="qc6-MJ-881" secondAttribute="bottom" constant="10" id="BJ5-uC-FAx"/>
                             <constraint firstItem="jfc-pk-CSI" firstAttribute="trailing" secondItem="bNi-Cr-F8V" secondAttribute="trailing" constant="27" id="DpI-Py-xXb"/>
+                            <constraint firstItem="jfc-pk-CSI" firstAttribute="trailing" secondItem="H6d-fD-dQq" secondAttribute="trailing" constant="17" id="FHc-sj-efN"/>
                             <constraint firstItem="XZH-lO-6my" firstAttribute="leading" secondItem="jfc-pk-CSI" secondAttribute="leading" id="HSE-0u-ahl"/>
                             <constraint firstItem="XZH-lO-6my" firstAttribute="top" secondItem="jfc-pk-CSI" secondAttribute="top" id="KiI-88-R9V"/>
                             <constraint firstItem="vat-uX-Ow9" firstAttribute="trailing" secondItem="jfc-pk-CSI" secondAttribute="trailing" id="Oyd-yE-QgP"/>
@@ -6568,6 +6619,7 @@
                             <constraint firstItem="jfc-pk-CSI" firstAttribute="bottom" secondItem="HwT-pO-PNB" secondAttribute="bottom" constant="2" id="aQq-0H-toX"/>
                             <constraint firstItem="jfc-pk-CSI" firstAttribute="trailing" secondItem="HwT-pO-PNB" secondAttribute="trailing" constant="10" id="fSQ-fE-BJ8"/>
                             <constraint firstItem="vat-uX-Ow9" firstAttribute="leading" secondItem="jfc-pk-CSI" secondAttribute="leading" id="jZB-Hv-7Lp"/>
+                            <constraint firstItem="H6d-fD-dQq" firstAttribute="leading" secondItem="jfc-pk-CSI" secondAttribute="leading" constant="18" id="qWR-Yz-QCq"/>
                             <constraint firstItem="qc6-MJ-881" firstAttribute="leading" secondItem="jfc-pk-CSI" secondAttribute="leading" constant="13" id="xck-1A-dFd"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="jfc-pk-CSI"/>
@@ -6575,6 +6627,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <outlet property="DateView" destination="qc6-MJ-881" id="FDM-MQ-usN"/>
+                        <outlet property="DeleteView" destination="H6d-fD-dQq" id="D0w-nH-mug"/>
                         <outlet property="ExpenseClaimtitleLbl" destination="bzF-6c-F9g" id="57s-hl-YuG"/>
                         <outlet property="Expensetbl" destination="HwT-pO-PNB" id="LEr-uV-6EZ"/>
                         <outlet property="NoDatafoundview" destination="vat-uX-Ow9" id="OcG-QC-CoU"/>
@@ -6583,7 +6636,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2di-uA-kQr" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="9822" y="-591"/>
+            <point key="canvasLocation" x="9821.6000000000004" y="-591.45427286356824"/>
         </scene>
         <!--Expenses Claim FormVC-->
         <scene sceneID="2io-D2-I9S">
