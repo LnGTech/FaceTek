@@ -44,6 +44,9 @@ class Expensecell: UITableViewCell {
 	
 	@IBOutlet weak var ExpenseTypetxtLbl: UILabel!
 	
+	
+	@IBOutlet weak var ViewmoreBtn: UIButton!
+	
 	override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

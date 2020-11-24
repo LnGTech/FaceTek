@@ -151,6 +151,7 @@
 		74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0CB2D24D2C03200866474 /* FaqVC.swift */; };
 		74C1616C253DB15500E8C956 /* AttnceHitry.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 74C1616B253DB15500E8C956 /* AttnceHitry.jpeg */; };
 		74C1616E253DB22400E8C956 /* RighAttnceHitry.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 74C1616D253DB22400E8C956 /* RighAttnceHitry.jpeg */; };
+		74D3FD5A256D373A003B2B23 /* ExpenseClaimViewmoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D3FD59256D373A003B2B23 /* ExpenseClaimViewmoreVC.swift */; };
 		74D998652434621200DFCBEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D998642434621200DFCBEC /* ViewController.swift */; };
 		74D998682434621200DFCBEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D998662434621200DFCBEC /* Main.storyboard */; };
 		74D9986B2434621200DFCBEC /* FaceTek.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 74D998692434621200DFCBEC /* FaceTek.xcdatamodeld */; };
@@ -354,6 +355,7 @@
 		74C0CB2D24D2C03200866474 /* FaqVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqVC.swift; sourceTree = "<group>"; };
 		74C1616B253DB15500E8C956 /* AttnceHitry.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AttnceHitry.jpeg; sourceTree = "<group>"; };
 		74C1616D253DB22400E8C956 /* RighAttnceHitry.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RighAttnceHitry.jpeg; sourceTree = "<group>"; };
+		74D3FD59256D373A003B2B23 /* ExpenseClaimViewmoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseClaimViewmoreVC.swift; sourceTree = "<group>"; };
 		74D9985F2434621200DFCBEC /* Facetek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Facetek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D998642434621200DFCBEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		74D998672434621200DFCBEC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -565,6 +567,7 @@
 				74822C4F256518460078F4D8 /* Expensecell.swift */,
 				74822C50256518460078F4D8 /* Expensecell.xib */,
 				7447EED5254C2BB00013FB72 /* ExpensesClaimFormVC.swift */,
+				74D3FD59256D373A003B2B23 /* ExpenseClaimViewmoreVC.swift */,
 			);
 			path = "Expense Claim's";
 			sourceTree = "<group>";
@@ -1174,6 +1177,7 @@
 				7424A04724AC6AFB000B466F /* AppDelegate.swift in Sources */,
 				74F07AC024B0BE7E000E6924 /* AttendanceInDB.swift in Sources */,
 				74D9986B2434621200DFCBEC /* FaceTek.xcdatamodeld in Sources */,
+				74D3FD5A256D373A003B2B23 /* ExpenseClaimViewmoreVC.swift in Sources */,
 				745650E22522F6CC009BFA88 /* MyTeamGoogleMapVC.swift in Sources */,
 				7451D15024CC62F7006EE244 /* AbsentHeaderCell.swift in Sources */,
 				740D70C1243CB13E00CF6C2F /* WifiConnection.swift in Sources */,

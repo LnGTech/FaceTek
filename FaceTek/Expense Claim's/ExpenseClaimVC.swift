@@ -19,6 +19,12 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	var Currentdatestr : String = ""
 	var SelectedDatestr : String = ""
 	var empExpClaimId : String = ""
+	var empExpClaimRemarks : String = ""
+	var empExpClaimRejectionRemarks : String = ""
+
+	
+	
+
 
 	
 
@@ -159,70 +165,8 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 				return 0
 
 		}
-//	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//	let headerCell = tableView.dequeueReusableCell(withIdentifier: "ExpenseHeadercell") as! ExpenseHeadercell
-//	var arrSectionsData = NSArray()
-//	if let temp = ExpenseHistoryData.value(forKey: "expenseClaimDto") as? NSArray{
-//				arrSectionsData = temp
-//			}
-//
-//	if arrSectionsData.count > 0{
-//	let dict = arrSectionsData.object(at: section) as? NSDictionary
-//	headerCell.HeadercellBackVieew.layer.borderWidth = 1
-//	headerCell.HeadercellBackVieew.layer.borderColor = UIColor.lightGray.cgColor
-//	headerCell.ExpenseClaimLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
-//	let ExpenseClaimLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.ExpenseClaimLbl.font]
-//	headerCell.ExpenseClaimLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
-//	if let temp = dict?.value(forKey: "empExpClaimStatus") as? String{
-//	var empExpClaimStatus = ""
-//	empExpClaimStatus = temp
-//
-//		let tap = UITapGestureRecognizer(target: self, action: #selector(ExpenseClaimVC.tappedMe))
-//		headerCell.cancelimg.addGestureRecognizer(tap)
-//		headerCell.cancelimg.isUserInteractionEnabled = true
-//
-//		print("selected id empExpClaimId 210")
-//print("selected suresh")
-//		print("empExpClaimId...",empExpClaimId)
-//
-//
-//
-//	if (empExpClaimStatus == "App")
-//    {
-//	headerCell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
-//	let statusLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.statusLbl.font]
-//	headerCell.statusLbl.text = "Approved"
-//	headerCell.cancelimg.isHidden = true
-//	headerCell.statusLbl.isHidden = true
-//	headerCell.statusLbl.textColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
-//								}
-//	if (empExpClaimStatus == "Rej")
-//	{
-//	headerCell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
-//	let statusLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.statusLbl.font]
-//	headerCell.statusLbl.text = "Rejected"
-//	headerCell.cancelimg.isHidden = true
-//	headerCell.statusLbl.isHidden = false
-//	headerCell.statusLbl.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-//	}
-//	if (empExpClaimStatus == "")
-//	{
-//	headerCell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
-//	let statusLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.statusLbl.font]
-//	headerCell.statusLbl.text = "Pending"
-//	headerCell.statusLbl.isHidden = false
-//	headerCell.statusLbl.textColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-//	headerCell.cancelimg.isHidden = false
-//
-//								}
-//
-//							}
-//			}
-//
-//			return headerCell
-//		}
 	func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-			return 230
+			return 300
 		}
 //	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
 //			return 45
@@ -295,10 +239,17 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 				Expensecell.cancelimg.isHidden = false
 			
 											}
-			
-			
+		}
+		
+		if let temp = ExpenseTypeDetails?.value(forKey: "empExpClaimId") as? Int{
+		empExpClaimId = String(temp)
+
 			
 		}
+		
+		let tap = UITapGestureRecognizer(target: self, action: #selector(ExpenseClaimVC.tappedMe))
+				Expensecell.cancelimg.addGestureRecognizer(tap)
+				Expensecell.cancelimg.isUserInteractionEnabled = true
 		
 	var empExpType = ""
     if let temp = ExpenseTypeDetails?.value(forKey: "empExpType") as? String{
@@ -308,6 +259,18 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	Expensecell.ExpenseTypeLbl.text = empExpType
 		Expensecell.HeaderviewBckview.layer.borderWidth = 1
 		Expensecell.HeaderviewBckview.layer.borderColor = UIColor.lightGray.cgColor
+		
+		
+		//empExpClaimRemarks
+		if let temp = ExpenseTypeDetails?.value(forKey: "empExpClaimRemarks") as? String{
+		empExpClaimRemarks = temp
+		print("empExpClaimRemarks...",empExpClaimRemarks)
+		}
+		if let temp = ExpenseTypeDetails?.value(forKey: "empExpClaimRejectionRemarks") as? String{
+		empExpClaimRejectionRemarks = temp
+		print("empExpClaimRejectionRemarks...",empExpClaimRejectionRemarks)
+		}
+		
 
 		
 	Expensecell.Viewmore_Btmview.layer.borderWidth = 1
@@ -352,7 +315,8 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         let sectionTitle = ExpenseHistoryData[indexPath.section]
 		print("sectionTitle",sectionTitle)
 
-		
+		Expensecell.ViewmoreBtn.addTarget(self, action:#selector(self.buttonClicked), for: .touchUpInside)
+
 				
 			}
 			return Expensecell
@@ -368,18 +332,48 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 		if let temp = ExpenseTypeDetails?.value(forKey: "empExpClaimId") as? Int{
 		empExpClaimId = String(temp)
 
+			var empExpClaimRemarks = ""
+			if let temp = ExpenseTypeDetails?.value(forKey: "empExpClaimRemarks") as? String{
+			empExpClaimRemarks = temp
+			}
+
+			if let temp = ExpenseTypeDetails?.value(forKey: "empExpClaimRejectionRemarks") as? String{
+			empExpClaimRejectionRemarks = temp
+			print("empExpClaimRejectionRemarks...",empExpClaimRejectionRemarks)
+			}
+
+			
+			//Expensecell.ViewmoreBtn.addTarget(self, action: #selector(ExpenseClaimVC.ViewmoreBtn(_:)), for:.touchUpInside)
+			
+
+
+			//Expensecell.ViewmoreBtn.addTarget(self, action: #selector(ViewmoreBtn(button:)), for: .touchUpInside)
+
 			
 		}
 		
 	}
 	
-	
+
+
 	
 		func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 			return 250;//Choose your custom row height
 		}
 	
-	 @IBAction func Btnclk(_ sender: Any) {
+	@objc func buttonClicked() {
+		 print("View more Button Clicked")
+		
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+		print("selected empExpClaimRemarks...",empExpClaimRemarks)
+
+		let ExpenseClaimViewmoreVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimViewmoreVC") as! ExpenseClaimViewmoreVC
+		
+		UserDefaults.standard.set(self.empExpClaimRemarks, forKey: "empExpClaimRemarks")
+		UserDefaults.standard.set(self.empExpClaimRejectionRemarks, forKey: "empExpClaimRejectionRemarks")
+		self.present(ExpenseClaimViewmoreVC, animated:true, completion:nil)
+	}
+	@IBAction func Btnclk(_ sender: Any) {
 		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 		let ExpensesClaimFormVC = storyBoard.instantiateViewController(withIdentifier: "ExpensesClaimFormVC") as! ExpensesClaimFormVC
 		self.present(ExpensesClaimFormVC, animated:true, completion:nil)
@@ -388,6 +382,7 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	@objc func tappedMe(tapGestureRecognizer: UITapGestureRecognizer)
 	{
 print("cancel button clickd")
+		print("empExpClaimId",empExpClaimId)
 
 		DeleteView.isHidden = false
 	}
@@ -464,6 +459,94 @@ print("cancel button clickd")
 		SelectedDatestr = Yearstr + "-" + Monthstr + "-" + Datestr
 		print("SelectedDatestr....",SelectedDatestr)
     }
+	
+	@IBAction func CancelBtnclk(_ sender: Any) {
+		print("cancel button clickd")
+		print("empExpClaimId",empExpClaimId)
+
+		DeleteView.isHidden = true
+		
+	}
+	
+	@IBAction func ProceedBtnclk(_ sender: Any) {
+		print("Proceed button clickd")
+		print("empExpClaimId ......",empExpClaimId)
+
+		DeleteView.isHidden = true
+		let defaults = UserDefaults.standard
+		var RetrivedempId = defaults.integer(forKey: "empId")
+		var RetrivedcustId = defaults.integer(forKey: "custId")
+		let parameters = ["empExpClaimId": empExpClaimId as Any, "refEmpId": 358 as Any , "refCustId": 74 as Any] as [String : Any]
+		
+		
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/Mob/employee/expenseClaim/deleteEmpExpenseClaim"
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		let session = URLSession.shared
+		var request = URLRequest(url: url as URL)
+	    request.httpMethod = "POST" //set http method as POST
+		do {
+		request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+		} catch let error {
+		print(error.localizedDescription)
+							}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+		guard let data = data, error == nil else {
+		print(error?.localizedDescription ?? "No data")
+	    return
+		}
+	    let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+		if let responseJSON = responseJSON as? [String: Any] {
+		print("Expense History Json Response",responseJSON)
+		DispatchQueue.main.async {
+
+		}
+		self.ExpenseHistoryData = NSMutableDictionary()
+		if responseJSON != nil{
+		self.ExpenseHistoryData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
+		}
+	    DispatchQueue.main.async {
+
+
+
+			let code = responseJSON["code"]! as! NSInteger
+			let message = responseJSON["message"]! as! String
+
+			//let code = statusDic["code"] as? NSInteger
+			print("code-----",code as Any)
+
+			if(code == 200)
+			{
+				print("success fully deleted")
+
+				let alert = UIAlertController(title: "success", message: message, preferredStyle: UIAlertControllerStyle.alert)
+				alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+				self.present(alert, animated: true, completion: nil)
+
+			}
+			else
+			{
+				let alert = UIAlertController(title: "Failure", message: message, preferredStyle: UIAlertControllerStyle.alert)
+				alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+				self.present(alert, animated: true, completion: nil)			}
+
+		}
+			
+			DispatchQueue.main.async {
+
+			//self.Expensetbl.reloadData()
+
+									}
+			}
+								}
+
+							task.resume()
+
+
+	}
+	
 	@IBAction func BackBtnclk(_ sender: Any) {
     self.presentingViewController?.dismiss(animated: false, completion: nil)
 

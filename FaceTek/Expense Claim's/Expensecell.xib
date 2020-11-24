@@ -21,22 +21,22 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="45"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense Claim Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0sL-ns-yE8">
-                                <rect key="frame" x="10" y="10" width="160" height="25"/>
+                                <rect key="frame" x="10" y="10" width="175" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="FkU-Uu-jn1"/>
-                                    <constraint firstAttribute="width" constant="160" id="uCY-Fy-nVF"/>
+                                    <constraint firstAttribute="width" constant="175" id="uCY-Fy-nVF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kq7-es-RwC">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kq7-es-RwC">
                                 <rect key="frame" x="182" y="10" width="90" height="25"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="25" id="4la-hv-FEu"/>
-                                    <constraint firstAttribute="width" constant="100" id="JVf-Ty-N1o"/>
+                                    <constraint firstAttribute="width" constant="90" id="JVf-Ty-N1o"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                 <color key="textColor" red="1" green="0.59215686270000001" blue="0.0078431372550000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -242,6 +242,7 @@
                 <outlet property="ExpenseTypeLbl" destination="6Oc-Zk-Bhb" id="NOW-fM-Sq4"/>
                 <outlet property="ExpenseTypetxtLbl" destination="zSb-oK-RZI" id="RlK-dU-LGs"/>
                 <outlet property="HeaderviewBckview" destination="jUD-8T-A5b" id="Ev0-5g-sFT"/>
+                <outlet property="ViewmoreBtn" destination="yFy-44-uVb" id="mbr-hO-5GO"/>
                 <outlet property="Viewmore_Btmview" destination="EE8-CZ-ZIM" id="ajt-d1-YkZ"/>
                 <outlet property="cancelimg" destination="PDV-WO-T55" id="8DH-eM-PuQ"/>
                 <outlet property="statusLbl" destination="Kq7-es-RwC" id="JAi-3T-ZUI"/>
