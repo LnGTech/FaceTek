@@ -13,6 +13,12 @@ class Expensecell: UITableViewCell {
 	@IBOutlet weak var ExpenseBackview: UIView!
 	@IBOutlet weak var Viewmore_Btmview: UIView!
 	
+	@IBOutlet weak var HeaderviewBckview: UIView!
+	
+	@IBOutlet weak var ExpenseClaimLbl: UILabel!
+	@IBOutlet weak var statusLbl: UILabel!
+	
+	@IBOutlet weak var cancelimg: UIImageView!
 	
 	@IBOutlet weak var ClaimDateLbl: UILabel!
 	

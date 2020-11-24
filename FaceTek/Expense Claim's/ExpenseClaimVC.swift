@@ -31,7 +31,7 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
         super.viewDidLoad()
 		self.DeleteView.isHidden = true
 		self.Expensetbl.isHidden = true
-		self.Expensetbl.rowHeight = 240.0
+		self.Expensetbl.rowHeight = 300.0
 		ExpenseClaimtitleLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 21.0)!
 		let ExpenseClaimtitleLblattributes :Dictionary = [NSAttributedStringKey.font : ExpenseClaimtitleLbl.font]
 		ExpenseClaimtitleLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
@@ -159,78 +159,74 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 				return 0
 
 		}
-	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-	let headerCell = tableView.dequeueReusableCell(withIdentifier: "ExpenseHeadercell") as! ExpenseHeadercell
-	var arrSectionsData = NSArray()
-	if let temp = ExpenseHistoryData.value(forKey: "expenseClaimDto") as? NSArray{
-				arrSectionsData = temp
-			}
-			
-	if arrSectionsData.count > 0{
-	let dict = arrSectionsData.object(at: section) as? NSDictionary
-	headerCell.HeadercellBackVieew.layer.borderWidth = 1
-	headerCell.HeadercellBackVieew.layer.borderColor = UIColor.lightGray.cgColor
-	headerCell.ExpenseClaimLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
-	let ExpenseClaimLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.ExpenseClaimLbl.font]
-	headerCell.ExpenseClaimLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
-	if let temp = dict?.value(forKey: "empExpClaimStatus") as? String{
-	var empExpClaimStatus = ""
-	empExpClaimStatus = temp
-		
-		
-		
-		
-		
-		let tap = UITapGestureRecognizer(target: self, action: #selector(ExpenseClaimVC.tappedMe))
-		headerCell.cancelimg.addGestureRecognizer(tap)
-		headerCell.cancelimg.isUserInteractionEnabled = true
-		
-		print("selected id empExpClaimId 210")
-print("selected suresh")
-		print("empExpClaimId...",empExpClaimId)
-
-		
-		
-	if (empExpClaimStatus == "App")
-    {
-	headerCell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
-	let statusLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.statusLbl.font]
-	headerCell.statusLbl.text = "Approved"
-	headerCell.cancelimg.isHidden = true
-	headerCell.statusLbl.isHidden = true
-	headerCell.statusLbl.textColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
-								}
-	if (empExpClaimStatus == "Rej")
-	{
-	headerCell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
-	let statusLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.statusLbl.font]
-	headerCell.statusLbl.text = "Rejected"
-	headerCell.cancelimg.isHidden = true
-	headerCell.statusLbl.isHidden = false
-	headerCell.statusLbl.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
-	}
-	if (empExpClaimStatus == "")
-	{
-	headerCell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
-	let statusLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.statusLbl.font]
-	headerCell.statusLbl.text = "Pending"
-	headerCell.statusLbl.isHidden = false
-	headerCell.statusLbl.textColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-	headerCell.cancelimg.isHidden = false
-									
-								}
-								
-							}
-			}
-		   
-			return headerCell
-		}
+//	func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+//	let headerCell = tableView.dequeueReusableCell(withIdentifier: "ExpenseHeadercell") as! ExpenseHeadercell
+//	var arrSectionsData = NSArray()
+//	if let temp = ExpenseHistoryData.value(forKey: "expenseClaimDto") as? NSArray{
+//				arrSectionsData = temp
+//			}
+//
+//	if arrSectionsData.count > 0{
+//	let dict = arrSectionsData.object(at: section) as? NSDictionary
+//	headerCell.HeadercellBackVieew.layer.borderWidth = 1
+//	headerCell.HeadercellBackVieew.layer.borderColor = UIColor.lightGray.cgColor
+//	headerCell.ExpenseClaimLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+//	let ExpenseClaimLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.ExpenseClaimLbl.font]
+//	headerCell.ExpenseClaimLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+//	if let temp = dict?.value(forKey: "empExpClaimStatus") as? String{
+//	var empExpClaimStatus = ""
+//	empExpClaimStatus = temp
+//
+//		let tap = UITapGestureRecognizer(target: self, action: #selector(ExpenseClaimVC.tappedMe))
+//		headerCell.cancelimg.addGestureRecognizer(tap)
+//		headerCell.cancelimg.isUserInteractionEnabled = true
+//
+//		print("selected id empExpClaimId 210")
+//print("selected suresh")
+//		print("empExpClaimId...",empExpClaimId)
+//
+//
+//
+//	if (empExpClaimStatus == "App")
+//    {
+//	headerCell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+//	let statusLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.statusLbl.font]
+//	headerCell.statusLbl.text = "Approved"
+//	headerCell.cancelimg.isHidden = true
+//	headerCell.statusLbl.isHidden = true
+//	headerCell.statusLbl.textColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
+//								}
+//	if (empExpClaimStatus == "Rej")
+//	{
+//	headerCell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+//	let statusLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.statusLbl.font]
+//	headerCell.statusLbl.text = "Rejected"
+//	headerCell.cancelimg.isHidden = true
+//	headerCell.statusLbl.isHidden = false
+//	headerCell.statusLbl.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+//	}
+//	if (empExpClaimStatus == "")
+//	{
+//	headerCell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+//	let statusLblattributes :Dictionary = [NSAttributedStringKey.font : headerCell.statusLbl.font]
+//	headerCell.statusLbl.text = "Pending"
+//	headerCell.statusLbl.isHidden = false
+//	headerCell.statusLbl.textColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+//	headerCell.cancelimg.isHidden = false
+//
+//								}
+//
+//							}
+//			}
+//
+//			return headerCell
+//		}
 	func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
 			return 230
 		}
-	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-			return 45
-		}
+//	func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+//			return 45
+//		}
 	func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 	let Expensecell = tableView.dequeueReusableCell(withIdentifier: "Expensecell", for: indexPath) as! Expensecell
 	let arrLeaveHistory =  ExpenseHistoryData.value(forKey: "expenseClaimDto") as! NSArray
@@ -265,11 +261,55 @@ print("selected suresh")
 	Expensecell.ExpenseApprovedAmtLbl.text = Rupeesymbolstr
 
 			}
+		
+		var empExpClaimStatus = ""
+		if let temp = ExpenseTypeDetails?.value(forKey: "empExpClaimStatus") as? String{
+		empExpClaimStatus = temp
+		print("empExpClaimStatus...",empExpClaimStatus)
+			
+			if (empExpClaimStatus == "App")
+			    {
+				Expensecell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+				let statusLblattributes :Dictionary = [NSAttributedStringKey.font : Expensecell.statusLbl.font]
+				Expensecell.statusLbl.text = "Approved"
+				Expensecell.cancelimg.isHidden = true
+				Expensecell.statusLbl.isHidden = true
+				Expensecell.statusLbl.textColor = #colorLiteral(red: 0.1960784346, green: 0.3411764801, blue: 0.1019607857, alpha: 1)
+											}
+				if (empExpClaimStatus == "Rej")
+				{
+				Expensecell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+				let statusLblattributes :Dictionary = [NSAttributedStringKey.font : Expensecell.statusLbl.font]
+				Expensecell.statusLbl.text = "Rejected"
+				Expensecell.cancelimg.isHidden = true
+				Expensecell.statusLbl.isHidden = false
+				Expensecell.statusLbl.textColor = #colorLiteral(red: 0.7450980544, green: 0.1568627506, blue: 0.07450980693, alpha: 1)
+				}
+				if (empExpClaimStatus == "")
+				{
+				Expensecell.statusLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+				let statusLblattributes :Dictionary = [NSAttributedStringKey.font : Expensecell.statusLbl.font]
+				Expensecell.statusLbl.text = "Pending"
+				Expensecell.statusLbl.isHidden = false
+				Expensecell.statusLbl.textColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+				Expensecell.cancelimg.isHidden = false
+			
+											}
+			
+			
+			
+		}
+		
 	var empExpType = ""
     if let temp = ExpenseTypeDetails?.value(forKey: "empExpType") as? String{
 	empExpType = temp
 	print("empExpType...",empExpType)
+		
 	Expensecell.ExpenseTypeLbl.text = empExpType
+		Expensecell.HeaderviewBckview.layer.borderWidth = 1
+		Expensecell.HeaderviewBckview.layer.borderColor = UIColor.lightGray.cgColor
+
+		
 	Expensecell.Viewmore_Btmview.layer.borderWidth = 1
 	Expensecell.Viewmore_Btmview.layer.borderColor = UIColor.lightGray.cgColor
 	Expensecell.ExpenseBackview.layer.borderWidth = 1
@@ -304,6 +344,10 @@ print("selected suresh")
 	Expensecell.ExpenseTypeLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 	let ExpenseTypeattributes :Dictionary = [NSAttributedStringKey.font : Expensecell.ExpenseTypeLbl.font]
 	Expensecell.ExpenseTypeLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
+		
+		Expensecell.ExpenseClaimLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+			let ExpenseClaimLblattributes :Dictionary = [NSAttributedStringKey.font : Expensecell.ExpenseClaimLbl.font]
+			Expensecell.ExpenseClaimLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
 		
         let sectionTitle = ExpenseHistoryData[indexPath.section]
 		print("sectionTitle",sectionTitle)
