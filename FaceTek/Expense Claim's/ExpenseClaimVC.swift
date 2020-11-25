@@ -525,6 +525,7 @@ print("cancel button clickd")
 				alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
 				self.present(alert, animated: true, completion: nil)
 
+				
 			}
 			else
 			{
@@ -536,11 +537,15 @@ print("cancel button clickd")
 			
 			DispatchQueue.main.async {
 
-			//self.Expensetbl.reloadData()
+				self.Expensetbl.reloadData()
+
 
 									}
+
 			}
-								}
+								
+
+		}
 
 							task.resume()
 
