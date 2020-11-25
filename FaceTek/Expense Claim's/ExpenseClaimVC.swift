@@ -178,19 +178,39 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
     var empExpClaimDate = ""
 	if let temp = ExpenseTypeDetails?.value(forKey: "empExpClaimDate") as? String{
 	empExpClaimDate = String(temp)
-	Expensecell.ClaimDateLbl.text = empExpClaimDate
+	//Expensecell.ClaimDateLbl.text = empExpClaimDate
+		
+//		let dateString = "1970-01-01T13:30:00.000Z"
+//		let formatter = DateFormatter()
+
+		//let string = "2017-01-27T18:36:36Z"
+
+		let dateFormatter = DateFormatter()
+		let tempLocale = dateFormatter.locale // save locale temporarily
+		dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+		dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+		let date = dateFormatter.date(from: empExpClaimDate)!
+		dateFormatter.dateFormat = "dd-MM-yyyy"
+		dateFormatter.locale = tempLocale // reset the locale
+		let dateString = dateFormatter.string(from: date)
+		print("EXACT_DATE : \(dateString)")
+		Expensecell.ClaimDateLbl.text = dateString
+
+		
+		
+		
 	}
 	var empExpDate = ""
 	if let temp = ExpenseTypeDetails?.value(forKey: "empExpDate") as? String{
 	empExpDate = String(temp)
-	let dateFormatter = DateFormatter()
-	dateFormatter.dateFormat = "dd-MM-YYYY"
-	//dateFormatter.dateFormat = "yyyy-MM-dd"
-	let myDate = dateFormatter.date(from: empExpDate)!
-	//dateFormatter.dateFormat = "dd-MM-YYYY"
-	dateFormatter.dateFormat = "YYYY-MM-dd"
-	let Convertdate = dateFormatter.string(from: myDate)
-	Expensecell.ExpenseDateLbl.text = Convertdate
+//	let dateFormatter = DateFormatter()
+////	//dateFormatter.dateFormat = "dd-MM-YYYY"
+////	dateFormatter.dateFormat = "yyyy-MM-dd"
+////	let myDate = dateFormatter.date(from: empExpDate)!
+//	dateFormatter.dateFormat = "dd-MM-YYYY"
+//	//dateFormatter.dateFormat = "YYYY-MM-dd"
+//	let Convertdate = dateFormatter.string(from: myDate)
+	Expensecell.ExpenseDateLbl.text = empExpDate
 	}
     var ExpenseAmount = ""
 	if let temp = ExpenseTypeDetails?.value(forKey: "empExpAmount") as? Int{
