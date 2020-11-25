@@ -258,134 +258,28 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		
 		let previousMonthCalendar = Calendar.current.date(byAdding: .month, value: -1, to: calendar.currentPage)
         calendar.setCurrentPage(previousMonthCalendar!, animated: true)
-
-		if(PreviousmonthValue != 0){
-			   PreviousmonthValue -= 1;
-		   }
-		let PreviousmonthDecreamentValue = "\(PreviousmonthValue)"
-		print("PreviousmonthDecreamentValue..",PreviousmonthDecreamentValue)
 		
-		print("PreviousmonthDecreamentValue..",PreviousmonthDecreamentValue)
+		let currentPageDate = calendar.currentPage
 
+		let month = Calendar.current.component(.month, from: currentPageDate)
 		
+		let formatter = NumberFormatter()
+		formatter.minimumIntegerDigits = 2
+		let Previousmonth = formatter.string(from: NSNumber(value: month)) // returns Optional("00")
 
-		
+		print("Previousmonth",Previousmonth as Any)
 		
 		
-		if(PreviousmonthDecreamentValue == "11")
-		{
-			print("November")
-			//PreviousmonthAPIData()
-
-		}
-		else if (PreviousmonthDecreamentValue == "10")
-		{
-			print("October")
-			PreviousmonthAPIData()
-
-		}
-		 else if (PreviousmonthDecreamentValue == "9")
-		{
-			
-			DispatchQueue.main.async {
-				
-				print("September")
-				self.PreviousmonthAPIData()
-			}
-			
-
-		}
-		else if (PreviousmonthDecreamentValue == "8")
-		{
-			print("August")
-			PreviousmonthAPIData()
-
-		}
-		else if (PreviousmonthDecreamentValue == "7")
-		{
-			print("July")
-			PreviousmonthAPIData()
-
-		}
-		else if (PreviousmonthDecreamentValue == "6")
-		{
-			print("June")
-			PreviousmonthAPIData()
-
-		}
-		else if (PreviousmonthDecreamentValue == "5")
-		{
-			print("May")
-			PreviousmonthAPIData()
-
-		}
-		else if (PreviousmonthDecreamentValue == "4")
-		{
-			print("April")
-			PreviousmonthAPIData()
-
-		}
-
-		else if (PreviousmonthDecreamentValue == "3")
-		{
-			print("March")
-			PreviousmonthAPIData()
-
-		}
-		else if (PreviousmonthDecreamentValue == "2")
-		{
-			print("February")
-			PreviousmonthAPIData()
-
-		}
-		else if (PreviousmonthDecreamentValue == "1")
-		{
-			print("January")
-			PreviousmonthAPIData()
-
-		}
-
-
-
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		let myDate = dateFormatter.date(from: Currentdatestr)!
+		dateFormatter.dateFormat = "yyyy"
+		let Convertdate = dateFormatter.string(from: myDate)
+		let DecreamentMonth = "\(Convertdate)-\(String(describing: Previousmonth!))"
+		let Decreamentstr = "\(DecreamentMonth)\("-01")"
+		print("Decreamentmonthstr---",Decreamentstr)
 		
-		
-				}
-	
-	
-	@objc func RightpressButton(_ sender: Any) {
-	let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: calendar.currentPage)
-	calendar.setCurrentPage(nextMonth!, animated: true)
-		print("Right button clicked")
-	
-	}
-
-	func PreviousmonthAPIData()
-	{
-		if(increamentOrDecreamentValue != 0){
-			   increamentOrDecreamentValue -= 1;
-		   }
-		var DecreamentValue = "\(increamentOrDecreamentValue)"
-		print("DecreamentValue..calling",DecreamentValue)
-
-		if DecreamentValue.characters.count == 1 {
-			DecreamentValue = "0\(DecreamentValue)"
-		}
-
-		print(DecreamentValue)
-		
-		
-				let dateFormatter = DateFormatter()
-				dateFormatter.dateFormat = "yyyy-MM-dd"
-				let myDate = dateFormatter.date(from: Currentdatestr)!
-				dateFormatter.dateFormat = "yyyy"
-				let Convertdate = dateFormatter.string(from: myDate)
-				var DecreamentDatestr = "\(Convertdate)-\(DecreamentValue)"
-				var decrmtDatestr = "\(DecreamentDatestr)\("-01")"
-				print("decrmtDatestr..",decrmtDatestr)
-		
-		
-		
-				let defaults = UserDefaults.standard
+		let defaults = UserDefaults.standard
 						var RetrivedcustId = defaults.integer(forKey: "custId")
 						print(" RetrivedcustId----",RetrivedcustId)
 						var RetrivedempId = defaults.integer(forKey: "empId")
@@ -393,7 +287,7 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 						var RetrivedbrId = defaults.integer(forKey: "brId")
 		
 						print(" RetrivedbrId----",RetrivedbrId)
-					let parameters = ["empId": RetrivedempId as Any, "brId": RetrivedbrId as Any,"date": decrmtDatestr as Any] as [String : Any]
+					let parameters = ["empId": RetrivedempId as Any, "brId": RetrivedbrId as Any,"date": Decreamentstr as Any] as [String : Any]
 		
 		
 						var StartPoint = Baseurl.shared().baseURL
@@ -477,7 +371,137 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		
 							task.resume()
 		
+
+
+		
+		
 				}
+	
+	
+	@objc func RightpressButton(_ sender: Any) {
+	let nextMonth = Calendar.current.date(byAdding: .month, value: 1, to: calendar.currentPage)
+	calendar.setCurrentPage(nextMonth!, animated: true)
+		print("Right button clicked")
+		
+		let currentPageDate = calendar.currentPage
+
+		let month = Calendar.current.component(.month, from: currentPageDate)
+		
+		let formatter = NumberFormatter()
+		formatter.minimumIntegerDigits = 2
+		let Nextmonth = formatter.string(from: NSNumber(value: month)) // returns Optional("00")
+
+		print("Nextmonth",Nextmonth as Any)
+		
+
+
+		
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		let myDate = dateFormatter.date(from: Currentdatestr)!
+		dateFormatter.dateFormat = "yyyy"
+		let Convertdate = dateFormatter.string(from: myDate)
+		let IncreamentMonth = "\(Convertdate)-\(String(describing: Nextmonth!))"
+		let Increamentmonthstr = "\(IncreamentMonth)\("-01")"
+		print("Increamentmonthstr---",Increamentmonthstr)
+		let defaults = UserDefaults.standard
+						var RetrivedcustId = defaults.integer(forKey: "custId")
+						print(" RetrivedcustId----",RetrivedcustId)
+						var RetrivedempId = defaults.integer(forKey: "empId")
+						print(" RetrivedempId----",RetrivedempId)
+						var RetrivedbrId = defaults.integer(forKey: "brId")
+		
+						print(" RetrivedbrId----",RetrivedbrId)
+					let parameters = ["empId": RetrivedempId as Any, "brId": RetrivedbrId as Any,"date": Increamentmonthstr as Any] as [String : Any]
+		
+		
+						var StartPoint = Baseurl.shared().baseURL
+						var Endpoint = "/attnd-api-gateway-service/api/customer/mobile/employee/getOneMonthReport"
+		
+						let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		
+						//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/getAbsentEmployeeDetails")!
+						//http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
+						//create the session object
+						let session = URLSession.shared
+						//now create the URLRequest object using the url object
+						var request = URLRequest(url: url as URL)
+						request.httpMethod = "POST" //set http method as POST
+						do {
+							request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+						} catch let error {
+							print(error.localizedDescription)
+						}
+						request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+						request.addValue("application/json", forHTTPHeaderField: "Accept")
+						//create dataTask using the ses
+						//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+						let task = URLSession.shared.dataTask(with: request) { data, response, error in
+							guard let data = data, error == nil else {
+								print(error?.localizedDescription ?? "No data")
+								return
+							}
+		
+							if let responseJSON = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
+											let presentdetails = responseJSON["present"] as? [[String:Any]],
+											let Absentdetails = responseJSON["absent"] as? [[String:Any]],let Weeklyoffdetails = responseJSON["weeklyOff"] as? [[String:Any]] {
+		
+											let dateFormatter = DateFormatter()
+											//dateFormatter.dateFormat = "yyyy-MM-dd"
+		
+								dateFormatter.dateFormat = "dd-MM-yyyy"
+		
+											self.presentDateArray = presentdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.compactMap {
+												dateFormatter.string(from:$0)
+		
+		
+											}
+											self.absentDateArray = Absentdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
+		
+								self.WeeklyOffDateArray = Weeklyoffdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
+		
+		
+								self.absentDateArray.count
+								print("absentDateArray",self.absentDateArray.count)
+		
+		
+		
+		
+								print("presentDateArray",self.presentDateArray)
+		
+								print("absentDateArray",self.absentDateArray)
+											DispatchQueue.main.async
+												{
+		
+													var convertPresentstr = String(self.presentDateArray.count)
+		
+													self.PresentLbl.text = convertPresentstr
+		
+													var convertAbsentstr = String(self.absentDateArray.count)
+		
+													self.AbsentLbl.text = convertAbsentstr
+		
+													var convertWeeklyOffstr = String(self.WeeklyOffDateArray.count)
+		
+													self.WeeklyOffLbl.text = convertWeeklyOffstr
+		
+		
+													self.calendar.reloadData()
+											}
+		
+		
+							}
+							}
+		
+		
+							task.resume()
+		
+		
+
+	
+	}
+
+	
 			
 	
 		
