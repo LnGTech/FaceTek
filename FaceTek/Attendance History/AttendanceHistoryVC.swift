@@ -493,17 +493,10 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 							}
 							}
 		
-		
 							task.resume()
 		
-		
-
-	
 	}
 
-	
-			
-	
 		
 	@IBAction func PrevBtnclk(_ sender: Any) {
 		calendar.setCurrentPage(getPreviousMonth(date: calendar.currentPage), animated: true)
