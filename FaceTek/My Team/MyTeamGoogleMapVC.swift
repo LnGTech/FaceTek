@@ -186,7 +186,8 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 	
 	@objc func pressButton(button: UIButton) {
 		print("Log values..")
-		
+		Datepicker.datePickerMode = .date
+
 		let toolbar = UIToolbar();
 		toolbar.sizeToFit()
 		let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker));

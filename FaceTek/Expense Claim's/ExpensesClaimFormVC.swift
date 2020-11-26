@@ -172,16 +172,30 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 	@objc func FromDatesetDatePicker() {
            
             //ToolBar
-            let toolbar = UIToolbar();
-            toolbar.sizeToFit()
-            let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker));
-            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
-            
-            toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
-            
-            ExpenseDatetxtfld.inputAccessoryView = toolbar
-            ExpenseDatetxtfld.inputView = Datepicker
+//            let toolbar = UIToolbar();
+//            toolbar.sizeToFit()
+//            let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker));
+//            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+//            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+//
+//            toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+//
+//            ExpenseDatetxtfld.inputAccessoryView = toolbar
+//            ExpenseDatetxtfld.inputView = Datepicker
+		
+		
+		Datepicker.datePickerMode = .date
+
+		let toolbar = UIToolbar();
+		toolbar.sizeToFit()
+		let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker));
+		let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+		let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+			
+		toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+		ExpenseDatetxtfld.inputAccessoryView = toolbar
+		ExpenseDatetxtfld.inputView = Datepicker
+		
              
         }
         

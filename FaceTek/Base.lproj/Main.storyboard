@@ -5809,7 +5809,7 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eNa-H6-Xfj">
-                                <rect key="frame" x="16" y="70" width="343" height="589"/>
+                                <rect key="frame" x="16" y="70" width="343" height="570"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2n-PJ-NgV">
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="305"/>
@@ -5957,7 +5957,7 @@
                             <constraint firstItem="eNa-H6-Xfj" firstAttribute="top" secondItem="2di-VI-xkg" secondAttribute="bottom" constant="10" id="3QG-Al-q5r"/>
                             <constraint firstItem="2di-VI-xkg" firstAttribute="leading" secondItem="o5S-HC-7V5" secondAttribute="leading" id="LqQ-p9-o3n"/>
                             <constraint firstItem="2di-VI-xkg" firstAttribute="trailing" secondItem="o5S-HC-7V5" secondAttribute="trailing" id="eay-87-AWB"/>
-                            <constraint firstItem="o5S-HC-7V5" firstAttribute="bottom" secondItem="eNa-H6-Xfj" secondAttribute="bottom" constant="8" id="f18-dZ-3V6"/>
+                            <constraint firstItem="o5S-HC-7V5" firstAttribute="bottom" secondItem="eNa-H6-Xfj" secondAttribute="bottom" constant="27" id="f18-dZ-3V6"/>
                             <constraint firstItem="2di-VI-xkg" firstAttribute="top" secondItem="o5S-HC-7V5" secondAttribute="top" id="qfG-Xr-zRw"/>
                             <constraint firstItem="o5S-HC-7V5" firstAttribute="trailing" secondItem="eNa-H6-Xfj" secondAttribute="trailing" constant="16" id="yyl-Yk-Nlm"/>
                             <constraint firstItem="eNa-H6-Xfj" firstAttribute="leading" secondItem="o5S-HC-7V5" secondAttribute="leading" constant="16" id="zqO-m2-Kmz"/>
