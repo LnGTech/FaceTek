@@ -130,7 +130,7 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
 	
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
 		let newLocation = locations.last // find your device location
-		mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 16) // show your device location on map
+		mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 18) // show your device location on map
 		mapView.settings.myLocationButton = true // show current location button
 		let lat = (newLocation?.coordinate.latitude)! // get current location latitude
 		let long = (newLocation?.coordinate.longitude)!

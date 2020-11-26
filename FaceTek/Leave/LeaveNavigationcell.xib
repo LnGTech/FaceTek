@@ -18,19 +18,17 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="  Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xWw-Et-afK">
-                        <rect key="frame" x="9" y="12" width="290" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="LxI-il-kYt"/>
-                        </constraints>
+                        <rect key="frame" x="9" y="7" width="290" height="30"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="xWw-Et-afK" secondAttribute="trailing" constant="21" id="Fhs-Iw-LlO"/>
-                    <constraint firstItem="xWw-Et-afK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="MQQ-fz-LP1"/>
-                    <constraint firstItem="xWw-Et-afK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="qFc-bH-kgV"/>
+                    <constraint firstItem="xWw-Et-afK" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="7" id="FmO-qb-Hqa"/>
+                    <constraint firstItem="xWw-Et-afK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="MXE-6j-TqO"/>
+                    <constraint firstAttribute="trailing" secondItem="xWw-Et-afK" secondAttribute="trailing" constant="21" id="iyI-2U-rsz"/>
+                    <constraint firstAttribute="bottom" secondItem="xWw-Et-afK" secondAttribute="bottom" constant="7" id="pJ6-ww-Q7Z"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>

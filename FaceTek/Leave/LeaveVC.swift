@@ -72,6 +72,10 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     override func viewDidLoad() {
         super.viewDidLoad()
 		
+		LeaveNavigationtbl.rowHeight = 34
+		Dropdowntbl.rowHeight = 50
+
+
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
 		let statusBarColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 0.9680276113)
 			statusBarView.backgroundColor = statusBarColor
@@ -148,8 +152,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		
 		self.ContactUsadrstextview.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
 		let contactusattributes :Dictionary = [NSAttributedStringKey.font : self.ContactUsadrstextview.font]
-		self.ContactUsadrstextview.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-		
+		self.ContactUsadrstextview.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+
+
         
 //        Employeenamestr = defaults.string(forKey: "employeeName") ?? ""
 //        UserNameLbl.text = Employeenamestr
@@ -681,9 +686,9 @@ task.resume()
 		}
 	
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 34
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 50
+//    }
     
     @IBAction func SubmitBtnclk(_ sender: Any) {
 	let Fromtxt = self.Fromtxt.text

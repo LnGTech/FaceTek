@@ -164,25 +164,13 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		} else {
 			print("text field is not empty")
 			SubmitBtn.isEnabled = true
-			SubmitBtn.backgroundColor = #colorLiteral(red: 0.9411764741, green: 0.4980392158, blue: 0.3529411852, alpha: 1)
+			SubmitBtn.backgroundColor = #colorLiteral(red: 0.7254902124, green: 0.4784313738, blue: 0.09803921729, alpha: 1)
 		}
 	}
 	
 	//Datepicker
 	@objc func FromDatesetDatePicker() {
            
-            //ToolBar
-//            let toolbar = UIToolbar();
-//            toolbar.sizeToFit()
-//            let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker));
-//            let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
-//            let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
-//
-//            toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
-//
-//            ExpenseDatetxtfld.inputAccessoryView = toolbar
-//            ExpenseDatetxtfld.inputView = Datepicker
-		
 		
 		Datepicker.datePickerMode = .date
 

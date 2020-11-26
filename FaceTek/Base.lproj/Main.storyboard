@@ -5345,7 +5345,7 @@
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="E-201, 2nd floor , sunrise Chambers ,22, Ulsoor Road" translatesAutoresizingMaskIntoConstraints="NO" id="pHY-5M-wpJ">
                                                 <rect key="frame" x="10" y="0.0" width="240" height="40"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                                <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
@@ -6741,24 +6741,24 @@
                                 <rect key="frame" x="20" y="200" width="335" height="45"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Amount" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kc0-Kc-br4">
-                                        <rect key="frame" x="10" y="5" width="300" height="34"/>
+                                        <rect key="frame" x="11" y="5" width="300" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="cdH-4M-NdR"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
                                     </textField>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstItem="kc0-Kc-br4" firstAttribute="leading" secondItem="Uwt-m5-yIv" secondAttribute="leading" constant="10" id="AET-py-YHf"/>
-                                    <constraint firstAttribute="trailing" secondItem="kc0-Kc-br4" secondAttribute="trailing" constant="25" id="NSZ-fa-WBf"/>
+                                    <constraint firstItem="kc0-Kc-br4" firstAttribute="leading" secondItem="Uwt-m5-yIv" secondAttribute="leading" constant="11" id="AET-py-YHf"/>
+                                    <constraint firstAttribute="trailing" secondItem="kc0-Kc-br4" secondAttribute="trailing" constant="24" id="NSZ-fa-WBf"/>
                                     <constraint firstItem="kc0-Kc-br4" firstAttribute="top" secondItem="Uwt-m5-yIv" secondAttribute="top" constant="5" id="QcB-cW-FvC"/>
                                     <constraint firstAttribute="height" constant="45" id="Tb0-MG-Cji"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GoV-gH-HOi">
-                                <rect key="frame" x="20" y="260" width="335" height="90"/>
+                                <rect key="frame" x="20" y="260" width="335" height="80"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="tP6-9p-mrP">
                                         <rect key="frame" x="10" y="5" width="300" height="75"/>
@@ -6774,13 +6774,13 @@
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstItem="tP6-9p-mrP" firstAttribute="top" secondItem="GoV-gH-HOi" secondAttribute="top" constant="5" id="OMi-49-36A"/>
-                                    <constraint firstAttribute="height" constant="90" id="S9r-pa-udy"/>
+                                    <constraint firstAttribute="height" constant="80" id="S9r-pa-udy"/>
                                     <constraint firstItem="tP6-9p-mrP" firstAttribute="leading" secondItem="GoV-gH-HOi" secondAttribute="leading" constant="10" id="lzs-De-7Br"/>
                                     <constraint firstAttribute="trailing" secondItem="tP6-9p-mrP" secondAttribute="trailing" constant="25" id="ya7-oo-DEw"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hjV-3Q-i87">
-                                <rect key="frame" x="20" y="369" width="140" height="50"/>
+                                <rect key="frame" x="20" y="355" width="140" height="45"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Attach File" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="q1S-di-cKC">
                                         <rect key="frame" x="10" y="10" width="90" height="30"/>
@@ -6802,7 +6802,7 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="50" id="NfZ-Jk-TGU"/>
+                                    <constraint firstAttribute="height" constant="45" id="NfZ-Jk-TGU"/>
                                     <constraint firstItem="iDh-Qi-04e" firstAttribute="leading" secondItem="q1S-di-cKC" secondAttribute="trailing" constant="5" id="ftn-8x-LWs"/>
                                     <constraint firstItem="q1S-di-cKC" firstAttribute="leading" secondItem="hjV-3Q-i87" secondAttribute="leading" constant="10" id="nRP-4L-sni"/>
                                     <constraint firstItem="q1S-di-cKC" firstAttribute="top" secondItem="hjV-3Q-i87" secondAttribute="top" constant="10" id="wKO-24-MzB"/>
@@ -6960,7 +6960,7 @@
                             <constraint firstItem="Uwt-m5-yIv" firstAttribute="leading" secondItem="Wdv-OL-FGq" secondAttribute="leading" constant="20" id="BKR-EP-bkw"/>
                             <constraint firstItem="Uwt-m5-yIv" firstAttribute="top" secondItem="Mog-U6-ynB" secondAttribute="bottom" constant="15" id="DLo-mc-MSM"/>
                             <constraint firstItem="Mog-U6-ynB" firstAttribute="leading" secondItem="Wdv-OL-FGq" secondAttribute="leading" constant="20" id="EPV-Dj-SKH"/>
-                            <constraint firstItem="qb2-mZ-vi1" firstAttribute="top" secondItem="GoV-gH-HOi" secondAttribute="bottom" constant="19" id="HQM-CE-cX6"/>
+                            <constraint firstItem="qb2-mZ-vi1" firstAttribute="top" secondItem="GoV-gH-HOi" secondAttribute="bottom" constant="29" id="HQM-CE-cX6"/>
                             <constraint firstItem="8ye-o7-g9e" firstAttribute="bottom" secondItem="Wdv-OL-FGq" secondAttribute="bottom" id="M6H-eI-plu"/>
                             <constraint firstItem="8ye-o7-g9e" firstAttribute="leading" secondItem="Wdv-OL-FGq" secondAttribute="leading" id="MwB-kK-8Mk"/>
                             <constraint firstItem="YJj-jh-a5a" firstAttribute="leading" secondItem="Wdv-OL-FGq" secondAttribute="leading" constant="97" id="OVe-57-KxY"/>
@@ -6975,7 +6975,7 @@
                             <constraint firstItem="Wdv-OL-FGq" firstAttribute="trailing" secondItem="Uwt-m5-yIv" secondAttribute="trailing" constant="20" id="jF6-4r-XVa"/>
                             <constraint firstItem="X7S-0N-qLa" firstAttribute="top" secondItem="Uwt-m5-yIv" secondAttribute="bottom" constant="5" id="jwi-F7-4tA"/>
                             <constraint firstItem="BU8-Fh-ovg" firstAttribute="leading" secondItem="Wdv-OL-FGq" secondAttribute="leading" constant="20" id="kEJ-hZ-Q3b"/>
-                            <constraint firstItem="hjV-3Q-i87" firstAttribute="top" secondItem="GoV-gH-HOi" secondAttribute="bottom" constant="19" id="onN-R3-5bb"/>
+                            <constraint firstItem="hjV-3Q-i87" firstAttribute="top" secondItem="GoV-gH-HOi" secondAttribute="bottom" constant="15" id="onN-R3-5bb"/>
                             <constraint firstItem="Wdv-OL-FGq" firstAttribute="trailing" secondItem="qb2-mZ-vi1" secondAttribute="trailing" constant="215" id="qQW-Sx-UZt"/>
                             <constraint firstItem="Wdv-OL-FGq" firstAttribute="trailing" secondItem="YJj-jh-a5a" secondAttribute="trailing" constant="98" id="wSd-gS-NsP"/>
                             <constraint firstItem="Mog-U6-ynB" firstAttribute="top" secondItem="BU8-Fh-ovg" secondAttribute="bottom" constant="15" id="xK8-LC-oAP"/>

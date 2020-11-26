@@ -169,7 +169,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		self.ContactTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
 		let Contactusattributes :Dictionary = [NSAttributedStringKey.font : self.ContactTextView.font]
-		self.ContactTextView.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+		self.ContactTextView.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+
 
 		self.MobilenumberLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
 		let Mobilenumberattributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]

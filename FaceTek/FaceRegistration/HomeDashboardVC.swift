@@ -142,8 +142,14 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         //Loading Mobile number and company name
         RefreshLoadingData()
         
+		ContactusText.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let ContactusTextattributes1 :Dictionary = [NSAttributedStringKey.font : ContactusText.font]
+		ContactusText.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
         ContactusText.isEditable = false
+		
+
 		UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.font: UIFont(name: "Arial", size:14)!, NSAttributedString.Key.foregroundColor: UIColor.black], for: .normal)
+
 		
 		LeaveStatusBtn.isHidden = true
 		//        self.LeaveStatusBtn.setImage(UIImage(named: "cancel.png")?.withRenderingMode(.alwaysOriginal), for: .normal)
@@ -267,9 +273,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         RetrivedCustmercode = UserDefaults.standard.string(forKey: "Custmercode") ?? ""
         print("RetrivedCustmercode-----",RetrivedCustmercode)
         
-		self.ContactusText.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
-		let ContactUsattributes :Dictionary = [NSAttributedStringKey.font : self.ContactusText.font]
-		self.ContactusText.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+		ContactusText.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		let ContactusTextattributes :Dictionary = [NSAttributedStringKey.font : ContactusText.font]
+		ContactusText.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
 		
         
 		self.MobilenumberLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
