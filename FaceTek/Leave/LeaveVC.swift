@@ -77,6 +77,10 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 			statusBarView.backgroundColor = statusBarColor
 		view.addSubview(statusBarView)
 		
+		//Tableview Empty row lines removed
+		LeaveNavigationtbl.tableFooterView = UIView()
+
+		
 		CompanyPowerLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 12.0)!
 		let Datetxtattributes :Dictionary = [NSAttributedStringKey.font :CompanyPowerLbl.font]
 		CompanyPowerLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
@@ -678,7 +682,7 @@ task.resume()
 	
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
+        return 34
     }
     
     @IBAction func SubmitBtnclk(_ sender: Any) {

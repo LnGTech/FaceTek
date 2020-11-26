@@ -129,7 +129,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 			statusBarView.backgroundColor = statusBarColor
 		view.addSubview(statusBarView)
 		
-		
+		//Tableview Empty row lines removed
+		HomeDashboatdtbl.tableFooterView = UIView()
+
         startLoadingSpinner()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
 		CompanyPowerLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 12.0)!
@@ -1189,7 +1191,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 50
+		return 34
 	}
 	
 	func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {
