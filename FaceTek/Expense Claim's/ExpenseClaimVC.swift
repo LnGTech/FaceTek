@@ -496,7 +496,7 @@ print("cancel button clickd")
 		let defaults = UserDefaults.standard
 		var RetrivedempId = defaults.integer(forKey: "empId")
 		var RetrivedcustId = defaults.integer(forKey: "custId")
-		let parameters = ["empExpClaimId": empExpClaimId as Any, "refEmpId": 358 as Any , "refCustId": 74 as Any] as [String : Any]
+		let parameters = ["empExpClaimId": empExpClaimId as Any, "refEmpId": RetrivedempId as Any , "refCustId": RetrivedcustId as Any] as [String : Any]
 		
 		
 		var StartPoint = Baseurl.shared().baseURL
@@ -541,10 +541,21 @@ print("cancel button clickd")
 			{
 				print("success fully deleted")
 
-				let alert = UIAlertController(title: "success", message: message, preferredStyle: UIAlertControllerStyle.alert)
-				alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
-				self.present(alert, animated: true, completion: nil)
-
+//				let alert = UIAlertController(title: "success", message: message, preferredStyle: UIAlertControllerStyle.alert)
+//				alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
+//				self.present(alert, animated: true, completion: nil)
+//
+				let alertController = UIAlertController(title: "Title", message: message, preferredStyle: .alert)
+				let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
+					UIAlertAction in
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+					let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+					self.present(ExpenseClaimVC, animated:true, completion:nil)
+					NSLog("OK Pressed")
+				}
+				alertController.addAction(okAction)
+				self.present(alertController, animated: true, completion: nil)
+				
 				
 			}
 			else
@@ -557,7 +568,7 @@ print("cancel button clickd")
 			
 			DispatchQueue.main.async {
 
-				self.Expensetbl.reloadData()
+				//self.Expensetbl.reloadData()
 
 
 									}

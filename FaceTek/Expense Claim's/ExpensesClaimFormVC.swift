@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
 extension UIViewController {
 func ExpenseClaimdismissKey()
@@ -21,7 +23,8 @@ view.endEditing(true)
 	
 }
 }
-class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelegate {
+class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate
+ {
 	
 	@IBOutlet weak var ExpensetitleLbl: UILabel!
 	@IBOutlet weak var ExpenseClaimTextview: UITextView!
@@ -39,6 +42,7 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
     var ConvertedCurrentDatestr = String()
 	var Currentdatestr : String = ""
 
+	@IBOutlet weak var Imagepic: UIImageView!
 	override func viewDidLoad() {
         super.viewDidLoad()
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
@@ -217,18 +221,26 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		var RetrivedempId = defaults.integer(forKey: "empId")
 		var RetrivedcustId = defaults.integer(forKey: "custId")
 		
+		var image = self.Imagepic.image
+		let imageData:Data =  UIImagePNGRepresentation(image!)!
+		let base64String = imageData.base64EncodedString()
+		print("image stored",base64String)
 		let parameters = [
 			"refCustId": RetrivedcustId,
 			"refEmpId": RetrivedempId,
 			"empExpDate": ConvertedCurrentDatestr,
-			"empExpType": ExpenseTypetxtfld.text,
-			"empExpAmount": ExpenseAmttxtfld.text,
+			"empExpType": ExpenseTypetxtfld.text as Any,
+			"empExpAmount": ExpenseAmttxtfld.text as Any,
 			"empExpClaimRemarks": ExpenseClaimTextview.text,
-			"claimAttachments": []] as [String : Any]
+			"claimAttachments":[["claimAttachment": base64String]]] as [String : Any]
 		
-		let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/Mob/employee/expenseClaim/insertEmpExpenseClaim")!
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/Mob/employee/expenseClaim/insertEmpExpenseClaim"
 		
-		let session = URLSession.shared
+		//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/Mob/employee/expenseClaim/insertEmpExpenseClaim")!
+		
+		_ = URLSession.shared
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
 		var request = URLRequest(url: url as URL)
 		request.httpMethod = "POST"
 		do {
@@ -256,7 +268,7 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		if (Expensecode == 200)
 		{
 			self.ClaimPopupview.isHidden = false
-											
+
 		}
 			else
 		{
@@ -288,6 +300,114 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		self.present(ExpenseClaimVC, animated:true, completion:nil)
 		
 	}
+
+	
+	@IBAction func TakePicBtnclk(_ sender: Any) {
+		ImageSelectedView.isHidden = true
+		
+		//self.btnEdit.setTitleColor(UIColor.white, for: .normal)
+		//self.btnEdit.isUserInteractionEnabled = true
+
+		let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+		alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+			self.openCamera()
+		}))
+
+//		alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+//			//self.openGallary()
+//		}))
+
+		alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+
+		/*If you want work actionsheet on ipad
+		then you have to use popoverPresentationController to present the actionsheet,
+		otherwise app will crash on iPad */
+		switch UIDevice.current.userInterfaceIdiom {
+		case .pad:
+			alert.popoverPresentationController?.sourceView = sender as! UIView
+			alert.popoverPresentationController?.sourceRect = (sender as AnyObject).bounds
+			alert.popoverPresentationController?.permittedArrowDirections = .up
+		default:
+			break
+		}
+
+		self.present(alert, animated: true, completion: nil)
+		
+	}
+	
+	func openCamera()
+	{
+		if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.camera) {
+			let imagePicker = UIImagePickerController()
+			imagePicker.delegate = self
+			imagePicker.sourceType = UIImagePickerController.SourceType.camera
+			imagePicker.allowsEditing = false
+			self.present(imagePicker, animated: true, completion: nil)
+		}
+		else
+		{
+			let alert  = UIAlertController(title: "Warning", message: "You don't have camera", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
+	
+	@IBAction func ChoosePicBtnclk(_ sender: Any) {
+		ImageSelectedView.isHidden = true
+
+		let alert = UIAlertController(title: "Choose Image", message: nil, preferredStyle: .actionSheet)
+//				alert.addAction(UIAlertAction(title: "Camera", style: .default, handler: { _ in
+//					self.openCamera()
+//				}))
+
+				alert.addAction(UIAlertAction(title: "Gallery", style: .default, handler: { _ in
+					self.openGallery()
+				}))
+
+				alert.addAction(UIAlertAction.init(title: "Cancel", style: .cancel, handler: nil))
+
+				/*If you want work actionsheet on ipad
+				then you have to use popoverPresentationController to present the actionsheet,
+				otherwise app will crash on iPad */
+				switch UIDevice.current.userInterfaceIdiom {
+				case .pad:
+					alert.popoverPresentationController?.sourceView = sender as! UIView
+					alert.popoverPresentationController?.sourceRect = (sender as AnyObject).bounds
+					alert.popoverPresentationController?.permittedArrowDirections = .up
+				default:
+					break
+				}
+
+				self.present(alert, animated: true, completion: nil)
+				
+		
+	}
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+		if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+		   // imageViewPic.contentMode = .scaleToFill
+			Imagepic.image = pickedImage
+		}
+		picker.dismiss(animated: true, completion: nil)
+	}
+	
+	func openGallery()
+	{
+		if UIImagePickerController.isSourceTypeAvailable(UIImagePickerController.SourceType.photoLibrary){
+			let imagePicker = UIImagePickerController()
+			imagePicker.delegate = self
+			imagePicker.allowsEditing = true
+			imagePicker.sourceType = UIImagePickerController.SourceType.photoLibrary
+			self.present(imagePicker, animated: true, completion: nil)
+		}
+		else
+		{
+			let alert  = UIAlertController(title: "Warning", message: "You don't have permission to access gallery.", preferredStyle: .alert)
+			alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+		}
+	}
+	
 	
 	@IBAction func Submitbtnclk(_ sender: Any) {
 		FormAPISubmitData()
