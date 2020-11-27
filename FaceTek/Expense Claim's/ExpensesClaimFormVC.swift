@@ -43,8 +43,14 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 	var Currentdatestr : String = ""
 
 	@IBOutlet weak var Imagepic: UIImageView!
+	
+	@IBOutlet weak var imagecancelBtn: UIButton!
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		imagecancelBtn.isHidden = true
+
+		
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
 		statusBarView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
 		view.addSubview(statusBarView)
@@ -232,7 +238,7 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 			"empExpType": ExpenseTypetxtfld.text as Any,
 			"empExpAmount": ExpenseAmttxtfld.text as Any,
 			"empExpClaimRemarks": ExpenseClaimTextview.text,
-			"claimAttachments":[["claimAttachment": base64String]]] as [String : Any]
+			"claimAttachments":[["claimAttachment": ""]]] as [String : Any]
 		
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint = "/attnd-api-gateway-service/api/customer/Mob/employee/expenseClaim/insertEmpExpenseClaim"
@@ -385,8 +391,12 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
 		if let pickedImage = info[UIImagePickerControllerOriginalImage] as? UIImage {
+			
+			imagecancelBtn.isHidden = false
+
 		   // imageViewPic.contentMode = .scaleToFill
 			Imagepic.image = pickedImage
+			
 		}
 		picker.dismiss(animated: true, completion: nil)
 	}
@@ -408,6 +418,13 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		}
 	}
 	
+	
+	@IBAction func imgcancelBtnclk(_ sender: Any) {
+		imagecancelBtn.isHidden = true
+		//Imagepic.isHidden = true
+		Imagepic.removeFromSuperview()  // this removes it from your view hierarchy
+		Imagepic = nil;
+	}
 	
 	@IBAction func Submitbtnclk(_ sender: Any) {
 		FormAPISubmitData()
