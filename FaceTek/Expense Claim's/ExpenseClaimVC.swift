@@ -545,7 +545,7 @@ print("cancel button clickd")
 //				alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.default, handler: nil))
 //				self.present(alert, animated: true, completion: nil)
 //
-				let alertController = UIAlertController(title: "Title", message: message, preferredStyle: .alert)
+				let alertController = UIAlertController(title: "Success", message: message, preferredStyle: .alert)
 				let okAction = UIAlertAction(title: "OK", style: UIAlertActionStyle.default) {
 					UIAlertAction in
 					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
