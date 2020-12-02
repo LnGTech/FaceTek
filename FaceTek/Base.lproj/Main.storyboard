@@ -6540,13 +6540,13 @@
                                     <outlet property="delegate" destination="X5X-MY-zBe" id="ez9-8t-JfU"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNi-Cr-F8V">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bNi-Cr-F8V">
                                 <rect key="frame" x="298" y="568" width="50" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="50" id="3oy-bK-VCL"/>
                                     <constraint firstAttribute="height" constant="50" id="Qm9-qF-EJw"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="Plusimg.png"/>
+                                <state key="normal" image="Plusimg.png" backgroundImage="Plusimg.png"/>
                                 <connections>
                                     <action selector="Btnclk:" destination="X5X-MY-zBe" eventType="touchUpInside" id="TVL-Dm-ql8"/>
                                 </connections>

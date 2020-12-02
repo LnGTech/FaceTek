@@ -35,6 +35,7 @@
 		740FC4F2243DF57400F71B72 /* LeaveNavigationcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4F0243DF57400F71B72 /* LeaveNavigationcell.xib */; };
 		741408FF247A39C800ED1391 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 741408FE247A39C400ED1391 /* back.png */; };
 		74140901247A3AFF00ED1391 /* backicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74140900247A3AFE00ED1391 /* backicon.png */; };
+		741C1CD22577812F00DC9B82 /* Plusimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 741C1CD12577812E00DC9B82 /* Plusimg.png */; };
 		7424A04724AC6AFB000B466F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424A04624AC6AFB000B466F /* AppDelegate.swift */; };
 		7429321524498B5300C59157 /* UIappViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321424498B5200C59157 /* UIappViewController.swift */; };
 		7429321924498B6600C59157 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321824498B6600C59157 /* Protocols.swift */; };
@@ -236,6 +237,7 @@
 		740FC4F0243DF57400F71B72 /* LeaveNavigationcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveNavigationcell.xib; sourceTree = "<group>"; };
 		741408FE247A39C400ED1391 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		74140900247A3AFE00ED1391 /* backicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backicon.png; sourceTree = "<group>"; };
+		741C1CD12577812E00DC9B82 /* Plusimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Plusimg.png; path = ../../../../../Desktop/Plusimg.png; sourceTree = "<group>"; };
 		7424A04624AC6AFB000B466F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7429321424498B5200C59157 /* UIappViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIappViewController.swift; sourceTree = "<group>"; };
 		7429321624498B5C00C59157 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -630,6 +632,7 @@
 			isa = PBXGroup;
 			children = (
 				745793EB2566824D0087D4CA /* RupeeIcon.jpg */,
+				741C1CD12577812E00DC9B82 /* Plusimg.png */,
 				7463BA95255BD413007A0300 /* Attach.png */,
 				74466DD1255AD6C30020C815 /* Attendance-circled-left.png */,
 				74466DD0255AD6C30020C815 /* Attendance-circled-lRight.png */,
@@ -1028,6 +1031,7 @@
 				7450F7BF25385727004F6A24 /* Exlamationimg.png in Resources */,
 				74D9989824347DD400DFCBEC /* facetek-text-with-logo.png in Resources */,
 				745F31B6244ECEF400B89F08 /* Leaves1.png in Resources */,
+				741C1CD22577812F00DC9B82 /* Plusimg.png in Resources */,
 				74D9989E24349F9D00DFCBEC /* gps.png in Resources */,
 				740FC4E6243D988F00F71B72 /* time_date.png in Resources */,
 				740D706E243C419C00CF6C2F /* office_in.png in Resources */,
