@@ -109,7 +109,7 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		ExpenseAmttxtfld.attributedPlaceholder = NSAttributedString(string: "Amount", attributes: [NSAttributedStringKey.foregroundColor: #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)])
 		ExpenseAmttxtfld.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 
-		ExpenseClaimTextview.text = "Enter Remarks"
+		ExpenseClaimTextview.text = "Remarks (Optional)"
         ExpenseClaimTextview.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
 		ExpenseClaimTextview.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 

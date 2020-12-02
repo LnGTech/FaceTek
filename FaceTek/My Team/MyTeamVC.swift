@@ -125,7 +125,6 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
 					}
 				}
 				task.resume()
-		
     }
 	
 	func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
@@ -186,7 +185,6 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
 		func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
 		let MyTeamtblCell = tableView.dequeueReusableCell(withIdentifier: "MyTeamtblCell", for: indexPath) as! MyTeamtblCell
 		let dicShiftDetails = MyTeamArray.object(at: indexPath.row) as? NSDictionary
-	
 		MyTeamtblCell.nameLbl.text = dicShiftDetails?.value(forKey: "empName") as? String
 		MyTeamtblCell.MobilenumberLbl.text = dicShiftDetails?.value(forKey: "empMobileNo") as? String
 		let borderBottom = CALayer()

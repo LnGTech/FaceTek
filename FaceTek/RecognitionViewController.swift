@@ -813,12 +813,24 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
         
         let defaults = UserDefaults.standard
         let retrivedempId = defaults.integer(forKey: "empId")
-        
+		
+		let udid = UIDevice.current.identifierForVendor?.uuidString
+		let Devicename = UIDevice.current.name
+		let iOSversion = UIDevice.current.systemVersion
+		let DevicemodelName = UIDevice.current.model
+		let osName = UIDevice.current.systemName
+		let localized = UIDevice.current.localizedModel
+		print("udid",udid ?? "")
+		print("Device name",Devicename)
+		print("Version",iOSversion)
+		print("modelName",DevicemodelName)
+		print("osName",osName)
+		print("localized",localized)
         let parameters = ["empId": retrivedempId as Any,
                           "empPresistedFaceId": retrivedempId as Any,
-                          "empDeviceName": "Oppo" as Any,
-                          "empModelNumber": "A7" as Any,
-                          "empAndriodVersion": "9" as Any,
+                          "empDeviceName": Devicename as Any,
+                          "empModelNumber": DevicemodelName as Any,
+                          "empAndriodVersion": iOSversion as Any,
                           "employeePic":"base64 converted String" as Any]
         
         //let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/setup/updateEmpAppStatus")!

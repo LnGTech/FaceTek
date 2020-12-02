@@ -96,7 +96,9 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 	
     override func viewDidLoad() {
         super.viewDidLoad()
-		
+	
+		GoogleMapPolyline()
+
 
 		FieldvisitDetailsLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
 		FieldvisitDetailsLbl.textColor = #colorLiteral(red: 0.6519868338, green: 0.6519868338, blue: 0.6519868338, alpha: 1)
@@ -150,7 +152,7 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 //        MyTeamGooglemapFormview.layer.shadowOpacity = 0.5
 //        MyTeamGooglemapFormview.layer.shadowRadius = 1.0
 		
-		
+		Datepicker.datePickerMode = .date
 		let formatter = DateFormatter()
 		formatter.dateFormat = "dd-MMM-yyyy"
 		Datetxtfle.text = formatter.string(from: Datepicker.date)
@@ -175,7 +177,6 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 		Closebtnview.layer.masksToBounds = true
 		
 		
-		GoogleMapPolyline()
 		
 
         // Do any additional setup after loading the view.
@@ -252,7 +253,7 @@ class MyTeamGoogleMapVC: UIViewController,CLLocationManagerDelegate,GMSMapViewDe
 
 	{
 		let newLocation = locations.last // find your device location
-		mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 16) // show your device location on map
+		mapView.camera = GMSCameraPosition.camera(withTarget: newLocation!.coordinate, zoom: 20) // show your device location on map
 		mapView.settings.myLocationButton = true // show current location button
 		let lat = (newLocation?.coordinate.latitude)! // get current location latitude
 		let long = (newLocation?.coordinate.longitude)!
@@ -658,12 +659,7 @@ func GoogleMapPolyline()
 	@IBAction func CloseBtnclk(_ sender: Any) {
 		
 		MyTeamGooglemapFormview.isHidden = true
-		
-
-		
-		
 	}
-	
 	
 	}
 	

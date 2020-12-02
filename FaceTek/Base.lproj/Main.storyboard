@@ -7055,7 +7055,7 @@
                                             <action selector="BackBtnclk:" destination="1w6-iO-SGh" eventType="touchUpInside" id="XOY-Qg-vkc"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Expense Detailes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT7-4a-Xcs">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Claim Details" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sT7-4a-Xcs">
                                         <rect key="frame" x="60" y="10" width="175" height="25"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="175" id="RSQ-Cv-Ld0"/>
