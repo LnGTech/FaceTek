@@ -6546,7 +6546,7 @@
                                     <constraint firstAttribute="width" constant="50" id="3oy-bK-VCL"/>
                                     <constraint firstAttribute="height" constant="50" id="Qm9-qF-EJw"/>
                                 </constraints>
-                                <state key="normal" backgroundImage="Bluecircleimg.png"/>
+                                <state key="normal" backgroundImage="Plusimg.png"/>
                                 <connections>
                                     <action selector="Btnclk:" destination="X5X-MY-zBe" eventType="touchUpInside" id="TVL-Dm-ql8"/>
                                 </connections>
@@ -7431,7 +7431,6 @@
     <resources>
         <image name="Absent1.png" width="200" height="200"/>
         <image name="Attach.png" width="28.799999237060547" height="28.799999237060547"/>
-        <image name="Bluecircleimg.png" width="36" height="36"/>
         <image name="BottomArrow.png" width="18" height="18"/>
         <image name="Cancelimage.png" width="128" height="128"/>
         <image name="EarlyLeavers.png" width="36" height="36"/>
@@ -7440,6 +7439,7 @@
         <image name="LeaveDownArrow.png" width="29" height="29"/>
         <image name="LeavedownArrowimg.png" width="29" height="29"/>
         <image name="Leaves1.png" width="200" height="200"/>
+        <image name="Plusimg.png" width="36" height="36"/>
         <image name="absent (1).png" width="48" height="48"/>
         <image name="attendance-marked" width="20" height="20"/>
         <image name="attendence-right.png" width="72" height="66.480003356933594"/>

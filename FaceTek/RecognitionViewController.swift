@@ -808,11 +808,24 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
         var errpos: Int32 = 0
         FSDK_SetTrackerMultipleParameters(tracker, ("ContinuousVideoFeed=true;FacialFeatureJitterSuppression=0;RecognitionPrecision=1;Threshold=0.992;Threshold2=0.9995;ThresholdFeed=0.97;MemoryLimit=2000;HandleArbitraryRotations=false;DetermineFaceRotationAngle=false;InternalResizeWidth=70;FaceDetectionThreshold=3;" as NSString).utf8String, &errpos)
     }
+	
+	
     
     func updatedetails() {
         
         let defaults = UserDefaults.standard
         let retrivedempId = defaults.integer(forKey: "empId")
+		
+		let device = UIDevice.current
+		var selector = NSSelectorFromString("deviceInfoForKey:")
+		if !device.responds(to: selector) {
+			selector = NSSelectorFromString("_deviceInfoForKey:")
+		}
+		if device.responds(to: selector) {
+			if let unmanagedModel = device.perform(selector, with:"ModelNumber") {
+				let modelnum = unmanagedModel.takeRetainedValue() as! String
+				print("Device hardware model: \(modelnum)")
+			
 		
 		let udid = UIDevice.current.identifierForVendor?.uuidString
 		let Devicename = UIDevice.current.name
@@ -820,6 +833,7 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
 		let DevicemodelName = UIDevice.current.model
 		let osName = UIDevice.current.systemName
 		let localized = UIDevice.current.localizedModel
+		
 		print("udid",udid ?? "")
 		print("Device name",Devicename)
 		print("Version",iOSversion)
@@ -829,7 +843,7 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
         let parameters = ["empId": retrivedempId as Any,
                           "empPresistedFaceId": retrivedempId as Any,
                           "empDeviceName": Devicename as Any,
-                          "empModelNumber": DevicemodelName as Any,
+                          "empModelNumber": modelnum as Any,
                           "empAndriodVersion": iOSversion as Any,
                           "employeePic":"base64 converted String" as Any]
         
@@ -925,8 +939,12 @@ class RecognitionViewController: UIViewController, RecognitionCameraDelegate, UI
                 }
             }
         }
+			
+		
         task.resume()
     }
+	}
+}
     
     @objc func buttonAction(_ sender:UIButton!) {
         //save tracker file
