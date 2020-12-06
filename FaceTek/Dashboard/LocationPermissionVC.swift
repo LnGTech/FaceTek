@@ -46,7 +46,7 @@ class LocationPermissionVC: UIViewController, CLLocationManagerDelegate {
 	
 	private func showLocationAlert() {
 		let alert = UIAlertController.init(title: "Location access is mandatory",
-										   message: "Please allow location permission to proceed further",
+										   message: "Please allow location access to ensure whether user within permitted location while marking attendance through the app.",
 										   preferredStyle: .alert)
 		let okAction = UIAlertAction.init(title: "OK", style: .default) { (alertAction) in
 			//some code

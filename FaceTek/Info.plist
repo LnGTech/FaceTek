@@ -27,7 +27,7 @@
 	<key>NSFaceIDUsageDescription</key>
 	<string>We need your biometric based authentication for extra security</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>We need location access to monitor user location</string>
+	<string>Please allow location access to ensure whether user within permitted location while marking attendance through the app.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>We need location access to monitor user location</string>
 	<key>NSPhotoLibraryUsageDescription</key>
