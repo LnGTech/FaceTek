@@ -14,6 +14,9 @@ class InputOTPVC: UIViewController {
 	var RetrivedConfirmationPin = String()
 	var RetrivedPhonenum = String()
 	@IBOutlet weak var OTPLbl: UILabel!
+    var customView = UIView()
+    var customSubView = UIView()
+
 	
 	
 	@IBOutlet weak var otpdisplayLbl: UILabel!
@@ -66,7 +69,7 @@ class InputOTPVC: UIViewController {
 		print("InputFacestr-----",InputFacestr)
 		RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
 		print("RetrivedMobileNumber-----",RetrivedMobileNumber)
-		PopupView.isHidden = true
+		//PopupView.isHidden = true
 		var OtpLblstr1 = "We have sent the OTP to +91 "
 		var OTPLblfullstr = OtpLblstr1 + RetrivedMobileNumber
 		OTPtextLbl.text = OTPLblfullstr
@@ -326,7 +329,9 @@ class InputOTPVC: UIViewController {
 			{
 				print("Calling second dashboard Part")
 				print("Login success")
-				PopupView.isHidden = false
+				//PopupView.isHidden = false
+				Popup()
+				
 				print("Calling first Part")
 				
 			}
@@ -431,9 +436,66 @@ extension InputOTPVC : UITextFieldDelegate{
 		checkAllFilled()
 	}
 	
+	func Popup()
+	{
+		self.customView.frame = CGRect.init(x: 0, y: 0, width: 250, height: 260)
+		self.customView.backgroundColor = UIColor.white     //give color to the view
+		self.customView.center = self.view.center
+		self.view.addSubview(self.customView)
+		self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 250, height: 140)
+		//customSubView.backgroundColor = UIColor.yellow     //give color to the view
+		self.customSubView.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+		let shadowPath = UIBezierPath(rect: self.customView.bounds)
+		self.customView.layer.masksToBounds = false
+		self.customView.layer.shadowColor = UIColor.darkGray.cgColor
+		self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+		self.customView.layer.shadowOpacity = 0.8
+		self.customView.layer.shadowPath = shadowPath.cgPath
+		self.customView.addSubview(self.customSubView)
+		//image
+		var imageView : UIImageView
+		imageView  = UIImageView(frame:CGRect(x: 80, y: 10, width: 100, height: 100));
+		imageView.image = UIImage(named:"conform.png")
+		self.customView.addSubview(imageView)
+		//lable
+		let label = UILabel(frame: CGRect(x: 80, y: 100, width: 200, height: 21))
+		//label.center = CGPoint(x: 160, y: 285)
+		//label.textAlignment = .center
+		label.text = "Verified!"
+		label.font = UIFont(name: "HelveticaNeue", size: CGFloat(22))
+		label.font = UIFont.boldSystemFont(ofSize: 22.0)
+		label.textColor = UIColor.white
+		
+		self.customView.addSubview(label)
+		let label1 = UILabel(frame: CGRect(x: 45, y: 150, width: 400, height: 21))
+		//label.center = CGPoint(x: 160, y: 285)
+		//label.textAlignment = .center
+		label1.text = "Your Face Registered"
+		//label1.textColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+		label1.textColor = UIColor.darkGray
+		label1.shadowColor = UIColor.gray
+		label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+		self.customView.addSubview(label1)
+		let myButton = UIButton(type: .system)
+		// Position Button
+		myButton.frame = CGRect(x: 80, y: 180, width: 100, height: 50)
+		// Set text on button
+		myButton.setTitle("OK", for: .normal)
+		myButton.setTitleColor(UIColor.white, for: .normal)
+		myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+		// Set button action
+		myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
+		self.customView.addSubview(myButton)
+	}
 	
-	
-	
+	@objc func buttonAction(_ sender:UIButton!) {
+		print( "Button pressed..")
+		let storyBoard = UIStoryboard(name: "Main", bundle:nil)
+		let FaceRegistrationVC = storyBoard.instantiateViewController(withIdentifier: "FaceRegistrationVC") as! FaceRegistrationVC
+		self.navigationController?.pushViewController(FaceRegistrationVC, animated:true)
+
+	}
+		
 	func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {
 		let mainContainer: UIView = UIView(frame: viewContainer.frame)
 		mainContainer.center = viewContainer.center
