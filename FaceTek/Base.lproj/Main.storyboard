@@ -4405,14 +4405,14 @@
                                         <rect key="frame" x="0.0" y="484" width="260" height="67"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="E-201, 2nd floor , sunrise Chambers ,22, Ulsoor Road" translatesAutoresizingMaskIntoConstraints="NO" id="cYy-Yb-i4V">
-                                                <rect key="frame" x="14" y="10" width="232" height="48"/>
+                                                <rect key="frame" x="14" y="5" width="232" height="45"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text=" © Powered by LNG Technologies Pvt Ltd" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bSN-Kj-DrW">
-                                                <rect key="frame" x="0.0" y="45" width="260" height="30"/>
+                                                <rect key="frame" x="0.0" y="42" width="260" height="30"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="30" id="vhv-7Z-1Y3"/>
@@ -4425,14 +4425,14 @@
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="bSN-Kj-DrW" secondAttribute="trailing" id="6yU-ZG-wvd"/>
-                                            <constraint firstItem="cYy-Yb-i4V" firstAttribute="top" secondItem="nyO-u0-ToZ" secondAttribute="top" constant="10" id="AlX-K1-MTW"/>
+                                            <constraint firstItem="cYy-Yb-i4V" firstAttribute="top" secondItem="nyO-u0-ToZ" secondAttribute="top" constant="5" id="AlX-K1-MTW"/>
                                             <constraint firstAttribute="trailing" secondItem="cYy-Yb-i4V" secondAttribute="trailing" constant="14" id="P3O-UD-Xns"/>
                                             <constraint firstItem="cYy-Yb-i4V" firstAttribute="leading" secondItem="nyO-u0-ToZ" secondAttribute="leading" constant="14" id="es9-9t-4hi"/>
-                                            <constraint firstItem="bSN-Kj-DrW" firstAttribute="top" secondItem="cYy-Yb-i4V" secondAttribute="bottom" constant="-13" id="hfj-gJ-7te"/>
+                                            <constraint firstItem="bSN-Kj-DrW" firstAttribute="top" secondItem="cYy-Yb-i4V" secondAttribute="bottom" constant="-8" id="hfj-gJ-7te"/>
                                             <constraint firstAttribute="width" constant="260" id="kp6-Te-nXt"/>
                                             <constraint firstAttribute="height" constant="67" id="rSa-Bk-SAM"/>
                                             <constraint firstItem="bSN-Kj-DrW" firstAttribute="leading" secondItem="nyO-u0-ToZ" secondAttribute="leading" id="twC-nZ-q0D"/>
-                                            <constraint firstAttribute="bottom" secondItem="bSN-Kj-DrW" secondAttribute="bottom" constant="-8" id="uPD-um-joL"/>
+                                            <constraint firstAttribute="bottom" secondItem="bSN-Kj-DrW" secondAttribute="bottom" constant="-5" id="uPD-um-joL"/>
                                         </constraints>
                                     </view>
                                 </subviews>

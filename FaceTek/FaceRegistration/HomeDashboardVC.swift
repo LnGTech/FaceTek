@@ -134,9 +134,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 
         startLoadingSpinner()
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(stopLoadingSpinner), userInfo: nil, repeats: false)
-		CompanyPowerLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 12.0)!
+		CompanyPowerLbl.font = UIFont(name: "Verdana", size: 10.0)!
 		let Datetxtattributes :Dictionary = [NSAttributedStringKey.font :CompanyPowerLbl.font]
-		CompanyPowerLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		CompanyPowerLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 		
         
         //Loading Mobile number and company name

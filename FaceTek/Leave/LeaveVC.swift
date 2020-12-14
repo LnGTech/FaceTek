@@ -85,9 +85,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		LeaveNavigationtbl.tableFooterView = UIView()
 
 		
-		CompanyPowerLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 12.0)!
+		CompanyPowerLbl.font = UIFont(name: "Verdana", size: 10.0)!
 		let Datetxtattributes :Dictionary = [NSAttributedStringKey.font :CompanyPowerLbl.font]
-		CompanyPowerLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		CompanyPowerLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 
 		
 			AppliedLeavePopup.isHidden = true
@@ -150,9 +150,9 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 		let Usernameatributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]
 		self.MobilenumberLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 		
-		self.ContactUsadrstextview.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		self.ContactUsadrstextview.font = UIFont(name: "Verdana", size: 12.0)!
 		let contactusattributes :Dictionary = [NSAttributedStringKey.font : self.ContactUsadrstextview.font]
-		self.ContactUsadrstextview.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		self.ContactUsadrstextview.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 
 
         
