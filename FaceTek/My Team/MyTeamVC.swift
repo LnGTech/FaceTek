@@ -196,8 +196,8 @@ class MyTeamVC: UIViewController,UITableViewDelegate,UITableViewDataSource,CLLoc
 		MyTeamtblCell.MyTeamcellview.layer.masksToBounds = true
 		MyTeamtblCell.img.layer.borderWidth = 1
 		MyTeamtblCell.img.layer.masksToBounds = false
-		MyTeamtblCell.img.layer.borderColor = UIColor.green.cgColor
-		MyTeamtblCell.img.layer.backgroundColor = UIColor.green.cgColor
+		MyTeamtblCell.img.layer.borderColor = #colorLiteral(red: 0.6619877219, green: 0.826438725, blue: 0.2521643341, alpha: 1)
+		MyTeamtblCell.img.layer.backgroundColor = #colorLiteral(red: 0.6619877219, green: 0.826438725, blue: 0.2521643341, alpha: 1)
 		MyTeamtblCell.img.layer.cornerRadius = MyTeamtblCell.img.frame.height/2
 		MyTeamtblCell.img.clipsToBounds = true
 	//           }

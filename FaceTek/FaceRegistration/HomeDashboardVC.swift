@@ -787,9 +787,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		self.customView.frame = CGRect.init(x: 0, y: 0, width: 350, height: 350)
 		//self.customView.backgroundColor = UIColor.white     //give color to the view
 		
-		self.customView.backgroundColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
+		self.customView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
 		
-		
+		//1589FF
 		
 		self.customView.center = self.view.center
 		self.view.addSubview(self.customView)
@@ -819,7 +819,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		// Position Button
 		ProceedButton.frame = CGRect(x: 37.5, y: 170, width: 275, height: 55)
 		// Set text on button
-		ProceedButton.setTitle("PROCEED", for: .normal)
+		ProceedButton.setTitle("Yes", for: .normal)
 		//myButton.setTitle("Pressed + Hold", for: .highlighted)
 		
 		ProceedButton.backgroundColor = UIColor.clear
@@ -844,7 +844,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		// Position Button
 		CancelBtnButton.frame = CGRect(x: 37.5, y: 240, width: 275, height: 55)
 		// Set text on button
-		CancelBtnButton.setTitle("CANCEL", for: .normal)
+		CancelBtnButton.setTitle("No", for: .normal)
 		//myButton.setTitle("Pressed + Hold", for: .highlighted)
 		
 		CancelBtnButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
