@@ -72,7 +72,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     override func viewDidLoad() {
         super.viewDidLoad()
 		
-		LeaveNavigationtbl.rowHeight = 34
+		LeaveNavigationtbl.rowHeight = 39
 		Dropdowntbl.rowHeight = 50
 
 
@@ -498,9 +498,9 @@ task.resume()
 	cell.accessoryType = .disclosureIndicator
 		
 		
-		cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+		cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
 		let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
-		cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 	cell.LeaveNavigationLbl?.text = self.LeaveNavigationMenuArray[indexPath.row]
 	cellToReturn = cell
 		}
@@ -510,9 +510,9 @@ task.resume()
 			cell.accessoryType = .disclosureIndicator
 				
 				
-				cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+				cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
 				let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
-				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 			cell.LeaveNavigationLbl?.text = self.LeaveNavigationMenuGPSFalseArray[indexPath.row]
 			cellToReturn = cell
 			

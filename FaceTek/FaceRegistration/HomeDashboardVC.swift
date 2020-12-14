@@ -142,9 +142,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         //Loading Mobile number and company name
         RefreshLoadingData()
         
-		ContactusText.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		ContactusText.font = UIFont(name: "Verdana", size: 12.0)!
 		let ContactusTextattributes1 :Dictionary = [NSAttributedStringKey.font : ContactusText.font]
-		ContactusText.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		ContactusText.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
         ContactusText.isEditable = false
 		
 
@@ -273,9 +273,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         RetrivedCustmercode = UserDefaults.standard.string(forKey: "Custmercode") ?? ""
         print("RetrivedCustmercode-----",RetrivedCustmercode)
         
-		ContactusText.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		ContactusText.font = UIFont(name: "Verdana", size: 12.0)!
 		let ContactusTextattributes :Dictionary = [NSAttributedStringKey.font : ContactusText.font]
-		ContactusText.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		ContactusText.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 		
         
 		self.MobilenumberLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
@@ -787,7 +787,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		self.customView.frame = CGRect.init(x: 0, y: 0, width: 350, height: 350)
 		//self.customView.backgroundColor = UIColor.white     //give color to the view
 		
-		self.customView.backgroundColor = #colorLiteral(red: 0.05490196078, green: 0.2980392157, blue: 0.5450980392, alpha: 1)
+		self.customView.backgroundColor = #colorLiteral(red: 0.168627451, green: 0.3960784314, blue: 0.9254901961, alpha: 1)
 		
 		//1589FF
 		
@@ -1003,9 +1003,11 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 			// set the text from the data model
 			
 			
-			cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+			cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
+			//cell.LeaveNavigationLbl.font = UIFont(name: "verdana", size: 18.0)
+			
 			let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
-			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
 			
 			cell.LeaveNavigationLbl?.text = self.HomeDashboardNavigationMenuArray[indexPath.row]
 			customActivityIndicatory(self.view, startAnimate: false)
@@ -1015,9 +1017,9 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
 		cell.accessoryType = .disclosureIndicator
-		cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+		cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
 		let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
-		cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
 			
 		cell.LeaveNavigationLbl?.text = self.HomeDashboardGPSFalseArray[indexPath.row]
 			customActivityIndicatory(self.view, startAnimate: false)
@@ -1197,7 +1199,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 34
+		return 39
 	}
 	
 	func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {

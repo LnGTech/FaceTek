@@ -167,9 +167,9 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		//        RetrivedMobileNumber = defaults.string(forKey: "Mobilenum")!
 		//        print("RetrivedMobileNumber-----",RetrivedMobileNumber)
 		
-		self.ContactTextView.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		self.ContactTextView.font = UIFont(name: "Verdana", size: 12.0)!
 		let Contactusattributes :Dictionary = [NSAttributedStringKey.font : self.ContactTextView.font]
-		self.ContactTextView.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		self.ContactTextView.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 
 
 		self.MobilenumberLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
@@ -446,9 +446,9 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			// set the text from the data model
 			
 			
-			cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+			cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
 			let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
-			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 			
 			cell.LeaveNavigationLbl?.text = self.AttendanceNavigationMenuArray[indexPath.row]
 			customActivityIndicatory(self.view, startAnimate: false)
@@ -461,9 +461,9 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 				// set the text from the data model
 				
 				
-				cell.LeaveNavigationLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+				cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
 				let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
-				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 				
 				cell.LeaveNavigationLbl?.text = self.AttendanceNavigationMenuGPSfalseArray[indexPath.row]
 				customActivityIndicatory(self.view, startAnimate: false)
@@ -662,7 +662,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 34
+		return 39
 	}
 	
 	func BeconeMethodaAPI()
