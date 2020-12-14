@@ -20,6 +20,10 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 	var presentDateArray = [String]()
 	var absentDateArray = [String]()
 	var WeeklyOffDateArray = [String]()
+	var LeaveDateArray = [String]()
+	var HolidayDateArray = [String]()
+
+
     var customView = UIView()
 	var Currentdatestr : String = ""
 	private weak var calendar: FSCalendar!
@@ -100,6 +104,14 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		{
 			return #colorLiteral(red: 0.3529411765, green: 0.7843137255, blue: 0.9803921569, alpha: 1)
 		}
+			else if LeaveDateArray.contains(datestring2)
+			{
+				return #colorLiteral(red: 0.2039215686, green: 0.7803921569, blue: 0.3490196078, alpha: 1)
+			}
+			else if HolidayDateArray.contains(datestring2)
+			{
+				return #colorLiteral(red: 0.6862745098, green: 0.3215686275, blue: 0.8705882353, alpha: 1)
+			}
 			
 		else
 		{
@@ -141,7 +153,8 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 				}
 		if let responseJSON = (try? JSONSerialization.jsonObject(with: data, options: .allowFragments)) as? [String:Any],
 		let presentdetails = responseJSON["present"] as? [[String:Any]],
-		let Absentdetails = responseJSON["absent"] as? [[String:Any]],let Weeklyoffdetails = responseJSON["weeklyOff"] as? [[String:Any]] {
+		let Absentdetails = responseJSON["absent"] as? [[String:Any]],
+		let Weeklyoffdetails = responseJSON["weeklyOff"] as? [[String:Any]],let leavedetailes = responseJSON["leave"] as? [[String:Any]],let holidaydetailes = responseJSON["holiday"] as? [[String:Any]] {
 		let dateFormatter = DateFormatter()
 		dateFormatter.dateFormat = "dd-MM-yyyy"
 		self.presentDateArray = presentdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.compactMap {
@@ -149,6 +162,8 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		}
 		self.absentDateArray = Absentdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
 		self.WeeklyOffDateArray = Weeklyoffdetails.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
+			self.LeaveDateArray = leavedetailes.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
+			self.HolidayDateArray = holidaydetailes.compactMap { dateFormatter.date(from: $0["date"] as! String) }.flatMap { dateFormatter.string(from:$0) }
 		self.absentDateArray.count
 
 		print("absentDateArray",self.absentDateArray)
@@ -160,7 +175,13 @@ class AttendanceHistoryVC: UIViewController, FSCalendarDataSource, FSCalendarDel
 		self.AbsentLbl.text = convertAbsentstr
 		var convertWeeklyOffstr = String(self.WeeklyOffDateArray.count)
 		self.WeeklyOffLbl.text = convertWeeklyOffstr
-		self.calendar.reloadData()
+			
+			var converholidaystr = String(self.HolidayDateArray.count)
+			self.HolidayLbl.text = converholidaystr
+			var convertleavestr = String(self.LeaveDateArray.count)
+			self.LeaveLbl.text = convertleavestr
+
+			self.calendar.reloadData()
 		}
 		}
 		}
