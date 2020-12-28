@@ -238,7 +238,7 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 			"empExpType": ExpenseTypetxtfld.text as Any,
 			"empExpAmount": ExpenseAmttxtfld.text as Any,
 			"empExpClaimRemarks": ExpenseClaimTextview.text,
-			"claimAttachments":[["claimAttachment": ""]]] as [String : Any]
+			"claimAttachments":[["claimAttachment": base64String]]] as [String : Any]
 		
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint = "/attnd-api-gateway-service/api/customer/Mob/employee/expenseClaim/insertEmpExpenseClaim"
