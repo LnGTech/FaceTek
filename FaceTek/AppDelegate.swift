@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var recognitionViewController: RecognitionViewController?
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
-		//Suresh update code Febravery 2st
+		//Suresh update code February 2st
 		
 		//if (@available(iOS 13, *))
 			if #available(iOS 13.0, *) {
