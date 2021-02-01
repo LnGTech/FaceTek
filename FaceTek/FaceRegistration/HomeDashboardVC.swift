@@ -1290,12 +1290,11 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                 
                 DispatchQueue.main.async
                     {
-                        let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
-                        self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
-                        print("Refresh employeeName",self.RefreshemployeeNam)
-                        
-                        self.RefreshbrName = (ItemsDict["brName"] as? String)!
-                        print("Refresh brName",self.RefreshbrName)
+		let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
+		self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
+		print("Refresh employeeName",self.RefreshemployeeNam)
+		self.RefreshbrName = (ItemsDict["brName"] as? String)!
+		print("Refresh brName",self.RefreshbrName)
                         self.UserNameLbl.text = self.RefreshemployeeNam
                         
                         print("brNamestr-----",self.brNamestr)

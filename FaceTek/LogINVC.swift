@@ -1159,11 +1159,6 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
 		})
 	}
 	
-	
-	
-	
-	
-	
 	@objc func callback() {
 		print("done--------")
 		
@@ -1171,21 +1166,13 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
 		
 	}
 	
-	
-	
-	
-	
-	
 	func CurrentDateSignIn() {
 		
 		if isAlreadySignedIn {
 			return
 		}
-		
 		isAlreadySignedIn = true
-		
 		let defaults = UserDefaults.standard
-		
 		RetrivedLatlongempId = defaults.integer(forKey: "empId")
 		print("RetrivedLatlongempId----",RetrivedLatlongempId)
 		
@@ -1193,17 +1180,13 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
 		
 		//let parameters = [["refEmpId": RetrivedempId,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": RetrivedcurrentdateString,"empAttendanceInConfidence": "98.232","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
 		
-		
 		print("Latlon values in Login----------",RetrivedempId)
 		let parameters = [["refEmpId": RetrivedLatlongempId ,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": "","empAttendanceInConfidence":"0","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
 		
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN"
-		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
-		
 		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN")!
-		
 		//create the session object
 		let session = URLSession.shared
 		

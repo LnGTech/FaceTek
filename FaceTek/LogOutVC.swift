@@ -1078,12 +1078,8 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
        // let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkOUT")!
         var StartPoint = Baseurl.shared().baseURL
 		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkOUT"
-		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
-		
-		
-		
-        //create the session object
+		        //create the session object
         let session = URLSession.shared
         
         //now create the URLRequest object using the url object
@@ -1102,19 +1098,14 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
         //create dataTask using the ses
         //request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
         
-        
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
             guard let data = data, error == nil else {
                 print(error?.localizedDescription ?? "No data")
                 return
             }
-            
-            
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
                 print("Sign In Json Response",responseJSON)
-                
-                
                 DispatchQueue.main.async {
                     
                     var code = responseJSON["code"] as? NSInteger
@@ -1181,18 +1172,11 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
                         
                         //self.AttendanceMarkedSucessLbl.text = self.AttendanceMarkedstr
                         
-                        
                     }
-                    
                 }
-                
-                
             }
-            
-            
         }
         task.resume()
-        
     }
     
     @objc func buttonAction(_ sender:UIButton!)
@@ -1209,14 +1193,8 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
         
         let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
         self.present(UITabBarController, animated:true, completion:nil)
-        
-        
         //Updatedetails()
     }
-    
-    
-    
-    
     
 }
 

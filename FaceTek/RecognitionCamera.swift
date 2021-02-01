@@ -18,12 +18,9 @@ class RecognitionCamera : NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
     var delegate: RecognitionCameraDelegate?;
     var width: Int32 = 0;
     var height: Int32 = 0;
-    
     init(position: AVCaptureDevice.Position) {
         super.init();
-        
         do {
-        
             // Grab the front-facing camera
             var camera: AVCaptureDevice? = nil;
             let devices: [AVCaptureDevice] = AVCaptureDevice.devices(for: AVMediaType.video);
@@ -32,34 +29,27 @@ class RecognitionCamera : NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
                     camera = device;
                 }
             }
-            
             // Create the capture session
             captureSession = AVCaptureSession.init();
-            
             // Add the video input
             videoInput = try AVCaptureDeviceInput.init(device: camera!)
             let canAddInput = captureSession?.canAddInput(videoInput!)
             if (canAddInput == true) {
                 captureSession?.addInput(videoInput!);
             }
-
             // Create VideoPreviewLayer
             videoPreviewLayer = AVCaptureVideoPreviewLayer.init(session: captureSession!);
             videoPreviewLayer?.videoGravity = AVLayerVideoGravity.resizeAspectFill;
-            
             // Add the video frame output
             videoOutput = AVCaptureVideoDataOutput.init();
             videoOutput?.alwaysDiscardsLateVideoFrames = true;
-            
             // Use RGB frames instead of YUV to ease color processing
             videoOutput?.videoSettings = [kCVPixelBufferPixelFormatTypeKey as AnyHashable as! String: NSNumber(value: kCVPixelFormatType_32BGRA)];
-            
             videoOutput?.setSampleBufferDelegate(self, queue: DispatchQueue.main);
             let canAddOutput = captureSession?.canAddOutput(videoOutput!);
             if (canAddOutput == true) {
                 captureSession?.addOutput(videoOutput!);
             }
-            
             if (UIDevice().userInterfaceIdiom == .phone && camera?.supportsSessionPreset(AVCaptureSession.Preset.iFrame960x540) == true) {
                 
                 captureSession?.sessionPreset = AVCaptureSession.Preset.iFrame960x540;
@@ -89,7 +79,6 @@ class RecognitionCamera : NSObject, AVCaptureVideoDataOutputSampleBufferDelegate
         captureSession?.stopRunning();
     }
 }
-
 protocol RecognitionCameraDelegate {
     func cameraHasConnected();
     func processNewCameraFrame(cameraFrame: CVImageBuffer);
