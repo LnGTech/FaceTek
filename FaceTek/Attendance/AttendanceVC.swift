@@ -1121,7 +1121,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 					print("Employee signdata ",ItemsDict)
 					self.empAttndInDateTime = (ItemsDict["empAttndInDateTime"] as? String)!
 					print("empAttndInDateTime ------------",self.empAttndInDateTime as Any)
-					if (self.empAttndInDateTime != "NA")
+					if (self.empAttndInDateTime == "NA")
 					{
 						self.SpecificTimeRange_SignIn()
 						
