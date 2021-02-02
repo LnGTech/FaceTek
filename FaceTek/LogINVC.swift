@@ -1175,16 +1175,20 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
 		let defaults = UserDefaults.standard
 		RetrivedLatlongempId = defaults.integer(forKey: "empId")
 		print("RetrivedLatlongempId----",RetrivedLatlongempId)
+		RetrivedcustId = defaults.integer(forKey: "custId")
+		print("RetrivedcustId----",RetrivedcustId)
 		
 		
+//		let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": RetrivedempVisitId,"trackDateTime": CurrentdateString,"trackLatLong":Inlatlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
 		
-		//let parameters = [["refEmpId": RetrivedempId,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": RetrivedcurrentdateString,"empAttendanceInConfidence": "98.232","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
 		
 		print("Latlon values in Login----------",RetrivedempId)
-		let parameters = [["refEmpId": RetrivedLatlongempId ,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": "","empAttendanceInConfidence":"0","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
+		let parameters = [["attendanceId": 0 ,"empId": RetrivedLatlongempId,"attendanceDateTime": "","latLong": empAttendanceInLatLongstr,"custId":RetrivedcustId,"address":address,"attendanceMode":"G","empTemp":"0",
+		"inOrOut":"IN",
+		"empQrCode": ""] as [String : Any]]
 		
 		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN"
+		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/Mark"
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
 		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN")!
 		//create the session object
@@ -1218,23 +1222,27 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
 			if let responseJSON = responseJSON as? [String: Any] {
 				print("Sign In Json Response",responseJSON)
 				
+				
+				
 				DispatchQueue.main.async {
-					var code = responseJSON["code"] as? NSInteger
-					print("code-------",code)
-					
-					if (code == 200)
+					var statusDic = responseJSON["status"]! as! NSDictionary
+					print("status------",statusDic)
+					let OfficeINCode = statusDic["code"] as? NSInteger
+					print("OfficeINCode-----",OfficeINCode as Any)
+
+					if (OfficeINCode == 200)
 					{
 						print("success")
-						self.AttendanceMarkedstr = responseJSON["message"] as? NSString as! String
-						print("Sign InAttendanceMarkedstr-------",self.AttendanceMarkedstr)
-						
+						let message = statusDic["message"] as? String
+						print("Sign InAttendanceMarkedstr-------",message)
+
 						self.customView.frame = CGRect.init(x: 0, y: 0, width: 320, height: 240)
 						self.customView.backgroundColor = UIColor.white
 						self.customView.center = self.view.center
 						self.view.addSubview(self.customView)
-						
+
 						self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 321, height: 110)
-						
+
 						self.customSubView.backgroundColor = UIColor.white
 						let shadowPath = UIBezierPath(rect: self.customView.bounds)
 						self.customView.layer.masksToBounds = false
@@ -1248,7 +1256,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
 						imageView  = UIImageView(frame:CGRect(x: 110, y: 15, width: 90, height: 80));
 						imageView.image = UIImage(named:"attendence-right.png")
 						self.customView.addSubview(imageView)
-						
+
 						//lable
 						let label = UILabel(frame: CGRect(x: 25, y: 115, width: 400, height: 21))
 						label.text = "Attendance Marked Successfully"
@@ -1269,20 +1277,19 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
 						myButton.setTitle("Pressed + Hold", for: .highlighted)
 						myButton.setTitleColor(UIColor.white, for: .normal)
 						myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-						
+
 						// Set button action
 						myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
 						self.customView.addSubview(myButton)
-						
+
 					}else
 					{
 						print("failure")
-						
-						self.AttendanceMarkedstr = (responseJSON["message"] as? String)!
-						print("AttendanceMarkedstr-------",self.AttendanceMarkedstr)
-						
+
+						let message = statusDic["message"] as? String
+						print("Sign InAttendanceMarkedstr-------",message)
 					}
-					
+
 				}
 				
 			}

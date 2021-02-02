@@ -297,27 +297,16 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 						MainDict.setObject(self.empIsGPSTrackEnabled, forKey: "empIsGPSTrackEnabled" as NSCopying)
 						self.empIsGPSTrackEnabledArray.add(self.MainDict)
 						self.AttendanceNavigationtbl.reloadData()
-
-						
 				}
 				
 			}
-
-			
-			
 		}
 		task.resume()
-
-		
 	}
 	
 	//Beconlist
 	
-	
-	
-	
-	
-	
+		
 	@objc func toggle(_ sender: AnyObject!) {
 		self.toggleComparision()
 		menu.isHidden = false
@@ -1132,7 +1121,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 					print("Employee signdata ",ItemsDict)
 					self.empAttndInDateTime = (ItemsDict["empAttndInDateTime"] as? String)!
 					print("empAttndInDateTime ------------",self.empAttndInDateTime as Any)
-					if (self.empAttndInDateTime == "NA")
+					if (self.empAttndInDateTime != "NA")
 					{
 						self.SpecificTimeRange_SignIn()
 						
