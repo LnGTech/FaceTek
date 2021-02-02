@@ -244,6 +244,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 					print("Json Data -----------",jsonDict)
 					DispatchQueue.main.async {
 						self.currentDatestr = (jsonDict["currentDate"] as? String)!
+						
+						print("currentDatestr.....",self.currentDatestr)
 						//
 					}
 					
@@ -1121,7 +1123,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 					print("Employee signdata ",ItemsDict)
 					self.empAttndInDateTime = (ItemsDict["empAttndInDateTime"] as? String)!
 					print("empAttndInDateTime ------------",self.empAttndInDateTime as Any)
-					if (self.empAttndInDateTime == "NA")
+					if (self.empAttndInDateTime != "NA")
 					{
 						self.SpecificTimeRange_SignIn()
 					}
@@ -1279,9 +1281,6 @@ alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, h
 		}
 		task.resume()
 	}
-	
-	
-	
 	func SpecificTimeRange_SignOut()
 	{
 		goToLogoutVC()
@@ -1472,7 +1471,7 @@ alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, h
 					//                    if (self.empAttndOutDateTime == "NA")
 					//                    {
 					
-					self.EmergencyExitOutTimeAPI()
+					//self.EmergencyExitOutTimeAPI()
 					
 					
 					//                    }
@@ -1495,85 +1494,85 @@ alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, h
 	}
 	
 	
-	func EmergencyExitOutTimeAPI()
+	//func EmergencyExitOutTimeAPI()
 	
-	{
-		
-		//let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
-		
-		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint9 = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
-		
-		//let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
-		let urlstring = "\(StartPoint)\(Endpoint9)"
-		
-		
-		
-		let url = NSURL(string: urlstring)
-		
-		let URL:NSURL = NSURL(string: urlstring)!
-		//let request: NSURLRequest = NSURLRequest(url: URL as URL)
-		var request = URLRequest(url: URL as URL)
-		request.httpMethod = "GET"
-		//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
-		let task = URLSession.shared.dataTask(with: request) { data, response, error in
-			guard let data = data, error == nil else {
-				return
-			}
-			if error != nil {
-			} else {
-				do {
-					//let data = json.data(using: .utf8)!
-					let jsonDict = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
-					print("Json Data -----------",jsonDict)
-					DispatchQueue.main.async {
-						self.currentDatestr = (jsonDict["currentDate"] as? String)!
-						print("currentDatestr out -------",self.currentDatestr)
-						let dateFormatter = DateFormatter()
-						let tempLocale = dateFormatter.locale // save locale temporarily
-						dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
-						dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-						let outimedate = dateFormatter.date(from: self.currentDatestr)!
-						dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm a"///this is what you want to convert format
-						dateFormatter.locale = tempLocale // reset the locale
-						let outtimedateString = dateFormatter.string(from: outimedate)
-						print("luxan outtime EXACT_DATE : \(outtimedateString)")
-						let calendar = Calendar.current
-						let startTimeComponent = DateComponents(calendar: calendar, hour:15, minute: 30)
-						
-						//ConvertShiftstartTime
-						let endTimeComponent   = DateComponents(calendar: calendar, hour: 23, minute: 30)
-						//let endTimeComponent   = DateComponents(calendar: calendar, hour: self.ConvertshiftEndTime)
-						//ConvertshiftEndTime
-						print("startTimeComponent------",startTimeComponent)
-						print("endTimeComponent------",endTimeComponent)
-						
-						let now = Date()
-						let startOfToday = calendar.startOfDay(for: now)
-						let startTime    = calendar.date(byAdding: startTimeComponent, to: startOfToday)!
-						let endTime      = calendar.date(byAdding: endTimeComponent, to: startOfToday)!
-						
-						//if startTime <= now && now <= endTime {
-						//self.PopupView.isHidden = false
-						
-						print("between 9 AM and 6 PM Signin")
-						
-						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-						UserDefaults.standard.set(self.currentDatestr, forKey: "currentDate")
-						
-						UserDefaults.standard.set(outtimedateString, forKey: "outtimedate")
-						
-						self.goToLogoutVC()
-						
-					}
-					
-				} catch {
-				}
-			}
-		}
-		task.resume()
-		
-	}
+//	{
+//
+//		//let urlstring = "http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+//
+//		var StartPoint = Baseurl.shared().baseURL
+//		var Endpoint9 = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+//
+//		//let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+//		let urlstring = "\(StartPoint)\(Endpoint9)"
+//
+//
+//
+//		let url = NSURL(string: urlstring)
+//
+//		let URL:NSURL = NSURL(string: urlstring)!
+//		//let request: NSURLRequest = NSURLRequest(url: URL as URL)
+//		var request = URLRequest(url: URL as URL)
+//		request.httpMethod = "GET"
+//		//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+//		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//			guard let data = data, error == nil else {
+//				return
+//			}
+//			if error != nil {
+//			} else {
+//				do {
+//					//let data = json.data(using: .utf8)!
+//					let jsonDict = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
+//					print("Json Data -----------",jsonDict)
+//					DispatchQueue.main.async {
+//						self.currentDatestr = (jsonDict["currentDate"] as? String)!
+//						print("currentDatestr out -------",self.currentDatestr)
+//						let dateFormatter = DateFormatter()
+//						let tempLocale = dateFormatter.locale // save locale temporarily
+//						dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+//						dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+//						let outimedate = dateFormatter.date(from: self.currentDatestr)!
+//						dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm a"///this is what you want to convert format
+//						dateFormatter.locale = tempLocale // reset the locale
+//						let outtimedateString = dateFormatter.string(from: outimedate)
+//						print("luxan outtime EXACT_DATE : \(outtimedateString)")
+//						let calendar = Calendar.current
+//						let startTimeComponent = DateComponents(calendar: calendar, hour:15, minute: 30)
+//
+//						//ConvertShiftstartTime
+//						let endTimeComponent   = DateComponents(calendar: calendar, hour: 23, minute: 30)
+//						//let endTimeComponent   = DateComponents(calendar: calendar, hour: self.ConvertshiftEndTime)
+//						//ConvertshiftEndTime
+//						print("startTimeComponent------",startTimeComponent)
+//						print("endTimeComponent------",endTimeComponent)
+//
+//						let now = Date()
+//						let startOfToday = calendar.startOfDay(for: now)
+//						let startTime    = calendar.date(byAdding: startTimeComponent, to: startOfToday)!
+//						let endTime      = calendar.date(byAdding: endTimeComponent, to: startOfToday)!
+//
+//						//if startTime <= now && now <= endTime {
+//						//self.PopupView.isHidden = false
+//
+//						print("between 9 AM and 6 PM Signin")
+//
+//						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//						UserDefaults.standard.set(self.currentDatestr, forKey: "currentDate")
+//
+//						UserDefaults.standard.set(outtimedateString, forKey: "outtimedate")
+//
+//						self.goToLogoutVC()
+//
+//					}
+//
+//				} catch {
+//				}
+//			}
+//		}
+//		task.resume()
+//
+//	}
 	
 	@IBAction func EmergencyExitBtn(_ sender: Any) {
 		
