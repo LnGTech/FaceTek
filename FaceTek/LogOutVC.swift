@@ -1060,124 +1060,136 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
     
     func CurrentDateSignOut()
     {
-        if isAlreadySignedIn {
-            return
-        }
-        let defaults = UserDefaults.standard
-        
-        RetrivedLatlongempId = defaults.integer(forKey: "empId")
-        print("RetrivedLatlongempId----",RetrivedLatlongempId)
-        
-        //let parameters = [["refEmpId": RetrivedempId,"empAttendanceDate": EmpAttendancedateString,"empAttendanceInMode": "G","empAttendanceInDatetime": RetrivedcurrentdateString,"empAttendanceInConfidence": "98.232","empAttendanceInLatLong":empAttendanceInLatLongstr,"empAttendanceInLocation":address] as [String : Any]]
-        
-        
-        print("Latlon values in Login----------",RetrivedempId)
-        
-        let parameters = [["refEmpId": RetrivedLatlongempId ,"empAttendanceDate": EmpAttendancedateString,"empAttendanceOutMode": "G","empAttendanceOutDatetime": "","empAttendanceOutConfidence": "0","empAttendanceOutLatLong":empAttendanceInLatLongstr,"empAttendanceOutLocation":address] as [String : Any]]
-        
-       // let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkOUT")!
-        var StartPoint = Baseurl.shared().baseURL
-		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkOUT"
-		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
-		        //create the session object
-        let session = URLSession.shared
-        
-        //now create the URLRequest object using the url object
-        var request = URLRequest(url: url as URL)
-        request.httpMethod = "POST" //set http method as POST
-        
-        do {
-            request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
-        } catch let error {
-            print(error.localizedDescription)
-        }
-        
-        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-        request.addValue("application/json", forHTTPHeaderField: "Accept")
-        
-        //create dataTask using the ses
-        //request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard let data = data, error == nil else {
-                print(error?.localizedDescription ?? "No data")
-                return
-            }
-            let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-            if let responseJSON = responseJSON as? [String: Any] {
-                print("Sign In Json Response",responseJSON)
-                DispatchQueue.main.async {
-                    
-                    var code = responseJSON["code"] as? NSInteger
-                    print("code-------",code)
-                    
-                    if (code == 200)
-                    {
-                        print("success")
-                        self.AttendanceMarkedstr = responseJSON["message"] as? NSString as! String
-                        print("Sign OutAttendanceMarkedstr-------",self.AttendanceMarkedstr)
-                                                self.customView.frame = CGRect.init(x: 0, y: 0, width: 320, height: 240)
-                        self.customView.backgroundColor = UIColor.white
-                        self.customView.center = self.view.center
-                        self.view.addSubview(self.customView)
+			
+			if isAlreadySignedIn {
+				return
+			}
+			isAlreadySignedIn = true
+			let defaults = UserDefaults.standard
+			RetrivedLatlongempId = defaults.integer(forKey: "empId")
+			print("RetrivedLatlongempId----",RetrivedLatlongempId)
+			RetrivedcustId = defaults.integer(forKey: "custId")
+			print("RetrivedcustId----",RetrivedcustId)
+			
+			
+	//		let parameters = [["custId": RetrivedcustId ,"empId": RetrivedempId,"empVisitId": RetrivedempVisitId,"trackDateTime": CurrentdateString,"trackLatLong":Inlatlanstr, "trackAddress":addressString, "trackDistance":  distance,"trackBattery":"99"] as [String : Any]]
+			
+			
+			print("Latlon values in Login----------",RetrivedempId)
+			let parameters = [["attendanceId": 0 ,"empId": RetrivedLatlongempId,"attendanceDateTime": "","latLong": empAttendanceInLatLongstr,"custId":RetrivedcustId,"address":address,"attendanceMode":"G","empTemp":"0",
+			"inOrOut":"OUT",
+			"empQrCode": ""] as [String : Any]]
+			
+			var StartPoint = Baseurl.shared().baseURL
+			var Endpoint = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/Mark"
+			let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+			//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN")!
+			//create the session object
+			let session = URLSession.shared
+			
+			//now create the URLRequest object using the url object
+			var request = URLRequest(url: url as URL)
+			request.httpMethod = "POST" //set http method as POST
+			
+			do {
+				request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+			} catch let error {
+				print(error.localizedDescription)
+			}
+			
+			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+			request.addValue("application/json", forHTTPHeaderField: "Accept")
+			
+			//create dataTask using the ses
+			//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+			
+			
+			let task = URLSession.shared.dataTask(with: request) { data, response, error in
+				guard let data = data, error == nil else {
+					print(error?.localizedDescription ?? "No data")
+					return
+				}
+				
+				
+				let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+				if let responseJSON = responseJSON as? [String: Any] {
+					print("Sign out Json Response",responseJSON)
+					
+					
+					
+					DispatchQueue.main.async {
+						var statusDic = responseJSON["status"]! as! NSDictionary
+						print("status------",statusDic)
+						let OfficeINCode = statusDic["code"] as? NSInteger
+						print("OfficeINCode-----",OfficeINCode as Any)
 
-                        self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 321, height: 110)
-                                                           
-                        self.customSubView.backgroundColor = UIColor.white
-                        let shadowPath = UIBezierPath(rect: self.customView.bounds)
-                        self.customView.layer.masksToBounds = false
-                        self.customView.layer.shadowColor = UIColor.darkGray.cgColor
-                        self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
-                        self.customView.layer.shadowOpacity = 0.8
-                        self.customView.layer.shadowPath = shadowPath.cgPath
-                        self.customView.addSubview(self.customSubView)
-                                                                   //image
-                        var imageView : UIImageView
-                        imageView  = UIImageView(frame:CGRect(x: 110, y: 15, width: 90, height: 80));
-                        imageView.image = UIImage(named:"attendence-right.png")
-                        self.customView.addSubview(imageView)
-                                                           
-                        //lable
-                        let label = UILabel(frame: CGRect(x: 25, y: 115, width: 400, height: 21))
-                        label.text = "Attendance Marked Successfully"
-                        label.textColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
-                        label.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
-                        self.customView.addSubview(label)
-                        let label1 = UILabel(frame: CGRect(x: 75, y: 145, width: 400, height: 21))
-                        label1.text = self.RetrivedOuttimeString
-                        label1.textColor = UIColor.darkGray
-                        label1.shadowColor = UIColor.gray
-                        label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
-                        self.customView.addSubview(label1)
-                        let myButton = UIButton(type: .system)
-                                                                   // Position Button
-                        myButton.frame = CGRect(x: 10, y: 175, width: 300, height: 45)
-                                                                   // Set text on button
-                        myButton.setTitle("OK", for: .normal)
-                        myButton.setTitle("Pressed + Hold", for: .highlighted)
-                        myButton.setTitleColor(UIColor.white, for: .normal)
-                        myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
-                                                           
-                                                                   // Set button action
-                        myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
-                        self.customView.addSubview(myButton)
-                        
-                    }
-                    else
-                    {
-                        print("failure")
-                        
-                        self.AttendanceMarkedstr = responseJSON["message"] as? NSString as! String
-                        print("AttendanceMarkedstr-------",self.AttendanceMarkedstr)
-                        
-                        //self.AttendanceMarkedSucessLbl.text = self.AttendanceMarkedstr
-                        
-                    }
-                }
-            }
-        }
-        task.resume()
-    }
+						if (OfficeINCode == 200)
+						{
+							print("success")
+							let message = statusDic["message"] as? String
+							print("Sign InAttendanceMarkedstr-------",message)
+
+							self.customView.frame = CGRect.init(x: 0, y: 0, width: 320, height: 240)
+							self.customView.backgroundColor = UIColor.white
+							self.customView.center = self.view.center
+							self.view.addSubview(self.customView)
+
+							self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 321, height: 110)
+
+							self.customSubView.backgroundColor = UIColor.white
+							let shadowPath = UIBezierPath(rect: self.customView.bounds)
+							self.customView.layer.masksToBounds = false
+							self.customView.layer.shadowColor = UIColor.darkGray.cgColor
+							self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+							self.customView.layer.shadowOpacity = 0.8
+							self.customView.layer.shadowPath = shadowPath.cgPath
+							self.customView.addSubview(self.customSubView)
+							//image
+							var imageView : UIImageView
+							imageView  = UIImageView(frame:CGRect(x: 110, y: 15, width: 90, height: 80));
+							imageView.image = UIImage(named:"attendence-right.png")
+							self.customView.addSubview(imageView)
+
+							//lable
+							let label = UILabel(frame: CGRect(x: 25, y: 115, width: 400, height: 21))
+							label.text = "Attendance Marked Successfully"
+							label.textColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
+							label.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
+							self.customView.addSubview(label)
+							let label1 = UILabel(frame: CGRect(x: 75, y: 145, width: 400, height: 21))
+							label1.text = self.RetrivedIntimeString
+							label1.textColor = UIColor.darkGray
+							label1.shadowColor = UIColor.gray
+							label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+							self.customView.addSubview(label1)
+							let myButton = UIButton(type: .system)
+							// Position Button
+							myButton.frame = CGRect(x: 10, y: 175, width: 300, height: 45)
+							// Set text on button
+							myButton.setTitle("OK", for: .normal)
+							myButton.setTitle("Pressed + Hold", for: .highlighted)
+							myButton.setTitleColor(UIColor.white, for: .normal)
+							myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+
+							// Set button action
+							myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
+							self.customView.addSubview(myButton)
+
+						}else
+						{
+							print("failure")
+
+							let message = statusDic["message"] as? String
+							print("Sign InAttendanceMarkedstr-------",message)
+						}
+
+					}
+					
+				}
+				
+			}
+			task.resume()
+		}
     
     @objc func buttonAction(_ sender:UIButton!)
     {
