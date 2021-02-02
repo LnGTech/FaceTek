@@ -725,43 +725,43 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 				
 				var empShiftDetailsDic = responseJSON["empShiftDetails"]! as! NSDictionary
 				print("empShiftDetailsDic------",empShiftDetailsDic)
-				DispatchQueue.main.async {
-					var empShiftDetailsDic = responseJSON["empShiftDetails"]! as! NSDictionary
-					print("empShiftDetailsDic------",empShiftDetailsDic)
-					
-					let detailsDtoDic = empShiftDetailsDic["detailsDto"]! as! NSDictionary
-					let shiftType = detailsDtoDic["shiftType"] as? NSString
-					print("shiftType----",shiftType as Any)
-					
-					if (shiftType == shiftType)
-					{
-						self.shiftStartTime = detailsDtoDic["shiftStartTime"] as? NSString as! String
-						print("shiftStartTime----",self.shiftStartTime as Any)
-						self.ConvertShiftstartTime = (self.shiftStartTime as NSString).integerValue
-						
-						self.shiftEndTime = detailsDtoDic["shiftEndTime"] as? NSString as! String
-						print("shiftEndTime----",self.shiftEndTime as Any)
-						let dateFormatter = DateFormatter()
-						dateFormatter.dateFormat = "h:mm a"
-						let date = dateFormatter.date(from: self.shiftEndTime)
-						dateFormatter.dateFormat = "HH:mm"
-						let date24 = dateFormatter.string(from: date!)
-						self.ConvertshiftEndTime = (date24 as NSString).integerValue
-						print("ConvertshiftEndTime-----",self.ConvertshiftEndTime)
-						self.outPermissibleTime = detailsDtoDic["outPermissibleTime"] as? NSString as! String
-						print("outPermissibleTime----",self.outPermissibleTime as Any)
-						self.ConvertoutPermissibleTime = (self.outPermissibleTime as NSString).integerValue
-						
-						print("ConvertoutPermissibleTime-----",self.ConvertoutPermissibleTime)
-						
-					}
-					else
-					{
-						print("shifttype2 details")
-						
-					}
-					
-				}
+//				DispatchQueue.main.async {
+//					var empShiftDetailsDic = responseJSON["empShiftDetails"]! as! NSDictionary
+//					print("empShiftDetailsDic------",empShiftDetailsDic)
+//
+//					let detailsDtoDic = empShiftDetailsDic["detailsDto"]! as! NSDictionary
+//					let shiftType = detailsDtoDic["shiftType"] as? NSString
+//					print("shiftType----",shiftType as Any)
+//
+//					if (shiftType == shiftType)
+//					{
+//						self.shiftStartTime = detailsDtoDic["shiftStartTime"] as? NSString as! String
+//						print("shiftStartTime----",self.shiftStartTime as Any)
+//						self.ConvertShiftstartTime = (self.shiftStartTime as NSString).integerValue
+//
+//						self.shiftEndTime = detailsDtoDic["shiftEndTime"] as? NSString as! String
+//						print("shiftEndTime----",self.shiftEndTime as Any)
+//						let dateFormatter = DateFormatter()
+//						dateFormatter.dateFormat = "h:mm a"
+//						let date = dateFormatter.date(from: self.shiftEndTime)
+//						dateFormatter.dateFormat = "HH:mm"
+//						let date24 = dateFormatter.string(from: date!)
+//						self.ConvertshiftEndTime = (date24 as NSString).integerValue
+//						print("ConvertshiftEndTime-----",self.ConvertshiftEndTime)
+//						self.outPermissibleTime = detailsDtoDic["outPermissibleTime"] as? NSString as! String
+//						print("outPermissibleTime----",self.outPermissibleTime as Any)
+//						self.ConvertoutPermissibleTime = (self.outPermissibleTime as NSString).integerValue
+//
+//						print("ConvertoutPermissibleTime-----",self.ConvertoutPermissibleTime)
+//
+//					}
+//					else
+//					{
+//						print("shifttype2 details")
+//
+//					}
+//
+//				}
 			}
 			
 		}
@@ -1124,7 +1124,6 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 					if (self.empAttndInDateTime == "NA")
 					{
 						self.SpecificTimeRange_SignIn()
-						
 					}
 					else
 					{
@@ -1268,9 +1267,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 					}
 					else
 					{
-						var alert = UIAlertController(title: "Office OUT", message:
-														"Attendance OUT is already marked for the day" as! String, preferredStyle: UIAlertController.Style.alert)
-						alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+		var alert = UIAlertController(title: "Office OUT", message:"Attendance OUT is already marked for the day" as! String, preferredStyle: UIAlertController.Style.alert)
+alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
 						self.present(alert, animated: true, completion: nil)
 						print("Failure---")
 						
