@@ -1220,13 +1220,9 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
-		
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint6 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
-		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint6)")!
-		
-		
 		//create the session object
 		let session = URLSession.shared
 		//now create the URLRequest object using the url object
