@@ -1250,17 +1250,10 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
         print("RetrivedMobileNumber-----",RetrivedMobileNumber)
         RetrivedCustmercode = UserDefaults.standard.string(forKey: "Custmercode") ?? ""
         print("RetrivedCustmercode-----",RetrivedCustmercode)
-        
-        
-        let parameters = ["custCode":RetrivedCustmercode as Any,
-                          "empMobile":RetrivedMobileNumber as Any] as [String : Any]
-		
+        let parameters = ["custCode":RetrivedCustmercode as Any,"empMobile":RetrivedMobileNumber as Any] as [String : Any]
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint2 = "/attnd-api-gateway-service/api/customer/employee/setup/findByCustCodeAndEmpMobile"
-		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
-		
-        
         self.customActivityIndicatory(self.view, startAnimate: true)
         
         //create the session object
@@ -1287,7 +1280,6 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
             let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
             if let responseJSON = responseJSON as? [String: Any] {
                 print("Refresh Json Response",responseJSON)
-                
                 DispatchQueue.main.async
                     {
 		let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
