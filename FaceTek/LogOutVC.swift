@@ -101,6 +101,8 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
     var clearTrackerLock: NSLock = NSLock()
     var tracker: HTracker = 0
     var templatePath: String = String()
+	var currentDatestr : String = ""
+	var ConverDatetimestr: String = ""
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -252,6 +254,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
     }
     
     override func loadView() {
+		ServerCurrentDatetime()
         
         let defaults = UserDefaults.standard
         Employeenamestr = defaults.string(forKey: "employeeName")!
@@ -1157,7 +1160,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 							label.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
 							self.customView.addSubview(label)
 							let label1 = UILabel(frame: CGRect(x: 75, y: 145, width: 400, height: 21))
-							label1.text = self.RetrivedIntimeString
+							label1.text = self.ConverDatetimestr
 							label1.textColor = UIColor.darkGray
 							label1.shadowColor = UIColor.gray
 							label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
@@ -1191,6 +1194,45 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 			task.resume()
 		}
     
+	func ServerCurrentDatetime()
+	{
+	var StartPoint = Baseurl.shared().baseURL
+	var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
+	let urlstring = "\(StartPoint)\(Endpoint1)"
+	print("First",urlstring)
+	let url = NSURL(string: urlstring)
+	let URL:NSURL = NSURL(string: urlstring)!
+	var request = URLRequest(url: URL as URL)
+	request.httpMethod = "GET"
+	let task = URLSession.shared.dataTask(with: request) { data, response, error in
+	guard let data = data, error == nil else {
+	return
+	}
+	if error != nil {
+	} else {
+	do {
+	let jsonDict = try! JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String:Any]
+	print("Json Data -----------",jsonDict)
+	DispatchQueue.main.async {
+	self.currentDatestr = (jsonDict["currentDate"] as? String)!
+	print("server currentDatestr.....",self.currentDatestr)
+	//ConvertDateformate
+	let dateFormatter = DateFormatter()
+    let tempLocale = dateFormatter.locale // save locale temporarily
+	dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+	let outimedate = dateFormatter.date(from: self.currentDatestr)!
+	dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm a"///this is what you want to convert format
+    dateFormatter.locale = tempLocale // reset the locale
+		self.ConverDatetimestr = dateFormatter.string(from: outimedate)
+		print("luxan outtime EXACT_DATE : \(self.ConverDatetimestr)")
+					}
+					
+				}
+			}
+		}
+		task.resume()
+	}
     @objc func buttonAction(_ sender:UIButton!)
     {
         print("Button tapped")

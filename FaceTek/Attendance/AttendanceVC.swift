@@ -1123,7 +1123,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 					print("Employee signdata ",ItemsDict)
 					self.empAttndInDateTime = (ItemsDict["empAttndInDateTime"] as? String)!
 					print("empAttndInDateTime ------------",self.empAttndInDateTime as Any)
-					if (self.empAttndInDateTime != "NA")
+					if (self.empAttndInDateTime == "NA")
 					{
 						self.SpecificTimeRange_SignIn()
 					}
@@ -1228,7 +1228,6 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		//now create the URLRequest object using the url object
 		var request = URLRequest(url: url as URL)
 		request.httpMethod = "POST" //set http method as POST
-		
 		do {
 			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
 		} catch let error {
