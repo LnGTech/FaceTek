@@ -112,14 +112,10 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
 	var templatePath: String = String()
 	var currentDatestr : String = ""
 	var ConverDatetimestr: String = ""
-
-	
 	private var isAlreadySignedIn = false
-	
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 	}
-	
 	init(screen: UIScreen) {
 		super.init(nibName: nil, bundle: nil)
 		
