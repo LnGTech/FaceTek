@@ -472,9 +472,5 @@ class RegistrationVC: UIViewController,UITextFieldDelegate,CLLocationManagerDele
 		manager.requestWhenInUseAuthorization()
 	}
 	
-	
-	
-	
-	
 }
 

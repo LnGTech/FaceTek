@@ -17,8 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	var recognitionViewController: RecognitionViewController?
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		// Override point for customization after application launch.
+		
 		//if (@available(iOS 13, *))
 			if #available(iOS 13.0, *) {
+		
 			let statusBar1 =  UIView()
 			statusBar1.frame = UIApplication.shared.statusBarFrame
 			statusBar1.backgroundColor = UIColor.red
@@ -64,19 +66,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			print("nsuserdefault----",name)
 			if (name == "Coding Explorer" && is_authenticated == nil) {
 				//new user
-//				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//				let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC")
-//				let navVC = UINavigationController.init(rootViewController: RegistrationVC)
-//				navVC.navigationBar.isHidden = true
-//				self.window?.rootViewController = navVC
-//				self.window?.makeKeyAndVisible()
-
-
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
-				//self.present(tabBarController, animated:true, completion:nil)
-				self.window?.rootViewController = tabBarController
+				let RegistrationVC = storyBoard.instantiateViewController(withIdentifier: "RegistrationVC")
+				let navVC = UINavigationController.init(rootViewController: RegistrationVC)
+				navVC.navigationBar.isHidden = true
+				self.window?.rootViewController = navVC
 				self.window?.makeKeyAndVisible()
+
+//
+//				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//				let tabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController")
+//				//self.present(tabBarController, animated:true, completion:nil)
+//				self.window?.rootViewController = tabBarController
+//				self.window?.makeKeyAndVisible()
 
 				
 				

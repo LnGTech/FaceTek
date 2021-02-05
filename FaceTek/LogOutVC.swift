@@ -55,6 +55,8 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
     var inSync = String()
     var outSync = String()
     var ConfidanceMode : String = ""
+    let reachability = try! Reachability()
+
 
     
     let location = ""
@@ -254,7 +256,8 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
     }
     
     override func loadView() {
-		ServerCurrentDatetime()
+		//ServerCurrentDatetime()
+//		customActivityIndicatory(self.view, startAnimate: false)
         
         let defaults = UserDefaults.standard
         Employeenamestr = defaults.string(forKey: "employeeName")!
@@ -672,7 +675,8 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
     }
     
     private func faceMathchedAlert() {
-        CurrentDateSignOut()
+        //CurrentDateSignOut()
+		OnlineOfflineAttendance()
         
 //
 //        let alert = UIAlertController.init(title: "Face Matched", message: "Your face has been matched", preferredStyle: .alert)
@@ -1061,6 +1065,45 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
         })
     }
     
+	func OnlineOfflineAttendance()
+	{
+		NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged(note:)), name: .reachabilityChanged, object: reachability)
+        do {
+            try reachability.startNotifier()
+        } catch {
+            print("Unable to start notifier")
+        }
+		
+	}
+	@objc func reachabilityChanged(note: Notification) {
+        let reachability = note.object as! Reachability
+        switch reachability.connection {
+        case .wifi:
+			ServerCurrentDatetime()
+            print("Wifi Connection")
+			
+            //self.internetStatusLabel.text = "Wifi Connection"
+        case .cellular:
+            print("Cellular Connection")
+            //self.internetStatusLabel.text = "Cellular Connection"
+			let alert = UIAlertController(title: "Alert", message: "Cellular Connection", preferredStyle: UIAlertControllerStyle.alert)
+			alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+        case .unavailable:
+            print(" No Connection----")
+			
+			
+
+
+		case .none:
+            print("wifi No Connection")
+			let alert = UIAlertController(title: "Alert", message: "No Inetrnet or wifi connection", preferredStyle: UIAlertControllerStyle.alert)
+			alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
+			self.present(alert, animated: true, completion: nil)
+            //self.internetStatusLabel.text = "No Connection"
+        }
+    }
+	
     func CurrentDateSignOut()
     {
 			
@@ -1088,6 +1131,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 			let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
 			//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/employee/mark/attendance/attendanceMarkIN")!
 			//create the session object
+		//self.customActivityIndicatory(self.view, startAnimate: true)
 			let session = URLSession.shared
 			
 			//now create the URLRequest object using the url object
@@ -1128,6 +1172,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 
 						if (OfficeINCode == 200)
 						{
+							//self.customActivityIndicatory(self.view, startAnimate: false)
 							print("success")
 							let message = statusDic["message"] as? String
 							print("Sign InAttendanceMarkedstr-------",message)
@@ -1193,13 +1238,14 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 			}
 			task.resume()
 		}
-    
 	func ServerCurrentDatetime()
 	{
 	var StartPoint = Baseurl.shared().baseURL
 	var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
 	let urlstring = "\(StartPoint)\(Endpoint1)"
 	print("First",urlstring)
+		print("API Response is coming very slow")
+		OfflinePopup()
 	let url = NSURL(string: urlstring)
 	let URL:NSURL = NSURL(string: urlstring)!
 	var request = URLRequest(url: URL as URL)
@@ -1225,6 +1271,8 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 	dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm a"///this is what you want to convert format
     dateFormatter.locale = tempLocale // reset the locale
 		self.ConverDatetimestr = dateFormatter.string(from: outimedate)
+		print("API Response is Perfectly")
+
 		print("luxan outtime EXACT_DATE : \(self.ConverDatetimestr)")
 					}
 					
@@ -1233,22 +1281,97 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 		}
 		task.resume()
 	}
+	func OfflinePopup()
+	{
+		self.customView.frame = CGRect.init(x: 0, y: 0, width: 320, height: 240)
+		self.customView.backgroundColor = UIColor.white
+		self.customView.center = self.view.center
+		self.view.addSubview(self.customView)
+		self.customSubView.frame = CGRect.init(x: 0, y: 0, width: 321, height: 110)
+		self.customSubView.backgroundColor = UIColor.white
+		let shadowPath = UIBezierPath(rect: self.customView.bounds)
+		self.customView.layer.masksToBounds = false
+		self.customView.layer.shadowColor = UIColor.darkGray.cgColor
+		self.customView.layer.shadowOffset = CGSize(width: 0, height: 0.5)
+		self.customView.layer.shadowOpacity = 0.8
+		self.customView.layer.shadowPath = shadowPath.cgPath
+		self.customView.addSubview(self.customSubView)
+		//image
+		var imageView : UIImageView
+		imageView  = UIImageView(frame:CGRect(x: 110, y: 15, width: 90, height: 80));
+		imageView.image = UIImage(named:"attendence-right.png")
+		self.customView.addSubview(imageView)
+
+		//lable
+		let label = UILabel(frame: CGRect(x: 25, y: 115, width: 400, height: 21))
+		label.text = "Attendance Marked Successfully"
+		label.textColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
+		label.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
+		self.customView.addSubview(label)
+		let label1 = UILabel(frame: CGRect(x: 75, y: 145, width: 400, height: 21))
+		label1.text = "Offline Attendance Marked"
+		label1.textColor = UIColor.darkGray
+		label1.shadowColor = UIColor.gray
+		label1.font = UIFont(name: "HelveticaNeue", size: CGFloat(16))
+		self.customView.addSubview(label1)
+		let myButton = UIButton(type: .system)
+		// Position Button
+		myButton.frame = CGRect(x: 10, y: 175, width: 300, height: 45)
+		// Set text on button
+		myButton.setTitle("OK", for: .normal)
+		myButton.setTitle("Pressed + Hold", for: .highlighted)
+		myButton.setTitleColor(UIColor.white, for: .normal)
+		myButton.backgroundColor = #colorLiteral(red: 0.9098039216, green: 0.537254902, blue: 0.1019607843, alpha: 1)
+		// Set button action
+		myButton.addTarget(self, action: #selector(self.buttonAction(_:)), for: .touchUpInside)
+		self.customView.addSubview(myButton)
+	}
     @objc func buttonAction(_ sender:UIButton!)
     {
         print("Button tapped")
-        
         //        let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         //                                                           let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
         //                                                           self.navigationController?.pushViewController(UITabBarController, animated:false)
         //
-        
-        
-        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
         let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
         self.present(UITabBarController, animated:true, completion:nil)
         //Updatedetails()
     }
+	func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {
+		let mainContainer: UIView = UIView(frame: viewContainer.frame)
+		mainContainer.center = viewContainer.center
+		mainContainer.backgroundColor = UIColor.init(netHex: 0xFFFFFF)
+		mainContainer.alpha = 0.5
+		mainContainer.tag = 789456123
+		mainContainer.isUserInteractionEnabled = false
+		let viewBackgroundLoading: UIView = UIView(frame: CGRect(x:0,y: 0,width: 80,height: 80))
+		viewBackgroundLoading.center = viewContainer.center
+		// viewBackgroundLoading.backgroundColor = UIColor.init(netHex: 0x444444)
+		viewBackgroundLoading.backgroundColor = UIColor.darkGray
+		viewBackgroundLoading.alpha = 0.5
+		viewBackgroundLoading.clipsToBounds = true
+		viewBackgroundLoading.layer.cornerRadius = 15
+		
+		let activityIndicatorView: UIActivityIndicatorView = UIActivityIndicatorView()
+		activityIndicatorView.frame = CGRect(x:0.0,y: 0.0,width: 40.0, height: 40.0)
+		activityIndicatorView.activityIndicatorViewStyle = UIActivityIndicatorViewStyle.whiteLarge
+		activityIndicatorView.center = CGPoint(x: viewBackgroundLoading.frame.size.width / 2, y: viewBackgroundLoading.frame.size.height / 2)
+		if startAnimate!{
+			viewBackgroundLoading.addSubview(activityIndicatorView)
+			mainContainer.addSubview(viewBackgroundLoading)
+			viewContainer.addSubview(mainContainer)
+			activityIndicatorView.startAnimating()
+		}else{
+			for subview in viewContainer.subviews{
+				if subview.tag == 789456123{
+					subview.removeFromSuperview()
+				}
+			}
+		}
+		return activityIndicatorView
+	}
     
 }
 
