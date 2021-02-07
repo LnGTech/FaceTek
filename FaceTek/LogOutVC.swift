@@ -1079,28 +1079,20 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
         let reachability = note.object as! Reachability
         switch reachability.connection {
         case .wifi:
-			ServerCurrentDatetime()
             print("Wifi Connection")
 			
             //self.internetStatusLabel.text = "Wifi Connection"
         case .cellular:
             print("Cellular Connection")
-            //self.internetStatusLabel.text = "Cellular Connection"
-			let alert = UIAlertController(title: "Alert", message: "Cellular Connection", preferredStyle: UIAlertControllerStyle.alert)
-			alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-			self.present(alert, animated: true, completion: nil)
+            
         case .unavailable:
+			OfflinePopup()
             print(" No Connection----")
 			
-			
-
-
 		case .none:
+			OfflinePopup()
             print("wifi No Connection")
-			let alert = UIAlertController(title: "Alert", message: "No Inetrnet or wifi connection", preferredStyle: UIAlertControllerStyle.alert)
-			alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.default, handler: nil))
-			self.present(alert, animated: true, completion: nil)
-            //self.internetStatusLabel.text = "No Connection"
+			
         }
     }
 	
@@ -1238,14 +1230,13 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 			}
 			task.resume()
 		}
+    
 	func ServerCurrentDatetime()
 	{
 	var StartPoint = Baseurl.shared().baseURL
 	var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/getCurrentDate"
 	let urlstring = "\(StartPoint)\(Endpoint1)"
 	print("First",urlstring)
-		print("API Response is coming very slow")
-		OfflinePopup()
 	let url = NSURL(string: urlstring)
 	let URL:NSURL = NSURL(string: urlstring)!
 	var request = URLRequest(url: URL as URL)
@@ -1271,7 +1262,6 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 	dateFormatter.dateFormat = "dd-MMM-yyyy hh:mm a"///this is what you want to convert format
     dateFormatter.locale = tempLocale // reset the locale
 		self.ConverDatetimestr = dateFormatter.string(from: outimedate)
-		print("API Response is Perfectly")
 
 		print("luxan outtime EXACT_DATE : \(self.ConverDatetimestr)")
 					}
@@ -1304,7 +1294,7 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
 
 		//lable
 		let label = UILabel(frame: CGRect(x: 25, y: 115, width: 400, height: 21))
-		label.text = "Attendance Marked Successfully"
+		label.text = ConverDatetimestr
 		label.textColor = #colorLiteral(red: 0.05098039216, green: 0.2156862745, blue: 0.5725490196, alpha: 1)
 		label.font = UIFont(name: "HelveticaNeue", size: CGFloat(18))
 		self.customView.addSubview(label)
@@ -1329,11 +1319,14 @@ class LogOutVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate
     @objc func buttonAction(_ sender:UIButton!)
     {
         print("Button tapped")
+        
         //        let storyBoard = UIStoryboard(name: "Main", bundle:nil)
         //                                                           let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
         //                                                           self.navigationController?.pushViewController(UITabBarController, animated:false)
         //
-		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+        
+        
+        let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
         
         let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
         self.present(UITabBarController, animated:true, completion:nil)

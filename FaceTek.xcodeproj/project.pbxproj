@@ -37,8 +37,9 @@
 		74140901247A3AFF00ED1391 /* backicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74140900247A3AFE00ED1391 /* backicon.png */; };
 		741C1CD22577812F00DC9B82 /* Plusimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 741C1CD12577812E00DC9B82 /* Plusimg.png */; };
 		7424A04724AC6AFB000B466F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424A04624AC6AFB000B466F /* AppDelegate.swift */; };
+		74276AE425CD6E4A008015E7 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74276AE325CD6E4A008015E7 /* Protocols.swift */; };
+		74276AE625CD6FF9008015E7 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74276AE525CD6FF9008015E7 /* Reachability.swift */; };
 		7429321524498B5300C59157 /* UIappViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321424498B5200C59157 /* UIappViewController.swift */; };
-		7429321924498B6600C59157 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321824498B6600C59157 /* Protocols.swift */; };
 		7429321B24498B7000C59157 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321A24498B7000C59157 /* AppManager.swift */; };
 		742A176424406E6400880818 /* HelperLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A176324406E6400880818 /* HelperLibrary.swift */; };
 		74398CDF2462E9F20053DA0F /* WhiteBck.png in Resources */ = {isa = PBXBuildFile; fileRef = 74398CDE2462E9F10053DA0F /* WhiteBck.png */; };
@@ -54,7 +55,6 @@
 		74444F9424D2F8C5005DA8EC /* ManagerLeavecell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74444F9224D2F8C5005DA8EC /* ManagerLeavecell.swift */; };
 		74444F9524D2F8C5005DA8EC /* ManagerLeavecell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74444F9324D2F8C5005DA8EC /* ManagerLeavecell.xib */; };
 		74457A8C24D46830009A0F6B /* LocationPermissionVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74457A8B24D46830009A0F6B /* LocationPermissionVC.swift */; };
-		74460E9225CBD1930094E999 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74460E9125CBD1920094E999 /* Reachability.swift */; };
 		74466DD2255AD6C30020C815 /* Attendance-circled-lRight.png in Resources */ = {isa = PBXBuildFile; fileRef = 74466DD0255AD6C30020C815 /* Attendance-circled-lRight.png */; };
 		74466DD3255AD6C30020C815 /* Attendance-circled-left.png in Resources */ = {isa = PBXBuildFile; fileRef = 74466DD1255AD6C30020C815 /* Attendance-circled-left.png */; };
 		7447221224BF117400CD06BA /* cancel.png in Resources */ = {isa = PBXBuildFile; fileRef = 7447221124BF117400CD06BA /* cancel.png */; };
@@ -240,9 +240,10 @@
 		74140900247A3AFE00ED1391 /* backicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backicon.png; sourceTree = "<group>"; };
 		741C1CD12577812E00DC9B82 /* Plusimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Plusimg.png; path = ../../../../../Desktop/Plusimg.png; sourceTree = "<group>"; };
 		7424A04624AC6AFB000B466F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		74276AE325CD6E4A008015E7 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		74276AE525CD6FF9008015E7 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		7429321424498B5200C59157 /* UIappViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIappViewController.swift; sourceTree = "<group>"; };
 		7429321624498B5C00C59157 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
-		7429321824498B6600C59157 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		7429321A24498B7000C59157 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		742A176324406E6400880818 /* HelperLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperLibrary.swift; sourceTree = "<group>"; };
 		74398CDE2462E9F10053DA0F /* WhiteBck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBck.png; sourceTree = "<group>"; };
@@ -258,7 +259,6 @@
 		74444F9224D2F8C5005DA8EC /* ManagerLeavecell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerLeavecell.swift; sourceTree = "<group>"; };
 		74444F9324D2F8C5005DA8EC /* ManagerLeavecell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ManagerLeavecell.xib; sourceTree = "<group>"; };
 		74457A8B24D46830009A0F6B /* LocationPermissionVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationPermissionVC.swift; sourceTree = "<group>"; };
-		74460E9125CBD1920094E999 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		74466DD0255AD6C30020C815 /* Attendance-circled-lRight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Attendance-circled-lRight.png"; sourceTree = "<group>"; };
 		74466DD1255AD6C30020C815 /* Attendance-circled-left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Attendance-circled-left.png"; sourceTree = "<group>"; };
 		7447221124BF117400CD06BA /* cancel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel.png; sourceTree = "<group>"; };
@@ -495,7 +495,7 @@
 			children = (
 				7429321424498B5200C59157 /* UIappViewController.swift */,
 				7429321624498B5C00C59157 /* Reachability.swift */,
-				7429321824498B6600C59157 /* Protocols.swift */,
+				74276AE325CD6E4A008015E7 /* Protocols.swift */,
 				7429321A24498B7000C59157 /* AppManager.swift */,
 				27C15747250908DA008A4B0E /* InternetConnection.storyboard */,
 				272A19652509212C0036A431 /* InternetConnection.swift */,
@@ -748,10 +748,10 @@
 				74FA123124AC689800A356E7 /* FaceSDK */,
 				74FA122C24AC687F00A356E7 /* Shaders */,
 				7424A04624AC6AFB000B466F /* AppDelegate.swift */,
-				74460E9125CBD1920094E999 /* Reachability.swift */,
 				744774D0250A3484008266D4 /* Baseurl.swift */,
 				7449F96C24AE284900232D46 /* LogINVC.swift */,
 				7448549424AF1C5500F36A99 /* LogOutVC.swift */,
+				74276AE525CD6FF9008015E7 /* Reachability.swift */,
 				74FA123724AC68BD00A356E7 /* RecognitionViewController.swift */,
 				74FA123924AC68C700A356E7 /* RecognitionCamera.swift */,
 				74FA123B24AC68D400A356E7 /* RecognitionGLView.swift */,
@@ -1139,7 +1139,7 @@
 				74068875251CAAD900B4F654 /* MyTeamVC.swift in Sources */,
 				74E68A7224C832B100A3B009 /* Dropdowncell.swift in Sources */,
 				7450F7B525382383004F6A24 /* LeaveHistoryVC.swift in Sources */,
-				74460E9225CBD1930094E999 /* Reachability.swift in Sources */,
+				74276AE625CD6FF9008015E7 /* Reachability.swift in Sources */,
 				746017B12435F37700969CA2 /* NavigationMenucell.swift in Sources */,
 				74FA123824AC68BD00A356E7 /* RecognitionViewController.swift in Sources */,
 				7450F7C42539CA17004F6A24 /* AttendanceHistoryVC.swift in Sources */,
@@ -1168,13 +1168,13 @@
 				74457A8C24D46830009A0F6B /* LocationPermissionVC.swift in Sources */,
 				74795DC3244DB98D00C6F03C /* DBHelper.swift in Sources */,
 				74FA124024AC690F00A356E7 /* enable_cxx.cpp in Sources */,
-				7429321924498B6600C59157 /* Protocols.swift in Sources */,
 				744BA9C8251CC303006E38D8 /* MyTeamtblCell.swift in Sources */,
 				74F5D11E243758A600D6E811 /* InputOTPVC.swift in Sources */,
 				27AB1254253AC828002667B0 /* LocalAuthFailedVC.swift in Sources */,
 				74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */,
 				744125D424D0311D00075CC1 /* PendingLeavescellTableViewCell.swift in Sources */,
 				744125D124D02DA500075CC1 /* PendingLeavesVC.swift in Sources */,
+				74276AE425CD6E4A008015E7 /* Protocols.swift in Sources */,
 				744125D824D0328200075CC1 /* PendingHeadercell.swift in Sources */,
 				7450F7B8253826D6004F6A24 /* LeaveHistoryHeadercell.swift in Sources */,
 				7447702924CF1A2900EFBB2F /* EarlyLeaverscell.swift in Sources */,
