@@ -1183,8 +1183,7 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
 		
 		print("Latlon values in Login----------",RetrivedempId)
 		let parameters = [["attendanceId": 0 ,"empId": RetrivedLatlongempId,"attendanceDateTime": "","latLong": empAttendanceInLatLongstr,"custId":RetrivedcustId,"address":address,"attendanceMode":"G","empTemp":"0",
-		"inOrOut":"IN",
-		"empQrCode": ""] as [String : Any]]
+		"inOrOut":"IN"] as [String : Any]]
 		
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint = "/attnd-api-gateway-service/api/customer/employee/mark/attendance/Mark"
@@ -1220,8 +1219,6 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
 			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
 			if let responseJSON = responseJSON as? [String: Any] {
 				print("Sign In Json Response",responseJSON)
-				
-				
 				
 				DispatchQueue.main.async {
 					var statusDic = responseJSON["status"]! as! NSDictionary
