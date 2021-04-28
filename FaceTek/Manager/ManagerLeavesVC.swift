@@ -107,12 +107,9 @@ class ManagerLeavesVC: UIViewController,UITextFieldDelegate,UITableViewDelegate,
                 DatetxtFld.inputAccessoryView = toolbar
                 DatetxtFld.inputView = Datepicker
                 
-
-                
         //        Totxt.inputAccessoryView = toolbar
         //        Totxt.inputView = datePicker
         //
-                
             }
             
             @objc func doneDatePicker(){

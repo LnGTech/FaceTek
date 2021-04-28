@@ -48,7 +48,7 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     @IBOutlet weak var LeaveTypeview: UIView!
     @IBOutlet weak var LeaveNavigationtbl: UITableView!
      //var LeaveNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
-    var LeaveNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+    var LeaveNavigationMenuArray = ["Holiday Calender","Time Sheet","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	var LeaveNavigationMenuGPSFalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us",""]
 
     var isMenuVisible:Bool!
@@ -549,18 +549,27 @@ task.resume()
 							else if indexPath.item == 1 {
 								let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 				
-								let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
-								self.present(AttendanceHistoryVC, animated:true, completion:nil)
+								let TimesheetVC = storyBoard.instantiateViewController(withIdentifier: "TimesheetVC") as! TimesheetVC
+								self.present(TimesheetVC, animated:true, completion:nil)
 				
 				
 							}
+					
+					else if indexPath.item == 2 {
+									let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+					
+									let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+									self.present(AttendanceHistoryVC, animated:true, completion:nil)
+					
+					
+								}
 				
-					   else if indexPath.item == 2 {
+					   else if indexPath.item == 3 {
 					   let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 					   let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
 						self.present(FieldVisitVC, animated:true, completion:nil)
 						}
-							else if indexPath.item == 3 {
+							else if indexPath.item == 4 {
 								let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 				
 								let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
@@ -569,7 +578,7 @@ task.resume()
 				
 							}
 				
-							else if indexPath.item == 4 {
+							else if indexPath.item == 5 {
 								let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 				
 								let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
@@ -578,7 +587,7 @@ task.resume()
 				
 							}
 				
-							else if indexPath.item == 5 {
+							else if indexPath.item == 6 {
 								let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 				
 								let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
@@ -588,12 +597,12 @@ task.resume()
 							}
 				
 				
-						else if indexPath.item == 6 {
+						else if indexPath.item == 7 {
 						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 						let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
 						self.present(FaqVC, animated:true, completion:nil)
 						}
-						else if indexPath.item == 7 {
+						else if indexPath.item == 8 {
 						if ContactUsView.isHidden {
 						ContactUsView.isHidden = false
 						} else {

@@ -58,6 +58,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	var brNamestr : String = ""
     var RefreshemployeeNam : String = ""
     var RefreshbrName : String = ""
+    var RefreshCustName : String = ""
+
 	var empIsGPSTrackEnabled = Int()
 
 
@@ -111,7 +113,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 
 	
 	    //var HomeDashboardNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
-	var HomeDashboardNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+	var HomeDashboardNavigationMenuArray = ["Holiday Calender","Time Sheet","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
 	var HomeDashboardGPSFalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us",""]
 	
@@ -1059,6 +1061,15 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 			else if indexPath.item == 1 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
+				let TimesheetVC = storyBoard.instantiateViewController(withIdentifier: "TimesheetVC") as! TimesheetVC
+				self.present(TimesheetVC, animated:true, completion:nil)
+
+
+			}
+
+			else if indexPath.item == 2 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
 				let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
 				self.present(AttendanceHistoryVC, animated:true, completion:nil)
 
@@ -1066,7 +1077,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 			}
 
 
-			else if indexPath.item == 2 {
+			else if indexPath.item == 3 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
 				let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
@@ -1074,7 +1085,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 
 
 			}
-			else if indexPath.item == 3 {
+			else if indexPath.item == 4 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
 				let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
@@ -1082,7 +1093,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 
 
 			}
-			else if indexPath.item == 4 {
+			else if indexPath.item == 5 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
 				let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
@@ -1091,7 +1102,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 
 			}
 
-			else if indexPath.item == 5 {
+			else if indexPath.item == 6 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
 				let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
@@ -1100,7 +1111,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 
 			}
 
-        else if indexPath.item == 6 {
+        else if indexPath.item == 7 {
 			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
 			let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
@@ -1108,7 +1119,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 
 
 		}
-		else if indexPath.item == 7 {
+		else if indexPath.item == 8 {
 
 			if ContactusText.isHidden {
 				//ContactUsView.isHidden = false
@@ -1284,13 +1295,22 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                     {
 		let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
 		self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
+						
+						
+						
 		print("Refresh employeeName",self.RefreshemployeeNam)
 		self.RefreshbrName = (ItemsDict["brName"] as? String)!
 		print("Refresh brName",self.RefreshbrName)
+						
+						
+						self.RefreshCustName = (ItemsDict["custName"] as? String)!
+
+						
+						
                         self.UserNameLbl.text = self.RefreshemployeeNam
                         
                         print("brNamestr-----",self.brNamestr)
-                        self.CompanyNameLbl.text = self.RefreshbrName
+                        self.CompanyNameLbl.text = self.RefreshCustName
 						
 						self.CompanyNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
 						let Companynameatributes :Dictionary = [NSAttributedStringKey.font : self.CompanyNameLbl.font]
