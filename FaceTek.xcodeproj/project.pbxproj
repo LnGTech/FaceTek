@@ -61,10 +61,13 @@
 		7447702924CF1A2900EFBB2F /* EarlyLeaverscell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7447702724CF1A2900EFBB2F /* EarlyLeaverscell.swift */; };
 		7447702A24CF1A2900EFBB2F /* EarlyLeaverscell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7447702824CF1A2900EFBB2F /* EarlyLeaverscell.xib */; };
 		744774D1250A3484008266D4 /* Baseurl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744774D0250A3484008266D4 /* Baseurl.swift */; };
+		74477FF4263A8A1900444DF8 /* Timesheetcalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 74477FF3263A8A1900444DF8 /* Timesheetcalendar.png */; };
+		74477FF6263A8B6800444DF8 /* Timesheetclock.png in Resources */ = {isa = PBXBuildFile; fileRef = 74477FF5263A8B6800444DF8 /* Timesheetclock.png */; };
 		7447EED4254C25830013FB72 /* Bluecircleimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 7447EED3254C25830013FB72 /* Bluecircleimg.png */; };
 		7447EED6254C2BB00013FB72 /* ExpensesClaimFormVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7447EED5254C2BB00013FB72 /* ExpensesClaimFormVC.swift */; };
 		7448549524AF1C5500F36A99 /* LogOutVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7448549424AF1C5500F36A99 /* LogOutVC.swift */; };
 		7449F96D24AE284900232D46 /* LogINVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7449F96C24AE284900232D46 /* LogINVC.swift */; };
+		744A4D0C263A7D1500D1DF8C /* FontsFree-Net-Montserrat-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 744A4D0B263A7D1500D1DF8C /* FontsFree-Net-Montserrat-Medium.ttf */; };
 		744B18B424CEB1B6004FB334 /* no_leves_found.png in Resources */ = {isa = PBXBuildFile; fileRef = 744B18B324CEB1B6004FB334 /* no_leves_found.png */; };
 		744B8C7224CAC0B6004634C0 /* ManagerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744B8C7124CAC0B6004634C0 /* ManagerVC.swift */; };
 		744BA9C8251CC303006E38D8 /* MyTeamtblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744BA9C6251CC303006E38D8 /* MyTeamtblCell.swift */; };
@@ -268,11 +271,14 @@
 		7447702724CF1A2900EFBB2F /* EarlyLeaverscell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaverscell.swift; sourceTree = "<group>"; };
 		7447702824CF1A2900EFBB2F /* EarlyLeaverscell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EarlyLeaverscell.xib; sourceTree = "<group>"; };
 		744774D0250A3484008266D4 /* Baseurl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Baseurl.swift; sourceTree = "<group>"; };
+		74477FF3263A8A1900444DF8 /* Timesheetcalendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Timesheetcalendar.png; sourceTree = "<group>"; };
+		74477FF5263A8B6800444DF8 /* Timesheetclock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Timesheetclock.png; sourceTree = "<group>"; };
 		7447B3F12504F4A4001C54BC /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7447EED3254C25830013FB72 /* Bluecircleimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Bluecircleimg.png; sourceTree = "<group>"; };
 		7447EED5254C2BB00013FB72 /* ExpensesClaimFormVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpensesClaimFormVC.swift; sourceTree = "<group>"; };
 		7448549424AF1C5500F36A99 /* LogOutVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogOutVC.swift; sourceTree = "<group>"; };
 		7449F96C24AE284900232D46 /* LogINVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogINVC.swift; sourceTree = "<group>"; };
+		744A4D0B263A7D1500D1DF8C /* FontsFree-Net-Montserrat-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "FontsFree-Net-Montserrat-Medium.ttf"; sourceTree = "<group>"; };
 		744B18B324CEB1B6004FB334 /* no_leves_found.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = no_leves_found.png; sourceTree = "<group>"; };
 		744B8C7124CAC0B6004634C0 /* ManagerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManagerVC.swift; sourceTree = "<group>"; };
 		744BA9C6251CC303006E38D8 /* MyTeamtblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamtblCell.swift; sourceTree = "<group>"; };
@@ -509,6 +515,14 @@
 			path = Wifi;
 			sourceTree = "<group>";
 		};
+		744A4D0A263A7CE200D1DF8C /* CustomFont */ = {
+			isa = PBXGroup;
+			children = (
+				744A4D0B263A7D1500D1DF8C /* FontsFree-Net-Montserrat-Medium.ttf */,
+			);
+			path = CustomFont;
+			sourceTree = "<group>";
+		};
 		744B8C7024CAC063004634C0 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -727,6 +741,8 @@
 		74B14502263968CA00A4AC85 /* Timesheet */ = {
 			isa = PBXGroup;
 			children = (
+				74477FF3263A8A1900444DF8 /* Timesheetcalendar.png */,
+				74477FF5263A8B6800444DF8 /* Timesheetclock.png */,
 				74B14503263968FC00A4AC85 /* TimesheetVC.swift */,
 				744DBC542639900A0098747A /* timesheettblcell.swift */,
 				744DBC552639900A0098747A /* timesheettblcell.xib */,
@@ -783,6 +799,7 @@
 				74068871251CAA7800B4F654 /* My Team */,
 				74B14502263968CA00A4AC85 /* Timesheet */,
 				7450F7C22539C9D9004F6A24 /* Attendance History */,
+				744A4D0A263A7CE200D1DF8C /* CustomFont */,
 				7472DE1C254C0DB0004756E9 /* Expense Claim's */,
 				74D998662434621200DFCBEC /* Main.storyboard */,
 				74D9986C2434621300DFCBEC /* Assets.xcassets */,
@@ -963,12 +980,14 @@
 			files = (
 				74D998702434621300DFCBEC /* LaunchScreen.storyboard in Resources */,
 				7497BDAD24CC1E0800EE54D0 /* AbsenttblCell.xib in Resources */,
+				74477FF4263A8A1900444DF8 /* Timesheetcalendar.png in Resources */,
 				74F5D11C24373C6500D6E811 /* attendence-right.png in Resources */,
 				74D9986D2434621300DFCBEC /* Assets.xcassets in Resources */,
 				747F8DCE243B556C00ABBD5E /* attendence_icon.png in Resources */,
 				740D7078243C61CD00CF6C2F /* BottomArrow.png in Resources */,
 				74140901247A3AFF00ED1391 /* backicon.png in Resources */,
 				747F8DA2243AF27200ABBD5E /* company-small.png in Resources */,
+				74477FF6263A8B6800444DF8 /* Timesheetclock.png in Resources */,
 				747F8DAA243B08CA00ABBD5E /* conform.png in Resources */,
 				74F5D11A2437393700D6E811 /* face.png in Resources */,
 				746FC13E2482817700445207 /* LeavedownArrowimg.png in Resources */,
@@ -1006,6 +1025,7 @@
 				747F8DCA243B547F00ABBD5E /* home_icon.png in Resources */,
 				744125D524D0311D00075CC1 /* PendingLeavescellTableViewCell.xib in Resources */,
 				745F31B4244ECEED00B89F08 /* EarlyLeavers.png in Resources */,
+				744A4D0C263A7D1500D1DF8C /* FontsFree-Net-Montserrat-Medium.ttf in Resources */,
 				74D998A62434C42200DFCBEC /* leave.png in Resources */,
 				7447EED4254C25830013FB72 /* Bluecircleimg.png in Resources */,
 				74D998A22434A8C200DFCBEC /* proxe.png in Resources */,
