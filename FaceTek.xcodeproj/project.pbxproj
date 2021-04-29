@@ -71,6 +71,8 @@
 		744BA9C9251CC303006E38D8 /* MyTeamtblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744BA9C7251CC303006E38D8 /* MyTeamtblCell.xib */; };
 		744D49F824F63946001075E8 /* SelectplaceDrpdwncell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744D49F624F63946001075E8 /* SelectplaceDrpdwncell.swift */; };
 		744D49F924F63946001075E8 /* SelectplaceDrpdwncell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744D49F724F63946001075E8 /* SelectplaceDrpdwncell.xib */; };
+		744DBC562639900A0098747A /* timesheettblcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 744DBC542639900A0098747A /* timesheettblcell.swift */; };
+		744DBC572639900A0098747A /* timesheettblcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 744DBC552639900A0098747A /* timesheettblcell.xib */; };
 		7450F7B525382383004F6A24 /* LeaveHistoryVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7450F7B425382383004F6A24 /* LeaveHistoryVC.swift */; };
 		7450F7B8253826D6004F6A24 /* LeaveHistoryHeadercell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7450F7B6253826D6004F6A24 /* LeaveHistoryHeadercell.swift */; };
 		7450F7B9253826D6004F6A24 /* LeaveHistoryHeadercell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7450F7B7253826D6004F6A24 /* LeaveHistoryHeadercell.xib */; };
@@ -277,6 +279,8 @@
 		744BA9C7251CC303006E38D8 /* MyTeamtblCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyTeamtblCell.xib; sourceTree = "<group>"; };
 		744D49F624F63946001075E8 /* SelectplaceDrpdwncell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectplaceDrpdwncell.swift; sourceTree = "<group>"; };
 		744D49F724F63946001075E8 /* SelectplaceDrpdwncell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SelectplaceDrpdwncell.xib; sourceTree = "<group>"; };
+		744DBC542639900A0098747A /* timesheettblcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = timesheettblcell.swift; sourceTree = "<group>"; };
+		744DBC552639900A0098747A /* timesheettblcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = timesheettblcell.xib; sourceTree = "<group>"; };
 		7450F7B425382383004F6A24 /* LeaveHistoryVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveHistoryVC.swift; sourceTree = "<group>"; };
 		7450F7B6253826D6004F6A24 /* LeaveHistoryHeadercell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaveHistoryHeadercell.swift; sourceTree = "<group>"; };
 		7450F7B7253826D6004F6A24 /* LeaveHistoryHeadercell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveHistoryHeadercell.xib; sourceTree = "<group>"; };
@@ -724,6 +728,8 @@
 			isa = PBXGroup;
 			children = (
 				74B14503263968FC00A4AC85 /* TimesheetVC.swift */,
+				744DBC542639900A0098747A /* timesheettblcell.swift */,
+				744DBC552639900A0098747A /* timesheettblcell.xib */,
 			);
 			path = Timesheet;
 			sourceTree = "<group>";
@@ -1034,6 +1040,7 @@
 				740FC4F2243DF57400F71B72 /* LeaveNavigationcell.xib in Resources */,
 				74466DD2255AD6C30020C815 /* Attendance-circled-lRight.png in Resources */,
 				745D5C69247CDF0A00052FC4 /* Faq.png in Resources */,
+				744DBC572639900A0098747A /* timesheettblcell.xib in Resources */,
 				745D5C55247CCA7B00052FC4 /* mobile.png in Resources */,
 				740FA3F7247BE0C700E4FC3D /* camera_icon.png in Resources */,
 				74444F9524D2F8C5005DA8EC /* ManagerLeavecell.xib in Resources */,
@@ -1185,6 +1192,7 @@
 				27AB1254253AC828002667B0 /* LocalAuthFailedVC.swift in Sources */,
 				74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */,
 				744125D424D0311D00075CC1 /* PendingLeavescellTableViewCell.swift in Sources */,
+				744DBC562639900A0098747A /* timesheettblcell.swift in Sources */,
 				744125D124D02DA500075CC1 /* PendingLeavesVC.swift in Sources */,
 				74276AE425CD6E4A008015E7 /* Protocols.swift in Sources */,
 				744125D824D0328200075CC1 /* PendingHeadercell.swift in Sources */,
