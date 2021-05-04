@@ -35,13 +35,19 @@
 		740FC4F2243DF57400F71B72 /* LeaveNavigationcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 740FC4F0243DF57400F71B72 /* LeaveNavigationcell.xib */; };
 		741408FF247A39C800ED1391 /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = 741408FE247A39C400ED1391 /* back.png */; };
 		74140901247A3AFF00ED1391 /* backicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74140900247A3AFE00ED1391 /* backicon.png */; };
-		741C1CD22577812F00DC9B82 /* Plusimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 741C1CD12577812E00DC9B82 /* Plusimg.png */; };
 		7424A04724AC6AFB000B466F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7424A04624AC6AFB000B466F /* AppDelegate.swift */; };
 		74276AE425CD6E4A008015E7 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74276AE325CD6E4A008015E7 /* Protocols.swift */; };
 		74276AE625CD6FF9008015E7 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74276AE525CD6FF9008015E7 /* Reachability.swift */; };
 		7429321524498B5300C59157 /* UIappViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321424498B5200C59157 /* UIappViewController.swift */; };
 		7429321B24498B7000C59157 /* AppManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7429321A24498B7000C59157 /* AppManager.swift */; };
 		742A176424406E6400880818 /* HelperLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 742A176324406E6400880818 /* HelperLibrary.swift */; };
+		742F0AE8263ACF56001E0119 /* Navtimesheet.png in Resources */ = {isa = PBXBuildFile; fileRef = 742F0AE1263ACF54001E0119 /* Navtimesheet.png */; };
+		742F0AE9263ACF56001E0119 /* Navclaim.png in Resources */ = {isa = PBXBuildFile; fileRef = 742F0AE2263ACF55001E0119 /* Navclaim.png */; };
+		742F0AEA263ACF56001E0119 /* Navnetwork.png in Resources */ = {isa = PBXBuildFile; fileRef = 742F0AE3263ACF55001E0119 /* Navnetwork.png */; };
+		742F0AEB263ACF56001E0119 /* Navcall.png in Resources */ = {isa = PBXBuildFile; fileRef = 742F0AE4263ACF55001E0119 /* Navcall.png */; };
+		742F0AEC263ACF56001E0119 /* Navcalendar.png in Resources */ = {isa = PBXBuildFile; fileRef = 742F0AE5263ACF55001E0119 /* Navcalendar.png */; };
+		742F0AED263ACF56001E0119 /* Navhistory.png in Resources */ = {isa = PBXBuildFile; fileRef = 742F0AE6263ACF55001E0119 /* Navhistory.png */; };
+		742F0AEE263ACF56001E0119 /* Navquestionnaire.png in Resources */ = {isa = PBXBuildFile; fileRef = 742F0AE7263ACF56001E0119 /* Navquestionnaire.png */; };
 		74398CDF2462E9F20053DA0F /* WhiteBck.png in Resources */ = {isa = PBXBuildFile; fileRef = 74398CDE2462E9F10053DA0F /* WhiteBck.png */; };
 		74398CE12462EC020053DA0F /* BckArrowicon.png in Resources */ = {isa = PBXBuildFile; fileRef = 74398CE02462EC000053DA0F /* BckArrowicon.png */; };
 		7440736A24B74F4700B30039 /* selectmode.png in Resources */ = {isa = PBXBuildFile; fileRef = 7440736924B74F4700B30039 /* selectmode.png */; };
@@ -91,6 +97,8 @@
 		74520D3924CB1ADC001252ED /* LatecomersVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3824CB1ADC001252ED /* LatecomersVC.swift */; };
 		74520D3B24CB1AF5001252ED /* EarlyLeaversVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74520D3A24CB1AF5001252ED /* EarlyLeaversVC.swift */; };
 		7455252E250A79B800D18C3F /* facetek_title.png in Resources */ = {isa = PBXBuildFile; fileRef = 7455252D250A79B800D18C3F /* facetek_title.png */; };
+		74561016263C1F5000D07BF8 /* Selectcustcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74561014263C1F5000D07BF8 /* Selectcustcell.swift */; };
+		74561017263C1F5000D07BF8 /* Selectcustcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74561015263C1F5000D07BF8 /* Selectcustcell.xib */; };
 		745650E22522F6CC009BFA88 /* MyTeamGoogleMapVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745650E12522F6CC009BFA88 /* MyTeamGoogleMapVC.swift */; };
 		745650E725235664009BFA88 /* Googlemapformtblcell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 745650E525235664009BFA88 /* Googlemapformtblcell.swift */; };
 		745650E825235664009BFA88 /* Googlemapformtblcell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 745650E625235664009BFA88 /* Googlemapformtblcell.xib */; };
@@ -159,6 +167,9 @@
 		74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0CB2D24D2C03200866474 /* FaqVC.swift */; };
 		74C1616C253DB15500E8C956 /* AttnceHitry.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 74C1616B253DB15500E8C956 /* AttnceHitry.jpeg */; };
 		74C1616E253DB22400E8C956 /* RighAttnceHitry.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 74C1616D253DB22400E8C956 /* RighAttnceHitry.jpeg */; };
+		74C8F95826403CF40061FA73 /* Plusimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 74C8F95726403CF40061FA73 /* Plusimg.png */; };
+		74CA730D263BC5550037CA9A /* Navvisitor.png in Resources */ = {isa = PBXBuildFile; fileRef = 74CA730C263BC5550037CA9A /* Navvisitor.png */; };
+		74CEBC0A263AD85C002F0679 /* Navattendance_history.png in Resources */ = {isa = PBXBuildFile; fileRef = 74CEBC09263AD85B002F0679 /* Navattendance_history.png */; };
 		74D3FD5A256D373A003B2B23 /* ExpenseClaimViewmoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D3FD59256D373A003B2B23 /* ExpenseClaimViewmoreVC.swift */; };
 		74D998652434621200DFCBEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D998642434621200DFCBEC /* ViewController.swift */; };
 		74D998682434621200DFCBEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D998662434621200DFCBEC /* Main.storyboard */; };
@@ -244,7 +255,6 @@
 		740FC4F0243DF57400F71B72 /* LeaveNavigationcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaveNavigationcell.xib; sourceTree = "<group>"; };
 		741408FE247A39C400ED1391 /* back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back.png; sourceTree = "<group>"; };
 		74140900247A3AFE00ED1391 /* backicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = backicon.png; sourceTree = "<group>"; };
-		741C1CD12577812E00DC9B82 /* Plusimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Plusimg.png; path = ../../../../../Desktop/Plusimg.png; sourceTree = "<group>"; };
 		7424A04624AC6AFB000B466F /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		74276AE325CD6E4A008015E7 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
 		74276AE525CD6FF9008015E7 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
@@ -252,6 +262,13 @@
 		7429321624498B5C00C59157 /* Reachability.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		7429321A24498B7000C59157 /* AppManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppManager.swift; sourceTree = "<group>"; };
 		742A176324406E6400880818 /* HelperLibrary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HelperLibrary.swift; sourceTree = "<group>"; };
+		742F0AE1263ACF54001E0119 /* Navtimesheet.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navtimesheet.png; sourceTree = "<group>"; };
+		742F0AE2263ACF55001E0119 /* Navclaim.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navclaim.png; sourceTree = "<group>"; };
+		742F0AE3263ACF55001E0119 /* Navnetwork.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navnetwork.png; sourceTree = "<group>"; };
+		742F0AE4263ACF55001E0119 /* Navcall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navcall.png; sourceTree = "<group>"; };
+		742F0AE5263ACF55001E0119 /* Navcalendar.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navcalendar.png; sourceTree = "<group>"; };
+		742F0AE6263ACF55001E0119 /* Navhistory.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navhistory.png; sourceTree = "<group>"; };
+		742F0AE7263ACF56001E0119 /* Navquestionnaire.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navquestionnaire.png; sourceTree = "<group>"; };
 		74398CDE2462E9F10053DA0F /* WhiteBck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WhiteBck.png; sourceTree = "<group>"; };
 		74398CE02462EC000053DA0F /* BckArrowicon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BckArrowicon.png; sourceTree = "<group>"; };
 		7440736924B74F4700B30039 /* selectmode.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = selectmode.png; sourceTree = "<group>"; };
@@ -303,6 +320,8 @@
 		74520D3824CB1ADC001252ED /* LatecomersVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LatecomersVC.swift; sourceTree = "<group>"; };
 		74520D3A24CB1AF5001252ED /* EarlyLeaversVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EarlyLeaversVC.swift; sourceTree = "<group>"; };
 		7455252D250A79B800D18C3F /* facetek_title.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facetek_title.png; sourceTree = "<group>"; };
+		74561014263C1F5000D07BF8 /* Selectcustcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Selectcustcell.swift; sourceTree = "<group>"; };
+		74561015263C1F5000D07BF8 /* Selectcustcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Selectcustcell.xib; sourceTree = "<group>"; };
 		745650E12522F6CC009BFA88 /* MyTeamGoogleMapVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyTeamGoogleMapVC.swift; sourceTree = "<group>"; };
 		745650E525235664009BFA88 /* Googlemapformtblcell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Googlemapformtblcell.swift; sourceTree = "<group>"; };
 		745650E625235664009BFA88 /* Googlemapformtblcell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Googlemapformtblcell.xib; sourceTree = "<group>"; };
@@ -371,6 +390,9 @@
 		74C0CB2D24D2C03200866474 /* FaqVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqVC.swift; sourceTree = "<group>"; };
 		74C1616B253DB15500E8C956 /* AttnceHitry.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AttnceHitry.jpeg; sourceTree = "<group>"; };
 		74C1616D253DB22400E8C956 /* RighAttnceHitry.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RighAttnceHitry.jpeg; sourceTree = "<group>"; };
+		74C8F95726403CF40061FA73 /* Plusimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Plusimg.png; path = ../../../Plusimg.png; sourceTree = "<group>"; };
+		74CA730C263BC5550037CA9A /* Navvisitor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navvisitor.png; sourceTree = "<group>"; };
+		74CEBC09263AD85B002F0679 /* Navattendance_history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navattendance_history.png; sourceTree = "<group>"; };
 		74D3FD59256D373A003B2B23 /* ExpenseClaimViewmoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseClaimViewmoreVC.swift; sourceTree = "<group>"; };
 		74D9985F2434621200DFCBEC /* Facetek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Facetek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D998642434621200DFCBEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -515,6 +537,22 @@
 			path = Wifi;
 			sourceTree = "<group>";
 		};
+		742F0AE0263ACF14001E0119 /* NavDrawerImgs */ = {
+			isa = PBXGroup;
+			children = (
+				74CA730C263BC5550037CA9A /* Navvisitor.png */,
+				742F0AE5263ACF55001E0119 /* Navcalendar.png */,
+				74CEBC09263AD85B002F0679 /* Navattendance_history.png */,
+				742F0AE4263ACF55001E0119 /* Navcall.png */,
+				742F0AE2263ACF55001E0119 /* Navclaim.png */,
+				742F0AE6263ACF55001E0119 /* Navhistory.png */,
+				742F0AE3263ACF55001E0119 /* Navnetwork.png */,
+				742F0AE7263ACF56001E0119 /* Navquestionnaire.png */,
+				742F0AE1263ACF54001E0119 /* Navtimesheet.png */,
+			);
+			path = NavDrawerImgs;
+			sourceTree = "<group>";
+		};
 		744A4D0A263A7CE200D1DF8C /* CustomFont */ = {
 			isa = PBXGroup;
 			children = (
@@ -654,7 +692,7 @@
 			isa = PBXGroup;
 			children = (
 				745793EB2566824D0087D4CA /* RupeeIcon.jpg */,
-				741C1CD12577812E00DC9B82 /* Plusimg.png */,
+				74C8F95726403CF40061FA73 /* Plusimg.png */,
 				7463BA95255BD413007A0300 /* Attach.png */,
 				74466DD1255AD6C30020C815 /* Attendance-circled-left.png */,
 				74466DD0255AD6C30020C815 /* Attendance-circled-lRight.png */,
@@ -746,6 +784,8 @@
 				74B14503263968FC00A4AC85 /* TimesheetVC.swift */,
 				744DBC542639900A0098747A /* timesheettblcell.swift */,
 				744DBC552639900A0098747A /* timesheettblcell.xib */,
+				74561014263C1F5000D07BF8 /* Selectcustcell.swift */,
+				74561015263C1F5000D07BF8 /* Selectcustcell.xib */,
 			);
 			path = Timesheet;
 			sourceTree = "<group>";
@@ -798,6 +838,7 @@
 				745FE48D24F3A75300A40776 /* FieldTracking */,
 				74068871251CAA7800B4F654 /* My Team */,
 				74B14502263968CA00A4AC85 /* Timesheet */,
+				742F0AE0263ACF14001E0119 /* NavDrawerImgs */,
 				7450F7C22539C9D9004F6A24 /* Attendance History */,
 				744A4D0A263A7CE200D1DF8C /* CustomFont */,
 				7472DE1C254C0DB0004756E9 /* Expense Claim's */,
@@ -990,12 +1031,15 @@
 				74477FF6263A8B6800444DF8 /* Timesheetclock.png in Resources */,
 				747F8DAA243B08CA00ABBD5E /* conform.png in Resources */,
 				74F5D11A2437393700D6E811 /* face.png in Resources */,
+				74CA730D263BC5550037CA9A /* Navvisitor.png in Resources */,
 				746FC13E2482817700445207 /* LeavedownArrowimg.png in Resources */,
 				740FC4EA243DB15200F71B72 /* upcoming leaves.png in Resources */,
 				746017B22435F37700969CA2 /* NavigationMenucell.xib in Resources */,
 				746017AE2435D46A00969CA2 /* track.png in Resources */,
+				742F0AEA263ACF56001E0119 /* Navnetwork.png in Resources */,
 				74E68A8F24C8674300A3B009 /* PendingLeaves1.png in Resources */,
 				740FC4EC243DB3D100F71B72 /* pass.png in Resources */,
+				742F0AEE263ACF56001E0119 /* Navquestionnaire.png in Resources */,
 				74D998682434621200DFCBEC /* Main.storyboard in Resources */,
 				74E68A7524C833EF00A3B009 /* circle.png in Resources */,
 				7463BA96255BD414007A0300 /* Attach.png in Resources */,
@@ -1031,6 +1075,7 @@
 				74D998A22434A8C200DFCBEC /* proxe.png in Resources */,
 				745F31B2244ECEE400B89F08 /* Absent1.png in Resources */,
 				74398CE12462EC020053DA0F /* BckArrowicon.png in Resources */,
+				742F0AEB263ACF56001E0119 /* Navcall.png in Resources */,
 				27C15748250908DA008A4B0E /* InternetConnection.storyboard in Resources */,
 				74795DBA244D9D1000C6F03C /* leaves.png in Resources */,
 				746017B82435FB3300969CA2 /* back-arrow.png in Resources */,
@@ -1044,6 +1089,7 @@
 				74F5D1262437662000D6E811 /* otp.png in Resources */,
 				7440DAEE2480CEC800263A8F /* map icon.png in Resources */,
 				74D9989C2434999500DFCBEC /* DashboardCell.xib in Resources */,
+				742F0AE9263ACF56001E0119 /* Navclaim.png in Resources */,
 				740FC4E8243DB14B00F71B72 /* leave_states.png in Resources */,
 				747F8DCC243B54F700ABBD5E /* leave_icon.png in Resources */,
 				747F8DA0243AECDF00ABBD5E /* reg.png in Resources */,
@@ -1054,6 +1100,7 @@
 				74822C52256518460078F4D8 /* Expensecell.xib in Resources */,
 				746017B42435F62800969CA2 /* user.png in Resources */,
 				740FC4EE243DB3D700F71B72 /* pending.png in Resources */,
+				742F0AEC263ACF56001E0119 /* Navcalendar.png in Resources */,
 				7455252E250A79B800D18C3F /* facetek_title.png in Resources */,
 				746017BA2436022A00969CA2 /* login_screen_icon.png in Resources */,
 				747F8DB4243B3AAF00ABBD5E /* notification.png in Resources */,
@@ -1068,17 +1115,19 @@
 				74FA123024AC687F00A356E7 /* DirectDisplayShader.vsh in Resources */,
 				27AB124F253AC811002667B0 /* LocalAuthFailed.storyboard in Resources */,
 				7450F7B9253826D6004F6A24 /* LeaveHistoryHeadercell.xib in Resources */,
+				742F0AE8263ACF56001E0119 /* Navtimesheet.png in Resources */,
 				74795DBC244D9D1900C6F03C /* absent (1).png in Resources */,
 				7450F7BF25385727004F6A24 /* Exlamationimg.png in Resources */,
 				74D9989824347DD400DFCBEC /* facetek-text-with-logo.png in Resources */,
 				745F31B6244ECEF400B89F08 /* Leaves1.png in Resources */,
-				741C1CD22577812F00DC9B82 /* Plusimg.png in Resources */,
+				742F0AED263ACF56001E0119 /* Navhistory.png in Resources */,
 				74D9989E24349F9D00DFCBEC /* gps.png in Resources */,
 				740FC4E6243D988F00F71B72 /* time_date.png in Resources */,
 				740D706E243C419C00CF6C2F /* office_in.png in Resources */,
 				7447221224BF117400CD06BA /* cancel.png in Resources */,
 				741408FF247A39C800ED1391 /* back.png in Resources */,
 				745D5C6B247CE6CD00052FC4 /* facetek.png in Resources */,
+				74CEBC0A263AD85C002F0679 /* Navattendance_history.png in Resources */,
 				7440736A24B74F4700B30039 /* selectmode.png in Resources */,
 				745D5C5F247CDA9700052FC4 /* Home_user.png in Resources */,
 				7450F7BD25383D73004F6A24 /* LeaveHistorycell.xib in Resources */,
@@ -1086,7 +1135,9 @@
 				747F8DB8243B3D4800ABBD5E /* home-icon_w.png in Resources */,
 				740FC4E4243D988A00F71B72 /* today.png in Resources */,
 				74E68A7324C832B100A3B009 /* Dropdowncell.xib in Resources */,
+				74561017263C1F5000D07BF8 /* Selectcustcell.xib in Resources */,
 				746FC13C248280C700445207 /* LeaveDownArrow.png in Resources */,
+				74C8F95826403CF40061FA73 /* Plusimg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1212,6 +1263,7 @@
 				27AB1254253AC828002667B0 /* LocalAuthFailedVC.swift in Sources */,
 				74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */,
 				744125D424D0311D00075CC1 /* PendingLeavescellTableViewCell.swift in Sources */,
+				74561016263C1F5000D07BF8 /* Selectcustcell.swift in Sources */,
 				744DBC562639900A0098747A /* timesheettblcell.swift in Sources */,
 				744125D124D02DA500075CC1 /* PendingLeavesVC.swift in Sources */,
 				74276AE425CD6E4A008015E7 /* Protocols.swift in Sources */,

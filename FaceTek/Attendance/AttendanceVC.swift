@@ -84,8 +84,16 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	
 	var AttendanceNavigationMenuArray = ["Holiday Calender","Time Sheet","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
+	var AttendanceNavigationMenuImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navtimesheet.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navvisitor.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!]
+
+	
 	
 	var AttendanceNavigationMenuGPSfalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us","",""]
+	
+	var AttendanceNavigationMenuGPSfalseImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!]
+
+	
+	
 	
 	var MovementoutDrpTbl: UITableView  =   UITableView()
 	//var MovementOutDrpArray: [String] = ["One", "Two", "Three"]
@@ -146,6 +154,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		isMenuVisible = true
 		menu.isHidden = true
 		AttendanceNavigationtbl.register(UINib(nibName: "LeaveNavigationcell", bundle: nil), forCellReuseIdentifier: "LeaveNavigationcell")
+		AttendanceNavigationtbl.isScrollEnabled = false
+
 		//programatical Tableview code
 		
 		let screenSize: CGRect = UIScreen.main.bounds
@@ -172,8 +182,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		self.ContactTextView.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 
 
-		self.MobilenumberLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
-		let Mobilenumberattributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]
+		self.MobilenumberLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+		let Mobnumbattributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]
 		self.MobilenumberLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
 		MobilenumberLbl.text = RetrivedMobileNumber
@@ -433,7 +443,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			{
 			// create a new cell if needed or reuse an old one
 			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
-			cell.accessoryType = .disclosureIndicator
+			//cell.accessoryType = .disclosureIndicator
 			// set the text from the data model
 			
 			
@@ -442,13 +452,20 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 			
 			cell.LeaveNavigationLbl?.text = self.AttendanceNavigationMenuArray[indexPath.row]
+				cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+				let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+				
+				let image = AttendanceNavigationMenuImagesArray[indexPath.row]
+				cell.LeaveNavigationimg.image = image
+
+				
 			customActivityIndicatory(self.view, startAnimate: false)
 			cellToReturn = cell
 			}
 			else
 			{
 				let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
-				cell.accessoryType = .disclosureIndicator
+				//cell.accessoryType = .disclosureIndicator
 				// set the text from the data model
 				
 				
@@ -457,6 +474,11 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 				
 				cell.LeaveNavigationLbl?.text = self.AttendanceNavigationMenuGPSfalseArray[indexPath.row]
+				let image = AttendanceNavigationMenuGPSfalseImagesArray[indexPath.row]
+				cell.LeaveNavigationimg.image = image
+
+				
+				
 				customActivityIndicatory(self.view, startAnimate: false)
 				cellToReturn = cell
 
@@ -2348,12 +2370,12 @@ alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, h
 					self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!
 					print("Refresh employeeName",self.RefreshemployeeNam)
 					
-					self.CompanyNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
-					let Companynameatributes :Dictionary = [NSAttributedStringKey.font : self.CompanyNameLbl.font]
+					self.CompanyNameLbl.font = UIFont(name: "Montserrat-Medium", size: 16.0)!
+					let companynameattributes :Dictionary = [NSAttributedStringKey.font : self.CompanyNameLbl.font]
 					self.CompanyNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
-					
-					self.UserNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
-					let Usernameatributes :Dictionary = [NSAttributedStringKey.font : self.UserNameLbl.font]
+
+					self.UserNameLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+					let usernameattributes :Dictionary = [NSAttributedStringKey.font : self.UserNameLbl.font]
 					self.UserNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 					
 					

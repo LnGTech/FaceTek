@@ -49,7 +49,13 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
     @IBOutlet weak var LeaveNavigationtbl: UITableView!
      //var LeaveNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
     var LeaveNavigationMenuArray = ["Holiday Calender","Time Sheet","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+	
+	
+	var LeaveNavigationMenuImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navtimesheet.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navvisitor.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!]
+
+
 	var LeaveNavigationMenuGPSFalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us","",""]
+	
 
     var isMenuVisible:Bool!
     @IBOutlet weak var hamburgerView: UIView!
@@ -144,11 +150,15 @@ class LeaveVC: UIViewController,UITableViewDelegate,UITableViewDataSource,UIText
 	RemarkTextview.delegate = self
 	LeaveNavigationtbl.register(UINib(nibName: "LeaveNavigationcell", bundle: nil), forCellReuseIdentifier: "LeaveNavigationcell")
 	Dropdowntbl.register(UINib(nibName: "Dropdowncell", bundle: nil), forCellReuseIdentifier: "Dropdowncell")
+		LeaveNavigationtbl.isScrollEnabled = false
 	RetrivedMobileNumber = UserDefaults.standard.string(forKey: "Mobilenum") ?? ""
 	MobilenumberLbl.text = RetrivedMobileNumber
-		self.MobilenumberLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
-		let Usernameatributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]
+	self.MobilenumberLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+	let Mobnumbattributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]
 		self.MobilenumberLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//		self.MobilenumberLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+//		let Usernameatributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]
+//		self.MobilenumberLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 		
 		self.ContactUsadrstextview.font = UIFont(name: "Verdana", size: 12.0)!
 		let contactusattributes :Dictionary = [NSAttributedStringKey.font : self.ContactUsadrstextview.font]
@@ -495,19 +505,25 @@ task.resume()
 		if(empIsGPSTrackEnabled == 1)
 		{
 	let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell") as! LeaveNavigationcell
-	cell.accessoryType = .disclosureIndicator
+	//cell.accessoryType = .disclosureIndicator
 		
 		
 		cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
 		let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
 		cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 	cell.LeaveNavigationLbl?.text = self.LeaveNavigationMenuArray[indexPath.row]
+			
+			cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+			let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+			
+			let image = LeaveNavigationMenuImagesArray[indexPath.row]
+			cell.LeaveNavigationimg.image = image
 	cellToReturn = cell
 		}
 		else
 		{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell") as! LeaveNavigationcell
-			cell.accessoryType = .disclosureIndicator
+			//cell.accessoryType = .disclosureIndicator
 				
 				
 				cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
@@ -954,14 +970,22 @@ task.resume()
 	if let responseJSON = responseJSON as? [String: Any] {
     DispatchQueue.main.async
 	{
-		self.CompanyNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
-		let Companynameatributes :Dictionary = [NSAttributedStringKey.font : self.CompanyNameLbl.font]
+//		self.CompanyNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
+//		let Companynameatributes :Dictionary = [NSAttributedStringKey.font : self.CompanyNameLbl.font]
+		
+		self.CompanyNameLbl.font = UIFont(name: "Montserrat-Medium", size: 16.0)!
+		let companynameattributes :Dictionary = [NSAttributedStringKey.font : self.CompanyNameLbl.font]
 		self.CompanyNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 		
-		self.UserNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+		self.UserNameLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
 		let Usernameatributes :Dictionary = [NSAttributedStringKey.font : self.UserNameLbl.font]
 		self.UserNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 		
+//
+//		self.UserNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+//		let Usernameatributes :Dictionary = [NSAttributedStringKey.font : self.UserNameLbl.font]
+//		self.UserNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+//
 		
 	let ItemsDict = responseJSON["employeeDataDto"] as! NSDictionary
 	self.RefreshemployeeNam = (ItemsDict["employeeName"] as? String)!

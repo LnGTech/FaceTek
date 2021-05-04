@@ -1,18 +1,17 @@
 //
-//  LeaveNavigationcell.swift
+//  Selectcustcell.swift
 //  FaceTek
 //
-//  Created by sureshbabu bandaru on 4/8/20.
-//  Copyright © 2020 sureshbabu bandaru. All rights reserved.
+//  Created by sureshbabu bandaru on 4/30/21.
+//  Copyright © 2021 sureshbabu bandaru. All rights reserved.
 //
 
 import UIKit
 
-class LeaveNavigationcell: UITableViewCell {
+class Selectcustcell: UITableViewCell {
 
-    @IBOutlet weak var LeaveNavigationLbl: UILabel!
 	
-	@IBOutlet weak var LeaveNavigationimg: UIImageView!
+	@IBOutlet weak var selectcustlbl: UILabel!
 	
     override func awakeFromNib() {
         super.awakeFromNib()

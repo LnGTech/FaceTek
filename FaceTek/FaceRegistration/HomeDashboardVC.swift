@@ -115,7 +115,12 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	    //var HomeDashboardNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	var HomeDashboardNavigationMenuArray = ["Holiday Calender","Time Sheet","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
+	var HomeDashboardNavigationMenuImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navtimesheet.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navvisitor.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!]
+
+	
 	var HomeDashboardGPSFalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us","",""]
+	var HomeDashboardGPSFalseImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!]
+
 	
 	
 	override func viewDidLayoutSubviews() {
@@ -263,9 +268,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		
 		HomeDashboatdtbl.register(UINib(nibName: "LeaveNavigationcell", bundle: nil), forCellReuseIdentifier: "LeaveNavigationcell")
-		
-		
-		
+		HomeDashboatdtbl.isScrollEnabled = false
+
 		//        RetrivedMobileNumber = defaults.string(forKey: "Mobilenum")!
 		//        print("RetrivedMobileNumber-----",RetrivedMobileNumber)
 		//
@@ -280,8 +284,11 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		ContactusText.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
 		
         
-		self.MobilenumberLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
-		let Mobilenumberattributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]
+//		self.MobilenumberLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
+//		let Mobilenumberattributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]
+		self.MobilenumberLbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+		let mobilenumattributes :Dictionary = [NSAttributedStringKey.font : self.MobilenumberLbl.font]
+
 		self.MobilenumberLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
         
 		MobilenumberLbl.text = RetrivedMobileNumber
@@ -1001,7 +1008,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		{
 			
 			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
-			cell.accessoryType = .disclosureIndicator
+			//cell.accessoryType = .disclosureIndicator
 			// set the text from the data model
 			
 			
@@ -1012,18 +1019,30 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
 			
 			cell.LeaveNavigationLbl?.text = self.HomeDashboardNavigationMenuArray[indexPath.row]
+			
+			cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+			let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+			let image = HomeDashboardNavigationMenuImagesArray[indexPath.row]
+			cell.LeaveNavigationimg.image = image
+
 			customActivityIndicatory(self.view, startAnimate: false)
 			cellToReturn = cell
 		}
 		else
 		{
 		let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
-		cell.accessoryType = .disclosureIndicator
+		//cell.accessoryType = .disclosureIndicator
 		cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
 		let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
 		cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
 			
 		cell.LeaveNavigationLbl?.text = self.HomeDashboardGPSFalseArray[indexPath.row]
+			
+			let image = HomeDashboardGPSFalseImagesArray[indexPath.row]
+			cell.LeaveNavigationimg.image = image
+
+			
+			
 			customActivityIndicatory(self.view, startAnimate: false)
 			cellToReturn = cell
 			
@@ -1211,6 +1230,7 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
 		return 39
+		
 	}
 	
 	func customActivityIndicatory(_ viewContainer: UIView, startAnimate:Bool? = true) -> UIActivityIndicatorView {
@@ -1312,13 +1332,15 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
                         print("brNamestr-----",self.brNamestr)
                         self.CompanyNameLbl.text = self.RefreshCustName
 						
-						self.CompanyNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 18.0)!
-						let Companynameatributes :Dictionary = [NSAttributedStringKey.font : self.CompanyNameLbl.font]
-						self.CompanyNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
 						
-						self.UserNameLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 14.0)!
-						let Usernameatributes :Dictionary = [NSAttributedStringKey.font : self.UserNameLbl.font]
+						self.CompanyNameLbl.font = UIFont(name: "Montserrat-Medium", size: 16.0)!
+						let companynameattributes :Dictionary = [NSAttributedStringKey.font : self.CompanyNameLbl.font]
+						self.CompanyNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+
+						self.UserNameLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+						let usernameattributes :Dictionary = [NSAttributedStringKey.font : self.UserNameLbl.font]
 						self.UserNameLbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+						
 						
                 }
             }    }
