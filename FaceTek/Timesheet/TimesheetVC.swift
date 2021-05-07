@@ -8,16 +8,20 @@
 
 import UIKit
 
-class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
+class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate {
     var SelectCustArray:NSMutableArray = NSMutableArray()
     var SelecttaskArray:NSMutableArray = NSMutableArray()
     var MainDict:NSMutableDictionary = NSMutableDictionary()
+	private var isAlreadyclientdropdown = false
+	private var isAlreadytaskdropdown = false
+
 
 	
 	@IBOutlet weak var Topdatebckview: UIView!
 	@IBOutlet weak var datetxtlbl: UILabel!
-	@IBOutlet weak var datelbl: UITextField!
-	
+	//@IBOutlet weak var datetxtfld: UITextField!
+	@IBOutlet weak var Dateselectionlbl: UILabel!
+	@IBOutlet weak var datetxtfld: UITextField!
 	@IBOutlet weak var custlbl: UILabel!
 	
 	@IBOutlet weak var selecttasklbl: UILabel!
@@ -48,33 +52,29 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 	
 	@IBOutlet weak var selecttasktitlelbl: UILabel!
 	let MyAccountArray: [String] = ["GST filling and other paper related activities.filling other paper related activities", "Financial documents", "Employee Extra training certification." , "Client deal clouser and visiting." , "Financial new documents" , "Employee Extra training certification"]
-
-	
-	
+	let Datepicker = UIDatePicker()
 	override func viewDidLoad() {
         super.viewDidLoad()
+		datetxtfld.delegate = self
+		datetxtfld.delegate = self
+		tblbackview.isHidden = true
+
+
+
 		Selectcusttbl.rowHeight = 40
 		selecttasktbl.rowHeight = 40
-
 		timesheettbl.rowHeight = 76
-
-
 		timesheettbl.register(UINib(nibName: "timesheettblcell", bundle: nil), forCellReuseIdentifier: "timesheettblcell")
 		
 		Selectcusttbl.register(UINib(nibName: "Selectcustcell", bundle: nil), forCellReuseIdentifier: "Selectcustcell")
 		selecttasktbl.register(UINib(nibName: "Selectcustcell", bundle: nil), forCellReuseIdentifier: "Selectcustcell")
 
-		
-
 		selectcustDrpdownbckview.isHidden = true
 		SelecttaskDrpdownbckview.isHidden = true
-
-		
 		Topdatebckview.layer.shadowColor = UIColor.lightGray.cgColor
 		Topdatebckview.layer.shadowOpacity = 3
 		Topdatebckview.layer.shadowOffset = .zero
 		Topdatebckview.layer.shadowRadius = 4
-
 		Topdatebckview.layer.borderColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
 		Topdatebckview.layer.borderWidth = 0.30
 		Topdatebckview.layer.borderColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
@@ -100,9 +100,9 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 		let datetextattributes :Dictionary = [NSAttributedStringKey.font : datetxtlbl.font]
 		datetxtlbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
-		datelbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
-		let dateattributes :Dictionary = [NSAttributedStringKey.font : datelbl.font]
-		datelbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+		datetxtfld.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+		let dateattributes :Dictionary = [NSAttributedStringKey.font : datetxtfld.font]
+		datetxtfld.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
 
 		custlbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
 		let custattributes :Dictionary = [NSAttributedStringKey.font : custlbl.font]
@@ -145,11 +145,67 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 		let selecttask = UITapGestureRecognizer(target: self, action: #selector(TimesheetVC.SelecttaskFunc))
 		selecttasklbl.isUserInteractionEnabled = true
 		selecttasklbl.addGestureRecognizer(selecttask)
+		
+		
+		Datepicker.datePickerMode = UIDatePicker.Mode.date
+		datetxtfld.inputView = Datepicker
+		 let formatter = DateFormatter()
+	   formatter.dateFormat = "dd-MMM-yyyy"
+		datetxtfld.text = formatter.string(from: Datepicker.date)
+		
+		FromDatesetDatePicker()
+		//datetxtfld.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchDown)
+
+		
     }
+	
+	//@objc func FromDatesetDatePicker() {
+		 func FromDatesetDatePicker() {
+
+
+		let toolbar = UIToolbar();
+		toolbar.sizeToFit()
+		let doneButton = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(doneDatePicker));
+		let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonItem.SystemItem.flexibleSpace, target: nil, action: nil)
+		let cancelButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelDatePicker));
+		
+		toolbar.setItems([doneButton,spaceButton,cancelButton], animated: false)
+		
+		datetxtfld.inputAccessoryView = toolbar
+		datetxtfld.inputView = Datepicker
+		print("datetxtfld .",datetxtfld.text as Any)
+		
+	}
+	
+	@objc func doneDatePicker(){
+		let formatter = DateFormatter()
+		formatter.dateFormat = "dd-MMM-yyyy"
+		datetxtfld.text = formatter.string(from: Datepicker.date)
+		 //var ConvertedDatestr = ""
+		//ConvertedCurrentDatestr = formattedDateFromString(dateString:
+			//DatetxtFld.text!, withFormat: "yyyy-MM-dd")! as NSString
+		//print("ConvertedCurrentDatestr---",ConvertedCurrentDatestr)
+//AbsentAPIMethod()
+		self.view.endEditing(true)
+	}
+	
+	@objc func cancelDatePicker(){
+		self.view.endEditing(true)
+};
+	
+	
+	
+	
+	
 	@objc func SelectcustFunc(sender:UITapGestureRecognizer) {
 
 		print("SelectcustFunc tap working")
 		selectcustDrpdownbckview.isHidden = false
+		
+		if isAlreadyclientdropdown {
+			return
+		}
+		isAlreadyclientdropdown = true
 		SelectCustDtpdown()
 
 	}
@@ -158,25 +214,33 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 
 		print("select task tap working")
 		SelecttaskDrpdownbckview.isHidden = false
+		if isAlreadytaskdropdown {
+			return
+		}
+		isAlreadytaskdropdown = true
 		selecttask()
 
 
 	}
 	
+
+	
+	
+	
 	func SelectCustDtpdown()
 	{
 	let defaults = UserDefaults.standard
-			
+
 	var RetrivedempId = defaults.integer(forKey: "empId")
-			
-	let parameters = ["empId": RetrivedempId as Any] as [String : Any]
-					   
+
+	let parameters = ["empId": 3938 as Any] as [String : Any]
+
 //						var StartPoint = Baseurl.shared().baseURL
 //						var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getMyTeamDetails"
 //						let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint1)")!
-						
+
 	let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/ClientListByEmpId")!
-						
+
 	let session = URLSession.shared
 	var request = URLRequest(url: url as URL)
 	request.httpMethod = "POST"
@@ -201,7 +265,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 	let SelectCustcode = statusDic["code"] as? NSInteger
 	if (SelectCustcode == 200)
 	{
-										
+
 	let clientdetailsArray = responseJSON["clientdetails"] as! NSArray
 	for Dic in clientdetailsArray as! [[String:Any]]
 
@@ -213,13 +277,13 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 		self.Selectcusttbl.reloadData()
 
 	}
-										
+
 	}
 	else
 	{
 	print("Not   Leaves")
 	}
-								
+
 								}
 							}
 						}
@@ -233,11 +297,9 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 					
 			var RetrivedempId = defaults.integer(forKey: "empId")
 					
-		let parameters = ["clientId": 21 , "empId": RetrivedempId as Any] as [String : Any]
+		let parameters = ["clientId": 18 , "empId": 3938 as Any] as [String : Any]
 							   
-		//						var StartPoint = Baseurl.shared().baseURL
-		//						var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getMyTeamDetails"
-		//						let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint1)")!
+		
 								
 			let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/TaskListByEmployeeId")!
 								
@@ -272,7 +334,6 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 			{
 				var MainDict:NSMutableDictionary = NSMutableDictionary()
 			var clientNamestr = Dic["taskName"] as! NSString
-				print("clientNamestr...",clientNamestr)
 				MainDict.setObject(clientNamestr, forKey: "taskName" as NSCopying)
 				self.SelecttaskArray.add(MainDict)
 				self.selecttasktbl.reloadData()
@@ -282,7 +343,74 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 			}
 			else
 			{
-			print("Not   Leaves")
+			}
+										
+										}
+									}
+								}
+								task.resume()
+			}
+	
+	func subtasklist()
+	{
+		
+			let defaults = UserDefaults.standard
+					
+			var RetrivedempId = defaults.integer(forKey: "empId")
+					
+		let parameters = ["empId": 3938 , "empTaskId_h": 162 as Any] as [String : Any]
+							   
+		
+								
+			let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeSubtaskInfoByEmpTaskId")!
+								
+			let session = URLSession.shared
+			var request = URLRequest(url: url as URL)
+			request.httpMethod = "POST"
+			do {
+			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+			} catch let error {
+									print(error.localizedDescription)
+								}
+			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+			request.addValue("application/json", forHTTPHeaderField: "Accept")
+								//create dataTask using the ses
+								//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+		let task = URLSession.shared.dataTask(with: request) { [self] data, response, error in
+			guard let data = data, error == nil else {
+			print(error?.localizedDescription ?? "No data")
+			return
+			}
+			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+			if let responseJSON = responseJSON as? [String: Any] {
+
+			DispatchQueue.main.async {
+				tblbackview.isHidden = true
+
+			let statusDic = responseJSON["status"]! as! NSDictionary
+			let SelectCustcode = statusDic["code"] as? NSInteger
+			if (SelectCustcode == 200)
+			{
+												
+			let clientdetailsArray = responseJSON["subtasks"] as! NSArray
+			for Dic in clientdetailsArray as! [[String:Any]]
+
+			{
+				var MainDict:NSMutableDictionary = NSMutableDictionary()
+			var subTaskNamestr = Dic["subTaskName"] as! NSString
+				MainDict.setObject(subTaskNamestr, forKey: "subTaskName" as NSCopying)
+				//self.SelecttaskArray.add(MainDict)
+				//self.selecttasktbl.reloadData()
+
+			}
+				print("its false")
+				self.tblbackview.isHidden = false
+
+
+												
+			}
+			else
+			{
 			}
 										
 										}
@@ -443,6 +571,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource {
 			cell.selectcustlbl.text = taskNamestr
 		selecttasklbl.text = taskNamestr
 			SelecttaskDrpdownbckview.isHidden = true
+			subtasklist()
 
 			cell.selectcustlbl.text = taskNamestr
 			cell.selectcustlbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!

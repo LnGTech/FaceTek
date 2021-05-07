@@ -16,11 +16,6 @@ class ManagerVC: UIViewController {
 
     @IBOutlet weak var Dateview: UIView!
     
-    
-    
-    
-    
-    
     var Managerstr = ""
     
     
