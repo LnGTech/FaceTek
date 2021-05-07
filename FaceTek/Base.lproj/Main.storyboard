@@ -7417,6 +7417,9 @@
                                                     <constraint firstAttribute="height" constant="45" id="yMh-IZ-Ud3"/>
                                                 </constraints>
                                                 <state key="normal" title="SUBMIT"/>
+                                                <connections>
+                                                    <action selector="subBtn:" destination="TD3-FY-sTZ" eventType="touchUpInside" id="S3L-dX-bh0"/>
+                                                </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5x4-ao-8EC">
                                                 <rect key="frame" x="37.5" y="100" width="300" height="350"/>

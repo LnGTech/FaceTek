@@ -9,14 +9,17 @@
 import UIKit
 
 class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate {
+	var SubtaskArray:NSMutableArray = NSMutableArray()
+
     var SelectCustArray:NSMutableArray = NSMutableArray()
     var SelecttaskArray:NSMutableArray = NSMutableArray()
     var MainDict:NSMutableDictionary = NSMutableDictionary()
 	private var isAlreadyclientdropdown = false
 	private var isAlreadytaskdropdown = false
+	private var isAlreadysubtaskdropdown = false
 
-
-	
+	var selectedclientId = Int()
+	var selectedempTaskId_h = Int()
 	@IBOutlet weak var Topdatebckview: UIView!
 	@IBOutlet weak var datetxtlbl: UILabel!
 	//@IBOutlet weak var datetxtfld: UITextField!
@@ -219,8 +222,6 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		}
 		isAlreadytaskdropdown = true
 		selecttask()
-
-
 	}
 	
 
@@ -273,6 +274,10 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		var MainDict:NSMutableDictionary = NSMutableDictionary()
 	var clientNamestr = Dic["clientName"] as! NSString
 		MainDict.setObject(clientNamestr, forKey: "clientName" as NSCopying)
+		
+		let clientId = Dic["clientId"] as! NSInteger
+			MainDict.setObject(clientId, forKey: "clientId" as NSCopying)
+		
 		self.SelectCustArray.add(MainDict)
 		self.Selectcusttbl.reloadData()
 
@@ -297,7 +302,9 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 					
 			var RetrivedempId = defaults.integer(forKey: "empId")
 					
-		let parameters = ["clientId": 18 , "empId": 3938 as Any] as [String : Any]
+		print("Retrived selected id ",selectedclientId)
+
+		let parameters = ["clientId": selectedclientId , "empId": 3938 as Any] as [String : Any]
 							   
 		
 								
@@ -335,6 +342,8 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 				var MainDict:NSMutableDictionary = NSMutableDictionary()
 			var clientNamestr = Dic["taskName"] as! NSString
 				MainDict.setObject(clientNamestr, forKey: "taskName" as NSCopying)
+				let empTaskId_h = Dic["empTaskId_h"] as! NSInteger
+				MainDict.setObject(empTaskId_h, forKey: "empTaskId_h" as NSCopying)
 				self.SelecttaskArray.add(MainDict)
 				self.selecttasktbl.reloadData()
 
@@ -353,15 +362,9 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	
 	func subtasklist()
 	{
-		
 			let defaults = UserDefaults.standard
-					
 			var RetrivedempId = defaults.integer(forKey: "empId")
-					
-		let parameters = ["empId": 3938 , "empTaskId_h": 162 as Any] as [String : Any]
-							   
-		
-								
+		let parameters = ["empId": 3938 , "empTaskId_h": selectedempTaskId_h as Any] as [String : Any]
 			let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeSubtaskInfoByEmpTaskId")!
 								
 			let session = URLSession.shared
@@ -399,25 +402,21 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 				var MainDict:NSMutableDictionary = NSMutableDictionary()
 			var subTaskNamestr = Dic["subTaskName"] as! NSString
 				MainDict.setObject(subTaskNamestr, forKey: "subTaskName" as NSCopying)
-				//self.SelecttaskArray.add(MainDict)
-				//self.selecttasktbl.reloadData()
+				self.SubtaskArray.add(MainDict)
+				self.timesheettbl.reloadData()
 
 			}
-				print("its false")
 				self.tblbackview.isHidden = false
-
-
-												
 			}
 			else
 			{
 			}
 										
-										}
-									}
-								}
-								task.resume()
 			}
+		}
+	}
+task.resume()
+}
 	
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -425,7 +424,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		
 		var count:Int?
 		if tableView == self.timesheettbl {
-		count = MyAccountArray.count
+		count = SubtaskArray.count
 		return count!
 			}
 		else{
@@ -448,21 +447,25 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		
 		var cellToReturn = UITableViewCell() // Dummy value
 		if tableView == self.timesheettbl {
+			
+			
+			
 			let cell = tableView.dequeueReusableCell(withIdentifier: "timesheettblcell") as! timesheettblcell
-			
-				cell.subtasktbllbl.text = self.MyAccountArray[indexPath.row]
-			
-					cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-					cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
-			
-					cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
-					let ClaimDatetxtLblattributes :Dictionary = [NSAttributedStringKey.font : cell.subtasktbllbl.font]
-					cell.subtasktbllbl.textColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1)
-			
-			
-				//let image = MyAccountIconImgs[indexPath.row]
-				//cell.img.image = image
-				//return cell
+			let responseDict = self.SubtaskArray[indexPath.row] as! NSMutableDictionary
+								_ = SubtaskArray[indexPath.row]
+			print("Retrived data",responseDict)
+			self.SubtaskArray.add(MainDict)
+			print("cust Type Array",SubtaskArray)
+			var subTaskNamestr : String?
+			subTaskNamestr = responseDict["subTaskName"] as? String
+			print("subTaskNamestr",subTaskNamestr)
+			cell.subtasktbllbl.text = subTaskNamestr
+			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
+
+			cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+			let ClaimDatetxtLblattributes :Dictionary = [NSAttributedStringKey.font : cell.subtasktbllbl.font]
+			cell.subtasktbllbl.textColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1)
 		cellToReturn = cell
 			}
 			else if tableView == self.Selectcusttbl
@@ -477,6 +480,12 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 				clientNamestr = responseDict["clientName"] as? String
 				print("clientName",clientNamestr)
 				cell.selectcustlbl.text = clientNamestr
+				
+				let clientId : NSInteger
+				clientId = responseDict["clientId"] as! NSInteger
+				print("clientId",clientId)
+				
+				
 				cell.selectcustlbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
 				let dateattributes :Dictionary = [NSAttributedStringKey.font : cell.selectcustlbl.font]
 				cell.selectcustlbl.textColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1)
@@ -496,6 +505,9 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			var taskNamestr : String?
 			taskNamestr = responseDict["taskName"] as? String
 			print("taskName",taskNamestr)
+			let empTaskId_h : NSInteger
+			empTaskId_h = responseDict["empTaskId_h"] as! NSInteger
+			print("empTaskId_h",empTaskId_h)
 			cell.selectcustlbl.text = taskNamestr
 			cell.selectcustlbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
 			let dateattributes :Dictionary = [NSAttributedStringKey.font : cell.selectcustlbl.font]
@@ -543,6 +555,10 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 				clientNamestr = responseDict["clientName"] as? String
 				print("clientName",clientNamestr)
 				
+				//let clientId : NSInteger
+				selectedclientId = responseDict["clientId"] as! NSInteger
+				print("selected id ",selectedclientId)
+				
 				custlbl.text = clientNamestr
 				selectcustDrpdownbckview.isHidden = true
 
@@ -568,9 +584,16 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			var taskNamestr : String?
 			taskNamestr = responseDict["taskName"] as? String
 			print("taskName",taskNamestr)
+			selectedempTaskId_h = responseDict["empTaskId_h"] as! NSInteger
+			print("selected selectedempTaskId_h ",selectedempTaskId_h)
 			cell.selectcustlbl.text = taskNamestr
 		selecttasklbl.text = taskNamestr
 			SelecttaskDrpdownbckview.isHidden = true
+			
+			if isAlreadysubtaskdropdown {
+				return
+			}
+			isAlreadysubtaskdropdown = true
 			subtasklist()
 
 			cell.selectcustlbl.text = taskNamestr
@@ -590,7 +613,63 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 //
 //	}
     
+	@IBAction func subBtn(_ sender: Any) {
+		
+		let defaults = UserDefaults.standard
+		var RetrivedempId = defaults.integer(forKey: "empId")
+	let parameters = [["empTaskId_d":267,
+  "hoursWorked":"10:00",
+  "date":"2021-05-05T10:30:00"]]
+		let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeTimesheetUpdate")!
+							
+		let session = URLSession.shared
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST"
+		do {
+		request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+		} catch let error {
+								print(error.localizedDescription)
+							}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+							//create dataTask using the ses
+							//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+	let task = URLSession.shared.dataTask(with: request) { [self] data, response, error in
+		guard let data = data, error == nil else {
+		print(error?.localizedDescription ?? "No data")
+		return
+		}
+		let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+		if let responseJSON = responseJSON as? [String: Any] {
 
+		DispatchQueue.main.async {
+			tblbackview.isHidden = true
+
+		//let statusDic = responseJSON["status"]! as! NSDictionary
+		let SelectCustcode = responseJSON["code"] as? NSInteger
+		if (SelectCustcode == 200)
+		{
+			let uiAlert = UIAlertController(title: "success", message: "successfully send to server", preferredStyle: UIAlertControllerStyle.alert)
+			self.present(uiAlert, animated: true, completion: nil)
+
+			uiAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+			let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+												
+			let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+			self.present(UITabBarController, animated:true, completion:nil)			  }))
+		}
+		else
+		{
+		}
+									
+		}
+	}
+}
+task.resume()
+
+		
+	}
+	
 	@IBAction func BackBtnclk(_ sender: Any) {
 		self.presentingViewController?.dismiss(animated: false, completion: nil)
 
