@@ -164,7 +164,6 @@
 		7497BDAC24CC1E0800EE54D0 /* AbsenttblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7497BDAA24CC1E0800EE54D0 /* AbsenttblCell.swift */; };
 		7497BDAD24CC1E0800EE54D0 /* AbsenttblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7497BDAB24CC1E0800EE54D0 /* AbsenttblCell.xib */; };
 		74B14504263968FC00A4AC85 /* TimesheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B14503263968FC00A4AC85 /* TimesheetVC.swift */; };
-		74C0055A264103C200F28355 /* Plusimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 74C00559264103C200F28355 /* Plusimg.png */; };
 		74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0CB2D24D2C03200866474 /* FaqVC.swift */; };
 		74C1616C253DB15500E8C956 /* AttnceHitry.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 74C1616B253DB15500E8C956 /* AttnceHitry.jpeg */; };
 		74C1616E253DB22400E8C956 /* RighAttnceHitry.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 74C1616D253DB22400E8C956 /* RighAttnceHitry.jpeg */; };
@@ -387,7 +386,6 @@
 		7497BDAA24CC1E0800EE54D0 /* AbsenttblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenttblCell.swift; sourceTree = "<group>"; };
 		7497BDAB24CC1E0800EE54D0 /* AbsenttblCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsenttblCell.xib; sourceTree = "<group>"; };
 		74B14503263968FC00A4AC85 /* TimesheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetVC.swift; sourceTree = "<group>"; };
-		74C00559264103C200F28355 /* Plusimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Plusimg.png; path = ../../../../../Desktop/Plusimg.png; sourceTree = "<group>"; };
 		74C0CB2D24D2C03200866474 /* FaqVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqVC.swift; sourceTree = "<group>"; };
 		74C1616B253DB15500E8C956 /* AttnceHitry.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AttnceHitry.jpeg; sourceTree = "<group>"; };
 		74C1616D253DB22400E8C956 /* RighAttnceHitry.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RighAttnceHitry.jpeg; sourceTree = "<group>"; };
@@ -691,7 +689,6 @@
 		747F8D9B243AEA8300ABBD5E /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				74C00559264103C200F28355 /* Plusimg.png */,
 				745793EB2566824D0087D4CA /* RupeeIcon.jpg */,
 				7463BA95255BD413007A0300 /* Attach.png */,
 				74466DD1255AD6C30020C815 /* Attendance-circled-left.png */,
@@ -1137,7 +1134,6 @@
 				74E68A7324C832B100A3B009 /* Dropdowncell.xib in Resources */,
 				74561017263C1F5000D07BF8 /* Selectcustcell.xib in Resources */,
 				746FC13C248280C700445207 /* LeaveDownArrow.png in Resources */,
-				74C0055A264103C200F28355 /* Plusimg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
