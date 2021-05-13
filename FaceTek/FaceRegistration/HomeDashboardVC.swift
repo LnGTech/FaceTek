@@ -591,7 +591,6 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
-		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
 		
 		
