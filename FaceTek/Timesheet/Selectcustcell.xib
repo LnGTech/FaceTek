@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="18122" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="18093"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,19 +27,19 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZX1-eO-L5k">
-                        <rect key="frame" x="11" y="14" width="16" height="16"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZX1-eO-L5k">
+                        <rect key="frame" x="15" y="17" width="12" height="12"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="16" id="Gd5-Sw-4Hb"/>
-                            <constraint firstAttribute="width" constant="16" id="uhp-uL-6zc"/>
+                            <constraint firstAttribute="height" constant="12" id="Gd5-Sw-4Hb"/>
+                            <constraint firstAttribute="width" constant="12" id="uhp-uL-6zc"/>
                         </constraints>
                         <state key="normal" backgroundImage="circle.png"/>
                     </button>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="ZX1-eO-L5k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="11" id="E1L-Oo-atW"/>
+                    <constraint firstItem="ZX1-eO-L5k" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="E1L-Oo-atW"/>
                     <constraint firstItem="tzb-dr-VNc" firstAttribute="leading" secondItem="ZX1-eO-L5k" secondAttribute="trailing" constant="8" id="E3c-0W-lrK"/>
-                    <constraint firstItem="ZX1-eO-L5k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="14" id="MNc-sv-8jP"/>
+                    <constraint firstItem="ZX1-eO-L5k" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="17" id="MNc-sv-8jP"/>
                     <constraint firstItem="tzb-dr-VNc" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="jqI-Z8-FdN"/>
                 </constraints>
             </tableViewCellContentView>

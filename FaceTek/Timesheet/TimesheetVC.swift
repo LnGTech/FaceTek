@@ -22,6 +22,8 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	var selectedempTaskId_h = Int()
 	@IBOutlet weak var Topdatebckview: UIView!
 	@IBOutlet weak var datetxtlbl: UILabel!
+	
+	@IBOutlet weak var ContentView: UIView!
 	//@IBOutlet weak var datetxtfld: UITextField!
 	@IBOutlet weak var Dateselectionlbl: UILabel!
 	@IBOutlet weak var datetxtfld: UITextField!
@@ -38,10 +40,13 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	
 	@IBOutlet weak var SelectTaskview: UIView!
 	
+	@IBOutlet weak var scroll: UIScrollView!
 	
 	@IBOutlet weak var tblbackview: UIView!
 	
 	@IBOutlet weak var tblsubtaskbckview: UIView!
+	
+	@IBOutlet weak var submitbtn: UIButton!
 	
 	@IBOutlet weak var timesheettbl: UITableView!
 	
@@ -61,12 +66,11 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		datetxtfld.delegate = self
 		datetxtfld.delegate = self
 		tblbackview.isHidden = true
-
-
-
+		submitbtn.isHidden = true
+		self.scroll.isScrollEnabled = false
 		Selectcusttbl.rowHeight = 40
 		selecttasktbl.rowHeight = 40
-		timesheettbl.rowHeight = 76
+		timesheettbl.rowHeight = 55
 		timesheettbl.register(UINib(nibName: "timesheettblcell", bundle: nil), forCellReuseIdentifier: "timesheettblcell")
 		
 		Selectcusttbl.register(UINib(nibName: "Selectcustcell", bundle: nil), forCellReuseIdentifier: "Selectcustcell")
@@ -158,7 +162,10 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		
 		FromDatesetDatePicker()
 		//datetxtfld.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchDown)
-
+		
+         //Press on ContentView hide cust and taskdropdown
+//		let gesture = UITapGestureRecognizer(target: self, action:  #selector(self.ContentViewAction))
+//		self.ContentView.addGestureRecognizer(gesture)
 		
     }
 	
@@ -200,6 +207,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	
 	
 	
+	
 	@objc func SelectcustFunc(sender:UITapGestureRecognizer) {
 
 		print("SelectcustFunc tap working")
@@ -224,7 +232,11 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		selecttask()
 	}
 	
-
+//	@objc func ContentViewAction(sender : UITapGestureRecognizer) {
+//		selectcustDrpdownbckview.isHidden = true
+//		SelecttaskDrpdownbckview.isHidden = true
+//
+//	}
 	
 	
 	
@@ -396,6 +408,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			{
 												
 			let clientdetailsArray = responseJSON["subtasks"] as! NSArray
+				print("clientdetailsArray.",clientdetailsArray)
 			for Dic in clientdetailsArray as! [[String:Any]]
 
 			{
@@ -589,6 +602,7 @@ task.resume()
 			cell.selectcustlbl.text = taskNamestr
 		selecttasklbl.text = taskNamestr
 			SelecttaskDrpdownbckview.isHidden = true
+			submitbtn.isHidden = false
 			
 			if isAlreadysubtaskdropdown {
 				return
@@ -617,7 +631,7 @@ task.resume()
 		
 		let defaults = UserDefaults.standard
 		var RetrivedempId = defaults.integer(forKey: "empId")
-	let parameters = [["empTaskId_d":267,
+	let parameters = [["empTaskId_d":316,
   "hoursWorked":"10:00",
   "date":"2021-05-05T10:30:00"]]
 		let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeTimesheetUpdate")!
@@ -669,7 +683,7 @@ task.resume()
 
 		
 	}
-	
+	 
 	@IBAction func BackBtnclk(_ sender: Any) {
 		self.presentingViewController?.dismiss(animated: false, completion: nil)
 
