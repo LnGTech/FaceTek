@@ -1,19 +1,16 @@
 //
-//  timesheettblcell.swift
+//  hrsminutescell.swift
 //  FaceTek
 //
-//  Created by sureshbabu bandaru on 4/28/21.
+//  Created by sureshbabu bandaru on 5/17/21.
 //  Copyright © 2021 sureshbabu bandaru. All rights reserved.
 //
 
 import UIKit
 
-class timesheettblcell: UITableViewCell {
+class hrsminutescell: UITableViewCell {
 	
-	@IBOutlet weak var subtasktbllbl: UILabel!
-	
-	@IBOutlet weak var hrslbl: UILabel!
-	@IBOutlet weak var tableviewsubtaskcellbackview: UIView!
+	@IBOutlet weak var minutslbl: UILabel!
 	
     override func awakeFromNib() {
         super.awakeFromNib()

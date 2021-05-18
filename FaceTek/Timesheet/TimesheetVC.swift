@@ -40,6 +40,8 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	
 	@IBOutlet weak var SelectTaskview: UIView!
 	
+	@IBOutlet weak var Workedhrsview: UIView!
+	
 	@IBOutlet weak var scroll: UIScrollView!
 	
 	@IBOutlet weak var tblbackview: UIView!
@@ -54,12 +56,26 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	
 	@IBOutlet weak var selectcusttitlelbl: UILabel!
 	@IBOutlet weak var Selectcusttbl: UITableView!
+	
+	@IBOutlet weak var hrsminutestbl: UITableView!
 	@IBOutlet weak var SelecttaskDrpdownbckview: UIView!
 	
 	@IBOutlet weak var selecttasktbl: UITableView!
 	
 	@IBOutlet weak var selecttasktitlelbl: UILabel!
+	
+	@IBOutlet weak var provideworkhrslbl: UILabel!
+	
+	@IBOutlet weak var Workhrslbl: UILabel!
+	
+	@IBOutlet weak var hrslistlbl: UILabel!
+	@IBOutlet weak var cancellbl: UILabel!
+	
+	@IBOutlet weak var oklbl: UILabel!
 	let MyAccountArray: [String] = ["GST filling and other paper related activities.filling other paper related activities", "Financial documents", "Employee Extra training certification." , "Client deal clouser and visiting." , "Financial new documents" , "Employee Extra training certification"]
+	
+	let hoursArray: [String] = ["00:00","00:30","01:00","01:30","02:00","02:30","03:00","03:30","04:00","04:30","05:00","05:30","06:00","06:30","07:00","07:30","08:00","08:30","09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30","24:00"]
+
 	let Datepicker = UIDatePicker()
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,14 +86,20 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		self.scroll.isScrollEnabled = false
 		Selectcusttbl.rowHeight = 40
 		selecttasktbl.rowHeight = 40
+		hrsminutestbl.rowHeight = 35
 		timesheettbl.rowHeight = 55
 		timesheettbl.register(UINib(nibName: "timesheettblcell", bundle: nil), forCellReuseIdentifier: "timesheettblcell")
 		
 		Selectcusttbl.register(UINib(nibName: "Selectcustcell", bundle: nil), forCellReuseIdentifier: "Selectcustcell")
 		selecttasktbl.register(UINib(nibName: "Selectcustcell", bundle: nil), forCellReuseIdentifier: "Selectcustcell")
+		
+		hrsminutestbl.register(UINib(nibName: "hrsminutescell", bundle: nil), forCellReuseIdentifier: "hrsminutescell")
+
 
 		selectcustDrpdownbckview.isHidden = true
 		SelecttaskDrpdownbckview.isHidden = true
+		Workedhrsview.isHidden = true
+		hrsminutestbl.isHidden = true
 		Topdatebckview.layer.shadowColor = UIColor.lightGray.cgColor
 		Topdatebckview.layer.shadowOpacity = 3
 		Topdatebckview.layer.shadowOffset = .zero
@@ -85,6 +107,14 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		Topdatebckview.layer.borderColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
 		Topdatebckview.layer.borderWidth = 0.30
 		Topdatebckview.layer.borderColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+		
+		
+		Workedhrsview.layer.shadowColor = UIColor.black.cgColor
+		Workedhrsview.layer.shadowOpacity = 1
+		Workedhrsview.layer.shadowOffset = .zero
+		Workedhrsview.layer.shadowRadius = 5
+		
+		
 //		Selectcustview.layer.borderWidth = 0.30
 //		SelectTaskview.layer.borderColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
 //		SelectTaskview.layer.borderWidth = 0.30
@@ -95,36 +125,58 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		
 		
 		
-		selectcusttitlelbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+		selectcusttitlelbl.font = UIFont(name: "Montserrat-Medium", size: 18.0)!
 		let selectcusttitlelblatributes :Dictionary = [NSAttributedStringKey.font : selectcusttitlelbl.font]
-		selectcusttitlelbl.textColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1)
+		selectcusttitlelbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 		
-		selecttasktitlelbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+		selecttasktitlelbl.font = UIFont(name: "Montserrat-Medium", size: 18.0)!
 		let selecttasktitlelblatributes :Dictionary = [NSAttributedStringKey.font : selecttasktitlelbl.font]
-		selecttasktitlelbl.textColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1)
+		selecttasktitlelbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 		
-		datetxtlbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+		datetxtlbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 		let datetextattributes :Dictionary = [NSAttributedStringKey.font : datetxtlbl.font]
 		datetxtlbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
-		datetxtfld.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+		datetxtfld.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 		let dateattributes :Dictionary = [NSAttributedStringKey.font : datetxtfld.font]
-		datetxtfld.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+		datetxtfld.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
 		custlbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
 		let custattributes :Dictionary = [NSAttributedStringKey.font : custlbl.font]
-		custlbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+		custlbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
 		selecttasklbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
 		let selecttaskattributes :Dictionary = [NSAttributedStringKey.font : selecttasklbl.font]
-		selecttasklbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+		selecttasklbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
 		subtasklbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
 		let subtasksatributes :Dictionary = [NSAttributedStringKey.font : subtasklbl.font]
-		subtasklbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+		subtasklbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
 		hourslbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
 		let hoursattributes :Dictionary = [NSAttributedStringKey.font : hourslbl.font]
 		hourslbl.textColor = #colorLiteral(red: 0.9689681155, green: 0.6426868715, blue: 0.1272936669, alpha: 1)
+		
+		
+		
+		provideworkhrslbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
+		let providehrslblatributes :Dictionary = [NSAttributedStringKey.font : provideworkhrslbl.font]
+		provideworkhrslbl.textColor = #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)
+		
+		Workhrslbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
+		let hourslblatributes :Dictionary = [NSAttributedStringKey.font : Workhrslbl.font]
+		Workhrslbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7385385273)
+		
+		hrslistlbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
+		let hrslistlblatributes :Dictionary = [NSAttributedStringKey.font : hrslistlbl.font]
+		hrslistlbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.7385385273)
+		
+		cancellbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
+		let cancellblatributes :Dictionary = [NSAttributedStringKey.font : cancellbl.font]
+		cancellbl.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
+		
+		oklbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
+		let oklblatributes :Dictionary = [NSAttributedStringKey.font : oklbl.font]
+		oklbl.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
 		
 		tblbackview.layer.shadowColor = UIColor.lightGray.cgColor
 		tblbackview.layer.shadowOpacity = 5
@@ -161,6 +213,12 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		datetxtfld.text = formatter.string(from: Datepicker.date)
 		
 		FromDatesetDatePicker()
+		
+		//horus and minute tableview and label action
+		let hrsminutstap = UITapGestureRecognizer(target: self, action: #selector(TimesheetVC.hoursminutestapFunction))
+			   hrslistlbl.isUserInteractionEnabled = true
+		hrslistlbl.addGestureRecognizer(hrsminutstap)
+		
 		//datetxtfld.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchDown)
 		
          //Press on ContentView hide cust and taskdropdown
@@ -168,6 +226,14 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 //		self.ContentView.addGestureRecognizer(gesture)
 		
     }
+	//hours and minutes functionality method
+	
+	@objc
+		func hoursminutestapFunction(sender:UITapGestureRecognizer) {
+			print(" hours and minutes tap working")
+			hrsminutestbl.isHidden = false
+			
+		}
 	
 	//@objc func FromDatesetDatePicker() {
 		 func FromDatesetDatePicker() {
@@ -246,7 +312,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 
 	var RetrivedempId = defaults.integer(forKey: "empId")
 
-	let parameters = ["empId": 3938 as Any] as [String : Any]
+	let parameters = ["empId": 80 as Any] as [String : Any]
 
 //						var StartPoint = Baseurl.shared().baseURL
 //						var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getMyTeamDetails"
@@ -316,7 +382,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 					
 		print("Retrived selected id ",selectedclientId)
 
-		let parameters = ["clientId": selectedclientId , "empId": 3938 as Any] as [String : Any]
+		let parameters = ["clientId": selectedclientId , "empId": 80 as Any] as [String : Any]
 							   
 		
 								
@@ -376,7 +442,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	{
 			let defaults = UserDefaults.standard
 			var RetrivedempId = defaults.integer(forKey: "empId")
-		let parameters = ["empId": 3938 , "empTaskId_h": selectedempTaskId_h as Any] as [String : Any]
+		let parameters = ["empId": 80 , "empTaskId_h": selectedempTaskId_h as Any] as [String : Any]
 			let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeSubtaskInfoByEmpTaskId")!
 								
 			let session = URLSession.shared
@@ -415,6 +481,10 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 				var MainDict:NSMutableDictionary = NSMutableDictionary()
 			var subTaskNamestr = Dic["subTaskName"] as! NSString
 				MainDict.setObject(subTaskNamestr, forKey: "subTaskName" as NSCopying)
+				
+				var workedhrsstr = Dic["workedHours"] as! NSString
+					MainDict.setObject(workedhrsstr, forKey: "workedHours" as NSCopying)
+				
 				self.SubtaskArray.add(MainDict)
 				self.timesheettbl.reloadData()
 
@@ -449,8 +519,16 @@ task.resume()
 			}
 		if tableView == self.selecttasktbl {
 		count =  SelecttaskArray.count
+			
+		return count!
+		}
+		else
+		{
+		if tableView == self.hrsminutestbl {
+		count =  hoursArray.count
 			}
 		return count!
+		}
 	}
 	
 		
@@ -473,12 +551,23 @@ task.resume()
 			subTaskNamestr = responseDict["subTaskName"] as? String
 			print("subTaskNamestr",subTaskNamestr)
 			cell.subtasktbllbl.text = subTaskNamestr
+			
+			var Workedhrsstr : String?
+			Workedhrsstr = responseDict["workedHours"] as? String
+			print("Workedhrsstr",Workedhrsstr)
+			cell.hrslbl.text = Workedhrsstr
+			
 			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
 			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
 
 			cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
 			let ClaimDatetxtLblattributes :Dictionary = [NSAttributedStringKey.font : cell.subtasktbllbl.font]
-			cell.subtasktbllbl.textColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1)
+			cell.subtasktbllbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+			
+			cell.hrslbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+			let hrsattributes :Dictionary = [NSAttributedStringKey.font : cell.hrslbl.font]
+			cell.hrslbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+			
 		cellToReturn = cell
 			}
 			else if tableView == self.Selectcusttbl
@@ -501,13 +590,13 @@ task.resume()
 				
 				cell.selectcustlbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
 				let dateattributes :Dictionary = [NSAttributedStringKey.font : cell.selectcustlbl.font]
-				cell.selectcustlbl.textColor = #colorLiteral(red: 0.1019607843, green: 0.1019607843, blue: 0.1019607843, alpha: 1)
+				cell.selectcustlbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 				
 				
 				cellToReturn = cell
 				
 			}
-		 if tableView == self.selecttasktbl
+		else if tableView == self.selecttasktbl
 		{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "Selectcustcell") as! Selectcustcell
 			let responseDict = self.SelecttaskArray[indexPath.row] as! NSMutableDictionary
@@ -530,6 +619,18 @@ task.resume()
 			
 		}
 		
+		 if tableView == self.hrsminutestbl
+		{
+			let cell = tableView.dequeueReusableCell(withIdentifier: "hrsminutescell") as! hrsminutescell
+			
+			cell.minutslbl?.text = self.hoursArray[indexPath.row]
+			
+			cellToReturn = cell
+			
+		}
+		
+
+		
 		return cellToReturn
 	}
 	
@@ -549,6 +650,7 @@ task.resume()
 					cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
 					let ClaimDatetxtLblattributes :Dictionary = [NSAttributedStringKey.font : cell.subtasktbllbl.font]
 					cell.subtasktbllbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+			Workedhrsview.isHidden = false
 			
 			
 				//let image = MyAccountIconImgs[indexPath.row]
@@ -586,7 +688,7 @@ task.resume()
 				cellToReturn = cell
 				
 			}
-		 if tableView == self.selecttasktbl
+		 else if tableView == self.selecttasktbl
 		{
 			let cell = tableView.dequeueReusableCell(withIdentifier: "Selectcustcell") as! Selectcustcell
 			let responseDict = self.SelecttaskArray[indexPath.row] as! NSMutableDictionary
@@ -618,7 +720,18 @@ task.resume()
 			cellToReturn = cell
 			
 		}
+		if tableView == self.hrsminutestbl
+	   {
+		   let cell = tableView.dequeueReusableCell(withIdentifier: "hrsminutescell") as! hrsminutescell
+		   
+		   cell.minutslbl?.text = self.hoursArray[indexPath.row]
+			var hoursminutesstr = NSString()
+			hrslistlbl?.text = cell.minutslbl?.text
+			hrsminutestbl.isHidden = true
+		   
+		   cellToReturn = cell
 		
+	}
 	}
 	
 	
