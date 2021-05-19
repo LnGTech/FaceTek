@@ -10,6 +10,12 @@ import UIKit
 
 class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate {
 	var SubtaskArray:NSMutableArray = NSMutableArray()
+	var workedhoursArray:NSMutableArray = NSMutableArray()
+	var subtasknameArray:NSMutableArray = NSMutableArray()
+	var empTaskId_Array:NSMutableArray = NSMutableArray()
+
+
+
 
     var SelectCustArray:NSMutableArray = NSMutableArray()
     var SelecttaskArray:NSMutableArray = NSMutableArray()
@@ -20,6 +26,13 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 
 	var selectedclientId = Int()
 	var selectedempTaskId_h = Int()
+	var empTaskId_d : Int?
+
+	var index = IndexPath()
+	var Selectedhrsstr = String()
+	var selecteddate = String()
+
+
 	@IBOutlet weak var Topdatebckview: UIView!
 	@IBOutlet weak var datetxtlbl: UILabel!
 	
@@ -239,6 +252,11 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			   hrslistlbl.isUserInteractionEnabled = true
 		hrslistlbl.addGestureRecognizer(hrsminutstap)
 		
+		//Okay label action
+		let okaylbl = UITapGestureRecognizer(target: self, action: #selector(TimesheetVC.okaylblaction))
+		oklbl.isUserInteractionEnabled = true
+		oklbl.addGestureRecognizer(okaylbl)
+		
 		//datetxtfld.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchDown)
 		
          //Press on ContentView hide cust and taskdropdown
@@ -247,6 +265,16 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		
     }
 	
+	@objc func okaylblaction(sender:UITapGestureRecognizer) {
+		Workedhrsview.isHidden = true
+		if let cell = timesheettbl.cellForRow(at:index) as? timesheettblcell
+		{
+			cell.hrslbl?.text = hrslistlbl.text
+			Selectedhrsstr = hrslistlbl.text!
+			
+		}
+
+	}
 	
 	
 	func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -301,6 +329,11 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			Workedhrsstr = responseDict["workedHours"] as? String
 			print("Workedhrsstr",Workedhrsstr)
 			cell.hrslbl.text = Workedhrsstr
+			
+			var empTaskId_d : Int?
+			empTaskId_d = responseDict["empTaskId_d"] as? Int
+			print("empTaskId_d.,",empTaskId_d)
+			cell.subtasktbllbl.text = subTaskNamestr
 			
 			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
 			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
@@ -385,22 +418,75 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		
 		var cellToReturn = UITableViewCell() // Dummy value
 		if tableView == self.timesheettbl {
+			
+			index = indexPath
+			
+//			let cell = tableView.dequeueReusableCell(withIdentifier: "timesheettblcell") as! timesheettblcell
+//
+//				//cell.subtasktbllbl.text = self.MyAccountArray[indexPath.row]
+//
+//			//hrslistlbl.text = self.MyAccountArray[indexPath.row]
+//
+//					cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+//					cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
+//
+//					cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+//					let ClaimDatetxtLblattributes :Dictionary = [NSAttributedStringKey.font : cell.subtasktbllbl.font]
+//					cell.subtasktbllbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//			Workedhrsview.isHidden = false
+//
+//
+//				//let image = MyAccountIconImgs[indexPath.row]
+//				//cell.img.image = image
+//				//return cell
+//
+//
+			
 			let cell = tableView.dequeueReusableCell(withIdentifier: "timesheettblcell") as! timesheettblcell
+			let responseDict = self.SubtaskArray[indexPath.row] as! NSMutableDictionary
+								_ = SubtaskArray[indexPath.row]
+			print("Retrived data",responseDict)
+			self.SubtaskArray.add(MainDict)
+			print("cust Type Array",SubtaskArray)
+			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
+			var subTaskNamestr : String?
+			subTaskNamestr = responseDict["subTaskName"] as? String
+			print("subTaskNamestr",subTaskNamestr)
+			cell.subtasktbllbl.text = subTaskNamestr
 			
-				cell.subtasktbllbl.text = self.MyAccountArray[indexPath.row]
+			empTaskId_d = responseDict["empTaskId_d"] as? Int
+			cell.subtasktbllbl.text = subTaskNamestr
+
 			
-					cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-					cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
-			
-					cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
-					let ClaimDatetxtLblattributes :Dictionary = [NSAttributedStringKey.font : cell.subtasktbllbl.font]
-					cell.subtasktbllbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 			Workedhrsview.isHidden = false
+
+			var Workedhrsstr : String?
+			Workedhrsstr = responseDict["workedHours"] as? String
+			print("Workedhrsstr",Workedhrsstr)
+			cell.hrslbl.text = Workedhrsstr
+			
+			hrslistlbl.text = Workedhrsstr
+			
+			if (indexPath.row == 0)
+			{
+				print("rowid",indexPath.row)
+				var selectedvalue = hrslistlbl.text
+				print("selectedvalue..",selectedvalue)
+			}
+			
+			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
+
+			cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+			let ClaimDatetxtLblattributes :Dictionary = [NSAttributedStringKey.font : cell.subtasktbllbl.font]
+			cell.subtasktbllbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
+			
+			cell.hrslbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+			let hrsattributes :Dictionary = [NSAttributedStringKey.font : cell.hrslbl.font]
+			cell.hrslbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
 			
 			
-				//let image = MyAccountIconImgs[indexPath.row]
-				//cell.img.image = image
-				//return cell
 		cellToReturn = cell
 			}
 			else if tableView == self.Selectcusttbl
@@ -721,7 +807,6 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			let defaults = UserDefaults.standard
 			var RetrivedempId = defaults.integer(forKey: "empId")
 		
-		var selecteddate = String()
 		selecteddate = self.getFormattedDate(strDate: datetxtfld.text!, currentFomat: "dd-MMM-yyyy", expectedFromat: "yyyy-MM-dd")
 		print("selecteddate...",selecteddate)
 		let parameters = ["date":selecteddate,"empId": 80 , "empTaskId_h": selectedempTaskId_h as Any] as [String : Any]
@@ -762,11 +847,36 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 
 			{
 				var MainDict:NSMutableDictionary = NSMutableDictionary()
+				
+				let empTaskId_d = Dic["empTaskId_d"] as! NSInteger
+				
+				var empTaskId_dMainDict:NSMutableDictionary = NSMutableDictionary()
+				empTaskId_dMainDict.setObject(empTaskId_d, forKey: "empTaskId_d" as NSCopying)
+				MainDict.setObject(empTaskId_d, forKey: "empTaskId_d" as NSCopying)
+
+				empTaskId_Array.add(empTaskId_dMainDict)
+				print("empTaskId_Array",empTaskId_Array)
+
+
+
+
+				
 			var subTaskNamestr = Dic["subTaskName"] as! NSString
 				MainDict.setObject(subTaskNamestr, forKey: "subTaskName" as NSCopying)
-				
+				var workedhrsMainDict:NSMutableDictionary = NSMutableDictionary()
+				var subTaskNameMainDict:NSMutableDictionary = NSMutableDictionary()
+
 				var workedhrsstr = Dic["workedHours"] as! NSString
 					MainDict.setObject(workedhrsstr, forKey: "workedHours" as NSCopying)
+				workedhrsMainDict.setObject(workedhrsstr, forKey: "workedHours" as NSCopying)
+				subTaskNameMainDict.setObject(subTaskNamestr, forKey: "workedHours" as NSCopying)
+
+
+				workedhoursArray.add(workedhrsMainDict)
+				print("workedhoursArray",workedhoursArray)
+				subtasknameArray.add(subTaskNameMainDict)
+				print("subtasknameArray",subtasknameArray)
+
 				
 				SubtaskArray.add(MainDict)
 				DispatchQueue.main.async {
@@ -799,6 +909,13 @@ task.resume()
     
 	@IBAction func subBtn(_ sender: Any) {
 		
+		let okaylbl = UITapGestureRecognizer(target: self, action: #selector(TimesheetVC.okaylblaction))
+		oklbl.isUserInteractionEnabled = true
+		oklbl.addGestureRecognizer(okaylbl)
+		print("update hour list",Selectedhrsstr)
+		print("selected empTaskId_d.,",empTaskId_d)
+
+		
 //		var postParameters = "name=\(teamName)&member=\(member)"
 //		let arr = ["aaa", "wassd", "wesdsd"]
 //		var index = 0
@@ -812,9 +929,27 @@ task.resume()
 		
 		let defaults = UserDefaults.standard
 		var RetrivedempId = defaults.integer(forKey: "empId")
-	let parameters = [["empTaskId_d":316,
-  "hoursWorked":"10:00",
-  "date":"2021-05-05T10:30:00"]]
+		print("Retrived empTaskId_Array",empTaskId_Array)
+
+//	let parameters = [["empTaskId_d":285,
+//					   "hoursWorked":"12:00",
+//		"date":"2021-05-19"],["empTaskId_d":286,
+//							  "hoursWorked":"01:00",
+//		 "date":"2021-05-19"],["empTaskId_d":288,
+//							   "hoursWorked":"02:00","date":"2021-05-19"]]
+		let empTaskId_dAry = ["285", "286", "288"]
+		let hoursWorkedAry = ["A","B","C"]
+		let ints = empTaskId_dAry.map { $0.count }
+		print("ints..",ints)
+
+		let datearr = ["2021-05-19", "2021-05-19", "2021-05-19"]
+
+		
+		let parameters = [["empTaskId_d":empTaskId_d,
+						   "hoursWorked":Selectedhrsstr,
+						   "date":selecteddate]]
+		
+		
 		let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeTimesheetUpdate")!
 							
 		let session = URLSession.shared
