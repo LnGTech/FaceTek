@@ -13,6 +13,10 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	var workedhoursArray:NSMutableArray = NSMutableArray()
 	var subtasknameArray:NSMutableArray = NSMutableArray()
 	var empTaskId_Array:NSMutableArray = NSMutableArray()
+	
+	var SubtaskData = NSMutableDictionary()
+	var SubtasklistArray = NSMutableArray()
+
 
 
 
@@ -282,7 +286,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		
 		var count:Int?
 		if tableView == self.timesheettbl {
-		count = SubtaskArray.count
+		count = SubtasklistArray.count
 		return count!
 			}
 		else{
@@ -314,27 +318,37 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		var cellToReturn = UITableViewCell() // Dummy value
 		if tableView == self.timesheettbl {
 			
-			let cell = tableView.dequeueReusableCell(withIdentifier: "timesheettblcell") as! timesheettblcell
-			let responseDict = self.SubtaskArray[indexPath.row] as! NSMutableDictionary
-								_ = SubtaskArray[indexPath.row]
-			print("Retrived data",responseDict)
-			self.SubtaskArray.add(MainDict)
-			print("cust Type Array",SubtaskArray)
-			var subTaskNamestr : String?
-			subTaskNamestr = responseDict["subTaskName"] as? String
-			print("subTaskNamestr",subTaskNamestr)
-			cell.subtasktbllbl.text = subTaskNamestr
+			let cell = tableView.dequeueReusableCell(withIdentifier: "timesheettblcell", for: indexPath) as! timesheettblcell
+			let dicsubtaskDetails = SubtasklistArray.object(at: indexPath.row) as? NSDictionary
+			cell.subtasktbllbl.text = dicsubtaskDetails?.value(forKey: "subTaskName") as? String
 			
-			var Workedhrsstr : String?
-			Workedhrsstr = responseDict["workedHours"] as? String
-			print("Workedhrsstr",Workedhrsstr)
-			cell.hrslbl.text = Workedhrsstr
-			
+
+			cell.hrslbl.text = dicsubtaskDetails?.value(forKey: "workedHours") as? String
 			var empTaskId_d : Int?
-			empTaskId_d = responseDict["empTaskId_d"] as? Int
-			print("empTaskId_d.,",empTaskId_d)
-			cell.subtasktbllbl.text = subTaskNamestr
+			empTaskId_d = dicsubtaskDetails?.value(forKey: "empTaskId_d") as? Int
+
+
+			//cell.subtasktbllbl.text = dicsubtaskDetails?.value(forKey: "empTaskId_d") as? Int
+
 			
+			
+			
+			
+//			var subTaskNamestr : String?
+//			subTaskNamestr = responseDict["subTaskName"] as? String
+//			print("subTaskNamestr",subTaskNamestr)
+//			cell.subtasktbllbl.text = subTaskNamestr
+//
+//			var Workedhrsstr : String?
+//			Workedhrsstr = responseDict["workedHours"] as? String
+//			print("Workedhrsstr",Workedhrsstr)
+//			cell.hrslbl.text = Workedhrsstr
+//
+//			var empTaskId_d : Int?
+//			empTaskId_d = responseDict["empTaskId_d"] as? Int
+//			print("empTaskId_d.,",empTaskId_d)
+//			cell.subtasktbllbl.text = subTaskNamestr
+//
 			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
 			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
 
@@ -442,38 +456,49 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 //
 //
 			
-			let cell = tableView.dequeueReusableCell(withIdentifier: "timesheettblcell") as! timesheettblcell
-			let responseDict = self.SubtaskArray[indexPath.row] as! NSMutableDictionary
-								_ = SubtaskArray[indexPath.row]
-			print("Retrived data",responseDict)
-			self.SubtaskArray.add(MainDict)
-			print("cust Type Array",SubtaskArray)
-			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
-			var subTaskNamestr : String?
-			subTaskNamestr = responseDict["subTaskName"] as? String
-			print("subTaskNamestr",subTaskNamestr)
-			cell.subtasktbllbl.text = subTaskNamestr
+//			let cell = tableView.dequeueReusableCell(withIdentifier: "timesheettblcell") as! timesheettblcell
+//			let responseDict = self.SubtaskArray[indexPath.row] as! NSMutableDictionary
+//								_ = SubtaskArray[indexPath.row]
+//			print("Retrived data",responseDict)
+//			self.SubtaskArray.add(MainDict)
+//			print("cust Type Array",SubtaskArray)
+//			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
+//			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
+//			var subTaskNamestr : String?
+//			subTaskNamestr = responseDict["subTaskName"] as? String
+//			print("subTaskNamestr",subTaskNamestr)
+//			cell.subtasktbllbl.text = subTaskNamestr
+//
+//			empTaskId_d = responseDict["empTaskId_d"] as? Int
+//			cell.subtasktbllbl.text = subTaskNamestr
+//
+//
+//			Workedhrsview.isHidden = false
+//
+//			var Workedhrsstr : String?
+//			Workedhrsstr = responseDict["workedHours"] as? String
+//			print("Workedhrsstr",Workedhrsstr)
+//			cell.hrslbl.text = Workedhrsstr
+//
+//			hrslistlbl.text = Workedhrsstr
 			
-			empTaskId_d = responseDict["empTaskId_d"] as? Int
-			cell.subtasktbllbl.text = subTaskNamestr
+			let cell = tableView.dequeueReusableCell(withIdentifier: "timesheettblcell", for: indexPath) as! timesheettblcell
+			let dicShiftDetails = SubtasklistArray.object(at: indexPath.row) as? NSDictionary
+			cell.subtasktbllbl.text = dicShiftDetails?.value(forKey: "subTaskName") as? String
+			
+			
+			empTaskId_d = dicShiftDetails?.value(forKey: "empTaskId_d") as? Int
+			//cell.subtasktbllbl.text = subTaskNamestr
+			
+						Workedhrsview.isHidden = false
 
 			
-			Workedhrsview.isHidden = false
-
-			var Workedhrsstr : String?
-			Workedhrsstr = responseDict["workedHours"] as? String
-			print("Workedhrsstr",Workedhrsstr)
-			cell.hrslbl.text = Workedhrsstr
-			
-			hrslistlbl.text = Workedhrsstr
-			
-			if (indexPath.row == 0)
-			{
-				print("rowid",indexPath.row)
-				var selectedvalue = hrslistlbl.text
-				print("selectedvalue..",selectedvalue)
-			}
+//			if (indexPath.row == 0)
+//			{
+//				print("rowid",indexPath.row)
+//				var selectedvalue = hrslistlbl.text
+//				print("selectedvalue..",selectedvalue)
+//			}
 			
 			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
 			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
@@ -809,97 +834,188 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		
 		selecteddate = self.getFormattedDate(strDate: datetxtfld.text!, currentFomat: "dd-MMM-yyyy", expectedFromat: "yyyy-MM-dd")
 		print("selecteddate...",selecteddate)
-		let parameters = ["date":selecteddate,"empId": 80 , "empTaskId_h": selectedempTaskId_h as Any] as [String : Any]
-			let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeSubtaskInfoByEmpTaskId")!
-								
-			let session = URLSession.shared
-			var request = URLRequest(url: url as URL)
-			request.httpMethod = "POST"
-			do {
-			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-			} catch let error {
-									print(error.localizedDescription)
-								}
-			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-			request.addValue("application/json", forHTTPHeaderField: "Accept")
-								//create dataTask using the ses
-								//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
-		let task = URLSession.shared.dataTask(with: request) { [self] data, response, error in
-			guard let data = data, error == nil else {
-			print(error?.localizedDescription ?? "No data")
-			return
-			}
-			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-			if let responseJSON = responseJSON as? [String: Any] {
+		
+//		let parameters = [  "date":"2021-05-19",
+//							"empId":80,
+//	  "empTaskId_h":176 as Any] as [String : Any]
+		
+				let parameters = ["date":selecteddate,"empId": 80 , "empTaskId_h": selectedempTaskId_h as Any] as [String : Any]
 
-			DispatchQueue.main.async {
+			   
+				var StartPoint = "http://122.166.248.191:8080/"
+				var Endpoint1 = "attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeSubtaskInfoByEmpTaskId"
+				let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint1)")!
 				
-				tblbackview.isHidden = true
-
-			let statusDic = responseJSON["status"]! as! NSDictionary
-			let SelectCustcode = statusDic["code"] as? NSInteger
-			if (SelectCustcode == 200)
-			{
-												
-			let clientdetailsArray = responseJSON["subtasks"] as! NSArray
-				print("clientdetailsArray.",clientdetailsArray)
-			for Dic in clientdetailsArray as! [[String:Any]]
-
-			{
-				var MainDict:NSMutableDictionary = NSMutableDictionary()
-				
-				let empTaskId_d = Dic["empTaskId_d"] as! NSInteger
-				
-				var empTaskId_dMainDict:NSMutableDictionary = NSMutableDictionary()
-				empTaskId_dMainDict.setObject(empTaskId_d, forKey: "empTaskId_d" as NSCopying)
-				MainDict.setObject(empTaskId_d, forKey: "empTaskId_d" as NSCopying)
-
-				empTaskId_Array.add(empTaskId_dMainDict)
-				print("empTaskId_Array",empTaskId_Array)
-
-
-
-
-				
-			var subTaskNamestr = Dic["subTaskName"] as! NSString
-				MainDict.setObject(subTaskNamestr, forKey: "subTaskName" as NSCopying)
-				var workedhrsMainDict:NSMutableDictionary = NSMutableDictionary()
-				var subTaskNameMainDict:NSMutableDictionary = NSMutableDictionary()
-
-				var workedhrsstr = Dic["workedHours"] as! NSString
-					MainDict.setObject(workedhrsstr, forKey: "workedHours" as NSCopying)
-				workedhrsMainDict.setObject(workedhrsstr, forKey: "workedHours" as NSCopying)
-				subTaskNameMainDict.setObject(subTaskNamestr, forKey: "workedHours" as NSCopying)
-
-
-				workedhoursArray.add(workedhrsMainDict)
-				print("workedhoursArray",workedhoursArray)
-				subtasknameArray.add(subTaskNameMainDict)
-				print("subtasknameArray",subtasknameArray)
-
-				
-				SubtaskArray.add(MainDict)
-				DispatchQueue.main.async {
-					//self.SubtaskArray.add(self.MainDict)
-
-					timesheettbl.reloadData()
+				//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getEmpPendingLeaveByCustIdAndEmpId")!
+				//http://122.166.152.106:8080/serenityuat/inmatesignup/validateMobileNo
+				//create the session object
+				let session = URLSession.shared
+				//now create the URLRequest object using the url object
+				var request = URLRequest(url: url as URL)
+				request.httpMethod = "POST" //set http method as POST
+				do {
+					request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted) // pass dictionary to nsdata object and set it as request body
+				} catch let error {
+					print(error.localizedDescription)
 				}
+				request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+				request.addValue("application/json", forHTTPHeaderField: "Accept")
+				//create dataTask using the ses
+				//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+				let task = URLSession.shared.dataTask(with: request) { data, response, error in
+					guard let data = data, error == nil else {
+						print(error?.localizedDescription ?? "No data")
+						return
+					}
+					let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+					if let responseJSON = responseJSON as? [String: Any] {
+						DispatchQueue.main.async { [self] in
+				let statusDic = responseJSON["status"]! as! NSDictionary
+				let LeavePendingCode = statusDic["code"] as? NSInteger
+				print("subtask list-----",LeavePendingCode as Any)
+							 if (LeavePendingCode == 200)
+							{
+								
+								print("success")
+								self.tblbackview.isHidden = false
 
-			}
+								timesheettbl.isHidden = false
 
-				self.tblbackview.isHidden = false
-			}
-			else
-			{
 
-			}
+								
+							 }
+							else
+							{
+								print("Failure")
 
-			}
-				
+		 
+							  print("Not   Leaves")
+								//self.Nodataview.isHidden = false
+							 }
+										 
+							
+							 self.SubtaskData = NSMutableDictionary()
+							if responseJSON != nil{
+								self.SubtaskData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
+								
+								if let temp = self.SubtaskData.value(forKey: "subtasks") as? NSArray{
+									self.SubtasklistArray = temp.mutableCopy() as! NSMutableArray
+									
+									print("SubtasklistArray...",SubtasklistArray)
+									
+									
+									
+									
+			//let ItemsDict = MyTeamArray["subTaskName"] as! NSArray
 
-		}
-	}
-task.resume()
+									
+									
+								}
+								
+							  
+
+							}
+						self.timesheettbl.reloadData()
+		//                }
+						}
+					}
+				}
+				task.resume()
+		
+//
+//
+//
+//		let parameters = ["date":selecteddate,"empId": 80 , "empTaskId_h": selectedempTaskId_h as Any] as [String : Any]
+//			let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeSubtaskInfoByEmpTaskId")!
+//
+//			let session = URLSession.shared
+//			var request = URLRequest(url: url as URL)
+//			request.httpMethod = "POST"
+//			do {
+//			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+//			} catch let error {
+//									print(error.localizedDescription)
+//								}
+//			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//			request.addValue("application/json", forHTTPHeaderField: "Accept")
+//								//create dataTask using the ses
+//								//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
+//		let task = URLSession.shared.dataTask(with: request) { [self] data, response, error in
+//			guard let data = data, error == nil else {
+//			print(error?.localizedDescription ?? "No data")
+//			return
+//			}
+//			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+//			if let responseJSON = responseJSON as? [String: Any] {
+//
+//			DispatchQueue.main.async {
+//
+//				tblbackview.isHidden = true
+//
+//			let statusDic = responseJSON["status"]! as! NSDictionary
+//			let SelectCustcode = statusDic["code"] as? NSInteger
+//			if (SelectCustcode == 200)
+//			{
+//
+//			let clientdetailsArray = responseJSON["subtasks"] as! NSArray
+//				print("clientdetailsArray.",clientdetailsArray)
+//			for Dic in clientdetailsArray as! [[String:Any]]
+//
+//			{
+//				var MainDict:NSMutableDictionary = NSMutableDictionary()
+//
+//				let empTaskId_d = Dic["empTaskId_d"] as! NSInteger
+//
+//				var empTaskId_dMainDict:NSMutableDictionary = NSMutableDictionary()
+//				empTaskId_dMainDict.setObject(empTaskId_d, forKey: "empTaskId_d" as NSCopying)
+//				MainDict.setObject(empTaskId_d, forKey: "empTaskId_d" as NSCopying)
+//
+//				empTaskId_Array.add(empTaskId_dMainDict)
+//				print("empTaskId_Array",empTaskId_Array)
+//
+//
+//
+//
+//
+//			var subTaskNamestr = Dic["subTaskName"] as! NSString
+//				MainDict.setObject(subTaskNamestr, forKey: "subTaskName" as NSCopying)
+//				var workedhrsMainDict:NSMutableDictionary = NSMutableDictionary()
+//				var subTaskNameMainDict:NSMutableDictionary = NSMutableDictionary()
+//
+//				var workedhrsstr = Dic["workedHours"] as! NSString
+//					MainDict.setObject(workedhrsstr, forKey: "workedHours" as NSCopying)
+//				workedhrsMainDict.setObject(workedhrsstr, forKey: "workedHours" as NSCopying)
+//				subTaskNameMainDict.setObject(subTaskNamestr, forKey: "workedHours" as NSCopying)
+//
+//
+//				workedhoursArray.add(workedhrsMainDict)
+//				print("workedhoursArray",workedhoursArray)
+//				subtasknameArray.add(subTaskNameMainDict)
+//				print("subtasknameArray",subtasknameArray)
+//
+//
+//				SubtaskArray.add(MainDict)
+//				DispatchQueue.main.async {
+//					//self.SubtaskArray.add(self.MainDict)
+//
+//					timesheettbl.reloadData()
+//				}
+//
+//			}
+//
+//				self.tblbackview.isHidden = false
+//			}
+//			else
+//			{
+//
+//			}
+//
+//			}
+//
+//
+//		}
+//	}
+//task.resume()
 }
 	
 //	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
