@@ -261,6 +261,10 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		oklbl.isUserInteractionEnabled = true
 		oklbl.addGestureRecognizer(okaylbl)
 		
+		let Cancellabel = UITapGestureRecognizer(target: self, action: #selector(TimesheetVC.CancellabelAction))
+		cancellbl.isUserInteractionEnabled = true
+		cancellbl.addGestureRecognizer(Cancellabel)
+		
 		//datetxtfld.addTarget(self, action: #selector(FromDatesetDatePicker), for: .touchDown)
 		
          //Press on ContentView hide cust and taskdropdown
@@ -278,6 +282,9 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			
 		}
 
+	}
+	@objc func CancellabelAction(sender:UITapGestureRecognizer) {
+		Workedhrsview.isHidden = true
 	}
 	
 	
@@ -435,52 +442,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			
 			index = indexPath
 			
-//			let cell = tableView.dequeueReusableCell(withIdentifier: "timesheettblcell") as! timesheettblcell
 //
-//				//cell.subtasktbllbl.text = self.MyAccountArray[indexPath.row]
-//
-//			//hrslistlbl.text = self.MyAccountArray[indexPath.row]
-//
-//					cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-//					cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
-//
-//					cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
-//					let ClaimDatetxtLblattributes :Dictionary = [NSAttributedStringKey.font : cell.subtasktbllbl.font]
-//					cell.subtasktbllbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
-//			Workedhrsview.isHidden = false
-//
-//
-//				//let image = MyAccountIconImgs[indexPath.row]
-//				//cell.img.image = image
-//				//return cell
-//
-//
-			
-//			let cell = tableView.dequeueReusableCell(withIdentifier: "timesheettblcell") as! timesheettblcell
-//			let responseDict = self.SubtaskArray[indexPath.row] as! NSMutableDictionary
-//								_ = SubtaskArray[indexPath.row]
-//			print("Retrived data",responseDict)
-//			self.SubtaskArray.add(MainDict)
-//			print("cust Type Array",SubtaskArray)
-//			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
-//			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
-//			var subTaskNamestr : String?
-//			subTaskNamestr = responseDict["subTaskName"] as? String
-//			print("subTaskNamestr",subTaskNamestr)
-//			cell.subtasktbllbl.text = subTaskNamestr
-//
-//			empTaskId_d = responseDict["empTaskId_d"] as? Int
-//			cell.subtasktbllbl.text = subTaskNamestr
-//
-//
-//			Workedhrsview.isHidden = false
-//
-//			var Workedhrsstr : String?
-//			Workedhrsstr = responseDict["workedHours"] as? String
-//			print("Workedhrsstr",Workedhrsstr)
-//			cell.hrslbl.text = Workedhrsstr
-//
-//			hrslistlbl.text = Workedhrsstr
 			
 			let cell = tableView.dequeueReusableCell(withIdentifier: "timesheettblcell", for: indexPath) as! timesheettblcell
 			let dicShiftDetails = SubtasklistArray.object(at: indexPath.row) as? NSDictionary
@@ -488,18 +450,9 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			
 			
 			empTaskId_d = dicShiftDetails?.value(forKey: "empTaskId_d") as? Int
-			//cell.subtasktbllbl.text = subTaskNamestr
 			
 						Workedhrsview.isHidden = false
 
-			
-//			if (indexPath.row == 0)
-//			{
-//				print("rowid",indexPath.row)
-//				var selectedvalue = hrslistlbl.text
-//				print("selectedvalue..",selectedvalue)
-//			}
-			
 			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
 			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
 
@@ -562,23 +515,6 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			SelecttaskDrpdownbckview.isHidden = true
 			submitbtn.isHidden = false
 			subtasklist()
-
-			
-//			if isAlreadysubtaskdropdown {
-//				print("isAlreadysubtaskdropdown.....false")
-//				//subtasklist()
-//				//isAlreadysubtaskdropdown = true
-//
-//
-//				return
-//
-//			}
-//			print("isAlreadysubtaskdropdown.....true")
-//
-//			isAlreadysubtaskdropdown = true
-//
-//			subtasklist()
-
 			cell.selectcustlbl.text = taskNamestr
 			cell.selectcustlbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
 			let selecttaskatributesattributes :Dictionary = [NSAttributedStringKey.font : cell.selectcustlbl.font]
@@ -900,20 +836,9 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 								
 								if let temp = self.SubtaskData.value(forKey: "subtasks") as? NSArray{
 									self.SubtasklistArray = temp.mutableCopy() as! NSMutableArray
-									
-									print("SubtasklistArray...",SubtasklistArray)
-									
-									
-									
-									
-			//let ItemsDict = MyTeamArray["subTaskName"] as! NSArray
-
-									
+								
 									
 								}
-								
-							  
-
 							}
 						self.timesheettbl.reloadData()
 		//                }
@@ -921,101 +846,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 					}
 				}
 				task.resume()
-		
-//
-//
-//
-//		let parameters = ["date":selecteddate,"empId": 80 , "empTaskId_h": selectedempTaskId_h as Any] as [String : Any]
-//			let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeSubtaskInfoByEmpTaskId")!
-//
-//			let session = URLSession.shared
-//			var request = URLRequest(url: url as URL)
-//			request.httpMethod = "POST"
-//			do {
-//			request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-//			} catch let error {
-//									print(error.localizedDescription)
-//								}
-//			request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-//			request.addValue("application/json", forHTTPHeaderField: "Accept")
-//								//create dataTask using the ses
-//								//request.setValue(Verificationtoken, forHTTPHeaderField: "Authentication")
-//		let task = URLSession.shared.dataTask(with: request) { [self] data, response, error in
-//			guard let data = data, error == nil else {
-//			print(error?.localizedDescription ?? "No data")
-//			return
-//			}
-//			let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-//			if let responseJSON = responseJSON as? [String: Any] {
-//
-//			DispatchQueue.main.async {
-//
-//				tblbackview.isHidden = true
-//
-//			let statusDic = responseJSON["status"]! as! NSDictionary
-//			let SelectCustcode = statusDic["code"] as? NSInteger
-//			if (SelectCustcode == 200)
-//			{
-//
-//			let clientdetailsArray = responseJSON["subtasks"] as! NSArray
-//				print("clientdetailsArray.",clientdetailsArray)
-//			for Dic in clientdetailsArray as! [[String:Any]]
-//
-//			{
-//				var MainDict:NSMutableDictionary = NSMutableDictionary()
-//
-//				let empTaskId_d = Dic["empTaskId_d"] as! NSInteger
-//
-//				var empTaskId_dMainDict:NSMutableDictionary = NSMutableDictionary()
-//				empTaskId_dMainDict.setObject(empTaskId_d, forKey: "empTaskId_d" as NSCopying)
-//				MainDict.setObject(empTaskId_d, forKey: "empTaskId_d" as NSCopying)
-//
-//				empTaskId_Array.add(empTaskId_dMainDict)
-//				print("empTaskId_Array",empTaskId_Array)
-//
-//
-//
-//
-//
-//			var subTaskNamestr = Dic["subTaskName"] as! NSString
-//				MainDict.setObject(subTaskNamestr, forKey: "subTaskName" as NSCopying)
-//				var workedhrsMainDict:NSMutableDictionary = NSMutableDictionary()
-//				var subTaskNameMainDict:NSMutableDictionary = NSMutableDictionary()
-//
-//				var workedhrsstr = Dic["workedHours"] as! NSString
-//					MainDict.setObject(workedhrsstr, forKey: "workedHours" as NSCopying)
-//				workedhrsMainDict.setObject(workedhrsstr, forKey: "workedHours" as NSCopying)
-//				subTaskNameMainDict.setObject(subTaskNamestr, forKey: "workedHours" as NSCopying)
-//
-//
-//				workedhoursArray.add(workedhrsMainDict)
-//				print("workedhoursArray",workedhoursArray)
-//				subtasknameArray.add(subTaskNameMainDict)
-//				print("subtasknameArray",subtasknameArray)
-//
-//
-//				SubtaskArray.add(MainDict)
-//				DispatchQueue.main.async {
-//					//self.SubtaskArray.add(self.MainDict)
-//
-//					timesheettbl.reloadData()
-//				}
-//
-//			}
-//
-//				self.tblbackview.isHidden = false
-//			}
-//			else
-//			{
-//
-//			}
-//
-//			}
-//
-//
-//		}
-//	}
-//task.resume()
+	
 }
 	
 //	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
