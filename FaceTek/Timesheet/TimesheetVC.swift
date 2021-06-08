@@ -65,6 +65,17 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	
 	@IBOutlet weak var tblsubtaskbckview: UIView!
 	
+	
+	@IBOutlet weak var Remarklbl: UILabel!
+	
+	@IBOutlet weak var nofoundremarklbl: UILabel!
+	@IBOutlet weak var Remarkspopuplbl: UILabel!
+	@IBOutlet weak var taskcompltedlbl: UILabel!
+	
+	@IBOutlet weak var RemarksBackview: UIView!
+	
+	@IBOutlet weak var NoremarksBackview: UIView!
+	
 	@IBOutlet weak var submitbtn: UIButton!
 	
 	@IBOutlet weak var timesheettbl: UITableView!
@@ -89,6 +100,10 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	@IBOutlet weak var cancellbl: UILabel!
 	
 	@IBOutlet weak var oklbl: UILabel!
+	
+	@IBOutlet weak var checkBoxBtn: UIButton!
+	
+	
 	let MyAccountArray: [String] = ["GST filling and other paper related activities.filling other paper related activities", "Financial documents", "Employee Extra training certification." , "Client deal clouser and visiting." , "Financial new documents" , "Employee Extra training certification"]
 	
 	let hoursArray: [String] = ["00:00","00:30","01:00","01:30","02:00","02:30","03:00","03:30","04:00","04:30","05:00","05:30","06:00","06:30","07:00","07:30","08:00","08:30","09:00","09:30","10:00","10:30","11:00","11:30","12:00","12:30","13:00","13:30","14:00","14:30","15:00","15:30","16:00","16:30","17:00","17:30","18:00","18:30","19:00","19:30","20:00","20:30","21:00","21:30","22:00","22:30","23:00","23:30","24:00"]
@@ -96,6 +111,9 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	let Datepicker = UIDatePicker()
 	override func viewDidLoad() {
         super.viewDidLoad()
+		RemarksBackview.isHidden = true
+		NoremarksBackview.isHidden = true
+
 		datetxtfld.delegate = self
 		datetxtfld.delegate = self
 		tblbackview.isHidden = true
@@ -148,7 +166,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		
 		selecttasktitlelbl.font = UIFont(name: "Montserrat-Medium", size: 18.0)!
 		let selecttasktitlelblatributes :Dictionary = [NSAttributedStringKey.font : selecttasktitlelbl.font]
-		selecttasktitlelbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+		selecttasktitlelbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 0.55)
 		
 		datetxtlbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 		let datetextattributes :Dictionary = [NSAttributedStringKey.font : datetxtlbl.font]
@@ -158,20 +176,21 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		let dateattributes :Dictionary = [NSAttributedStringKey.font : datetxtfld.font]
 		datetxtfld.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
-		custlbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+		custlbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 		let custattributes :Dictionary = [NSAttributedStringKey.font : custlbl.font]
 		custlbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
-		selecttasklbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+		selecttasklbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 		let selecttaskattributes :Dictionary = [NSAttributedStringKey.font : selecttasklbl.font]
 		selecttasklbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
-		subtasklbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+		subtasklbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 		let subtasksatributes :Dictionary = [NSAttributedStringKey.font : subtasklbl.font]
 		subtasklbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
-		hourslbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+		hourslbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 		let hoursattributes :Dictionary = [NSAttributedStringKey.font : hourslbl.font]
 		hourslbl.textColor = #colorLiteral(red: 0.9689681155, green: 0.6426868715, blue: 0.1272936669, alpha: 1)
+		
 		
 		
 		
@@ -195,6 +214,29 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		let oklblatributes :Dictionary = [NSAttributedStringKey.font : oklbl.font]
 		oklbl.textColor = #colorLiteral(red: 0.8078431487, green: 0.02745098062, blue: 0.3333333433, alpha: 1)
 		
+		
+		Remarklbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
+		let remarklblatributes :Dictionary = [NSAttributedStringKey.font : Remarklbl.font]
+		Remarklbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+		
+		taskcompltedlbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
+		let taskcompltedlblatributes :Dictionary = [NSAttributedStringKey.font : taskcompltedlbl.font]
+		taskcompltedlbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+		//Remarks Popup label
+		
+		Remarkspopuplbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
+		let Remarkspopuplblatributes :Dictionary = [NSAttributedStringKey.font : Remarkspopuplbl.font]
+		Remarkspopuplbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+			//No remarks found label
+	
+		nofoundremarklbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
+		let nofoundremarklblatributes :Dictionary = [NSAttributedStringKey.font : nofoundremarklbl.font]
+		nofoundremarklbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+
+
+		
+		
 		tblbackview.layer.shadowColor = UIColor.lightGray.cgColor
 		tblbackview.layer.shadowOpacity = 5
 		tblbackview.layer.shadowOffset = .zero
@@ -212,6 +254,19 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		SelecttaskDrpdownbckview.layer.shadowOffset = .zero
 		SelecttaskDrpdownbckview.layer.shadowRadius = 6
 		
+		
+		//Remark view shadow color
+		RemarksBackview.layer.cornerRadius = 5
+		RemarksBackview.layer.shadowColor = UIColor.darkGray.cgColor
+		RemarksBackview.layer.shadowOpacity = 5
+		RemarksBackview.layer.shadowOffset = .zero
+		RemarksBackview.layer.shadowRadius = 6
+		//No Remarks found label
+		NoremarksBackview.layer.cornerRadius = 5
+		NoremarksBackview.layer.shadowColor = UIColor.darkGray.cgColor
+		NoremarksBackview.layer.shadowOpacity = 5
+		NoremarksBackview.layer.shadowOffset = .zero
+		NoremarksBackview.layer.shadowRadius = 6
 		
 		//Select custmor Action label
 		let selecttap = UITapGestureRecognizer(target: self, action: #selector(TimesheetVC.SelectcustFunc))
@@ -359,11 +414,11 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
 			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
 
-			cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+			cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 			let ClaimDatetxtLblattributes :Dictionary = [NSAttributedStringKey.font : cell.subtasktbllbl.font]
 			cell.subtasktbllbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
 			
-			cell.hrslbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+			cell.hrslbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 			let hrsattributes :Dictionary = [NSAttributedStringKey.font : cell.hrslbl.font]
 			cell.hrslbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
 			
@@ -387,7 +442,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 				print("clientId",clientId)
 				
 				
-				cell.selectcustlbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+				cell.selectcustlbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 				let dateattributes :Dictionary = [NSAttributedStringKey.font : cell.selectcustlbl.font]
 				cell.selectcustlbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 				
@@ -410,7 +465,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			empTaskId_h = responseDict["empTaskId_h"] as! NSInteger
 			print("empTaskId_h",empTaskId_h)
 			cell.selectcustlbl.text = taskNamestr
-			cell.selectcustlbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+			cell.selectcustlbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 			let dateattributes :Dictionary = [NSAttributedStringKey.font : cell.selectcustlbl.font]
 			cell.selectcustlbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 			
@@ -456,11 +511,11 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			cell.tableviewsubtaskcellbackview.layer.borderColor = #colorLiteral(red: 0.6666666865, green: 0.6666666865, blue: 0.6666666865, alpha: 1)
 			cell.tableviewsubtaskcellbackview.layer.borderWidth = 0.30
 
-			cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 15.0)!
+			cell.subtasktbllbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 			let ClaimDatetxtLblattributes :Dictionary = [NSAttributedStringKey.font : cell.subtasktbllbl.font]
 			cell.subtasktbllbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
 			
-			cell.hrslbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+			cell.hrslbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
 			let hrsattributes :Dictionary = [NSAttributedStringKey.font : cell.hrslbl.font]
 			cell.hrslbl.textColor = #colorLiteral(red: 0.4, green: 0.4, blue: 0.4, alpha: 1)
 			
@@ -853,7 +908,68 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 //		return 76
 //
 //	}
-    
+	
+	
+	
+	@IBAction func Checkunchekcbtn(_ sender: Any) {
+		
+		if checkBoxBtn.isSelected {
+			checkBoxBtn.setBackgroundImage(UIImage(named: "check.png"), for: .normal)
+			RemarksBackview.isHidden = false
+
+
+			
+			print("unchek button")
+
+		} else {
+					//checkBoxBtn.setBackgroundImage(#imageLiteral(resourceName: "ic_signup_checked"), for:.normal)
+					//checkBoxBtn.setImage(UIImage(named:"check.png"), for: .selected)
+			//checkBoxBtn.setImage(UIImage(named: "check.png"), for: UIControlState.normal)
+			
+			checkBoxBtn.setBackgroundImage(UIImage(named: "uncheck.png"), for: .normal)
+			RemarksBackview.isHidden = true
+
+
+			print("chek button")
+
+
+					
+				}
+				checkBoxBtn.isSelected = !checkBoxBtn.isSelected
+	}
+	
+	@IBAction func Yesbtnclk(_ sender: Any) {
+		let alert = UIAlertController(title: "Alert", message: "Task will be marked as completed on submit", preferredStyle: UIAlertControllerStyle.alert)
+		alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
+		self.present(alert, animated: true, completion: nil)
+		RemarksBackview.isHidden = true
+
+	}
+	
+	@IBAction func Nobtnclk(_ sender: Any) {
+		RemarksBackview.isHidden = true
+		checkBoxBtn.setBackgroundImage(UIImage(named: "uncheck.png"), for: .normal)
+
+
+	}
+
+	
+	
+	@IBAction func clickherebtnclk(_ sender: Any) {
+		NoremarksBackview.isHidden = false
+		
+	}
+	
+	@IBAction func Noremarksokbtnclk(_ sender: Any) {
+		NoremarksBackview.isHidden = true
+
+	}
+	
+	@IBAction func Remarksnobtnclk(_ sender: Any) {
+		NoremarksBackview.isHidden = true
+
+	}
+	
 	@IBAction func subBtn(_ sender: Any) {
 		
 		let okaylbl = UITapGestureRecognizer(target: self, action: #selector(TimesheetVC.okaylblaction))
@@ -892,9 +1008,14 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		let datearr = ["2021-05-19", "2021-05-19", "2021-05-19"]
 
 		
-		let parameters = [["empTaskId_d":empTaskId_d,
-						   "hoursWorked":Selectedhrsstr,
-						   "date":selecteddate]]
+//		let parameters = [["empTaskId_d":empTaskId_d,
+//						   "hoursWorked":Selectedhrsstr,
+//						   "date":selecteddate]]
+		
+		let parameters = ["empTaskId_h":56,
+						  "isTaskClosed":"false",
+						  "timeSheet":[["empTaskId_d":empTaskId_d,"hoursWorked":Selectedhrsstr,"date":selecteddate]]] as [String : Any]
+		
 		
 		
 		let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeTimesheetUpdate")!
@@ -924,6 +1045,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 
 		//let statusDic = responseJSON["status"]! as! NSDictionary
 		let SelectCustcode = responseJSON["code"] as? NSInteger
+			print("SelectCustcode...",SelectCustcode)
 		if (SelectCustcode == 200)
 		{
 			let uiAlert = UIAlertController(title: "success", message: "successfully send to server", preferredStyle: UIAlertControllerStyle.alert)

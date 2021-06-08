@@ -9,12 +9,9 @@
 import UIKit
 
 class timesheettblcell: UITableViewCell {
-	
 	@IBOutlet weak var subtasktbllbl: UILabel!
-	
 	@IBOutlet weak var hrslbl: UILabel!
 	@IBOutlet weak var tableviewsubtaskcellbackview: UIView!
-	
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -23,7 +20,6 @@ class timesheettblcell: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
     }
     
 }

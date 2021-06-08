@@ -166,6 +166,8 @@
 		7497BDAC24CC1E0800EE54D0 /* AbsenttblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7497BDAA24CC1E0800EE54D0 /* AbsenttblCell.swift */; };
 		7497BDAD24CC1E0800EE54D0 /* AbsenttblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7497BDAB24CC1E0800EE54D0 /* AbsenttblCell.xib */; };
 		74B14504263968FC00A4AC85 /* TimesheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B14503263968FC00A4AC85 /* TimesheetVC.swift */; };
+		74BFD41D266F3B4900D9D4EF /* uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BFD41C266F3B4900D9D4EF /* uncheck.png */; };
+		74BFD41F266F3B5600D9D4EF /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BFD41E266F3B5500D9D4EF /* check.png */; };
 		74C0CB2E24D2C03200866474 /* FaqVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74C0CB2D24D2C03200866474 /* FaqVC.swift */; };
 		74C1616C253DB15500E8C956 /* AttnceHitry.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 74C1616B253DB15500E8C956 /* AttnceHitry.jpeg */; };
 		74C1616E253DB22400E8C956 /* RighAttnceHitry.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 74C1616D253DB22400E8C956 /* RighAttnceHitry.jpeg */; };
@@ -390,6 +392,8 @@
 		7497BDAA24CC1E0800EE54D0 /* AbsenttblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenttblCell.swift; sourceTree = "<group>"; };
 		7497BDAB24CC1E0800EE54D0 /* AbsenttblCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsenttblCell.xib; sourceTree = "<group>"; };
 		74B14503263968FC00A4AC85 /* TimesheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetVC.swift; sourceTree = "<group>"; };
+		74BFD41C266F3B4900D9D4EF /* uncheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheck.png; sourceTree = "<group>"; };
+		74BFD41E266F3B5500D9D4EF /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		74C0CB2D24D2C03200866474 /* FaqVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaqVC.swift; sourceTree = "<group>"; };
 		74C1616B253DB15500E8C956 /* AttnceHitry.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = AttnceHitry.jpeg; sourceTree = "<group>"; };
 		74C1616D253DB22400E8C956 /* RighAttnceHitry.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RighAttnceHitry.jpeg; sourceTree = "<group>"; };
@@ -789,6 +793,8 @@
 				74561015263C1F5000D07BF8 /* Selectcustcell.xib */,
 				7439EAC126529FB300444664 /* hrsminutescell.swift */,
 				7439EAC226529FB300444664 /* hrsminutescell.xib */,
+				74BFD41C266F3B4900D9D4EF /* uncheck.png */,
+				74BFD41E266F3B5500D9D4EF /* check.png */,
 			);
 			path = Timesheet;
 			sourceTree = "<group>";
@@ -1069,6 +1075,7 @@
 				7447702A24CF1A2900EFBB2F /* EarlyLeaverscell.xib in Resources */,
 				744BA9C9251CC303006E38D8 /* MyTeamtblCell.xib in Resources */,
 				74FA122F24AC687F00A356E7 /* DirectDisplayShader.fsh in Resources */,
+				74BFD41D266F3B4900D9D4EF /* uncheck.png in Resources */,
 				747F8DCA243B547F00ABBD5E /* home_icon.png in Resources */,
 				744125D524D0311D00075CC1 /* PendingLeavescellTableViewCell.xib in Resources */,
 				745F31B4244ECEED00B89F08 /* EarlyLeavers.png in Resources */,
@@ -1091,6 +1098,7 @@
 				74795DBE244D9D1F00C6F03C /* Early leavers.png in Resources */,
 				74F5D1262437662000D6E811 /* otp.png in Resources */,
 				7440DAEE2480CEC800263A8F /* map icon.png in Resources */,
+				74BFD41F266F3B5600D9D4EF /* check.png in Resources */,
 				74D9989C2434999500DFCBEC /* DashboardCell.xib in Resources */,
 				742F0AE9263ACF56001E0119 /* Navclaim.png in Resources */,
 				740FC4E8243DB14B00F71B72 /* leave_states.png in Resources */,
