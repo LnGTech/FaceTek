@@ -74,6 +74,8 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	
 	@IBOutlet weak var RemarksBackview: UIView!
 	
+	@IBOutlet weak var Remarksviewhightcontraint: NSLayoutConstraint!
+	@IBOutlet weak var remarksheightconstraint: NSLayoutConstraint!
 	@IBOutlet weak var NoremarksBackview: UIView!
 	
 	@IBOutlet weak var submitbtn: UIButton!
@@ -111,6 +113,8 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	let Datepicker = UIDatePicker()
 	override func viewDidLoad() {
         super.viewDidLoad()
+		//self.Remarksviewhightcontraint?.constant = 20
+
 		RemarksBackview.isHidden = true
 		NoremarksBackview.isHidden = true
 
@@ -277,7 +281,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		selecttasklbl.isUserInteractionEnabled = true
 		selecttasklbl.addGestureRecognizer(selecttask)
 		
-		
+		self.Datepicker.maximumDate = Date()
 		Datepicker.datePickerMode = UIDatePicker.Mode.date
 		datetxtfld.inputView = Datepicker
 		 //let formatter = DateFormatter()
@@ -939,6 +943,8 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	}
 	
 	@IBAction func Yesbtnclk(_ sender: Any) {
+		checkBoxBtn.setBackgroundImage(UIImage(named: "uncheck.png"), for: .normal)
+
 		let alert = UIAlertController(title: "Alert", message: "Task will be marked as completed on submit", preferredStyle: UIAlertControllerStyle.alert)
 		alert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.default, handler: nil))
 		self.present(alert, animated: true, completion: nil)
@@ -957,6 +963,7 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	
 	@IBAction func clickherebtnclk(_ sender: Any) {
 		NoremarksBackview.isHidden = false
+		print("click here button clk")
 		
 	}
 	
