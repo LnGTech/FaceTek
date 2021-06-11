@@ -35,6 +35,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	var RetrivedCustmercode : String = ""
 	var RefreshemployeeNam : String = ""
 	var RefreshbrName : String = ""
+	var timesheet : String = ""
+
 	private var FrefeshAttendanceScreen = false
 	
 	var Employeenamestr : String = ""
@@ -92,6 +94,9 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	
 	var AttendanceNavigationMenuGPSfalseImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!]
 
+	var TimesheetHomeDashboardNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us",""]
+	
+	var TimesheetLeaveNavigationMenuImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navvisitor.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!,]
 	
 	
 	
@@ -269,12 +274,12 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		
 		var empIsGPSTrackEnabledStartPoint = Baseurl.shared().baseURL
-		var empIsGPSTrackEnabledEndpoint = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		var empIsGPSTrackEnabledEndpoint = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew"
 		
 		let url1: NSURL = NSURL(string:"\(empIsGPSTrackEnabledStartPoint)\(empIsGPSTrackEnabledEndpoint)")!
 		
 		
-		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew")!
 		
 		//create the session object
 		let session = URLSession.shared
@@ -308,6 +313,19 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 						print("empIsGPSTrackEnabled-------",self.empIsGPSTrackEnabled)
 						MainDict.setObject(self.empIsGPSTrackEnabled, forKey: "empIsGPSTrackEnabled" as NSCopying)
 						self.empIsGPSTrackEnabledArray.add(self.MainDict)
+					
+					if (responseJSON["custIsTaskManagementEnabled"] != nil) == true {
+						self.timesheet = "success"
+							print("Login Successful",self.timesheet)
+						} else {
+							self.timesheet = "failure"
+
+							
+							print("Login attempt failed",self.timesheet)
+						}
+					
+					
+					
 						self.AttendanceNavigationtbl.reloadData()
 				}
 				
@@ -436,7 +454,35 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		print("Attendance empIsGPSTrackEnabled ------------",self.empIsGPSTrackEnabled as Any)
 
-		if tableView == AttendanceNavigationtbl
+		
+		if (timesheet == "failure")
+			{
+			
+			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
+			//cell.accessoryType = .disclosureIndicator
+			// set the text from the data model
+			
+			
+			cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
+			//cell.LeaveNavigationLbl.font = UIFont(name: "verdana", size: 18.0)
+			
+			let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+			
+			cell.LeaveNavigationLbl?.text = self.TimesheetHomeDashboardNavigationMenuArray[indexPath.row]
+			
+			cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+			let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+			let image = TimesheetLeaveNavigationMenuImagesArray[indexPath.row]
+			cell.LeaveNavigationimg.image = image
+
+			customActivityIndicatory(self.view, startAnimate: false)
+			cellToReturn = cell
+				print("timesheet calling in ",timesheet)
+
+			}
+
+		else if tableView == AttendanceNavigationtbl
 		{
 			
 			if (empIsGPSTrackEnabled == 1)
@@ -513,7 +559,74 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
 	
 	{
-		if (empIsGPSTrackEnabled == 1)
+		
+		
+		if (timesheet == "failure")
+		{
+			if indexPath.row == 0 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+				let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
+				self.present(CalendarVC, animated:true, completion:nil)
+
+
+			}
+
+				else if indexPath.item == 1 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+					let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+					self.present(AttendanceHistoryVC, animated:true, completion:nil)
+
+
+				}
+
+				else if indexPath.item == 2 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+					let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
+					self.present(FieldVisitVC, animated:true, completion:nil)
+
+
+				}
+				else if indexPath.item == 3 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+					let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+					self.present(MyTeamVC, animated:true, completion:nil)
+
+
+				}
+				else if indexPath.item == 4 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+					let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+					self.present(ExpenseClaimVC, animated:true, completion:nil)
+
+
+				}
+			
+				else if indexPath.item == 5 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+					let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+					self.present(LeaveHistoryVC, animated:true, completion:nil)
+
+
+				}
+				else if indexPath.item == 6 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+					let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+					self.present(FaqVC, animated:true, completion:nil)
+
+
+				}
+			
+		}
+
+		
+		else if (empIsGPSTrackEnabled == 1)
 		{
 		if tableView == AttendanceNavigationtbl
 		{
@@ -691,9 +804,9 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew")!
 		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew"
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
 		
@@ -814,12 +927,12 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		
 		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		var Endpoint2 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew"
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint2)")!
 		
 		
-		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew")!
 		
 		//create the session object
 		let session = URLSession.shared
@@ -923,10 +1036,10 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		print("Beacon list RetrivedempId----",RetrivedempId)
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew")!
 		
 		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint3 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		var Endpoint3 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew"
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint3)")!
 		
@@ -1107,7 +1220,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew")!
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint4 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
 		
@@ -1249,7 +1362,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	func EmployeeSignOut_Checking()
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew")!
 		var StartPoint = Baseurl.shared().baseURL
 		var Endpoint6 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint6)")!
@@ -1448,11 +1561,11 @@ alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, h
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 		
-		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew")!
 		
 		
 		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint8 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		var Endpoint8 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew"
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint8)")!
 		
@@ -1620,10 +1733,10 @@ alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, h
 	{
 		
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew")!
 		
 		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint10 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		var Endpoint10 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew"
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint10)")!
 		
@@ -1683,11 +1796,11 @@ alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, h
 	func MovementOUT_Update()
 	{
 		let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
-		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+		//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew")!
 		
 		
 		var StartPoint = Baseurl.shared().baseURL
-		var Endpoint11 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+		var Endpoint11 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew"
 		
 		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint11)")!
 		

@@ -16,7 +16,6 @@ enum API {
 
 	
 	//Development IP Address Value
-//static let baseURL = URL(string: "http://122.166.152.106:8080")!
 	static let baseURL = URL(string: "http://122.166.248.191:8080")!
 	//Production IP Address Value
 	    //static let baseURL = URL(string: "http://52.183.137.54:8080")!
@@ -28,10 +27,6 @@ class Baseurl {
     private static var sharedNetworkManager: Baseurl = {
         let networkManager = Baseurl(baseURL: API.baseURL)
 
-		
-		
-        // Configuration
-        // ...
         return networkManager
     }()
 

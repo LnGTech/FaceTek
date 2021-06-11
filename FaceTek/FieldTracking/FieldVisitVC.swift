@@ -459,13 +459,13 @@ func Fieldvisit_OUT()
 	let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 	
 	var StartPoint = Baseurl.shared().baseURL
-	var Endpoint1 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
+	var Endpoint1 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew"
 	let urlstring = "\(StartPoint)\(Endpoint1)"
 	print("First",urlstring)
 	let url = NSURL(string: urlstring)
 	
 	
-	//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard")!
+	//let url: NSURL = NSURL(string:"http://36.255.87.28:8080/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew")!
 	//create the session object
 	let session = URLSession.shared
 	//now create the URLRequest object using the url object

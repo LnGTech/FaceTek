@@ -696,13 +696,14 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 
 	var RetrivedempId = defaults.integer(forKey: "empId")
 
-	let parameters = ["empId": 80 as Any] as [String : Any]
+	let parameters = ["empId": RetrivedempId as Any] as [String : Any]
 
-//						var StartPoint = Baseurl.shared().baseURL
-//						var Endpoint1 = "/attnd-api-gateway-service/api/customer/employee/fieldVisit/getMyTeamDetails"
-//						let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint1)")!
 
-	let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/ClientListByEmpId")!
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/EmpTimeSheet/ClientListByEmpId"
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+
+//	let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/ClientListByEmpId")!
 
 	let session = URLSession.shared
 	var request = URLRequest(url: url as URL)
@@ -766,11 +767,15 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 					
 		print("Retrived selected id ",selectedclientId)
 
-		let parameters = ["clientId": selectedclientId , "empId": 80 as Any] as [String : Any]
-							   
+		let parameters = ["clientId": selectedclientId , "empId": RetrivedempId as Any] as [String : Any]
+							 
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/EmpTimeSheet/TaskListByEmployeeId"
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+
 		
 								
-			let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/TaskListByEmployeeId")!
+//			let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/TaskListByEmployeeId")!
 								
 			let session = URLSession.shared
 			var request = URLRequest(url: url as URL)
@@ -834,11 +839,15 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 //							"empId":80,
 //	  "empTaskId_h":176 as Any] as [String : Any]
 		
-				let parameters = ["date":selecteddate,"empId": 80 , "empTaskId_h": selectedempTaskId_h as Any] as [String : Any]
+				let parameters = ["date":selecteddate,"empId": RetrivedempId , "empTaskId_h": selectedempTaskId_h as Any] as [String : Any]
 
 			   
-				var StartPoint = "http://122.166.248.191:8080/"
-				var Endpoint1 = "attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeSubtaskInfoByEmpTaskId"
+		
+		var StartPoint = Baseurl.shared().baseURL
+		
+		
+				//var StartPoint = "http://122.166.248.191:8080/"
+				var Endpoint1 = "/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeSubtaskInfoByEmpTaskId"
 				let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint1)")!
 				
 				//let url: NSURL = NSURL(string:"http://122.166.152.106:8080/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getEmpPendingLeaveByCustIdAndEmpId")!
@@ -1022,10 +1031,13 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		let parameters = ["empTaskId_h":56,
 						  "isTaskClosed":"false",
 						  "timeSheet":[["empTaskId_d":empTaskId_d,"hoursWorked":Selectedhrsstr,"date":selecteddate]]] as [String : Any]
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeTimesheetUpdate"
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+
 		
 		
-		
-		let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeTimesheetUpdate")!
+//		let url: NSURL = NSURL(string:"http://122.166.248.191:8080/attnd-api-gateway-service/api/customer/EmpTimeSheet/EmployeeTimesheetUpdate")!
 							
 		let session = URLSession.shared
 		var request = URLRequest(url: url as URL)

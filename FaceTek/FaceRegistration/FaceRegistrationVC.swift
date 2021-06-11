@@ -101,18 +101,18 @@ class FaceRegistrationVC: UIViewController {
 	@IBAction func FaceRegisterBtn(_ sender: Any) {
 		
 		
-		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-
-		let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
-		self.present(UITabBarController, animated:true, completion:nil)
-		
-//		LocalAuthentication.check(from: self) { (success, error) in
-//			if success {
-//				let objRecVC = RecognitionViewController(screen:  UIScreen.main)
-//				objRecVC.modalPresentationStyle = .fullScreen
-//				self.navigationController?.pushViewController(objRecVC, animated:true)
-//			}
-		//}
+//		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//		let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
+//		self.present(UITabBarController, animated:true, completion:nil)
+//		
+		LocalAuthentication.check(from: self) { (success, error) in
+			if success {
+				let objRecVC = RecognitionViewController(screen:  UIScreen.main)
+				objRecVC.modalPresentationStyle = .fullScreen
+				self.navigationController?.pushViewController(objRecVC, animated:true)
+			}
+		}
 	}
 	
 	
