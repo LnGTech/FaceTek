@@ -459,7 +459,7 @@ func Fieldvisit_OUT()
 	let parameters = ["refCustId": RetrivedcustId as Any,"empId":RetrivedempId as Any] as [String : Any]
 	
 	var StartPoint = Baseurl.shared().baseURL
-	var Endpoint1 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboardNew"
+	var Endpoint1 = "/attnd-api-gateway-service/api/customer/mobile/app/dashboard/getEmployeeDetailsForDashboard"
 	let urlstring = "\(StartPoint)\(Endpoint1)"
 	print("First",urlstring)
 	let url = NSURL(string: urlstring)
