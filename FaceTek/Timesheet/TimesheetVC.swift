@@ -18,9 +18,6 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	var SubtasklistArray = NSMutableArray()
 
 
-
-
-
     var SelectCustArray:NSMutableArray = NSMutableArray()
     var SelecttaskArray:NSMutableArray = NSMutableArray()
     var MainDict:NSMutableDictionary = NSMutableDictionary()
@@ -104,6 +101,8 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	@IBOutlet weak var oklbl: UILabel!
 	
 	@IBOutlet weak var checkBoxBtn: UIButton!
+	
+	@IBOutlet weak var Claimcxpensebtn: UIButton!
 	
 	
 	let MyAccountArray: [String] = ["GST filling and other paper related activities.filling other paper related activities", "Financial documents", "Employee Extra training certification." , "Client deal clouser and visiting." , "Financial new documents" , "Employee Extra training certification"]
@@ -227,6 +226,17 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 		let taskcompltedlblatributes :Dictionary = [NSAttributedStringKey.font : taskcompltedlbl.font]
 		taskcompltedlbl.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
 
+		
+		
+		Claimcxpensebtn.titleLabel?.font =  UIFont(name: "Montserrat-Medium", size: 12)
+		Claimcxpensebtn.setTitleColor(#colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), for: .normal)
+
+//		Claimcxpensebtn.co =  UIFont(name: "Montserrat-Medium", size: 12)
+//
+//		let Claimcxpensebtnatrs :Dictionary = [NSAttributedStringKey.font : Claimcxpensebtn.font]
+//	/Claimcxpensebtn.textColor = #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1)
+//		
+		
 		//Remarks Popup label
 		
 		Remarkspopuplbl.font = UIFont(name: "Montserrat-Medium", size: 12.0)!
@@ -1088,6 +1098,17 @@ task.resume()
 		
 	}
 	 
+	
+	@IBAction func claimExpenseBtnclk(_ sender: Any) {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+		let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+		
+		UserDefaults.standard.set(selectedclientId, forKey: "taskidkey")
+		self.present(ExpenseClaimVC, animated:true, completion:nil)
+
+		
+	}
 	
 	@IBAction func BackBtnclk(_ sender: Any) {
 		self.presentingViewController?.dismiss(animated: false, completion: nil)

@@ -223,7 +223,14 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 	
 	func FormAPISubmitData()
 	{
+		
 		let defaults = UserDefaults.standard
+		var taskid = Int()
+		
+		//taskid = ("\(defaults.integer(forKey: "taskidkey") ?? 0)")
+		taskid = UserDefaults.standard.integer(forKey: "taskidkey")
+
+		print("taskid..",taskid)
 		var RetrivedempId = defaults.integer(forKey: "empId")
 		var RetrivedcustId = defaults.integer(forKey: "custId")
 		
@@ -234,6 +241,7 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 		let parameters = [
 			"refCustId": RetrivedcustId,
 			"refEmpId": RetrivedempId,
+			"refClientTaskId": taskid,
 			"empExpDate": ConvertedCurrentDatestr,
 			"empExpType": ExpenseTypetxtfld.text as Any,
 			"empExpAmount": ExpenseAmttxtfld.text as Any,

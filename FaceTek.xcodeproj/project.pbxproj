@@ -166,6 +166,7 @@
 		748E22EC247B971C0060464F /* PageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 748E22EB247B971C0060464F /* PageController.swift */; };
 		7497BDAC24CC1E0800EE54D0 /* AbsenttblCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7497BDAA24CC1E0800EE54D0 /* AbsenttblCell.swift */; };
 		7497BDAD24CC1E0800EE54D0 /* AbsenttblCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7497BDAB24CC1E0800EE54D0 /* AbsenttblCell.xib */; };
+		74AF39D3269C7C7A008C3901 /* Plusimg.png in Resources */ = {isa = PBXBuildFile; fileRef = 74AF39D2269C7C79008C3901 /* Plusimg.png */; };
 		74B14504263968FC00A4AC85 /* TimesheetVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74B14503263968FC00A4AC85 /* TimesheetVC.swift */; };
 		74BFD41D266F3B4900D9D4EF /* uncheck.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BFD41C266F3B4900D9D4EF /* uncheck.png */; };
 		74BFD41F266F3B5600D9D4EF /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 74BFD41E266F3B5500D9D4EF /* check.png */; };
@@ -398,6 +399,7 @@
 		748E22EB247B971C0060464F /* PageController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageController.swift; sourceTree = "<group>"; };
 		7497BDAA24CC1E0800EE54D0 /* AbsenttblCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbsenttblCell.swift; sourceTree = "<group>"; };
 		7497BDAB24CC1E0800EE54D0 /* AbsenttblCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbsenttblCell.xib; sourceTree = "<group>"; };
+		74AF39D2269C7C79008C3901 /* Plusimg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Plusimg.png; path = ../../../../../Desktop/Plusimg.png; sourceTree = "<group>"; };
 		74B14503263968FC00A4AC85 /* TimesheetVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimesheetVC.swift; sourceTree = "<group>"; };
 		74BFD41C266F3B4900D9D4EF /* uncheck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = uncheck.png; sourceTree = "<group>"; };
 		74BFD41E266F3B5500D9D4EF /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
@@ -774,6 +776,7 @@
 				74D9989F2434A8B800DFCBEC /* qrcode.png */,
 				74D998A12434A8C200DFCBEC /* proxe.png */,
 				74D998932434690E00DFCBEC /* splashScreenLogo.png */,
+				74AF39D2269C7C79008C3901 /* Plusimg.png */,
 				74D9989724347DD400DFCBEC /* facetek-text-with-logo.png */,
 				74795DB8244D9CF600C6F03C /* ManagerDashboard-Icons */,
 			);
@@ -1123,6 +1126,7 @@
 				740D70BD243C90E500CF6C2F /* wifi.png in Resources */,
 				7451D15124CC62F7006EE244 /* AbsentHeaderCell.xib in Resources */,
 				74C1616C253DB15500E8C956 /* AttnceHitry.jpeg in Resources */,
+				74AF39D3269C7C7A008C3901 /* Plusimg.png in Resources */,
 				745F31B0244ECA9E00B89F08 /* Latecomers1.png in Resources */,
 				746CEADA24C044410081F830 /* LeaveCancel.png in Resources */,
 				74795DBE244D9D1F00C6F03C /* Early leavers.png in Resources */,

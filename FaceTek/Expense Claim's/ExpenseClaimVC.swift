@@ -35,6 +35,15 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 	@IBOutlet weak var DeleteView: UIView!
 	override func viewDidLoad() {
         super.viewDidLoad()
+		
+		let defaults = UserDefaults.standard
+		var taskid = Int()
+		
+		//taskid = ("\(defaults.integer(forKey: "taskidkey") ?? 0)")
+		taskid = UserDefaults.standard.integer(forKey: "taskidkey")
+
+		print("taskid..",taskid)
+		
 		self.DeleteView.isHidden = true
 		self.Expensetbl.isHidden = true
 		self.Expensetbl.rowHeight = 300.0
