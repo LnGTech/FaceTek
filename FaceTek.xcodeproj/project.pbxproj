@@ -141,6 +141,7 @@
 		74795DC0244D9D2400C6F03C /* late commers.png in Resources */ = {isa = PBXBuildFile; fileRef = 74795DBF244D9D2400C6F03C /* late commers.png */; };
 		74795DC3244DB98D00C6F03C /* DBHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74795DC2244DB98D00C6F03C /* DBHelper.swift */; };
 		74795DC5244DB99500C6F03C /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74795DC4244DB99500C6F03C /* Person.swift */; };
+		747C1737269462D50072DF9A /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 747C1736269462D50072DF9A /* GoogleService-Info.plist */; };
 		747F8D9E243AEB1D00ABBD5E /* FaceRegistrationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 747F8D9D243AEB1D00ABBD5E /* FaceRegistrationVC.swift */; };
 		747F8DA0243AECDF00ABBD5E /* reg.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8D9F243AECDE00ABBD5E /* reg.png */; };
 		747F8DA2243AF27200ABBD5E /* company-small.png in Resources */ = {isa = PBXBuildFile; fileRef = 747F8DA1243AF27100ABBD5E /* company-small.png */; };
@@ -173,6 +174,11 @@
 		74C1616E253DB22400E8C956 /* RighAttnceHitry.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 74C1616D253DB22400E8C956 /* RighAttnceHitry.jpeg */; };
 		74CA730D263BC5550037CA9A /* Navvisitor.png in Resources */ = {isa = PBXBuildFile; fileRef = 74CA730C263BC5550037CA9A /* Navvisitor.png */; };
 		74CEBC0A263AD85C002F0679 /* Navattendance_history.png in Resources */ = {isa = PBXBuildFile; fileRef = 74CEBC09263AD85B002F0679 /* Navattendance_history.png */; };
+		74D129382698315D00B17DEF /* NotificationBadgeimg.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 74D129372698315C00B17DEF /* NotificationBadgeimg.jpeg */; };
+		74D1293A2698332600B17DEF /* NotificationBadgeimg-removebg-preview.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 74D129392698332500B17DEF /* NotificationBadgeimg-removebg-preview.jpg */; };
+		74D1293D26983E8300B17DEF /* NotificationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D1293C26983E8300B17DEF /* NotificationVC.swift */; };
+		74D129442698501600B17DEF /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D129422698501600B17DEF /* NotificationCell.swift */; };
+		74D129452698501600B17DEF /* NotificationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 74D129432698501600B17DEF /* NotificationCell.xib */; };
 		74D3FD5A256D373A003B2B23 /* ExpenseClaimViewmoreVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D3FD59256D373A003B2B23 /* ExpenseClaimViewmoreVC.swift */; };
 		74D998652434621200DFCBEC /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74D998642434621200DFCBEC /* ViewController.swift */; };
 		74D998682434621200DFCBEC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 74D998662434621200DFCBEC /* Main.storyboard */; };
@@ -367,6 +373,7 @@
 		74795DBF244D9D2400C6F03C /* late commers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "late commers.png"; sourceTree = "<group>"; };
 		74795DC2244DB98D00C6F03C /* DBHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DBHelper.swift; sourceTree = "<group>"; };
 		74795DC4244DB99500C6F03C /* Person.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		747C1736269462D50072DF9A /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		747F8D9D243AEB1D00ABBD5E /* FaceRegistrationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceRegistrationVC.swift; sourceTree = "<group>"; };
 		747F8D9F243AECDE00ABBD5E /* reg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = reg.png; sourceTree = "<group>"; };
 		747F8DA1243AF27100ABBD5E /* company-small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "company-small.png"; sourceTree = "<group>"; };
@@ -399,6 +406,11 @@
 		74C1616D253DB22400E8C956 /* RighAttnceHitry.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = RighAttnceHitry.jpeg; sourceTree = "<group>"; };
 		74CA730C263BC5550037CA9A /* Navvisitor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navvisitor.png; sourceTree = "<group>"; };
 		74CEBC09263AD85B002F0679 /* Navattendance_history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Navattendance_history.png; sourceTree = "<group>"; };
+		74D129372698315C00B17DEF /* NotificationBadgeimg.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = NotificationBadgeimg.jpeg; sourceTree = "<group>"; };
+		74D129392698332500B17DEF /* NotificationBadgeimg-removebg-preview.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "NotificationBadgeimg-removebg-preview.jpg"; sourceTree = "<group>"; };
+		74D1293C26983E8300B17DEF /* NotificationVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationVC.swift; sourceTree = "<group>"; };
+		74D129422698501600B17DEF /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
+		74D129432698501600B17DEF /* NotificationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NotificationCell.xib; sourceTree = "<group>"; };
 		74D3FD59256D373A003B2B23 /* ExpenseClaimViewmoreVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExpenseClaimViewmoreVC.swift; sourceTree = "<group>"; };
 		74D9985F2434621200DFCBEC /* Facetek.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Facetek.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		74D998642434621200DFCBEC /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -795,8 +807,20 @@
 				7439EAC226529FB300444664 /* hrsminutescell.xib */,
 				74BFD41C266F3B4900D9D4EF /* uncheck.png */,
 				74BFD41E266F3B5500D9D4EF /* check.png */,
+				74D129372698315C00B17DEF /* NotificationBadgeimg.jpeg */,
+				74D129392698332500B17DEF /* NotificationBadgeimg-removebg-preview.jpg */,
 			);
 			path = Timesheet;
+			sourceTree = "<group>";
+		};
+		74D1293B26983E5500B17DEF /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				74D1293C26983E8300B17DEF /* NotificationVC.swift */,
+				74D129422698501600B17DEF /* NotificationCell.swift */,
+				74D129432698501600B17DEF /* NotificationCell.xib */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		74D998562434621200DFCBEC = {
@@ -841,6 +865,7 @@
 				744B8C7024CAC063004634C0 /* Manager */,
 				747F8D9A243AEA4C00ABBD5E /* Registration */,
 				7429321324498AF600C59157 /* Wifi */,
+				74D1293B26983E5500B17DEF /* Notification */,
 				747F8D9C243AEAF100ABBD5E /* FaceRegistration */,
 				740D70B8243C8E7100CF6C2F /* Attendance */,
 				740D70B9243C8EB700CF6C2F /* Leave */,
@@ -856,6 +881,7 @@
 				747F8D9B243AEA8300ABBD5E /* Images */,
 				74D9986E2434621300DFCBEC /* LaunchScreen.storyboard */,
 				74D998712434621300DFCBEC /* Info.plist */,
+				747C1736269462D50072DF9A /* GoogleService-Info.plist */,
 				74FA123F24AC690F00A356E7 /* enable_cxx.cpp */,
 				74FA123D24AC690E00A356E7 /* FaceTek-Bridging-Header.h */,
 				74D998692434621200DFCBEC /* FaceTek.xcdatamodeld */,
@@ -1031,9 +1057,11 @@
 				74D998702434621300DFCBEC /* LaunchScreen.storyboard in Resources */,
 				7497BDAD24CC1E0800EE54D0 /* AbsenttblCell.xib in Resources */,
 				74477FF4263A8A1900444DF8 /* Timesheetcalendar.png in Resources */,
+				74D129452698501600B17DEF /* NotificationCell.xib in Resources */,
 				74F5D11C24373C6500D6E811 /* attendence-right.png in Resources */,
 				74D9986D2434621300DFCBEC /* Assets.xcassets in Resources */,
 				747F8DCE243B556C00ABBD5E /* attendence_icon.png in Resources */,
+				74D1293A2698332600B17DEF /* NotificationBadgeimg-removebg-preview.jpg in Resources */,
 				740D7078243C61CD00CF6C2F /* BottomArrow.png in Resources */,
 				74140901247A3AFF00ED1391 /* backicon.png in Resources */,
 				747F8DA2243AF27200ABBD5E /* company-small.png in Resources */,
@@ -1083,12 +1111,14 @@
 				74D998A62434C42200DFCBEC /* leave.png in Resources */,
 				7447EED4254C25830013FB72 /* Bluecircleimg.png in Resources */,
 				74D998A22434A8C200DFCBEC /* proxe.png in Resources */,
+				747C1737269462D50072DF9A /* GoogleService-Info.plist in Resources */,
 				745F31B2244ECEE400B89F08 /* Absent1.png in Resources */,
 				74398CE12462EC020053DA0F /* BckArrowicon.png in Resources */,
 				742F0AEB263ACF56001E0119 /* Navcall.png in Resources */,
 				27C15748250908DA008A4B0E /* InternetConnection.storyboard in Resources */,
 				74795DBA244D9D1000C6F03C /* leaves.png in Resources */,
 				746017B82435FB3300969CA2 /* back-arrow.png in Resources */,
+				74D129382698315D00B17DEF /* NotificationBadgeimg.jpeg in Resources */,
 				74E68A8D24C8669400A3B009 /* PendingLeaves.png in Resources */,
 				740D70BD243C90E500CF6C2F /* wifi.png in Resources */,
 				7451D15124CC62F7006EE244 /* AbsentHeaderCell.xib in Resources */,
@@ -1269,6 +1299,7 @@
 				74795DC3244DB98D00C6F03C /* DBHelper.swift in Sources */,
 				74FA124024AC690F00A356E7 /* enable_cxx.cpp in Sources */,
 				744BA9C8251CC303006E38D8 /* MyTeamtblCell.swift in Sources */,
+				74D1293D26983E8300B17DEF /* NotificationVC.swift in Sources */,
 				74B14504263968FC00A4AC85 /* TimesheetVC.swift in Sources */,
 				74F5D11E243758A600D6E811 /* InputOTPVC.swift in Sources */,
 				27AB1254253AC828002667B0 /* LocalAuthFailedVC.swift in Sources */,
@@ -1283,6 +1314,7 @@
 				7450F7B8253826D6004F6A24 /* LeaveHistoryHeadercell.swift in Sources */,
 				7447702924CF1A2900EFBB2F /* EarlyLeaverscell.swift in Sources */,
 				74F5D124243758D400D6E811 /* SMRippleView.swift in Sources */,
+				74D129442698501600B17DEF /* NotificationCell.swift in Sources */,
 				7429321B24498B7000C59157 /* AppManager.swift in Sources */,
 				74822C55256518630078F4D8 /* ExpenseHeadercell.swift in Sources */,
 				744774D1250A3484008266D4 /* Baseurl.swift in Sources */,

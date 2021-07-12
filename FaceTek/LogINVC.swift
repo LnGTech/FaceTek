@@ -65,7 +65,6 @@ class LogINVC: UIViewController, RecognitionCameraDelegate, UIAlertViewDelegate,
 	var address: String = ""
 	var inSync = String()
 	var outSync = String()
-	
 	let location = ""
 	var locationManager = CLLocationManager()
 	

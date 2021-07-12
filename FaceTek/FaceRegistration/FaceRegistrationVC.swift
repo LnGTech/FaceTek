@@ -105,7 +105,7 @@ class FaceRegistrationVC: UIViewController {
 //
 //		let UITabBarController = storyBoard.instantiateViewController(withIdentifier: "UITabBarController") as! UITabBarController
 //		self.present(UITabBarController, animated:true, completion:nil)
-//		
+		
 		LocalAuthentication.check(from: self) { (success, error) in
 			if success {
 				let objRecVC = RecognitionViewController(screen:  UIScreen.main)

@@ -22,6 +22,8 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	var empAttendanceInLatLongstr = String()
 	var address: String = ""
 	var empIsGPSTrackEnabled = Int()
+	var custIsTaskManagementEnabled = Int()
+
 
 	var RetrivedcustId = Int()
 	var RetrivedempId = Int()
@@ -82,21 +84,50 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	@IBOutlet weak var ContactTextView: UITextView!
 	var isMenuVisible:Bool!
 	@IBOutlet weak var AttendanceNavigationtbl: UITableView!
+	
+	@IBOutlet weak var attendanetblheight: NSLayoutConstraint!
+	
 	//var AttendanceNavigationMenuArray = ["Holiday Calender","FAQ","Contact Us"]
 	
-	var AttendanceNavigationMenuArray = ["Holiday Calender","Time Sheet","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
 	
-	var AttendanceNavigationMenuImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navtimesheet.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navvisitor.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!]
+	
+	// GPS and timemanagement true
+	var HomeDashboardNavigationMenuArray = ["Holiday Calender","Time Sheet","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+	// GPS and timemanagement false
+	var HomeDashboardGPSFalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us","",""]
+	
+	
+	//GPS True and timemanagement false
+	var HomeDashboardTimemanagementFalseArray = ["Holiday Calender","Attendance History","Field Visist","My Team","Expense Claim","Leave History","FAQ","Contact Us",""]
+	var HomeDashboardTimemanagementimagesFalseArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navvisitor.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!,]
+	
+	
+	//Timemanagement true and GPS false
+	var TimesheetHomeDashboardNavigationMenuArray = ["Holiday Calender","Attendance History","Timesheet","My Team","Expense Claim","Leave History","FAQ","Contact Us",""]
+	//Timemanagement true and GPS false
+	var TimesheetLeaveNavigationMenuImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navtimesheet.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!,]
+
+	// GPS and timemanagement true
+	var HomeDashboardNavigationMenuImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navtimesheet.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navvisitor.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!]
+
+	// GPS and timemanagement false
+	var HomeDashboardGPSFalseImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!]
 
 	
 	
-	var AttendanceNavigationMenuGPSfalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us","",""]
-	
-	var AttendanceNavigationMenuGPSfalseImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!]
-
-	var TimesheetHomeDashboardNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us",""]
-	
-	var TimesheetLeaveNavigationMenuImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navvisitor.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!,]
+//	var AttendanceNavigationMenuArray = ["Holiday Calender","Time Sheet","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us"]
+//
+//	var AttendanceNavigationMenuImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navtimesheet.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navvisitor.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!]
+//
+//
+//
+//	var AttendanceNavigationMenuGPSfalseArray = ["Holiday Calender","Attendance History","My Team","Expense Claim","Leave History","FAQ","Contact Us","",""]
+//
+//	var AttendanceNavigationMenuGPSfalseImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!]
+//
+//	var TimesheetHomeDashboardNavigationMenuArray = ["Holiday Calender","Attendance History","Field Visit","My Team","Expense Claim","Leave History","FAQ","Contact Us",""]
+//
+//	var TimesheetLeaveNavigationMenuImagesArray: [UIImage] = [UIImage(named: "Navcalendar.png")!,UIImage(named: "Navattendance_history.png")!,UIImage(named: "Navvisitor.png")!,UIImage(named: "Navnetwork.png")!,UIImage(named: "Navclaim.png")!,UIImage(named: "Navhistory.png")!,UIImage(named: "Navquestionnaire.png")!,UIImage(named: "Navcall.png")!,UIImage(named: "Navcall.png")!,]
 	
 	
 	
@@ -306,13 +337,18 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			if let responseJSON = responseJSON as? [String: Any] {
 				
 				DispatchQueue.main.async
-					{
+				{ [self] in
 						
 						var MainDict:NSMutableDictionary = NSMutableDictionary()
 						self.empIsGPSTrackEnabled = (responseJSON["empIsGPSTrackEnabled"] as? Int)!
 						print("empIsGPSTrackEnabled-------",self.empIsGPSTrackEnabled)
 						MainDict.setObject(self.empIsGPSTrackEnabled, forKey: "empIsGPSTrackEnabled" as NSCopying)
 						self.empIsGPSTrackEnabledArray.add(self.MainDict)
+					
+					self.custIsTaskManagementEnabled = (responseJSON["custIsTaskManagementEnabled"] as? Int)!
+				
+					print("attdcustIsTaskManagementEnabled...",custIsTaskManagementEnabled)
+					
 					
 					if (responseJSON["custIsTaskManagementEnabled"] != nil) == true {
 						self.timesheet = "success"
@@ -437,7 +473,7 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		
 		var count:Int?
 		if tableView == self.AttendanceNavigationtbl {
-			count = AttendanceNavigationMenuArray.count
+			count = HomeDashboardNavigationMenuArray.count
 		}
 		else
 		{
@@ -452,86 +488,199 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 		var cellToReturn = UITableViewCell() // Dummy value
 		
 		
-		print("Attendance empIsGPSTrackEnabled ------------",self.empIsGPSTrackEnabled as Any)
 
 		
-		if (timesheet == "failure")
-			{
+		
 			
-			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
-			//cell.accessoryType = .disclosureIndicator
-			// set the text from the data model
-			
-			
-			cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
-			//cell.LeaveNavigationLbl.font = UIFont(name: "verdana", size: 18.0)
-			
-			let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
-			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
-			
-			cell.LeaveNavigationLbl?.text = self.TimesheetHomeDashboardNavigationMenuArray[indexPath.row]
-			
-			cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
-			let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
-			let image = TimesheetLeaveNavigationMenuImagesArray[indexPath.row]
-			cell.LeaveNavigationimg.image = image
+//			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
+//			//cell.accessoryType = .disclosureIndicator
+//			// set the text from the data model
+//
+//
+//			cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
+//			//cell.LeaveNavigationLbl.font = UIFont(name: "verdana", size: 18.0)
+//
+//			let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+//			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+//
+//			cell.LeaveNavigationLbl?.text = self.TimesheetHomeDashboardNavigationMenuArray[indexPath.row]
+//
+//			cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+//			let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+//			let image = TimesheetLeaveNavigationMenuImagesArray[indexPath.row]
+//			cell.LeaveNavigationimg.image = image
+//
+//			customActivityIndicatory(self.view, startAnimate: false)
+//			cellToReturn = cell
+//				print("timesheet calling in ",timesheet)
+//
+//
 
-			customActivityIndicatory(self.view, startAnimate: false)
-			cellToReturn = cell
-				print("timesheet calling in ",timesheet)
-
-			}
-
-		else if tableView == AttendanceNavigationtbl
+		 if tableView == AttendanceNavigationtbl
 		{
-			
-			if (empIsGPSTrackEnabled == 1)
-			{
-			// create a new cell if needed or reuse an old one
-			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
-			//cell.accessoryType = .disclosureIndicator
-			// set the text from the data model
-			
-			
-			cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
-			let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
-			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
-			
-			cell.LeaveNavigationLbl?.text = self.AttendanceNavigationMenuArray[indexPath.row]
-				cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
-				let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+			if (empIsGPSTrackEnabled == 1 && custIsTaskManagementEnabled == 1)
+				{
 				
-				let image = AttendanceNavigationMenuImagesArray[indexPath.row]
-				cell.LeaveNavigationimg.image = image
-
-				
-			customActivityIndicatory(self.view, startAnimate: false)
-			cellToReturn = cell
-			}
-			else
-			{
+				self.attendanetblheight?.constant = 300
 				let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
 				//cell.accessoryType = .disclosureIndicator
 				// set the text from the data model
 				
 				
 				cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
-				let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
-				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
+				//cell.LeaveNavigationLbl.font = UIFont(name: "verdana", size: 18.0)
 				
-				cell.LeaveNavigationLbl?.text = self.AttendanceNavigationMenuGPSfalseArray[indexPath.row]
-				let image = AttendanceNavigationMenuGPSfalseImagesArray[indexPath.row]
+				let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+				
+				cell.LeaveNavigationLbl?.text = self.HomeDashboardNavigationMenuArray[indexPath.row]
+				
+				cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+				let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+				let image = HomeDashboardNavigationMenuImagesArray[indexPath.row]
 				cell.LeaveNavigationimg.image = image
 
-				
-				
 				customActivityIndicatory(self.view, startAnimate: false)
 				cellToReturn = cell
+					print("timesheet calling in ",timesheet)
+
+				}
+			
+			else if (empIsGPSTrackEnabled != 1 && custIsTaskManagementEnabled == 1)
+			{
+				self.attendanetblheight?.constant = 270
+
+				let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
+				//cell.accessoryType = .disclosureIndicator
+				// set the text from the data model
+
+
+				cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
+				//cell.LeaveNavigationLbl.font = UIFont(name: "verdana", size: 18.0)
+
+				let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+
+				cell.LeaveNavigationLbl?.text = self.TimesheetHomeDashboardNavigationMenuArray[indexPath.row]
+
+				cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+				let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+				let image = TimesheetLeaveNavigationMenuImagesArray[indexPath.row]
+				cell.LeaveNavigationimg.image = image
+
+				customActivityIndicatory(self.view, startAnimate: false)
+				cellToReturn = cell
+					print("timesheet calling in ",timesheet)
+
+			}
+			else if (empIsGPSTrackEnabled == 1 && custIsTaskManagementEnabled != 1)
+			{
+				self.attendanetblheight?.constant = 270
+				
+				let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
+				//cell.accessoryType = .disclosureIndicator
+				// set the text from the data model
+				
+				
+				cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
+				//cell.LeaveNavigationLbl.font = UIFont(name: "verdana", size: 18.0)
+				
+				let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+				
+				cell.LeaveNavigationLbl?.text = self.HomeDashboardTimemanagementFalseArray[indexPath.row]
+				
+				cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+				let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+				let image = HomeDashboardTimemanagementimagesFalseArray[indexPath.row]
+				cell.LeaveNavigationimg.image = image
+
+				customActivityIndicatory(self.view, startAnimate: false)
+				cellToReturn = cell
+					print("timesheet calling in ",timesheet)
+
+			}
+
+
+			else
+			{
+				self.attendanetblheight?.constant = 280
+
+				let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
+				//cell.accessoryType = .disclosureIndicator
+				// set the text from the data model
+				
+				
+				cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
+				//cell.LeaveNavigationLbl.font = UIFont(name: "verdana", size: 18.0)
+				
+				let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019754, green: 0.2745098174, blue: 0.3019607961, alpha: 1)
+				
+				cell.LeaveNavigationLbl?.text = self.HomeDashboardGPSFalseArray[indexPath.row]
+				
+				cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+				let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+				let image = HomeDashboardGPSFalseImagesArray[indexPath.row]
+				cell.LeaveNavigationimg.image = image
+
+				customActivityIndicatory(self.view, startAnimate: false)
+				cellToReturn = cell
+					print("timesheet calling in ",timesheet)
 
 				
 			}
+
 			
 		}
+			
+//			if (empIsGPSTrackEnabled == 1)
+//			{
+//			// create a new cell if needed or reuse an old one
+//			let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
+//			//cell.accessoryType = .disclosureIndicator
+//			// set the text from the data model
+//
+//
+//			cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
+//			let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+//			cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
+//
+//			cell.LeaveNavigationLbl?.text = self.HomeDashboardNavigationMenuArray[indexPath.row]
+//				cell.LeaveNavigationLbl.font = UIFont(name: "Montserrat-Medium", size: 14.0)!
+//				let LeavesMenuattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+//
+//				let image = HomeDashboardNavigationMenuImagesArray[indexPath.row]
+//				cell.LeaveNavigationimg.image = image
+//
+//
+//			customActivityIndicatory(self.view, startAnimate: false)
+//			cellToReturn = cell
+//			}
+//			else
+//			{
+//				let cell = tableView.dequeueReusableCell(withIdentifier: "LeaveNavigationcell", for: indexPath) as! LeaveNavigationcell
+//				//cell.accessoryType = .disclosureIndicator
+//				// set the text from the data model
+//
+//
+//				cell.LeaveNavigationLbl.font = UIFont(name: "Verdana", size: 15.0)!
+//				let PendingLeavesrejectattributes :Dictionary = [NSAttributedStringKey.font : cell.LeaveNavigationLbl.font]
+//				cell.LeaveNavigationLbl.textColor = #colorLiteral(red: 0.2549019608, green: 0.2745098039, blue: 0.3019607843, alpha: 1)
+//
+//				cell.LeaveNavigationLbl?.text = self.HomeDashboardGPSFalseArray[indexPath.row]
+//				let image = HomeDashboardNavigationMenuImagesArray[indexPath.row]
+//				cell.LeaveNavigationimg.image = image
+//
+//
+//
+//				customActivityIndicatory(self.view, startAnimate: false)
+//				cellToReturn = cell
+//
+//
+//			}
+//
+		//}
 		
 		else if tableView == MovementoutDrpTbl
 		{
@@ -561,215 +710,511 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 	{
 		
 		
-		if (timesheet == "failure")
+//		if (timesheet == "failure")
+//		{
+//			if indexPath.row == 0 {
+//				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//				let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
+//				self.present(CalendarVC, animated:true, completion:nil)
+//
+//
+//			}
+//
+//				else if indexPath.item == 1 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//					let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+//					self.present(AttendanceHistoryVC, animated:true, completion:nil)
+//
+//
+//				}
+//
+//				else if indexPath.item == 2 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//					let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
+//					self.present(FieldVisitVC, animated:true, completion:nil)
+//
+//
+//				}
+//				else if indexPath.item == 3 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//					let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+//					self.present(MyTeamVC, animated:true, completion:nil)
+//
+//
+//				}
+//				else if indexPath.item == 4 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//					let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+//					self.present(ExpenseClaimVC, animated:true, completion:nil)
+//
+//
+//				}
+//
+//				else if indexPath.item == 5 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//					let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+//					self.present(LeaveHistoryVC, animated:true, completion:nil)
+//
+//
+//				}
+//				else if indexPath.item == 6 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//					let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+//					self.present(FaqVC, animated:true, completion:nil)
+//
+//
+//				}
+//
+		//}
+
+		
+		// if (empIsGPSTrackEnabled == 1)
+		
+		if (empIsGPSTrackEnabled == 1 && custIsTaskManagementEnabled == 1)
 		{
+		if tableView == AttendanceNavigationtbl
+		
+		{
+			
 			if indexPath.row == 0 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-
+	
 				let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
 				self.present(CalendarVC, animated:true, completion:nil)
-
-
+	
+	
+	
+	
 			}
-
+	
 				else if indexPath.item == 1 {
 					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-
-					let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
-					self.present(AttendanceHistoryVC, animated:true, completion:nil)
-
-
+	
+					let TimesheetVC = storyBoard.instantiateViewController(withIdentifier: "TimesheetVC") as! TimesheetVC
+					self.present(TimesheetVC, animated:true, completion:nil)
+	
+	
 				}
-
+	
 				else if indexPath.item == 2 {
 					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-
+	
+					let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+					self.present(AttendanceHistoryVC, animated:true, completion:nil)
+	
+	
+				}
+	
+	
+				else if indexPath.item == 3 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
 					let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
 					self.present(FieldVisitVC, animated:true, completion:nil)
+	
+	
+				}
+				else if indexPath.item == 4 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
+					let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+					self.present(MyTeamVC, animated:true, completion:nil)
+	
+	
+				}
+				else if indexPath.item == 5 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
+					let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+					self.present(ExpenseClaimVC, animated:true, completion:nil)
+	
+	
+				}
+	
+				else if indexPath.item == 6 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
+					let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+					self.present(LeaveHistoryVC, animated:true, completion:nil)
+	
+	
+				}
+	
+			else if indexPath.item == 7 {
+				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
+				let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+				self.present(FaqVC, animated:true, completion:nil)
+	
+	
+			}
+//			else if indexPath.item == 8 {
+//
+//				if ContactusText.isHidden {
+//					//ContactUsView.isHidden = false
+//					ContactusText.isHidden = false
+//				} else {
+//					//ContactUsView.isHidden = true
+//					ContactusText.isHidden = true
+//				}
+//
+//			}
+			}
+
+else if (empIsGPSTrackEnabled != 1 && custIsTaskManagementEnabled == 1)
+{
+	if indexPath.row == 0 {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+		let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
+		self.present(CalendarVC, animated:true, completion:nil)
+		}
+	else if indexPath.item == 1 {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+		let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+		self.present(AttendanceHistoryVC, animated:true, completion:nil)
 
 
+	}
+	else if indexPath.item == 2 {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+		let TimesheetVC = storyBoard.instantiateViewController(withIdentifier: "TimesheetVC") as! TimesheetVC
+		self.present(TimesheetVC, animated:true, completion:nil)
+
+
+	}
+	else if indexPath.item == 3 {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+		let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+		self.present(MyTeamVC, animated:true, completion:nil)
+
+
+	}
+	else if indexPath.item == 4 {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+		let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+		self.present(ExpenseClaimVC, animated:true, completion:nil)
+
+
+	}
+
+	else if indexPath.item == 5 {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+		let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+		self.present(LeaveHistoryVC, animated:true, completion:nil)
+
+
+	}
+	else if indexPath.item == 6 {
+		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+		let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+		self.present(FaqVC, animated:true, completion:nil)
+
+
+	}
+//	else if indexPath.item == 7 {
+//
+//		if ContactusText.isHidden {
+//			//ContactUsView.isHidden = false
+//			ContactusText.isHidden = false
+//		} else {
+//			//ContactUsView.isHidden = true
+//			ContactusText.isHidden = true
+//		}
+//
+//	}
+
+
+}
+
+else if (empIsGPSTrackEnabled == 1 && custIsTaskManagementEnabled != 1)
+
+{
+	print("GPS values working")
+	
+				if indexPath.row == 0 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
+					let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
+					self.present(CalendarVC, animated:true, completion:nil)
+					}
+				else if indexPath.item == 1 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
+					let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+					self.present(AttendanceHistoryVC, animated:true, completion:nil)
+	
+	
+				}
+				else if indexPath.item == 2 {
+					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
+					let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
+					self.present(FieldVisitVC, animated:true, completion:nil)
+	
+	
 				}
 				else if indexPath.item == 3 {
 					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-
+	
 					let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
 					self.present(MyTeamVC, animated:true, completion:nil)
-
-
+	
+	
 				}
 				else if indexPath.item == 4 {
 					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-
+	
 					let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
 					self.present(ExpenseClaimVC, animated:true, completion:nil)
-
-
+	
+	
 				}
-			
+	
 				else if indexPath.item == 5 {
 					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-
+	
 					let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
 					self.present(LeaveHistoryVC, animated:true, completion:nil)
-
-
+	
+	
 				}
-				else if indexPath.item == 6 {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-
-					let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
-					self.present(FaqVC, animated:true, completion:nil)
-
-
-				}
-			
-		}
-
-		
-		else if (empIsGPSTrackEnabled == 1)
-		{
-		if tableView == AttendanceNavigationtbl
-		{
-			if indexPath.row == 0 {
-				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
-				self.present(CalendarVC, animated:true, completion:nil)
-				
-			}
-				else if indexPath.item == 1 {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					
-					let TimesheetVC = storyBoard.instantiateViewController(withIdentifier: "TimesheetVC") as! TimesheetVC
-					self.present(TimesheetVC, animated:true, completion:nil)
-					
-					
-				}
-			else if indexPath.item == 2 {
-				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				
-				let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
-				self.present(AttendanceHistoryVC, animated:true, completion:nil)
-				
-				
-			}
-			
-			
-			else if indexPath.item == 3 {
-				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				
-				let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
-				self.present(FieldVisitVC, animated:true, completion:nil)
-				
-				
-			}
-			
-			else if indexPath.item == 4 {
-				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				
-				let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
-				self.present(MyTeamVC, animated:true, completion:nil)
-				
-				
-			}
-				else if indexPath.item == 5 {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					
-					let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
-					self.present(ExpenseClaimVC, animated:true, completion:nil)
-					
-					
-				}
-				
+	
 			else if indexPath.item == 6 {
 				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-				
-				let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
-				self.present(LeaveHistoryVC, animated:true, completion:nil)
-				
-				
-			}
-			
-			
-			else if indexPath.item == 7 {
-				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
 				let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
 				self.present(FaqVC, animated:true, completion:nil)
-				
-			}
-			else if indexPath.item == 8 {
-				
-				if ContactTextView.isHidden {
-					ContactTextView.isHidden = false
-				} else {
-					ContactTextView.isHidden = true
-				}
 			}
 		}
-		}
-			else if(empIsGPSTrackEnabled == 0)
-			
-		{
-			
-				if indexPath.row == 0 {
+
+else{
+	print("gps and timemanagement false")
+	if indexPath.row == 0 {
 					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
 					let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
 					self.present(CalendarVC, animated:true, completion:nil)
-					
+	
+	
 				}
-				else if indexPath.item == 1 {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					
-					let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
-					self.present(AttendanceHistoryVC, animated:true, completion:nil)
-					
-					
-				}
-				
-				
-				
-				
-				else if indexPath.item == 2 {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					
-					let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
-					self.present(MyTeamVC, animated:true, completion:nil)
-					
-					
-				}
+	
+					else if indexPath.item == 1 {
+						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
+						let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+						self.present(AttendanceHistoryVC, animated:true, completion:nil)
+	
+	
+					}
+	
+	
+	
+					else if indexPath.item == 2 {
+						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
+						let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+						self.present(MyTeamVC, animated:true, completion:nil)
+	
+	
+					}
 					else if indexPath.item == 3 {
 						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-						
+	
 						let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
 						self.present(ExpenseClaimVC, animated:true, completion:nil)
-						
-						
+	
+	
 					}
-					
-				else if indexPath.item == 4 {
-					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-					
-					let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
-					self.present(LeaveHistoryVC, animated:true, completion:nil)
-					
-					
-				}
-				
-				
+	
+					else if indexPath.item == 4 {
+						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
+						let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+						self.present(LeaveHistoryVC, animated:true, completion:nil)
+	
+	
+					}
+	
 				else if indexPath.item == 5 {
 					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+	
 					let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
 					self.present(FaqVC, animated:true, completion:nil)
-					
+	
+	
 				}
-				else if indexPath.item == 6 {
-					
-					if self.ContactTextView.isHidden {
-						self.ContactTextView.isHidden = false
-					} else {
-						self.ContactTextView.isHidden = true
-					}
-				}
-			}
+//				else if indexPath.item == 6 {
+//
+//					if ContactusText.isHidden {
+//						//ContactUsView.isHidden = false
+//						ContactusText.isHidden = false
+//					} else {
+//						//ContactUsView.isHidden = true
+//						ContactusText.isHidden = true
+//					}
+//
+//
+//
+//				}
+	
+}
+			
+		}
+//		{
+//			if indexPath.row == 0 {
+//				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//				let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
+//				self.present(CalendarVC, animated:true, completion:nil)
+//
+//			}
+//				else if indexPath.item == 1 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//					let TimesheetVC = storyBoard.instantiateViewController(withIdentifier: "TimesheetVC") as! TimesheetVC
+//					self.present(TimesheetVC, animated:true, completion:nil)
+//
+//
+//				}
+//			else if indexPath.item == 2 {
+//				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//				let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+//				self.present(AttendanceHistoryVC, animated:true, completion:nil)
+//
+//
+//			}
+//
+//
+//			else if indexPath.item == 3 {
+//				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//				let FieldVisitVC = storyBoard.instantiateViewController(withIdentifier: "FieldVisitVC") as! FieldVisitVC
+//				self.present(FieldVisitVC, animated:true, completion:nil)
+//
+//
+//			}
+//
+//			else if indexPath.item == 4 {
+//				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//				let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+//				self.present(MyTeamVC, animated:true, completion:nil)
+//
+//
+//			}
+//				else if indexPath.item == 5 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//					let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+//					self.present(ExpenseClaimVC, animated:true, completion:nil)
+//
+//
+//				}
+//
+//			else if indexPath.item == 6 {
+//				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//				let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+//				self.present(LeaveHistoryVC, animated:true, completion:nil)
+//
+//
+//			}
+//
+//
+//			else if indexPath.item == 7 {
+//				let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//				let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+//				self.present(FaqVC, animated:true, completion:nil)
+//
+//			}
+//			else if indexPath.item == 8 {
+//
+//				if ContactTextView.isHidden {
+//					ContactTextView.isHidden = false
+//				} else {
+//					ContactTextView.isHidden = true
+//				}
+//			}
+//		}
+		//}
+			//else if(empIsGPSTrackEnabled == 0)
+			
+//		{
+//
+//				if indexPath.row == 0 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//					let CalendarVC = storyBoard.instantiateViewController(withIdentifier: "CalendarVC") as! CalendarVC
+//					self.present(CalendarVC, animated:true, completion:nil)
+//
+//				}
+//				else if indexPath.item == 1 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//					let AttendanceHistoryVC = storyBoard.instantiateViewController(withIdentifier: "AttendanceHistoryVC") as! AttendanceHistoryVC
+//					self.present(AttendanceHistoryVC, animated:true, completion:nil)
+//
+//
+//				}
+//
+//
+//
+//
+//				else if indexPath.item == 2 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//					let MyTeamVC = storyBoard.instantiateViewController(withIdentifier: "MyTeamVC") as! MyTeamVC
+//					self.present(MyTeamVC, animated:true, completion:nil)
+//
+//
+//				}
+//					else if indexPath.item == 3 {
+//						let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//						let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+//						self.present(ExpenseClaimVC, animated:true, completion:nil)
+//
+//
+//					}
+//
+//				else if indexPath.item == 4 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//
+//					let LeaveHistoryVC = storyBoard.instantiateViewController(withIdentifier: "LeaveHistoryVC") as! LeaveHistoryVC
+//					self.present(LeaveHistoryVC, animated:true, completion:nil)
+//
+//
+//				}
+//
+//
+//				else if indexPath.item == 5 {
+//					let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+//					let FaqVC = storyBoard.instantiateViewController(withIdentifier: "FaqVC") as! FaqVC
+//					self.present(FaqVC, animated:true, completion:nil)
+//
+//				}
+//				else if indexPath.item == 6 {
+//
+//					if self.ContactTextView.isHidden {
+//						self.ContactTextView.isHidden = false
+//					} else {
+//						self.ContactTextView.isHidden = true
+//					}
+//				}
+//			}
 			
 		
 			
@@ -835,12 +1280,16 @@ class AttendanceVC: UIappViewController, UITableViewDelegate, UITableViewDataSou
 			if let responseJSON = responseJSON as? [String: Any] {
 				
 				DispatchQueue.main.async
-				{
+				{ [self] in
 				print("Employee ---- Json Response",responseJSON)
 				var empIsSupervisor_Manager: Bool?
 				empIsSupervisor_Manager = (responseJSON["empIsSupervisor_Manager"] as? Bool)!
 				print("empIsSupervisor_Manager ------------",empIsSupervisor_Manager as Any)
 				
+					self.custIsTaskManagementEnabled = (responseJSON["custIsTaskManagementEnabled"] as? Int)!
+				
+					print("atd custIsTaskManagementEnabled...",custIsTaskManagementEnabled)
+					
 				var MainDict:NSMutableDictionary = NSMutableDictionary()
 
 				self.empIsGPSTrackEnabled = (responseJSON["empIsGPSTrackEnabled"] as? Int)!
