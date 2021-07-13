@@ -44,6 +44,11 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 
 		print("taskid..",taskid)
 		
+		var tasknamestr = String()
+		tasknamestr = UserDefaults.standard.string(forKey: "tasknamekey") ?? ""
+		print("Expense tasknamestr",tasknamestr)
+
+		
 		self.DeleteView.isHidden = true
 		self.Expensetbl.isHidden = true
 		self.Expensetbl.rowHeight = 300.0

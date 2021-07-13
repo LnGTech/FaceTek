@@ -26,6 +26,11 @@ view.endEditing(true)
 class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelegate,UIImagePickerControllerDelegate,UINavigationControllerDelegate
  {
 	
+	
+	@IBOutlet weak var taskheight: NSLayoutConstraint!
+	@IBOutlet weak var tasknamebckview: UIView!
+	@IBOutlet weak var Expensetasknamelbl: UILabel!
+	
 	@IBOutlet weak var ExpensetitleLbl: UILabel!
 	@IBOutlet weak var ExpenseClaimTextview: UITextView!
 	@IBOutlet weak var ExpenseDatetxtfld: UITextField!
@@ -41,6 +46,10 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
     let Datepicker = UIDatePicker()
     var ConvertedCurrentDatestr = String()
 	var Currentdatestr : String = ""
+	var taskid = Int()
+	var tasknamestr = String()
+
+
 
 	@IBOutlet weak var Imagepic: UIImageView!
 	
@@ -49,6 +58,55 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 	override func viewDidLoad() {
         super.viewDidLoad()
 		imagecancelBtn.isHidden = true
+		
+//		self.tasknameviewheight?.constant = 0
+//		self.Datebckviewheight?.constant = 80
+
+		
+		
+		let defaults = UserDefaults.standard
+		
+		//taskid = ("\(defaults.integer(forKey: "taskidkey") ?? 0)")
+		taskid = UserDefaults.standard.integer(forKey: "taskidkey")
+		print("add taskid..",taskid)
+		tasknamestr = UserDefaults.standard.string(forKey: "tasknamekey") ?? ""
+		print("add Expense tasknamestr",tasknamestr)
+		
+		Expensetasknamelbl.text = tasknamestr
+		let ExpensetasknamelblAttributes :Dictionary = [NSAttributedStringKey.font : Expensetasknamelbl.font]
+		Expensetasknamelbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		Expensetasknamelbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+		let ExpensetasknamelblAtributes :Dictionary = [NSAttributedStringKey.font : ExpenseTypetxtfld.font]
+		ExpenseTypetxtfld.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		
+		
+		var taskName = StructOperation.glovalVariable.taskName;
+		print("taskName...",taskName)
+		
+		if (taskName != "")
+		{
+			print("taskname true")
+			
+			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { [self] in
+
+			self.view.layoutIfNeeded()
+			}, completion: nil)
+		}
+		else
+		{
+			
+			
+			UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 0.5, initialSpringVelocity: 0.5, options: .curveEaseOut, animations: { [self] in
+//			self.tsknamehight?.constant = 0
+				self.taskheight?.constant = 0
+
+			self.view.layoutIfNeeded()
+			}, completion: nil)
+			print("taskname false")
+		}
+		
+		
+		
 
 		
 		let statusBarView = UIView(frame: UIApplication.shared.statusBarFrame)
@@ -225,12 +283,8 @@ class ExpensesClaimFormVC: UIViewController,UITextViewDelegate,UITextFieldDelega
 	{
 		
 		let defaults = UserDefaults.standard
-		var taskid = Int()
 		
-		//taskid = ("\(defaults.integer(forKey: "taskidkey") ?? 0)")
-		taskid = UserDefaults.standard.integer(forKey: "taskidkey")
-
-		print("taskid..",taskid)
+		
 		var RetrivedempId = defaults.integer(forKey: "empId")
 		var RetrivedcustId = defaults.integer(forKey: "custId")
 		

@@ -8,6 +8,13 @@
 
 import UIKit
 
+
+class StructOperation {
+	  struct glovalVariable {
+	  static var taskName = String();
+	 }
+ }
+
 class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, UITextFieldDelegate {
 	var SubtaskArray:NSMutableArray = NSMutableArray()
 	var workedhoursArray:NSMutableArray = NSMutableArray()
@@ -32,6 +39,9 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 	var index = IndexPath()
 	var Selectedhrsstr = String()
 	var selecteddate = String()
+	var taskNamestr : String?
+	var text:String = ""
+
 
 
 	@IBOutlet weak var Topdatebckview: UIView!
@@ -472,7 +482,6 @@ class TimesheetVC: UIViewController,UITableViewDelegate,UITableViewDataSource, U
 			print("Retrived data",responseDict)
 			self.SelecttaskArray.add(MainDict)
 			print("SelecttaskArray Type Array",SelecttaskArray)
-			var taskNamestr : String?
 			taskNamestr = responseDict["taskName"] as? String
 			print("taskName",taskNamestr)
 			let empTaskId_h : NSInteger
@@ -1100,11 +1109,21 @@ task.resume()
 	 
 	
 	@IBAction func claimExpenseBtnclk(_ sender: Any) {
+		
+		
+		
+		
 		let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 
 		let ExpenseClaimVC = storyBoard.instantiateViewController(withIdentifier: "ExpenseClaimVC") as! ExpenseClaimVC
+
 		
 		UserDefaults.standard.set(selectedclientId, forKey: "taskidkey")
+
+		UserDefaults.standard.set(selecttasklbl.text!, forKey: "tasknamekey")
+
+		StructOperation.glovalVariable.taskName = selecttasklbl.text!;
+
 		self.present(ExpenseClaimVC, animated:true, completion:nil)
 
 		
