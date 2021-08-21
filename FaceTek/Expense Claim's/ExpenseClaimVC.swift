@@ -93,7 +93,12 @@ class ExpenseClaimVC: UIViewController,UITableViewDelegate,UITableViewDataSource
 		{
 		let defaults = UserDefaults.standard
 		var RetrivedempId = defaults.integer(forKey: "empId")
+		print("RetrivedempId expence",RetrivedempId)
+
 		var RetrivedcustId = defaults.integer(forKey: "custId")
+		print("RetrivedcustId expence",RetrivedcustId)
+		print("Currentdatestr....",Currentdatestr)
+
 		let parameters = ["refCustId": RetrivedcustId as Any, "refEmpId": RetrivedempId as Any , "empExpClaimDate": Currentdatestr as Any] as [String : Any]
 
 		let dateFormatter = DateFormatter()
@@ -423,61 +428,134 @@ print("cancel button clickd")
 	
 	func selected_date_DoneMethod()
 	{
-	let defaults = UserDefaults.standard
-	var RetrivedempId = defaults.integer(forKey: "empId")
-	let parameters = ["empId": RetrivedempId as Any, "monthYear": SelectedDatestr as Any] as [String : Any]
-	let dateFormatter = DateFormatter()
-	dateFormatter.dateFormat = "yyyy-MM-dd"
-	let myDate = dateFormatter.date(from: SelectedDatestr)!
-	dateFormatter.dateFormat = "MMM yyyy"
-	let Convertdate = dateFormatter.string(from: myDate)
-	print("Convertdate",Convertdate)
-	SelectedDateLbl.text = Convertdate
-	SelectedDateLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
-	let SelectedDateLblattributes :Dictionary = [NSAttributedStringKey.font : SelectedDateLbl.font]
-	SelectedDateLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
-	var StartPoint = Baseurl.shared().baseURL
-	var Endpoint = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getEmployeeLeaveList"
-	let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
-	let session = URLSession.shared
-	var request = URLRequest(url: url as URL)
-    request.httpMethod = "POST"
-    do {
-	request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
 		
-	} catch let error {
-				print(error.localizedDescription)
-			}
-	request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-	request.addValue("application/json", forHTTPHeaderField: "Accept")
-	let task = URLSession.shared.dataTask(with: request) { data, response, error in
-	guard let data = data, error == nil else {
-	print(error?.localizedDescription ?? "No data")
-					return
-				}
-	let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-	if let responseJSON = responseJSON as? [String: Any] {
-	print("Expense History Json Response",responseJSON)
-	DispatchQueue.main.async {
-	if let absentShiftDetailsid = responseJSON["empLeaveList"] as? NSNull {
-	self.NoDatafoundview.isHidden = false
-											}
-				else
-				{
-	self.Expensetbl.isHidden = true
-	}
-	}
-	self.ExpenseHistoryData = NSMutableDictionary()
-	if responseJSON != nil{
-	self.ExpenseHistoryData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
-						}
-	DispatchQueue.main.async {
-	self.Expensetbl.reloadData()
-					}
-					}
-				}
-			
-			task.resume()
+		
+		let defaults = UserDefaults.standard
+		var RetrivedempId = defaults.integer(forKey: "empId")
+		print("RetrivedempId expence",RetrivedempId)
+
+		var RetrivedcustId = defaults.integer(forKey: "custId")
+		print("RetrivedcustId expence",RetrivedcustId)
+		print("SelectedDatestr....",SelectedDatestr)
+
+		let parameters = ["refCustId": RetrivedcustId as Any, "refEmpId": RetrivedempId as Any , "empExpClaimDate": SelectedDatestr as Any] as [String : Any]
+
+		let dateFormatter = DateFormatter()
+		dateFormatter.dateFormat = "yyyy-MM-dd"
+		let myDate = dateFormatter.date(from: SelectedDatestr)!
+		dateFormatter.dateFormat = "MMM yyyy"
+		let Convertdate = dateFormatter.string(from: myDate)
+		print("Convertdate",Convertdate)
+		SelectedDateLbl.text = Convertdate
+		SelectedDateLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+		let SelectedDateLblattributes :Dictionary = [NSAttributedStringKey.font : SelectedDateLbl.font]
+		SelectedDateLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+		var StartPoint = Baseurl.shared().baseURL
+		var Endpoint = "/attnd-api-gateway-service/api/customer/Mob/employee/expenseClaim/getEmpExpenseClaimMob"
+		let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+		let session = URLSession.shared
+		var request = URLRequest(url: url as URL)
+		request.httpMethod = "POST" //set http method as POST
+		do {
+		request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+		} catch let error {
+		print(error.localizedDescription)
+							}
+		request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+		request.addValue("application/json", forHTTPHeaderField: "Accept")
+		let task = URLSession.shared.dataTask(with: request) { data, response, error in
+		guard let data = data, error == nil else {
+		print(error?.localizedDescription ?? "No data")
+		return
+		}
+		let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+		if let responseJSON = responseJSON as? [String: Any] {
+		print("Expense History Json Response",responseJSON)
+		DispatchQueue.main.async {
+		if let absentShiftDetailsid = responseJSON["expenseClaimDto"] as? NSNull {
+		print("null values printed.....")
+		self.NoDatafoundview.isHidden = false
+		//             self.NoLeavesView.isHidden = false
+		self.Expensetbl.isHidden = true
+		}
+		else
+		{
+		self.Expensetbl.isHidden = false
+		print("Normal values printed....")
+		}
+		}
+		self.ExpenseHistoryData = NSMutableDictionary()
+		if responseJSON != nil{
+		self.ExpenseHistoryData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
+		}
+		DispatchQueue.main.async {
+		self.Expensetbl.reloadData()
+		}
+									}
+								}
+							
+							task.resume()
+		
+		
+//	let defaults = UserDefaults.standard
+//	var RetrivedempId = defaults.integer(forKey: "empId")
+//	let parameters = ["empId": RetrivedempId as Any, "monthYear": SelectedDatestr as Any] as [String : Any]
+//	let dateFormatter = DateFormatter()
+//	dateFormatter.dateFormat = "yyyy-MM-dd"
+//	let myDate = dateFormatter.date(from: SelectedDatestr)!
+//	dateFormatter.dateFormat = "MMM yyyy"
+//	let Convertdate = dateFormatter.string(from: myDate)
+//	print("Convertdate",Convertdate)
+//	SelectedDateLbl.text = Convertdate
+//	SelectedDateLbl.font = UIFont(name: "HelveticaNeue-Medium", size: 16.0)!
+//	let SelectedDateLblattributes :Dictionary = [NSAttributedStringKey.font : SelectedDateLbl.font]
+//	SelectedDateLbl.textColor = #colorLiteral(red: 0.4556630711, green: 0.4556630711, blue: 0.4556630711, alpha: 1)
+//	var StartPoint = Baseurl.shared().baseURL
+//	var Endpoint = "/attnd-api-gateway-service/api/customer/mobile/app/employee/leave/getEmployeeLeaveList"
+//	let url: NSURL = NSURL(string:"\(StartPoint)\(Endpoint)")!
+//	let session = URLSession.shared
+//	var request = URLRequest(url: url as URL)
+//    request.httpMethod = "POST"
+//    do {
+//	request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
+//
+//	} catch let error {
+//				print(error.localizedDescription)
+//			}
+//	request.addValue("application/json", forHTTPHeaderField: "Content-Type")
+//	request.addValue("application/json", forHTTPHeaderField: "Accept")
+//	let task = URLSession.shared.dataTask(with: request) { data, response, error in
+//	guard let data = data, error == nil else {
+//	print(error?.localizedDescription ?? "No data")
+//					return
+//				}
+//	let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
+//	if let responseJSON = responseJSON as? [String: Any] {
+//	print("Expense History Json Response",responseJSON)
+//	DispatchQueue.main.async {
+//	if let absentShiftDetailsid = responseJSON["empLeaveList"] as? NSNull {
+//	self.NoDatafoundview.isHidden = false
+//		self.Expensetbl.isHidden = true
+//		print("Aug ...")
+//											}
+//				else
+//				{
+//	self.Expensetbl.isHidden = false
+//					print("Aug ...--")
+//
+//	}
+//	}
+//	self.ExpenseHistoryData = NSMutableDictionary()
+//	if responseJSON != nil{
+//	self.ExpenseHistoryData = (responseJSON as NSDictionary).mutableCopy() as! NSMutableDictionary
+//						}
+//	DispatchQueue.main.async {
+//	self.Expensetbl.reloadData()
+//					}
+//					}
+//				}
+//
+//			task.resume()
 		}
 	
 	
