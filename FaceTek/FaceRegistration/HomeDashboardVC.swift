@@ -81,6 +81,8 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 	@IBOutlet weak var ManagerView: UIView!
 	
 	@IBOutlet weak var LeaveApplicationPendingview: UIView!
+	@IBOutlet weak var LeaveBottomview: UIView!
+
 	
 	@IBOutlet weak var PendingLeavesview: UIView!
 	@IBOutlet weak var Absentview: UIView!
@@ -263,6 +265,14 @@ class HomeDashboardVC: UIViewController,UITableViewDelegate,UITableViewDataSourc
 		self.LeaveApplicationPendingview.layer.shadowOpacity = 0.1
 		self.LeaveApplicationPendingview.layer.shadowRadius = 1.0
 		
+		
+		self.LeaveBottomview.layer.masksToBounds = false
+		self.LeaveBottomview.layer.cornerRadius = 1
+		self.LeaveBottomview.layer.shadowColor = UIColor.black.cgColor
+		self.LeaveBottomview.layer.shadowPath = UIBezierPath(roundedRect: self.LeaveBottomview.bounds, cornerRadius: self.LeaveBottomview.layer.cornerRadius).cgPath
+		self.LeaveBottomview.layer.shadowOffset = CGSize(width: 3.0, height: 3.0)
+		self.LeaveBottomview.layer.shadowOpacity = 0.1
+		self.LeaveBottomview.layer.shadowRadius = 1.0
 		
 		
 		

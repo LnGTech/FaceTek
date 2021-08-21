@@ -316,6 +316,7 @@ return headerCell
 	DispatchQueue.main.async {
 	if let absentShiftDetailsid = responseJSON["empLeaveList"] as? NSNull {
 	print("null values printed.....")
+		self.LeaveHistorytbl.isHidden = true
 	self.Nodatafoundview.isHidden = false
 
 	}
